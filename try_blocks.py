@@ -30,7 +30,7 @@ connection = {
 report_url = "https://raw.githubusercontent.com/os-threat/Stix-ORM/main/test/data/threat_reports/poisonivy.json"
 
 def try_import_bundle():
-    import_bundle(connection["uri"], connection["port"], connection["database"], report_url, "output.json")
+    import_bundle(connection["uri"], connection["port"], connection["database"], report_url, "output.json", logger)
 
 
 # if this file is run directly, then start here
