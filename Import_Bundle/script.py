@@ -13,7 +13,6 @@
 ##############################################################################
 
 from typedb.client import *
-from loguru import logger as Logger
 from stixorm.module.typedb import TypeDBSink
 from stixorm.module.authorise import import_type_factory
 from stixorm.module.typedb_lib.instructions import ResultStatus
@@ -23,22 +22,25 @@ import copy
 import os
 import sys
 import argparse
+from loguru import logger as Logger
 
 import_type = import_type_factory.get_all_imports()
 
 def get_bundle(url):
-    bundle = json.loads(requests.get(url).text)
+    bundle = json.loads(requests.get(url, verify=False).text)
     return bundle
 
 def main(dbhost, dbport, dbdatabase, dbquery, outputfile, logger: Logger):
-    connection = {
+    instance_connection = {
         "uri": dbhost,
         "port": dbport,
-        "database": dbdatabase
+        "database": dbdatabase,
+        "user": None,
+        "password": None
     }
     # start the connection, reinitilise is true
     reinitilise = True
-    typedb = TypeDBSink(connection=connection,
+    typedb = TypeDBSink(connection=instance_connection,
                         clear=reinitilise,
                         import_type=import_type)
     # get the bundle to load
@@ -55,8 +57,10 @@ def main(dbhost, dbport, dbdatabase, dbquery, outputfile, logger: Logger):
 if __name__ == '__main__':
     connection = {
         "uri": "localhost",
-        "port": 1729,
-        "database": "stix_test"
+        "port": "1729",
+        "database": "stix_test",
+        "user": None,
+        "password": None
     }
     url = "https://raw.githubusercontent.com/os-threat/Stix-ORM/main/test/data/threat_reports/poisonivy.json"
-    main(connection["uri"], connection["port"], connection["database"], url, "output.json")
+    main(connection["uri"], connection["port"], connection["database"], url, "output.json", Logger)
