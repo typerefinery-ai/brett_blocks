@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] %(levelname)s [%(
 logger = logging.getLogger(__name__)
 #logger.addHandler(logging.StreamHandler())
 
-from Import_Bundle.script import main as import_bundle
+from General.Import_Bundle.script import main as import_bundle
 
 import_type = import_type_factory.get_all_imports()
 
