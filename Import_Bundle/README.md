@@ -8,3 +8,10 @@ It takes two inputs:
 
 It has a single output:
 1. Output: A json string containing a Success object (to be made up signifying successful load)
+
+
+So the block is commonly used chained by a trgger, and url data blocks, and then the layout would like 
+![img.png](img.png)
+
+In this the json is a Stix 2.1 Report object called poison ivy
+https://raw.githubusercontent.com/os-threat/Stix-ORM/main/test/data/threat_reports/poisonivy.json
