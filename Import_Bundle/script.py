@@ -6,7 +6,7 @@
 # Date: 07/08/2023
 #
 # Description: This script is designed to take in a Connection, and a Path string
-#       that points to the sub-directory in the tests/data to read in, and then
+#       that points to the subdirectory in the tests/data to read in, and then
 #       load the bundle files in the directory (note files contain bundles not lists)
 #
 # This code is licensed under the terms of the BSD.
@@ -15,7 +15,7 @@
 from typedb.client import *
 from stixorm.module.typedb import TypeDBSink
 from stixorm.module.authorise import import_type_factory
-from stixorm.module.typedb_lib.instructions import ResultStatus
+from stixorm.module.typedb_lib.instructions import ResultStatus, Result
 import json
 import requests
 import copy
@@ -27,7 +27,8 @@ from loguru import logger as Logger
 import_type = import_type_factory.get_all_imports()
 
 def get_bundle(url):
-    bundle = json.loads(requests.get(url, verify=False).text)
+    bundle = json.loads(requests.get(url, verify=True).text)
+    print(f"\n bundle is {bundle}")
     return bundle
 
 def main(dbhost, dbport, dbdatabase, dbquery, outputfile, logger: Logger):
@@ -47,10 +48,20 @@ def main(dbhost, dbport, dbdatabase, dbquery, outputfile, logger: Logger):
     bundle = get_bundle(dbquery)
     bundle_list = bundle["objects"]
     # add the list to TypeDB
-    result = typedb.add(bundle_list)
+    results = typedb.add(bundle_list)
+    result_list = []
+    for res in results:
+        r = {}
+        r['id'] = str(res.id)
+        r['status'] = str(res.status.value)
+        r['error'] = str(res.error)
+        r['message'] = str(res.message)
+        result_list.append(r)
+
+    print(f"\n result type is {type(result_list)} \n result is -> {result_list}")
     # export the result
     with open(outputfile, "w") as outfile:
-        json.dump(result, outfile)
+        json.dump(result_list, outfile)
 
 
 # if this file is run directly, then start here
