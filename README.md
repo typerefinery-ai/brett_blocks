@@ -11,3 +11,5 @@ Each block is documented in a sub-directory, named after the block, and contains
 The Python blocks can be loaded and tested locally. Each Script wil take imports and export a file, and so testing and glue code can be written
 
 It is not clear yet how the HTLM code, or javascript code could be tested locally, so we are open to suggestions.
+
+Note Poetry Install, Python v3.9
