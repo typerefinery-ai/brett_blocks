@@ -52,16 +52,21 @@ There are a a series of different block libraries needed:
 
 
 ### Attack Blocks
-| Library | Name          |   Type    | Inputs                      |  Outputs   | Description                                                |
-|:-------:|:--------------|:---------:|:----------------------------|:----------:|:-----------------------------------------------------------|
-| Attack  | 	Get Report   | Retrieve  | 	Connection, id             | 	Stix_List | 	Given an id, retireve the report and all connected assets |
-| Attack  | 	Get Email    | 	Retrieve | 	Connection, email address	 | Stix_List	 | Given an email address, retireve the email object          |
-| Attack  | 	Get IPv4     | 	Retrieve | 	Connection, IPv4 address   | 	Stix_List | 	Given an ipv4 retrieve the IPv4 object                    |
-| Attack  | 	Get IPv6     | 	Retrieve | 	Connection, IPv6 address	  | Stix_List	 | Given an IPv6 address, retireve the IPv6 object            |
-| Attack  | 	Get Location | 	Retrieve | 	Connection, Location       | 	Stix_List | 	Given a Location retrieve the Location object             |
-| Attack  | 	Get Report   | Retrieve  | 	Connection, id             | 	Stix_List | 	Given an id, retireve the report and all connected assets |
-| Attack  | 	Get Email    | 	Retrieve | 	Connection, email address	 | Stix_List	 | Given an email address, retireve the email object          |
-| Attack  | 	Get IPv4     | 	Retrieve | 	Connection, IPv4 address   | 	Stix_List | 	Given an ipv4 retrieve the IPv4 object                    |
-| Attack  | 	Get IPv6     | 	Retrieve | 	Connection, IPv6 address	  | Stix_List	 | Given an IPv6 address, retireve the IPv6 object            |
-| Attack  | 	Get Location | 	Retrieve | 	Connection, Location       | 	Stix_List | 	Given a Location retrieve the Location object             |
+| Library | Name                 |   Type    | Inputs                   |  Outputs   | Description                                                       |
+|:-------:|:---------------------|:---------:|:-------------------------|:----------:|:------------------------------------------------------------------|
+| Attack  | 	Get All Software    | Retrieve  | 	Connection              | 	Stix_List | 	Given a Connection, retrieve all Software                        |
+| Attack  | 	Get Software        | 	Retrieve | 	Connection, id	         | Stix_List	 | Given a Connection and id, retrieve all of the Software assets    |
+| Attack  | 	Get All Campaigns   | 	Retrieve | 	Connection              | 	Stix_List | 	Given a Connection, retrieve all Campaigns                       |
+| Attack  | 	Get Campaign        | 	Retrieve | 	Connection, id	         | Stix_List	 | Given a Connection and id, retrieve all of the Campaign assets    |
+| Attack  | 	Get All Groups      | 	Retrieve | 	Connection              | 	Stix_List | 	Given a Connection, retrieve all Groups                          |
+| Attack  | 	Get Group           | Retrieve  | 	Connection, id          | 	Stix_List | 	Given a Connection and id, retrieve all of the Group assets      |
+| Attack  | 	Get All Datasources | 	Retrieve | 	Connection	             | Stix_List	 | Given a Connection, retrieve all Datasources                      |
+| Attack  | 	Get Datasource      | 	Retrieve | 	Connection, id          | 	Stix_List | 	Given a Connection and id, retrieve all of the Datasource assets |
+| Attack  | 	Get All Mitigations | 	Retrieve | 	Connection	             | Stix_List	 | Given a Connection, retrieve all Mitigations                      |
+| Attack  | 	Get Mitigation      | 	Retrieve | 	Connection, id          | 	Stix_List | 	Given a Connection and id, retrieve all of the Mitigation assets |
+| Attack  | 	Get All Techniques  | Retrieve  | 	Connection              | 	Stix_List | 	Given a Connection, retrieve all Techniques                      |
+| Attack  | 	Get Technique       | 	Retrieve | 	Connection, id	         | Stix_List	 | Given a Connection and id, retrieve all of the Technique assets   |
+| Attack  | 	Get All Tactics     | 	Retrieve | 	Connection              | 	Stix_List | 	Given a Connection, retrieve all Tactics                         |
+| Attack  | 	Get Tactic          | 	Retrieve | 	Connection, id 	        | Stix_List	 | Given a Connection and id, retrieve all of the Tactic assets      |
+| Attack  | 	Get Matrix      | 	Retrieve | 	Connection              | 	Stix_List | 	Given a Connection and id, retrieve all of the Matirx assets                |
 
