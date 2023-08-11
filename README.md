@@ -27,10 +27,10 @@ There are a a series of different block libraries needed:
 | General | 	Import Bundle         |  Import   | 	Connection, URL  |      	Stix_List       | 	Given n URL, open the JSON Bundle and add it to TypeDB          |
 | General | 	Get Object            | 	Retrieve | 	Connection, id	  |      Stix_List	       | Given an id, retrieve a single JSON object in a list             |
 | General | 	Get Objects of a Type | 	Retrieve | 	Connection, type |      	Stix_List       | 	Given a string StixObject type, return all objects of that type |
-| General | 	URL                   | Constant  | 	Trigger          |      	URL String      | 	Given n URL, open the JSON Bundle and add it to TypeDB          |
-| General | 	Email Address         | 	Constant | 	Trigger	         | Email address String	 | Given an id, retrieve a single JSON object in a list             |
-| General | 	IPv4 Address          | 	Constant | 	Trigger          |     	IPv4 String      | 	Given a string StixObject type, return all objects of that type |
-| General | 	IPv6 Address          | 	Constant | 	Trigger          |     	IPv6 String      | 	Given a string StixObject type, return all objects of that type |
+| General | 	URL                   | Constant  | 	Trigger          |      	URL String      | 	Constant input - a valid URL                                    |
+| General | 	Email Address         | 	Constant | 	Trigger	         | Email address String	 | Constant input - a valid Email Address                           |
+| General | 	IPv4 Address          | 	Constant | 	Trigger          |     	IPv4 String      | 	Constant input - a valid IPv4                                   |
+| General | 	IPv6 Address          | 	Constant | 	Trigger          |     	IPv6 String      | 	Constant input - a valid IPv6                                   |
 
 
 ### Stix Blocks
