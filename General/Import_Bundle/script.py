@@ -48,16 +48,8 @@ def main(dbhost, dbport, dbdatabase, dbquery, outputfile, logger: Logger):
     bundle = get_bundle(dbquery)
     bundle_list = bundle["objects"]
     # add the list to TypeDB
-    results = typedb.add(bundle_list)
-    result_list = []
-    for res in results:
-        r = {}
-        r['id'] = str(res.id)
-        r['status'] = str(res.status.value)
-        r['error'] = str(res.error)
-        r['message'] = str(res.message)
-        result_list.append(r)
-
+    results_raw = typedb.add(bundle_list)
+    result_list = [res.model_dump_json() for res in results_raw]
     print(f"\n result type is {type(result_list)} \n result is -> {result_list}")
     # export the result
     with open(outputfile, "w") as outfile:
