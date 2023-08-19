@@ -7,4 +7,4 @@ It takes two inputs:
 2. A string containing the valid path for the example data
 
 It has a single output:
-1. A json file containing a Success object (to be made up signifying successful load)
+1. A json file containing a list of valid Stix objects

@@ -10,13 +10,16 @@ import copy
 import os
 import sys
 import argparse
+import time
 
 import logging
 logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s')
 logger = logging.getLogger(__name__)
 #logger.addHandler(logging.StreamHandler())
 
+from General.Get_Object.script import main as get_object
 from General.Import_Bundle.script import main as import_bundle
+from Stix.Get_Embedded.script import main as get_embedded
 
 import_type = import_type_factory.get_all_imports()
 
@@ -29,10 +32,27 @@ connection = {
 }
 report_url = "https://raw.githubusercontent.com/os-threat/Stix-ORM/main/test/data/threat_reports/poisonivy.json"
 
+report_id = "report--f2b63e80-b523-4747-a069-35c002c690db"
+
 def try_import_bundle():
-    import_bundle(connection["uri"], connection["port"], connection["database"], report_url, "output.json", logger)
+    import_bundle(connection["uri"], connection["port"], connection["database"], report_url, "output1.json", logger)
+
+def try_get_embedded():
+    stix_list = []
+    print("Step 1 is about to start, importing the bundle")
+    try_import_bundle()
+    print("we hav imported the report bundle and are going to try to retrieve the entire list")
+    get_embedded(connection["uri"], connection["port"], connection["database"], report_id, "output2.json", logger)
+
+
+def try_get_object():
+    stix_list = []
+    print("Step 1 is about to start, importing the report bundle")
+    try_import_bundle()
+    print("we have imported the report bundle and are going to try to retrieve the report object")
+    get_object(connection["uri"], connection["port"], connection["database"], report_id, "output3.json", logger)
 
 
 # if this file is run directly, then start here
 if __name__ == '__main__':
-    try_import_bundle()
+    try_get_object()

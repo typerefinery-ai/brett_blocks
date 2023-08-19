@@ -1,27 +1,27 @@
 ##############################################################################
-# Title: Import Bundle
+# Title: Get Report
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: denis@cloudaccelerator.co
 # Date: 07/08/2023
 #
-# Description: This script is designed to take in a Connection, and an URL string
-#       that points to the json bundle to read in, and import the bundle
+# Description: This script is designed to take in a Connection, and a Report ID,
+#       nd return a list of Stix objects containing the report and all dependencies
 #
 # This code is licensed under the terms of the BSD.
 ##############################################################################
 <script total>
 
-	exports.id = 'stixorm_import_bundle';
-	exports.name = 'Stix-ORM Import Bundle';
+	exports.id = 'stixorm_get_embedded';
+	exports.name = 'Get Object Embedded';
 	exports.icon = 'fa fa-code';
 	exports.group = '@TypeRefinery';
 	exports.author = 'TypeRefinery.io';
 	exports.version = '1';
 
-	exports.config = { title: exports.name, version: exports.version, algorithm: '', algorithmrequirements: 'argparse loguru stixorm', endpoint: 'http://127.0.0.1:8000/algorithm' };
-	exports.inputs = [{ id: 'connection', name: 'Connection' }, { id: 'url', name: 'URL' }];
-	exports.outputs = [{ id: 'output', name: 'Results' }];
+	exports.config = { title: exports.name, version: exports.version, algorithm: '', algorithmrequirements: 'argparse\nloguru', endpoint: 'http://127.0.0.1:8000/algorithm' };
+	exports.inputs = [{ id: 'connection', name: 'Connection' }, { id: 'cluster_id', name: 'Cluster_ID' }];
+	exports.outputs = [{ id: 'output', name: 'Stix-List' }];
 
 	exports.meta = { settingswidth: 1200 };
 
@@ -37,12 +37,12 @@
 			// Inputs to this block will be saved in values Object
 			values[$.input] = $.data;
 
-			if (values.connection && config.algorithm) {
+			if (values.connection && values.query && config.algorithm) {
 				var payload = {
 					dbhost: values.connection.dbhost,
 					dbport: values.connection.dbport,
 					dbdatabase: values.connection.dbdatabase,
-					dbquery: values.url,
+					dbquery: values.cluster_id,
 					algorithm: config.algorithm,
 					algorithmrequirements: config.algorithmrequirements,
 					returnoutput: 'output'

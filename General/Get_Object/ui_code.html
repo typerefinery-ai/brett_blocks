@@ -1,27 +1,27 @@
 ##############################################################################
-# Title: Get Report
+# Title: Get Object
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: denis@cloudaccelerator.co
 # Date: 07/08/2023
 #
-# Description: This script is designed to take in a Connection, and a Report ID,
-#       nd return a list of Stix objects containing the report and all dependencies
+# Description: This script is designed to take in a Connection, and a Stix_ID,
+#       nd return a Stix object
 #
 # This code is licensed under the terms of the BSD.
 ##############################################################################
 <script total>
 
-	exports.id = 'typerefinery_runnodeedges';
-	exports.name = 'Run (node & edges)';
+	exports.id = 'stixorm_get_object';
+	exports.name = 'Get Object';
 	exports.icon = 'fa fa-code';
 	exports.group = '@TypeRefinery';
 	exports.author = 'TypeRefinery.io';
 	exports.version = '1';
 
 	exports.config = { title: exports.name, version: exports.version, algorithm: '', algorithmrequirements: 'argparse\nloguru', endpoint: 'http://127.0.0.1:8000/algorithm' };
-	exports.inputs = [{ id: 'connection', name: 'Connection' }, { id: 'query', name: 'TQL Query' }];
-	exports.outputs = [{ id: 'output', name: 'Output' }];
+	exports.inputs = [{ id: 'connection', name: 'Connection' }, { id: 'stix_id', name: 'Stix_ID' }];
+	exports.outputs = [{ id: 'output', name: 'Stix_Object' }];
 
 	exports.meta = { settingswidth: 1200 };
 
@@ -42,7 +42,7 @@
 					dbhost: values.connection.dbhost,
 					dbport: values.connection.dbport,
 					dbdatabase: values.connection.dbdatabase,
-					dbquery: values.query.dbquery,
+					dbquery: values.stix_id,
 					algorithm: config.algorithm,
 					algorithmrequirements: config.algorithmrequirements,
 					returnoutput: 'output'
