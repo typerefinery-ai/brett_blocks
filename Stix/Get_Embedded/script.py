@@ -49,13 +49,13 @@ def get_object_cluster(cluster_head_id, connection):
             stix_list.append(report_obj)
             if hasattr(report_obj, "created_by_ref"):
                 identity = typedb_source.get(report_obj.created_by_ref)
-                stix_list.append(identity)
+                stix_list.append(identity.serialize)
             if hasattr(report_obj, "object_refs"):
                 report_list = report_obj.object_refs
                 for report_component_id in report_list:
                     print(f"find obj {report_component_id}")
                     tmp_obj = typedb_source.get(report_component_id)
-                    stix_list.append(tmp_obj)
+                    stix_list.append(tmp_obj.serialize)
                     print("found and added")
 
             for stix_obj in stix_list:

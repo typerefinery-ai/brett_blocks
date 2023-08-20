@@ -57,8 +57,7 @@ def main(dbhost, dbport, dbdatabase, dbquery, outputfile, logger: Logger):
     # setup logger for execution
     report_id = dbquery
     stix_object = get_object(report_id, instance_connection)
-    print(f"\n type of object is {type(stix_object)}")
-    stix_dict = json.dumps(stix_object),
+    stix_dict = stix_object.serialize,
     print(f"\n type of stix_dict is {type(stix_dict)}")
     print(stix_object.serialize(pretty=True))
     with open(outputfile, "w") as outfile:
