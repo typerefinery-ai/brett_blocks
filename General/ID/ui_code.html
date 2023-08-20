@@ -13,19 +13,20 @@
 ##############################################################################
 <script total>
 
-	exports.id = 'stixorm_id';
-	exports.name = 'ID';
+	exports.id = 'stixorm_stix_id';
+	exports.name = 'Stix_ID';
 	exports.icon = 'fa fa-code';
 	exports.group = '@TypeRefinery';
 	exports.author = 'TypeRefinery.io';
 	exports.version = '2';
 
 	exports.config = { title: exports.name, version: exports.version, outputs: 1, code: '// instance {FlowStreamInstance};\n// $ {FlowStreamMessage};\n// vars {Object};\n// repo {Object};\n// data {String/Number/Boolean/Date/Buffer/Object};\n// $.send(\'output\', data); // or simply send(data); which uses the first output\n// $.destroy();\n// $.throw(err);\n\n// IMPORTANT: If you do not perform re-send, you need to destroy this message via $.destroy() method\n// IMPORTANT: methods $.send(), $.destroy() and $.throw() can be executed only once\n\n// $.send(\'output\', data);\n$.destroy();' };
-	exports.inputs = [{ id: 'input', name: 'Input' }];
-	exports.outputs = [{ id: 'output', name: 'ID_String' }];
+	exports.inputs = [{ id: 'input', name: 'Trigger' }];
+	exports.outputs = [{ id: 'output', name: 'Stix_ID' }];
 	exports.meta = { settingswidth: 1200 };
 
 	exports.make = function(instance, config) {
+
 
 		var fn;
 
