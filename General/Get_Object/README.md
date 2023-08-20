@@ -8,3 +8,5 @@ It takes two inputs:
 
 It has a single output:
 1. A json file containing a list of valid Stix objects
+
+<img width="1014" alt="image" src="https://github.com/typerefinery-ai/brett_blocks/assets/24556510/6394d668-64b5-4ce1-b2f2-bcab15e4b8d8">
