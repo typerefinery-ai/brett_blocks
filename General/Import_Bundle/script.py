@@ -9,6 +9,12 @@
 #       that points to the subdirectory in the tests/data to read in, and then
 #       load the bundle files in the directory (note files contain bundles not lists)
 #
+# Two Inputs:
+# 1. Connection
+# 2. URL
+# One Output
+# 1. Stix_Object
+#
 # This code is licensed under the terms of the BSD.
 ##############################################################################
 
@@ -26,26 +32,34 @@ from loguru import logger as Logger
 
 import_type = import_type_factory.get_all_imports()
 
+connection = {
+    "uri": "localhost",
+    "port": "1729",
+    "database": "stix_test",
+    "user": None,
+    "password": None
+}
+url = "https://raw.githubusercontent.com/os-threat/Stix-ORM/main/test/data/threat_reports/poisonivy.json"
+input = {
+    "connection": connection,
+    "url": url
+}
+
 def get_bundle(url):
     bundle = json.loads(requests.get(url, verify=True).text)
     print(f"\n bundle is {bundle}")
     return bundle
 
-def main(dbhost, dbport, dbdatabase, dbquery, outputfile, logger: Logger):
-    instance_connection = {
-        "uri": dbhost,
-        "port": dbport,
-        "database": dbdatabase,
-        "user": None,
-        "password": None
-    }
+def main(input, outputfile, logger: Logger):
+    connection = input["connection"]
+    url = input["url"]
     # start the connection, reinitilise is true
     reinitilise = True
-    typedb = TypeDBSink(connection=instance_connection,
+    typedb = TypeDBSink(connection=connection,
                         clear=reinitilise,
                         import_type=import_type)
     # get the bundle to load
-    bundle = get_bundle(dbquery)
+    bundle = get_bundle(url)
     bundle_list = bundle["objects"]
     # add the list to TypeDB
     results_raw = typedb.add(bundle_list)
@@ -58,12 +72,5 @@ def main(dbhost, dbport, dbdatabase, dbquery, outputfile, logger: Logger):
 
 # if this file is run directly, then start here
 if __name__ == '__main__':
-    connection = {
-        "uri": "localhost",
-        "port": "1729",
-        "database": "stix_test",
-        "user": None,
-        "password": None
-    }
-    url = "https://raw.githubusercontent.com/os-threat/Stix-ORM/main/test/data/threat_reports/poisonivy.json"
-    main(connection["uri"], connection["port"], connection["database"], url, "output.json", Logger)
+
+    main(input, "output.json", Logger)
