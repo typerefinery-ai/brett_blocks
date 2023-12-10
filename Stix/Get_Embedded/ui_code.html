@@ -19,15 +19,17 @@
 	exports.author = 'TypeRefinery.io';
 	exports.version = '1';
 
-	exports.config = { title: exports.name, version: exports.version, algorithm: '', algorithmrequirements: 'argparse\nloguru', endpoint: 'http://127.0.0.1:8000/algorithm' };
-	exports.inputs = [{ id: 'connection', name: 'Connection' }, { id: 'cluster_id', name: 'Cluster_ID' }];
+	exports.config = { title: exports.name, version: exports.version, algorithm: '', algorithmrequirements: 'argparse\nstixorm', endpoint: 'http://127.0.0.1:8000/algorithm' };
+	exports.inputs = [{ id: 'stix_object', name: 'Stix_Object' }];
 	exports.outputs = [{ id: 'output', name: 'Stix-List' }];
 
 	exports.meta = { settingswidth: 1200 };
 
 	exports.make = function(instance, config) {
+		config.jyputerid = instance.id;
 		var fn;
 		var values = {};
+		var inputData = {};
 		instance.message = function($) {
 			// Getting endpoint from the user
 			const endpointData = {
@@ -35,18 +37,34 @@
 			}
 
 			// Inputs to this block will be saved in values Object
-			values[$.input] = $.data;
+			inputData[$.input] = $.data;
 
-			if (values.connection && values.query && config.algorithm) {
+			console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+			console.log($.input)
+			console.log($.data)
+
+
+			console.log("=========================================")
+			console.log(inputData)
+			console.log("||||||||||||||||||||||||||||||||||||||||||||||")
+
+			if (inputData.stix_object) {
+				//var dbquery = "";
+				//if (inputData.query && inputData.query.dbquery) {
+				//	dbquery = inputData.query.dbquery;
+				//}
+				console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+				console.log(inputData)
+				console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
 				var payload = {
-					dbhost: values.connection.dbhost,
-					dbport: values.connection.dbport,
-					dbdatabase: values.connection.dbdatabase,
-					dbquery: values.cluster_id,
-					algorithm: config.algorithm,
-					algorithmrequirements: config.algorithmrequirements,
-					returnoutput: 'output'
+					"algorithm": {
+						"source": config.algorithm,
+						"requirements": config.algorithmrequirements.split(' ').join('\n'),
+						"output": 'output'
+					},
+					"config": inputData
 				};
+				//$.send('payload', payload);
 				let options = {
 					method: 'POST',
 					headers: {

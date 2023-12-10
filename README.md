@@ -30,7 +30,7 @@ There are a a series of different block libraries needed:
 | General | 	URL                   | Constant  | 	Trigger          |      	URL String      | 	Constant input - a valid URL                                    |
 | General | 	Email Address         | 	Constant | 	Trigger	         | Email address String	 | Constant input - a valid Email Address                           |
 | General | 	IPv4 Address          | 	Constant | 	Trigger          |     	IPv4 String      | 	Constant input - a valid IPv4                                   |
-| General | 	IPv6 Address          | 	Constant | 	Trigger          |     	IPv6 String      | 	Constant input - a valid IPv6                                   |
+| General | 	Stix_ID               | 	Constant | 	Trigger          |    	stix_id String    | 	Constant input - a valid IPv6                                   |
 
 
 ### Stix Blocks

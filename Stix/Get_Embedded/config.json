@@ -1,5 +1,5 @@
 {
   "Title": "Run (node & edges)",
   "Endpoint": "http://127.0.0.1:8000/algorithm",
-  "Requirements": "argparse loguru typedeb-client stixorm"
+  "Requirements": "argparse stixorm"
 }

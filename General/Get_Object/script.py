@@ -1,3 +1,25 @@
+
+################################################################################
+## header start                                                               ##
+################################################################################
+# allow importing og service local packages
+import os
+import sys
+import os.path
+
+where_am_i = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.environ["APP_SERVICE_PACKAGES_PATH"])
+sys.path.append(where_am_i)
+# end of local package imports
+################################################################################
+## header end                                                                 ##
+################################################################################
+
+
+################################################################################
+## body start                                                                 ##
+################################################################################
+
 ##############################################################################
 # Title: Get Object
 # Author: OS-Threat
@@ -17,31 +39,18 @@
 # This code is licensed under the terms of the BSD.
 ##############################################################################
 
-from typedb.client import *
-from loguru import logger as Logger
 from stixorm.module.typedb import TypeDBSource
 from stixorm.module.authorise import import_type_factory
 from posixpath import basename
 import json
+import os
 
 import logging
-logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s')
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 import_type = import_type_factory.get_all_imports()
 
-connection = {
-    "uri": "localhost",
-    "port": "1729",
-    "database": "stix_test",
-    "user": None,
-    "password": None
-}
-report_id = "report--f2b63e80-b523-4747-a069-35c002c690db"
-input = {
-    "connection": connection,
-    "stix_id": report_id
-}
 
 def get_object(stix_id, connection):
     object_type = stix_id.split('--')[0]
@@ -53,7 +62,10 @@ def get_object(stix_id, connection):
     return stix_dict.serialize()
 
 
-def main(input, outputfile, logger: Logger):
+def main(inputfile, outputfile):
+    if os.path.exists(inputfile):
+        with open(inputfile, "r") as script_input:
+            input = json.load(script_input)
     connection = input["connection"]
     stix_id = input["stix_id"]
 
@@ -67,6 +79,36 @@ def main(input, outputfile, logger: Logger):
         json.dump(results, outfile)
 
 
-# if this file is run directly, then start here
+################################################################################
+## body end                                                                   ##
+################################################################################
+
+
+################################################################################
+## footer start                                                               ##
+################################################################################
+import argparse
+import os
+
+
+def getArgs():
+
+  parser = argparse.ArgumentParser(description="Script params",
+                                formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+  parser.add_argument("inputfile", nargs='?', default=f"{os.path.basename(__file__)}.input", help="input file (default: %(default)s)")
+  parser.add_argument("outputfile", nargs='?', default=f"{os.path.basename(__file__)}.output", help="output file (default: %(default)s)")
+  return parser.parse_args()
+
 if __name__ == '__main__':
-    main(input, "output2.json", logger)
+  args = getArgs()
+  # setup logger for init
+  # log = Logger
+  # log.remove()
+  # log.add(f'{os.path.basename(__file__)}.log', level="INFO")
+  # log.info(args)
+  main(args.inputfile, args.outputfile)
+
+
+################################################################################
+## footer end                                                                 ##
+################################################################################

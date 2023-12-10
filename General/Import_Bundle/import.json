@@ -1,0 +1,10 @@
+{
+  "connection" : {
+    "uri": "localhost",
+    "port": "1729",
+    "database": "stix_test",
+    "user": null,
+    "password": null
+  },
+  "url": "https://raw.githubusercontent.com/os-threat/Stix-ORM/main/test/data/threat_reports/poisonivy.json"
+}
