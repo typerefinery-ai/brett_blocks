@@ -1,0 +1,1 @@
+{"email_addr_form": {"base_required": {"type": "email-addr", "spec_version": "2.1", "id": "", "created": "", "modified": ""}, "base_optional": {"external_references": [], "object_marking_refs": [], "granular_markings": [], "defanged": null}, "object": {"value": "trusty@example.com", "display_name": "Trusty Jones"}, "extensions": {}, "sub": {}}}

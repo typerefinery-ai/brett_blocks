@@ -1,25 +1,13 @@
-
-from typedb.client import *
-from loguru import logger as Logger
-from stixorm.module.typedb import TypeDBSink
 from stixorm.module.authorise import import_type_factory
-from stixorm.module.typedb_lib.instructions import ResultStatus
-import json
-import requests
-import copy
-import os
-import sys
-import argparse
-import time
 
 import logging
 logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s')
 logger = logging.getLogger(__name__)
 #logger.addHandler(logging.StreamHandler())
 
-from General.Get_Object.script import main as get_object
-from General.Import_Bundle.script import main as import_bundle
-from Stix.Get_Embedded.script import main as get_embedded
+from Block_Families.General.Get_Object.script import main as get_object
+from Block_Families.General.Import_Bundle.script import main as import_bundle
+from Block_Families.Stix.Get_Embedded.script import main as get_embedded
 
 import_type = import_type_factory.get_all_imports()
 

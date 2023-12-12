@@ -1,0 +1,24 @@
+{
+  "base_required": {
+    "type" : "email-addr",
+    "spec_version": "2.1",
+    "id": "",
+    "created": "",
+    "modified": ""
+  },
+  "base_optional": {
+    "external_references": [],
+    "object_marking_refs": [],
+    "granular_markings": [],
+    "defanged": null
+  },
+  "object": {
+
+  },
+  "extensions": {
+
+  },
+  "sub" : {
+
+  }
+}
