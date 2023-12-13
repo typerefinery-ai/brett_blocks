@@ -21,21 +21,22 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Make Identity
+# Title: Make SRO
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: denis@cloudaccelerator.co
 # Date: 07/08/2023
 #
-# Description: This script is designed to take in a Stix Object ID
-#       and return a Stix object
+# Description: This script is designed to take in form, 2 Stix Objects
+#       and a relationship type
 #
-# One Mandatory, One Optional Input:
-# 1. Identity_Form
-# 2. User Account (optional)
-# 3. Email Addr (optional
+# One Mandatory, 3 Optional Input Ports:
+# 1. SRO Form
+# 2. Source Stix Object
+# 3. Target Stix Object
+# 4. Relationship_Type
 # One Output
-# 1. Identity SDO Extension (Dict)
+# 1. Valid SRO (Dict)
 #
 # This code is licensed under the terms of the BSD.
 ##############################################################################
@@ -65,52 +66,31 @@ logger.setLevel(logging.INFO)
 import_type = import_type_factory.get_all_imports()
 
 
-def make_identity(identity_form, email_addrs=None, user_accounts=None):
+def make_sro(sro_form, source, target, relationship_type):
     # 1. Extract the components of the object
-    required = identity_form["base_required"]
-    optional = identity_form["base_optional"]
-    main = identity_form["object"]
-    extensions = identity_form["extensions"]
-    sub = identity_form["sub"]
+    required = sro_form["base_required"]
+    optional = sro_form["base_optional"]
+    main = sro_form["object"]
+    extensions = sro_form["extensions"]
+    sub = sro_form["sub"]
     contents = {}
     empties_removed = {}
     # 2. Setup Object Params first
-    for k, v in main.items():
+    for k,v in main.items():
         contents[k] = v
-    for k, v in optional.items():
+    for k,v in optional.items():
         contents[k] = v
+    for k,v in extensions.items():
+        contents["extensions"] = {k, v}
     for k,v in sub.items():
-        if k == "contact_numbers":
-            if "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498" in extensions:
-                identity_contact = extensions["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]
-                stix_list = []
-                for val in v:
-                    stix_list.append(ContactNumber(**val))
-                identity_contact["contact_numbers"] = stix_list
-        if k == "email_addresses":
-            if "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498" in extensions:
-                identity_contact = extensions["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]
-                stix_list = []
-                for i, val in enumerate(v):
-                    email_addr_dict = email_addrs[i]
-                    val["email_address_ref"] = email_addr_dict["id"]
-                    stix_list.append(EmailContact(**val))
-                identity_contact["email_addresses"] = stix_list
-        if k == "social_media_accounts":
-            if "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498" in extensions:
-                identity_contact = extensions["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]
-                stix_list = []
-                for i, val in enumerate(v):
-                    usr_acct_dict = user_accounts[i]
-                    val["user_account_ref"] = usr_acct_dict["id"]
-                    stix_list.append(SocialMediaContact(**val))
-                identity_contact["social_media_accounts"] = stix_list
+        pass
 
-    if extensions != {}:
-        if "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498" in extensions:
-            identity_contact = extensions["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]
-            identity_ext = IdentityContact(**identity_contact)
-            contents["extensions"] = {"extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498":identity_ext}
+    if source:
+        contents["source_ref"] = source["id"]
+    if target:
+        contents["target_ref"] = target["id"]
+    if relationship_type:
+        contents["relationship_type"] = relationship_type
 
     for (k,v) in contents.items():
         if v == "":
@@ -124,36 +104,37 @@ def make_identity(identity_form, email_addrs=None, user_accounts=None):
 
     if "modified" in required and required["modified"] == "":
         # object needs to be created
-        stix_dict = Identity(**empties_removed)
+        stix_dict = Relationship(**empties_removed)
 
     else:
         # object needs to be updated, but we can't
         #  update properly yet, so recreate instead
-        stix_dict = Identity(**empties_removed)
+        stix_dict = Relationship(**empties_removed)
 
     return stix_dict.serialize()
 
 
 def main(inputfile, outputfile):
-    email_addr = None
-    user_account = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
-            input = json.load(script_input)
-    identity_form = input["identity_form"]
-    email_addrs = []
-    user_accounts = []
-    if "email-addr" in input:
-        email_addrs = input["email-addr"]
-    if "user-account" in input:
-        user_accounts = input["user-account"]
+            input_data = json.load(script_input)
 
+    sro_form = input_data["relationship_form"]
+    source = None
+    target = None
+    relationship_type = None
+    if "source" in input_data:
+        source = input_data["source"]
+    if "target" in input_data:
+        target = input_data["target"]
+    if "relationship_type" in input_data:
+        relationship_type = input_data["relationship_type"]
 
     # setup logger for execution
-    stix_dict = make_identity(identity_form, email_addrs, user_accounts)
+    stix_dict = make_sro(sro_form, source, target, relationship_type)
     results = {}
-    results["identity"] = []
-    results["identity"].append(json.loads(stix_dict))
+    results["relationship"] = []
+    results["relationship"].append(json.loads(stix_dict))
     with open(outputfile, "w") as outfile:
         json.dump(results, outfile)
 
