@@ -137,8 +137,11 @@ def make_identity(identity_form, email_addrs=None, user_accounts=None):
 def main(inputfile, outputfile):
     email_addr = None
     user_account = None
+    print(f"check for file")
     if os.path.exists(inputfile):
+        print(">>> file exists")
         with open(inputfile, "r") as script_input:
+            print("files is open")
             input = json.load(script_input)
     identity_form = input["identity_form"]
     email_addrs = []
