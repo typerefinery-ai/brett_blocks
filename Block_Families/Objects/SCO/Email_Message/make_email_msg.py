@@ -21,7 +21,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Make Email Addr
+# Title: Make URL
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: denis@cloudaccelerator.co
@@ -31,16 +31,18 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 #       and return a Stix object
 #
 # One Mandatory, One Optional Input:
-# 1. Form_Email_Addr
+# 1. URL_Form
+# 2. hyperlink string
 # One Output
-# 1. Email_Addr SCO (Dict)
+# 1. URL SCO (Dict)
 #
 # This code is licensed under the terms of the BSD.
 ##############################################################################
 
 from stixorm.module.definitions.stix21 import (
     ObservedData, IPv4Address, EmailAddress, DomainName, EmailMessage, URL, UserAccount, File,
-    Identity, Incident, Note, Sighting, Indicator, Relationship, Location, Software, Process, Bundle
+    Identity, Incident, Note, Sighting, Indicator, Relationship, Location, Software, Process, Bundle,
+    EmailMessage
 )
 from stixorm.module.definitions.os_threat import (
     StateChangeObject, EventCoreExt, Event, ImpactCoreExt,
@@ -56,13 +58,13 @@ import json
 import os
 
 import logging
-def make_email_addr(email_addr_form, usr_accounts=None):
+def make_email_msg(email_msg_form, from_ref=None, to_refs=None, cc_refs=None, bcc_refs=None):
     # 1. Extract the components of the object
-    required = email_addr_form["base_required"]
-    optional = email_addr_form["base_optional"]
-    main = email_addr_form["object"]
-    extensions = email_addr_form["extensions"]
-    sub = email_addr_form["sub"]
+    required = email_msg_form["base_required"]
+    optional = email_msg_form["base_optional"]
+    main = email_msg_form["object"]
+    extensions = email_msg_form["extensions"]
+    sub = email_msg_form["sub"]
     contents = {}
     empties_removed = {}
     # 2. Setup Object Params first
@@ -84,16 +86,29 @@ def make_email_addr(email_addr_form, usr_accounts=None):
             continue
         else:
             empties_removed[k] = v
+    print(type(from_ref))
+    print(from_ref)
+    if from_ref:
+        empties_removed["from_ref"] = from_ref["id"]
 
-    if usr_accounts:
-        empties_removed["belongs_to_ref"] = usr_accounts[0]["id"]
-        # object needs to be created
-        stix_dict = EmailAddress(**empties_removed)
+    if to_refs:
+        tmp_list = []
+        for ref in to_refs:
+            tmp_list.append(ref["id"])
+        empties_removed["to_refs"] = tmp_list
+    if cc_refs:
+        tmp_list = []
+        for ref in cc_refs:
+            tmp_list.append(ref["id"])
+        empties_removed["cc_refs"] = tmp_list
+    if bcc_refs:
+        tmp_list = []
+        for ref in bcc_refs:
+            tmp_list.append(ref["id"])
+        empties_removed["bcc_refs"] = tmp_list
 
-    else:
-        # object needs to be updated, but we can't
-        #  update properly yet, so recreate instead
-        stix_dict = EmailAddress(**empties_removed)
+
+    stix_dict = EmailMessage(**empties_removed)
 
     return stix_dict.serialize()
 
@@ -104,15 +119,29 @@ def main(inputfile, outputfile):
         with open(inputfile, "r") as script_input:
             input = json.load(script_input)
 
-    email_addr_form = input["email_addr_form"]
-    if "user-account" in input:
-        belongs_to = input["user-account"]
+    email_msg_form = input["email_msg_form"]
+    if "from_ref" in input:
+        from_ref = input["from_ref"]
+    else:
+        from_ref=None
+    if "to_refs" in input:
+        to_refs = input["to_refs"]
+    else:
+        to_refs=None
+    if "cc_refs" in input:
+        cc_refs = input["cc_refs"]
+    else:
+        cc_refs=None
+    if "bcc_refs" in input:
+        bcc_refs = input["bcc_refs"]
+    else:
+        bcc_refs=None
 
     # setup logger for execution
-    stix_dict = make_email_addr(email_addr_form, belongs_to)
+    stix_dict = make_email_msg(email_msg_form, from_ref, to_refs, cc_refs, bcc_refs)
     results = {}
-    results["email-addr"] = []
-    results["email-addr"].append(json.loads(stix_dict))
+    results["email-message"] = []
+    results["email-message"].append(json.loads(stix_dict))
     with open(outputfile, "w") as outfile:
         json.dump(results, outfile)
 

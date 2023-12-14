@@ -21,7 +21,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Make Email Addr
+# Title: Make URL
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: denis@cloudaccelerator.co
@@ -31,9 +31,10 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 #       and return a Stix object
 #
 # One Mandatory, One Optional Input:
-# 1. Form_Email_Addr
+# 1. URL_Form
+# 2. hyperlink string
 # One Output
-# 1. Email_Addr SCO (Dict)
+# 1. URL SCO (Dict)
 #
 # This code is licensed under the terms of the BSD.
 ##############################################################################
@@ -56,13 +57,13 @@ import json
 import os
 
 import logging
-def make_email_addr(email_addr_form, usr_accounts=None):
+def make_url(url_form, hyperlink=None):
     # 1. Extract the components of the object
-    required = email_addr_form["base_required"]
-    optional = email_addr_form["base_optional"]
-    main = email_addr_form["object"]
-    extensions = email_addr_form["extensions"]
-    sub = email_addr_form["sub"]
+    required = url_form["base_required"]
+    optional = url_form["base_optional"]
+    main = url_form["object"]
+    extensions = url_form["extensions"]
+    sub = url_form["sub"]
     contents = {}
     empties_removed = {}
     # 2. Setup Object Params first
@@ -85,15 +86,15 @@ def make_email_addr(email_addr_form, usr_accounts=None):
         else:
             empties_removed[k] = v
 
-    if usr_accounts:
-        empties_removed["belongs_to_ref"] = usr_accounts[0]["id"]
+    if hyperlink:
+        empties_removed["value"] = hyperlink
         # object needs to be created
-        stix_dict = EmailAddress(**empties_removed)
+        stix_dict = URL(**empties_removed)
 
     else:
         # object needs to be updated, but we can't
         #  update properly yet, so recreate instead
-        stix_dict = EmailAddress(**empties_removed)
+        stix_dict = URL(**empties_removed)
 
     return stix_dict.serialize()
 
@@ -104,15 +105,17 @@ def main(inputfile, outputfile):
         with open(inputfile, "r") as script_input:
             input = json.load(script_input)
 
-    email_addr_form = input["email_addr_form"]
-    if "user-account" in input:
-        belongs_to = input["user-account"]
+    url_form = input["url_form"]
+    if "hyperlink" in input:
+        hyperlink = input["hyperlink"]
+    else:
+        hyperlink = None
 
     # setup logger for execution
-    stix_dict = make_email_addr(email_addr_form, belongs_to)
+    stix_dict = make_url(url_form, hyperlink)
     results = {}
-    results["email-addr"] = []
-    results["email-addr"].append(json.loads(stix_dict))
+    results["url"] = []
+    results["url"].append(json.loads(stix_dict))
     with open(outputfile, "w") as outfile:
         json.dump(results, outfile)
 
