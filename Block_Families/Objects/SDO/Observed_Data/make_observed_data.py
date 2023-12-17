@@ -21,7 +21,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Make Email Addr
+# Title: Make Identity
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: denis@cloudaccelerator.co
@@ -31,13 +31,13 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 #       and return a Stix object
 #
 # One Mandatory, One Optional Input:
-# 1. Form_Email_Addr
-# 2. user-account
+# 1. Observed_Data_Form
+# 2. Observation (optional
 # One Output
-# 1. Email_Addr SCO (Dict)
+# 1. Observed Data SDO  (Dict)
 #
 # This code is licensed under the terms of the BSD.
-##############################################################################
+##########b####################################################################
 
 from stixorm.module.definitions.stix21 import (
     ObservedData, IPv4Address, EmailAddress, DomainName, EmailMessage, URL, UserAccount, File,
@@ -52,18 +52,25 @@ from stixorm.module.definitions.os_threat import (
     SightingAnecdote, SightingAlert, SightingContext, SightingExclusion,
     SightingEnrichment, SightingHunt, SightingFramework, SightingExternal
 )
-
+from stixorm.module.authorise import import_type_factory
+from posixpath import basename
 import json
 import os
 
 import logging
-def make_email_addr(email_addr_form, usr_accounts=None):
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+import_type = import_type_factory.get_all_imports()
+
+
+def make_observation(observed_data_form, observations=None):
     # 1. Extract the components of the object
-    required = email_addr_form["base_required"]
-    optional = email_addr_form["base_optional"]
-    main = email_addr_form["object"]
-    extensions = email_addr_form["extensions"]
-    sub = email_addr_form["sub"]
+    required = observed_data_form["base_required"]
+    optional = observed_data_form["base_optional"]
+    main = observed_data_form["object"]
+    extensions = observed_data_form["extensions"]
+    sub = observed_data_form["sub"]
     contents = {}
     empties_removed = {}
     # 2. Setup Object Params first
@@ -86,34 +93,38 @@ def make_email_addr(email_addr_form, usr_accounts=None):
         else:
             empties_removed[k] = v
 
-    if usr_accounts:
-        empties_removed["belongs_to_ref"] = usr_accounts[0]["id"]
+    if observations and observations != []:
+        empties_removed["object_refs"] = observations
+
+    if "modified" in required and required["modified"] == "":
         # object needs to be created
-        stix_dict = EmailAddress(**empties_removed)
+        stix_dict = ObservedData(**empties_removed)
 
     else:
         # object needs to be updated, but we can't
         #  update properly yet, so recreate instead
-        stix_dict = EmailAddress(**empties_removed)
+        stix_dict = ObservedData(**empties_removed)
 
     return stix_dict.serialize()
 
 
 def main(inputfile, outputfile):
-    belongs_to = None
+    email_addr = None
+    user_account = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
             input = json.load(script_input)
+    observation_form = input["observed_data_form"]
+    observations = []
+    if "" in input:
+        observations = input["observations"]
 
-    email_addr_form = input["email_addr_form"]
-    if "user-account" in input:
-        belongs_to = input["user-account"]
 
     # setup logger for execution
-    stix_dict = make_email_addr(email_addr_form, belongs_to)
+    stix_dict = make_observation(observation_form, observations)
     results = {}
-    results["email-addr"] = []
-    results["email-addr"].append(json.loads(stix_dict))
+    results["observed-data"] = []
+    results["observed-data"].append(json.loads(stix_dict))
     with open(outputfile, "w") as outfile:
         json.dump(results, outfile)
 

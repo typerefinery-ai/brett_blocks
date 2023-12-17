@@ -86,8 +86,7 @@ def make_email_msg(email_msg_form, from_ref=None, to_refs=None, cc_refs=None, bc
             continue
         else:
             empties_removed[k] = v
-    print(type(from_ref))
-    print(from_ref)
+
     if from_ref:
         empties_removed["from_ref"] = from_ref["id"]
 
