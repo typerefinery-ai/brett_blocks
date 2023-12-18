@@ -1,0 +1,1 @@
+{"relationship": [{"type": "relationship", "spec_version": "2.1", "id": "relationship--e99ffafc-1701-4d9e-83c0-f503e61c7f44", "created": "2023-12-18T06:24:37.767188Z", "modified": "2023-12-18T06:24:37.767188Z", "relationship_type": "derived-from", "source_ref": "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d", "target_ref": "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7"}]}

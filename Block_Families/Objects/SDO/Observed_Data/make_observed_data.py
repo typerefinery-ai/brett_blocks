@@ -116,7 +116,7 @@ def main(inputfile, outputfile):
             input = json.load(script_input)
     observation_form = input["observed_data_form"]
     observations = []
-    if "" in input:
+    if "observations" in input:
         observations = input["observations"]
 
 
