@@ -18,7 +18,7 @@ results_base = "../Orchestration/Results/"
 
 from Block_Families.Objects.SCO.URL.make_url import main as make_url
 from Block_Families.Objects.SCO.Email_Addr.make_email_addr import main as make_email_addr
-from Block_Families.Objects.SCO.Email_Message.make_email_msg import main as make_email_msg
+from Block_Families.Objects.SRO.Sighting.make_sighting import main as make_sighting
 from Block_Families.Objects.SRO.Relationship.make_sro import main as make_sro
 from .util import emulate_ports, unwind_ports, conv
 
@@ -82,11 +82,11 @@ def invoke_sighting_block(sighting_data_path, results_path, observed=None, sight
         with open(sighting_data_rel_path, 'w') as f:
             f.write(json.dumps(results_data))
     # Make the Identity object
-    make_sro(sighting_data_rel_path, sighting_results_rel_path)
+    make_sighting(sighting_data_rel_path, sighting_results_rel_path)
     #
     # Remove Port Emulation if used - Fix the data file so it only has form data
     #
-    unwind_ports(sighting_data_rel_path)
+    #unwind_ports(sighting_data_rel_path)
     # Retrieve the saved file
     if os.path.exists(sighting_results_rel_path):
         with open(sighting_results_rel_path, "r") as script_input:

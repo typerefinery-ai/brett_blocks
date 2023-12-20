@@ -21,29 +21,27 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Make SRO
+# Title: Make Event
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: denis@cloudaccelerator.co
 # Date: 07/08/2023
 #
-# Description: This script is designed to take in form, 2 Stix Objects
-#       and a relationship type
+# Description: This script is designed to take in a Stix Object ID
+#       and return a Stix object
 #
-# One Mandatory, 3 Optional Input Ports:
-# 1. SRO Form
-# 2. Source Stix Object
-# 3. Target Stix Object
-# 4. Relationship_Type
+# One Mandatory, One Optional Input:
+# 1. Event_Form
+# 2. Sighting (optional
 # One Output
-# 1. Valid SRO (Dict)
+# 1. Indicator SDO  (Dict)
 #
 # This code is licensed under the terms of the BSD.
-##############################################################################
+##########b####################################################################
 
 from stixorm.module.definitions.stix21 import (
     ObservedData, IPv4Address, EmailAddress, DomainName, EmailMessage, URL, UserAccount, File,
-    Identity, Incident, Note, Sighting, Indicator, Relationship, Location, Software, Process, Bundle
+    Identity, Incident, Indicator, Sighting, Indicator, Relationship, Location, Software, Process, Bundle
 )
 from stixorm.module.definitions.os_threat import (
     StateChangeObject, EventCoreExt, Event, ImpactCoreExt,
@@ -86,13 +84,13 @@ task_ext_dict = {task_ext_id: task_ext}
 ident_ext_id = 'extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498'
 inc_ext_id = "extension-definition--ef765651-680c-498d-9894-99799f2fa126"
 
-def make_sighting(sighting_form, observed_data_refs, where_sighted_refs, sighting_of_ref):
+def make_event(event_form, changed_objects=None,  sighting_refs=None):
     # 1. Extract the components of the object
-    required = sighting_form["base_required"]
-    optional = sighting_form["base_optional"]
-    main = sighting_form["object"]
-    extensions = sighting_form["extensions"]
-    sub = sighting_form["sub"]
+    required = event_form["base_required"]
+    optional = event_form["base_optional"]
+    main = event_form["object"]
+    extensions = event_form["extensions"]
+    sub = event_form["sub"]
     contents = {}
     empties_removed = {}
     # 2. Setup Object Params first
@@ -100,43 +98,12 @@ def make_sighting(sighting_form, observed_data_refs, where_sighted_refs, sightin
         contents[k] = v
     for k,v in optional.items():
         contents[k] = v
-    for k,v in extensions.items():
-        if k == sight_ext_id:
-            extensions[sight_ext_id] = sight_ext
-        elif k == "sighting-alert":
-            extensions["sighting-alert"] = SightingAlert(**v)
-        elif k == "sighting-anecdote":
-            extensions["sighting-anecdote"] = SightingAnecdote(**v)
-        elif k == "sighting-enrichment":
-            extensions["sighting-context"] = SightingContext(**v)
-        elif k == "sighting-context":
-            extensions["sighting-enrichment"] = SightingEnrichment(**v)
-        elif k == "sighting-exclusion":
-            extensions["sighting-exclusion"] = SightingExclusion(**v)
-        elif k == "sighting-external":
-            extensions["sighting-external"] = SightingExternal(**v)
-        elif k == "sighting-alert":
-            extensions["sighting-framework"] = SightingFramework(**v)
-        elif k == "sighting-framework":
-            extensions["sighting-hunt"] = SightingAlert(**v)
-        elif k == "sighting-hunt":
-            extensions["sighting-hunt"] = SightingHunt(**v)
-
+    if event_ext_id in extensions:
+        extensions[event_ext_id] = event_ext
+    else:
+        extensions[event_ext_id] = event_ext
     for k,v in sub.items():
         pass
-
-    if where_sighted_refs:
-        wherelist = []
-        for where in where_sighted_refs:
-            wherelist.append(where)
-        contents["where_sighted_refs"] = wherelist
-    if observed_data_refs:
-        obs_list = []
-        for where in observed_data_refs:
-            obs_list.append(where)
-        contents["observed_data_refs"] = obs_list
-    if sighting_of_ref:
-        contents["sighting_of_ref"] = sighting_of_ref
 
     for (k,v) in contents.items():
         if v == "":
@@ -148,39 +115,42 @@ def make_sighting(sighting_form, observed_data_refs, where_sighted_refs, sightin
         else:
             empties_removed[k] = v
 
+    if changed_objects:
+        empties_removed["changed_objects"] = changed_objects
+
+    if sighting_refs:
+        empties_removed["sighting_refs"] = sighting_refs
+
     if "modified" in required and required["modified"] == "":
         # object needs to be created
-        stix_dict = Sighting(**empties_removed)
+        stix_dict = Event(**empties_removed)
 
     else:
         # object needs to be updated, but we can't
         #  update properly yet, so recreate instead
-        stix_dict = Sighting(**empties_removed)
+        stix_dict = Event(**empties_removed)
 
     return stix_dict.serialize()
 
 
 def main(inputfile, outputfile):
+    changed_objects = None
+    sighting_refs = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
-            input_data = json.load(script_input)
+            input = json.load(script_input)
+    event_form = input["event_form"]
+    if "changed_objects" in input:
+        changed_objects = input["changed_objects"]
+    if "sighting_refs" in input:
+        sighting_refs = input["sighting_refs"]
 
-    sro_form = input_data["sighting_form"]
-    observed_data_refs = None
-    where_sighted_refs = None
-    sighting_of_ref = None
-    if "observed_data_refs" in input_data:
-        observed_data_refs = input_data["observed_data_refs"]
-    if "where_sighted_refs" in input_data:
-        where_sighted_refs = input_data["where_sighted_refs"]
-    if "sighting_of_ref" in input_data:
-        sighting_of_ref = input_data["sighting_of_ref"]
 
     # setup logger for execution
-    stix_dict = make_sighting(sro_form, observed_data_refs, where_sighted_refs, sighting_of_ref)
+    stix_dict = make_event(event_form, changed_objects,  sighting_refs)
     results = {}
-    results["sighting"] = []
-    results["sighting"].append(json.loads(stix_dict))
+    results["event"] = []
+    results["event"].append(json.loads(stix_dict))
     with open(outputfile, "w") as outfile:
         json.dump(results, outfile)
 
@@ -212,7 +182,9 @@ if __name__ == '__main__':
   # log.remove()
   # log.add(f'{os.path.basename(__file__)}.log', level="INFO")
   # log.info(args)
-  main(args.inputfile, args.outputfile)
+  #main(args.inputfile, args.outputfile)
+
+  main("./sequence_alert.json", "test_output.json")
 
 
 ################################################################################

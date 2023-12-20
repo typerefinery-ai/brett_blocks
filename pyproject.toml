@@ -1,15 +1,15 @@
 [tool.poetry]
 name = "brett-blocks"
-version = "0.1.0"
+version = "0.2.0"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = ["brett@innovolve.ai"]
 readme = "README.md"
 packages = [{include = "brett_blocks"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
 typedb-client = "^2.18.1"
-stixorm = "^0.3.0"
+stixorm = "^0.3.2"
 logging = "^0.4.9.6"
 requests = "^2.31.0"
 
