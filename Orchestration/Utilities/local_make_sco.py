@@ -68,7 +68,7 @@ def invoke_make_url_block(url_path, results_path, hyperlink=None):
     url_results_rel_path = results_base + results_path
     #
     # NOTE: This code is only To fake input ports
-    # Add the User Account object and the  EmailAddress
+    # Add the URL object
     #  Form data file
     #
     if os.path.exists(url_data_rel_path):
@@ -78,7 +78,7 @@ def invoke_make_url_block(url_path, results_path, hyperlink=None):
         with open(url_data_rel_path, 'w') as f:
             f.write(json.dumps(results_data))
     #
-    # Make the Email Address object
+    # 2. Make the URL object
     #
     make_url(url_data_rel_path,url_results_rel_path)
     #

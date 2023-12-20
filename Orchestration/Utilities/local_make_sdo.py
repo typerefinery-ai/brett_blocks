@@ -17,7 +17,7 @@ results_base = "../Orchestration/Results/"
 
 
 from Block_Families.Objects.SDO.Observed_Data.make_observed_data import main as make_observed_data
-from Block_Families.Objects.SCO.Email_Addr.make_email_addr import main as make_email_addr
+from Block_Families.Objects.SDO.Indicator.make_indicator import main as make_indicator
 from Block_Families.Objects.SCO.Email_Message.make_email_msg import main as make_email_msg
 from Block_Families.Objects.SRO.Relationship.make_sro import main as make_sro
 from .util import emulate_ports, unwind_ports, conv
@@ -29,7 +29,6 @@ def invoke_make_observed_data_block(obs_path, results_path, observation=None,):
     obs_results_rel_path = results_base + results_path
     #
     # NOTE: This code is only To fake input ports
-    # Add the source and target identities and the reltaionship type
     ##
     if os.path.exists(obs_data_rel_path):
         with open(obs_data_rel_path, "r") as sdo_form:
@@ -60,28 +59,28 @@ def invoke_make_observed_data_block(obs_path, results_path, observation=None,):
 
 def invoke_make_indicator_block(ind_path, results_path, pattern=None,):
     # Set the Relative Input and Output Paths for the block
-    obs_data_rel_path = path_base + ind_path
-    obs_results_rel_path = results_base + results_path
+    ind_data_rel_path = path_base + ind_path
+    ind_results_rel_path = results_base + results_path
     #
     # NOTE: This code is only To fake input ports
-    # Add the source and target identities and the reltaionship type
+    #
     ##
-    if os.path.exists(obs_data_rel_path):
-        with open(obs_data_rel_path, "r") as sdo_form:
+    if os.path.exists(ind_data_rel_path):
+        with open(ind_data_rel_path, "r") as sdo_form:
             results_data = json.load(sdo_form)
             if pattern:
                 results_data["pattern"] = pattern
-        with open(obs_data_rel_path, 'w') as f:
+        with open(ind_data_rel_path, 'w') as f:
             f.write(json.dumps(results_data))
     # Make the Observed Data object
-    make_observed_data(obs_data_rel_path,obs_results_rel_path)
+    make_indicator(ind_data_rel_path,ind_results_rel_path)
     #
     # Remove Port Emulation if used - Fix the data file so it only has form data
     #
-    unwind_ports(obs_data_rel_path)
+    unwind_ports(ind_data_rel_path)
     # Retrieve the saved file
-    if os.path.exists(obs_results_rel_path):
-        with open(obs_results_rel_path, "r") as script_input:
+    if os.path.exists(ind_results_rel_path):
+        with open(ind_results_rel_path, "r") as script_input:
             export_data = json.load(script_input)
             export_data_list = export_data["indicator"]
             stix_object = export_data_list[0]

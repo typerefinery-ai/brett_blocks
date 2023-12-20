@@ -86,7 +86,7 @@ def invoke_sighting_block(sighting_data_path, results_path, observed=None, sight
     #
     # Remove Port Emulation if used - Fix the data file so it only has form data
     #
-    unwind_ports(sighting_results_rel_path)
+    unwind_ports(sighting_data_rel_path)
     # Retrieve the saved file
     if os.path.exists(sighting_results_rel_path):
         with open(sighting_results_rel_path, "r") as script_input:

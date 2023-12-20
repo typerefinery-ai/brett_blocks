@@ -109,7 +109,6 @@ def make_indicator(indicator_form, pattern=None):
 
 
 def main(inputfile, outputfile):
-    indicator_form = None
     pattern = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
@@ -155,7 +154,9 @@ if __name__ == '__main__':
   # log.remove()
   # log.add(f'{os.path.basename(__file__)}.log', level="INFO")
   # log.info(args)
-  main(args.inputfile, args.outputfile)
+  #main(args.inputfile, args.outputfile)
+
+  main("./indicator_alert.json", "test_output.json")
 
 
 ################################################################################
