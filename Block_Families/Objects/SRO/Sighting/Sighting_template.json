@@ -1,0 +1,90 @@
+{
+  "Sighting_template":
+    {
+      "_type": "sighting",
+      "base_required": {
+        "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
+        "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
+        "id": {"property":  "IDProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
+        "created": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
+        "modified": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}}
+      },
+      "base_optional": {
+        "created_by_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  "identity", "spec_version":  "2.1"}},
+        "revoked": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
+        "labels": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
+        "confidence": {"property":  "IntegerProperty", "parameters": {"min": 0}},
+        "lang": {"property":  "StringProperty", "parameters": {}},
+        "external_references": {"collection": "ListProperty", "property":  "ExternalReference", "parameters": {}},
+        "object_marking_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  "marking-definition", "spec_version":  "2.1"}},
+        "granular_markings": {"collection": "ListProperty", "property":  "GranularMarking", "parameters": {}}
+      },
+      "object": {
+        "description": {"property":  "StringProperty", "parameters": {}},
+        "first_seen": {"property":  "TimestampProperty", "parameters": {}},
+        "last_seen": {"property":  "TimestampProperty", "parameters": {}},
+        "count": {"property":  "IntegerProperty", "parameters": {"min": 0}},
+        "sighting_of_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types": "SDO", "required":  true, "spec_version":  "2.1"}},
+        "observed_data_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types": "observed-data", "required":  true, "spec_version":  "2.1"}},
+        "where_sighted_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types": ["identity", "location"], "required":  true, "spec_version":  "2.1"}},
+        "summary": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}}
+      },
+      "extensions": {
+        "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {
+          "_type": "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43",
+          "extension_type" : {"property":  "StringProperty", "parameters": {"required":  true, "fixed":  "property-extension"}}
+        },
+        "sighting-alert": {
+          "name": {"property":  "StringProperty", "parameters": {}},
+          "log": {"property":  "StringProperty", "parameters": {}},
+          "system_id": {"property":  "StringProperty", "parameters": {}},
+          "source": {"property":  "StringProperty", "parameters": {}},
+          "product": {"property":  "StringProperty", "parameters": {}},
+          "format": {"property":  "StringProperty", "parameters": {}}
+        },
+        "sighting-anecdote": {
+          "person_name": {"property":  "StringProperty", "parameters": {}},
+          "person_context": {"property":  "StringProperty", "parameters": {}},
+          "report_submission": {"property":  "StringProperty", "parameters": {}}
+        },
+        "sighting-context": {
+          "name": {"property":  "StringProperty", "parameters": {}},
+          "description": {"property":  "StringProperty", "parameters": {}},
+          "value": {"property":  "StringProperty", "parameters": {}}
+        },
+        "sighting-exclusion": {
+          "source": {"property":  "StringProperty", "parameters": {}},
+          "channel": {"property":  "StringProperty", "parameters": {}}
+        },
+        "sighting-enrichment": {
+          "name": {"property":  "StringProperty", "parameters": {}},
+          "url": {"property":  "StringProperty", "parameters": {}},
+          "paid": {"property":  "BooleanProperty", "parameters": {}},
+          "value": {"property":  "StringProperty", "parameters": {}}
+        },
+        "sighting-hun": {
+          "name": {"property":  "StringProperty", "parameters": {}},
+          "playbook_id": {"property":  "StringProperty", "parameters": {}},
+          "rule": {"property":  "StringProperty", "parameters": {}}
+        },
+        "sighting-framework": {
+          "framework": {"property":  "StringProperty", "parameters": {}},
+          "version": {"property":  "StringProperty", "parameters": {}},
+          "domain": {"property":  "StringProperty", "parameters": {}},
+          "comparison": {"property":  "StringProperty", "parameters": {}},
+          "comparison_approach": {"property":  "StringProperty", "parameters": {}}
+        },
+        "sighting-external": {
+          "source": {"property":  "StringProperty", "parameters": {}},
+          "version": {"property":  "StringProperty", "parameters": {}},
+          "last_update": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
+          "pattern": {"property":  "StringProperty", "parameters": {}},
+          "pattern_type": {"property":  "StringProperty", "parameters": {}},
+          "payload": {"property":  "StringProperty", "parameters": {}},
+          "valid_from": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
+          "valid_until": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}}
+        }
+      },
+      "sub": {}
+    }
+}

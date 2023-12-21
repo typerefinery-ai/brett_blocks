@@ -1,7 +1,7 @@
 {
-  "Task_template":
+  "Location_template":
     {
-      "_type": "task",
+      "_type": "location",
       "base_required": {
         "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
         "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
@@ -20,25 +20,13 @@
         "granular_markings": {"collection": "ListProperty", "property":  "GranularMarking", "parameters": {}}
       },
       "object": {
-        "name": {"property":  "StringProperty", "parameters": {"required":  true}},
-        "description": {"property":  "StringProperty", "parameters": {}},
-        "outcome": {"property":  "StringProperty", "parameters": {}},
-        "task_types": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
-        "changed_objects": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type":  "StateChangeObject"}},
-        "end_time": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
-        "end_time_fidelity": {"property":  "StringProperty", "parameters": {}},
-        "priority": {"property":  "IntegerProperty", "parameters": {"min": 0}},
-        "owner": {"property":  "ReferenceProperty", "parameters": {"valid_types":  "identity", "spec_version":  "2.1"}},
-        "start_time": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
-        "start_time_fidelity": {"property":  "StringProperty", "parameters": {}}
+        "first_observed": {"property":  "TimestampProperty", "parameters": {"required":  true}},
+        "last_observed": {"property":  "TimestampProperty", "parameters": {"required":  true}},
+        "number_observed": {"property":   "IntegerProperty", "parameters": {"min": 0}},
+        "objects": {"property":  "ObservableProperty", "parameters": {"spec_version":  "2.1"}},
+        "object_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  "valid_obj" }}
       },
-      "extensions": {
-        "extension-definition--2074a052-8be4-4932-849e-f5e7798e0030": {
-          "_type": "extension-definition--2074a052-8be4-4932-849e-f5e7798e0030",
-          "extension_type" : {"property":  "StringProperty", "parameters": {"required":  true, "fixed":  "new-sdo"}}
-        }
-      },
+      "extensions": {},
       "sub": {}
-      }
     }
 }

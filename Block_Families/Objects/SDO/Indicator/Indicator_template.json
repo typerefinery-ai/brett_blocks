@@ -1,7 +1,7 @@
 {
-  "Task_template":
+  "Indicator_template":
     {
-      "_type": "task",
+      "_type": "indicator",
       "base_required": {
         "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
         "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
@@ -22,23 +22,15 @@
       "object": {
         "name": {"property":  "StringProperty", "parameters": {"required":  true}},
         "description": {"property":  "StringProperty", "parameters": {}},
-        "outcome": {"property":  "StringProperty", "parameters": {}},
-        "task_types": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
-        "changed_objects": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type":  "StateChangeObject"}},
-        "end_time": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
-        "end_time_fidelity": {"property":  "StringProperty", "parameters": {}},
-        "priority": {"property":  "IntegerProperty", "parameters": {"min": 0}},
-        "owner": {"property":  "ReferenceProperty", "parameters": {"valid_types":  "identity", "spec_version":  "2.1"}},
-        "start_time": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
-        "start_time_fidelity": {"property":  "StringProperty", "parameters": {}}
+        "indicator_types": {"collection": "ListProperty", "property":  "OpenVocabProperty", "parameters": {"OpenVocabProperty": "INDICATOR_TYPE" }},
+        "pattern": {"property":  "PatternProperty", "parameters": {}},
+        "pattern_type": {"property":  "OpenVocabProperty", "parameters": {"OpenVocabProperty":  "PATTERN_TYPE", "required":  true}},
+        "pattern_version": {"property":  "StringProperty", "parameters": {}},
+        "valid_from": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
+        "valid_until": {"property":  "TimestampProperty", "parameters": {}},
+        "kill_chain_phases": {"collection": "ListProperty", "property":  "KillChainPhase", "parameters": {}}
       },
-      "extensions": {
-        "extension-definition--2074a052-8be4-4932-849e-f5e7798e0030": {
-          "_type": "extension-definition--2074a052-8be4-4932-849e-f5e7798e0030",
-          "extension_type" : {"property":  "StringProperty", "parameters": {"required":  true, "fixed":  "new-sdo"}}
-        }
-      },
+      "extensions": {},
       "sub": {}
-      }
     }
 }

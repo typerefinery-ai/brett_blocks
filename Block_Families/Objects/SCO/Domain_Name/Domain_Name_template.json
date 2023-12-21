@@ -1,0 +1,22 @@
+{
+  "Domain_Name_template":
+    {
+      "_type": "domain-name",
+      "base_required": {
+        "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
+        "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
+        "id": {"property":  "IDProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}}
+      },
+      "base_optional": {
+        "defanged": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
+        "object_marking_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  "marking-definition", "spec_version":  "2.1"}},
+        "granular_markings": {"collection": "ListProperty", "property":  "GranularMarking", "parameters": {}}
+      },
+      "object": {
+        "value": {"property":  "StringProperty", "parameters": {"required":  true}},
+        "resolves_to_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types": ["ipv4-addr", "ipv6-addr", "domain-name"]}}
+      },
+      "extensions": {},
+      "sub": {}
+    }
+}

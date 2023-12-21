@@ -13,7 +13,7 @@
         "created_by_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  "identity", "spec_version":  "2.1"}},
         "revoked": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
         "labels": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
-        "confidence": {"property":  "IntegerProperty", "parameters": {}},
+        "confidence": {"property":  "IntegerProperty", "parameters": {"min": 0}},
         "lang": {"property":  "StringProperty", "parameters": {}},
         "external_references": {"collection": "ListProperty", "property":  "ExternalReference", "parameters": {}},
         "object_marking_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  "marking-definition", "spec_version":  "2.1"}},
@@ -22,44 +22,34 @@
       "object": {
         "name": {"property":  "StringProperty", "parameters": {"required": true}},
         "description": {"property":  "StringProperty", "parameters": {}},
-        "kill_chain_phases": {"collection": "ListProperty", "property":  "KillChainPhase", "parameters": {}},
-        "identity_class": {"property":  "OpenVocabProperty", "parameters": {"vocab":  "IDENTITY_CLASS"}},
-        "sectors": {"collection": "ListProperty", "property":  "OpenVocabProperty", "parameters": {"vocab": "INDUSTRY_SECTOR"}},
-        "contact_information": {"property":  "StringProperty", "parameters": {}}
+        "kill_chain_phases": {"collection": "ListProperty", "property":  "KillChainPhase", "parameters": {}}
       },
       "extensions": {
-        "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
-          "_type": "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498",
+        "extension-definition--ef765651-680c-498d-9894-99799f2fa126": {
+          "_type": "extension-definition--ef765651-680c-498d-9894-99799f2fa126",
           "extension_type" : {"property":  "StringProperty", "parameters": {"required":  true, "fixed":  "property-extension"}},
-          "contact_numbers": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type": "ContactNumber"}},
-          "email_addresses": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type": "EmailContact"}},
-          "first_name": {"property":  "StringProperty", "parameters": {}},
-          "last_name": {"property":  "StringProperty", "parameters": {}},
-          "middle_name": {"property":  "StringProperty", "parameters": {}},
-          "prefix": {"property":  "StringProperty", "parameters": {}},
-          "social_media_accounts": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type": "SocialMediaContact"}},
-          "suffix": {"property":  "StringProperty", "parameters": {}},
-          "team": {"property":  "StringProperty", "parameters": {}}
+          "investigation_status": {"property":  "StringProperty", "parameters": {}},
+          "blocked": {"property":  "BooleanProperty", "parameters": {}},
+          "malicious": {"property":  "BooleanProperty", "parameters": {}},
+          "criticality": {"property":  "IntegerProperty", "parameters": {"min": 0}},
+          "determination": {"property":  "StringProperty", "parameters": {}},
+          "incident_types": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
+          "impacted_entity_counts": {"property":  "DictionaryProperty", "parameters": {"Spec_version":  "2.1"}},
+          "scores": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type":  "IncidentScoreObject"}},
+          "sequence_start_refs": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {"valid_types":  "sequence"}},
+          "sequence_refs": {"collection": "ListProperty", "property":  "ThreatReference", "parameters": {"valid_types":  "sequence"}},
+          "task_refs": {"collection": "ListProperty", "property":  "ThreatReference", "parameters": {"valid_types":  "task"}},
+          "event_refs": {"collection": "ListProperty", "property":  "ThreatReference", "parameters": {"valid_types":  "event"}},
+          "impact_refs": {"collection": "ListProperty", "property":  "ThreatReference", "parameters": {"valid_types":  "impact"}},
+          "other_object_refs": {"collection": "ListProperty", "property":  "ThreatReference", "parameters": {"valid_types":  "valid_obj"}}
         }
       },
       "sub": {
-        "ContactNumber": {
-          "_type": "contact-number",
-          "description": {"property":  "StringProperty", "parameters": {}},
-          "contact_number_type" : {"property":  "StringProperty", "parameters": {"required":  true}},
-          "contact_number" : {"property":  "StringProperty", "parameters": {"required":  true}}
-        },
-        "EmailContact": {
-          "_type": "email-contact",
-          "description": {"property":  "StringProperty", "parameters": {}},
-          "digital_contact_type" : {"property":  "StringProperty", "parameters": {"required":  true}},
-          "email_address_ref" : {"property":  "ReferenceProperty", "parameters": {"required":  true, "valid_types":  "email-addr", "spec_version":  "2.1"}}
-        },
-        "SocialMediaContact": {
-          "_type": "social-media-contact",
-          "description": {"property":  "StringProperty", "parameters": {}},
-          "digital_contact_type" : {"property":  "StringProperty", "parameters": {"required":  true}},
-          "extension_type" : {"property":  "StringProperty", "parameters": {"required":  true, "valid_types":  "user-account", "spec_version":  "2.1"}}
+        "IncidentScoreObject": {
+          "_type": "IncidentScoreObject",
+          "name": {"property":  "StringProperty", "parameters": {}},
+          "value": {"property":  "IntegerProperty", "parameters": {"min": 0}},
+          "description" : {"property":  "StringProperty", "parameters": {}}
         }
       }
     }

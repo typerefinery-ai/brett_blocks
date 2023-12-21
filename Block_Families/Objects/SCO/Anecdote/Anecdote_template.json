@@ -1,0 +1,28 @@
+{
+  "Anecdote_template":
+    {
+      "_type": "event",
+      "base_required": {
+        "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
+        "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
+        "id": {"property":  "IDProperty", "parameters": {"value":  "_type", "Spec_version":  "2.1"}}
+      },
+      "base_optional": {
+        "defanged": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
+        "object_marking_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  "marking-definition", "spec_version":  "2.1"}},
+        "granular_markings": {"collection": "ListProperty", "property":  "GranularMarking", "parameters": {}}
+      },
+      "object": {
+        "value": {"property":  "StringProperty", "parameters": {"required":  true}},
+        "report_date": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
+        "provided_by_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  "identity", "spec_version":  "2.1"}}
+      },
+      "extensions": {
+        "extension-definition--23676abf-481e-4fee-ac8c-e3d0947287a4": {
+          "_type": "extension-definition--23676abf-481e-4fee-ac8c-e3d0947287a4",
+          "extension_type" : {"property":  "StringProperty", "parameters": {"required":  true, "fixed":  "new-sco"}}
+        }
+      },
+      "sub": {}
+    }
+}
