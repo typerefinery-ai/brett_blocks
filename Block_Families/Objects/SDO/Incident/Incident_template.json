@@ -1,5 +1,5 @@
 {
-  "Identity_template":
+  "Incident_template":
     {
       "_type": "identity",
       "base_required": {
@@ -22,22 +22,22 @@
       "object": {
         "name": {"property":  "StringProperty", "parameters": {"required": true}},
         "description": {"property":  "StringProperty", "parameters": {}},
-        "roles": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
+        "kill_chain_phases": {"collection": "ListProperty", "property":  "KillChainPhase", "parameters": {}},
         "identity_class": {"property":  "OpenVocabProperty", "parameters": {"vocab":  "IDENTITY_CLASS"}},
-        "sectors": {"collection": "ListProperty", "property":  "OpenVocabProperty", "parameters": {"vocab":  "INDUSTRY_SECTOR"}},
+        "sectors": {"collection": "ListProperty", "property":  "OpenVocabProperty", "parameters": {"vocab": "INDUSTRY_SECTOR"}},
         "contact_information": {"property":  "StringProperty", "parameters": {}}
       },
       "extensions": {
         "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
           "_type": "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498",
           "extension_type" : {"property":  "StringProperty", "parameters": {"required":  true, "fixed":  "property-extension"}},
-          "contact_numbers": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type":  "ContactNumber"}},
-          "email_addresses": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type":  "EmailContact"}},
+          "contact_numbers": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type": "ContactNumber"}},
+          "email_addresses": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type": "EmailContact"}},
           "first_name": {"property":  "StringProperty", "parameters": {}},
           "last_name": {"property":  "StringProperty", "parameters": {}},
           "middle_name": {"property":  "StringProperty", "parameters": {}},
           "prefix": {"property":  "StringProperty", "parameters": {}},
-          "social_media_accounts": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type":  "SocialMediaContact"}},
+          "social_media_accounts": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type": "SocialMediaContact"}},
           "suffix": {"property":  "StringProperty", "parameters": {}},
           "team": {"property":  "StringProperty", "parameters": {}}
         }

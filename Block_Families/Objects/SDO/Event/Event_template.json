@@ -1,0 +1,50 @@
+{
+  "Event_template":
+    {
+      "_type": "event",
+      "base_required": {
+        "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
+        "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
+        "id": {"property":  "IDProperty", "parameters": {"value":  "_type", "Spec_version":  "2.1"}},
+        "created": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
+        "modified": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}}
+      },
+      "base_optional": {
+        "created_by_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  "identity", "spec_version":  "2.1"}},
+        "revoked": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
+        "labels": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
+        "confidence": {"property":  "IntegerProperty", "parameters": {}},
+        "lang": {"property":  "StringProperty", "parameters": {}},
+        "external_references": {"collection": "ListProperty", "property":  "ExternalReference", "parameters": {}},
+        "object_marking_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  "marking-definition", "spec_version":  "2.1"}},
+        "granular_markings": {"collection": "ListProperty", "property":  "GranularMarking", "parameters": {}}
+      },
+      "object": {
+        "name": {"property":  "StringProperty", "parameters": {"required":  true}},
+        "description": {"property":  "StringProperty", "parameters": {}},
+        "status": {"property":  "StringProperty", "parameters": {}},
+        "goal": {"property":  "StringProperty", "parameters": {}},
+        "changed_objects": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type":  "StateChangeObject"}},
+        "end_time": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
+        "end_time_fidelity": {"property":  "StringProperty", "parameters": {}},
+        "event_types": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
+        "sighting_refs": {"collection": "ListProperty", "property":  "ThreatReference", "parameters": {"valid_types":  "valid_obj"}},
+        "start_time": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
+        "start_time_fidelity": {"property":  "StringProperty", "parameters": {}}
+      },
+      "extensions": {
+        "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+          "_type": "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e",
+          "extension_type" : {"property":  "StringProperty", "parameters": {"required":  true, "fixed":  "new-sdo"}}
+        }
+      },
+      "sub": {
+        "StateChangeObject": {
+          "_type": "contact-number",
+          "state_change_type": {"property":  "StringProperty", "parameters": {}},
+          "initial_ref" : {"property":  "ThreatReference", "parameters": {"valid_types":  "valid_obj", "spec_version":  "2.1"}},
+          "result_ref" : {"property":  "ThreatReference", "parameters": {"valid_types":  "valid_obj", "spec_version":  "2.1"}}
+        }
+      }
+    }
+}

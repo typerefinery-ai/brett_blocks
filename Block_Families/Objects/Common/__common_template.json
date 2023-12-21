@@ -1,0 +1,26 @@
+{"__common_template":
+    {
+      "base_required": {},
+      "base_optional": {},
+      "object": {},
+      "extensions": {},
+      "sub": {
+        "KillChainPhase": {
+          "kill_chain_name": {"property":  "StringProperty", "parameters": {"required":  true}},
+          "phase_name": {"property":  "StringProperty", "parameters": {"required":  true}}
+        },
+        "GranularMarking": {
+          "lang": {"property":  "StringProperty", "parameters": {}},
+          "marking_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  "marking-definition"}},
+          "selectors": {"collection": "ListProperty", "property":  "SelectorProperty", "parameters": {"required":  true}}
+        },
+        "ExternalReference": {
+          "source_name": {"property":  "StringProperty", "parameters": {"required":  true}},
+          "description": {"property":  "StringProperty", "parameters": {}},
+          "url": {"property":  "StringProperty", "parameters": {}},
+          "hashes": {"property":  "HashesProperty", "parameters": {"HashesProperty":  "HASHING_ALGORITHM"}},
+          "external_id": {"property":  "StringProperty", "parameters": {}}
+        }
+      }
+    }
+}
