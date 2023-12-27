@@ -25,7 +25,7 @@ from .util import emulate_ports, unwind_ports, conv
 def invoke_sro_block(sro_data_path, results_path, source=None, target=None, relationship_type=None):
     # Set the Relative Input and Output Paths for the block
     sro_data_rel_path = path_base + sro_data_path
-    sro_results_rel_path = results_base + results_path
+    sro_results_rel_path = results_base + results_path + "__rel.json"
     #
     # NOTE: This code is only To fake input ports
     # Add the source and target identities and the reltaionship type

@@ -21,7 +21,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Make Email Addr
+# Title: Save Context
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: denis@cloudaccelerator.co
@@ -30,19 +30,14 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # Description: This script is designed to take in a Stix Object ID
 #       and return a Stix object
 #
-# One Mandatory, One Optional Input:
-# 1. Form_Email_Addr
-# 2. user-account
-# One Output
-# 1. Email_Addr SCO (Dict)
+# One Mandatory Input:
+# 1. Context
+# No Outpute
+#
 #
 # This code is licensed under the terms of the BSD.
 ##############################################################################
 
-from stixorm.module.definitions.stix21 import (
-    ObservedData, IPv4Address, EmailAddress, DomainName, EmailMessage, URL, UserAccount, File,
-    Identity, Incident, Note, Sighting, Indicator, Relationship, Location, Software, Process, Bundle
-)
 from stixorm.module.definitions.os_threat import (
     StateChangeObject, EventCoreExt, Event, ImpactCoreExt,
     Availability, Confidentiality, External, Integrity, Monetary, Physical,
@@ -52,70 +47,43 @@ from stixorm.module.definitions.os_threat import (
     SightingAnecdote, SightingAlert, SightingContext, SightingExclusion,
     SightingEnrichment, SightingHunt, SightingFramework, SightingExternal
 )
-
+from stixorm.module.authorise import import_type_factory
+from posixpath import basename
 import json
 import os
 
 import logging
-def make_email_addr(email_addr_form, usr_account=None):
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+import_type = import_type_factory.get_all_imports()
+
+TR_Context_Memory_Path = "./Context_Mem/Type_Refinery_Context.json"
+
+def save_context(context, context_path=None):
     # 1. Extract the components of the object
-    required = email_addr_form["base_required"]
-    optional = email_addr_form["base_optional"]
-    main = email_addr_form["object"]
-    extensions = email_addr_form["extensions"]
-    sub = email_addr_form["sub"]
-    contents = {}
-    empties_removed = {}
-    # 2. Setup Object Params first
-    for k,v in main.items():
-        contents[k] = v
-    for k,v in optional.items():
-        contents[k] = v
-    for k,v in extensions.items():
-        contents["extensions"] = {k, v}
-    for k,v in sub.items():
-        pass
 
-    for (k,v) in contents.items():
-        if v == "":
-            continue
-        elif v == []:
-            continue
-        elif v == None:
-            continue
-        else:
-            empties_removed[k] = v
+    if context_path:
+        TR_Context_Memory_Path = context_path
 
-    if usr_account:
-        empties_removed["belongs_to_ref"] = usr_account["id"]
-        # object needs to be created
-        stix_dict = EmailAddress(**empties_removed)
+    with open(TR_Context_Memory_Path, 'w') as f:
+        f.write(json.dumps(context))
 
-    else:
-        # object needs to be updated, but we can't
-        #  update properly yet, so recreate instead
-        stix_dict = EmailAddress(**empties_removed)
-
-    return stix_dict.serialize()
+    return
 
 
 def main(inputfile, outputfile):
-    belongs_to = None
+    context_path = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
             input = json.load(script_input)
+    context = input["context"]
+    if "context_path" in input:
+        context_path = input["context_path"]
 
-    email_addr_form = input["email_addr_form"]
-    if "user-account" in input:
-        belongs_to = input["user-account"]
 
     # setup logger for execution
-    stix_dict = make_email_addr(email_addr_form, belongs_to)
-    results = {}
-    results["email-addr"] = []
-    results["email-addr"].append(json.loads(stix_dict))
-    with open(outputfile, "w") as outfile:
-        json.dump(results, outfile)
+    save_context(context, context_path)
 
 
 ################################################################################

@@ -1,6 +1,6 @@
 import stixorm
 from stixorm.module.definitions.stix21 import (
-    Identity, EmailAddress, UserAccount, Relationship, Bundle, ObservedData, Indicator
+    Identity, EmailAddress, UserAccount, Relationship, Bundle, ObservedData, Indicator, Incident
 )
 from stixorm.module.definitions.os_threat import (
     IdentityContact, EmailContact, SocialMediaContact, ContactNumber, Event, Sequence, Task
@@ -15,12 +15,13 @@ context_base = "../Orchestration/Context_Mem/"
 path_base = "../Block_Families/Objects/"
 results_base = "../Orchestration/Results/"
 
-
+from Block_Families.Objects.SDO.Identity.make_identity import main as make_identity
 from Block_Families.Objects.SDO.Observed_Data.make_observed_data import main as make_observed_data
 from Block_Families.Objects.SDO.Indicator.make_indicator import main as make_indicator
 from Block_Families.Objects.SDO.Event.make_event import main as make_event
 from Block_Families.Objects.SDO.Sequence.make_sequence import main as make_sequence
 from Block_Families.Objects.SDO.Task.make_task import main as make_task
+from Block_Families.Objects.SDO.Incident.make_incident import main as make_incident
 from .util import emulate_ports, unwind_ports, conv
 
 
@@ -206,4 +207,88 @@ def invoke_make_task_block(task_path, results_path, changed_objects=None):
             print(task.serialize(pretty=True))
             local_list = []
             local_list.append(conv(task))
+            return local_list
+
+
+
+def invoke_make_identity_block(ident_path, results_path, email_results=None, acct_results=None):
+    # Set the Relative Input and Output Paths for the block
+    ident_data_rel_path = path_base + ident_path
+    ident_results_rel_path = results_base + results_path + "__ident.json"
+    #
+    # NOTE: This code is only To fake input ports
+    #
+    ##
+    if os.path.exists(ident_data_rel_path):
+        with open(ident_data_rel_path, "r") as sdo_form:
+            results_data = json.load(sdo_form)
+            if email_results:
+                results_data["email-addr"] = email_results
+            if acct_results:
+                results_data["user-account"] = acct_results
+        with open(ident_data_rel_path, 'w') as f:
+            f.write(json.dumps(results_data))
+    # Make the Observed Data object
+    make_identity(ident_data_rel_path,ident_results_rel_path)
+    #
+    # Remove Port Emulation if used - Fix the data file so it only has form data
+    #
+    unwind_ports(ident_data_rel_path)
+    # Retrieve the saved file
+    if os.path.exists(ident_results_rel_path):
+        with open(ident_results_rel_path, "r") as script_input:
+            export_data = json.load(script_input)
+            export_data_list = export_data["identity"]
+            stix_object = export_data_list[0]
+            # convert it into a Stix Object and append to the bundle
+            ident = Identity(**stix_object)
+            print(ident.serialize(pretty=True))
+            local_list = []
+            local_list.append(conv(ident))
+            return local_list
+
+
+
+def invoke_make_incident_block(inc_path, results_path, sequence_start_refs=None, sequence_refs=None, task_refs=None, event_refs=None, impact_refs=None, other_object_refs=None):
+    # Set the Relative Input and Output Paths for the block
+    inc_data_rel_path = path_base + inc_path
+    inc_results_rel_path = results_base + results_path
+    #
+    # NOTE: This code is only To fake input ports
+    #
+    ##
+    if os.path.exists(inc_data_rel_path):
+        with open(inc_data_rel_path, "r") as sdo_form:
+            results_data = json.load(sdo_form)
+            if sequence_start_refs:
+                results_data["sequence_start_refs"] = sequence_start_refs
+            if sequence_refs:
+                results_data["sequence_refs"] = sequence_refs
+            if task_refs:
+                results_data["task_refs"] = task_refs
+            if event_refs:
+                results_data["event_refs"] = event_refs
+            if impact_refs:
+                results_data["impact_refs"] = impact_refs
+            if other_object_refs:
+                results_data["other_object_refs"] = other_object_refs
+        with open(inc_data_rel_path, 'w') as f:
+            f.write(json.dumps(results_data))
+    # Make the Observed Data object
+    make_incident(inc_data_rel_path,inc_results_rel_path)
+    #
+    # Remove Port Emulation if used - Fix the data file so it only has form data
+    #
+    unwind_ports(inc_data_rel_path)
+    # Retrieve the saved file
+    if os.path.exists(inc_results_rel_path):
+        with open(inc_results_rel_path, "r") as script_input:
+            export_data = json.load(script_input)
+            export_data_list = export_data["incident"]
+            stix_object = export_data_list[0]
+            # convert it into a Stix Object and append to the bundle
+            ident = Incident(**stix_object)
+            print(ident.serialize(pretty=True))
+            local_list = []
+            local_list.append(conv(ident))
             return local_list

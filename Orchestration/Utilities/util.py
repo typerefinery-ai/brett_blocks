@@ -3,9 +3,12 @@ import json
 
 def conv(stix_object):
     # Convert Stix Object to valid Python dict
+    if type(stix_object) is dict:
+        return stix_object
     string_dict = stix_object.serialize()
     jdict = json.loads(string_dict)
     return jdict
+
 
 def emulate_ports(results_rel_path, object_data_paths):
     obj_dicts = []

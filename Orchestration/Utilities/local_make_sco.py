@@ -19,7 +19,7 @@ results_base = "../Orchestration/Results/"
 from Block_Families.Objects.SCO.URL.make_url import main as make_url
 from Block_Families.Objects.SCO.Email_Addr.make_email_addr import main as make_email_addr
 from Block_Families.Objects.SCO.Email_Message.make_email_msg import main as make_email_msg
-from Block_Families.Objects.SRO.Relationship.make_sro import main as make_sro
+from Block_Families.Objects.SCO.User_Account.make_user_account import main as make_user_account
 from .util import emulate_ports, unwind_ports, conv
 
 
@@ -34,10 +34,12 @@ def invoke_make_email_addr_block(email_path, results_path, acct_results=None):
     # Add the User Account object and the  EmailAddress
     #  Form data file
     #
-    ports = []
-    if acct_results:
-        ports.append(acct_results)
-    emulate_ports(email_data_rel_path, ports)
+    if os.path.exists(email_data_rel_path):
+        with open(email_data_rel_path, "r") as sro_form:
+            results_data = json.load(sro_form)
+            results_data["user-account"] = acct_results
+        with open(email_data_rel_path, 'w') as f:
+            f.write(json.dumps(results_data))
     #
     # Make the Email Address object
     #
@@ -45,8 +47,7 @@ def invoke_make_email_addr_block(email_path, results_path, acct_results=None):
     #
     # Remove Port Emulation - Fix the data file so it only has form data
     #
-    if ports:
-        unwind_ports(email_data_rel_path)
+    unwind_ports(email_data_rel_path)
 
     # Retrieve the saved file
     if os.path.exists(email_results_rel_path):
@@ -60,6 +61,34 @@ def invoke_make_email_addr_block(email_path, results_path, acct_results=None):
             local_list = []
             local_list.append(conv(email_addr))
             return local_list
+
+
+def invoke_make_user_account_block(user_path, results_path):
+    #
+    # 1. Set the Relative Input and Output Paths for the block
+    #
+    # Set the Relative Input and Output Paths for the block
+    acct_data_rel_path = path_base + user_path
+    acct_results_rel_path = results_base + results_path + "__usr_acct.json"
+    # Run the Make User Account block
+    make_user_account(acct_data_rel_path, acct_results_rel_path)
+    #
+    # Remove Port Emulation - Fix the data file so it only has form data
+    #
+    # Retrieve the saved file
+    if os.path.exists(acct_results_rel_path):
+        with open(acct_results_rel_path, "r") as script_input:
+            export_data = json.load(script_input)
+            export_data_list = export_data["user-account"]
+            stix_object = export_data_list[0]
+            # convert it into a Stix Object and append to the bundle
+            usr_acct = UserAccount(**stix_object)
+            print(usr_acct.serialize(pretty=True))
+            local_list = []
+            local_list.append(conv(usr_acct))
+            return local_list
+
+
 
 def invoke_make_url_block(url_path, results_path, hyperlink=None):
     #
