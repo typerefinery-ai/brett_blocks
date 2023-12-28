@@ -3,7 +3,7 @@ from stixorm.module.definitions.stix21 import (
     Identity, EmailAddress, UserAccount, Relationship, Bundle, ObservedData, Indicator, Incident
 )
 from stixorm.module.definitions.os_threat import (
-    IdentityContact, EmailContact, SocialMediaContact, ContactNumber, Event, Sequence, Task
+    IdentityContact, EmailContact, SocialMediaContact, ContactNumber, Event, Sequence, Task, Impact
 )
 from stixorm.module.authorise import import_type_factory
 from stixorm.module.typedb_lib.instructions import ResultStatus, Result
@@ -22,6 +22,7 @@ from Block_Families.Objects.SDO.Event.make_event import main as make_event
 from Block_Families.Objects.SDO.Sequence.make_sequence import main as make_sequence
 from Block_Families.Objects.SDO.Task.make_task import main as make_task
 from Block_Families.Objects.SDO.Incident.make_incident import main as make_incident
+from Block_Families.Objects.SDO.Impact.make_impact import main as make_impact
 from .util import emulate_ports, unwind_ports, conv
 
 
@@ -291,4 +292,44 @@ def invoke_make_incident_block(inc_path, results_path, sequence_start_refs=None,
             print(ident.serialize(pretty=True))
             local_list = []
             local_list.append(conv(ident))
+            return local_list
+
+
+
+def invoke_make_impact_block(impact_path, results_path, impacted_entity_counts=None, impacted_refs=None, superseded_by_ref=None):
+    # Set the Relative Input and Output Paths for the block
+    impact_data_rel_path = path_base + impact_path
+    impact_results_rel_path = results_base + results_path
+    #
+    # NOTE: This code is only To fake input ports
+    #
+    ##
+    if os.path.exists(impact_data_rel_path):
+        with open(impact_data_rel_path, "r") as sdo_form:
+            results_data = json.load(sdo_form)
+            if impacted_entity_counts:
+                results_data["impacted_entity_counts"] = impacted_entity_counts
+            if impacted_refs:
+                results_data["impacted_refs"] = impacted_refs
+            if superseded_by_ref:
+                results_data["superseded_by_ref"] = superseded_by_ref
+        with open(impact_data_rel_path, 'w') as f:
+            f.write(json.dumps(results_data))
+    # Make the Observed Data object
+    make_impact(impact_data_rel_path,impact_results_rel_path)
+    #
+    # Remove Port Emulation if used - Fix the data file so it only has form data
+    #
+    unwind_ports(impact_data_rel_path)
+    # Retrieve the saved file
+    if os.path.exists(impact_results_rel_path):
+        with open(impact_results_rel_path, "r") as script_input:
+            export_data = json.load(script_input)
+            export_data_list = export_data["impact"]
+            stix_object = export_data_list[0]
+            # convert it into a Stix Object and append to the bundle
+            impact = Impact(**stix_object)
+            print(impact.serialize(pretty=True))
+            local_list = []
+            local_list.append(conv(impact))
             return local_list

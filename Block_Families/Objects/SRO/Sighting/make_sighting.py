@@ -102,25 +102,23 @@ def make_sighting(sighting_form, observed_data_refs, where_sighted_refs, sightin
         contents[k] = v
     for k,v in extensions.items():
         if k == sight_ext_id:
-            extensions[sight_ext_id] = sight_ext
+            contents["extensions"] = {sight_ext_id: sight_ext}
         elif k == "sighting-alert":
-            extensions["sighting-alert"] = SightingAlert(**v)
+            contents["extensions"] = {"sighting-alert": SightingAlert(**v)}
         elif k == "sighting-anecdote":
-            extensions["sighting-anecdote"] = SightingAnecdote(**v)
-        elif k == "sighting-enrichment":
-            extensions["sighting-context"] = SightingContext(**v)
+            contents["extensions"] = {"sighting-anecdote": SightingAnecdote(**v)}
         elif k == "sighting-context":
-            extensions["sighting-enrichment"] = SightingEnrichment(**v)
+            contents["extensions"] = {"sighting-context": SightingContext(**v)}
+        elif k == "sighting-enrichment":
+            contents["extensions"] = {"sighting-enrichment": SightingEnrichment(**v)}
         elif k == "sighting-exclusion":
-            extensions["sighting-exclusion"] = SightingExclusion(**v)
+            contents["extensions"] = {"sighting-exclusion": SightingExclusion(**v)}
         elif k == "sighting-external":
-            extensions["sighting-external"] = SightingExternal(**v)
-        elif k == "sighting-alert":
-            extensions["sighting-framework"] = SightingFramework(**v)
+            contents["extensions"] = {"sighting-external": SightingExternal(**v)}
         elif k == "sighting-framework":
-            extensions["sighting-hunt"] = SightingAlert(**v)
+            contents["extensions"] = {"sighting-framework": SightingFramework(**v)}
         elif k == "sighting-hunt":
-            extensions["sighting-hunt"] = SightingHunt(**v)
+            contents["extensions"] = {"sighting-hunt": SightingHunt(**v)}
 
     for k,v in sub.items():
         pass

@@ -99,9 +99,9 @@ def make_sequence(sequence_form, step_type=None, sequence_type=None, sequenced_o
     for k,v in optional.items():
         contents[k] = v
     if event_ext_id in extensions:
-        extensions[event_ext_id] = event_ext
+        contents["extensions"] = {event_ext_id: event_ext}
     else:
-        extensions[event_ext_id] = event_ext
+        contents["extensions"] = {event_ext_id: event_ext}
     for k,v in sub.items():
         pass
 

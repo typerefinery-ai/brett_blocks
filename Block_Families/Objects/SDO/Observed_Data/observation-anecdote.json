@@ -1,7 +1,7 @@
 {
-  "task_form": {
+  "observed_data_form": {
     "base_required": {
-      "type": "task",
+      "type": "identity",
       "spec_version": "2.1",
       "id": "",
       "created": "",
@@ -17,14 +17,12 @@
       "granular_markings": []
     },
     "object": {
-      "name": "Potential Phishing Email",
-      "description": "Suspicious email reported by user"
+      "first_observed": "2020-10-19T01:01:01.000Z",
+      "last_observed": "2020-10-19T01:01:01.000Z",
+      "number_observed": 1,
+      "object_refs": []
     },
-    "extensions": {
-      "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
-        "extension_type": "new-sdo"
-      }
-    },
+    "extensions": {},
     "sub": {}
   }
 }

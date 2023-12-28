@@ -99,9 +99,9 @@ def make_task(task_form, changed_objects=None):
     for k,v in optional.items():
         contents[k] = v
     if task_ext_id in extensions:
-        extensions[task_ext_id] = task_ext
+        contents["extensions"]= {task_ext_id: task_ext}
     else:
-        extensions[task_ext_id] = task_ext
+        contents["extensions"]= {task_ext_id: task_ext}
     for k,v in sub.items():
         pass
 

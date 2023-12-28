@@ -3,7 +3,7 @@ from stixorm.module.definitions.stix21 import (
     Identity, EmailAddress, UserAccount, Relationship, Bundle, URL, EmailMessage
 )
 from stixorm.module.definitions.os_threat import (
-    IdentityContact, EmailContact, SocialMediaContact, ContactNumber
+    IdentityContact, EmailContact, SocialMediaContact, ContactNumber, Anecdote
 )
 from stixorm.module.authorise import import_type_factory
 from stixorm.module.typedb_lib.instructions import ResultStatus, Result
@@ -20,6 +20,7 @@ from Block_Families.Objects.SCO.URL.make_url import main as make_url
 from Block_Families.Objects.SCO.Email_Addr.make_email_addr import main as make_email_addr
 from Block_Families.Objects.SCO.Email_Message.make_email_msg import main as make_email_msg
 from Block_Families.Objects.SCO.User_Account.make_user_account import main as make_user_account
+from Block_Families.Objects.SCO.Anecdote.make_anecdote import main as make_anecdote
 from .util import emulate_ports, unwind_ports, conv
 
 
@@ -37,7 +38,8 @@ def invoke_make_email_addr_block(email_path, results_path, acct_results=None):
     if os.path.exists(email_data_rel_path):
         with open(email_data_rel_path, "r") as sro_form:
             results_data = json.load(sro_form)
-            results_data["user-account"] = acct_results
+            if acct_results:
+                results_data["user-account"] = acct_results
         with open(email_data_rel_path, 'w') as f:
             f.write(json.dumps(results_data))
     #
@@ -173,4 +175,46 @@ def invoke_make_e_msg_block(msg_path, results_path, from_ref=None, to_refs=None,
             print(msg_object.serialize(pretty=True))
             local_list = []
             local_list.append(conv(msg_object))
+            return local_list
+
+
+
+def invoke_make_anecdote_block(anecdote_path, results_path, anecdote_reporter=None):
+    #
+    # 1. Set the Relative Input and Output Paths for the block
+    #
+    anecdote_data_rel_path = path_base + anecdote_path
+    anecdote_results_rel_path = results_base + results_path + "__anecdote.json"
+    #
+    # NOTE: This code is only To fake input ports
+    # Add the User Account object and the  EmailAddress
+    #  Form data file
+    #
+    if os.path.exists(anecdote_data_rel_path):
+        with open(anecdote_data_rel_path, "r") as sro_form:
+            results_data = json.load(sro_form)
+            if anecdote_reporter:
+                results_data["anecdote_reporter"] = anecdote_reporter
+        with open(anecdote_data_rel_path, 'w') as f:
+            f.write(json.dumps(results_data))
+    #
+    # Make the Email Address object
+    #
+    make_anecdote(anecdote_data_rel_path,anecdote_results_rel_path)
+    #
+    # Remove Port Emulation - Fix the data file so it only has form data
+    #
+    unwind_ports(anecdote_data_rel_path)
+
+    # Retrieve the saved file
+    if os.path.exists(anecdote_results_rel_path):
+        with open(anecdote_results_rel_path, "r") as script_input:
+            export_data = json.load(script_input)
+            export_data_list = export_data["anecdote"]
+            stix_object = export_data_list[0]
+            # convert it into a Stix Object and append to the bundle
+            anecdote = Anecdote(**stix_object)
+            print(anecdote.serialize(pretty=True))
+            local_list = []
+            local_list.append(conv(anecdote))
             return local_list
