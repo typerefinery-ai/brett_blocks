@@ -1,1 +1,2023 @@
-{"local": {"me": [{"type": "user-account", "spec_version": "2.1", "id": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3", "user_id": "79563902", "account_login": "tjones", "account_type": "soc,", "display_name": "Trusty Jones"}, {"type": "email-addr", "spec_version": "2.1", "id": "email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3", "value": "trusty@example.com", "display_name": "Trusty Jones", "belongs_to_ref": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3"}, {"type": "identity", "spec_version": "2.1", "id": "identity--b7a45f81-59eb-47cb-bcdf-6d67e93b68b9", "created": "2023-12-27T09:33:10.831829Z", "modified": "2023-12-27T09:33:10.831829Z", "name": "Trusty Jones", "description": "A Trusty Individual", "roles": ["soc", "support"], "identity_class": "individual", "sectors": ["technology"], "extensions": {"extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {"extension_type": "property-extension", "contact_numbers": [{"contact_number_type": "work-phone", "contact_number": "0418-208-368"}], "email_addresses": [{"digital_contact_type": "work", "email_address_ref": "email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3"}], "first_name": "Me", "last_name": "Jones", "middle_name": "Percival", "prefix": "Dr", "social_media_accounts": [{"digital_contact_type": "work", "user_account_ref": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3"}], "team": "All_Stars"}}}], "team": [], "company": [{"type": "identity", "spec_version": "2.1", "id": "identity--de6c1041-92a7-4500-a838-f3e689b93cd0", "created": "2023-12-27T09:33:10.873135Z", "modified": "2023-12-27T09:33:10.873135Z", "name": "Example Company", "description": "An Example Organisation", "identity_class": "organization", "sectors": ["technology"]}, {"type": "relationship", "spec_version": "2.1", "id": "relationship--1a7dc0e4-a435-49b0-b4ae-bb57921df852", "created": "2023-12-27T09:33:10.914146Z", "modified": "2023-12-27T09:33:10.914146Z", "relationship_type": "attributed-to", "source_ref": "identity--b7a45f81-59eb-47cb-bcdf-6d67e93b68b9", "target_ref": "identity--b7a45f81-59eb-47cb-bcdf-6d67e93b68b9"}, {"type": "user-account", "spec_version": "2.1", "id": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b", "user_id": "79563902", "account_login": "nsmith", "account_type": "sales,", "display_name": "Naive Smith"}, {"type": "email-addr", "spec_version": "2.1", "id": "email-addr--4722424c-7012-56b0-84d5-01d076fc547b", "value": "naive@example.com", "display_name": "Naive Smith", "belongs_to_ref": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"}, {"type": "identity", "spec_version": "2.1", "id": "identity--e458b7eb-81f9-4ed0-9df3-818a22f8cf10", "created": "2023-12-27T09:33:11.009394Z", "modified": "2023-12-27T09:33:11.009394Z", "name": "Naive Smith", "description": "A Naive Individual", "roles": ["user", "sales"], "identity_class": "individual", "sectors": ["technology"], "extensions": {"extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {"extension_type": "property-extension", "contact_numbers": [{"contact_number_type": "work-phone", "contact_number": "0499-999-109"}], "email_addresses": [{"digital_contact_type": "work", "email_address_ref": "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"}], "first_name": "Naive", "last_name": "Smith", "middle_name": "Weakling", "prefix": "Mr", "social_media_accounts": [{"digital_contact_type": "work", "user_account_ref": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"}], "team": "Sales"}}}, {"type": "relationship", "spec_version": "2.1", "id": "relationship--dcc54808-a74f-4968-b9c7-c57c9ccbf0fc", "created": "2023-12-27T09:33:11.040648Z", "modified": "2023-12-27T09:33:11.040648Z", "relationship_type": "attributed-to", "source_ref": "identity--b7a45f81-59eb-47cb-bcdf-6d67e93b68b9", "target_ref": "identity--e458b7eb-81f9-4ed0-9df3-818a22f8cf10"}, {"type": "user-account", "spec_version": "2.1", "id": "user-account--5c0dcb9b-5784-5aaf-b393-d990a4d68dd3", "user_id": "79563143", "account_login": "sbilly", "account_type": "sales,", "display_name": "Strange Billy"}, {"type": "email-addr", "spec_version": "2.1", "id": "email-addr--b0708db8-71e9-50f9-950c-610fccd2c30b", "value": "sbilly@example.com", "display_name": "Strange Billy", "belongs_to_ref": "user-account--5c0dcb9b-5784-5aaf-b393-d990a4d68dd3"}, {"type": "identity", "spec_version": "2.1", "id": "identity--110d0e84-687b-4a9f-b031-b9758cd8c846", "created": "2023-12-27T09:33:11.103343Z", "modified": "2023-12-27T09:33:11.103343Z", "name": "Strange", "description": "A Strange Individual", "roles": ["user", "sales"], "identity_class": "individual", "sectors": ["technology"], "extensions": {"extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {"extension_type": "property-extension", "contact_numbers": [{"contact_number_type": "work-phone", "contact_number": "0422-222-122"}], "email_addresses": [{"digital_contact_type": "work", "email_address_ref": "email-addr--b0708db8-71e9-50f9-950c-610fccd2c30b"}], "first_name": "Strange", "last_name": "Billy", "middle_name": "One", "prefix": "Mr", "social_media_accounts": [{"digital_contact_type": "work", "user_account_ref": "user-account--5c0dcb9b-5784-5aaf-b393-d990a4d68dd3"}], "team": "Sales"}}}, {"type": "relationship", "spec_version": "2.1", "id": "relationship--f8695b9d-d4f8-466b-a6d8-a1f78c6b2980", "created": "2023-12-27T09:33:11.136088Z", "modified": "2023-12-27T09:33:11.136088Z", "relationship_type": "attributed-to", "source_ref": "identity--b7a45f81-59eb-47cb-bcdf-6d67e93b68b9", "target_ref": "identity--110d0e84-687b-4a9f-b031-b9758cd8c846"}, {"type": "user-account", "spec_version": "2.1", "id": "user-account--113460bd-67f7-5611-bbbb-158d5c45255e", "user_id": "79563902", "account_login": "wwhilly", "account_type": "sales,", "display_name": "Whooping Whilly"}, {"type": "email-addr", "spec_version": "2.1", "id": "email-addr--72fa6570-cce5-5be5-916d-452de0e1adb5", "value": "wwhilly@example.com", "display_name": "Whooping Willy", "belongs_to_ref": "user-account--113460bd-67f7-5611-bbbb-158d5c45255e"}, {"type": "identity", "spec_version": "2.1", "id": "identity--204cbc23-8ec8-46ba-96d2-2157ef2c88a5", "created": "2023-12-27T09:33:11.215284Z", "modified": "2023-12-27T09:33:11.215284Z", "name": "Whooping", "description": "A Whooping Individual", "roles": ["user", "sales"], "identity_class": "individual", "sectors": ["technology"], "extensions": {"extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {"extension_type": "property-extension", "contact_numbers": [{"contact_number_type": "work-phone", "contact_number": "0455-555-155"}], "email_addresses": [{"digital_contact_type": "work", "email_address_ref": "email-addr--72fa6570-cce5-5be5-916d-452de0e1adb5"}], "first_name": "Whooping", "last_name": "Whilly", "middle_name": "Wee", "prefix": "Mr", "social_media_accounts": [{"digital_contact_type": "work", "user_account_ref": "user-account--113460bd-67f7-5611-bbbb-158d5c45255e"}], "team": "Sales"}}}, {"type": "relationship", "spec_version": "2.1", "id": "relationship--6a1b5c8a-62c4-490f-80f1-e57ebd58269d", "created": "2023-12-27T09:33:11.242131Z", "modified": "2023-12-27T09:33:11.242131Z", "relationship_type": "attributed-to", "source_ref": "identity--b7a45f81-59eb-47cb-bcdf-6d67e93b68b9", "target_ref": "identity--204cbc23-8ec8-46ba-96d2-2157ef2c88a5"}], "systems": [{"type": "identity", "spec_version": "2.1", "id": "identity--2f47c3db-16ed-433b-8853-d4fa189b0314", "created": "2023-12-27T09:33:11.276153Z", "modified": "2023-12-27T09:33:11.276153Z", "name": "Example Company", "description": "An Example Organisation", "identity_class": "organization", "sectors": ["technology"]}], "assets": [{"type": "identity", "spec_version": "2.1", "id": "identity--6beab7c8-bd62-4c13-8f81-4faa64a93be7", "created": "2023-12-27T09:33:11.307536Z", "modified": "2023-12-27T09:33:11.307536Z", "name": "HP Laptop 1", "description": "Usr 1's Laptop", "roles": ["laptop"], "identity_class": "system", "sectors": ["technology"], "external_references": [{"source_name": "HP Ultima 10", "description": "16GB RAM, 1TB SD, Microsoft Windows 11 Professional", "url": "https://mail.echange.microsoft.com", "external_id": "Asset--629456a"}]}, {"type": "identity", "spec_version": "2.1", "id": "identity--72fd1252-ab51-4f73-887b-a9dec813985a", "created": "2023-12-27T09:33:11.33028Z", "modified": "2023-12-27T09:33:11.33028Z", "name": "HP Laptop 2", "description": "Usr 2's Laptop", "roles": ["laptop"], "identity_class": "system", "sectors": ["technology"], "external_references": [{"source_name": "HP Ultima 10", "description": "16GB RAM, 1TB SD, Microsoft Windows 11 Professional", "url": "https://mail.echange.microsoft.com", "external_id": "Asset--629457ca"}]}]}, "incident": {"incident_obj": {"sequence_start_refs": ["sequence--5a617b82-b3f9-461c-a3ef-35e750c27aa7", "sequence--6d382c4f-4ff6-43c8-aec8-c02fcf691e42"], "sequence_refs": ["sequence--adaba53e-a7cb-472b-a72d-bc1db3d904e1", "sequence--adaba53e-a7cb-472b-a72d-bc1db3d904e1", "sequence--682a5c64-8284-4f39-8e63-32c9888e57c2"], "task_refs": ["task--663fb954-8009-4a00-9578-95fa1b976403", "task--824a35bd-9788-47f5-887f-7909546613a7"], "event_refs": ["event--528809d6-af8d-43f0-b041-5068ea925d05"], "impact_refs": ["impact--a5c2f90a-abee-40ba-99d7-a634549c41d4"], "other_object_refs": ["email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212", "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b", "email-addr--4722424c-7012-56b0-84d5-01d076fc547b", "identity--b7a45f81-59eb-47cb-bcdf-6d67e93b68b9", "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7", "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d", "relationship--f732f511-52e4-429b-852e-cd3e03655145", "observed-data--def31daf-607c-4ecb-a84d-0f9da25e876a", "indicator--b7cd73ec-be0d-49c9-8776-8f5fc087053c", "sighting--74b26bd3-9378-44a1-991a-206094764ec9", "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f", "observed-data--ae67d07d-ac9f-4bbe-9646-8284b2e29a91", "sighting--9ac05f57-97e8-494e-a3ed-8bb600fec6ae", "identity--6beab7c8-bd62-4c13-8f81-4faa64a93be7"]}, "bundle_list": [], "sequence_start_objs": [{"type": "sequence", "spec_version": "2.1", "id": "sequence--5a617b82-b3f9-461c-a3ef-35e750c27aa7", "created": "2023-12-27T09:33:31.714064Z", "modified": "2023-12-27T09:33:31.714064Z", "sequence_type": "event", "step_type": "start_step", "on_completion": "sequence--adaba53e-a7cb-472b-a72d-bc1db3d904e1", "extensions": {"extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {"extension_type": "new-sdo"}}}, {"type": "sequence", "spec_version": "2.1", "id": "sequence--6d382c4f-4ff6-43c8-aec8-c02fcf691e42", "created": "2023-12-27T09:33:31.834796Z", "modified": "2023-12-27T09:33:31.834796Z", "sequence_type": "task", "step_type": "start_step", "on_completion": "sequence--2c065242-0895-48c5-925d-dff3d43575ba", "extensions": {"extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {"extension_type": "new-sdo"}}}], "sequence_objs": [{"type": "sequence", "spec_version": "2.1", "id": "sequence--adaba53e-a7cb-472b-a72d-bc1db3d904e1", "created": "2023-12-27T09:33:31.671718Z", "modified": "2023-12-27T09:33:31.671718Z", "sequenced_object": "event--528809d6-af8d-43f0-b041-5068ea925d05", "sequence_type": "event", "step_type": "single_step", "extensions": {"extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {"extension_type": "new-sdo"}}}, {"type": "sequence", "spec_version": "2.1", "id": "sequence--adaba53e-a7cb-472b-a72d-bc1db3d904e1", "created": "2023-12-27T09:33:31.671718Z", "modified": "2023-12-27T09:33:31.671718Z", "sequenced_object": "event--528809d6-af8d-43f0-b041-5068ea925d05", "sequence_type": "event", "step_type": "single_step", "extensions": {"extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {"extension_type": "new-sdo"}}}, {"type": "sequence", "spec_version": "2.1", "id": "sequence--682a5c64-8284-4f39-8e63-32c9888e57c2", "created": "2023-12-28T00:41:55.891307Z", "modified": "2023-12-28T00:41:55.891307Z", "sequenced_object": "task--824a35bd-9788-47f5-887f-7909546613a7", "sequence_type": "task", "step_type": "single_step", "extensions": {"extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {"extension_type": "new-sdo"}}, "on_completion": "sequence--682a5c64-8284-4f39-8e63-32c9888e57c2"}], "task_objs": [{"type": "task", "spec_version": "2.1", "id": "task--663fb954-8009-4a00-9578-95fa1b976403", "created": "2023-12-27T09:33:31.753497Z", "modified": "2023-12-27T09:33:31.753497Z", "description": "Suspicious email reported by user", "end_time": "2023-12-27T09:33:31.753497Z", "name": "Potential Phishing Email", "start_time": "2023-12-27T09:33:31.753497Z", "extensions": {"extension-definition--2074a052-8be4-4932-849e-f5e7798e0030": {"extension_type": "new-sdo"}}}, {"type": "task", "spec_version": "2.1", "id": "task--824a35bd-9788-47f5-887f-7909546613a7", "created": "2023-12-28T00:41:55.837209Z", "modified": "2023-12-28T00:41:55.837209Z", "description": "Find out who else got the email", "end_time": "2023-12-28T00:41:55.837209Z", "name": "Query Exchange Server", "start_time": "2023-12-28T00:41:55.837209Z", "extensions": {"extension-definition--2074a052-8be4-4932-849e-f5e7798e0030": {"extension_type": "new-sdo"}}}], "event_objs": [{"type": "event", "spec_version": "2.1", "id": "event--528809d6-af8d-43f0-b041-5068ea925d05", "created": "2023-12-27T09:33:31.619772Z", "modified": "2023-12-27T09:33:31.619772Z", "description": "Suspicious email reported by user", "end_time": "2023-12-27T09:33:31.619772Z", "event_types": ["dissemination-phishing-emails"], "name": "Potential Phishing Email", "sighting_refs": ["sighting--74b26bd3-9378-44a1-991a-206094764ec9"], "start_time": "2023-12-27T09:33:31.619772Z", "extensions": {"extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {"extension_type": "new-sdo"}}}], "impact_objs": [{"type": "impact", "spec_version": "2.1", "id": "impact--a5c2f90a-abee-40ba-99d7-a634549c41d4", "created": "2023-12-28T00:41:55.785782Z", "modified": "2023-12-28T00:41:55.785782Z", "impact_category": "availability", "criticality": 99, "description": "Laptop is stuffed", "end_time": "2023-12-28T00:41:55.785782Z", "impacted_entity_counts": {"computers-mobile": 1}, "impacted_refs": ["identity--6beab7c8-bd62-4c13-8f81-4faa64a93be7"], "recoverability": "regular", "start_time": "2023-12-28T00:41:55.785782Z", "extensions": {"extension-definition--7cc33dd6-f6a1-489b-98ea-522d351d71b9": {"extension_type": "new-sdo"}}}], "other_object_objs": [{"type": "email-addr", "spec_version": "2.1", "id": "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212", "value": "evil@northkorea.nk", "display_name": "Bad Man"}, {"type": "user-account", "spec_version": "2.1", "id": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b", "user_id": "79563902", "account_login": "nsmith", "account_type": "sales,", "display_name": "Naive Smith"}, {"type": "email-addr", "spec_version": "2.1", "id": "email-addr--4722424c-7012-56b0-84d5-01d076fc547b", "value": "naive@example.com", "display_name": "Naive Smith", "belongs_to_ref": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"}, {"type": "identity", "spec_version": "2.1", "id": "identity--b7a45f81-59eb-47cb-bcdf-6d67e93b68b9", "created": "2023-12-27T09:33:10.831829Z", "modified": "2023-12-27T09:33:10.831829Z", "name": "Trusty Jones", "description": "A Trusty Individual", "roles": ["soc", "support"], "identity_class": "individual", "sectors": ["technology"], "extensions": {"extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {"extension_type": "property-extension", "contact_numbers": [{"contact_number_type": "work-phone", "contact_number": "0418-208-368"}], "email_addresses": [{"digital_contact_type": "work", "email_address_ref": "email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3"}], "first_name": "Me", "last_name": "Jones", "middle_name": "Percival", "prefix": "Dr", "social_media_accounts": [{"digital_contact_type": "work", "user_account_ref": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3"}], "team": "All_Stars"}}}, {"type": "url", "spec_version": "2.1", "id": "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7", "value": "https://www.northkorea.nk/we/are/mad/"}, {"type": "email-message", "spec_version": "2.1", "id": "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d", "is_multipart": false, "date": "2020-10-19T01:01:01Z", "from_ref": "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212", "to_refs": ["email-addr--4722424c-7012-56b0-84d5-01d076fc547b"], "subject": "we are coming for you", "body": "some bad stuff written here"}, {"type": "relationship", "spec_version": "2.1", "id": "relationship--f732f511-52e4-429b-852e-cd3e03655145", "created": "2023-12-27T09:33:31.417954Z", "modified": "2023-12-27T09:33:31.417954Z", "relationship_type": "derived-from", "source_ref": "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d", "target_ref": "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7"}, {"type": "observed-data", "spec_version": "2.1", "id": "observed-data--def31daf-607c-4ecb-a84d-0f9da25e876a", "created": "2023-12-27T09:33:31.447336Z", "modified": "2023-12-27T09:33:31.447336Z", "first_observed": "2020-10-19T01:01:01Z", "last_observed": "2020-10-19T01:01:01Z", "number_observed": 1, "object_refs": ["email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212", "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b", "email-addr--4722424c-7012-56b0-84d5-01d076fc547b", "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7", "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d", "relationship--f732f511-52e4-429b-852e-cd3e03655145"]}, {"type": "indicator", "spec_version": "2.1", "id": "indicator--b7cd73ec-be0d-49c9-8776-8f5fc087053c", "created": "2023-12-27T09:33:31.482186Z", "modified": "2023-12-27T09:33:31.482186Z", "name": "Potential Phishing Email", "description": "Suspicious email reported by user", "indicator_types": ["unknown"], "pattern": "[email-addr:value = 'evil@northkorea.nk' AND email:subject = 'we are coming for you']", "pattern_type": "stix", "pattern_version": "2.1", "valid_from": "2023-12-27T09:33:31.482186Z"}, {"type": "sighting", "spec_version": "2.1", "id": "sighting--74b26bd3-9378-44a1-991a-206094764ec9", "created": "2023-12-27T09:33:31.553966Z", "modified": "2023-12-27T09:33:31.553966Z", "count": 1, "sighting_of_ref": "indicator--b7cd73ec-be0d-49c9-8776-8f5fc087053c", "observed_data_refs": ["observed-data--def31daf-607c-4ecb-a84d-0f9da25e876a"], "where_sighted_refs": ["identity--e458b7eb-81f9-4ed0-9df3-818a22f8cf10"], "extensions": {"sighting-alert": {"name": "user-report", "log": "I have found a suspicious email", "system_id": "XYZ-1234", "source": "user submission"}}}, {"type": "anecdote", "spec_version": "2.1", "id": "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f", "value": "I clicked on the link, and my laptop screen went weird", "report_date": "2023-12-28T00:41:55.687874Z", "provided_by_ref": "identity--e458b7eb-81f9-4ed0-9df3-818a22f8cf10"}, {"type": "observed-data", "spec_version": "2.1", "id": "observed-data--ae67d07d-ac9f-4bbe-9646-8284b2e29a91", "created": "2023-12-28T00:41:55.720878Z", "modified": "2023-12-28T00:41:55.720878Z", "first_observed": "2020-10-19T01:01:01Z", "last_observed": "2020-10-19T01:01:01Z", "number_observed": 1, "object_refs": ["anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f"]}, {"type": "sighting", "spec_version": "2.1", "id": "sighting--9ac05f57-97e8-494e-a3ed-8bb600fec6ae", "created": "2023-12-28T00:41:55.751012Z", "modified": "2023-12-28T00:41:55.751012Z", "count": 1, "sighting_of_ref": "identity--e458b7eb-81f9-4ed0-9df3-818a22f8cf10", "observed_data_refs": ["observed-data--ae67d07d-ac9f-4bbe-9646-8284b2e29a91"], "where_sighted_refs": ["identity--b7a45f81-59eb-47cb-bcdf-6d67e93b68b9"], "extensions": {"sighting-anecdote": {"person_name": "user-report", "person_context": "employee", "report_submission": "interview"}}}, {"type": "identity", "spec_version": "2.1", "id": "identity--6beab7c8-bd62-4c13-8f81-4faa64a93be7", "created": "2023-12-27T09:33:11.307536Z", "modified": "2023-12-27T09:33:11.307536Z", "name": "HP Laptop 1", "description": "Usr 1's Laptop", "roles": ["laptop"], "identity_class": "system", "sectors": ["technology"], "external_references": [{"source_name": "HP Ultima 10", "description": "16GB RAM, 1TB SD, Microsoft Windows 11 Professional", "url": "https://mail.echange.microsoft.com", "external_id": "Asset--629456a"}]}]}, "typedb": {"incident_obj": {}, "bundle_list": [], "sequence_start_objs": [], "sequence_objs": [], "task_objs": [], "event_objs": [], "impact_objs": [], "other_object_objs": []}}
+{
+  "local": {
+    "me": [
+      {
+        "type": "user-account",
+        "spec_version": "2.1",
+        "id": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3",
+        "user_id": "79563902",
+        "account_login": "tjones",
+        "account_type": "soc,",
+        "display_name": "Trusty Jones"
+      },
+      {
+        "type": "email-addr",
+        "spec_version": "2.1",
+        "id": "email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3",
+        "value": "trusty@example.com",
+        "display_name": "Trusty Jones",
+        "belongs_to_ref": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3"
+      },
+      {
+        "type": "identity",
+        "spec_version": "2.1",
+        "id": "identity--2e02a834-c89b-483b-869d-fcb713721246",
+        "created": "2023-12-31T08:02:45.042563Z",
+        "modified": "2023-12-31T08:02:45.042563Z",
+        "name": "Trusty Jones",
+        "description": "A Trusty Individual",
+        "roles": [
+          "soc",
+          "support"
+        ],
+        "identity_class": "individual",
+        "sectors": [
+          "technology"
+        ],
+        "extensions": {
+          "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+            "extension_type": "property-extension",
+            "contact_numbers": [
+              {
+                "contact_number_type": "work-phone",
+                "contact_number": "0418-208-368"
+              }
+            ],
+            "email_addresses": [
+              {
+                "digital_contact_type": "work",
+                "email_address_ref": "email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3"
+              }
+            ],
+            "first_name": "Me",
+            "last_name": "Jones",
+            "middle_name": "Percival",
+            "prefix": "Dr",
+            "social_media_accounts": [
+              {
+                "digital_contact_type": "work",
+                "user_account_ref": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3"
+              }
+            ],
+            "team": "All_Stars"
+          }
+        }
+      }
+    ],
+    "team": [],
+    "company": [
+      {
+        "type": "identity",
+        "spec_version": "2.1",
+        "id": "identity--cf7723f6-d3e3-4633-b67f-11d8f7dec556",
+        "created": "2023-12-31T08:02:45.073264Z",
+        "modified": "2023-12-31T08:02:45.073264Z",
+        "name": "Example Company",
+        "description": "An Example Organisation",
+        "identity_class": "organization",
+        "sectors": [
+          "technology"
+        ]
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--9605d305-dc6f-4175-b5cf-ae5fa3b1c32b",
+        "created": "2023-12-31T08:02:45.10827Z",
+        "modified": "2023-12-31T08:02:45.10827Z",
+        "relationship_type": "attributed-to",
+        "source_ref": "identity--2e02a834-c89b-483b-869d-fcb713721246",
+        "target_ref": "identity--2e02a834-c89b-483b-869d-fcb713721246"
+      },
+      {
+        "type": "user-account",
+        "spec_version": "2.1",
+        "id": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+        "user_id": "79563902",
+        "account_login": "nsmith",
+        "account_type": "sales,",
+        "display_name": "Naive Smith"
+      },
+      {
+        "type": "email-addr",
+        "spec_version": "2.1",
+        "id": "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+        "value": "naive@example.com",
+        "display_name": "Naive Smith",
+        "belongs_to_ref": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+      },
+      {
+        "type": "identity",
+        "spec_version": "2.1",
+        "id": "identity--e5a6e5c3-7138-4288-8146-87d972eb2098",
+        "created": "2023-12-31T08:02:45.156099Z",
+        "modified": "2023-12-31T08:02:45.156099Z",
+        "name": "Naive Smith",
+        "description": "A Naive Individual",
+        "roles": [
+          "user",
+          "sales"
+        ],
+        "identity_class": "individual",
+        "sectors": [
+          "technology"
+        ],
+        "extensions": {
+          "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+            "extension_type": "property-extension",
+            "contact_numbers": [
+              {
+                "contact_number_type": "work-phone",
+                "contact_number": "0499-999-109"
+              }
+            ],
+            "email_addresses": [
+              {
+                "digital_contact_type": "work",
+                "email_address_ref": "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
+              }
+            ],
+            "first_name": "Naive",
+            "last_name": "Smith",
+            "middle_name": "Weakling",
+            "prefix": "Mr",
+            "social_media_accounts": [
+              {
+                "digital_contact_type": "work",
+                "user_account_ref": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+              }
+            ],
+            "team": "Sales"
+          }
+        }
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--f5eafb97-5b85-4842-978c-5a0a568b7520",
+        "created": "2023-12-31T08:02:45.175617Z",
+        "modified": "2023-12-31T08:02:45.175617Z",
+        "relationship_type": "attributed-to",
+        "source_ref": "identity--2e02a834-c89b-483b-869d-fcb713721246",
+        "target_ref": "identity--e5a6e5c3-7138-4288-8146-87d972eb2098"
+      },
+      {
+        "type": "user-account",
+        "spec_version": "2.1",
+        "id": "user-account--5c0dcb9b-5784-5aaf-b393-d990a4d68dd3",
+        "user_id": "79563143",
+        "account_login": "sbilly",
+        "account_type": "sales,",
+        "display_name": "Strange Billy"
+      },
+      {
+        "type": "email-addr",
+        "spec_version": "2.1",
+        "id": "email-addr--b0708db8-71e9-50f9-950c-610fccd2c30b",
+        "value": "sbilly@example.com",
+        "display_name": "Strange Billy",
+        "belongs_to_ref": "user-account--5c0dcb9b-5784-5aaf-b393-d990a4d68dd3"
+      },
+      {
+        "type": "identity",
+        "spec_version": "2.1",
+        "id": "identity--e7f82d9c-4101-4262-8e35-82dbb08ee363",
+        "created": "2023-12-31T08:02:45.189622Z",
+        "modified": "2023-12-31T08:02:45.189622Z",
+        "name": "Strange",
+        "description": "A Strange Individual",
+        "roles": [
+          "user",
+          "sales"
+        ],
+        "identity_class": "individual",
+        "sectors": [
+          "technology"
+        ],
+        "extensions": {
+          "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+            "extension_type": "property-extension",
+            "contact_numbers": [
+              {
+                "contact_number_type": "work-phone",
+                "contact_number": "0422-222-122"
+              }
+            ],
+            "email_addresses": [
+              {
+                "digital_contact_type": "work",
+                "email_address_ref": "email-addr--b0708db8-71e9-50f9-950c-610fccd2c30b"
+              }
+            ],
+            "first_name": "Strange",
+            "last_name": "Billy",
+            "middle_name": "One",
+            "prefix": "Mr",
+            "social_media_accounts": [
+              {
+                "digital_contact_type": "work",
+                "user_account_ref": "user-account--5c0dcb9b-5784-5aaf-b393-d990a4d68dd3"
+              }
+            ],
+            "team": "Sales"
+          }
+        }
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--83c23479-16af-451e-a201-8a88ed069c7e",
+        "created": "2023-12-31T08:02:45.210652Z",
+        "modified": "2023-12-31T08:02:45.210652Z",
+        "relationship_type": "attributed-to",
+        "source_ref": "identity--2e02a834-c89b-483b-869d-fcb713721246",
+        "target_ref": "identity--e7f82d9c-4101-4262-8e35-82dbb08ee363"
+      },
+      {
+        "type": "user-account",
+        "spec_version": "2.1",
+        "id": "user-account--113460bd-67f7-5611-bbbb-158d5c45255e",
+        "user_id": "79563902",
+        "account_login": "wwhilly",
+        "account_type": "sales,",
+        "display_name": "Whooping Whilly"
+      },
+      {
+        "type": "email-addr",
+        "spec_version": "2.1",
+        "id": "email-addr--72fa6570-cce5-5be5-916d-452de0e1adb5",
+        "value": "wwhilly@example.com",
+        "display_name": "Whooping Willy",
+        "belongs_to_ref": "user-account--113460bd-67f7-5611-bbbb-158d5c45255e"
+      },
+      {
+        "type": "identity",
+        "spec_version": "2.1",
+        "id": "identity--652b6150-9783-4806-93c3-696f5f482ee3",
+        "created": "2023-12-31T08:02:45.237044Z",
+        "modified": "2023-12-31T08:02:45.237044Z",
+        "name": "Whooping",
+        "description": "A Whooping Individual",
+        "roles": [
+          "user",
+          "sales"
+        ],
+        "identity_class": "individual",
+        "sectors": [
+          "technology"
+        ],
+        "extensions": {
+          "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+            "extension_type": "property-extension",
+            "contact_numbers": [
+              {
+                "contact_number_type": "work-phone",
+                "contact_number": "0455-555-155"
+              }
+            ],
+            "email_addresses": [
+              {
+                "digital_contact_type": "work",
+                "email_address_ref": "email-addr--72fa6570-cce5-5be5-916d-452de0e1adb5"
+              }
+            ],
+            "first_name": "Whooping",
+            "last_name": "Whilly",
+            "middle_name": "Wee",
+            "prefix": "Mr",
+            "social_media_accounts": [
+              {
+                "digital_contact_type": "work",
+                "user_account_ref": "user-account--113460bd-67f7-5611-bbbb-158d5c45255e"
+              }
+            ],
+            "team": "Sales"
+          }
+        }
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--9d1feb3e-c125-4045-92c1-2c2b63ff475d",
+        "created": "2023-12-31T08:02:45.256181Z",
+        "modified": "2023-12-31T08:02:45.256181Z",
+        "relationship_type": "attributed-to",
+        "source_ref": "identity--2e02a834-c89b-483b-869d-fcb713721246",
+        "target_ref": "identity--652b6150-9783-4806-93c3-696f5f482ee3"
+      }
+    ],
+    "systems": [
+      {
+        "type": "identity",
+        "spec_version": "2.1",
+        "id": "identity--1e322625-0c66-4b03-87e8-7ed69a8fc26e",
+        "created": "2023-12-31T08:02:45.277188Z",
+        "modified": "2023-12-31T08:02:45.277188Z",
+        "name": "Example Company",
+        "description": "An Example Organisation",
+        "identity_class": "organization",
+        "sectors": [
+          "technology"
+        ]
+      }
+    ],
+    "assets": [
+      {
+        "type": "identity",
+        "spec_version": "2.1",
+        "id": "identity--75d7bcb7-8639-45f4-952e-96845b95e109",
+        "created": "2023-12-31T08:02:45.296191Z",
+        "modified": "2023-12-31T08:02:45.296191Z",
+        "name": "HP Laptop 1",
+        "description": "Usr 1's Laptop",
+        "roles": [
+          "laptop"
+        ],
+        "identity_class": "system",
+        "sectors": [
+          "technology"
+        ],
+        "external_references": [
+          {
+            "source_name": "HP Ultima 10",
+            "description": "16GB RAM, 1TB SD, Microsoft Windows 11 Professional",
+            "url": "https://mail.echange.microsoft.com",
+            "external_id": "Asset--629456a"
+          }
+        ]
+      },
+      {
+        "type": "identity",
+        "spec_version": "2.1",
+        "id": "identity--b2348432-8df1-4245-996b-95e15f787f85",
+        "created": "2023-12-31T08:02:45.307121Z",
+        "modified": "2023-12-31T08:02:45.307121Z",
+        "name": "HP Laptop 2",
+        "description": "Usr 2's Laptop",
+        "roles": [
+          "laptop"
+        ],
+        "identity_class": "system",
+        "sectors": [
+          "technology"
+        ],
+        "external_references": [
+          {
+            "source_name": "HP Ultima 10",
+            "description": "16GB RAM, 1TB SD, Microsoft Windows 11 Professional",
+            "url": "https://mail.echange.microsoft.com",
+            "external_id": "Asset--629457ca"
+          }
+        ]
+      }
+    ]
+  },
+  "incident": {
+    "incident_obj": {
+      "type": "incident",
+      "spec_version": "2.1",
+      "id": "incident--415c986d-f2b3-4c88-abb4-58531b3c3a93",
+      "created": "2023-12-31T08:03:04.46545Z",
+      "modified": "2023-12-31T08:03:04.46545Z",
+      "name": "potential phishing",
+      "extensions": {
+        "extension-definition--ef765651-680c-498d-9894-99799f2fa126": {
+          "extension_type": "property-extension",
+          "investigation_status": "new",
+          "incident_types": [
+            "dissemination-phishing-emails"
+          ],
+          "sequence_start_refs": [
+            "sequence--fc108d99-8262-4082-81dd-02411203d291",
+            "sequence--ac6f3beb-e28a-49ef-b0e4-2ddcd54fa2a2"
+          ],
+          "sequence_refs": [
+            "sequence--b75a90bb-5a55-48c3-bdae-23c9e693a362",
+            "sequence--b75a90bb-5a55-48c3-bdae-23c9e693a362",
+            "sequence--27d43ed5-0a50-47da-9ca5-2df81f9873be"
+          ],
+          "task_refs": [
+            "task--8a676b0b-a835-4e13-8912-b912c3d9be72",
+            "task--3d8b10a7-0217-4784-a17d-26f55a68da0a"
+          ],
+          "event_refs": [
+            "event--59026c8c-b8f7-4cbf-9740-a3b2b22bad7f"
+          ],
+          "other_object_refs": [
+            "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+            "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+            "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+            "identity--e5a6e5c3-7138-4288-8146-87d972eb2098",
+            "identity--2e02a834-c89b-483b-869d-fcb713721246",
+            "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+            "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+            "relationship--2a4ac790-b905-43c7-aada-87ddafd849fd",
+            "observed-data--edfce46d-423e-45cc-9c9b-f6b39af482b9",
+            "indicator--c39ce0f6-4d12-4151-9256-596166aa3a5f",
+            "sighting--3f365a55-bd23-4e09-9a69-8a5a46caf328",
+            "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f",
+            "observed-data--2a710640-d225-452f-a454-f110fa5c4c9e",
+            "sighting--fd535c1c-a12b-4e12-8d62-e99c752b8cdf",
+            "identity--75d7bcb7-8639-45f4-952e-96845b95e109"
+          ],
+          "impact_refs": [
+            "impact--dfb745f7-a931-4f3a-a6ef-6e9f8ae4a018"
+          ]
+        }
+      }
+    },
+    "bundle_list": [
+      {
+        "type": "email-addr",
+        "spec_version": "2.1",
+        "id": "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+        "value": "evil@northkorea.nk",
+        "display_name": "Bad Man"
+      },
+      {
+        "type": "user-account",
+        "spec_version": "2.1",
+        "id": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+        "user_id": "79563902",
+        "account_login": "nsmith",
+        "account_type": "sales,",
+        "display_name": "Naive Smith"
+      },
+      {
+        "type": "email-addr",
+        "spec_version": "2.1",
+        "id": "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+        "value": "naive@example.com",
+        "display_name": "Naive Smith",
+        "belongs_to_ref": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+      },
+      {
+        "type": "identity",
+        "spec_version": "2.1",
+        "id": "identity--e5a6e5c3-7138-4288-8146-87d972eb2098",
+        "created": "2023-12-31T08:02:45.156099Z",
+        "modified": "2023-12-31T08:02:45.156099Z",
+        "name": "Naive Smith",
+        "description": "A Naive Individual",
+        "roles": [
+          "user",
+          "sales"
+        ],
+        "identity_class": "individual",
+        "sectors": [
+          "technology"
+        ],
+        "extensions": {
+          "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+            "extension_type": "property-extension",
+            "contact_numbers": [
+              {
+                "contact_number_type": "work-phone",
+                "contact_number": "0499-999-109"
+              }
+            ],
+            "email_addresses": [
+              {
+                "digital_contact_type": "work",
+                "email_address_ref": "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
+              }
+            ],
+            "first_name": "Naive",
+            "last_name": "Smith",
+            "middle_name": "Weakling",
+            "prefix": "Mr",
+            "social_media_accounts": [
+              {
+                "digital_contact_type": "work",
+                "user_account_ref": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+              }
+            ],
+            "team": "Sales"
+          }
+        }
+      },
+      {
+        "type": "identity",
+        "spec_version": "2.1",
+        "id": "identity--2e02a834-c89b-483b-869d-fcb713721246",
+        "created": "2023-12-31T08:02:45.042563Z",
+        "modified": "2023-12-31T08:02:45.042563Z",
+        "name": "Trusty Jones",
+        "description": "A Trusty Individual",
+        "roles": [
+          "soc",
+          "support"
+        ],
+        "identity_class": "individual",
+        "sectors": [
+          "technology"
+        ],
+        "extensions": {
+          "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+            "extension_type": "property-extension",
+            "contact_numbers": [
+              {
+                "contact_number_type": "work-phone",
+                "contact_number": "0418-208-368"
+              }
+            ],
+            "email_addresses": [
+              {
+                "digital_contact_type": "work",
+                "email_address_ref": "email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3"
+              }
+            ],
+            "first_name": "Me",
+            "last_name": "Jones",
+            "middle_name": "Percival",
+            "prefix": "Dr",
+            "social_media_accounts": [
+              {
+                "digital_contact_type": "work",
+                "user_account_ref": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3"
+              }
+            ],
+            "team": "All_Stars"
+          }
+        }
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+        "value": "https://www.northkorea.nk/we/are/mad/"
+      },
+      {
+        "type": "email-message",
+        "spec_version": "2.1",
+        "id": "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+        "is_multipart": false,
+        "date": "2020-10-19T01:01:01Z",
+        "from_ref": "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+        "to_refs": [
+          "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
+        ],
+        "subject": "we are coming for you",
+        "body": "some bad stuff written here"
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--2a4ac790-b905-43c7-aada-87ddafd849fd",
+        "created": "2023-12-31T08:03:04.086803Z",
+        "modified": "2023-12-31T08:03:04.086803Z",
+        "relationship_type": "derived-from",
+        "source_ref": "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+        "target_ref": "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7"
+      },
+      {
+        "type": "observed-data",
+        "spec_version": "2.1",
+        "id": "observed-data--edfce46d-423e-45cc-9c9b-f6b39af482b9",
+        "created": "2023-12-31T08:03:04.118803Z",
+        "modified": "2023-12-31T08:03:04.118803Z",
+        "first_observed": "2020-10-19T01:01:01Z",
+        "last_observed": "2020-10-19T01:01:01Z",
+        "number_observed": 1,
+        "object_refs": [
+          "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+          "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+          "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+          "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+          "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+          "relationship--2a4ac790-b905-43c7-aada-87ddafd849fd"
+        ]
+      },
+      {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--c39ce0f6-4d12-4151-9256-596166aa3a5f",
+        "created": "2023-12-31T08:03:04.143167Z",
+        "modified": "2023-12-31T08:03:04.143167Z",
+        "name": "Potential Phishing Email",
+        "description": "Suspicious email reported by user",
+        "indicator_types": [
+          "unknown"
+        ],
+        "pattern": "[email-addr:value = 'evil@northkorea.nk' AND email:subject = 'we are coming for you']",
+        "pattern_type": "stix",
+        "pattern_version": "2.1",
+        "valid_from": "2023-12-31T08:03:04.143167Z"
+      },
+      {
+        "type": "sighting",
+        "spec_version": "2.1",
+        "id": "sighting--3f365a55-bd23-4e09-9a69-8a5a46caf328",
+        "created": "2023-12-31T08:03:04.181129Z",
+        "modified": "2023-12-31T08:03:04.181129Z",
+        "count": 1,
+        "sighting_of_ref": "indicator--c39ce0f6-4d12-4151-9256-596166aa3a5f",
+        "observed_data_refs": [
+          "observed-data--edfce46d-423e-45cc-9c9b-f6b39af482b9"
+        ],
+        "where_sighted_refs": [
+          "identity--e5a6e5c3-7138-4288-8146-87d972eb2098"
+        ],
+        "extensions": {
+          "sighting-alert": {
+            "name": "user-report",
+            "log": "I have found a suspicious email",
+            "system_id": "XYZ-1234",
+            "source": "user submission"
+          },
+          "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {
+            "extension_type": "property-extension"
+          }
+        }
+      },
+      {
+        "type": "event",
+        "spec_version": "2.1",
+        "id": "event--59026c8c-b8f7-4cbf-9740-a3b2b22bad7f",
+        "created": "2023-12-31T08:03:04.224704Z",
+        "modified": "2023-12-31T08:03:04.224704Z",
+        "description": "Suspicious email reported by user",
+        "end_time": "2023-12-31T08:03:04.224704Z",
+        "event_types": [
+          "dissemination-phishing-emails"
+        ],
+        "name": "Potential Phishing Email",
+        "sighting_refs": [
+          "sighting--3f365a55-bd23-4e09-9a69-8a5a46caf328"
+        ],
+        "start_time": "2023-12-31T08:03:04.224704Z",
+        "extensions": {
+          "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+            "extension_type": "new-sdo"
+          }
+        }
+      },
+      {
+        "type": "sequence",
+        "spec_version": "2.1",
+        "id": "sequence--b75a90bb-5a55-48c3-bdae-23c9e693a362",
+        "created": "2023-12-31T08:03:04.25989Z",
+        "modified": "2023-12-31T08:03:04.25989Z",
+        "sequenced_object": "event--59026c8c-b8f7-4cbf-9740-a3b2b22bad7f",
+        "sequence_type": "event",
+        "step_type": "single_step",
+        "extensions": {
+          "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+            "extension_type": "new-sdo"
+          }
+        }
+      },
+      {
+        "type": "sequence",
+        "spec_version": "2.1",
+        "id": "sequence--fc108d99-8262-4082-81dd-02411203d291",
+        "created": "2023-12-31T08:03:04.301404Z",
+        "modified": "2023-12-31T08:03:04.301404Z",
+        "sequence_type": "event",
+        "step_type": "start_step",
+        "on_completion": "sequence--b75a90bb-5a55-48c3-bdae-23c9e693a362",
+        "extensions": {
+          "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+            "extension_type": "new-sdo"
+          }
+        }
+      },
+      {
+        "type": "task",
+        "spec_version": "2.1",
+        "id": "task--8a676b0b-a835-4e13-8912-b912c3d9be72",
+        "created": "2023-12-31T08:03:04.328043Z",
+        "modified": "2023-12-31T08:03:04.328043Z",
+        "description": "Suspicious email reported by user",
+        "end_time": "2023-12-31T08:03:04.328043Z",
+        "name": "Potential Phishing Email",
+        "start_time": "2023-12-31T08:03:04.328043Z",
+        "extensions": {
+          "extension-definition--2074a052-8be4-4932-849e-f5e7798e0030": {
+            "extension_type": "new-sdo"
+          }
+        }
+      },
+      {
+        "type": "sequence",
+        "spec_version": "2.1",
+        "id": "sequence--a23918dc-0869-458a-b29c-e38fc804cfe3",
+        "created": "2023-12-31T08:03:04.36414Z",
+        "modified": "2023-12-31T08:03:04.36414Z",
+        "sequenced_object": "task--8a676b0b-a835-4e13-8912-b912c3d9be72",
+        "sequence_type": "task",
+        "step_type": "single_step",
+        "extensions": {
+          "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+            "extension_type": "new-sdo"
+          }
+        }
+      },
+      {
+        "type": "sequence",
+        "spec_version": "2.1",
+        "id": "sequence--ac6f3beb-e28a-49ef-b0e4-2ddcd54fa2a2",
+        "created": "2023-12-31T08:03:04.411424Z",
+        "modified": "2023-12-31T08:03:04.411424Z",
+        "sequence_type": "task",
+        "step_type": "start_step",
+        "on_completion": "sequence--a23918dc-0869-458a-b29c-e38fc804cfe3",
+        "extensions": {
+          "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+            "extension_type": "new-sdo"
+          }
+        }
+      },
+      {
+        "type": "incident",
+        "spec_version": "2.1",
+        "id": "incident--415c986d-f2b3-4c88-abb4-58531b3c3a93",
+        "created": "2023-12-31T08:03:04.46545Z",
+        "modified": "2023-12-31T08:03:04.46545Z",
+        "name": "potential phishing",
+        "extensions": {
+          "extension-definition--ef765651-680c-498d-9894-99799f2fa126": {
+            "extension_type": "property-extension",
+            "investigation_status": "new",
+            "incident_types": [
+              "dissemination-phishing-emails"
+            ],
+            "sequence_start_refs": [
+              "sequence--fc108d99-8262-4082-81dd-02411203d291",
+              "sequence--ac6f3beb-e28a-49ef-b0e4-2ddcd54fa2a2"
+            ],
+            "sequence_refs": [
+              "sequence--b75a90bb-5a55-48c3-bdae-23c9e693a362",
+              "sequence--b75a90bb-5a55-48c3-bdae-23c9e693a362"
+            ],
+            "task_refs": [
+              "task--8a676b0b-a835-4e13-8912-b912c3d9be72"
+            ],
+            "event_refs": [
+              "event--59026c8c-b8f7-4cbf-9740-a3b2b22bad7f"
+            ],
+            "other_object_refs": [
+              "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+              "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+              "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+              "identity--e5a6e5c3-7138-4288-8146-87d972eb2098",
+              "identity--2e02a834-c89b-483b-869d-fcb713721246",
+              "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+              "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+              "relationship--2a4ac790-b905-43c7-aada-87ddafd849fd",
+              "observed-data--edfce46d-423e-45cc-9c9b-f6b39af482b9",
+              "indicator--c39ce0f6-4d12-4151-9256-596166aa3a5f",
+              "sighting--3f365a55-bd23-4e09-9a69-8a5a46caf328"
+            ]
+          }
+        }
+      },
+      {
+        "type": "anecdote",
+        "spec_version": "2.1",
+        "id": "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f",
+        "value": "I clicked on the link, and my laptop screen went weird",
+        "report_date": "2023-12-31T08:03:28.837467Z",
+        "provided_by_ref": "identity--e5a6e5c3-7138-4288-8146-87d972eb2098"
+      },
+      {
+        "type": "observed-data",
+        "spec_version": "2.1",
+        "id": "observed-data--2a710640-d225-452f-a454-f110fa5c4c9e",
+        "created": "2023-12-31T08:03:28.864646Z",
+        "modified": "2023-12-31T08:03:28.864646Z",
+        "first_observed": "2020-10-19T01:01:01Z",
+        "last_observed": "2020-10-19T01:01:01Z",
+        "number_observed": 1,
+        "object_refs": [
+          "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f"
+        ]
+      },
+      {
+        "type": "sighting",
+        "spec_version": "2.1",
+        "id": "sighting--fd535c1c-a12b-4e12-8d62-e99c752b8cdf",
+        "created": "2023-12-31T08:03:28.901047Z",
+        "modified": "2023-12-31T08:03:28.901047Z",
+        "count": 1,
+        "sighting_of_ref": "identity--e5a6e5c3-7138-4288-8146-87d972eb2098",
+        "observed_data_refs": [
+          "observed-data--2a710640-d225-452f-a454-f110fa5c4c9e"
+        ],
+        "where_sighted_refs": [
+          "identity--2e02a834-c89b-483b-869d-fcb713721246"
+        ],
+        "extensions": {
+          "sighting-anecdote": {
+            "person_name": "user-report",
+            "person_context": "employee",
+            "report_submission": "interview"
+          },
+          "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {
+            "extension_type": "property-extension"
+          }
+        }
+      },
+      {
+        "type": "impact",
+        "spec_version": "2.1",
+        "id": "impact--dfb745f7-a931-4f3a-a6ef-6e9f8ae4a018",
+        "created": "2023-12-31T08:03:28.94749Z",
+        "modified": "2023-12-31T08:03:28.94749Z",
+        "impact_category": "availability",
+        "criticality": 99,
+        "description": "Laptop is stuffed",
+        "end_time": "2023-12-31T08:03:28.94749Z",
+        "impacted_entity_counts": {
+          "computers-mobile": 1
+        },
+        "impacted_refs": [
+          "identity--75d7bcb7-8639-45f4-952e-96845b95e109"
+        ],
+        "recoverability": "regular",
+        "start_time": "2023-12-31T08:03:28.94749Z",
+        "extensions": {
+          "extension-definition--7cc33dd6-f6a1-489b-98ea-522d351d71b9": {
+            "extension_type": "new-sdo"
+          }
+        }
+      },
+      {
+        "type": "task",
+        "spec_version": "2.1",
+        "id": "task--3d8b10a7-0217-4784-a17d-26f55a68da0a",
+        "created": "2023-12-31T08:03:28.978507Z",
+        "modified": "2023-12-31T08:03:28.978507Z",
+        "description": "Find out who else got the email",
+        "end_time": "2023-12-31T08:03:28.978507Z",
+        "name": "Query Exchange Server",
+        "start_time": "2023-12-31T08:03:28.978507Z",
+        "extensions": {
+          "extension-definition--2074a052-8be4-4932-849e-f5e7798e0030": {
+            "extension_type": "new-sdo"
+          }
+        }
+      },
+      {
+        "type": "sequence",
+        "spec_version": "2.1",
+        "id": "sequence--27d43ed5-0a50-47da-9ca5-2df81f9873be",
+        "created": "2023-12-31T08:03:29.010237Z",
+        "modified": "2023-12-31T08:03:29.010237Z",
+        "sequenced_object": "task--3d8b10a7-0217-4784-a17d-26f55a68da0a",
+        "sequence_type": "task",
+        "step_type": "single_step",
+        "extensions": {
+          "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+            "extension_type": "new-sdo"
+          }
+        },
+        "on_completion": "sequence--27d43ed5-0a50-47da-9ca5-2df81f9873be"
+      }
+    ],
+    "sequence_start_objs": [
+      {
+        "type": "sequence",
+        "spec_version": "2.1",
+        "id": "sequence--fc108d99-8262-4082-81dd-02411203d291",
+        "created": "2023-12-31T08:03:04.301404Z",
+        "modified": "2023-12-31T08:03:04.301404Z",
+        "sequence_type": "event",
+        "step_type": "start_step",
+        "on_completion": "sequence--b75a90bb-5a55-48c3-bdae-23c9e693a362",
+        "extensions": {
+          "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+            "extension_type": "new-sdo"
+          }
+        }
+      },
+      {
+        "type": "sequence",
+        "spec_version": "2.1",
+        "id": "sequence--ac6f3beb-e28a-49ef-b0e4-2ddcd54fa2a2",
+        "created": "2023-12-31T08:03:04.411424Z",
+        "modified": "2023-12-31T08:03:04.411424Z",
+        "sequence_type": "task",
+        "step_type": "start_step",
+        "on_completion": "sequence--a23918dc-0869-458a-b29c-e38fc804cfe3",
+        "extensions": {
+          "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+            "extension_type": "new-sdo"
+          }
+        }
+      }
+    ],
+    "sequence_objs": [
+      {
+        "type": "sequence",
+        "spec_version": "2.1",
+        "id": "sequence--b75a90bb-5a55-48c3-bdae-23c9e693a362",
+        "created": "2023-12-31T08:03:04.25989Z",
+        "modified": "2023-12-31T08:03:04.25989Z",
+        "sequenced_object": "event--59026c8c-b8f7-4cbf-9740-a3b2b22bad7f",
+        "sequence_type": "event",
+        "step_type": "single_step",
+        "extensions": {
+          "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+            "extension_type": "new-sdo"
+          }
+        }
+      },
+      {
+        "type": "sequence",
+        "spec_version": "2.1",
+        "id": "sequence--b75a90bb-5a55-48c3-bdae-23c9e693a362",
+        "created": "2023-12-31T08:03:04.25989Z",
+        "modified": "2023-12-31T08:03:04.25989Z",
+        "sequenced_object": "event--59026c8c-b8f7-4cbf-9740-a3b2b22bad7f",
+        "sequence_type": "event",
+        "step_type": "single_step",
+        "extensions": {
+          "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+            "extension_type": "new-sdo"
+          }
+        }
+      },
+      {
+        "type": "sequence",
+        "spec_version": "2.1",
+        "id": "sequence--27d43ed5-0a50-47da-9ca5-2df81f9873be",
+        "created": "2023-12-31T08:03:29.010237Z",
+        "modified": "2023-12-31T08:03:29.010237Z",
+        "sequenced_object": "task--3d8b10a7-0217-4784-a17d-26f55a68da0a",
+        "sequence_type": "task",
+        "step_type": "single_step",
+        "extensions": {
+          "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+            "extension_type": "new-sdo"
+          }
+        },
+        "on_completion": "sequence--27d43ed5-0a50-47da-9ca5-2df81f9873be"
+      }
+    ],
+    "task_objs": [
+      {
+        "type": "task",
+        "spec_version": "2.1",
+        "id": "task--8a676b0b-a835-4e13-8912-b912c3d9be72",
+        "created": "2023-12-31T08:03:04.328043Z",
+        "modified": "2023-12-31T08:03:04.328043Z",
+        "description": "Suspicious email reported by user",
+        "end_time": "2023-12-31T08:03:04.328043Z",
+        "name": "Potential Phishing Email",
+        "start_time": "2023-12-31T08:03:04.328043Z",
+        "extensions": {
+          "extension-definition--2074a052-8be4-4932-849e-f5e7798e0030": {
+            "extension_type": "new-sdo"
+          }
+        }
+      },
+      {
+        "type": "task",
+        "spec_version": "2.1",
+        "id": "task--3d8b10a7-0217-4784-a17d-26f55a68da0a",
+        "created": "2023-12-31T08:03:28.978507Z",
+        "modified": "2023-12-31T08:03:28.978507Z",
+        "description": "Find out who else got the email",
+        "end_time": "2023-12-31T08:03:28.978507Z",
+        "name": "Query Exchange Server",
+        "start_time": "2023-12-31T08:03:28.978507Z",
+        "extensions": {
+          "extension-definition--2074a052-8be4-4932-849e-f5e7798e0030": {
+            "extension_type": "new-sdo"
+          }
+        }
+      }
+    ],
+    "event_objs": [
+      {
+        "type": "event",
+        "spec_version": "2.1",
+        "id": "event--59026c8c-b8f7-4cbf-9740-a3b2b22bad7f",
+        "created": "2023-12-31T08:03:04.224704Z",
+        "modified": "2023-12-31T08:03:04.224704Z",
+        "description": "Suspicious email reported by user",
+        "end_time": "2023-12-31T08:03:04.224704Z",
+        "event_types": [
+          "dissemination-phishing-emails"
+        ],
+        "name": "Potential Phishing Email",
+        "sighting_refs": [
+          "sighting--3f365a55-bd23-4e09-9a69-8a5a46caf328"
+        ],
+        "start_time": "2023-12-31T08:03:04.224704Z",
+        "extensions": {
+          "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+            "extension_type": "new-sdo"
+          }
+        }
+      }
+    ],
+    "impact_objs": [
+      {
+        "type": "impact",
+        "spec_version": "2.1",
+        "id": "impact--dfb745f7-a931-4f3a-a6ef-6e9f8ae4a018",
+        "created": "2023-12-31T08:03:28.94749Z",
+        "modified": "2023-12-31T08:03:28.94749Z",
+        "impact_category": "availability",
+        "criticality": 99,
+        "description": "Laptop is stuffed",
+        "end_time": "2023-12-31T08:03:28.94749Z",
+        "impacted_entity_counts": {
+          "computers-mobile": 1
+        },
+        "impacted_refs": [
+          "identity--75d7bcb7-8639-45f4-952e-96845b95e109"
+        ],
+        "recoverability": "regular",
+        "start_time": "2023-12-31T08:03:28.94749Z",
+        "extensions": {
+          "extension-definition--7cc33dd6-f6a1-489b-98ea-522d351d71b9": {
+            "extension_type": "new-sdo"
+          }
+        }
+      }
+    ],
+    "other_object_objs": [
+      {
+        "type": "email-addr",
+        "spec_version": "2.1",
+        "id": "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+        "value": "evil@northkorea.nk",
+        "display_name": "Bad Man"
+      },
+      {
+        "type": "user-account",
+        "spec_version": "2.1",
+        "id": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+        "user_id": "79563902",
+        "account_login": "nsmith",
+        "account_type": "sales,",
+        "display_name": "Naive Smith"
+      },
+      {
+        "type": "email-addr",
+        "spec_version": "2.1",
+        "id": "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+        "value": "naive@example.com",
+        "display_name": "Naive Smith",
+        "belongs_to_ref": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+      },
+      {
+        "type": "identity",
+        "spec_version": "2.1",
+        "id": "identity--e5a6e5c3-7138-4288-8146-87d972eb2098",
+        "created": "2023-12-31T08:02:45.156099Z",
+        "modified": "2023-12-31T08:02:45.156099Z",
+        "name": "Naive Smith",
+        "description": "A Naive Individual",
+        "roles": [
+          "user",
+          "sales"
+        ],
+        "identity_class": "individual",
+        "sectors": [
+          "technology"
+        ],
+        "extensions": {
+          "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+            "extension_type": "property-extension",
+            "contact_numbers": [
+              {
+                "contact_number_type": "work-phone",
+                "contact_number": "0499-999-109"
+              }
+            ],
+            "email_addresses": [
+              {
+                "digital_contact_type": "work",
+                "email_address_ref": "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
+              }
+            ],
+            "first_name": "Naive",
+            "last_name": "Smith",
+            "middle_name": "Weakling",
+            "prefix": "Mr",
+            "social_media_accounts": [
+              {
+                "digital_contact_type": "work",
+                "user_account_ref": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+              }
+            ],
+            "team": "Sales"
+          }
+        }
+      },
+      {
+        "type": "identity",
+        "spec_version": "2.1",
+        "id": "identity--2e02a834-c89b-483b-869d-fcb713721246",
+        "created": "2023-12-31T08:02:45.042563Z",
+        "modified": "2023-12-31T08:02:45.042563Z",
+        "name": "Trusty Jones",
+        "description": "A Trusty Individual",
+        "roles": [
+          "soc",
+          "support"
+        ],
+        "identity_class": "individual",
+        "sectors": [
+          "technology"
+        ],
+        "extensions": {
+          "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+            "extension_type": "property-extension",
+            "contact_numbers": [
+              {
+                "contact_number_type": "work-phone",
+                "contact_number": "0418-208-368"
+              }
+            ],
+            "email_addresses": [
+              {
+                "digital_contact_type": "work",
+                "email_address_ref": "email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3"
+              }
+            ],
+            "first_name": "Me",
+            "last_name": "Jones",
+            "middle_name": "Percival",
+            "prefix": "Dr",
+            "social_media_accounts": [
+              {
+                "digital_contact_type": "work",
+                "user_account_ref": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3"
+              }
+            ],
+            "team": "All_Stars"
+          }
+        }
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+        "value": "https://www.northkorea.nk/we/are/mad/"
+      },
+      {
+        "type": "email-message",
+        "spec_version": "2.1",
+        "id": "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+        "is_multipart": false,
+        "date": "2020-10-19T01:01:01Z",
+        "from_ref": "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+        "to_refs": [
+          "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
+        ],
+        "subject": "we are coming for you",
+        "body": "some bad stuff written here"
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--2a4ac790-b905-43c7-aada-87ddafd849fd",
+        "created": "2023-12-31T08:03:04.086803Z",
+        "modified": "2023-12-31T08:03:04.086803Z",
+        "relationship_type": "derived-from",
+        "source_ref": "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+        "target_ref": "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7"
+      },
+      {
+        "type": "observed-data",
+        "spec_version": "2.1",
+        "id": "observed-data--edfce46d-423e-45cc-9c9b-f6b39af482b9",
+        "created": "2023-12-31T08:03:04.118803Z",
+        "modified": "2023-12-31T08:03:04.118803Z",
+        "first_observed": "2020-10-19T01:01:01Z",
+        "last_observed": "2020-10-19T01:01:01Z",
+        "number_observed": 1,
+        "object_refs": [
+          "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+          "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+          "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+          "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+          "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+          "relationship--2a4ac790-b905-43c7-aada-87ddafd849fd"
+        ]
+      },
+      {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--c39ce0f6-4d12-4151-9256-596166aa3a5f",
+        "created": "2023-12-31T08:03:04.143167Z",
+        "modified": "2023-12-31T08:03:04.143167Z",
+        "name": "Potential Phishing Email",
+        "description": "Suspicious email reported by user",
+        "indicator_types": [
+          "unknown"
+        ],
+        "pattern": "[email-addr:value = 'evil@northkorea.nk' AND email:subject = 'we are coming for you']",
+        "pattern_type": "stix",
+        "pattern_version": "2.1",
+        "valid_from": "2023-12-31T08:03:04.143167Z"
+      },
+      {
+        "type": "sighting",
+        "spec_version": "2.1",
+        "id": "sighting--3f365a55-bd23-4e09-9a69-8a5a46caf328",
+        "created": "2023-12-31T08:03:04.181129Z",
+        "modified": "2023-12-31T08:03:04.181129Z",
+        "count": 1,
+        "sighting_of_ref": "indicator--c39ce0f6-4d12-4151-9256-596166aa3a5f",
+        "observed_data_refs": [
+          "observed-data--edfce46d-423e-45cc-9c9b-f6b39af482b9"
+        ],
+        "where_sighted_refs": [
+          "identity--e5a6e5c3-7138-4288-8146-87d972eb2098"
+        ],
+        "extensions": {
+          "sighting-alert": {
+            "name": "user-report",
+            "log": "I have found a suspicious email",
+            "system_id": "XYZ-1234",
+            "source": "user submission"
+          },
+          "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {
+            "extension_type": "property-extension"
+          }
+        }
+      },
+      {
+        "type": "anecdote",
+        "spec_version": "2.1",
+        "id": "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f",
+        "value": "I clicked on the link, and my laptop screen went weird",
+        "report_date": "2023-12-31T08:03:28.837467Z",
+        "provided_by_ref": "identity--e5a6e5c3-7138-4288-8146-87d972eb2098"
+      },
+      {
+        "type": "observed-data",
+        "spec_version": "2.1",
+        "id": "observed-data--2a710640-d225-452f-a454-f110fa5c4c9e",
+        "created": "2023-12-31T08:03:28.864646Z",
+        "modified": "2023-12-31T08:03:28.864646Z",
+        "first_observed": "2020-10-19T01:01:01Z",
+        "last_observed": "2020-10-19T01:01:01Z",
+        "number_observed": 1,
+        "object_refs": [
+          "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f"
+        ]
+      },
+      {
+        "type": "sighting",
+        "spec_version": "2.1",
+        "id": "sighting--fd535c1c-a12b-4e12-8d62-e99c752b8cdf",
+        "created": "2023-12-31T08:03:28.901047Z",
+        "modified": "2023-12-31T08:03:28.901047Z",
+        "count": 1,
+        "sighting_of_ref": "identity--e5a6e5c3-7138-4288-8146-87d972eb2098",
+        "observed_data_refs": [
+          "observed-data--2a710640-d225-452f-a454-f110fa5c4c9e"
+        ],
+        "where_sighted_refs": [
+          "identity--2e02a834-c89b-483b-869d-fcb713721246"
+        ],
+        "extensions": {
+          "sighting-anecdote": {
+            "person_name": "user-report",
+            "person_context": "employee",
+            "report_submission": "interview"
+          },
+          "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {
+            "extension_type": "property-extension"
+          }
+        }
+      },
+      {
+        "type": "identity",
+        "spec_version": "2.1",
+        "id": "identity--75d7bcb7-8639-45f4-952e-96845b95e109",
+        "created": "2023-12-31T08:02:45.296191Z",
+        "modified": "2023-12-31T08:02:45.296191Z",
+        "name": "HP Laptop 1",
+        "description": "Usr 1's Laptop",
+        "roles": [
+          "laptop"
+        ],
+        "identity_class": "system",
+        "sectors": [
+          "technology"
+        ],
+        "external_references": [
+          {
+            "source_name": "HP Ultima 10",
+            "description": "16GB RAM, 1TB SD, Microsoft Windows 11 Professional",
+            "url": "https://mail.echange.microsoft.com",
+            "external_id": "Asset--629456a"
+          }
+        ]
+      }
+    ]
+  },
+  "typedb": {
+    "incident_obj": {
+      "type": "incident",
+      "spec_version": "2.1",
+      "id": "incident--415c986d-f2b3-4c88-abb4-58531b3c3a93",
+      "created": "2023-12-31T08:03:04.46545Z",
+      "modified": "2023-12-31T08:03:04.46545Z",
+      "name": "potential phishing",
+      "extensions": {
+        "extension-definition--ef765651-680c-498d-9894-99799f2fa126": {
+          "extension_type": "property-extension",
+          "investigation_status": "new",
+          "incident_types": [
+            "dissemination-phishing-emails"
+          ],
+          "sequence_start_refs": [
+            "sequence--fc108d99-8262-4082-81dd-02411203d291",
+            "sequence--ac6f3beb-e28a-49ef-b0e4-2ddcd54fa2a2"
+          ],
+          "sequence_refs": [
+            "sequence--b75a90bb-5a55-48c3-bdae-23c9e693a362",
+            "sequence--b75a90bb-5a55-48c3-bdae-23c9e693a362"
+          ],
+          "task_refs": [
+            "task--8a676b0b-a835-4e13-8912-b912c3d9be72"
+          ],
+          "event_refs": [
+            "event--59026c8c-b8f7-4cbf-9740-a3b2b22bad7f"
+          ],
+          "other_object_refs": [
+            "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+            "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+            "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+            "identity--e5a6e5c3-7138-4288-8146-87d972eb2098",
+            "identity--2e02a834-c89b-483b-869d-fcb713721246",
+            "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+            "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+            "relationship--2a4ac790-b905-43c7-aada-87ddafd849fd",
+            "observed-data--edfce46d-423e-45cc-9c9b-f6b39af482b9",
+            "indicator--c39ce0f6-4d12-4151-9256-596166aa3a5f",
+            "sighting--3f365a55-bd23-4e09-9a69-8a5a46caf328"
+          ]
+        }
+      }
+    },
+    "bundle_list": [
+      {
+        "type": "email-addr",
+        "spec_version": "2.1",
+        "id": "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+        "value": "evil@northkorea.nk",
+        "display_name": "Bad Man"
+      },
+      {
+        "type": "user-account",
+        "spec_version": "2.1",
+        "id": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+        "user_id": "79563902",
+        "account_login": "nsmith",
+        "account_type": "sales,",
+        "display_name": "Naive Smith"
+      },
+      {
+        "type": "email-addr",
+        "spec_version": "2.1",
+        "id": "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+        "value": "naive@example.com",
+        "display_name": "Naive Smith",
+        "belongs_to_ref": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+      },
+      {
+        "type": "identity",
+        "spec_version": "2.1",
+        "id": "identity--e5a6e5c3-7138-4288-8146-87d972eb2098",
+        "created": "2023-12-31T08:02:45.156099Z",
+        "modified": "2023-12-31T08:02:45.156099Z",
+        "name": "Naive Smith",
+        "description": "A Naive Individual",
+        "roles": [
+          "user",
+          "sales"
+        ],
+        "identity_class": "individual",
+        "sectors": [
+          "technology"
+        ],
+        "extensions": {
+          "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+            "extension_type": "property-extension",
+            "contact_numbers": [
+              {
+                "contact_number_type": "work-phone",
+                "contact_number": "0499-999-109"
+              }
+            ],
+            "email_addresses": [
+              {
+                "digital_contact_type": "work",
+                "email_address_ref": "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
+              }
+            ],
+            "first_name": "Naive",
+            "last_name": "Smith",
+            "middle_name": "Weakling",
+            "prefix": "Mr",
+            "social_media_accounts": [
+              {
+                "digital_contact_type": "work",
+                "user_account_ref": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+              }
+            ],
+            "team": "Sales"
+          }
+        }
+      },
+      {
+        "type": "identity",
+        "spec_version": "2.1",
+        "id": "identity--2e02a834-c89b-483b-869d-fcb713721246",
+        "created": "2023-12-31T08:02:45.042563Z",
+        "modified": "2023-12-31T08:02:45.042563Z",
+        "name": "Trusty Jones",
+        "description": "A Trusty Individual",
+        "roles": [
+          "soc",
+          "support"
+        ],
+        "identity_class": "individual",
+        "sectors": [
+          "technology"
+        ],
+        "extensions": {
+          "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+            "extension_type": "property-extension",
+            "contact_numbers": [
+              {
+                "contact_number_type": "work-phone",
+                "contact_number": "0418-208-368"
+              }
+            ],
+            "email_addresses": [
+              {
+                "digital_contact_type": "work",
+                "email_address_ref": "email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3"
+              }
+            ],
+            "first_name": "Me",
+            "last_name": "Jones",
+            "middle_name": "Percival",
+            "prefix": "Dr",
+            "social_media_accounts": [
+              {
+                "digital_contact_type": "work",
+                "user_account_ref": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3"
+              }
+            ],
+            "team": "All_Stars"
+          }
+        }
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+        "value": "https://www.northkorea.nk/we/are/mad/"
+      },
+      {
+        "type": "email-message",
+        "spec_version": "2.1",
+        "id": "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+        "is_multipart": false,
+        "date": "2020-10-19T01:01:01Z",
+        "from_ref": "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+        "to_refs": [
+          "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
+        ],
+        "subject": "we are coming for you",
+        "body": "some bad stuff written here"
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--2a4ac790-b905-43c7-aada-87ddafd849fd",
+        "created": "2023-12-31T08:03:04.086803Z",
+        "modified": "2023-12-31T08:03:04.086803Z",
+        "relationship_type": "derived-from",
+        "source_ref": "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+        "target_ref": "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7"
+      },
+      {
+        "type": "observed-data",
+        "spec_version": "2.1",
+        "id": "observed-data--edfce46d-423e-45cc-9c9b-f6b39af482b9",
+        "created": "2023-12-31T08:03:04.118803Z",
+        "modified": "2023-12-31T08:03:04.118803Z",
+        "first_observed": "2020-10-19T01:01:01Z",
+        "last_observed": "2020-10-19T01:01:01Z",
+        "number_observed": 1,
+        "object_refs": [
+          "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+          "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+          "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+          "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+          "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+          "relationship--2a4ac790-b905-43c7-aada-87ddafd849fd"
+        ]
+      },
+      {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--c39ce0f6-4d12-4151-9256-596166aa3a5f",
+        "created": "2023-12-31T08:03:04.143167Z",
+        "modified": "2023-12-31T08:03:04.143167Z",
+        "name": "Potential Phishing Email",
+        "description": "Suspicious email reported by user",
+        "indicator_types": [
+          "unknown"
+        ],
+        "pattern": "[email-addr:value = 'evil@northkorea.nk' AND email:subject = 'we are coming for you']",
+        "pattern_type": "stix",
+        "pattern_version": "2.1",
+        "valid_from": "2023-12-31T08:03:04.143167Z"
+      },
+      {
+        "type": "sighting",
+        "spec_version": "2.1",
+        "id": "sighting--3f365a55-bd23-4e09-9a69-8a5a46caf328",
+        "created": "2023-12-31T08:03:04.181129Z",
+        "modified": "2023-12-31T08:03:04.181129Z",
+        "count": 1,
+        "sighting_of_ref": "indicator--c39ce0f6-4d12-4151-9256-596166aa3a5f",
+        "observed_data_refs": [
+          "observed-data--edfce46d-423e-45cc-9c9b-f6b39af482b9"
+        ],
+        "where_sighted_refs": [
+          "identity--e5a6e5c3-7138-4288-8146-87d972eb2098"
+        ],
+        "extensions": {
+          "sighting-alert": {
+            "name": "user-report",
+            "log": "I have found a suspicious email",
+            "system_id": "XYZ-1234",
+            "source": "user submission"
+          },
+          "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {
+            "extension_type": "property-extension"
+          }
+        }
+      },
+      {
+        "type": "event",
+        "spec_version": "2.1",
+        "id": "event--59026c8c-b8f7-4cbf-9740-a3b2b22bad7f",
+        "created": "2023-12-31T08:03:04.224704Z",
+        "modified": "2023-12-31T08:03:04.224704Z",
+        "description": "Suspicious email reported by user",
+        "end_time": "2023-12-31T08:03:04.224704Z",
+        "event_types": [
+          "dissemination-phishing-emails"
+        ],
+        "name": "Potential Phishing Email",
+        "sighting_refs": [
+          "sighting--3f365a55-bd23-4e09-9a69-8a5a46caf328"
+        ],
+        "start_time": "2023-12-31T08:03:04.224704Z",
+        "extensions": {
+          "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+            "extension_type": "new-sdo"
+          }
+        }
+      },
+      {
+        "type": "sequence",
+        "spec_version": "2.1",
+        "id": "sequence--b75a90bb-5a55-48c3-bdae-23c9e693a362",
+        "created": "2023-12-31T08:03:04.25989Z",
+        "modified": "2023-12-31T08:03:04.25989Z",
+        "sequenced_object": "event--59026c8c-b8f7-4cbf-9740-a3b2b22bad7f",
+        "sequence_type": "event",
+        "step_type": "single_step",
+        "extensions": {
+          "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+            "extension_type": "new-sdo"
+          }
+        }
+      },
+      {
+        "type": "sequence",
+        "spec_version": "2.1",
+        "id": "sequence--fc108d99-8262-4082-81dd-02411203d291",
+        "created": "2023-12-31T08:03:04.301404Z",
+        "modified": "2023-12-31T08:03:04.301404Z",
+        "sequence_type": "event",
+        "step_type": "start_step",
+        "on_completion": "sequence--b75a90bb-5a55-48c3-bdae-23c9e693a362",
+        "extensions": {
+          "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+            "extension_type": "new-sdo"
+          }
+        }
+      },
+      {
+        "type": "task",
+        "spec_version": "2.1",
+        "id": "task--8a676b0b-a835-4e13-8912-b912c3d9be72",
+        "created": "2023-12-31T08:03:04.328043Z",
+        "modified": "2023-12-31T08:03:04.328043Z",
+        "description": "Suspicious email reported by user",
+        "end_time": "2023-12-31T08:03:04.328043Z",
+        "name": "Potential Phishing Email",
+        "start_time": "2023-12-31T08:03:04.328043Z",
+        "extensions": {
+          "extension-definition--2074a052-8be4-4932-849e-f5e7798e0030": {
+            "extension_type": "new-sdo"
+          }
+        }
+      },
+      {
+        "type": "sequence",
+        "spec_version": "2.1",
+        "id": "sequence--a23918dc-0869-458a-b29c-e38fc804cfe3",
+        "created": "2023-12-31T08:03:04.36414Z",
+        "modified": "2023-12-31T08:03:04.36414Z",
+        "sequenced_object": "task--8a676b0b-a835-4e13-8912-b912c3d9be72",
+        "sequence_type": "task",
+        "step_type": "single_step",
+        "extensions": {
+          "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+            "extension_type": "new-sdo"
+          }
+        }
+      },
+      {
+        "type": "sequence",
+        "spec_version": "2.1",
+        "id": "sequence--ac6f3beb-e28a-49ef-b0e4-2ddcd54fa2a2",
+        "created": "2023-12-31T08:03:04.411424Z",
+        "modified": "2023-12-31T08:03:04.411424Z",
+        "sequence_type": "task",
+        "step_type": "start_step",
+        "on_completion": "sequence--a23918dc-0869-458a-b29c-e38fc804cfe3",
+        "extensions": {
+          "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+            "extension_type": "new-sdo"
+          }
+        }
+      },
+      {
+        "type": "incident",
+        "spec_version": "2.1",
+        "id": "incident--415c986d-f2b3-4c88-abb4-58531b3c3a93",
+        "created": "2023-12-31T08:03:04.46545Z",
+        "modified": "2023-12-31T08:03:04.46545Z",
+        "name": "potential phishing",
+        "extensions": {
+          "extension-definition--ef765651-680c-498d-9894-99799f2fa126": {
+            "extension_type": "property-extension",
+            "investigation_status": "new",
+            "incident_types": [
+              "dissemination-phishing-emails"
+            ],
+            "sequence_start_refs": [
+              "sequence--fc108d99-8262-4082-81dd-02411203d291",
+              "sequence--ac6f3beb-e28a-49ef-b0e4-2ddcd54fa2a2"
+            ],
+            "sequence_refs": [
+              "sequence--b75a90bb-5a55-48c3-bdae-23c9e693a362",
+              "sequence--b75a90bb-5a55-48c3-bdae-23c9e693a362"
+            ],
+            "task_refs": [
+              "task--8a676b0b-a835-4e13-8912-b912c3d9be72"
+            ],
+            "event_refs": [
+              "event--59026c8c-b8f7-4cbf-9740-a3b2b22bad7f"
+            ],
+            "other_object_refs": [
+              "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+              "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+              "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+              "identity--e5a6e5c3-7138-4288-8146-87d972eb2098",
+              "identity--2e02a834-c89b-483b-869d-fcb713721246",
+              "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+              "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+              "relationship--2a4ac790-b905-43c7-aada-87ddafd849fd",
+              "observed-data--edfce46d-423e-45cc-9c9b-f6b39af482b9",
+              "indicator--c39ce0f6-4d12-4151-9256-596166aa3a5f",
+              "sighting--3f365a55-bd23-4e09-9a69-8a5a46caf328"
+            ]
+          }
+        }
+      }
+    ],
+    "sequence_start_objs": [
+      {
+        "type": "sequence",
+        "spec_version": "2.1",
+        "id": "sequence--fc108d99-8262-4082-81dd-02411203d291",
+        "created": "2023-12-31T08:03:04.301404Z",
+        "modified": "2023-12-31T08:03:04.301404Z",
+        "sequence_type": "event",
+        "step_type": "start_step",
+        "on_completion": "sequence--b75a90bb-5a55-48c3-bdae-23c9e693a362",
+        "extensions": {
+          "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+            "extension_type": "new-sdo"
+          }
+        }
+      },
+      {
+        "type": "sequence",
+        "spec_version": "2.1",
+        "id": "sequence--ac6f3beb-e28a-49ef-b0e4-2ddcd54fa2a2",
+        "created": "2023-12-31T08:03:04.411424Z",
+        "modified": "2023-12-31T08:03:04.411424Z",
+        "sequence_type": "task",
+        "step_type": "start_step",
+        "on_completion": "sequence--a23918dc-0869-458a-b29c-e38fc804cfe3",
+        "extensions": {
+          "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+            "extension_type": "new-sdo"
+          }
+        }
+      }
+    ],
+    "sequence_objs": [
+      {
+        "type": "sequence",
+        "spec_version": "2.1",
+        "id": "sequence--b75a90bb-5a55-48c3-bdae-23c9e693a362",
+        "created": "2023-12-31T08:03:04.25989Z",
+        "modified": "2023-12-31T08:03:04.25989Z",
+        "sequenced_object": "event--59026c8c-b8f7-4cbf-9740-a3b2b22bad7f",
+        "sequence_type": "event",
+        "step_type": "single_step",
+        "extensions": {
+          "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+            "extension_type": "new-sdo"
+          }
+        }
+      },
+      {
+        "type": "sequence",
+        "spec_version": "2.1",
+        "id": "sequence--b75a90bb-5a55-48c3-bdae-23c9e693a362",
+        "created": "2023-12-31T08:03:04.25989Z",
+        "modified": "2023-12-31T08:03:04.25989Z",
+        "sequenced_object": "event--59026c8c-b8f7-4cbf-9740-a3b2b22bad7f",
+        "sequence_type": "event",
+        "step_type": "single_step",
+        "extensions": {
+          "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+            "extension_type": "new-sdo"
+          }
+        }
+      }
+    ],
+    "task_objs": [
+      {
+        "type": "task",
+        "spec_version": "2.1",
+        "id": "task--8a676b0b-a835-4e13-8912-b912c3d9be72",
+        "created": "2023-12-31T08:03:04.328043Z",
+        "modified": "2023-12-31T08:03:04.328043Z",
+        "description": "Suspicious email reported by user",
+        "end_time": "2023-12-31T08:03:04.328043Z",
+        "name": "Potential Phishing Email",
+        "start_time": "2023-12-31T08:03:04.328043Z",
+        "extensions": {
+          "extension-definition--2074a052-8be4-4932-849e-f5e7798e0030": {
+            "extension_type": "new-sdo"
+          }
+        }
+      }
+    ],
+    "event_objs": [
+      {
+        "type": "event",
+        "spec_version": "2.1",
+        "id": "event--59026c8c-b8f7-4cbf-9740-a3b2b22bad7f",
+        "created": "2023-12-31T08:03:04.224704Z",
+        "modified": "2023-12-31T08:03:04.224704Z",
+        "description": "Suspicious email reported by user",
+        "end_time": "2023-12-31T08:03:04.224704Z",
+        "event_types": [
+          "dissemination-phishing-emails"
+        ],
+        "name": "Potential Phishing Email",
+        "sighting_refs": [
+          "sighting--3f365a55-bd23-4e09-9a69-8a5a46caf328"
+        ],
+        "start_time": "2023-12-31T08:03:04.224704Z",
+        "extensions": {
+          "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+            "extension_type": "new-sdo"
+          }
+        }
+      }
+    ],
+    "impact_objs": [],
+    "other_object_objs": [
+      {
+        "type": "email-addr",
+        "spec_version": "2.1",
+        "id": "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+        "value": "evil@northkorea.nk",
+        "display_name": "Bad Man"
+      },
+      {
+        "type": "user-account",
+        "spec_version": "2.1",
+        "id": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+        "user_id": "79563902",
+        "account_login": "nsmith",
+        "account_type": "sales,",
+        "display_name": "Naive Smith"
+      },
+      {
+        "type": "email-addr",
+        "spec_version": "2.1",
+        "id": "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+        "value": "naive@example.com",
+        "display_name": "Naive Smith",
+        "belongs_to_ref": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+      },
+      {
+        "type": "identity",
+        "spec_version": "2.1",
+        "id": "identity--e5a6e5c3-7138-4288-8146-87d972eb2098",
+        "created": "2023-12-31T08:02:45.156099Z",
+        "modified": "2023-12-31T08:02:45.156099Z",
+        "name": "Naive Smith",
+        "description": "A Naive Individual",
+        "roles": [
+          "user",
+          "sales"
+        ],
+        "identity_class": "individual",
+        "sectors": [
+          "technology"
+        ],
+        "extensions": {
+          "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+            "extension_type": "property-extension",
+            "contact_numbers": [
+              {
+                "contact_number_type": "work-phone",
+                "contact_number": "0499-999-109"
+              }
+            ],
+            "email_addresses": [
+              {
+                "digital_contact_type": "work",
+                "email_address_ref": "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
+              }
+            ],
+            "first_name": "Naive",
+            "last_name": "Smith",
+            "middle_name": "Weakling",
+            "prefix": "Mr",
+            "social_media_accounts": [
+              {
+                "digital_contact_type": "work",
+                "user_account_ref": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+              }
+            ],
+            "team": "Sales"
+          }
+        }
+      },
+      {
+        "type": "identity",
+        "spec_version": "2.1",
+        "id": "identity--2e02a834-c89b-483b-869d-fcb713721246",
+        "created": "2023-12-31T08:02:45.042563Z",
+        "modified": "2023-12-31T08:02:45.042563Z",
+        "name": "Trusty Jones",
+        "description": "A Trusty Individual",
+        "roles": [
+          "soc",
+          "support"
+        ],
+        "identity_class": "individual",
+        "sectors": [
+          "technology"
+        ],
+        "extensions": {
+          "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+            "extension_type": "property-extension",
+            "contact_numbers": [
+              {
+                "contact_number_type": "work-phone",
+                "contact_number": "0418-208-368"
+              }
+            ],
+            "email_addresses": [
+              {
+                "digital_contact_type": "work",
+                "email_address_ref": "email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3"
+              }
+            ],
+            "first_name": "Me",
+            "last_name": "Jones",
+            "middle_name": "Percival",
+            "prefix": "Dr",
+            "social_media_accounts": [
+              {
+                "digital_contact_type": "work",
+                "user_account_ref": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3"
+              }
+            ],
+            "team": "All_Stars"
+          }
+        }
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+        "value": "https://www.northkorea.nk/we/are/mad/"
+      },
+      {
+        "type": "email-message",
+        "spec_version": "2.1",
+        "id": "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+        "is_multipart": false,
+        "date": "2020-10-19T01:01:01Z",
+        "from_ref": "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+        "to_refs": [
+          "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
+        ],
+        "subject": "we are coming for you",
+        "body": "some bad stuff written here"
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--2a4ac790-b905-43c7-aada-87ddafd849fd",
+        "created": "2023-12-31T08:03:04.086803Z",
+        "modified": "2023-12-31T08:03:04.086803Z",
+        "relationship_type": "derived-from",
+        "source_ref": "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+        "target_ref": "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7"
+      },
+      {
+        "type": "observed-data",
+        "spec_version": "2.1",
+        "id": "observed-data--edfce46d-423e-45cc-9c9b-f6b39af482b9",
+        "created": "2023-12-31T08:03:04.118803Z",
+        "modified": "2023-12-31T08:03:04.118803Z",
+        "first_observed": "2020-10-19T01:01:01Z",
+        "last_observed": "2020-10-19T01:01:01Z",
+        "number_observed": 1,
+        "object_refs": [
+          "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+          "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+          "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+          "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+          "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+          "relationship--2a4ac790-b905-43c7-aada-87ddafd849fd"
+        ]
+      },
+      {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--c39ce0f6-4d12-4151-9256-596166aa3a5f",
+        "created": "2023-12-31T08:03:04.143167Z",
+        "modified": "2023-12-31T08:03:04.143167Z",
+        "name": "Potential Phishing Email",
+        "description": "Suspicious email reported by user",
+        "indicator_types": [
+          "unknown"
+        ],
+        "pattern": "[email-addr:value = 'evil@northkorea.nk' AND email:subject = 'we are coming for you']",
+        "pattern_type": "stix",
+        "pattern_version": "2.1",
+        "valid_from": "2023-12-31T08:03:04.143167Z"
+      },
+      {
+        "type": "sighting",
+        "spec_version": "2.1",
+        "id": "sighting--3f365a55-bd23-4e09-9a69-8a5a46caf328",
+        "created": "2023-12-31T08:03:04.181129Z",
+        "modified": "2023-12-31T08:03:04.181129Z",
+        "count": 1,
+        "sighting_of_ref": "indicator--c39ce0f6-4d12-4151-9256-596166aa3a5f",
+        "observed_data_refs": [
+          "observed-data--edfce46d-423e-45cc-9c9b-f6b39af482b9"
+        ],
+        "where_sighted_refs": [
+          "identity--e5a6e5c3-7138-4288-8146-87d972eb2098"
+        ],
+        "extensions": {
+          "sighting-alert": {
+            "name": "user-report",
+            "log": "I have found a suspicious email",
+            "system_id": "XYZ-1234",
+            "source": "user submission"
+          },
+          "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {
+            "extension_type": "property-extension"
+          }
+        }
+      }
+    ]
+  }
+}

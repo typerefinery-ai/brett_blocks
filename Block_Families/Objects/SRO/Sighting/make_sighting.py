@@ -101,9 +101,7 @@ def make_sighting(sighting_form, observed_data_refs, where_sighted_refs, sightin
     for k,v in optional.items():
         contents[k] = v
     for k,v in extensions.items():
-        if k == sight_ext_id:
-            contents["extensions"] = {sight_ext_id: sight_ext}
-        elif k == "sighting-alert":
+        if k == "sighting-alert":
             contents["extensions"] = {"sighting-alert": SightingAlert(**v)}
         elif k == "sighting-anecdote":
             contents["extensions"] = {"sighting-anecdote": SightingAnecdote(**v)}
@@ -119,6 +117,11 @@ def make_sighting(sighting_form, observed_data_refs, where_sighted_refs, sightin
             contents["extensions"] = {"sighting-framework": SightingFramework(**v)}
         elif k == "sighting-hunt":
             contents["extensions"] = {"sighting-hunt": SightingHunt(**v)}
+
+    if sight_ext_id in contents["extensions"]:
+        contents["extensions"][sight_ext_id] = sight_ext
+    else:
+        contents["extensions"][sight_ext_id] = sight_ext
 
     for k,v in sub.items():
         pass
