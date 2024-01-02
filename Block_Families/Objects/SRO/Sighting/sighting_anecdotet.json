@@ -1,1 +1,41 @@
-{"sighting_form": {"base_required": {"type": "sighting", "spec_version": "2.1", "id": "", "created": "", "modified": ""}, "base_optional": {"created_by_ref": "", "revoked": null, "labels": [], "lang": "", "external_references": [], "object_marking_refs": [], "granular_markings": [], "defanged": null}, "object": {"description": "", "first_seen": "", "last_seen": "", "count": 1, "sighting_of_ref": "", "observed_data_refs ": [], "where_sighted_refs": []}, "extensions": {"extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {"extension_type": "property-extension"}, "sighting-anecdote": {"person_name": "user-report", "person_context": "employee", "report_submission": "interview"}}, "sub": {}}, "observed_data_refs": ["observed-data--2a710640-d225-452f-a454-f110fa5c4c9e"], "where_sighted_refs": ["identity--2e02a834-c89b-483b-869d-fcb713721246"], "sighting_of_ref": "identity--e5a6e5c3-7138-4288-8146-87d972eb2098"}
+{
+  "sighting_form": {
+    "base_required": {
+      "type": "sighting",
+      "spec_version": "2.1",
+      "id": "",
+      "created": "",
+      "modified": ""
+    },
+    "base_optional": {
+      "created_by_ref": "",
+      "revoked": null,
+      "labels": [],
+      "lang": "",
+      "external_references": [],
+      "object_marking_refs": [],
+      "granular_markings": [],
+      "defanged": null
+    },
+    "object": {
+      "description": "",
+      "first_seen": "",
+      "last_seen": "",
+      "count": 1,
+      "sighting_of_ref": "",
+      "observed_data_refs ": [],
+      "where_sighted_refs": []
+    },
+    "extensions": {
+      "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {
+        "extension_type": "property-extension"
+      },
+      "sighting-anecdote": {
+        "person_name": "user-report",
+        "person_context": "employee",
+        "report_submission": "interview"
+      }
+    },
+    "sub": {}
+  }
+}

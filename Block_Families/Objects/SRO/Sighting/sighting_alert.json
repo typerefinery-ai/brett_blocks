@@ -1,1 +1,42 @@
-{"sighting_form": {"base_required": {"type": "sighting", "spec_version": "2.1", "id": "", "created": "", "modified": ""}, "base_optional": {"created_by_ref": "", "revoked": null, "labels": [], "lang": "", "external_references": [], "object_marking_refs": [], "granular_markings": [], "defanged": null}, "object": {"description": "", "first_seen": "", "last_seen": "", "count": 1, "sighting_of_ref": "", "observed_data_refs ": [], "where_sighted_refs": []}, "extensions": {"extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {"extension_type": "property-extension"}, "sighting-alert": {"name": "user-report", "log": "I have found a suspicious email", "system_id": "XYZ-1234", "source": "user submission"}}, "sub": {}}, "observed_data_refs": ["observed-data--edfce46d-423e-45cc-9c9b-f6b39af482b9"], "where_sighted_refs": ["identity--e5a6e5c3-7138-4288-8146-87d972eb2098"], "sighting_of_ref": "indicator--c39ce0f6-4d12-4151-9256-596166aa3a5f"}
+{
+  "sighting_form": {
+    "base_required": {
+      "type": "sighting",
+      "spec_version": "2.1",
+      "id": "",
+      "created": "",
+      "modified": ""
+    },
+    "base_optional": {
+      "created_by_ref": "",
+      "revoked": null,
+      "labels": [],
+      "lang": "",
+      "external_references": [],
+      "object_marking_refs": [],
+      "granular_markings": [],
+      "defanged": null
+    },
+    "object": {
+      "description": "",
+      "first_seen": "",
+      "last_seen": "",
+      "count": 1,
+      "sighting_of_ref": "",
+      "observed_data_refs ": [],
+      "where_sighted_refs": []
+    },
+    "extensions": {
+      "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {
+        "extension_type": "property-extension"
+      },
+      "sighting-alert": {
+        "name": "user-report",
+        "log": "I have found a suspicious email",
+        "system_id": "XYZ-1234",
+        "source": "user submission"
+      }
+    },
+    "sub": {}
+  }
+}

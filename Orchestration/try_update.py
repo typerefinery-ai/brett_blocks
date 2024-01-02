@@ -50,7 +50,6 @@ def load_context():
     # 3. Setup the Incident Context
     #
     incident = Type_Refinery_Context["incident"]
-    bundle_list = incident["bundle_list"]
     sequence_start_objs = incident["sequence_start_objs"]
     sequence_objs = incident["sequence_objs"]
     task_objs = incident["task_objs"]
@@ -63,7 +62,6 @@ def load_context():
     # 4. Load the TypeDB Context
     #
     typedb = Type_Refinery_Context["typedb"]
-    t_bundle_list = typedb["bundle_list"]
     t_sequence_start_objs = typedb["sequence_start_objs"]
     t_sequence_objs = typedb["sequence_objs"]
     t_task_objs = typedb["task_objs"]
