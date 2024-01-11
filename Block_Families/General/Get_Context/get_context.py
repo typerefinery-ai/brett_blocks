@@ -58,7 +58,7 @@ logger.setLevel(logging.INFO)
 
 import_type = import_type_factory.get_all_imports()
 
-TR_Context_Memory_Path = "./Context_Mem/Type_Refinery_Context.json"
+TR_Context_Memory_Path = "./Context_Mem/OS_Threat_Context.json"
 
 def get_context(context_path=None):
     # 1. Extract the components of the object

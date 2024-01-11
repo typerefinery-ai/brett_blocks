@@ -14,7 +14,7 @@ import os
 context_base = "../Orchestration/Context_Mem/"
 path_base = "../Block_Families/Objects/"
 results_base = "../Orchestration/Results/"
-TR_Context_Memory_Path = "./Context_Mem/Type_Refinery_Context.json"
+TR_Context_Memory_Path = "./Context_Mem/OS_Threat_Context.json"
 
 from Block_Families.General.Save_Context.save_context import main as save_context
 from Block_Families.General.Get_Context.get_context import main as get_context
