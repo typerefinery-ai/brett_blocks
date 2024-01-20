@@ -14,6 +14,7 @@ from stixorm.module.authorise import import_type_factory
 from stixorm.module.typedb_lib.instructions import ResultStatus, Result
 from stixorm.module.parsing import parse_objects
 from deepdiff import DeepDiff, parse_path
+from .update_utilities import follow_pathway
 from pprint import pprint
 from stixorm.module.typedb_lib.factories.auth_factory import get_auth_factory_instance
 from stixorm.module.typedb_lib.factories.definition_factory import get_definition_factory_instance
@@ -161,165 +162,13 @@ def stix_to_tql_basis(stix_dict, import_type):
         return {}, "", [], "", "", "", ""
 
 
-def granular_markings(term, obj_var, source_var, key_list, import_type, inc, diff_type):
-    if diff_type == "values_changed":
-        pass
-    elif diff_type == "dictionary_item_added" or diff_type == "iterable_item_added":
-        pass
-    elif diff_type == "dictionary_item_removed" or diff_type == "iterable_item_removed":
-        pass
-    else:
-        pass
 
-def hashes(term, obj_var, source_var, key_list, import_type, inc, diff_type):
-    if diff_type == "values_changed":
-        pass
-    elif diff_type == "dictionary_item_added" or diff_type == "iterable_item_added":
-        pass
-    elif diff_type == "dictionary_item_removed" or diff_type == "iterable_item_removed":
-        pass
-    else:
-        pass
-
-def key_value(term, obj_var, source_var, key_list, import_type, inc, diff_type):
-    if diff_type == "values_changed":
-        pass
-    elif diff_type == "dictionary_item_added" or diff_type == "iterable_item_added":
-        pass
-    elif diff_type == "dictionary_item_removed" or diff_type == "iterable_item_removed":
-        pass
-    else:
-        pass
-
-
-def list_of_objects(term, obj_var, source_var, key_list, import_type, inc, diff_type):
-    if diff_type == "values_changed":
-        pass
-    elif diff_type == "dictionary_item_added" or diff_type == "iterable_item_added":
-        pass
-    elif diff_type == "dictionary_item_removed" or diff_type == "iterable_item_removed":
-        pass
-    else:
-        pass
-
-
-def embedded(term, obj_var, source_var, key_list, import_type, inc, diff_type):
-    if diff_type == "values_changed":
-        pass
-    elif diff_type == "dictionary_item_added" or diff_type == "iterable_item_added":
-        pass
-    elif diff_type == "dictionary_item_removed" or diff_type == "iterable_item_removed":
-        pass
-    else:
-        pass
-
-
-def subobject(term, obj_var, source_var, key_list, import_type, inc, diff_type):
-    if diff_type == "values_changed":
-        pass
-    elif diff_type == "dictionary_item_added" or diff_type == "iterable_item_added":
-        pass
-    elif diff_type == "dictionary_item_removed" or diff_type == "iterable_item_removed":
-        pass
-    else:
-        pass
-
-
-def extension(term, obj_var, source_var, key_list, import_type, inc, diff_type):
-    if diff_type == "values_changed":
-        pass
-    elif diff_type == "dictionary_item_added" or diff_type == "iterable_item_added":
-        pass
-    elif diff_type == "dictionary_item_removed" or diff_type == "iterable_item_removed":
-        pass
-    else:
-        pass
-
-
-def follow_pathway(term, obj_var, source_var, key_list, import_type, inc, diff_tyoe):
-    """
-        Top level function to add one of the sub objects to the stix object
-    Args:
-        term "": the stix name of the property
-        obj_var (): the typeql variable string of the object
-        source_var (): it not empty string, then the typeql variable string of the object to be linked
-        key_list (): the property variable list
-        import_type: the dict describing import preferences
-        inc int: an incrementing variable that is used to add to the var string
-
-    Returns:
-        match: the typeql match strings
-        insert: the typeql insert string
-    """
-    logger.debug(f'===============\n=====================\n===================\n')
-    logger.debug(f'rel {term}')
-    logger.debug(f'obj_var {obj_var}')
-    logger.debug(f'source_var {source_var}')
-    logger.debug(f'key_list {key_list}')
-    auth_factory = get_auth_factory_instance()
-    auth = auth_factory.get_auth_for_import(import_type)
-    dep_list = []
-    logger.debug("\nstarting into choices")
-    if term == "granular_markings":
-        logger.debug("in granular")
-        # handle list of objects scenario, with add, delete, or update
-        match, insert, delete, query_type = granular_markings(term, obj_var, source_var, key_list, import_type, inc, diff_tyoe)
-
-    # hashes type
-    elif (term == "hashes"
-          or term == "file_header_hashes"):
-        logger.debug("in hashes")
-        # handle hashes scenario, with add, delete, update
-        match, insert, delete, query_type = hashes(term, obj_var, source_var, key_list, import_type, inc, diff_tyoe)
-
-    # insert key value store
-    elif term in auth["reln_name"]["key_value_relations"]:
-        logger.debug("in key value")
-        # handle key-value scenario, with add, delete, update
-        match, insert, delete, query_type = key_value(term, obj_var, source_var, key_list, import_type, inc, diff_tyoe)
-
-    # insert list of object relation
-    elif term in auth["reln_name"]["list_of_objects"]:
-        logger.debug("list of objects")
-        # handle list of objects scenario, with add, delete, or update
-        match, insert, delete, query_type = list_of_objects(term, obj_var, source_var, key_list, import_type, inc, diff_tyoe)
-
-    # insert embedded relations based on stix-id
-    elif term in auth["reln_name"]["embedded_relations"]:
-        logger.debug("embedded")
-        # handle embedded object, with add, delete, or update object
-        match, insert, delete, query_type = embedded(term, obj_var, source_var, key_list, import_type, inc, diff_tyoe)
-
-    # insert plain sub-object with relation
-    elif (term == "x509_v3_extensions"
-          or term == "optional_header"):
-        logger.debug("X509")
-        # handle sub object scenario, with add, delete, or update
-        match, insert, delete, query_type = subobject(term, obj_var, source_var, key_list, import_type, inc, diff_tyoe)
-
-    # insert  SCO Extensions here, a possible dict of sub-objects
-    elif term in auth["reln_name"]["extension_relations"] or term == "extensions":
-        logger.debug("extension")
-        # handle extension scenario, with add, delete, or update
-        match, insert, delete, query_type = extension(term, obj_var, source_var, key_list, import_type, inc, diff_tyoe)
-
-    # ignore the following relations as they are already processed, for Relationships, Sightings and Extensions
-    elif term in auth["reln_name"]["standard_relations"] or term == "definition" or "definition_type":
-        logger.debug("standard")
-        match = insert = ''
-
-    else:
-        logger.debug(f'relation type not known, ignore if "source_ref" or "target_ref" -> {rel}')
-        logger.debug("in else")
-        match = insert = ""
-
-    return match, insert, delete, query_type
 
 def value_is_id(valuestring):
     answer = False
     return  answer
 
-def consume_path_token(obj_tql, key_list, value, obj_var, source_var, inc, diff_tyoe):
+def consume_path_token(obj_tql, key_list, value, obj_var, source_var, i, op_type, protocol):
     match = ""
     insert = ""
     delete = ""
@@ -327,15 +176,23 @@ def consume_path_token(obj_tql, key_list, value, obj_var, source_var, inc, diff_
         term = key_list.pop(0)
         if obj_tql[term] == "":
             # its a relationship
-            match, insert, delete, query_type  = follow_pathway(term, obj_var, source_var, key_list, import_type, inc, diff_tyoe)
+            match, insert, delete, op_type = follow_pathway(term, value, obj_var, source_var, key_list, import_type, i, op_type, protocol)
         else:
             # its  a value
             prop_var = "$" + obj_tql[term]
-            insert += obj_var + " has " + obj_tql[term] + " " + prop_var + ";"
-            insert += prop_var + " " + val_tql(value) + ";"
+            if op_type == "add":
+                insert += obj_var + " has " + obj_tql[term] + " " + prop_var + ";"
+                insert += prop_var + " " + val_tql(value) + ";"
+            elif op_type == "change":
+                match += obj_var + " has " + obj_tql[term] + " " + prop_var + ";"
+                delete += obj_var + " has " + obj_tql[term] + " " + prop_var + ";"
+                insert += obj_var + " has " + obj_tql[term] + " " + prop_var + ";"
+                insert += prop_var + " " + val_tql(value) + ";"
+            if op_type == "remove":
+                match += obj_var + " has " + obj_tql[term] + " " + prop_var + ";"
+                delete += obj_var + " has " + obj_tql[term] + " " + prop_var + ";"
 
-
-    return match, insert, delete
+    return match, insert, delete, op_type
 
 
 def handle_object_diff(obj_diff, orig_object, current_obj, connection, import_type):
@@ -345,8 +202,9 @@ def handle_object_diff(obj_diff, orig_object, current_obj, connection, import_ty
     insert = ""
     delete = ""
     obj_tql, obj_tql_name, is_list, protocol, obj_var, core_ql, family = stix_to_tql_basis(orig_object, import_type)
-    for diff_tyoe, diff_value in obj_diff.items():
-        if diff_tyoe == "dictionary_item_added":
+    for diff_type, diff_value in obj_diff.items():
+        if diff_type == "dictionary_item_added" or diff_type == "iterable_item_added":
+            op_type = "add"
             for i, key, value in enumerate(diff_value.items()):
                 path_list = parse_path(key)
                 source_var = ""
@@ -354,11 +212,44 @@ def handle_object_diff(obj_diff, orig_object, current_obj, connection, import_ty
                     source_var, match2 = get_embedded_match(value, import_type=import_type, i=i, protocol=protocol)
                     match += match + match2
                 key_list = parse_path(key)
-                match, insert, delete = consume_path_token(obj_tql, key_list, value, obj_var, source_var, i, diff_tyoe)
-        elif diff_tyoe == "iterable_item_added":
-            pass
-        elif diff_tyoe == "values_changed":
-            pass
-        elif diff_tyoe == "dictionary_item_removed":
+                match2, insert2, delete2, op_type = consume_path_token(obj_tql, key_list, value, obj_var, source_var, i, op_type, protocol)
+                match += match + match2
+                insert += insert + insert2
+                delete += delete + delete2
+        elif diff_type == "dictionary_item_removed" or diff_type == "iterable_item_removed":
+            op_type = "remove"
+            for i, key, value in enumerate(diff_value.items()):
+                path_list = parse_path(key)
+                source_var = ""
+                if value_is_id(value):
+                    source_var, match2 = get_embedded_match(value, import_type=import_type, i=i, protocol=protocol)
+                    match += match + match2
+                key_list = parse_path(key)
+                match2, insert2, delete2, op_type = consume_path_token(obj_tql, key_list, value, obj_var, source_var, i, op_type, protocol)
+                match += match + match2
+                insert += insert + insert2
+                delete += delete + delete2
+        elif diff_type == "values_changed":
+            op_type = "change"
+            for i, key, value in enumerate(diff_value.items()):
+                path_list = parse_path(key)
+                if isinstance(value, dict):
+                    original_value = value["old_value"]
+                    new_value = value["new_value"]
+                    source_var = ""
+                    if value_is_id(original_value):
+                        source_var, match2 = get_embedded_match(original_value, import_type=import_type, i=i, protocol=protocol)
+                        match += match + match2
+                    key_list = parse_path(key)
+                    match2, insert2, delete2, op_type = consume_path_token(obj_tql, key_list, value, obj_var, source_var, i, op_type, protocol)
+                    match += match + match2
+                    insert += insert + insert2
+                    delete += delete + delete2
+        else:
+            print(f"We dont account for diff-type -> {diff_type}")
             pass
 
+    print(f"----------------------- {orig_object['id']}")
+    print(f"match -> {match}")
+    print(f"insert -> {insert}")
+    print(f"delete -> {delete}")
