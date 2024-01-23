@@ -15,7 +15,7 @@ from stixorm.module.typedb_lib.instructions import ResultStatus, Result
 from stixorm.module.parsing import parse_objects
 from deepdiff import DeepDiff, parse_path
 from pprint import pprint
-from Block_Families.General._library.update import handle_object_diff
+from Block_Families.General._library.update import handle_object_diff, value_is_id
 
 import_type = import_type_factory.get_all_imports()
 import logging
@@ -34,21 +34,24 @@ connection = {
 def load_context():
     # 1. Load the Context
     TR_Context_Memory_Path = "./Orchestration/Context_Mem/OS_Threat_Context.json"
+    cwd = os.getcwd()
+    print(f"cwd -> {cwd}")
     with open(TR_Context_Memory_Path, "r") as context_file:
         Type_Refinery_Context = json.load(context_file)
     #
     # 2. Setup the  TR User Context
     #
     local = Type_Refinery_Context["local"]
-    me = local["me"]
-    team = local["team"]
-    company = local["company"]
-    systems = local["systems"]
-    assets = local["assets"]
+    local_context = local["context"]
+    me = local_context["me"]
+    team = local_context["team"]
+    company = local_context["company"]
+    systems = local_context["systems"]
+    assets = local_context["assets"]
     #
     # 3. Setup the Incident Context
     #
-    incident = Type_Refinery_Context["incident"]
+    incident = local["incident"]
     sequence_start_objs = incident["sequence_start_objs"]
     sequence_objs = incident["sequence_objs"]
     task_objs = incident["task_objs"]
@@ -60,14 +63,15 @@ def load_context():
     #
     # 4. Load the TypeDB Context
     #
-    typedb = Type_Refinery_Context["typedb"]
-    t_sequence_start_objs = typedb["sequence_start_objs"]
-    t_sequence_objs = typedb["sequence_objs"]
-    t_task_objs = typedb["task_objs"]
-    t_event_objs = typedb["event_objs"]
-    t_impact_objs = typedb["impact_objs"]
-    t_other_object_objs = typedb["other_object_objs"]
-    t_incident_obj = typedb["incident_obj"]
+    remote = Type_Refinery_Context["remote"]
+    remote_incident = remote["incident"]
+    t_sequence_start_objs = remote_incident["sequence_start_objs"]
+    t_sequence_objs = remote_incident["sequence_objs"]
+    t_task_objs = remote_incident["task_objs"]
+    t_event_objs = remote_incident["event_objs"]
+    t_impact_objs = remote_incident["impact_objs"]
+    t_other_object_objs = remote_incident["other_object_objs"]
+    t_incident_obj = remote_incident["incident_obj"]
     #
     # 5. Add the lists together and put them into typedb
     #
@@ -141,18 +145,18 @@ def log_it_obj(object_diff):
 def vary_current_list(current_list):
     for i, obj in enumerate(current_list):
         #print(f"obj id is {obj['id']}")
-        if obj["id"] == "task--548a5072-b48f-4499-9b38-bfe2a60665ac":
+        if obj["id"] == "task--3f4c17f0-be79-4394-8cdb-289258a201bb":
             obj["name"] = "Potential Phishing Email is Crank"
             # print("&&&&&& Lampie &&&&&&&&&&&&&&")
             # print(obj)
-        elif obj["id"] == "event--43880e1d-1c7f-4c48-89e8-757cf3884832":
+        elif obj["id"] == "event--aee19ec9-84dc-4a8a-a88a-2dba8da07b08":
             del obj["end_time"]
             # print("****** anecdote$$$$$")
             # print(obj)
         # elif obj["id"] == "indicator--d51a80ba-bd28-46e4-902b-67f0c3ee4dfc":
         #     current_list.pop(1)
-    short_liast = current_list #[x for x in current_list if x["id"] !="indicator--d51a80ba-bd28-46e4-902b-67f0c3ee4dfc"]
-    return short_liast
+    short_list = current_list #[x for x in current_list if x["id"] !="indicator--d51a80ba-bd28-46e4-902b-67f0c3ee4dfc"]
+    return short_list
 
 
 
@@ -171,8 +175,8 @@ def try_update(connection):
         if obj_diff != {}:
             diff_local_path = str(current_obj["id"]) + ".json"
             print(f"\n its a change -> {diff_local_path}")
-            handle_object_diff(obj_diff, orig_object, current_obj, connection)
-            print(f"{obj_diff}\n")
+            handle_object_diff(obj_diff, orig_object[0], current_obj, connection, import_type)
+            print(f"\n{obj_diff}\n")
             with open(diff_local_path, 'w') as f:
                 f.write(json.dumps(obj_diff))
             #handle_object_diff(obj_diff, orig_object, current_obj)
@@ -181,11 +185,20 @@ def try_update(connection):
             print(f"no change -> {diff_local_path}")
     # 4. Now process the incident diff
     inc_diff = find_obj_diff(t_original_incident_obj, current_incident_obj)
-    print(f"\n its the incident_diff_json changes -> {json.dumps(inc_diff)}")
-
+    if inc_diff != {}:
+        diff_local_path = str(t_original_incident_obj["id"]) + ".json"
+        print(f"\n its a change -> {diff_local_path}")
+        handle_object_diff(inc_diff, t_original_incident_obj, current_incident_obj, connection, import_type)
+        print(f"\n{inc_diff}\n")
+        with open(diff_local_path, 'w') as f:
+            f.write(json.dumps(inc_diff))
+    else:
+        diff_local_path = str(current_incident_obj["id"]) + ".json"
+        print(f"no change -> {diff_local_path}")
 
 
 
 # if this file is run directly, then start here
 if __name__ == '__main__':
     try_update(connection)
+    #testuuid()

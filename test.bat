@@ -1,1 +1,1 @@
-python Orchestration\try_update.py
+python try_update.py

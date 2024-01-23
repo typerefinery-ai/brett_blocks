@@ -11,17 +11,19 @@ from stixorm.module.definitions.os_threat import (
     SightingEnrichment, SightingHunt, SightingFramework, SightingExternal
 )
 from stixorm.module.authorise import import_type_factory
+from stixorm.module.typedb_lib.factories.mappings_factory import get_mapping_factory_instance
 from stixorm.module.typedb_lib.instructions import ResultStatus, Result
 from stixorm.module.parsing import parse_objects
 from deepdiff import DeepDiff, parse_path
 from .update_utilities import follow_pathway
+from stixorm.module.definitions.property_definitions import is_stix_type, _check_uuid
 from pprint import pprint
 from stixorm.module.typedb_lib.factories.auth_factory import get_auth_factory_instance
 from stixorm.module.typedb_lib.factories.definition_factory import get_definition_factory_instance
 from stixorm.module.typedb_lib.factories.import_type_factory import ImportType
 from stixorm.module.typedb_lib.model.definitions import DefinitionName
 from stixorm.module.orm.import_utilities import val_tql
-from stixorm.module.parsing.conversion_decisions import sdo_type_to_tql, sro_type_to_tql, sco__type_to_tql, \
+from stixorm.module.parsing.conversion_decisions import sdo_type_to_tql, sro_type_to_tql, sco_type_to_tql, \
     meta_type_to_tql, get_embedded_match
 from stixorm.module.orm.import_objects import marking
 attack_model = get_definition_factory_instance().lookup_definition(DefinitionName.ATTACK)
@@ -162,11 +164,17 @@ def stix_to_tql_basis(stix_dict, import_type):
         return {}, "", [], "", "", "", ""
 
 
-
-
 def value_is_id(valuestring):
     answer = False
-    return  answer
+    if valuestring.find("--") > 0:
+        x = valuestring.split('--', 1)
+        type = x[0]
+        uuid_str = x[1]
+        valid_obj = get_mapping_factory_instance().get_all_types()
+        spec_version = "2.1"
+        if is_stix_type(type, spec_version, valid_obj) and _check_uuid(uuid_str, spec_version):
+            answer = True
+    return answer
 
 def consume_path_token(obj_tql, key_list, value, obj_var, source_var, i, op_type, protocol):
     match = ""
@@ -180,14 +188,15 @@ def consume_path_token(obj_tql, key_list, value, obj_var, source_var, i, op_type
         else:
             # its  a value
             prop_var = "$" + obj_tql[term]
+            new_var = "$" + "new_" + obj_tql[term]
             if op_type == "add":
                 insert += obj_var + " has " + obj_tql[term] + " " + prop_var + ";"
                 insert += prop_var + " " + val_tql(value) + ";"
             elif op_type == "change":
                 match += obj_var + " has " + obj_tql[term] + " " + prop_var + ";"
                 delete += obj_var + " has " + obj_tql[term] + " " + prop_var + ";"
-                insert += obj_var + " has " + obj_tql[term] + " " + prop_var + ";"
-                insert += prop_var + " " + val_tql(value) + ";"
+                insert += obj_var + " has " + obj_tql[term] + " " + new_var + ";"
+                insert += new_var + " " + val_tql(value['new_value']) + ";"
             if op_type == "remove":
                 match += obj_var + " has " + obj_tql[term] + " " + prop_var + ";"
                 delete += obj_var + " has " + obj_tql[term] + " " + prop_var + ";"
@@ -198,41 +207,66 @@ def consume_path_token(obj_tql, key_list, value, obj_var, source_var, i, op_type
 def handle_object_diff(obj_diff, orig_object, current_obj, connection, import_type):
     #
     # 1. First find the basic data for this object
-    match = "match \n"
-    insert = ""
-    delete = ""
+    i = 0
     obj_tql, obj_tql_name, is_list, protocol, obj_var, core_ql, family = stix_to_tql_basis(orig_object, import_type)
     for diff_type, diff_value in obj_diff.items():
         if diff_type == "dictionary_item_added" or diff_type == "iterable_item_added":
             op_type = "add"
-            for i, key, value in enumerate(diff_value.items()):
-                path_list = parse_path(key)
-                source_var = ""
-                if value_is_id(value):
-                    source_var, match2 = get_embedded_match(value, import_type=import_type, i=i, protocol=protocol)
-                    match += match + match2
-                key_list = parse_path(key)
-                match2, insert2, delete2, op_type = consume_path_token(obj_tql, key_list, value, obj_var, source_var, i, op_type, protocol)
-                match += match + match2
-                insert += insert + insert2
-                delete += delete + delete2
+            for key, value in diff_value.items():
+                value_list = []
+                if type(value) is list:
+                    value_list = value
+                else:
+                    value_list.append(value)
+                for v in value_list:
+                    match = ""
+                    insert = ""
+                    delete = ""
+                    path_list = parse_path(key)
+                    source_var = ""
+                    i += 1
+                    if value_is_id(v):
+                        source_var, match2 = get_embedded_match(v, import_type=import_type, i=i, protocol=protocol)
+                        match += match2
+                    key_list = parse_path(key)
+                    match2, insert2, delete2, op_type = consume_path_token(obj_tql, key_list, v, obj_var, source_var, i, op_type, protocol)
+                    match += match2
+                    insert += insert2
+                    delete += delete2
+                    print(f"\n----------------------- {orig_object['id']}")
+                    print(f"match -> {core_ql+match}")
+                    print(f"insert -> {insert}")
+                    print(f"delete -> {delete}")
         elif diff_type == "dictionary_item_removed" or diff_type == "iterable_item_removed":
             op_type = "remove"
-            for i, key, value in enumerate(diff_value.items()):
+            for key, value in diff_value.items():
+                match = ""
+                insert = ""
+                delete = ""
                 path_list = parse_path(key)
                 source_var = ""
+                i += 1
                 if value_is_id(value):
                     source_var, match2 = get_embedded_match(value, import_type=import_type, i=i, protocol=protocol)
                     match += match + match2
                 key_list = parse_path(key)
                 match2, insert2, delete2, op_type = consume_path_token(obj_tql, key_list, value, obj_var, source_var, i, op_type, protocol)
-                match += match + match2
-                insert += insert + insert2
-                delete += delete + delete2
+                match += match2
+                insert += insert2
+                delete += delete2
+                print(f"\n----------------------- {orig_object['id']}")
+                print(f"match -> {core_ql+match}")
+                print(f"insert -> {insert}")
+                print(f"delete -> {delete}")
         elif diff_type == "values_changed":
             op_type = "change"
-            for i, key, value in enumerate(diff_value.items()):
+            for key, value in diff_value.items():
+                match = ""
+                insert = ""
+                delete = ""
                 path_list = parse_path(key)
+                source_var = ""
+                i += 1
                 if isinstance(value, dict):
                     original_value = value["old_value"]
                     new_value = value["new_value"]
@@ -242,14 +276,14 @@ def handle_object_diff(obj_diff, orig_object, current_obj, connection, import_ty
                         match += match + match2
                     key_list = parse_path(key)
                     match2, insert2, delete2, op_type = consume_path_token(obj_tql, key_list, value, obj_var, source_var, i, op_type, protocol)
-                    match += match + match2
-                    insert += insert + insert2
-                    delete += delete + delete2
+                    match += match2
+                    insert += insert2
+                    delete += delete2
+                    print(f"----------------------- {orig_object['id']}")
+                    print(f"match -> {core_ql+match}")
+                    print(f"insert -> {insert}")
+                    print(f"delete -> {delete}")
         else:
             print(f"We dont account for diff-type -> {diff_type}")
             pass
 
-    print(f"----------------------- {orig_object['id']}")
-    print(f"match -> {match}")
-    print(f"insert -> {insert}")
-    print(f"delete -> {delete}")

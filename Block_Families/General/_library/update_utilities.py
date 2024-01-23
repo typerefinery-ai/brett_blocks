@@ -10,7 +10,7 @@ from stixorm.module.typedb_lib.factories.definition_factory import get_definitio
 from stixorm.module.typedb_lib.factories.import_type_factory import ImportType
 from stixorm.module.typedb_lib.model.definitions import DefinitionName
 
-from stixorm.module.parsing.conversion_decisions import sdo_type_to_tql, sro_type_to_tql, sco__type_to_tql, \
+from stixorm.module.parsing.conversion_decisions import sdo_type_to_tql, sro_type_to_tql, sco_type_to_tql, \
     meta_type_to_tql, get_embedded_match
 stix_models = get_definition_factory_instance().lookup_definition(DefinitionName.STIX_21)
 logger = logging.getLogger(__name__)
@@ -178,16 +178,20 @@ def load_object(term, value, obj_var, source_var, key_list, import_type, inc, op
                     # its a relationship
                     match2, insert2, delete2, op_type = follow_pathway(term3, value, sub_obj_var, source_var, key_list,
                                                                     import_type, inc, op_type, protocol)
+                    match = match + match2
+                    delete = delete + delete2
+                    insert = insert + insert2
                 else:
                     # its  a value
                     prop_var = "$" + sub_obj_tql[term3]
+                    new_var = "$" + "new_" + sub_obj_tql[term3]
                     if op_type == "add":
-                        insert += sub_obj_var + " has " + sub_obj_tql[term3] + " " + prop_var + ";"
-                        insert += prop_var + " " + val_tql(value) + ";"
+                        insert += sub_obj_var + " has " + sub_obj_tql[term3] + " " + new_var + ";"
+                        insert += new_var + " " + val_tql(value) + ";"
                     elif op_type == "change":
                         match += sub_obj_var + " has " + sub_obj_tql[term3] + " " + prop_var + ";"
                         delete += sub_obj_var + " has " + sub_obj_tql[term3] + ";"
-                        insert += sub_obj_var + " has " + sub_obj_tql[term3] + " " + val_tql(value) + ";"
+                        insert += sub_obj_var + " has " + sub_obj_tql[term3] + " " + val_tql(value['new_value']) + ";"
                     if op_type == "remove":
                         match += sub_obj_var + " has " + sub_obj_tql[term3] + " " + prop_var + ";"
                         delete += sub_obj_var + " has " + sub_obj_tql[term3] + ";"
@@ -244,13 +248,14 @@ def list_of_objects(term, value, obj_var, source_var, key_list, import_type, inc
                 else:
                     # its  a value
                     prop_var = "$" + sub_obj_tql[term3]
+                    new_var = "$" + "new_" + sub_obj_tql[term3]
                     if op_type == "add":
                         insert += sub_obj_var + " has " + sub_obj_tql[term3] + " " + prop_var + ";"
                         insert += prop_var + " " + val_tql(value) + ";"
                     elif op_type == "change":
                         match += sub_obj_var + " has " + sub_obj_tql[term3] + " " + prop_var + ";"
                         delete += sub_obj_var + " has " + sub_obj_tql[term3] + ";"
-                        insert += sub_obj_var + " has " + sub_obj_tql[term3] + " " + val_tql(value) + ";"
+                        insert += sub_obj_var + " has " + sub_obj_tql[term3] + " " + val_tql(value['new_value']) + ";"
                     if op_type == "remove":
                         match += sub_obj_var + " has " + sub_obj_tql[term3] + " " + prop_var + ";"
                         delete += sub_obj_var + " has " + sub_obj_tql[term3] + ";"
@@ -462,8 +467,8 @@ def embedded_relation(term, value, obj_var, source_var, key_list, import_type, i
                 if isinstance(value, dict):
                     source_id = value["old_value"]
                     new_id = value["new_value"]
-                    new_var, match2 = get_embedded_match(value, import_type=import_type, i=i, protocol=protocol)
-                    match += match + match2
+                    new_var, match2 = get_embedded_match(new_id, import_type=import_type, i=inc, protocol=protocol)
+                    match += match2
                     match += rel_var + ' (' + owner + ':' + obj_var
                     match += ', ' + pointed_to + ':' + source_var
                     match += ') isa ' + relation + ';\n'
