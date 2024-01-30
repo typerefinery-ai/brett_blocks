@@ -83,6 +83,30 @@ task_ext_id = 'extension-definition--2074a052-8be4-4932-849e-f5e7798e0030'
 task_ext_dict = {task_ext_id: task_ext}
 ident_ext_id = 'extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498'
 inc_ext_id = "extension-definition--ef765651-680c-498d-9894-99799f2fa126"
+from datetime import datetime
+
+def convert_dt(dt_stamp_string):
+    if dt_stamp_string.find(".") >0:
+        dt = datetime.strptime(dt_stamp_string, "%Y-%m-%dT%H:%M:%S.%fZ")
+        microsecs = dt.microsecond
+        milisecs = (round(microsecs / 1000))
+        dt_list = dt_stamp_string.split('.')
+        actual = dt_list[0] + "." + str(milisecs) + "Z"
+    else:
+        if dt_stamp_string.find("T") > 0:
+            dt_list = dt_stamp_string.split('T')
+            t_list = dt_list[1].split(':')
+            if len(t_list) == 3:
+                secs = t_list[2]
+                sec_list = secs.split('Z')
+                actual = dt_list[0] + "T" + t_list[0] + ":" + t_list[1] + ":" + sec_list[0] + ".000Z"
+            else:
+                mins = t_list[1]
+                mins_list = mins.split('Z')
+                actual = dt_list[0] + "T" + t_list[0] + ":" + mins_list[0] + ":00.000Z"
+        else:
+            actual = dt_stamp_string + "T00:00:00.000Z"
+    return actual
 
 def make_impact(impact_form, impacted_entity_counts=None, impacted_refs=None, superseded_by_ref=None):
     # 1. Extract the components of the object
@@ -124,14 +148,29 @@ def make_impact(impact_form, impacted_entity_counts=None, impacted_refs=None, su
 
     if "modified" in required and required["modified"] == "":
         # object needs to be created
-        stix_dict = Impact(**empties_removed)
+        stix_obj = Impact(**empties_removed)
 
     else:
         # object needs to be updated, but we can't
         #  update properly yet, so recreate instead
-        stix_dict = Impact(**empties_removed)
+        stix_obj = Impact(**empties_removed)
 
-    return stix_dict.serialize()
+    stix_dict = json.loads(stix_obj.serialize())
+    time_list = ["created", "modified", "end_time", "start_time"]
+    for tim in time_list:
+        if tim in stix_dict:
+            temp_string = convert_dt(stix_dict[tim])
+            stix_dict[tim] = temp_string
+
+    if "extensions" in stix_dict:
+        extensions = stix_dict["extensions"]
+        if "monetary" in extensions:
+            monetary = extensions["monetary"]
+            if "conversion_time" in monetary:
+                temp_string = convert_dt(monetary["conversion_time"])
+                monetary["conversion_time"] = temp_string
+
+    return stix_dict
 
 
 def main(inputfile, outputfile):
@@ -154,7 +193,7 @@ def main(inputfile, outputfile):
     stix_dict = make_impact(event_form, impacted_entity_counts, impacted_refs, superseded_by_ref)
     results = {}
     results["impact"] = []
-    results["impact"].append(json.loads(stix_dict))
+    results["impact"].append(stix_dict)
     with open(outputfile, "w") as outfile:
         json.dump(results, outfile)
 

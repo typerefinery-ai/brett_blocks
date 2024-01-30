@@ -62,6 +62,30 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 import_type = import_type_factory.get_all_imports()
+from datetime import datetime
+
+def convert_dt(dt_stamp_string):
+    if dt_stamp_string.find(".") >0:
+        dt = datetime.strptime(dt_stamp_string, "%Y-%m-%dT%H:%M:%S.%fZ")
+        microsecs = dt.microsecond
+        milisecs = (round(microsecs / 1000))
+        dt_list = dt_stamp_string.split('.')
+        actual = dt_list[0] + "." + str(milisecs) + "Z"
+    else:
+        if dt_stamp_string.find("T") > 0:
+            dt_list = dt_stamp_string.split('T')
+            t_list = dt_list[1].split(':')
+            if len(t_list) == 3:
+                secs = t_list[2]
+                sec_list = secs.split('Z')
+                actual = dt_list[0] + "T" + t_list[0] + ":" + t_list[1] + ":" + sec_list[0] + ".000Z"
+            else:
+                mins = t_list[1]
+                mins_list = mins.split('Z')
+                actual = dt_list[0] + "T" + t_list[0] + ":" + mins_list[0] + ":00.000Z"
+        else:
+            actual = dt_stamp_string + "T00:00:00.000Z"
+    return actual
 
 
 # 0-A-2  Extensions and Extension ID Definition's that are common
@@ -123,14 +147,21 @@ def make_event(event_form, changed_objects=None,  sighting_refs=None):
 
     if "modified" in required and required["modified"] == "":
         # object needs to be created
-        stix_dict = Event(**empties_removed)
+        stix_obj = Event(**empties_removed)
 
     else:
         # object needs to be updated, but we can't
         #  update properly yet, so recreate instead
-        stix_dict = Event(**empties_removed)
+        stix_obj = Event(**empties_removed)
 
-    return stix_dict.serialize()
+    stix_dict = json.loads(stix_obj.serialize())
+    time_list = ["created", "modified", "end_time", "start_time"]
+    for tim in time_list:
+        if tim in stix_dict:
+            temp_string = convert_dt(stix_dict[tim])
+            stix_dict[tim] = temp_string
+
+    return stix_dict
 
 
 def main(inputfile, outputfile):
@@ -150,7 +181,7 @@ def main(inputfile, outputfile):
     stix_dict = make_event(event_form, changed_objects,  sighting_refs)
     results = {}
     results["event"] = []
-    results["event"].append(json.loads(stix_dict))
+    results["event"].append(stix_dict)
     with open(outputfile, "w") as outfile:
         json.dump(results, outfile)
 

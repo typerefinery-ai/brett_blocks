@@ -63,6 +63,30 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 import_type = import_type_factory.get_all_imports()
+from datetime import datetime
+
+def convert_dt(dt_stamp_string):
+    if dt_stamp_string.find(".") >0:
+        dt = datetime.strptime(dt_stamp_string, "%Y-%m-%dT%H:%M:%S.%fZ")
+        microsecs = dt.microsecond
+        milisecs = (round(microsecs / 1000))
+        dt_list = dt_stamp_string.split('.')
+        actual = dt_list[0] + "." + str(milisecs) + "Z"
+    else:
+        if dt_stamp_string.find("T") > 0:
+            dt_list = dt_stamp_string.split('T')
+            t_list = dt_list[1].split(':')
+            if len(t_list) == 3:
+                secs = t_list[2]
+                sec_list = secs.split('Z')
+                actual = dt_list[0] + "T" + t_list[0] + ":" + t_list[1] + ":" + sec_list[0] + ".000Z"
+            else:
+                mins = t_list[1]
+                mins_list = mins.split('Z')
+                actual = dt_list[0] + "T" + t_list[0] + ":" + mins_list[0] + ":00.000Z"
+        else:
+            actual = dt_stamp_string + "T00:00:00.000Z"
+    return actual
 
 
 def make_identity(identity_form, email_addrs=None, user_accounts=None):
@@ -124,14 +148,21 @@ def make_identity(identity_form, email_addrs=None, user_accounts=None):
 
     if "modified" in required and required["modified"] == "":
         # object needs to be created
-        stix_dict = Identity(**empties_removed)
+        stix_obj = Identity(**empties_removed)
 
     else:
         # object needs to be updated, but we can't
         #  update properly yet, so recreate instead
-        stix_dict = Identity(**empties_removed)
+        stix_obj = Identity(**empties_removed)
 
-    return stix_dict.serialize()
+    stix_dict = json.loads(stix_obj.serialize())
+    time_list = ["created", "modified"]
+    for tim in time_list:
+        if tim in stix_dict:
+            temp_string = convert_dt(stix_dict[tim])
+            stix_dict[tim] = temp_string
+
+    return stix_dict
 
 
 def main(inputfile, outputfile):
@@ -153,7 +184,7 @@ def main(inputfile, outputfile):
     stix_dict = make_identity(identity_form, email_addrs, user_accounts)
     results = {}
     results["identity"] = []
-    results["identity"].append(json.loads(stix_dict))
+    results["identity"].append(stix_dict)
     with open(outputfile, "w") as outfile:
         json.dump(results, outfile)
 

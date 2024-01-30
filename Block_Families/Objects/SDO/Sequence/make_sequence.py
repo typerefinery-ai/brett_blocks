@@ -83,6 +83,30 @@ task_ext_id = 'extension-definition--2074a052-8be4-4932-849e-f5e7798e0030'
 task_ext_dict = {task_ext_id: task_ext}
 ident_ext_id = 'extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498'
 inc_ext_id = "extension-definition--ef765651-680c-498d-9894-99799f2fa126"
+from datetime import datetime
+
+def convert_dt(dt_stamp_string):
+    if dt_stamp_string.find(".") >0:
+        dt = datetime.strptime(dt_stamp_string, "%Y-%m-%dT%H:%M:%S.%fZ")
+        microsecs = dt.microsecond
+        milisecs = (round(microsecs / 1000))
+        dt_list = dt_stamp_string.split('.')
+        actual = dt_list[0] + "." + str(milisecs) + "Z"
+    else:
+        if dt_stamp_string.find("T") > 0:
+            dt_list = dt_stamp_string.split('T')
+            t_list = dt_list[1].split(':')
+            if len(t_list) == 3:
+                secs = t_list[2]
+                sec_list = secs.split('Z')
+                actual = dt_list[0] + "T" + t_list[0] + ":" + t_list[1] + ":" + sec_list[0] + ".000Z"
+            else:
+                mins = t_list[1]
+                mins_list = mins.split('Z')
+                actual = dt_list[0] + "T" + t_list[0] + ":" + mins_list[0] + ":00.000Z"
+        else:
+            actual = dt_stamp_string + "T00:00:00.000Z"
+    return actual
 
 def make_sequence(sequence_form, step_type=None, sequence_type=None, sequenced_object=None, on_completion=None, on_success=None, on_failure=None, next_steps=None):
     # 1. Extract the components of the object
@@ -139,14 +163,21 @@ def make_sequence(sequence_form, step_type=None, sequence_type=None, sequenced_o
 
     if "modified" in required and required["modified"] == "":
         # object needs to be created
-        stix_dict = Sequence(**empties_removed)
+        stix_obj = Sequence(**empties_removed)
 
     else:
         # object needs to be updated, but we can't
         #  update properly yet, so recreate instead
-        stix_dict = Sequence(**empties_removed)
+        stix_obj = Sequence(**empties_removed)
 
-    return stix_dict.serialize()
+    stix_dict = json.loads(stix_obj.serialize())
+    time_list = ["created", "modified"]
+    for tim in time_list:
+        if tim in stix_dict:
+            temp_string = convert_dt(stix_dict[tim])
+            stix_dict[tim] = temp_string
+
+    return stix_dict
 
 
 def main(inputfile, outputfile):
@@ -181,7 +212,7 @@ def main(inputfile, outputfile):
     stix_dict = make_sequence(sequence_form, step_type=step_type, sequence_type=sequence_type, sequenced_object=sequenced_object, on_completion=on_completion, on_success=on_success, on_failure=on_failure, next_steps=next_steps)
     results = {}
     results["sequence"] = []
-    results["sequence"].append(json.loads(stix_dict))
+    results["sequence"].append(stix_dict)
     with open(outputfile, "w") as outfile:
         json.dump(results, outfile)
 

@@ -15,7 +15,7 @@ from stixorm.module.typedb_lib.factories.mappings_factory import get_mapping_fac
 from stixorm.module.typedb_lib.instructions import ResultStatus, Result
 from stixorm.module.parsing import parse_objects
 from deepdiff import DeepDiff, parse_path
-from .update_utilities import follow_pathway
+from Block_Families.General._library.update_utilities import follow_pathway
 from stixorm.module.definitions.property_definitions import is_stix_type, _check_uuid
 from pprint import pprint
 from stixorm.module.typedb_lib.factories.auth_factory import get_auth_factory_instance
@@ -29,6 +29,9 @@ from stixorm.module.orm.import_objects import marking
 attack_model = get_definition_factory_instance().lookup_definition(DefinitionName.ATTACK)
 stix_model = get_definition_factory_instance().lookup_definition(DefinitionName.STIX_21)
 os_threat_model = get_definition_factory_instance().lookup_definition(DefinitionName.OS_THREAT)
+from typedb.driver import TypeDB
+from typedb.api.connection.session import SessionType
+from typedb.api.connection.transaction import TransactionType
 
 import_type = import_type_factory.get_all_imports()
 default_import_type = import_type_factory.get_default_import()
@@ -135,7 +138,7 @@ def stix_to_tql_basis(stix_dict, import_type):
         # - work out the type of object
         sco_tql_name = stix_dict["type"]
         # - get the object-specific typeql names, sighting or relationship
-        obj_tql, sco_tql_name, is_list, protocol = sco__type_to_tql(sco_tql_name, import_type)
+        obj_tql, sco_tql_name, is_list, protocol = sco_type_to_tql(sco_tql_name, import_type)
         # - variable for use in typeql statements
         obj_var = '$' + stix_dict["type"]
         core_ql = obj_var + ' isa ' + sco_tql_name + ', has stix-id $stix-id;\n$stix-id '  + stix_dict["id"] + ';\n'
@@ -204,7 +207,7 @@ def consume_path_token(obj_tql, key_list, value, obj_var, source_var, i, op_type
     return match, insert, delete, op_type
 
 
-def handle_object_diff(obj_diff, orig_object, current_obj, connection, import_type):
+def handle_object_diff(obj_diff, orig_object, current_obj, connection, import_type=import_type):
     #
     # 1. First find the basic data for this object
     i = 0
@@ -237,6 +240,7 @@ def handle_object_diff(obj_diff, orig_object, current_obj, connection, import_ty
                     print(f"match -> {core_ql+match}")
                     print(f"insert -> {insert}")
                     print(f"delete -> {delete}")
+                    update_typeql(core_ql+match, insert, delete, op_type, connection)
         elif diff_type == "dictionary_item_removed" or diff_type == "iterable_item_removed":
             op_type = "remove"
             for key, value in diff_value.items():
@@ -258,6 +262,7 @@ def handle_object_diff(obj_diff, orig_object, current_obj, connection, import_ty
                 print(f"match -> {core_ql+match}")
                 print(f"insert -> {insert}")
                 print(f"delete -> {delete}")
+                update_typeql(core_ql+match, insert, delete, op_type, connection)
         elif diff_type == "values_changed":
             op_type = "change"
             for key, value in diff_value.items():
@@ -283,7 +288,50 @@ def handle_object_diff(obj_diff, orig_object, current_obj, connection, import_ty
                     print(f"match -> {core_ql+match}")
                     print(f"insert -> {insert}")
                     print(f"delete -> {delete}")
+                    update_typeql(core_ql+match, insert, delete, op_type, connection)
         else:
             print(f"We dont account for diff-type -> {diff_type}")
             pass
 
+
+def update_typeql(match, insert, delete, op_type, stix_connection):
+    url = stix_connection["uri"] + ":" + stix_connection["port"]
+    with TypeDB.core_driver(url) as driver:
+        # Stage 1: Create the schema
+        with driver.session(stix_connection["database"], SessionType.DATA) as session:
+            with session.transaction(TransactionType.WRITE) as write_transaction:
+                logger.debug(f'Loading TLP markings')
+                # check match exists
+                match_exists = iterator_has_next(write_transaction.query.get("match " + match + " get; limit 1;"))
+                if match_exists:
+                    if op_type == "add":
+                        typedb_iterator = write_transaction.query.insert("match " + match + " insert " + insert)
+                        logger.debug(f'insert_iterator response ->\n{typedb_iterator}')
+                        for result in typedb_iterator:
+                            logger.info(f'typedb response ->\n{result}')
+                    elif op_type == "remove":
+                        typedb_iterator = write_transaction.query.delete("match " + match + " delete " + delete)
+                        logger.debug(f'remove_iterator response ->\n{typedb_iterator}')
+                        # for result in typedb_iterator:
+                        #     logger.info(f'typedb response ->\n{result}')
+                    elif op_type == "change":
+                        typedb_iterator = write_transaction.query.update("match " + match + " delete " + delete + " insert " + insert)
+                        logger.debug(f'update_iterator response ->\n{typedb_iterator}')
+                        for result in typedb_iterator:
+                            logger.info(f'typedb response ->\n{result}')
+                else:
+                    # ... do something dependent on the match not existing
+                    logger.error(f"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+                    logger.error(f"match error {match}")
+                    logger.error(f"insert error {insert}")
+                    logger.error(f"delete error {delete}\n")
+
+                write_transaction.commit()
+
+
+def iterator_has_next(possible_iter):
+    try:
+        next(possible_iter)
+        return True
+    except StopIteration:
+        return False

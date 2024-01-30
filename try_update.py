@@ -15,9 +15,11 @@ from stixorm.module.typedb_lib.instructions import ResultStatus, Result
 from stixorm.module.parsing import parse_objects
 from deepdiff import DeepDiff, parse_path
 from pprint import pprint
-from Block_Families.General._library.update import handle_object_diff, value_is_id
+from Block_Families.General._library.update import handle_object_diff, value_is_id, find_list_diff
+from Block_Families.General.Update_Context.update_context import load_context, synch_context
 
 import_type = import_type_factory.get_all_imports()
+all_imports = import_type_factory.get_all_imports()
 import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -31,7 +33,7 @@ connection = {
     "user": None,
     "password": None
 }
-def load_context():
+def load_OS_context():
     # 1. Load the Context
     TR_Context_Memory_Path = "./Orchestration/Context_Mem/OS_Threat_Context.json"
     cwd = os.getcwd()
@@ -88,7 +90,7 @@ def load_context():
     return typedb_add_list, t_incident_obj, second_list, incident_obj
 
 
-def find_list_diff(original_list, changed_list):
+def try_find_list_diff(original_list, changed_list):
     original_id_list = [x["id"] for x in original_list]
     changed_id_list = [x["id"] for x in changed_list]
     set_original_id  = set(original_id_list)
@@ -145,11 +147,11 @@ def log_it_obj(object_diff):
 def vary_current_list(current_list):
     for i, obj in enumerate(current_list):
         #print(f"obj id is {obj['id']}")
-        if obj["id"] == "task--3f4c17f0-be79-4394-8cdb-289258a201bb":
+        if obj["type"] == "task":
             obj["name"] = "Potential Phishing Email is Crank"
             # print("&&&&&& Lampie &&&&&&&&&&&&&&")
             # print(obj)
-        elif obj["id"] == "event--aee19ec9-84dc-4a8a-a88a-2dba8da07b08":
+        elif obj["type"] == "event":
             del obj["end_time"]
             # print("****** anecdote$$$$$")
             # print(obj)
@@ -163,11 +165,11 @@ def vary_current_list(current_list):
 def try_update(connection):
     # 1. First add the Step 1 objects to typedb
     #
-    t_original_list, t_original_incident_obj, current_list, current_incident_obj = load_context()
+    t_original_list, t_original_incident_obj, current_list, current_incident_obj = load_OS_context()
     #
     updated_list = vary_current_list(current_list)
     # 2. Find out the set operations between the lists of object already in TypeDB, and the list of objects now
-    delete_object_ids, add_objects_list, may_have_changed_list = find_list_diff(t_original_list, updated_list)
+    delete_object_ids, add_objects_list, may_have_changed_list = try_find_list_diff(t_original_list, updated_list)
     # 3. First address the changed object operations
     for current_obj in may_have_changed_list:
         orig_object = [x for x in t_original_list if x["id"] == current_obj["id"]]
@@ -196,9 +198,103 @@ def try_update(connection):
         diff_local_path = str(current_incident_obj["id"]) + ".json"
         print(f"no change -> {diff_local_path}")
 
+def check_it_worked(OS_Threat_Context_Memory_Path, connection, all_imports):
+    t_original_list, t_original_incident_obj, current_list, current_incident_obj = load_context(
+        OS_Threat_Context_Memory_Path)
+    if t_original_incident_obj != {}:
+        t_original_list.append(t_original_incident_obj)
+    reinitilise = True
+    typedb_sink = TypeDBSink(connection=connection, clear=reinitilise, import_type=all_imports)
+    typedb_source = TypeDBSource(connection=connection, import_type=all_imports)
+    id_list = []
+    stix_list = []
+    id_list = typedb_sink.get_stix_ids()
+    for id in id_list:
+        stix_object = typedb_source.get(id)
+        stix_list.append(json.loads(stix_object.serialize()))
+    # 2. Find out the set operations between the lists of object already in TypeDB, and the list of objects now
+    delete_object_ids, add_objects_list, may_have_changed_list = find_list_diff(t_original_list, stix_list)
+    print(f"summary \ndelete-len {len(delete_object_ids)}, \nadd-len {len(add_objects_list)}, \nmay change {len(may_have_changed_list)}\n")
+    for current_obj in may_have_changed_list:
+        orig_object = [x for x in t_original_list if x["id"] == current_obj["id"]]
+        #print(f"\n current -> {current_obj}")
+        obj_diff = find_obj_diff(orig_object[0], current_obj)
+        if obj_diff != {}:
+            #diff_report = handle_object_diff(obj_diff, orig_object[0], current_obj, connection, import_type)
+            print(f"\nchanged -> {orig_object[0]['id']}")
+            print(f"\nchanged -> {obj_diff}\n")
+        else:
+            #print(f"\nidentical -> {orig_object[0]['id']}")
+            pass
+
+
+def update_context(OS_Threat_Context_Memory_Path, connection, all_imports):
+    #OS_Threat_Context_Memory_Path = "./Orchestration/Context_Mem/OS_Threat_Context.json"
+    # 1. First add the Step 1 objects to typedb
+    #
+    t_original_list, t_original_incident_obj, current_list, current_incident_obj = load_context(OS_Threat_Context_Memory_Path)
+    #
+    #updated_list = vary_current_list(current_list)
+    #
+    # 2. Find out the set operations between the lists of object already in TypeDB, and the list of objects now
+    delete_object_ids, add_objects_list, may_have_changed_list = find_list_diff(t_original_list, current_list)
+    # 3. Setup TypeDB Sink and Source
+    reinitilise = True
+    typedb_sink = TypeDBSink(connection=connection, clear=reinitilise, import_type=all_imports)
+    # 4. Add the new object list to Typedb
+    result_list = []
+    if add_objects_list != []:
+        results_raw = typedb_sink.add(add_objects_list)
+        result_list = [res.model_dump_json() for res in results_raw]
+        print(f"\n result type is {type(result_list)} \n result is -> {result_list}")
+    # 5. Run the Delete object option
+    delete_raw = []
+    if delete_object_ids != set():
+        delete_raw = typedb_sink.delete(delete_object_ids)
+        print(f"\n delete_raw type is {type(delete_raw)} \n delete_raw is -> {delete_raw}")
+    # 6. Calculate whether update is needed per object, if so push it
+    change_list = []
+    for current_obj in may_have_changed_list:
+        orig_object = [x for x in t_original_list if x["id"] == current_obj["id"]]
+        obj_diff = find_obj_diff(orig_object[0], current_obj)
+        if obj_diff != {}:
+            diff_report = handle_object_diff(obj_diff, orig_object[0], current_obj, connection, all_imports)
+            change_list.append(diff_report)
+
+    # 7. Now process the incident diff
+    if t_original_incident_obj != {}:
+        inc_diff = find_obj_diff(t_original_incident_obj, current_incident_obj)
+        if inc_diff != {}:
+            diff_local_path = str(t_original_incident_obj["id"]) + ".json"
+            print(f"\n its a change -> {diff_local_path}")
+            handle_object_diff(inc_diff, t_original_incident_obj, current_incident_obj, connection, all_imports)
+            print(f"\n{inc_diff}\n")
+            with open(diff_local_path, 'w') as f:
+                f.write(json.dumps(inc_diff))
+        else:
+            diff_local_path = str(current_incident_obj["id"]) + ".json"
+            print(f"no change -> {diff_local_path}")
+    report = {}
+    report["add_result"] = result_list
+    report["delete_raw"] = delete_raw
+    report["changed_list"] = change_list
+    report["original_list"] = t_original_list
+    report["original_incident"] = t_original_incident_obj
+    report["current_list"] = current_list
+    report["current_incident"] = current_incident_obj
+
+    synch_context(OS_Threat_Context_Memory_Path)
+    check_it_worked(OS_Threat_Context_Memory_Path, connection, all_imports)
+    return report
+
+
 
 
 # if this file is run directly, then start here
 if __name__ == '__main__':
-    try_update(connection)
+    #try_update(connection)
     #testuuid()
+    report = update_context("./Orchestration/Context_Mem/OS_Threat_Context.json", connection, all_imports)
+    # print("=================================================")
+    # print(report)
+    # print("==================================================")

@@ -64,6 +64,16 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 import_type = import_type_factory.get_all_imports()
+from datetime import datetime
+
+def convert_dt(dt_stamp_string):
+    dt = datetime.strptime(dt_stamp_string, "%Y-%m-%dT%H:%M:%S.%fZ")
+    microsecs = dt.microsecond
+    milisecs = (round(microsecs / 1000))
+    dt_list = dt_stamp_string.split('.')
+    actual = dt_list[0] + "." + str(milisecs) + "Z"
+    return actual
+
 
 
 def make_sro(sro_form, source, target, relationship_type):
@@ -104,14 +114,21 @@ def make_sro(sro_form, source, target, relationship_type):
 
     if "modified" in required and required["modified"] == "":
         # object needs to be created
-        stix_dict = Relationship(**empties_removed)
+        stix_obj = Relationship(**empties_removed)
 
     else:
         # object needs to be updated, but we can't
         #  update properly yet, so recreate instead
-        stix_dict = Relationship(**empties_removed)
+        stix_obj = Relationship(**empties_removed)
 
-    return stix_dict.serialize()
+    stix_dict = json.loads(stix_obj.serialize())
+    time_list = ["created", "modified", "start_time", "stop_time"]
+    for tim in time_list:
+        if tim in stix_dict:
+            temp_string = convert_dt(stix_dict[tim])
+            stix_dict[tim] = temp_string
+
+    return stix_dict
 
 
 def main(inputfile, outputfile):
@@ -134,7 +151,7 @@ def main(inputfile, outputfile):
     stix_dict = make_sro(sro_form, source, target, relationship_type)
     results = {}
     results["relationship"] = []
-    results["relationship"].append(json.loads(stix_dict))
+    results["relationship"].append(stix_dict)
     with open(outputfile, "w") as outfile:
         json.dump(results, outfile)
 

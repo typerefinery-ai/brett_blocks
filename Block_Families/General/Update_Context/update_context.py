@@ -73,56 +73,97 @@ def load_context(OS_Threat_Context_Memory_Path):
     # 1. Load the Context
     with open(OS_Threat_Context_Memory_Path, "r") as context_file:
         OS_Threat_Context = json.load(context_file)
-    #
-    # 2. Setup the  TR User Context
-    #
-    local = OS_Threat_Context["local"]
-    me = local["me"]
-    team = local["team"]
-    company = local["company"]
-    systems = local["systems"]
-    assets = local["assets"]
-    #
-    # 3. Setup the Incident Context
-    #
-    incident = OS_Threat_Context["incident"]
-    sequence_start_objs = incident["sequence_start_objs"]
-    sequence_objs = incident["sequence_objs"]
-    task_objs = incident["task_objs"]
-    event_objs = incident["event_objs"]
-    impact_objs = incident["impact_objs"]
-    other_object_objs = incident["other_object_objs"]
-    incident_obj = incident["incident_obj"]
+        #
+        # 2. Setup the  TR User Context
+        #
+        local = OS_Threat_Context["local"]
+        local_context = local["context"]
+        me = local_context["me"]
+        team = local_context["team"]
+        company = local_context["company"]
+        systems = local_context["systems"]
+        assets = local_context["assets"]
+        #
+        # 3. Setup the Incident Context
+        #
+        local_incident = local["incident"]
+        sequence_start_objs = local_incident["sequence_start_objs"]
+        sequence_objs = local_incident["sequence_objs"]
+        task_objs = local_incident["task_objs"]
+        event_objs = local_incident["event_objs"]
+        impact_objs = local_incident["impact_objs"]
+        other_object_objs = local_incident["other_object_objs"]
+        incident_obj = local_incident["incident_obj"]
+        #
+        # 4. Load the TypeDB Context
+        #
+        remote = OS_Threat_Context["remote"]
+        remote_incident = remote["incident"]
+        r_sequence_start_objs = remote_incident["sequence_start_objs"]
+        r_sequence_objs = remote_incident["sequence_objs"]
+        r_task_objs = remote_incident["task_objs"]
+        r_event_objs = remote_incident["event_objs"]
+        r_impact_objs = remote_incident["impact_objs"]
+        r_other_object_objs = remote_incident["other_object_objs"]
+        r_incident_obj = remote_incident["incident_obj"]
+        remote_context = remote["context"]
+        r_me = remote_context["me"]
+        r_team = remote_context["team"]
+        r_company = remote_context["company"]
+        r_systems = remote_context["systems"]
+        r_assets = remote_context["assets"]
+        #
+        # 5. Add the lists together and put them into typedb
+        #
+        remote_list = r_sequence_start_objs + r_sequence_objs + r_task_objs + r_event_objs + r_other_object_objs + r_impact_objs
+        remote_list = remote_list + r_me + r_team + r_company + r_systems + r_assets
+        second_list = sequence_start_objs + sequence_objs + task_objs + event_objs + impact_objs + other_object_objs
+        second_list = second_list + me + team + company + systems + assets
 
-    #
-    # 4. Load the TypeDB Context
-    #
-    typedb = OS_Threat_Context["typedb"]
-    t_sequence_start_objs = typedb["sequence_start_objs"]
-    t_sequence_objs = typedb["sequence_objs"]
-    t_task_objs = typedb["task_objs"]
-    t_event_objs = typedb["event_objs"]
-    t_impact_objs = typedb["impact_objs"]
-    t_other_object_objs = typedb["other_object_objs"]
-    t_incident_obj = typedb["incident_obj"]
-    #
-    # 5. Add the lists together and put them into typedb
-    #
-    typedb_add_list = t_sequence_start_objs + t_sequence_objs + t_task_objs + t_event_objs + t_other_object_objs + t_impact_objs
-    typedb_add_list = typedb_add_list + me + team + company + systems + assets
-    second_list = sequence_start_objs + sequence_objs + task_objs + event_objs + impact_objs + other_object_objs
-    second_list = second_list + me + team + company + systems + assets
-    # typedb_add_list.append(t_incident_obj)
-    # typedb_sink = TypeDBSink(connection, True, import_type)
-    # results_raw = typedb_sink.add(typedb_add_list)
-    # result_list = [res.model_dump_json() for res in results_raw]
-    # for res in result_list:
-    #     print(f"\n result is -> {res}")
-    return typedb_add_list, t_incident_obj, second_list, incident_obj
+    return remote_list, r_incident_obj, second_list, incident_obj
 
 
-def update_context(OS_Threat_Context, connection, original_stix,  current_stix):
-    OS_Threat_Context_Memory_Path = "./Orchestration/Context_Mem/OS_Threat_Context.json"
+def synch_context(OS_Threat_Context_Memory_Path):
+    # 1. Load the Context
+    OS_Threat_Context = {}
+    with open(OS_Threat_Context_Memory_Path, "r") as context_file:
+        OS_Threat_Context = json.load(context_file)
+        #
+        # 2. Setup the Context variables
+        #
+        local = OS_Threat_Context["local"]
+        local_context = local["context"]
+        local_incident = local["incident"]
+        remote = OS_Threat_Context["remote"]
+        remote_incident = remote["incident"]
+        remote_context = remote["context"]
+        #
+        # 3. Copy the local onto the remote
+        #
+        remote_incident["sequence_start_objs"] = local_incident["sequence_start_objs"]
+        remote_incident["sequence_objs"] =local_incident["sequence_objs"]
+        remote_incident["task_objs"] = local_incident["task_objs"]
+        remote_incident["event_objs"] = local_incident["event_objs"]
+        remote_incident["impact_objs"] = local_incident["impact_objs"]
+        remote_incident["other_object_objs"] = local_incident["other_object_objs"]
+        remote_incident["incident_obj"] = local_incident["incident_obj"]
+        remote_context["me"] = local_context["me"]
+        remote_context["team"] = local_context["team"]
+        remote_context["company"] = local_context["company"]
+        remote_context["systems"] = local_context["systems"]
+        remote_context["assets"] = local_context["assets"]
+    #
+    # 4. Export the context
+    #
+    with open(OS_Threat_Context_Memory_Path, 'w') as f:
+        f.write(json.dumps(OS_Threat_Context))
+
+    return
+
+
+
+def update_context(OS_Threat_Context_Memory_Path, connection, original_stix,  current_stix):
+    #OS_Threat_Context_Memory_Path = "./Orchestration/Context_Mem/OS_Threat_Context.json"
     # 1. First add the Step 1 objects to typedb
     #
     t_original_list, t_original_incident_obj, current_list, current_incident_obj = load_context(OS_Threat_Context_Memory_Path)
@@ -161,7 +202,7 @@ def update_context(OS_Threat_Context, connection, original_stix,  current_stix):
 
 
 def main(inputfile, outputfile):
-    OS_Threat_Context = ""
+    OS_Threat_Context_Memory_Path = ""
     connection = {}
     original_stix = {}
     current_stix = {}
@@ -170,7 +211,7 @@ def main(inputfile, outputfile):
             input_data = json.load(script_input)
 
     if "OS_Threat_Context" in input_data:
-        OS_Threat_Context = input_data["OS_Threat_Context"]
+        OS_Threat_Context_Memory_Path = input_data["OS_Threat_Context"]
     if "connection" in input_data:
         connection = input_data["connection"]
     if "original_stix" in input_data:
@@ -180,7 +221,7 @@ def main(inputfile, outputfile):
 
     # setup logger for execution
     report = {}
-    report = update_context(OS_Threat_Context, connection, original_stix,  current_stix)
+    report = update_context(OS_Threat_Context_Memory_Path, connection, original_stix,  current_stix)
     results = {}
     results["context_update_record"] = []
     results["context_update_record"].append(json.loads(report))
