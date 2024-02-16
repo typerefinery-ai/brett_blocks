@@ -157,7 +157,7 @@ def main(inputfile, outputfile):
     results["observed-data"] = []
     results["observed-data"].append(stix_dict)
     with open(outputfile, "w") as outfile:
-        json.dump(results, outfile)
+        json.dump(stix_dict, outfile)
 
 
 ################################################################################

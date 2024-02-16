@@ -1,4 +1,3 @@
-
 ################################################################################
 ## header start                                                               ##
 ################################################################################
@@ -118,7 +117,7 @@ def make_indicator(indicator_form, pattern=None):
             empties_removed[k] = v
 
     if pattern and pattern != "":
-        empties_removed["pattern"] = pattern
+        empties_removed["pattern"] = pattern["pattern"]
 
     if "modified" in required and required["modified"] == "":
         # object needs to be created
@@ -141,13 +140,15 @@ def make_indicator(indicator_form, pattern=None):
 
 def main(inputfile, outputfile):
     pattern = None
+    print(f"inputfile->{inputfile}")
     if os.path.exists(inputfile):
+        print(f"path exists")
         with open(inputfile, "r") as script_input:
             input = json.load(script_input)
+            print(f"input->{input}")
     indicator_form = input["indicator_form"]
     if "pattern" in input:
         pattern = input["pattern"]
-
 
     # setup logger for execution
     stix_dict = make_indicator(indicator_form, pattern)
@@ -155,7 +156,7 @@ def main(inputfile, outputfile):
     results["indicator"] = []
     results["indicator"].append(stix_dict)
     with open(outputfile, "w") as outfile:
-        json.dump(results, outfile)
+        json.dump(stix_dict, outfile)
 
 
 ################################################################################

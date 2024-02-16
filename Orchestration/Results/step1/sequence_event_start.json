@@ -1,1 +1,19 @@
-{"sequence": [{"type": "sequence", "spec_version": "2.1", "id": "sequence--4deb3a4b-adf2-4dc5-9413-865f03aa578b", "created": "2024-01-29T08:26:57.806Z", "modified": "2024-01-29T08:26:57.806Z", "sequence_type": "event", "step_type": "start_step", "on_completion": "sequence--443befbf-4c6c-43e6-a710-b23d99dbff1e", "extensions": {"extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {"extension_type": "new-sdo"}}}]}
+{
+  "sequence": [
+    {
+      "type": "sequence",
+      "spec_version": "2.1",
+      "id": "sequence--7af24bb8-cd38-4e6f-ba3b-b93289237798",
+      "created": "2024-02-03T00:17:01.180Z",
+      "modified": "2024-02-03T00:17:01.180Z",
+      "sequence_type": "event",
+      "step_type": "start_step",
+      "on_completion": "sequence--3786562e-f32c-4b96-838b-db96d1528af0",
+      "extensions": {
+        "extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {
+          "extension_type": "new-sdo"
+        }
+      }
+    }
+  ]
+}

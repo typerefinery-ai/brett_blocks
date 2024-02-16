@@ -69,6 +69,16 @@ logger.setLevel(logging.INFO)
 
 import_type = import_type_factory.get_all_imports()
 
+local = {
+    "me" : "/local_me.json",
+    "team" : "/local_team.json",
+    "users": "/base/local_users.json",
+    "company" : "/base/local_company.json",
+    "assets" : "/base/local_assets.json",
+    "systems" : "/base/local_systems.json",
+    "relations" : "/base/local_relations.json"
+}
+
 def load_context(OS_Threat_Context_Memory_Path):
     # 1. Load the Context
     with open(OS_Threat_Context_Memory_Path, "r") as context_file:

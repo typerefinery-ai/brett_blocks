@@ -1,0 +1,13 @@
+{
+  "type": "identity",
+  "property": {
+      "path": [],
+      "comparator": "",
+      "source_path": []
+    },
+  "embedded": {
+      "path": [],
+      "comparator": "",
+      "source_path": []
+    }
+}

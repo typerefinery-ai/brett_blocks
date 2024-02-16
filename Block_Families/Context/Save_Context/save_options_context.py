@@ -58,32 +58,71 @@ logger.setLevel(logging.INFO)
 
 import_type = import_type_factory.get_all_imports()
 
-TR_Context_Memory_Path = "./Context_Mem/OS_Threat_Context.json"
+TR_Context_Memory_Dir = "./Context_Mem"
+local = {
+    "me" : "/local_me.json",
+    "team" : "/local_team.json",
+    "users": "/base/local_users.json",
+    "company" : "/base/local_company.json",
+    "assets" : "/base/local_assets.json",
+    "systems" : "/base/local_systems.json",
+    "relations" : "/base/local_relations.json"
+}
 
-def save_context(context, context_path=None):
+def save_context(stix_object, context_type):
     # 1. Extract the components of the object
 
-    if context_path:
-        TR_Context_Memory_Path = context_path
+    if context_type:
+        TR_Context_Filename = TR_Context_Memory_Dir + local[context_type]
+    else:
+        return "context_type unknown " + str(context_type)
 
-    with open(TR_Context_Memory_Path, 'w') as f:
-        f.write(json.dumps(context))
+    # does directory exits
+    if not os.path.exists(TR_Context_Memory_Dir):
+        os.makedirs(TR_Context_Memory_Dir)
+    if not os.path.exists(TR_Context_Memory_Dir + "/base"):
+        os.makedirs(TR_Context_Memory_Dir)
 
-    return
+    # does file exist
+    exists = False
+    stix_list = []
+    # if file exists, replce existing object if it exists, else add it, else create the list and add it
+    if os.path.exists(TR_Context_Filename):
+        with open(TR_Context_Filename, "r") as mem_input:
+            stix_list = json.load(mem_input)
+            # does the stix_object already appear in the list?
+            for i in range(len(stix_list)):
+                if stix_list[i]["id"] == stix_object["id"]:
+                    stix_list[i] = stix_object
+                    exists = True
+            if not exists:
+                stix_list.append(stix_object)
+    else:
+        stix_list.append(stix_object)
+
+    with open(TR_Context_Filename, 'w') as f:
+        f.write(json.dumps(stix_list))
+
+    return " context saved -> " + str(context_type)
 
 
 def main(inputfile, outputfile):
-    context_path = None
+    context_type = None
+    stix_object = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
             input = json.load(script_input)
-    context = input["context"]
-    if "context_path" in input:
-        context_path = input["context_path"]
-
+    stix_object = input["stix_object"]
+    if "context_type" in input:
+        context_type = input["context_type"]
 
     # setup logger for execution
-    save_context(context, context_path)
+    result_string = save_context(stix_object, context_type["context_type"])
+    context_result = {}
+    context_result["context_result"] = result_string
+
+    with open(outputfile, "w") as outfile:
+        json.dump(context_result, outfile)
 
 
 ################################################################################

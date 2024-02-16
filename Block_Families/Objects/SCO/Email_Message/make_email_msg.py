@@ -174,7 +174,7 @@ def main(inputfile, outputfile):
     results["email-message"] = []
     results["email-message"].append(stix_dict)
     with open(outputfile, "w") as outfile:
-        json.dump(results, outfile)
+        json.dump(stix_dict, outfile)
 
 
 ################################################################################

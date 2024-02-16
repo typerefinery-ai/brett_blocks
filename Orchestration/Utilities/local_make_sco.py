@@ -54,15 +54,11 @@ def invoke_make_email_addr_block(email_path, results_path, acct_results=None):
     # Retrieve the saved file
     if os.path.exists(email_results_rel_path):
         with open(email_results_rel_path, "r") as script_input:
-            export_data = json.load(script_input)
-            export_data_list = export_data["email-addr"]
-            stix_object = export_data_list[0]
+            stix_object = json.load(script_input)
             # convert it into a Stix Object and append to the bundle
             email_addr = EmailAddress(**stix_object)
             print(email_addr.serialize(pretty=True))
-            local_list = []
-            local_list.append(conv(email_addr))
-            return local_list
+            return conv(email_addr)
 
 
 def invoke_make_user_account_block(user_path, results_path):
@@ -80,15 +76,11 @@ def invoke_make_user_account_block(user_path, results_path):
     # Retrieve the saved file
     if os.path.exists(acct_results_rel_path):
         with open(acct_results_rel_path, "r") as script_input:
-            export_data = json.load(script_input)
-            export_data_list = export_data["user-account"]
-            stix_object = export_data_list[0]
+            stix_object = json.load(script_input)
             # convert it into a Stix Object and append to the bundle
             usr_acct = UserAccount(**stix_object)
             print(usr_acct.serialize(pretty=True))
-            local_list = []
-            local_list.append(conv(usr_acct))
-            return local_list
+            return conv(usr_acct)
 
 
 
@@ -122,15 +114,11 @@ def invoke_make_url_block(url_path, results_path, hyperlink=None):
     if hyperlink:
         if os.path.exists(url_results_rel_path):
             with open(url_results_rel_path, "r") as script_input:
-                export_data = json.load(script_input)
-                export_data_list = export_data["url"]
-                stix_object = export_data_list[0]
+                stix_object = json.load(script_input)
                 # 4. convert it into a Stix Object and append to the bundle
                 url_object = URL(**stix_object)
                 print(url_object.serialize(pretty=True))
-                local_list = []
-                local_list.append(conv(url_object))
-                return local_list
+                return conv(url_object)
 
 
 def invoke_make_e_msg_block(msg_path, results_path, from_ref=None, to_refs=None, cc_refs=None, bcc_refs=None):
@@ -167,15 +155,11 @@ def invoke_make_e_msg_block(msg_path, results_path, from_ref=None, to_refs=None,
     # 3. Retrieve the saved file
     if os.path.exists(msg_results_rel_path):
         with open(msg_results_rel_path, "r") as script_input:
-            export_data = json.load(script_input)
-            export_data_list = export_data["email-message"]
-            stix_object = export_data_list[0]
+            stix_object = json.load(script_input)
             # 4. convert it into a Stix Object and append to the bundle
             msg_object = EmailMessage(**stix_object)
             print(msg_object.serialize(pretty=True))
-            local_list = []
-            local_list.append(conv(msg_object))
-            return local_list
+            return conv(msg_object)
 
 
 
@@ -209,12 +193,8 @@ def invoke_make_anecdote_block(anecdote_path, results_path, anecdote_reporter=No
     # Retrieve the saved file
     if os.path.exists(anecdote_results_rel_path):
         with open(anecdote_results_rel_path, "r") as script_input:
-            export_data = json.load(script_input)
-            export_data_list = export_data["anecdote"]
-            stix_object = export_data_list[0]
+            stix_object = json.load(script_input)
             # convert it into a Stix Object and append to the bundle
             anecdote = Anecdote(**stix_object)
             print(anecdote.serialize(pretty=True))
-            local_list = []
-            local_list.append(conv(anecdote))
-            return local_list
+            return conv(anecdote)

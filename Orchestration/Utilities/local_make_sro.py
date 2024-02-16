@@ -50,15 +50,11 @@ def invoke_sro_block(sro_data_path, results_path, source=None, target=None, rela
     # Retrieve the saved file
     if os.path.exists(sro_results_rel_path):
         with open(sro_results_rel_path, "r") as script_input:
-            export_data = json.load(script_input)
-            export_data_list = export_data["relationship"]
-            stix_object = export_data_list[0]
+            stix_object = json.load(script_input)
             # convert it into a Stix Object and append to the bundle
             sro = Relationship(**stix_object)
             print(sro.serialize(pretty=True))
-            local_list = []
-            local_list.append(conv(sro))
-            return local_list
+            return conv(sro)
 
 
 
@@ -90,13 +86,9 @@ def invoke_sighting_block(sighting_data_path, results_path, observed=None, sight
     # Retrieve the saved file
     if os.path.exists(sighting_results_rel_path):
         with open(sighting_results_rel_path, "r") as script_input:
-            export_data = json.load(script_input)
-            export_data_list = export_data["sighting"]
-            stix_object = export_data_list[0]
+            stix_object = json.load(script_input)
             # convert it into a Stix Object and append to the bundle
             sighting = Sighting(**stix_object)
             print(sighting.serialize(pretty=True))
-            local_list = []
-            local_list.append(conv(sighting))
-            return local_list
+            return conv(sighting)
 

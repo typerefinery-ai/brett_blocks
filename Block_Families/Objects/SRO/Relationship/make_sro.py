@@ -153,7 +153,7 @@ def main(inputfile, outputfile):
     results["relationship"] = []
     results["relationship"].append(stix_dict)
     with open(outputfile, "w") as outfile:
-        json.dump(results, outfile)
+        json.dump(stix_dict, outfile)
 
 
 ################################################################################

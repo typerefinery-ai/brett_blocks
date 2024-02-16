@@ -108,7 +108,7 @@ task_ext_dict = {task_ext_id: task_ext}
 ident_ext_id = 'extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498'
 inc_ext_id = "extension-definition--ef765651-680c-498d-9894-99799f2fa126"
 
-def make_sighting(sighting_form, observed_data_refs, where_sighted_refs, sighting_of_ref):
+def make_sighting(sighting_form, observed_data_refs, sighting_of_ref, where_sighted_refs=None):
     # 1. Extract the components of the object
     required = sighting_form["base_required"]
     optional = sighting_form["base_optional"]
@@ -151,15 +151,15 @@ def make_sighting(sighting_form, observed_data_refs, where_sighted_refs, sightin
     if where_sighted_refs:
         wherelist = []
         for where in where_sighted_refs:
-            wherelist.append(where)
+            wherelist.append(where["id"])
         contents["where_sighted_refs"] = wherelist
     if observed_data_refs:
         obs_list = []
-        for where in observed_data_refs:
-            obs_list.append(where)
+        for obs in observed_data_refs:
+            obs_list.append(obs["id"])
         contents["observed_data_refs"] = obs_list
     if sighting_of_ref:
-        contents["sighting_of_ref"] = sighting_of_ref
+        contents["sighting_of_ref"] = sighting_of_ref["id"]
 
     for (k,v) in contents.items():
         if v == "":
@@ -212,7 +212,7 @@ def main(inputfile, outputfile):
     results["sighting"] = []
     results["sighting"].append(stix_dict)
     with open(outputfile, "w") as outfile:
-        json.dump(results, outfile)
+        json.dump(stix_dict, outfile)
 
 
 ################################################################################

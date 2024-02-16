@@ -119,7 +119,7 @@ def main(inputfile, outputfile):
     results["anecdote"] = []
     results["anecdote"].append(json.loads(stix_dict))
     with open(outputfile, "w") as outfile:
-        json.dump(results, outfile)
+        json.dump(json.loads(stix_dict), outfile)
 
 
 ################################################################################

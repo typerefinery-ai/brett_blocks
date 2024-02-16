@@ -49,15 +49,11 @@ def invoke_make_observed_data_block(obs_path, results_path, observation=None,):
     # Retrieve the saved file
     if os.path.exists(obs_results_rel_path):
         with open(obs_results_rel_path, "r") as script_input:
-            export_data = json.load(script_input)
-            export_data_list = export_data["observed-data"]
-            stix_object = export_data_list[0]
+            stix_object = json.load(script_input)
             # convert it into a Stix Object and append to the bundle
             obs = ObservedData(**stix_object)
             print(obs.serialize(pretty=True))
-            local_list = []
-            local_list.append(conv(obs))
-            return local_list
+            return conv(obs)
 
 
 def invoke_make_indicator_block(ind_path, results_path, pattern=None,):
@@ -84,15 +80,11 @@ def invoke_make_indicator_block(ind_path, results_path, pattern=None,):
     # Retrieve the saved file
     if os.path.exists(ind_results_rel_path):
         with open(ind_results_rel_path, "r") as script_input:
-            export_data = json.load(script_input)
-            export_data_list = export_data["indicator"]
-            stix_object = export_data_list[0]
+            stix_object = json.load(script_input)
             # convert it into a Stix Object and append to the bundle
             ind = Indicator(**stix_object)
             print(ind.serialize(pretty=True))
-            local_list = []
-            local_list.append(conv(ind))
-            return local_list
+            return conv(ind)
 
 
 def invoke_make_event_block(event_path, results_path, changed_objects=None,sighting_refs=None):
@@ -120,15 +112,11 @@ def invoke_make_event_block(event_path, results_path, changed_objects=None,sight
     # Retrieve the saved file
     if os.path.exists(event_results_rel_path):
         with open(event_results_rel_path, "r") as script_input:
-            export_data = json.load(script_input)
-            export_data_list = export_data["event"]
-            stix_object = export_data_list[0]
+            stix_object = json.load(script_input)
             # convert it into a Stix Object and append to the bundle
             obs = Event(**stix_object)
             print(obs.serialize(pretty=True))
-            local_list = []
-            local_list.append(conv(obs))
-            return local_list
+            return conv(obs)
 
 
 def invoke_make_sequence_block(sequence_path, results_path, step_type=None, sequence_type=None, sequenced_object=None, on_completion=None, on_success=None, on_failure=None, next_steps=None):
@@ -166,15 +154,11 @@ def invoke_make_sequence_block(sequence_path, results_path, step_type=None, sequ
     # Retrieve the saved file
     if os.path.exists(sequence_results_rel_path):
         with open(sequence_results_rel_path, "r") as script_input:
-            export_data = json.load(script_input)
-            export_data_list = export_data["sequence"]
-            stix_object = export_data_list[0]
+            stix_object = json.load(script_input)
             # convert it into a Stix Object and append to the bundle
             seq = Sequence(**stix_object)
             print(seq.serialize(pretty=True))
-            local_list = []
-            local_list.append(conv(seq))
-            return local_list
+            return conv(seq)
 
 
 def invoke_make_task_block(task_path, results_path, changed_objects=None):
@@ -200,15 +184,11 @@ def invoke_make_task_block(task_path, results_path, changed_objects=None):
     # Retrieve the saved file
     if os.path.exists(task_results_rel_path):
         with open(task_results_rel_path, "r") as script_input:
-            export_data = json.load(script_input)
-            export_data_list = export_data["task"]
-            stix_object = export_data_list[0]
+            stix_object = json.load(script_input)
             # convert it into a Stix Object and append to the bundle
             task = Task(**stix_object)
             print(task.serialize(pretty=True))
-            local_list = []
-            local_list.append(conv(task))
-            return local_list
+            return conv(task)
 
 
 
@@ -238,15 +218,11 @@ def invoke_make_identity_block(ident_path, results_path, email_results=None, acc
     # Retrieve the saved file
     if os.path.exists(ident_results_rel_path):
         with open(ident_results_rel_path, "r") as script_input:
-            export_data = json.load(script_input)
-            export_data_list = export_data["identity"]
-            stix_object = export_data_list[0]
+            stix_object = json.load(script_input)
             # convert it into a Stix Object and append to the bundle
             ident = Identity(**stix_object)
             print(ident.serialize(pretty=True))
-            local_list = []
-            local_list.append(conv(ident))
-            return local_list
+            return conv(ident)
 
 
 
@@ -284,15 +260,11 @@ def invoke_make_incident_block(inc_path, results_path, sequence_start_refs=None,
     # Retrieve the saved file
     if os.path.exists(inc_results_rel_path):
         with open(inc_results_rel_path, "r") as script_input:
-            export_data = json.load(script_input)
-            export_data_list = export_data["incident"]
-            stix_object = export_data_list[0]
+            stix_object = json.load(script_input)
             # convert it into a Stix Object and append to the bundle
             ident = Incident(**stix_object)
             print(ident.serialize(pretty=True))
-            local_list = []
-            local_list.append(conv(ident))
-            return local_list
+            return conv(ident)
 
 
 
@@ -324,12 +296,8 @@ def invoke_make_impact_block(impact_path, results_path, impacted_entity_counts=N
     # Retrieve the saved file
     if os.path.exists(impact_results_rel_path):
         with open(impact_results_rel_path, "r") as script_input:
-            export_data = json.load(script_input)
-            export_data_list = export_data["impact"]
-            stix_object = export_data_list[0]
+            stix_object = json.load(script_input)
             # convert it into a Stix Object and append to the bundle
             impact = Impact(**stix_object)
             print(impact.serialize(pretty=True))
-            local_list = []
-            local_list.append(conv(impact))
-            return local_list
+            return conv(impact)

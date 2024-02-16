@@ -1,1 +1,1 @@
-{"email-addr": [{"type": "email-addr", "spec_version": "2.1", "id": "email-addr--72fa6570-cce5-5be5-916d-452de0e1adb5", "value": "wwhilly@example.com", "display_name": "Whooping Willy", "belongs_to_ref": "user-account--113460bd-67f7-5611-bbbb-158d5c45255e"}]}
+{"type": "email-addr", "spec_version": "2.1", "id": "email-addr--72fa6570-cce5-5be5-916d-452de0e1adb5", "value": "wwhilly@example.com", "display_name": "Whooping Willy", "belongs_to_ref": "user-account--113460bd-67f7-5611-bbbb-158d5c45255e"}

@@ -143,7 +143,7 @@ def make_event(event_form, changed_objects=None,  sighting_refs=None):
         empties_removed["changed_objects"] = changed_objects
 
     if sighting_refs:
-        empties_removed["sighting_refs"] = sighting_refs
+        empties_removed["sighting_refs"] = sighting_refs["id"]
 
     if "modified" in required and required["modified"] == "":
         # object needs to be created
@@ -173,8 +173,8 @@ def main(inputfile, outputfile):
     event_form = input["event_form"]
     if "changed_objects" in input:
         changed_objects = input["changed_objects"]
-    if "sighting_refs" in input:
-        sighting_refs = input["sighting_refs"]
+    if "sighting" in input:
+        sighting_refs = input["sighting"]
 
 
     # setup logger for execution
@@ -183,7 +183,7 @@ def main(inputfile, outputfile):
     results["event"] = []
     results["event"].append(stix_dict)
     with open(outputfile, "w") as outfile:
-        json.dump(results, outfile)
+        json.dump(stix_dict, outfile)
 
 
 ################################################################################

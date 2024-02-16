@@ -200,7 +200,7 @@ def main(inputfile, outputfile):
     results["incident"] = []
     results["incident"].append(stix_dict)
     with open(outputfile, "w") as outfile:
-        json.dump(results, outfile)
+        json.dump(stix_dict, outfile)
 
 
 ################################################################################

@@ -1,0 +1,8 @@
+{
+  "type": "email-addr",
+  "property": {
+      "path": ["value"],
+      "source_path": ["value"],
+      "comparator": "EQ"
+    }
+}

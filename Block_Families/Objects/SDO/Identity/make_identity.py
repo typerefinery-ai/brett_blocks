@@ -1,4 +1,3 @@
-
 ################################################################################
 ## header start                                                               ##
 ################################################################################
@@ -89,7 +88,8 @@ def convert_dt(dt_stamp_string):
     return actual
 
 
-def make_identity(identity_form, email_addrs=None, user_accounts=None):
+def make_identity(identity_form, email_addr=None, user_account=None):
+    print(f"Step 1 >>")
     # 1. Extract the components of the object
     required = identity_form["base_required"]
     optional = identity_form["base_optional"]
@@ -99,6 +99,7 @@ def make_identity(identity_form, email_addrs=None, user_accounts=None):
     contents = {}
     empties_removed = {}
     # 2. Setup Object Params first
+    print(f"Step 2 >>")
     for k, v in main.items():
         contents[k] = v
     for k, v in optional.items():
@@ -115,9 +116,12 @@ def make_identity(identity_form, email_addrs=None, user_accounts=None):
             if "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498" in extensions:
                 identity_contact = extensions["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]
                 stix_list = []
+                print(f"#>> v {v}")
+                print(f"#>> email_addrs {email_addr}")
                 for i, val in enumerate(v):
-                    email_addr_dict = email_addrs[i]
-                    val["email_address_ref"] = email_addr_dict["id"]
+                    print(f"#>> v {v}")
+                    if email_addr:
+                        val["email_address_ref"] = email_addr["id"]
                     stix_list.append(EmailContact(**val))
                 identity_contact["email_addresses"] = stix_list
         if k == "social_media_accounts":
@@ -125,8 +129,8 @@ def make_identity(identity_form, email_addrs=None, user_accounts=None):
                 identity_contact = extensions["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]
                 stix_list = []
                 for i, val in enumerate(v):
-                    usr_acct_dict = user_accounts[i]
-                    val["user_account_ref"] = usr_acct_dict["id"]
+                    if user_account:
+                        val["user_account_ref"] = user_account["id"]
                     stix_list.append(SocialMediaContact(**val))
                 identity_contact["social_media_accounts"] = stix_list
 
@@ -156,6 +160,7 @@ def make_identity(identity_form, email_addrs=None, user_accounts=None):
         stix_obj = Identity(**empties_removed)
 
     stix_dict = json.loads(stix_obj.serialize())
+    print(f"Step 3 >>")
     time_list = ["created", "modified"]
     for tim in time_list:
         if tim in stix_dict:
@@ -172,21 +177,16 @@ def main(inputfile, outputfile):
         with open(inputfile, "r") as script_input:
             input = json.load(script_input)
     identity_form = input["identity_form"]
-    email_addrs = []
-    user_accounts = []
     if "email-addr" in input:
-        email_addrs = input["email-addr"]
+        email_addr = input["email-addr"]
     if "user-account" in input:
-        user_accounts = input["user-account"]
+        user_account = input["user-account"]
 
-
+    print(f"type identity->{type(identity_form)}, type email->{type(email_addr)}, type user acct->{type(user_account)}")
     # setup logger for execution
-    stix_dict = make_identity(identity_form, email_addrs, user_accounts)
-    results = {}
-    results["identity"] = []
-    results["identity"].append(stix_dict)
+    stix_dict = make_identity(identity_form, email_addr, user_account)
     with open(outputfile, "w") as outfile:
-        json.dump(results, outfile)
+        json.dump(stix_dict, outfile)
 
 
 ################################################################################

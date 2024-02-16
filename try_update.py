@@ -1,22 +1,9 @@
 
 from stixorm.module.typedb import TypeDBSink, TypeDBSource
 from stixorm.module.authorise import import_type_factory
-from stixorm.module.definitions.stix21 import (
-    Identity, EmailAddress, UserAccount, Relationship, Bundle, Incident, URL, EmailMessage, ObservedData
-)
-from stixorm.module.definitions.os_threat import (
-    EventCoreExt, Event, SocialMediaContact, ContactNumber, IncidentCoreExt, TaskCoreExt,
-    Task, SightingEvidence, Sequence, SequenceExt, AnecdoteExt, Anecdote,
-    SightingAnecdote, SightingAlert, SightingContext, SightingExclusion,
-    SightingEnrichment, SightingHunt, SightingFramework, SightingExternal
-)
-from stixorm.module.authorise import import_type_factory
-from stixorm.module.typedb_lib.instructions import ResultStatus, Result
-from stixorm.module.parsing import parse_objects
 from deepdiff import DeepDiff, parse_path
-from pprint import pprint
-from Block_Families.General._library.update import handle_object_diff, value_is_id, find_list_diff
-from Block_Families.General.Update_Context.update_context import load_context, synch_context
+from Block_Families.General._library.update import handle_object_diff, find_list_diff
+from Block_Families.Context.Update_Context.update_context import load_context, synch_context
 
 import_type = import_type_factory.get_all_imports()
 all_imports = import_type_factory.get_all_imports()
@@ -203,7 +190,7 @@ def check_it_worked(OS_Threat_Context_Memory_Path, connection, all_imports):
         OS_Threat_Context_Memory_Path)
     if t_original_incident_obj != {}:
         t_original_list.append(t_original_incident_obj)
-    reinitilise = True
+    reinitilise = False
     typedb_sink = TypeDBSink(connection=connection, clear=reinitilise, import_type=all_imports)
     typedb_source = TypeDBSource(connection=connection, import_type=all_imports)
     id_list = []
@@ -215,17 +202,33 @@ def check_it_worked(OS_Threat_Context_Memory_Path, connection, all_imports):
     # 2. Find out the set operations between the lists of object already in TypeDB, and the list of objects now
     delete_object_ids, add_objects_list, may_have_changed_list = find_list_diff(t_original_list, stix_list)
     print(f"summary \ndelete-len {len(delete_object_ids)}, \nadd-len {len(add_objects_list)}, \nmay change {len(may_have_changed_list)}\n")
+    identical = []
+    changed = []
     for current_obj in may_have_changed_list:
         orig_object = [x for x in t_original_list if x["id"] == current_obj["id"]]
         #print(f"\n current -> {current_obj}")
         obj_diff = find_obj_diff(orig_object[0], current_obj)
+        layer = {}
         if obj_diff != {}:
             #diff_report = handle_object_diff(obj_diff, orig_object[0], current_obj, connection, import_type)
-            print(f"\nchanged -> {orig_object[0]['id']}")
-            print(f"\nchanged -> {obj_diff}\n")
+            #print(f"\nchanged -> {orig_object[0]['id']}")
+            #print(f"\nchanged -> {obj_diff}\n")
+            layer["id"] = orig_object[0]['id']
+            layer["delta"] = obj_diff
+            changed.append(layer)
         else:
             #print(f"\nidentical -> {orig_object[0]['id']}")
-            pass
+            identical.append(orig_object[0]['id'])
+
+    print("\n----------------- Identical -------------------------")
+    for ident in identical:
+        print(ident)
+    print("\n----------------- Changed -------------------------")
+    for chang in changed:
+        print(chang["id"])
+        print(chang["delta"])
+        print(" ")
+
 
 
 def update_context(OS_Threat_Context_Memory_Path, connection, all_imports):
@@ -239,14 +242,14 @@ def update_context(OS_Threat_Context_Memory_Path, connection, all_imports):
     # 2. Find out the set operations between the lists of object already in TypeDB, and the list of objects now
     delete_object_ids, add_objects_list, may_have_changed_list = find_list_diff(t_original_list, current_list)
     # 3. Setup TypeDB Sink and Source
-    reinitilise = True
+    reinitilise = False
     typedb_sink = TypeDBSink(connection=connection, clear=reinitilise, import_type=all_imports)
     # 4. Add the new object list to Typedb
     result_list = []
     if add_objects_list != []:
         results_raw = typedb_sink.add(add_objects_list)
         result_list = [res.model_dump_json() for res in results_raw]
-        print(f"\n result type is {type(result_list)} \n result is -> {result_list}")
+        #print(f"\n result type is {type(result_list)} \n result is -> {result_list}")
     # 5. Run the Delete object option
     delete_raw = []
     if delete_object_ids != set():
