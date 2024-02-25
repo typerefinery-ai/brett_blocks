@@ -207,7 +207,7 @@ def main(inputfile, outputfile):
         sighting_of_ref = input_data["sighting_of_ref"]
 
     # setup logger for execution
-    stix_dict = make_sighting(sro_form, observed_data_refs, where_sighted_refs, sighting_of_ref)
+    stix_dict = make_sighting(sro_form, observed_data_refs=observed_data_refs, where_sighted_refs=where_sighted_refs, sighting_of_ref=sighting_of_ref)
     results = {}
     results["sighting"] = []
     results["sighting"].append(stix_dict)

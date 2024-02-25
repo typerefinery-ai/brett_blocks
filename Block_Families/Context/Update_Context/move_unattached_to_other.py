@@ -1,3 +1,4 @@
+
 ################################################################################
 ## header start                                                               ##
 ################################################################################
@@ -20,7 +21,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Make Identity
+# Title: Move "Unattached" to "Other" Context Memory
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: denis@cloudaccelerator.co
@@ -29,19 +30,14 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # Description: This script is designed to take in a Stix Object ID
 #       and return a Stix object
 #
-# One Mandatory, One Optional Input:
-# 1. Observed_Data_Form
-# 2. Observation (optional
-# One Output
-# 1. Observed Data SDO  (Dict)
+# One Mandatory Input:
+# 1. Stix_list
+# One Outpute
+# 1. Context Return
 #
 # This code is licensed under the terms of the BSD.
-##########b####################################################################
+##############################################################################
 
-from stixorm.module.definitions.stix21 import (
-    ObservedData, IPv4Address, EmailAddress, DomainName, EmailMessage, URL, UserAccount, File,
-    Identity, Incident, Note, Sighting, Indicator, Relationship, Location, Software, Process, Bundle
-)
 from stixorm.module.definitions.os_threat import (
     StateChangeObject, EventCoreExt, Event, ImpactCoreExt,
     Availability, Confidentiality, External, Integrity, Monetary, Physical,
@@ -61,105 +57,89 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 import_type = import_type_factory.get_all_imports()
-from datetime import datetime
 
-def convert_dt(dt_stamp_string):
-    if dt_stamp_string.find(".") >0:
-        dt = datetime.strptime(dt_stamp_string, "%Y-%m-%dT%H:%M:%S.%fZ")
-        microsecs = dt.microsecond
-        milisecs = (round(microsecs / 1000))
-        dt_list = dt_stamp_string.split('.')
-        actual = dt_list[0] + "." + str(milisecs) + "Z"
-    else:
-        if dt_stamp_string.find("T") > 0:
-            dt_list = dt_stamp_string.split('T')
-            t_list = dt_list[1].split(':')
-            if len(t_list) == 3:
-                secs = t_list[2]
-                sec_list = secs.split('Z')
-                actual = dt_list[0] + "T" + t_list[0] + ":" + t_list[1] + ":" + sec_list[0] + ".000Z"
-            else:
-                mins = t_list[1]
-                mins_list = mins.split('Z')
-                actual = dt_list[0] + "T" + t_list[0] + ":" + mins_list[0] + ":00.000Z"
-        else:
-            actual = dt_stamp_string + "T00:00:00.000Z"
-    return actual
+TR_Context_Memory_Dir = "./Context_Mem"
+local = {
+    "me" : "/cache_me.json",
+    "team" : "/cache_team.json",
+    "users": "/company_1/cache_users.json",
+    "company" : "/company_1/cache_company.json",
+    "assets" : "/company_1/cache_assets.json",
+    "systems" : "/company_1/cache_systems.json",
+    "relations" : "/company_1/cache_relations.json"
+}
+refs = {
+    "incident" : "/incident_1/incident.json",
+    "start" : "/incident_1/sequence_start_refs.json",
+    "sequence" : "/incident_1/sequence_refs.json",
+    "impact" : "/incident_1/impact_refs.json",
+    "event" : "/incident_1/event_refs.json",
+    "task" : "/incident_1/task_refs.json",
+    "other" : "/incident_1/other_object_refs.json",
+    "unattached" : "/incident_1/unattached_objs.json"
+}
+key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
 
-def make_observation(observed_data_form, observations=None):
-    # 1. Extract the components of the object
-    required = observed_data_form["base_required"]
-    optional = observed_data_form["base_optional"]
-    main = observed_data_form["object"]
-    extensions = observed_data_form["extensions"]
-    sub = observed_data_form["sub"]
-    contents = {}
-    empties_removed = {}
-    # 2. Setup Object Params first
-    for k,v in main.items():
-        contents[k] = v
-    for k,v in optional.items():
-        contents[k] = v
-    for k,v in extensions.items():
-        contents["extensions"] = {k, v}
-    for k,v in sub.items():
-        pass
+def move_unattached_to_other(stix_list):
+    # 1. Setup the paths and lists for the Unattached and Other
+    TR_Unattached_Filename = TR_Context_Memory_Dir + refs["unattached"]
+    Unattached_List = []
+    TR_Other_Filename = TR_Context_Memory_Dir + refs["other"]
+    Other_List = []
 
-    for (k,v) in contents.items():
-        if v == "":
-            continue
-        elif v == []:
-            continue
-        elif v == None:
-            continue
-        else:
-            empties_removed[k] = v
+    # 2. Check basic directory exits
+    if not os.path.exists(TR_Context_Memory_Dir):
+        os.makedirs(TR_Context_Memory_Dir)
+    if not os.path.exists(TR_Context_Memory_Dir + "/company_1"):
+        os.makedirs(TR_Context_Memory_Dir + "/company_1")
+    if not os.path.exists(TR_Context_Memory_Dir + "/incident_1"):
+        os.makedirs(TR_Context_Memory_Dir + "/incident_1")
 
-    if observations and observations != []:
-        temp_list = []
-        for observed in observations:
-            temp_list.append(observed["id"])
-        empties_removed["object_refs"] = temp_list
+    # 3. open "unattached" and "other" context files if file exist
+    if os.path.exists(TR_Unattached_Filename):
+        with open(TR_Unattached_Filename, "r") as unattached_read:
+            Unattached_List = json.load(unattached_read)
+    if os.path.exists(TR_Other_Filename):
+        with open(TR_Other_Filename, "r") as other_read:
+            Other_List = json.load(other_read)
 
-    if "modified" in required and required["modified"] == "":
-        # object needs to be created
-        stix_obj = ObservedData(**empties_removed)
+    # 4. for each object receieved, add it to the Other List, and remove it from the Unattached List
+    report_id = []
+    for stix_obj in stix_list:
+        report_id.append(stix_obj["id"])
+        # add the object to the Other List
+        Other_List.append(stix_obj)
+        # remove the object from the Unattached List based on the id
+        for unattached in Unattached_List:
+            if unattached["id"] == stix_obj["id"]:
+                Unattached_List.remove(unattached)
 
-    else:
-        # object needs to be updated, but we can't
-        #  update properly yet, so recreate instead
-        stix_obj = ObservedData(**empties_removed)
+    # 5. Now rewrite the  Other List and Unattached Lists to update the memory transfer
+    with open(TR_Unattached_Filename, "w") as unattached_write:
+        unattached_write.write(json.dumps(Unattached_List))
+    with open(TR_Other_Filename, "w") as other_write:
+        other_write.write(json.dumps(Other_List))
 
-    stix_dict = json.loads(stix_obj.serialize())
-    time_list = ["created", "modified", "first_observed", "last_observed"]
-    for tim in time_list:
-        if tim in stix_dict:
-            temp_string = convert_dt(stix_dict[tim])
-            stix_dict[tim] = temp_string
-
-    return stix_dict
+    return " transferred from 'Unattached' to 'Other' -> " + str(report_id)
 
 
 def main(inputfile, outputfile):
-    email_addr = None
-    user_account = None
+    context_type = None
+    stix_object = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
             input = json.load(script_input)
-    observation_form = input["observed_data_form"]
-    observations = []
-    if "observations" in input:
-        observations = input["observations"]
-
+    if "stix_list" in input:
+        stix_list = input["stix_list"]
 
     # setup logger for execution
-    stix_dict = make_observation(observation_form, observations)
-    results = {}
-    results["observed-data"] = []
-    results["observed-data"].append(stix_dict)
+    result_string = move_unattached_to_other(stix_list)
+    context_result = {}
+    context_result["context_result"] = result_string
+
     with open(outputfile, "w") as outfile:
-        json.dump(stix_dict, outfile)
+        json.dump(context_result, outfile)
 
 
 ################################################################################

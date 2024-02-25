@@ -60,15 +60,14 @@ import_type = import_type_factory.get_all_imports()
 
 TR_Context_Memory_Dir = "./Context_Mem"
 local = {
-    "me" : "/local_me.json",
-    "team" : "/local_team.json",
-    "users": "/base/local_users.json",
-    "company" : "/base/local_company.json",
-    "assets" : "/base/local_assets.json",
-    "systems" : "/base/local_systems.json",
-    "relations" : "/base/local_relations.json"
+    "me" : "/cache_me.json",
+    "team" : "/cache_team.json",
+    "users": "/company_1/cache_users.json",
+    "company" : "/company_1/cache_company.json",
+    "assets" : "/company_1/cache_assets.json",
+    "systems" : "/company_1/cache_systems.json",
+    "relations" : "/company_1/cache_relations.json"
 }
-
 def save_context(stix_object, context_type):
     # 1. Extract the components of the object
 
@@ -80,8 +79,10 @@ def save_context(stix_object, context_type):
     # does directory exits
     if not os.path.exists(TR_Context_Memory_Dir):
         os.makedirs(TR_Context_Memory_Dir)
-    if not os.path.exists(TR_Context_Memory_Dir + "/base"):
-        os.makedirs(TR_Context_Memory_Dir)
+    if not os.path.exists(TR_Context_Memory_Dir + "/company_1"):
+        os.makedirs(TR_Context_Memory_Dir + "/company_1")
+    if not os.path.exists(TR_Context_Memory_Dir + "/incident_1"):
+        os.makedirs(TR_Context_Memory_Dir + "/incident_1")
 
     # does file exist
     exists = False

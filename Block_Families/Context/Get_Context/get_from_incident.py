@@ -21,7 +21,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Get From Options
+# Title: Get From Incident
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: denis@cloudaccelerator.co
@@ -84,21 +84,18 @@ refs = {
 def check_properties(cont, prop, source_value):
     source_val = ""
     object_val = ""
+    source_path_list = prop["source_path"]
     object_path_list = prop["path"]
     comparator = prop["comparator"]
-    if "source_path" in prop:
-        source_path_list = prop["source_path"]
-        length = len(source_path_list)
-        interim_object = source_value
-        for i, source_path in enumerate(source_path_list):
-            if i == (length - 1):
-                source_val = interim_object[source_path]
-            elif source_path in interim_object:
-                interim_object = interim_object[source_path]
-            else:
-                return False
-    else:
-        source_val = prop["source_value"]
+    length = len(source_path_list)
+    interim_object = source_value
+    for i, source_path in enumerate(source_path_list):
+        if i == (length - 1):
+            source_val = interim_object[source_path]
+        elif source_path in interim_object:
+            interim_object = interim_object[source_path]
+        else:
+            return False
     # we have a source source_val now
     length = len(object_path_list)
     interim_object = cont
@@ -159,7 +156,7 @@ def get_context_object(get_query, context_type, source_value=None, source_id=Non
     # 1. Extract the components of the object
 
     if context_type:
-        TR_Context_Filename = TR_Context_Memory_Dir + local[context_type]
+        TR_Context_Filename = TR_Context_Memory_Dir + refs[context_type]
     else:
         return "context_type unknown " + str(context_type)
 
@@ -172,12 +169,12 @@ def get_context_object(get_query, context_type, source_value=None, source_id=Non
     if context_data_list:
         for cont in context_data_list:
             if cont["type"] == get_query["type"]:
-                if "properties" in get_query or "embedded" in get_query:
-                    if "properties" in get_query and "embedded" in get_query:
+                if "property" in get_query or "embedded" in get_query:
+                    if "property" in get_query and "embedded" in get_query:
                         if check_properties(cont, get_query["property"], source_value) and check_embedded(cont, get_query["embedded"], source_id):
                             context_object = cont
                             return context_object
-                    elif "properties" in get_query and "embedded" not in get_query:
+                    elif "property" in get_query and "embedded" not in get_query:
                         if check_properties(cont, get_query["property"], source_value):
                             context_object = cont
                     else:
@@ -192,7 +189,7 @@ def get_context_object(get_query, context_type, source_value=None, source_id=Non
 
 def main(inputfile, outputfile):
     source_value = None
-    source_id = None
+    source_object = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
             input = json.load(script_input)
@@ -206,7 +203,7 @@ def main(inputfile, outputfile):
         source_id = input["source_id"]
 
     # setup logger for execution
-    context_data = get_context_object(get_query, context_type["context_type"], source_value, source_id)
+    context_data = get_context_object(get_query, context_type, source_value, source_id)
     with open(outputfile, "w") as outfile:
         json.dump(context_data, outfile)
 

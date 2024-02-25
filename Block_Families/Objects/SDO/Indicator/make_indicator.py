@@ -117,7 +117,7 @@ def make_indicator(indicator_form, pattern=None):
             empties_removed[k] = v
 
     if pattern and pattern != "":
-        empties_removed["pattern"] = pattern["pattern"]
+        empties_removed["pattern"] = pattern
 
     if "modified" in required and required["modified"] == "":
         # object needs to be created
@@ -151,6 +151,7 @@ def main(inputfile, outputfile):
         pattern = input["pattern"]
 
     # setup logger for execution
+    print(f"pattern {pattern}")
     stix_dict = make_indicator(indicator_form, pattern)
     results = {}
     results["indicator"] = []

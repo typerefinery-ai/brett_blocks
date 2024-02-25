@@ -68,7 +68,9 @@ def invoke_make_indicator_block(ind_path, results_path, pattern=None,):
         with open(ind_data_rel_path, "r") as sdo_form:
             results_data = json.load(sdo_form)
             if pattern:
-                results_data["pattern"] = pattern
+                temp_data = {}
+                temp_data["pattern"] = pattern
+                results_data["pattern"] = temp_data["pattern"]
         with open(ind_data_rel_path, 'w') as f:
             f.write(json.dumps(results_data))
     # Make the Observed Data object

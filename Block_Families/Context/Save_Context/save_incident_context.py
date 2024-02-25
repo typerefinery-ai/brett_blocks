@@ -32,7 +32,8 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 #
 # One Mandatory Input:
 # 1. Context
-# No Outpute
+# One Output
+# 1. Context Return
 #
 #
 # This code is licensed under the terms of the BSD.
@@ -60,15 +61,25 @@ import_type = import_type_factory.get_all_imports()
 
 TR_Context_Memory_Dir = "./Context_Mem"
 local = {
-    "me" : "/local_me.json",
-    "team" : "/local_team.json",
-    "users": "/base/local_users.json",
-    "company" : "/base/local_company.json",
-    "assets" : "/base/local_assets.json",
-    "systems" : "/base/local_systems.json",
-    "relations" : "/base/local_relations.json"
+    "me" : "/cache_me.json",
+    "team" : "/cache_team.json",
+    "users": "/company_1/cache_users.json",
+    "company" : "/company_1/cache_company.json",
+    "assets" : "/company_1/cache_assets.json",
+    "systems" : "/company_1/cache_systems.json",
+    "relations" : "/company_1/cache_relations.json"
 }
 refs = {
+    "incident" : "/incident_1/incident.json",
+    "start" : "/incident_1/sequence_start_refs.json",
+    "sequence" : "/incident_1/sequence_refs.json",
+    "impact" : "/incident_1/impact_refs.json",
+    "event" : "/incident_1/event_refs.json",
+    "task" : "/incident_1/task_refs.json",
+    "other" : "/incident_1/other_object_refs.json",
+    "unattached" : "/incident_1/unattached_objs.json"
+}
+field_names = {
     "start" : "sequence_start_refs",
     "sequence" : "sequence_refs",
     "impact" : "impact_refs",
@@ -80,17 +91,20 @@ key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
 def save_context(stix_object, context_type):
     # 1. Extract the components of the object
+    TR_Context_Incident = TR_Context_Memory_Dir + refs["incident"]
 
     if context_type:
-        TR_Context_Filename = TR_Context_Memory_Dir + local[context_type]
+        TR_Context_Filename = TR_Context_Memory_Dir + refs[context_type]
     else:
         return "context_type unknown " + str(context_type)
 
     # does directory exits
     if not os.path.exists(TR_Context_Memory_Dir):
         os.makedirs(TR_Context_Memory_Dir)
-    if not os.path.exists(TR_Context_Memory_Dir + "/base"):
-        os.makedirs(TR_Context_Memory_Dir)
+    if not os.path.exists(TR_Context_Memory_Dir + "/company_1"):
+        os.makedirs(TR_Context_Memory_Dir + "/company_1")
+    if not os.path.exists(TR_Context_Memory_Dir + "/incident_1"):
+        os.makedirs(TR_Context_Memory_Dir + "/incident_1")
 
     # does file exist
     exists = False
@@ -107,7 +121,7 @@ def save_context(stix_object, context_type):
                         stix_list[i] = stix_object
                         exists = True
                 if not exists:
-                    stix_list.add(stix_object)
+                    stix_list.append(stix_object)
         else:
             stix_list.append(stix_object)
 
@@ -116,8 +130,8 @@ def save_context(stix_object, context_type):
 
         # Now add the ref into the incident object if it already exists, else ignore
         exists = False
-        if os.path.exists(TR_Context_Memory_Dir + local["incident"]):
-            with open(TR_Context_Memory_Dir + local["incident"], "r") as mem_input:
+        if os.path.exists(TR_Context_Incident):
+            with open(TR_Context_Incident, "r") as mem_input:
                 incident = json.load(mem_input)
                 # does the incident have the list?
                 list_name = refs[context_type]
@@ -133,30 +147,25 @@ def save_context(stix_object, context_type):
                     incident[list_name] = []
                     incident[list_name].append(stix_object["id"])
 
-            with open(TR_Context_Memory_Dir + local["incident"], 'w') as f:
+            with open(TR_Context_Incident, 'w') as f:
                 f.write(json.dumps(incident))
 
     else:
-        # if its an incident object, overwrite the eisting incident
-        if os.path.exists(TR_Context_Memory_Dir + local["incident"]):
-            # overwrite the incident
-            with open(TR_Context_Memory_Dir + local["incident"], "w") as f:
-                f.write(json.dumps(incident))
+        # first, get all of the lists of objects first, turn them into id's and add them to the incident object
+        for key in key_list:
+            if os.path.exists(TR_Context_Memory_Dir + refs[key]):
+                with open(TR_Context_Memory_Dir + refs[key], "r") as list_input:
+                    stix_list = json.load(list_input)
+                    stix_id_list = [x["id"] for x in stix_list]
+                    # does the stix_object already appear in the list?
+                    stix_object[field_names[key]] = stix_id_list
+            else:
+                # list is empty
+                stix_object[field_names[key]] = []
 
-        # else write the incident and add any existing
-        else:
-            for key in key_list:
-                # check if existing list holds id's
-                if os.path.exists(TR_Context_Memory_Dir + local[key]):
-                    with open(TR_Context_Memory_Dir + local[key], "r") as mem_input:
-                        stix_list = json.load(mem_input)
-                        list_name = refs[context_type]
-                        if list_name in stix_object:
-                            for obj in stix_list:
-                                if obj["id"] not in stix_object[list_name]:
-                                    stix_object[list_name].append(obj["id"])
-            with open(TR_Context_Memory_Dir + local["incident"], "w") as f:
-                f.write(json.dumps(stix_object))
+        # overwrite the incident
+        with open(TR_Context_Memory_Dir + refs["incident"], "w") as f:
+            f.write(json.dumps(stix_object))
 
     return " incident context saved -> " + str(context_type)
 
@@ -175,7 +184,6 @@ def main(inputfile, outputfile):
     result_string = save_context(stix_object, context_type["context_type"])
     context_result = {}
     context_result["context_result"] = result_string
-
     with open(outputfile, "w") as outfile:
         json.dump(context_result, outfile)
 
