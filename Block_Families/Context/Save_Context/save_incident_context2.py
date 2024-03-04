@@ -50,6 +50,8 @@ from stixorm.module.definitions.os_threat import (
 )
 from stixorm.module.authorise import import_type_factory
 # from Block_Families.General._library.
+from Block_Families.General._library.convert_n_and_e import convert_relns, convert_sighting, convert_node, \
+    refine_edges, generate_legend
 from posixpath import basename
 import json
 import os
@@ -65,14 +67,14 @@ local = {
     "global": "/global_variables_dict.json",
     "me" : "/cache_me.json",
     "team" : "/cache_team.json",
-    "users": "/company_1/cache_users.json",
-    "company" : "/company_1/cache_company.json",
-    "assets" : "/company_1/cache_assets.json",
-    "systems" : "/company_1/cache_systems.json",
-    "relations" : "/company_1/cache_relations.json",
-    "edges" : "/incident_1/incident_edges.json",
-    "relation_edges" : "/incident_1/relation_edges.json",
-    "relation_replacement_edges" : "/incident_1/relation_replacement_edges.json"
+    "users": "/company_1/users.json",
+    "company" : "/company_1/company.json",
+    "assets" : "/company_1/assets.json",
+    "systems" : "/company_1/systems.json",
+    "relations" : "/company_1/relations.json",
+    "edges" : "/company_1/edges.json",
+    "relation_edges" : "/company_1/relation_edges.json",
+    "relation_replacement_edges" : "/company_1/relation_replacement_edges.json"
 }
 refs = {
     "incident" : "/incident_1/incident.json",
@@ -98,6 +100,43 @@ field_names = {
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
+
+def add_node(node, context_type):
+    exists = False
+    stix_nodes_list = []
+    if  os.path.exists(TR_Context_Memory_Dir + refs[context_type]):
+        with open(TR_Context_Memory_Dir + refs[context_type], "r") as mem_input:
+            stix_nodes_list = json.load(mem_input)
+            for i in range(len(stix_nodes_list)):
+                if stix_nodes_list[i]["id"] == node["id"]:
+                    stix_nodes_list[i] = node
+                    exists = True
+            if not exists:
+                stix_nodes_list.append(node)
+    else:
+        stix_nodes_list = [node]
+    with open(TR_Context_Memory_Dir + refs[context_type], 'w') as f:
+        f.write(json.dumps(stix_nodes_list))
+
+
+def add_edge(edge, context_type):
+    exists = False
+    stix_edge_list = []
+    if os.path.exists(TR_Context_Memory_Dir + local[context_type]):
+        with open(TR_Context_Memory_Dir + local[context_type], "r") as mem_input:
+            stix_edge_list = json.load(mem_input)
+            for i in range(len(stix_edge_list)):
+                if stix_edge_list[i]["source"] == edge["source"] and stix_edge_list[i]["target"] == edge["target"]:
+                    stix_edge_list[i] = edge
+                    exists = True
+            if not exists:
+                stix_edge_list.append(edge)
+    else:
+        stix_edge_list = [edge]
+    with open(TR_Context_Memory_Dir + local[context_type], 'w') as f:
+        f.write(json.dumps(stix_edge_list))
+
+
 def save_context(stix_object, context_type):
     # 1. Extract the components of the object
     TR_Context_Incident = TR_Context_Memory_Dir + refs["incident"]
@@ -116,67 +155,79 @@ def save_context(stix_object, context_type):
         os.makedirs(TR_Context_Memory_Dir + "/incident_1")
 
     # does file exist
-    exists = False
-    stix_list = []
+    stix_nodes_list = []
     incident = {}
-    if context_type != "incident":
-        # if file exists, replce existing object if it exists, else add it, else create the list and add it
-        if os.path.exists(TR_Context_Filename):
-            with open(TR_Context_Filename, "r") as mem_input:
-                stix_list = json.load(mem_input)
-                # does the stix_object already appear in the list?
-                for i in range(len(stix_list)):
-                    if stix_list[i]["id"] == stix_object["id"]:
-                        stix_list[i] = stix_object
-                        exists = True
-                if not exists:
-                    stix_list.append(stix_object)
-        else:
-            stix_list.append(stix_object)
+    if stix_object["type"] == "relationship":
+        nodes, edges, relation_edges, relation_replacement_edges = convert_relns(stix_object)
+        add_node(nodes[0], "relations")
+        for edge in edges:
+            add_edge(edge, "edges")
+        for edge in relation_edges:
+            add_edge(edge, "relation_edges")
+        for edge in relation_replacement_edges:
+            add_edge(edge, "relation_replacement_edges")
 
-        with open(TR_Context_Filename, 'w') as f:
-            f.write(json.dumps(stix_list))
-
-        # Now add the ref into the incident object if it already exists, else ignore
-        exists = False
-        if os.path.exists(TR_Context_Incident):
-            with open(TR_Context_Incident, "r") as mem_input:
-                incident = json.load(mem_input)
-                # does the incident have the list?
-                list_name = refs[context_type]
-                if list_name in incident:
-                    id_list = incident[list_name]
-                    for i in range(id_list):
-                        if id_list[i] == stix_object["id"]:
-                            id_list[i] = stix_object["id"]
-                            exists = True
-                        if not exists:
-                            id_list.add(stix_object["id"])
-                else:
-                    incident[list_name] = []
-                    incident[list_name].append(stix_object["id"])
-
-            with open(TR_Context_Incident, 'w') as f:
-                f.write(json.dumps(incident))
-
+    elif stix_object["type"] == "sighting":
+        nodes, edges = convert_sighting(stix_object)
+        add_node(nodes[0], "other")
+        for edge in edges:
+            add_edge(edge, "edges")
     else:
-        # first, get all of the lists of objects first, turn them into id's and add them to the incident object
-        for key in key_list:
-            if os.path.exists(TR_Context_Memory_Dir + refs[key]):
-                with open(TR_Context_Memory_Dir + refs[key], "r") as list_input:
-                    stix_list = json.load(list_input)
-                    stix_id_list = [x["id"] for x in stix_list]
-                    # does the stix_object already appear in the list?
-                    stix_object[field_names[key]] = stix_id_list
-            else:
-                # list is empty
-                stix_object[field_names[key]] = []
+        # its a node-type of object
+        if context_type != "incident":
+            # if file exists, replce existing object if it exists, else add it, else create the list and add it
+            nodes, edges = convert_node(stix_object)
+            add_node(nodes[0], context_type)
+            for edge in edges:
+                add_edge(edge, "edges")
+            # Now add the ref into the incident object if it already exists, else ignore
+            # exists = False
+            # if os.path.exists(TR_Context_Incident):
+            #     with open(TR_Context_Incident, "r") as mem_input:
+            #         incident = json.load(mem_input)
+            #         # does the incident have the list?
+            #         list_name = refs[context_type]
+            #         if list_name in incident:
+            #             id_list = incident[list_name]
+            #             for i in range(id_list):
+            #                 if id_list[i] == stix_object["id"]:
+            #                     id_list[i] = stix_object["id"]
+            #                     exists = True
+            #                 if not exists:
+            #                     id_list.add(stix_object["id"])
+            #         else:
+            #             incident[list_name] = []
+            #             incident[list_name].append(stix_object["id"])
+            #
+            #     with open(TR_Context_Incident, 'w') as f:
+            #         f.write(json.dumps(incident))
 
-        # overwrite the incident
-        with open(TR_Context_Memory_Dir + refs["incident"], "w") as f:
-            f.write(json.dumps(stix_object))
+        else:
+            # first, update all of the id lists on the incident object
+            for key in key_list:
+                if os.path.exists(TR_Context_Memory_Dir + refs[key]):
+                    with open(TR_Context_Memory_Dir + refs[key], "r") as list_input:
+                        stix_list = json.load(list_input)
+                        if key == "other":
+                            # if we are filling the "other" list then add in the relations
+                            if os.path.exists(TR_Context_Memory_Dir + refs["relations"]):
+                                with open(TR_Context_Memory_Dir + refs[key], "r") as list2_input:
+                                    stix_list2 = json.load(list2_input)
+                                    stix_list = stix_list + stix_list2
+                        stix_id_list = [x["id"] for x in stix_list]
+                        # does the stix_object already appear in the list?
+                        stix_object[field_names[key]] = stix_id_list
+                else:
+                    # list is empty
+                    stix_object[field_names[key]] = []
 
-    return " incident context saved -> " + str(context_type)
+            # create the nodes and edges
+            nodes, edges = convert_node(stix_object)
+            add_node(nodes[0], context_type)
+            for edge in edges:
+                add_edge(edge, "edges")
+
+    return " incident context saved -> " + str(context_type) + " stix_id -> " + str(stix_object["id"])
 
 
 def main(inputfile, outputfile):

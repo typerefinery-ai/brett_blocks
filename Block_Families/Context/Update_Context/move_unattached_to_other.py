@@ -51,6 +51,8 @@ from stixorm.module.authorise import import_type_factory
 from posixpath import basename
 import json
 import os
+from Block_Families.General._library.convert_n_and_e import convert_relns, convert_sighting, convert_node, \
+    refine_edges, generate_legend
 
 import logging
 logger = logging.getLogger(__name__)
@@ -60,13 +62,17 @@ import_type = import_type_factory.get_all_imports()
 
 TR_Context_Memory_Dir = "./Context_Mem"
 local = {
+    "global": "/global_variables_dict.json",
     "me" : "/cache_me.json",
     "team" : "/cache_team.json",
-    "users": "/company_1/cache_users.json",
-    "company" : "/company_1/cache_company.json",
-    "assets" : "/company_1/cache_assets.json",
-    "systems" : "/company_1/cache_systems.json",
-    "relations" : "/company_1/cache_relations.json"
+    "users": "/company_1/users.json",
+    "company" : "/company_1/company.json",
+    "assets" : "/company_1/assets.json",
+    "systems" : "/company_1/systems.json",
+    "relations" : "/company_1/relations.json",
+    "edges" : "/company_1/edges.json",
+    "relation_edges" : "/company_1/relation_edges.json",
+    "relation_replacement_edges" : "/company_1/relation_replacement_edges.json"
 }
 refs = {
     "incident" : "/incident_1/incident.json",
@@ -76,18 +82,50 @@ refs = {
     "event" : "/incident_1/event_refs.json",
     "task" : "/incident_1/task_refs.json",
     "other" : "/incident_1/other_object_refs.json",
-    "unattached" : "/incident_1/unattached_objs.json"
+    "unattached" : "/incident_1/unattached_objs.json",
+    "relations" : "/incident_1/incident_relations.json",
+    "edges" : "/incident_1/incident_edges.json",
+    "relation_edges" : "/incident_1/relation_edges.json",
+    "relation_replacement_edges" : "/incident_1/relation_replacement_edges.json"
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
 
-def move_unattached_to_other(stix_list):
-    # 1. Setup the paths and lists for the Unattached and Other
-    TR_Unattached_Filename = TR_Context_Memory_Dir + refs["unattached"]
-    Unattached_List = []
-    TR_Other_Filename = TR_Context_Memory_Dir + refs["other"]
-    Other_List = []
+def add_node(node, context_type):
+    exists = False
+    stix_nodes_list = []
+    if os.path.exists(TR_Context_Memory_Dir + refs[context_type]):
+        with open(TR_Context_Memory_Dir + refs[context_type], "r") as mem_input:
+            stix_nodes_list = json.load(mem_input)
+            for i in range(len(stix_nodes_list)):
+                if stix_nodes_list[i]["id"] == node["id"]:
+                    stix_nodes_list[i] = node
+                    exists = True
+            if not exists:
+                stix_nodes_list.append(node)
+    else:
+        stix_nodes_list = [node]
+    with open(TR_Context_Memory_Dir + refs[context_type], 'w') as f:
+        f.write(json.dumps(stix_nodes_list))
 
+
+def del_node(node_id, context_type):
+    exists = False
+    stix_nodes_list = []
+    if os.path.exists(TR_Context_Memory_Dir + refs[context_type]):
+        with open(TR_Context_Memory_Dir + refs[context_type], "r") as mem_input:
+            stix_nodes_list = json.load(mem_input)
+            for i in range(len(stix_nodes_list)):
+                #print(f"i->{i}, len->{len(stix_nodes_list)} node {stix_nodes_list[i]}")
+                if stix_nodes_list[i]["id"] == node_id:
+                    del stix_nodes_list[i]
+                    print(f"delete element {i}, node id {node_id}")
+                    break
+    with open(TR_Context_Memory_Dir + refs[context_type], 'w') as f:
+        f.write(json.dumps(stix_nodes_list))
+
+
+def move_unattached_to_other(stix_list):
     # 2. Check basic directory exits
     if not os.path.exists(TR_Context_Memory_Dir):
         os.makedirs(TR_Context_Memory_Dir)
@@ -96,30 +134,25 @@ def move_unattached_to_other(stix_list):
     if not os.path.exists(TR_Context_Memory_Dir + "/incident_1"):
         os.makedirs(TR_Context_Memory_Dir + "/incident_1")
 
-    # 3. open "unattached" and "other" context files if file exist
-    if os.path.exists(TR_Unattached_Filename):
-        with open(TR_Unattached_Filename, "r") as unattached_read:
-            Unattached_List = json.load(unattached_read)
-    if os.path.exists(TR_Other_Filename):
-        with open(TR_Other_Filename, "r") as other_read:
-            Other_List = json.load(other_read)
-
     # 4. for each object receieved, add it to the Other List, and remove it from the Unattached List
     report_id = []
     for stix_obj in stix_list:
-        report_id.append(stix_obj["id"])
-        # add the object to the Other List
-        Other_List.append(stix_obj)
-        # remove the object from the Unattached List based on the id
-        for unattached in Unattached_List:
-            if unattached["id"] == stix_obj["id"]:
-                Unattached_List.remove(unattached)
-
-    # 5. Now rewrite the  Other List and Unattached Lists to update the memory transfer
-    with open(TR_Unattached_Filename, "w") as unattached_write:
-        unattached_write.write(json.dumps(Unattached_List))
-    with open(TR_Other_Filename, "w") as other_write:
-        other_write.write(json.dumps(Other_List))
+        # if file exists, replce existing object if it exists, else add it, else create the list and add it
+        if stix_obj["type"] == "relationship":
+            nodes, edges, relation_edges, relation_replacement_edges = convert_relns(stix_obj)
+            add_node(nodes[0], "other")
+            del_node(stix_obj["id"], "unattached")
+            report_id.append(stix_obj["id"])
+        elif stix_obj["type"] == "sighting":
+            nodes, edges = convert_sighting(stix_obj)
+            add_node(nodes[0], "other")
+            del_node(stix_obj["id"], "unattached")
+            report_id.append(stix_obj["id"])
+        else:
+            nodes, edges = convert_node(stix_obj)
+            add_node(nodes[0], "other")
+            del_node(stix_obj["id"], "unattached")
+            report_id.append(stix_obj["id"])
 
     return " transferred from 'Unattached' to 'Other' -> " + str(report_id)
 

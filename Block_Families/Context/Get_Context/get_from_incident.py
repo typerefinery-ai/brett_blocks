@@ -62,23 +62,33 @@ logger.setLevel(logging.INFO)
 import_type = import_type_factory.get_all_imports()
 TR_Context_Memory_Dir = "./Context_Mem"
 local = {
+    "global": "/global_variables_dict.json",
     "me" : "/cache_me.json",
     "team" : "/cache_team.json",
-    "users": "/company_1/cache_users.json",
-    "company" : "/company_1/cache_company.json",
-    "assets" : "/company_1/cache_assets.json",
-    "systems" : "/company_1/cache_systems.json",
-    "relations" : "/company_1/cache_relations.json"
+    "users": "/company_1/users.json",
+    "company" : "/company_1/company.json",
+    "assets" : "/company_1/assets.json",
+    "systems" : "/company_1/systems.json",
+    "relations" : "/company_1/relations.json",
+    "edges" : "/company_1/edges.json",
+    "relation_edges" : "/company_1/relation_edges.json",
+    "relation_replacement_edges" : "/company_1/relation_replacement_edges.json"
 }
 refs = {
-    "start" : "/incident_1/sequence_start_refs",
-    "sequence" : "/incident_1/sequence_refs",
-    "impact" : "/incident_1/impact_refs",
-    "event" : "/incident_1/event_refs",
-    "task" : "/incident_1/task_refs",
-    "other" : "/incident_1/other_object_refs",
-    "unattached" : "/incident_1/unattached_objs"
+    "incident" : "/incident_1/incident.json",
+    "start" : "/incident_1/sequence_start_refs.json",
+    "sequence" : "/incident_1/sequence_refs.json",
+    "impact" : "/incident_1/impact_refs.json",
+    "event" : "/incident_1/event_refs.json",
+    "task" : "/incident_1/task_refs.json",
+    "other" : "/incident_1/other_object_refs.json",
+    "unattached" : "/incident_1/unattached_objs.json",
+    "relations" : "/incident_1/incident_relations.json",
+    "edges" : "/incident_1/incident_edges.json",
+    "relation_edges" : "/incident_1/relation_edges.json",
+    "relation_replacement_edges" : "/incident_1/relation_replacement_edges.json"
 }
+key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
 
 def check_properties(cont, prop, source_value):
@@ -171,14 +181,14 @@ def get_context_object(get_query, context_type, source_value=None, source_id=Non
             if cont["type"] == get_query["type"]:
                 if "property" in get_query or "embedded" in get_query:
                     if "property" in get_query and "embedded" in get_query:
-                        if check_properties(cont, get_query["property"], source_value) and check_embedded(cont, get_query["embedded"], source_id):
+                        if check_properties(cont["original"], get_query["property"], source_value) and check_embedded(cont["original"], get_query["embedded"], source_id):
                             context_object = cont
                             return context_object
                     elif "property" in get_query and "embedded" not in get_query:
-                        if check_properties(cont, get_query["property"], source_value):
+                        if check_properties(cont["original"], get_query["property"], source_value):
                             context_object = cont
                     else:
-                        if check_embedded(cont, get_query["embedded"], source_id):
+                        if check_embedded(cont["original"], get_query["embedded"], source_id):
                             context_object = cont
                 else:
                     context_object = cont

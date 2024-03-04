@@ -22,13 +22,14 @@ import_type = import_type_factory.get_all_imports()
 #
 ########################################################################################
 
+
 def convert_relns(obj):
     nodes = []
     edges = []
     nodes, relation_edges, relation_replacement_edges = setup_relationship(obj)
     edges2 = find_embedded(obj, edges, obj["id"], exclusion_list=["id", "source_ref", "target_ref"])
     edges = edges + edges2
-    return nodes, edges
+    return nodes, edges, relation_edges, relation_replacement_edges
 
 
 def convert_sighting(obj):
@@ -177,6 +178,7 @@ def setup_sighting(obj, nodes, edges):
     # sort out node
     node = {}
     node["id"] = obj["id"]
+    node["type"] = "sighting"
     node["original"] = copy.deepcopy(obj)
     sighting_type = "generic"
     if "extensions" in obj:
@@ -197,6 +199,7 @@ def setup_nodes(obj, nodes, edges):
     obj_id = obj["id"]
     node = {}
     node["id"] = obj_id
+    node["type"] = obj["type"]
     node["original"] = copy.deepcopy(obj)
     node = find_icon(obj, node)
     nodes.append(node)
