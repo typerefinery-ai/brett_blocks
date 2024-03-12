@@ -138,6 +138,11 @@ def add_edge(edge, context_type):
 
 
 def save_context(stix_object, context_type):
+    # 0 Check for "original"
+    wrapped = False
+    exists = False
+    # if "original" in stix_object:
+    #     wrapped = True
     # 1. Extract the components of the object
     TR_Context_Incident = TR_Context_Memory_Dir + refs["incident"]
 
@@ -158,49 +163,37 @@ def save_context(stix_object, context_type):
     stix_nodes_list = []
     incident = {}
     if stix_object["type"] == "relationship":
-        nodes, edges, relation_edges, relation_replacement_edges = convert_relns(stix_object)
-        add_node(nodes[0], "relations")
-        for edge in edges:
-            add_edge(edge, "edges")
-        for edge in relation_edges:
-            add_edge(edge, "relation_edges")
-        for edge in relation_replacement_edges:
-            add_edge(edge, "relation_replacement_edges")
+        if wrapped:
+            add_node(stix_object["original"], context_type)
+        else:
+            nodes, edges, relation_edges, relation_replacement_edges = convert_relns(stix_object)
+            add_node(nodes[0], "relations")
+            for edge in edges:
+                add_edge(edge, "edges")
+            for edge in relation_edges:
+                add_edge(edge, "relation_edges")
+            for edge in relation_replacement_edges:
+                add_edge(edge, "relation_replacement_edges")
 
     elif stix_object["type"] == "sighting":
-        nodes, edges = convert_sighting(stix_object)
-        add_node(nodes[0], "other")
-        for edge in edges:
-            add_edge(edge, "edges")
+        if wrapped:
+            add_node(stix_object["original"], context_type)
+        else:
+            nodes, edges = convert_sighting(stix_object)
+            add_node(nodes[0], "other")
+            for edge in edges:
+                add_edge(edge, "edges")
     else:
         # its a node-type of object
         if context_type != "incident":
-            # if file exists, replce existing object if it exists, else add it, else create the list and add it
-            nodes, edges = convert_node(stix_object)
-            add_node(nodes[0], context_type)
-            for edge in edges:
-                add_edge(edge, "edges")
-            # Now add the ref into the incident object if it already exists, else ignore
-            # exists = False
-            # if os.path.exists(TR_Context_Incident):
-            #     with open(TR_Context_Incident, "r") as mem_input:
-            #         incident = json.load(mem_input)
-            #         # does the incident have the list?
-            #         list_name = refs[context_type]
-            #         if list_name in incident:
-            #             id_list = incident[list_name]
-            #             for i in range(id_list):
-            #                 if id_list[i] == stix_object["id"]:
-            #                     id_list[i] = stix_object["id"]
-            #                     exists = True
-            #                 if not exists:
-            #                     id_list.add(stix_object["id"])
-            #         else:
-            #             incident[list_name] = []
-            #             incident[list_name].append(stix_object["id"])
-            #
-            #     with open(TR_Context_Incident, 'w') as f:
-            #         f.write(json.dumps(incident))
+            if wrapped:
+                add_node(stix_object["original"], context_type)
+            else:
+                # if file exists, replce existing object if it exists, else add it, else create the list and add it
+                nodes, edges = convert_node(stix_object)
+                add_node(nodes[0], context_type)
+                for edge in edges:
+                    add_edge(edge, "edges")
 
         else:
             # first, update all of the id lists on the incident object
@@ -222,10 +215,13 @@ def save_context(stix_object, context_type):
                     stix_object[field_names[key]] = []
 
             # create the nodes and edges
-            nodes, edges = convert_node(stix_object)
-            add_node(nodes[0], context_type)
-            for edge in edges:
-                add_edge(edge, "edges")
+            if wrapped:
+                add_node(stix_object["original"], context_type)
+            else:
+                nodes, edges = convert_node(stix_object)
+                add_node(nodes[0], context_type)
+                for edge in edges:
+                    add_edge(edge, "edges")
 
     return " incident context saved -> " + str(context_type) + " stix_id -> " + str(stix_object["id"])
 

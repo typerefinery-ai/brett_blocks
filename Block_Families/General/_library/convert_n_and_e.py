@@ -64,7 +64,7 @@ def generate_legend(nodes):
             check_icons.append(node["icon"])
             layer = {}
             layer["icon"] = node["icon"]
-            layer["label"] = node["label"]
+            layer["name"] = node["name"]
             legend.append(layer)
     return legend
 
@@ -88,7 +88,7 @@ def generate_legend(nodes):
 #             check_icons.append(node["icon"])
 #             layer = {}
 #             layer["icon"] = node["icon"]
-#             layer["label"] = node["label"]
+#             layer["name"] = node["name"]
 #             legend.append(layer)
 #     # remove any edges without nodes
 #     edges = [x for x in edges if (x["source"] in node_ids and x["target"] in node_ids)]
@@ -115,7 +115,7 @@ def setup_relationship(obj):
     relation_replacement_edge = {}
     relation_replacement_edge["id"] = obj["id"]
     relation_replacement_edge["type"] = "relationship"
-    relation_replacement_edge["label"] = "Relation Type - " + obj["relationship_type"] + ", from " + source_role + " to " + target_role
+    relation_replacement_edge["name"] = obj["relationship_type"] + ", from " + source_role + " to " + target_role
     relation_replacement_edge["source"] = obj["source_ref"]
     relation_replacement_edge["target"] = obj["target_ref"]
     relation_replacement_edges.append(relation_replacement_edge)
@@ -123,7 +123,7 @@ def setup_relationship(obj):
     relation_edge = {}
     relation_edge["id"] = obj["id"]
     relation_edge["type"] = "relationship"
-    relation_edge["label"] = "Relation Type - " + obj["relationship_type"] + ", from " + source_role
+    relation_edge["name"] = obj["relationship_type"] + ", from " + source_role
     relation_edge["source"] = obj["source_ref"]
     relation_edge["target"] = obj["id"]
     relation_edges.append(relation_replacement_edge)
@@ -131,7 +131,7 @@ def setup_relationship(obj):
     relation_edge = {}
     relation_edge["id"] = obj["id"]
     relation_edge["type"] = "relationship"
-    relation_edge["label"] = "Relation Type - " + obj["relationship_type"] + " to " + target_role
+    relation_edge["name"] = obj["relationship_type"] + " to " + target_role
     relation_edge["source"] = obj["id"]
     relation_edge["target"] = obj["target_ref"]
     relation_edges.append(relation_replacement_edge)
@@ -139,7 +139,7 @@ def setup_relationship(obj):
     node = {}
     node["id"] = obj["id"]
     node["original"] = copy.deepcopy(obj)
-    node["label"] = "Relation Type - " + obj["relationship_type"] + ", from " + source_role + " to " + target_role
+    node["name"] = obj["relationship_type"]
     node["type"] = "relationship"
     node["icon"] = "relationship"
     nodes.append((node))
@@ -152,7 +152,7 @@ def setup_sighting(obj, nodes, edges):
     edge = {}
     edge["id"] = obj["id"]
     edge["type"] = "sighting"
-    edge["label"] = "Sighting of " + obj["sighting_of_ref"].split('--')[0]
+    edge["name"] = "Sighting of " + obj["sighting_of_ref"].split('--')[0]
     edge["source"] = obj["id"]
     edge["target"] = obj["sighting_of_ref"]
     edges.append(edge)
@@ -161,7 +161,7 @@ def setup_sighting(obj, nodes, edges):
         edge = {}
         edge["id"] = obj["id"]
         edge["type"] = "sighting"
-        edge["label"] = "Observed Data"
+        edge["name"] = "Observed Data"
         edge["source"] = obj["id"]
         edge["target"] = obs
         edges.append(edge)
@@ -171,7 +171,7 @@ def setup_sighting(obj, nodes, edges):
             edge = {}
             edge["id"] = obj["id"]
             edge["type"] = "sighting"
-            edge["label"] = "Where Sighted " + where.split('--')[0]
+            edge["name"] = "Where Sighted " + where.split('--')[0]
             edge["source"] = obj["id"]
             edge["target"] = where
             edges.append(edge)
@@ -191,7 +191,7 @@ def setup_sighting(obj, nodes, edges):
     else:
         node["icon"] = "sighting"
 
-    node["label"] = "Sighting - " + sighting_type
+    node["name"] = sighting_type
     nodes.append(node)
     return nodes, edges
 
@@ -238,7 +238,7 @@ def extract_ids(key, prop, edges, obj_id):
         if ex["rel"] == key:
             label = ex["label"]
             source_owner = ex["owner-is-source"]
-    edge = {"label": label, "type": "embedded"}
+    edge = {"name": label, "type": "embedded"}
     if isinstance(prop, list):
         for pro in prop:
             if pro.split('--')[0] == "relationship":
@@ -282,7 +282,7 @@ def find_icon(stix_object, node):
     else:
         logger.error(f'object type not supported: {stix_object.type}, import type {import_type}')
     node["icon"] = icon
-    node["label"] = label
+    node["name"] = label
     return node
 
 
@@ -330,6 +330,8 @@ def sdo_icon(stix_object):
                     elif stix_object["identity_class"] == "class":
                         icon_type = "identity-class"
                     elif stix_object["identity_class"] == "system":
+                        icon_type = "identity-system"
+                    elif stix_object["identity_class"] == "asset":
                         icon_type = "identity-system"
                     elif stix_object["identity_class"] == "group":
                         icon_type = "identity-group"

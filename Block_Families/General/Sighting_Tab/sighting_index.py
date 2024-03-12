@@ -21,7 +21,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Get From Options
+# Title: When Sighting tab selected, get data
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: denis@cloudaccelerator.co
@@ -30,13 +30,10 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # Description: This script is designed to take in a Stix Object ID
 #       and return a Stix object
 #
-# One Mandatory Input:
-# 1. Get Query Form
-# 2. Context_Path
-# 3. Source Value
-# 4. Source Object
-# One Output
-# 1. Context
+# No Input:
+# 1.
+# One Outpute
+# 1. Sighting Hierarchy
 #
 # This code is licensed under the terms of the BSD.
 ##############################################################################
@@ -54,12 +51,18 @@ from stixorm.module.authorise import import_type_factory
 from posixpath import basename
 import json
 import os
+import copy
+from Block_Families.General._library.convert_n_and_e import convert_relns, convert_sighting, convert_node, \
+    refine_edges, generate_legend
 
 import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
+from datetime import datetime
+from stixorm.module.typedb_lib.factories.auth_factory import get_auth_factory_instance
 import_type = import_type_factory.get_all_imports()
+
 TR_Context_Memory_Dir = "./Context_Mem"
 local = {
     "global": "/global_variables_dict.json",
@@ -91,140 +94,117 @@ refs = {
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
 
-def check_properties(cont, prop, source_value):
-    source_val = ""
-    object_val = ""
-    object_path_list = prop["path"]
-    comparator = prop["comparator"]
-    if "source_path" in prop:
-        source_path_list = prop["source_path"]
-        length = len(source_path_list)
-        interim_object = source_value
-        for i, source_path in enumerate(source_path_list):
-            if i == (length - 1):
-                source_val = interim_object[source_path]
-            elif source_path in interim_object:
-                interim_object = interim_object[source_path]
-            else:
-                return False
-    else:
-        source_val = prop["source_value"]
-    # we have a source source_val now
-    length = len(object_path_list)
-    interim_object = cont
-    for i, object_path in enumerate(object_path_list):
-        if i == (length - 1):
-            object_val = interim_object[object_path]
-        elif object_path in interim_object:
-            interim_object = interim_object[object_path]
-        else:
-            return False
-    # we have now found the object_val, we need to compare
-    if comparator == "EQ":
-        if source_val == object_val:
-            return True
-        else:
-            return False
-    else:
-        return False
-
-
-
-def check_embedded(cont, embedded, source_id):
-    source_val = ""
-    object_val = ""
-    source_path_list = embedded["source_path"]
-    object_path_list = embedded["path"]
-    comparator = embedded["comparator"]
-    length = len(source_path_list)
-    interim_object = source_id
-    for i, source_path in enumerate(source_path_list):
-        if i == (length - 1):
-            source_val = interim_object[source_path]
-        elif source_path in interim_object:
-            interim_object = interim_object[source_path]
-        else:
-            return False
-    # we have a source source_val now
-    length = len(object_path_list)
-    interim_object = cont
-    for i, object_path in enumerate(object_path_list):
-        if i == (length - 1):
-            object_val = interim_object[object_path]
-        elif object_path in interim_object:
-            interim_object = interim_object[object_path]
-        else:
-            return False
-    # we have now found the object_val, we need to compare
-    if comparator == "EQ":
-        if source_val == object_val:
-            return True
-        else:
-            return False
-    else:
-        return False
-
-
-def get_context_object(get_query, context_type, source_value=None, source_id=None):
-    # 1. Extract the components of the object
-
-    if context_type:
-        TR_Context_Filename = TR_Context_Memory_Dir + local[context_type]
-    else:
-        return "context_type unknown " + str(context_type)
-
-    context_data_list = []
-    context_object = {}
-    if os.path.exists(TR_Context_Filename):
-        with open(TR_Context_Filename, "r") as context_file:
-            context_data_list = json.load(context_file)
-
-    if context_data_list:
-        for cont in context_data_list:
-            if cont["type"] == get_query["type"]:
-                if "properties" in get_query or "embedded" in get_query:
-                    if "properties" in get_query and "embedded" in get_query:
-                        if check_properties(cont["original"], get_query["property"], source_value) and check_embedded(cont["original"], get_query["embedded"], source_id):
-                            context_object = cont["original"]
-                            return context_object
-                    elif "properties" in get_query and "embedded" not in get_query:
-                        if check_properties(cont["original"], get_query["property"], source_value):
-                            context_object = cont["original"]
-                    else:
-                        if check_embedded(cont["original"], get_query["embedded"], source_id):
-                            context_object = cont["original"]
+def get_sighting_index():
+    sighting_index = {}
+    # 1. Setup variables
+    sightings = []
+    SDO = []
+    SCO = []
+    relationship = []
+    auth_factory = get_auth_factory_instance()
+    auth = auth_factory.get_auth_for_import(import_type)
+    auth_types = copy.deepcopy(auth["types"])
+    # 2. open "others" list file, and split it into chunks
+    if os.path.exists(TR_Context_Memory_Dir + refs["other"]):
+        with open(TR_Context_Memory_Dir + refs["other"], "r") as mem_input:
+            stix_others_list = json.load(mem_input)
+            for stix_obj in stix_others_list:
+                if stix_obj["type"] == "sighting":
+                    sightings.append(stix_obj)
+                elif stix_obj["type"] in auth_types["sdo"]:
+                    SDO.append(stix_obj)
+                elif stix_obj["type"] in auth_types["sco"]:
+                    SCO.append(stix_obj)
+                elif stix_obj["type"] == "relationship":
+                    relationship.append(stix_obj)
                 else:
-                    context_object = cont["original"]
-                    return context_object
+                    return {"result": "error, type is unknown"}
+    total_obs_components = SCO + relationship
+    # 3. sort sightings by time
+    if sightings != []:
+        sorted_list = sorted(sightings, key=lambda t: datetime.strptime(t["original"]["created"], "%Y-%m-%dT%H:%M:%S.%fZ"))
+        sighting_index["name"] = "incident"
+        sighting_index["icon"] = ""
+        sighting_index["type"] = ""
+        sighting_index["edge"] = ""
+        sighting_index["id"] = ""
+        sighting_index["children"] = []
+        children = sighting_index["children"]
+        # 4. Process each sighting and place them into the children
+        for sorted_obj in sorted_list:
+            # 4A. First setup the sighting object
+            level1 = {}
+            level1["name"] = sorted_obj["name"]
+            level1["icon"] = sorted_obj["icon"]
+            level1["type"] = sorted_obj["type"]
+            level1["id"] = sorted_obj["id"]
+            level1["edge"] = "other_object_refs"
+            level1["original"] = sorted_obj["original"]
+            level1["children"] = []
+            children1 = level1["children"]
+            sighting_of = ""
+            observed = []
+            where = []
+            if "sighting_of_ref" in sorted_obj["original"]:
+                sighting_of = sorted_obj["original"]["sighting_of_ref"]
+            if "observed_data_refs" in sorted_obj["original"]:
+                observed = sorted_obj["original"]["observed_data_refs"]
+            if "where_sighted_refs" in sorted_obj["original"]:
+                where_sighted = sorted_obj["original"]["where_sighted_refs"]
+            for sdo_obj in SDO:
+                if sighting_of != "" and sighting_of == sdo_obj["id"]:
+                    sight = {}
+                    sight["name"] = sdo_obj["name"]
+                    sight["icon"] = sdo_obj["icon"]
+                    sight["edge"] = "sighting_of_ref"
+                    sight["type"] = sdo_obj["type"]
+                    sight["id"] = sdo_obj["id"]
+                    sight["original"] = sdo_obj["original"]
+                    children1.append(sight)
+                elif where_sighted != "" and sdo_obj["id"] in where_sighted:
+                    where_obj = {}
+                    where_obj["name"] = sdo_obj["name"]
+                    where_obj["icon"] = sdo_obj["icon"]
+                    where_obj["edge"] = "where_sighted_refs"
+                    where_obj["type"] = sdo_obj["type"]
+                    where_obj["id"] = sdo_obj["id"]
+                    where_obj["original"] = sdo_obj["original"]
+                    children1.append(where_obj)
+                elif observed != [] and sdo_obj["id"] in observed:
+                    observe = {}
+                    observe["name"] = sdo_obj["name"]
+                    observe["icon"] = sdo_obj["icon"]
+                    observe["edge"] = "observed_data_refs"
+                    observe["type"] = sdo_obj["type"]
+                    observe["id"] = sdo_obj["id"]
+                    observe["original"] = sdo_obj["original"]
+                    observe["children"] = []
+                    children2 = observe["children"]
+                    for obs_comp in total_obs_components:
+                        if obs_comp["id"] in sdo_obj["original"]["object_refs"]:
+                            children2.append(obs_comp)
+                    children1.append(observe)
+            children.append(level1)
 
-    return context_object
+    else:
+        return sighting_index
+
+    return sighting_index
 
 
 def main(inputfile, outputfile):
-    source_value = None
-    source_id = None
+    context_type = None
+    stix_object = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
             input = json.load(script_input)
-    if "get_query" in input:
-        get_query = input["get_query"]
-    if "context_type" in input:
-        context_type = input["context_type"]
-    if "source_value" in input:
-        source_value = input["source_value"]
-    if "source_id" in input:
-        source_id = input["source_id"]
 
     # setup logger for execution
-    context_data = get_context_object(get_query, context_type["context_type"], source_value, source_id)
+    hierarchy = get_sighting_index()
+
     with open(outputfile, "w") as outfile:
-        json.dump(context_data, outfile)
+        json.dump(hierarchy, outfile)
 
-
-# 1. Get Query Form
-# 2. Context_Path
-# 3. Source Value
-# 4. Source Object
 
 ################################################################################
 ## body end                                                                   ##
