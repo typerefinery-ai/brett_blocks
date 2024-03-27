@@ -122,8 +122,8 @@ def add_node(node, context_type):
 def add_edge(edge, context_type):
     exists = False
     stix_edge_list = []
-    if os.path.exists(TR_Context_Memory_Dir + local[context_type]):
-        with open(TR_Context_Memory_Dir + local[context_type], "r") as mem_input:
+    if os.path.exists(TR_Context_Memory_Dir + refs[context_type]):
+        with open(TR_Context_Memory_Dir + refs[context_type], "r") as mem_input:
             stix_edge_list = json.load(mem_input)
             for i in range(len(stix_edge_list)):
                 if stix_edge_list[i]["source"] == edge["source"] and stix_edge_list[i]["target"] == edge["target"]:
@@ -133,7 +133,7 @@ def add_edge(edge, context_type):
                 stix_edge_list.append(edge)
     else:
         stix_edge_list = [edge]
-    with open(TR_Context_Memory_Dir + local[context_type], 'w') as f:
+    with open(TR_Context_Memory_Dir + refs[context_type], 'w') as f:
         f.write(json.dumps(stix_edge_list))
 
 

@@ -332,7 +332,7 @@ def sdo_icon(stix_object):
                     elif stix_object["identity_class"] == "system":
                         icon_type = "identity-system"
                     elif stix_object["identity_class"] == "asset":
-                        icon_type = "identity-system"
+                        icon_type = "identity-asset"
                     elif stix_object["identity_class"] == "group":
                         icon_type = "identity-group"
                     else:

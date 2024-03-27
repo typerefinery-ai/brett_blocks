@@ -21,7 +21,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: When Sighting tab selected, get data
+# Title: When Company tab selected, get data
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: denis@cloudaccelerator.co
@@ -32,8 +32,8 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 #
 # No Input:
 # 1.
-# One Outpute
-# 1. Sighting Hierarchy
+# One Output
+# 1. Company Hierarchy
 #
 # This code is licensed under the terms of the BSD.
 ##############################################################################
@@ -91,105 +91,132 @@ refs = {
     "relation_edges" : "/incident_1/relation_edges.json",
     "relation_replacement_edges" : "/incident_1/relation_replacement_edges.json"
 }
-key_list = ["start", "sequence", "impact", "event", "task", "other"]
+comp_list = ["assets", "systems", "users"]
 
 
-def get_sighting_index():
-    sighting_index = {}
+def get_company_index():
+    show_sro = True
+    company_index = {}
+    stix_company_obj = {}
     # 1. Setup variables
-    sightings = []
-    SDO = []
-    SCO = []
-    relationship = []
+    comp_obj = {}
+    possible = []
+    relations = []
+    stix_incident_id = ""
     auth_factory = get_auth_factory_instance()
     auth = auth_factory.get_auth_for_import(import_type)
     auth_types = copy.deepcopy(auth["types"])
-    # 2. open "others" list file, and split it into chunks
-    if os.path.exists(TR_Context_Memory_Dir + refs["other"]):
-        with open(TR_Context_Memory_Dir + refs["other"], "r") as mem_input:
-            stix_others_list = json.load(mem_input)
-            for stix_obj in stix_others_list:
-                if stix_obj["type"] == "sighting":
-                    sightings.append(stix_obj)
-                elif stix_obj["type"] in auth_types["sdo"]:
-                    SDO.append(stix_obj)
-                elif stix_obj["type"] in auth_types["sco"]:
-                    SCO.append(stix_obj)
-                elif stix_obj["type"] == "relationship":
-                    relationship.append(stix_obj)
-                else:
-                    return {"result": "error, type is unknown"}
-    total_obs_components = SCO + relationship
-    # 3. sort sightings by time
-    if sightings != []:
-        sorted_list = sorted(sightings, key=lambda t: datetime.strptime(t["original"]["created"], "%Y-%m-%dT%H:%M:%S.%fZ"))
-        sighting_index["name"] = "incident"
-        sighting_index["icon"] = ""
-        sighting_index["type"] = ""
-        sighting_index["edge"] = ""
-        sighting_index["id"] = ""
-        sighting_index["children"] = []
-        children = sighting_index["children"]
-        # 4. Process each sighting and place them into the children
-        for sorted_obj in sorted_list:
+    # 2. open the company file, and then the assets, systems and users
+    if os.path.exists(TR_Context_Memory_Dir + local["company"]):
+        with open(TR_Context_Memory_Dir + local["company"], "r") as mem_input:
+            stix_company_list = json.load(mem_input)
+            stix_company_obj = stix_company_list[0]
+            for key in comp_list:
+                if os.path.exists(TR_Context_Memory_Dir + local[key]):
+                    with open(TR_Context_Memory_Dir + local[key], "r") as mem_input:
+                        comp_obj[key] = json.load(mem_input)
+    # 3. setup the root record
+    if stix_company_obj != {}:
+        company_index["name"] = stix_company_obj["name"]
+        company_index["icon"] = "identity-organization"
+        company_index["type"] = stix_company_obj["name"]
+        company_index["edge"] = ""
+        company_index["id"] = stix_company_obj["id"]
+        company_index["original"] = stix_company_obj["original"]
+        company_index["children"] = []
+        children0 = company_index["children"]
+        # 4. Add the assets
+        if comp_obj["assets"] != []:
             # 4A. First setup the sighting object
+            level2 = {}
+            level2["name"] = "company assets"
+            level2["icon"] = "identity-asset"
+            level2["type"] = "company assets"
+            level2["id"] = ""
+            level2["edge"] = "assets"
+            level2["original"] = ""
+            level2["children"] = []
+            children2 = level2["children"]
+            for obj in comp_obj["assets"]:
+                identity_obj = {}
+                identity_obj["name"] = obj["name"]
+                identity_obj["icon"] = obj["icon"]
+                identity_obj["edge"] = "asset-of"
+                identity_obj["type"] = obj["type"]
+                identity_obj["id"] = obj["id"]
+                identity_obj["original"] = obj["original"]
+                children2.append(identity_obj)
+            children0.append(level2)
+        if comp_obj["systems"] != []:
+            # 4A. Add the systems objects
+            level3 = {}
+            level3["name"] = "company systems"
+            level3["icon"] = "identity-system"
+            level3["type"] = "company systems"
+            level3["id"] = ""
+            level3["edge"] = "systems"
+            level3["original"] = ""
+            level3["children"] = []
+            children3 = level3["children"]
+            for obj in comp_obj["systems"]:
+                identity_obj = {}
+                identity_obj["name"] = obj["name"]
+                identity_obj["icon"] = obj["icon"]
+                identity_obj["edge"] = "system-of"
+                identity_obj["type"] = obj["type"]
+                identity_obj["id"] = obj["id"]
+                identity_obj["original"] = obj["original"]
+                children3.append(identity_obj)
+            children0.append(level3)
+        if comp_obj["users"] != []:
+            # 4B. Add the users objects
             level1 = {}
-            level1["name"] = sorted_obj["name"]
-            level1["icon"] = sorted_obj["icon"]
-            level1["type"] = sorted_obj["type"]
-            level1["id"] = sorted_obj["id"]
-            level1["edge"] = "other_object_refs"
-            level1["original"] = sorted_obj["original"]
+            level1["name"] = "company users"
+            level1["icon"] = "identity-individual"
+            level1["type"] = "company users"
+            level1["id"] = ""
+            level1["edge"] = "users-of"
+            level1["original"] = ""
             level1["children"] = []
             children1 = level1["children"]
-            sighting_of = ""
-            observed = []
-            where = []
-            if "sighting_of_ref" in sorted_obj["original"]:
-                sighting_of = sorted_obj["original"]["sighting_of_ref"]
-            if "observed_data_refs" in sorted_obj["original"]:
-                observed = sorted_obj["original"]["observed_data_refs"]
-            if "where_sighted_refs" in sorted_obj["original"]:
-                where_sighted = sorted_obj["original"]["where_sighted_refs"]
-            for sdo_obj in SDO:
-                if sighting_of != "" and sighting_of == sdo_obj["id"]:
-                    sight = {}
-                    sight["name"] = sdo_obj["name"]
-                    sight["icon"] = sdo_obj["icon"]
-                    sight["edge"] = "sighting_of_ref"
-                    sight["type"] = sdo_obj["type"]
-                    sight["id"] = sdo_obj["id"]
-                    sight["original"] = sdo_obj["original"]
-                    children1.append(sight)
-                elif where_sighted != "" and sdo_obj["id"] in where_sighted:
-                    where_obj = {}
-                    where_obj["name"] = sdo_obj["name"]
-                    where_obj["icon"] = sdo_obj["icon"]
-                    where_obj["edge"] = "where_sighted_refs"
-                    where_obj["type"] = sdo_obj["type"]
-                    where_obj["id"] = sdo_obj["id"]
-                    where_obj["original"] = sdo_obj["original"]
-                    children1.append(where_obj)
-                elif observed != [] and sdo_obj["id"] in observed:
-                    observe = {}
-                    observe["name"] = sdo_obj["name"]
-                    observe["icon"] = sdo_obj["icon"]
-                    observe["edge"] = "observed_data_refs"
-                    observe["type"] = sdo_obj["type"]
-                    observe["id"] = sdo_obj["id"]
-                    observe["original"] = sdo_obj["original"]
-                    observe["children"] = []
-                    children2 = observe["children"]
-                    for obs_comp in total_obs_components:
-                        if obs_comp["id"] in sdo_obj["original"]["object_refs"]:
-                            children2.append(obs_comp)
-                    children1.append(observe)
-            children.append(level1)
-
+            for obj in comp_obj["users"]:
+                if obj["type"] == "identity":
+                    sub_ids = []
+                    identity_obj = {}
+                    identity_obj["name"] = obj["name"]
+                    identity_obj["icon"] = obj["icon"]
+                    identity_obj["edge"] = "user-of"
+                    identity_obj["type"] = obj["type"]
+                    identity_obj["id"] = obj["id"]
+                    identity_obj["original"] = obj["original"]
+                    if "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498" in obj:
+                        if "email_addresses" in obj["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]:
+                            email_addr_list = obj["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]["email_addresses"]
+                            for email_addr in email_addr_list:
+                                sub_ids.append(email_addr["email_address_ref"])
+                        if "social_media_accounts" in obj["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]:
+                            accounts_list = obj["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]["social_media_accounts"]
+                            for usr_acct in accounts_list:
+                                sub_ids.append(usr_acct["user_account_ref"])
+                    if sub_ids != []:
+                        identity_obj["children"] = []
+                        children2 = identity_obj["children"]
+                        for sub_obj in comp_obj["users"]:
+                            if sub_obj["id"] in sub_ids:
+                                sub = {}
+                                sub["name"] = obj["name"]
+                                sub["icon"] = obj["icon"]
+                                sub["edge"] = "owner-of"
+                                sub["type"] = obj["type"]
+                                sub["id"] = obj["id"]
+                                sub["original"] = obj["original"]
+                                children2.append(sub)
+                    children1.append(identity_obj)
+            children0.append(level1)
     else:
-        return sighting_index
+        return company_index
 
-    return sighting_index
+    return company_index
 
 
 def main(inputfile, outputfile):
@@ -200,7 +227,7 @@ def main(inputfile, outputfile):
             input = json.load(script_input)
 
     # setup logger for execution
-    hierarchy = get_sighting_index()
+    hierarchy = get_company_index()
 
     with open(outputfile, "w") as outfile:
         json.dump(hierarchy, outfile)
