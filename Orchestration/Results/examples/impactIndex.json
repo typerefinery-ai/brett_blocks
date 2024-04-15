@@ -7,8 +7,8 @@
   "children": [
     {
       "name": "impact",
-      "icon": "",
-      "type": "impact-external",
+      "icon": "impact-external",
+      "type": "impact",
       "id": "impact--7490a194-7ea3-4dac-95b8-d04a028ebf6c",
       "edge": "impact_refs",
       "original": {

@@ -146,8 +146,7 @@ def get_task_index():
             level1["id"] = sorted_obj["id"]
             level1["edge"] = "task_refs"
             level1["original"] = sorted_obj["original"]
-            level1["children"] = []
-            children1 = level1["children"]
+            temp_list = []
             owner = ""
             changed_obj_ids = []
             created_by_ref = ""
@@ -171,7 +170,7 @@ def get_task_index():
                     changed_obj["type"] = obj["type"]
                     changed_obj["id"] = obj["id"]
                     changed_obj["original"] = obj["original"]
-                    children1.append(changed_obj)
+                    temp_list.append(changed_obj)
                 elif owner != "" and obj["id"] == owner:
                     owner = {}
                     owner["name"] = obj["name"]
@@ -180,7 +179,7 @@ def get_task_index():
                     owner["type"] = obj["type"]
                     owner["id"] = obj["id"]
                     owner["original"] = obj["original"]
-                    children1.append(owner)
+                    temp_list.append(owner)
                 elif created_by_ref != "" and obj["id"] == created_by_ref:
                     created_by_obj = {}
                     created_by_obj["name"] = obj["name"]
@@ -189,8 +188,7 @@ def get_task_index():
                     created_by_obj["type"] = obj["type"]
                     created_by_obj["id"] = obj["id"]
                     created_by_obj["original"] = obj["original"]
-                    children1.append(created_by_obj)
-            children.append(level1)
+                    temp_list.append(created_by_obj)
             for reln in relations:
                 if sorted_obj["id"] == reln["original"]["source_ref"] and reln["original"]["target_ref"] != stix_incident_id:
                     if show_sro:
@@ -213,7 +211,7 @@ def get_task_index():
                                 sub_obj["id"] = obj["id"]
                                 sub_obj["original"] = obj["original"]
                                 children2.append(sub_obj)
-                        children1.append(show_sro)
+                        temp_list.append(show_sro)
                     else:
                         for obj in possible:
                             if obj["id"] == reln["original"]["target_ref"]:
@@ -224,7 +222,7 @@ def get_task_index():
                                 sub_obj["type"] = obj["type"]
                                 sub_obj["id"] = obj["id"]
                                 sub_obj["original"] = obj["original"]
-                                children1.append(sub_obj)
+                                temp_list.append(sub_obj)
                 elif sorted_obj["id"] == reln["original"]["target_ref"] and reln["original"]["source_ref"] != stix_incident_id:
                     if show_sro:
                         show_sro = {}
@@ -246,7 +244,7 @@ def get_task_index():
                                 sub_obj["id"] = obj["id"]
                                 sub_obj["original"] = obj["original"]
                                 children2.append(sub_obj)
-                        children1.append(show_sro)
+                        temp_list.append(show_sro)
                     else:
                         for obj in possible:
                             if obj["id"] == reln["original"]["source_ref"]:
@@ -257,7 +255,11 @@ def get_task_index():
                                 sub_obj["type"] = obj["type"]
                                 sub_obj["id"] = obj["id"]
                                 sub_obj["original"] = obj["original"]
-                                children1.append(sub_obj)
+                                temp_list.append(sub_obj)
+
+            if temp_list != []:
+                level1["children"] = temp_list
+            children.append(level1)
 
     else:
         return task_index

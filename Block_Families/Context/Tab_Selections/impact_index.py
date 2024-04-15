@@ -146,15 +146,16 @@ def get_impact_index():
             level1["id"] = sorted_obj["id"]
             level1["edge"] = "impact_refs"
             level1["original"] = sorted_obj["original"]
-            level1["children"] = []
-            children1 = level1["children"]
+            temp_list = []
             created_by_ref = ""
             impacted_refs = []
-            created_by_ref = ""
+            superseded_by_ref = ""
             if "impacted_refs" in sorted_obj["original"]:
                 impacted_refs = sorted_obj["original"]["impacted_refs"]
             if "created_by_ref" in sorted_obj["original"]:
                 created_by_ref = sorted_obj["original"]["created_by_ref"]
+            if "superseded_by_ref" in sorted_obj["original"]:
+                superseded_by_ref = sorted_obj["original"]["superseded_by_ref"]
             for obj in possible:
                 if created_by_ref != "" and obj["id"] == created_by_ref:
                     created_by_obj = {}
@@ -164,7 +165,7 @@ def get_impact_index():
                     created_by_obj["type"] = obj["type"]
                     created_by_obj["id"] = obj["id"]
                     created_by_obj["original"] = obj["original"]
-                    children1.append(created_by_obj)
+                    temp_list.append(created_by_obj)
                 elif obj["id"] in impacted_refs:
                     impacted_obj = {}
                     impacted_obj["name"] = obj["name"]
@@ -173,17 +174,16 @@ def get_impact_index():
                     impacted_obj["type"] = obj["type"]
                     impacted_obj["id"] = obj["id"]
                     impacted_obj["original"] = obj["original"]
-                    children1.append(impacted_obj)
-                elif "superseded_by_ref" in sorted_obj["original"]:
-                    impacted_obj = {}
-                    impacted_obj["name"] = obj["name"]
-                    impacted_obj["icon"] = obj["icon"]
-                    impacted_obj["edge"] = "impacted_refs"
-                    impacted_obj["type"] = obj["type"]
-                    impacted_obj["id"] = obj["id"]
-                    impacted_obj["original"] = obj["original"]
-                    children1.append(impacted_obj)
-            children.append(level1)
+                    temp_list.append(impacted_obj)
+                elif obj["id"] == superseded_by_ref:
+                    superseded_obj = {}
+                    superseded_obj["name"] = obj["name"]
+                    superseded_obj["icon"] = obj["icon"]
+                    superseded_obj["edge"] = "superseded_by_ref"
+                    superseded_obj["type"] = obj["type"]
+                    superseded_obj["id"] = obj["id"]
+                    superseded_obj["original"] = obj["original"]
+                    temp_list.append(superseded_obj)
             for reln in relations:
                 if sorted_obj["id"] == reln["original"]["source_ref"] and reln["original"]["target_ref"] != stix_incident_id:
                     if show_sro:
@@ -206,7 +206,7 @@ def get_impact_index():
                                 sub_obj["id"] = obj["id"]
                                 sub_obj["original"] = obj["original"]
                                 children2.append(sub_obj)
-                        children1.append(show_sro)
+                        temp_list.append(show_sro)
                     else:
                         for obj in possible:
                             if obj["id"] == reln["original"]["target_ref"]:
@@ -217,7 +217,7 @@ def get_impact_index():
                                 sub_obj["type"] = obj["type"]
                                 sub_obj["id"] = obj["id"]
                                 sub_obj["original"] = obj["original"]
-                                children1.append(sub_obj)
+                                temp_list.append(sub_obj)
                 elif sorted_obj["id"] == reln["original"]["target_ref"] and reln["original"]["source_ref"] != stix_incident_id:
                     if show_sro:
                         show_sro = {}
@@ -239,7 +239,7 @@ def get_impact_index():
                                 sub_obj["id"] = obj["id"]
                                 sub_obj["original"] = obj["original"]
                                 children2.append(sub_obj)
-                        children1.append(show_sro)
+                        temp_list.append(show_sro)
                     else:
                         for obj in possible:
                             if obj["id"] == reln["original"]["source_ref"]:
@@ -250,7 +250,11 @@ def get_impact_index():
                                 sub_obj["type"] = obj["type"]
                                 sub_obj["id"] = obj["id"]
                                 sub_obj["original"] = obj["original"]
-                                children1.append(sub_obj)
+                                temp_list.append(sub_obj)
+
+            if temp_list != []:
+                level1["children"] = temp_list
+            children.append(level1)
 
     else:
         return impact_index
