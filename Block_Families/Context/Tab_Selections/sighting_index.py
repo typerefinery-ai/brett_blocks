@@ -123,9 +123,11 @@ def get_sighting_index():
     # 3. sort sightings by time
     if sightings != []:
         sorted_list = sorted(sightings, key=lambda t: datetime.strptime(t["original"]["created"], "%Y-%m-%dT%H:%M:%S.%fZ"))
-        sighting_index["name"] = "evidence list"
+        sighting_index["name"] = "Evidence List"
         sighting_index["icon"] = "sighting-generic"
         sighting_index["type"] = ""
+        sighting_index["heading"] = "Evidence List"
+        sighting_index["description"] = "list of sightings"
         sighting_index["edge"] = ""
         sighting_index["id"] = ""
         sighting_index["children"] = []
@@ -134,12 +136,8 @@ def get_sighting_index():
         for sorted_obj in sorted_list:
             # 4A. First setup the sighting object
             level1 = {}
-            level1["name"] = sorted_obj["name"]
-            level1["icon"] = sorted_obj["icon"]
-            level1["type"] = sorted_obj["type"]
-            level1["id"] = sorted_obj["id"]
+            level1 = sorted_obj
             level1["edge"] = "other_object_refs"
-            level1["original"] = sorted_obj["original"]
             level1["children"] = []
             children1 = level1["children"]
             sighting_of = ""
@@ -157,44 +155,28 @@ def get_sighting_index():
             for sdo_obj in SDO:
                 if sighting_of != "" and sighting_of == sdo_obj["id"]:
                     sight = {}
-                    sight["name"] = sdo_obj["name"]
-                    sight["icon"] = sdo_obj["icon"]
+                    sight = sdo_obj
                     sight["edge"] = "sighting_of_ref"
-                    sight["type"] = sdo_obj["type"]
-                    sight["id"] = sdo_obj["id"]
-                    sight["original"] = sdo_obj["original"]
                     children1.append(sight)
                 elif where_sighted != "" and sdo_obj["id"] in where_sighted:
                     where_obj = {}
-                    where_obj["name"] = sdo_obj["name"]
-                    where_obj["icon"] = sdo_obj["icon"]
+                    where_obj = sdo_obj
                     where_obj["edge"] = "where_sighted_refs"
-                    where_obj["type"] = sdo_obj["type"]
-                    where_obj["id"] = sdo_obj["id"]
-                    where_obj["original"] = sdo_obj["original"]
                     children1.append(where_obj)
                 elif observed != [] and sdo_obj["id"] in observed:
                     observe = {}
-                    observe["name"] = sdo_obj["name"]
-                    observe["icon"] = sdo_obj["icon"]
+                    observe = sdo_obj
                     observe["edge"] = "observed_data_refs"
-                    observe["type"] = sdo_obj["type"]
-                    observe["id"] = sdo_obj["id"]
-                    observe["original"] = sdo_obj["original"]
                     observe["children"] = []
                     children2 = observe["children"]
                     for obs_comp in total_obs_components:
                         if obs_comp["id"] in sdo_obj["original"]["object_refs"]:
                             children2.append(obs_comp)
                     children1.append(observe)
-                elif created_by_ref != "" and obj["id"] == created_by_ref:
+                elif created_by_ref != "" and sdo_obj["id"] == created_by_ref:
                     created_by_obj = {}
-                    created_by_obj["name"] = obj["name"]
-                    created_by_obj["icon"] = obj["icon"]
+                    created_by_obj = sdo_obj
                     created_by_obj["edge"] = "observed_data_refs"
-                    created_by_obj["type"] = obj["type"]
-                    created_by_obj["id"] = obj["id"]
-                    created_by_obj["original"] = obj["original"]
                     children1.append(created_by_obj)
             children.append(level1)
 

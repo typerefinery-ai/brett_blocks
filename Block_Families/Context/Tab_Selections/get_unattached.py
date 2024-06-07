@@ -21,7 +21,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: When Me tab selected, get data
+# Title: When any tab is selected, get all of the unattached
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: denis@cloudaccelerator.co
@@ -33,7 +33,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # No Input:
 # 1.
 # One Output
-# 1. Me and Team Hierarchy's
+# 1. Unattached nodes and edges
 #
 # This code is licensed under the terms of the BSD.
 ##############################################################################
@@ -91,99 +91,55 @@ refs = {
     "relation_edges" : "/incident_1/relation_edges.json",
     "relation_replacement_edges" : "/incident_1/relation_replacement_edges.json"
 }
-comp_list = ["me", "team"]
+key_list = ["start", "impact", "event", "other", "relations"]
 
 
-def get_me_index():
+def get_unattached():
     show_sro = True
-    me_index = {}
-    stix_me_list = []
-    stix_team_list = []
+    task_index = {}
     # 1. Setup variables
-    comp_obj = {}
-    possible = []
+    nodes = []
+    edges = []
     relations = []
-    stix_incident_id = ""
-    auth_factory = get_auth_factory_instance()
-    auth = auth_factory.get_auth_for_import(import_type)
-    auth_types = copy.deepcopy(auth["types"])
-    # 2. open the company file, and then the assets, systems and users
-    if os.path.exists(TR_Context_Memory_Dir + local["me"]):
-        with open(TR_Context_Memory_Dir + local["me"], "r") as mem_input:
-            stix_me_list = json.load(mem_input)
-    if os.path.exists(TR_Context_Memory_Dir + local["team"]):
-        with open(TR_Context_Memory_Dir + local["team"], "r") as mem_input:
-            stix_team_list = json.load(mem_input)
+    relation_edges = []
+    relation_replacement_edges = []
+    unattached = {}
+    # 2. open files and fill lists
+    if os.path.exists(TR_Context_Memory_Dir + refs["unattached"]):
+        with open(TR_Context_Memory_Dir + refs["unattached"], "r") as mem_input:
+            nodes = json.load(mem_input)
+    if os.path.exists(TR_Context_Memory_Dir + refs["edges"]):
+        with open(TR_Context_Memory_Dir + refs["edges"], "r") as mem_input:
+            edges = json.load(mem_input)
+    if os.path.exists(TR_Context_Memory_Dir + refs["relations"]):
+        with open(TR_Context_Memory_Dir + refs["relations"], "r") as mem_input:
+            relations = json.load(mem_input)
+    if os.path.exists(TR_Context_Memory_Dir + refs["relation_edges"]):
+        with open(TR_Context_Memory_Dir + refs["relation_edges"], "r") as mem_input:
+            relation_edges = json.load(mem_input)
+    if os.path.exists(TR_Context_Memory_Dir + refs["relation_replacement_edges"]):
+        with open(TR_Context_Memory_Dir + refs["relation_replacement_edges"], "r") as mem_input:
+            relation_replacement_edges = json.load(mem_input)
     # 3. sort sightings by time
-    if stix_me_list != []:
-        me_index["name"] = "Type Refinery User"
-        me_index["icon"] = "identity-class"
-        me_index["type"] = ""
-        me_index["heading"] = "Type Refinery User"
-        me_index["description"] = "User identity, email addresses, contact numbers and user accounts"
-        me_index["edge"] = ""
-        me_index["id"] = ""
-        me_index["original"] = ""
-        me_index["children"] = []
-        children0 = me_index["children"]
-        # 4. Process each sighting and place them into the children
-        for obj in stix_me_list:
-            if obj["type"] == "identity":
-                sub_ids = []
-                identity_obj = {}
-                identity_obj = obj
-                identity_obj["edge"] = "owner"
-                exts = obj['original']['extensions']
-                if "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498" in exts:
-                    if "email_addresses" in exts["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]:
-                        email_addr_list = exts["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]["email_addresses"]
-                        for email_addr in email_addr_list:
-                            sub_ids.append(email_addr["email_address_ref"])
-                    if "social_media_accounts" in exts["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]:
-                        accounts_list = exts["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]["social_media_accounts"]
-                        for usr_acct in accounts_list:
-                            sub_ids.append(usr_acct["user_account_ref"])
-                if sub_ids != []:
-                    identity_obj["children"] = []
-                    children1 = identity_obj["children"]
-                    for sub_obj in stix_me_list:
-                        if sub_obj["id"] in sub_ids:
-                            sub = {}
-                            sub = sub_obj
-                            sub["edge"] = "owner-of"
-                            children1.append(sub)
-                children0.append(identity_obj)
-        if stix_team_list != []:
-            for obj in stix_team_list:
-                if obj["type"] == "identity":
-                    sub_ids = []
-                    identity_obj = {}
-                    identity_obj = obj
-                    identity_obj["edge"] = "team-member"
-                    exts = obj['original']['extensions']
-                    if "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498" in exts:
-                        if "email_addresses" in exts["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]:
-                            email_addr_list = exts["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]["email_addresses"]
-                            for email_addr in email_addr_list:
-                                sub_ids.append(email_addr["email_address_ref"])
-                        if "social_media_accounts" in exts["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]:
-                            accounts_list = exts["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]["social_media_accounts"]
-                            for usr_acct in accounts_list:
-                                sub_ids.append(usr_acct["user_account_ref"])
-                    if sub_ids != []:
-                        identity_obj["children"] = []
-                        children2 = identity_obj["children"]
-                        for sub_obj in stix_team_list:
-                            if sub_obj["id"] in sub_ids:
-                                sub = {}
-                                sub = sub_obj
-                                sub["edge"] = "owner-of"
-                                children2.append(sub)
-                    children0.append(identity_obj)
-    else:
-        return me_index
+    node_ids = [x['id'] for x in nodes]
+    for rel in relations:
+        if rel["source_ref"] in node_ids and rel["target_ref"] in node_ids:
+            if show_sro:
+                nodes.append(rel)
+                for edge in relation_edges:
+                    if edge["source"] == rel["id"]:
+                        edges.append(edge)
+            else:
+                for edge in relation_replacement_edges:
+                    if edge["source"] == rel["source_ref"] and edge["target"] == rel["target_ref"]:
+                        edges.append(edge)
 
-    return me_index
+    for edge in edges:
+        if edge["source"] in node_ids and edge["target"] in node_ids:
+            edges.append(edge)
+    unattached['nodes'] = nodes
+    unattached['edges'] = edges
+    return unattached
 
 
 def main(inputfile, outputfile):
@@ -194,10 +150,10 @@ def main(inputfile, outputfile):
             input = json.load(script_input)
 
     # setup logger for execution
-    hierarchy = get_me_index()
+    unattached = get_unattached()
 
     with open(outputfile, "w") as outfile:
-        json.dump(hierarchy, outfile)
+        json.dump(unattached, outfile)
 
 
 ################################################################################

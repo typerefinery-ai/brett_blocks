@@ -21,7 +21,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Make Task
+# Title: Make Impact
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: denis@cloudaccelerator.co
@@ -31,10 +31,10 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 #       and return a Stix object
 #
 # One Mandatory, One Optional Input:
-# 1. Task_Form
+# 1. Impact_Form
 # 2. changed_objects  (optional
 # One Output
-# 1. Task SDO  (Dict)
+# 1. Impact SDO  (Dict)
 #
 # This code is licensed under the terms of the BSD.
 ##########b####################################################################
@@ -122,10 +122,25 @@ def make_impact(impact_form, impacted_entity_counts=None, impacted_refs=None, su
         contents[k] = v
     for k,v in optional.items():
         contents[k] = v
+    for k,v in extensions.items():
+        if k == "availability":
+            contents["extensions"] = {"availability": Availability(**v)}
+        elif k == "confidentiality":
+            contents["extensions"] = {"confidentiality": Confidentiality(**v)}
+        elif k == "external":
+            contents["extensions"] = {"external": External(**v)}
+        elif k == "integrity":
+            contents["extensions"] = {"integrity": Integrity(**v)}
+        elif k == "monetary":
+            contents["extensions"] = {"monetary": Monetary(**v)}
+        elif k == "physical":
+            contents["extensions"] = {"physical": Physical(**v)}
+        elif k == "traceability":
+            contents["extensions"] = {"traceability": Traceability(**v)}
     if imp_ext_id in extensions:
-        contents["extensions"]= {imp_ext_id: imp_ext}
+        contents["extensions"][imp_ext_id] = imp_ext
     else:
-        contents["extensions"]= {imp_ext_id: imp_ext}
+        contents["extensions"][imp_ext_id] = imp_ext
     for k,v in sub.items():
         pass
 

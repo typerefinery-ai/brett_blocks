@@ -1,7 +1,7 @@
 {
-  "Email_Addr_template":
+  "Software_template":
     {
-      "_type": "email-addr",
+      "_type": "software",
       "base_required": {
         "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
         "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
@@ -13,9 +13,12 @@
         "granular_markings": {"collection": "ListProperty", "property":  "GranularMarking", "parameters": {}}
       },
       "object": {
-        "value": {"property":  "StringProperty", "parameters": {"required":  true}},
-        "display_name": {"property":  "StringProperty", "parameters": {}},
-        "belongs_to_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  "user-account", "spec_version":  "2.1"}}
+        "name": {"property":  "StringProperty", "parameters": {"required":  true}},
+        "cpe": {"property":  "StringProperty", "parameters": {}},
+        "swid": {"property":  "StringProperty", "parameters": {}},
+        "languages": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
+        "vendor": {"property":  "StringProperty", "parameters": {}},
+        "version": {"property":  "StringProperty", "parameters": {}}
       },
       "extensions": {},
       "sub": {}

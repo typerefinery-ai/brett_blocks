@@ -129,9 +129,11 @@ def get_impact_index():
     # 3. sort sightings by time
     if impacts != []:
         sorted_list = sorted(impacts, key=lambda t: datetime.strptime(t["original"]["created"], "%Y-%m-%dT%H:%M:%S.%fZ"))
-        impact_index["name"] = "impact list"
+        impact_index["name"] = "Impact List"
         impact_index["icon"] = "impact"
         impact_index["type"] = ""
+        impact_index["heading"] = "Impact List"
+        impact_index["description"] = "List of Impacts for this Incident"
         impact_index["edge"] = ""
         impact_index["id"] = ""
         impact_index["children"] = []
@@ -140,12 +142,8 @@ def get_impact_index():
         for sorted_obj in sorted_list:
             # 4A. First setup the sighting object
             level1 = {}
-            level1["name"] = sorted_obj["name"]
-            level1["icon"] = sorted_obj["icon"]
-            level1["type"] = sorted_obj["type"]
-            level1["id"] = sorted_obj["id"]
+            level1 = sorted_obj
             level1["edge"] = "impact_refs"
-            level1["original"] = sorted_obj["original"]
             temp_list = []
             created_by_ref = ""
             impacted_refs = []
@@ -159,97 +157,61 @@ def get_impact_index():
             for obj in possible:
                 if created_by_ref != "" and obj["id"] == created_by_ref:
                     created_by_obj = {}
-                    created_by_obj["name"] = obj["name"]
-                    created_by_obj["icon"] = obj["icon"]
+                    created_by_obj = obj
                     created_by_obj["edge"] = "created_by_ref"
-                    created_by_obj["type"] = obj["type"]
-                    created_by_obj["id"] = obj["id"]
-                    created_by_obj["original"] = obj["original"]
                     temp_list.append(created_by_obj)
                 elif obj["id"] in impacted_refs:
                     impacted_obj = {}
-                    impacted_obj["name"] = obj["name"]
-                    impacted_obj["icon"] = obj["icon"]
+                    impacted_obj = obj
                     impacted_obj["edge"] = "impacted_refs"
-                    impacted_obj["type"] = obj["type"]
-                    impacted_obj["id"] = obj["id"]
-                    impacted_obj["original"] = obj["original"]
                     temp_list.append(impacted_obj)
                 elif obj["id"] == superseded_by_ref:
                     superseded_obj = {}
-                    superseded_obj["name"] = obj["name"]
-                    superseded_obj["icon"] = obj["icon"]
+                    superseded_obj = obj
                     superseded_obj["edge"] = "superseded_by_ref"
-                    superseded_obj["type"] = obj["type"]
-                    superseded_obj["id"] = obj["id"]
-                    superseded_obj["original"] = obj["original"]
                     temp_list.append(superseded_obj)
             for reln in relations:
                 if sorted_obj["id"] == reln["original"]["source_ref"] and reln["original"]["target_ref"] != stix_incident_id:
                     if show_sro:
                         show_sro = {}
-                        show_sro["name"] = reln["name"]
-                        show_sro["icon"] = reln["icon"]
+                        show_sro = reln
                         show_sro["edge"] = reln["relationship_type"]
-                        show_sro["type"] = reln["type"]
-                        show_sro["id"] = reln["id"]
-                        show_sro["original"] = reln["original"]
                         show_sro["children"] = []
                         children2 = show_sro["children"]
                         for obj in possible:
                             if obj["id"] == reln["original"]["target_ref"]:
                                 sub_obj = {}
-                                sub_obj["name"] = obj["name"]
-                                sub_obj["icon"] = obj["icon"]
+                                sub_obj = obj
                                 sub_obj["edge"] = reln["relationship_type"]
-                                sub_obj["type"] = obj["type"]
-                                sub_obj["id"] = obj["id"]
-                                sub_obj["original"] = obj["original"]
                                 children2.append(sub_obj)
                         temp_list.append(show_sro)
                     else:
                         for obj in possible:
                             if obj["id"] == reln["original"]["target_ref"]:
                                 sub_obj = {}
-                                sub_obj["name"] = obj["name"]
-                                sub_obj["icon"] = obj["icon"]
+                                sub_obj = obj
                                 sub_obj["edge"] = reln["relationship_type"]
-                                sub_obj["type"] = obj["type"]
-                                sub_obj["id"] = obj["id"]
-                                sub_obj["original"] = obj["original"]
                                 temp_list.append(sub_obj)
                 elif sorted_obj["id"] == reln["original"]["target_ref"] and reln["original"]["source_ref"] != stix_incident_id:
                     if show_sro:
                         show_sro = {}
-                        show_sro["name"] = reln["name"]
-                        show_sro["icon"] = reln["icon"]
+                        show_sro = reln
                         show_sro["edge"] = reln["relationship_type"]
-                        show_sro["type"] = reln["type"]
-                        show_sro["id"] = reln["id"]
-                        show_sro["original"] = reln["original"]
                         show_sro["children"] = []
                         children2 = show_sro["children"]
                         for obj in possible:
                             if obj["id"] == reln["original"]["source_ref"]:
                                 sub_obj = {}
-                                sub_obj["name"] = obj["name"]
-                                sub_obj["icon"] = obj["icon"]
+                                sub_obj = obj
                                 sub_obj["edge"] = reln["relationship_type"]
-                                sub_obj["type"] = obj["type"]
-                                sub_obj["id"] = obj["id"]
-                                sub_obj["original"] = obj["original"]
                                 children2.append(sub_obj)
                         temp_list.append(show_sro)
                     else:
                         for obj in possible:
                             if obj["id"] == reln["original"]["source_ref"]:
                                 sub_obj = {}
-                                sub_obj["name"] = obj["name"]
-                                sub_obj["icon"] = obj["icon"]
+                                sub_obj = obj
                                 sub_obj["edge"] = reln["relationship_type"]
-                                sub_obj["type"] = obj["type"]
-                                sub_obj["id"] = obj["id"]
-                                sub_obj["original"] = obj["original"]
                                 temp_list.append(sub_obj)
 
             if temp_list != []:

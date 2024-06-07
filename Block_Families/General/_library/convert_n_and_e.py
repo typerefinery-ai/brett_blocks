@@ -36,8 +36,8 @@ def convert_sighting(obj):
     nodes = []
     edges = []
     nodes, edges = setup_sighting(obj, nodes, edges)
-    edges2 = find_embedded(obj, edges, obj["id"], exclusion_list=["id", "observed_data_refs", "where_sighted_refs", "sighting_of_ref"])
-    edges = edges + edges2
+    # #edges2 = find_embedded(obj, edges, obj["id"], exclusion_list=["id", "observed_data_refs", "where_sighted_refs", "sighting_of_ref"])
+    # edges = edges + edges2
     return nodes, edges
 
 
@@ -45,8 +45,8 @@ def convert_node(obj):
     nodes = []
     edges = []
     nodes, edges = setup_nodes(obj, nodes, edges)
-    edges2 = find_embedded(obj, edges, obj["id"], exclusion_list=["id", "observed_data_refs", "where_sighted_refs", "sighting_of_ref"])
-    edges = edges + edges2
+    edges = find_embedded(obj, edges, obj["id"], exclusion_list=["id", "observed_data_refs", "where_sighted_refs", "sighting_of_ref"])
+    # edges = edges + edges2
     return nodes, edges
 
 
@@ -103,7 +103,10 @@ def setup_relationship(obj):
     target_role = ""
     auth_factory = get_auth_factory_instance()
     auth = auth_factory.get_auth_for_import(import_type)
-    obj_orig = obj['original']
+    if "icon" in obj:
+        obj_orig = obj['original']
+    else:
+        obj_orig = obj
     for record in auth["reln"]["standard_relations"]:
         if record['stix'] == obj["relationship_type"]:
             source_role = record['source']
@@ -116,7 +119,7 @@ def setup_relationship(obj):
     relation_edges = []
     # setup edges to connect without SRO object
     relation_replacement_edge = {}
-    relation_replacement_edge["id"] = obj["id"]
+    relation_replacement_edge["stix-id"] = obj["id"]
     relation_replacement_edge["type"] = "relationship"
     relation_replacement_edge["name"] = obj["relationship_type"] + ", from " + source_role + " to " + target_role
     relation_replacement_edge["source"] = obj["source_ref"]
@@ -124,20 +127,20 @@ def setup_relationship(obj):
     relation_replacement_edges.append(relation_replacement_edge)
     # setup source to SRO
     relation_edge = {}
-    relation_edge["id"] = obj["id"]
+    relation_edge["stix-id"] = obj["id"]
     relation_edge["type"] = "relationship"
     relation_edge["name"] = obj["relationship_type"] + ", from " + source_role
     relation_edge["source"] = obj["source_ref"]
     relation_edge["target"] = obj["id"]
-    relation_edges.append(relation_replacement_edge)
+    relation_edges.append(relation_edge)
     # setup SRO to target
     relation_edge = {}
-    relation_edge["id"] = obj["id"]
+    relation_edge["stix-id"] = obj["id"]
     relation_edge["type"] = "relationship"
     relation_edge["name"] = obj["relationship_type"] + " to " + target_role
     relation_edge["source"] = obj["id"]
     relation_edge["target"] = obj["target_ref"]
-    relation_edges.append(relation_replacement_edge)
+    relation_edges.append(relation_edge)
     # sort out node
     node = {}
     node["id"] = obj["id"]
@@ -153,10 +156,9 @@ def setup_relationship(obj):
 
 def setup_sighting(obj, nodes, edges):
     # sighting_of_ref
-    print(f"==== {obj['id']}")
     description = ''
     edge = {}
-    edge["id"] = obj["id"]
+    edge["stix-id"] = obj["id"]
     edge["type"] = "sighting"
     edge["name"] = "Sighting of " + obj["sighting_of_ref"].split('--')[0]
     description += edge["name"] + '/n'
@@ -166,7 +168,7 @@ def setup_sighting(obj, nodes, edges):
     # list of observed_data_refs
     for obs in obj["observed_data_refs"]:
         edge = {}
-        edge["id"] = obj["id"]
+        edge["stix-id"] = obj["id"]
         edge["type"] = "sighting"
         edge["name"] = "Observed Data"
         edge["source"] = obj["id"]
@@ -176,7 +178,7 @@ def setup_sighting(obj, nodes, edges):
     if "where_sighted_refs" in obj:
         for where in obj["where_sighted_refs"]:
             edge = {}
-            edge["id"] = obj["id"]
+            edge["stix-id"] = obj["id"]
             edge["type"] = "sighting"
             edge["name"] = "Where Sighted -> " + where.split('--')[0]
             description += edge["name"]
@@ -246,9 +248,9 @@ def extract_ids(key, prop, edges, obj_id):
     auth = authorised_mappings(import_type)
     for ex in auth["reln"]["embedded_relations"]:
         if ex["rel"] == key:
-            heading = ex["heading"]
+            label = ex["label"]
             source_owner = ex["owner-is-source"]
-    edge = {"name": heading, "type": "embedded"}
+    edge = {"name": label, "type": "embedded"}
     if isinstance(prop, list):
         for pro in prop:
             if pro.split('--')[0] == "relationship":
@@ -863,11 +865,11 @@ def sdo_icon(stix_object, node):
                             adescription = stix_object.get("description", "")
                             impacted_entity_counts = stix_object.get("impacted_entity_counts", [])
                             avail = value.get("availability_impact", 0)
-                            description = '/n' + adescription + "/n" + "Total Impact ->" + avail + "/nImpacted Entities -> "
+                            description = '/n' + adescription + "/n" + "Total Impact ->" + str(avail) + "/nImpacted Entities -> "
                             if adescription:
                                 description += '/n' + adescription
                             if avail:
-                                description += "/n" + "Variety -> " + avail
+                                description += "/n" + "Variety -> " + str(avail)
                             for k, v in impacted_entity_counts.items():
                                 description += k + " -> " + str(v)
                                 if len(impacted_entity_counts.items()) > 1:
@@ -1000,7 +1002,8 @@ def sdo_icon(stix_object, node):
             heading = name
             if aname:
                 heading += " -> " + aname
-            description += "/nOutcome -> " + outcome
+            if outcome:
+                description += "/nOutcome -> " + outcome
             if priority:
                 description += ", Priority -> " + priority
             if task_types:
@@ -1103,7 +1106,7 @@ def sco_icon(stix_object, node):
         icon_type = sco_type
         value = stix_object.get("value", "")
         display_name = stix_object.get("display_name", "")
-        name = "Task"
+        name = "Email Address"
         heading = name
         if display_name:
             heading += " -> " + display_name
@@ -1304,7 +1307,7 @@ def sco_icon(stix_object, node):
         name = "Process"
         heading = name
         if pid:
-            description += "Process ID -> " + pid
+            description += "Process ID -> " + str(pid)
         if command_line:
             description += ", Command Line -> " + command_line
         if cwd:
@@ -1380,7 +1383,7 @@ def sco_icon(stix_object, node):
         account_login = stix_object.get("account_login", "")
         account_type = stix_object.get("account_type", "")
         display_name = stix_object.get("display_name", "")
-        name = "URL"
+        name = "User Account"
         heading = name
         if display_name:
             description += "/nDisplay Name -> " + display_name

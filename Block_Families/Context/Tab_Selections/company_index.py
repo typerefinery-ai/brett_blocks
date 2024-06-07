@@ -117,21 +117,20 @@ def get_company_index():
                         comp_obj[key] = json.load(mem_input)
     # 3. setup the root record
     if stix_company_obj != {}:
-        company_index["name"] = stix_company_obj["name"]
+        company_index = stix_company_obj
         company_index["icon"] = "identity-organization"
-        company_index["type"] = stix_company_obj["name"]
         company_index["edge"] = ""
-        company_index["id"] = stix_company_obj["id"]
-        company_index["original"] = stix_company_obj["original"]
         company_index["children"] = []
         children0 = company_index["children"]
         # 4. Add the assets
         if comp_obj["assets"] != []:
             # 4A. First setup the sighting object
             level2 = {}
-            level2["name"] = "company assets"
+            level2["name"] = "Company Assets"
             level2["icon"] = "identity-asset"
-            level2["type"] = "company assets"
+            level2["type"] = "company"
+            level2["heading"] = "Company Assets"
+            level2["description"] = "Assets owned by the company"
             level2["id"] = ""
             level2["edge"] = "assets"
             level2["original"] = ""
@@ -139,20 +138,18 @@ def get_company_index():
             children2 = level2["children"]
             for obj in comp_obj["assets"]:
                 identity_obj = {}
-                identity_obj["name"] = obj["name"]
-                identity_obj["icon"] = obj["icon"]
+                identity_obj = obj
                 identity_obj["edge"] = "asset-of"
-                identity_obj["type"] = obj["type"]
-                identity_obj["id"] = obj["id"]
-                identity_obj["original"] = obj["original"]
                 children2.append(identity_obj)
             children0.append(level2)
         if comp_obj["systems"] != []:
             # 4A. Add the systems objects
             level3 = {}
-            level3["name"] = "company systems"
+            level3["name"] = "Company Systems"
             level3["icon"] = "identity-system"
-            level3["type"] = "company systems"
+            level3["type"] = "company"
+            level3["heading"] = "Company Systems"
+            level3["description"] = "Systems owned by the company"
             level3["id"] = ""
             level3["edge"] = "systems"
             level3["original"] = ""
@@ -160,20 +157,18 @@ def get_company_index():
             children3 = level3["children"]
             for obj in comp_obj["systems"]:
                 identity_obj = {}
-                identity_obj["name"] = obj["name"]
-                identity_obj["icon"] = obj["icon"]
+                identity_obj = obj
                 identity_obj["edge"] = "system-of"
-                identity_obj["type"] = obj["type"]
-                identity_obj["id"] = obj["id"]
-                identity_obj["original"] = obj["original"]
                 children3.append(identity_obj)
             children0.append(level3)
         if comp_obj["users"] != []:
             # 4B. Add the users objects
             level1 = {}
-            level1["name"] = "company users"
+            level1["name"] = "Company Users"
             level1["icon"] = "identity-individual"
             level1["type"] = "company users"
+            level1["heading"] = "Company Users"
+            level1["description"] = "Users of company assets and systems"
             level1["id"] = ""
             level1["edge"] = "users-of"
             level1["original"] = ""
@@ -182,36 +177,29 @@ def get_company_index():
             for obj in comp_obj["users"]:
                 if obj["type"] == "identity":
                     sub_ids = []
-                    identity_obj = {}
-                    identity_obj["name"] = obj["name"]
-                    identity_obj["icon"] = obj["icon"]
-                    identity_obj["edge"] = "user-of"
-                    identity_obj["type"] = obj["type"]
-                    identity_obj["id"] = obj["id"]
-                    identity_obj["original"] = obj["original"]
-                    if "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498" in obj:
-                        if "email_addresses" in obj["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]:
-                            email_addr_list = obj["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]["email_addresses"]
+                    user_obj = {}
+                    user_obj = obj
+                    user_obj["edge"] = "user-of"
+                    exts = obj['original']['extensions']
+                    if "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498" in exts:
+                        if "email_addresses" in exts["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]:
+                            email_addr_list = exts["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]["email_addresses"]
                             for email_addr in email_addr_list:
                                 sub_ids.append(email_addr["email_address_ref"])
-                        if "social_media_accounts" in obj["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]:
-                            accounts_list = obj["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]["social_media_accounts"]
+                        if "social_media_accounts" in exts["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]:
+                            accounts_list = exts["extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"]["social_media_accounts"]
                             for usr_acct in accounts_list:
                                 sub_ids.append(usr_acct["user_account_ref"])
                     if sub_ids != []:
-                        identity_obj["children"] = []
-                        children2 = identity_obj["children"]
+                        user_obj["children"] = []
+                        children2 = user_obj["children"]
                         for sub_obj in comp_obj["users"]:
                             if sub_obj["id"] in sub_ids:
                                 sub = {}
-                                sub["name"] = obj["name"]
-                                sub["icon"] = obj["icon"]
+                                sub = sub_obj
                                 sub["edge"] = "owner-of"
-                                sub["type"] = obj["type"]
-                                sub["id"] = obj["id"]
-                                sub["original"] = obj["original"]
                                 children2.append(sub)
-                    children1.append(identity_obj)
+                    children1.append(user_obj)
             children0.append(level1)
     else:
         return company_index
