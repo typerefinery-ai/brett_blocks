@@ -179,9 +179,6 @@ def main(inputfile, outputfile):
 
     # setup logger for execution
     stix_dict = make_event(event_form, changed_objects,  sighting_refs)
-    results = {}
-    results["event"] = []
-    results["event"].append(stix_dict)
     with open(outputfile, "w") as outfile:
         json.dump(stix_dict, outfile)
 
@@ -215,7 +212,7 @@ if __name__ == '__main__':
   # log.info(args)
   #main(args.inputfile, args.outputfile)
 
-  main("./sequence_alert.json", "test_output.json")
+  main(args.inputfile, args.outputfile)
 
 
 ################################################################################

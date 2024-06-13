@@ -1,0 +1,33 @@
+{
+  "impact_form": {
+    "base_required": {
+      "type": "impact",
+      "spec_version": "2.1",
+      "id": "",
+      "created": "",
+      "modified": ""
+    },
+    "base_optional": {
+      "created_by_ref": "",
+      "revoked": null,
+      "labels": [],
+      "lang": "",
+      "external_references": [],
+      "object_marking_refs": [],
+      "granular_markings": [],
+      "defanged": null
+    },
+    "object": {
+      "impact_category": "availability",
+      "criticality": 99,
+      "description": "1 Laptop is stuffed, 4 other suspects",
+      "recoverability": "regular"
+    },
+    "extensions": {
+      "availability": {
+        "availability_impact": 99
+      }
+    },
+    "sub": {}
+  }
+}

@@ -189,7 +189,7 @@ if __name__ == '__main__':
   # log.info(args)
   #main(args.inputfile, args.outputfile)
 
-  main("./sequence_alert.json", "test_output.json")
+  main(args.inputfile, args.outputfile)
 
 
 ################################################################################
