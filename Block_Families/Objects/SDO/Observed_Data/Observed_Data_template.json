@@ -1,5 +1,6 @@
 {
-  "Observed_Data_template":
+  "class_name": "ObservedData",
+  "ObservedData_template":
     {
       "_type": "observed-data",
       "base_required": {

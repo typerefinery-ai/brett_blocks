@@ -1,4 +1,5 @@
 {
+  "class_name": "Location",
   "Location_template":
     {
       "_type": "location",

@@ -1,5 +1,6 @@
 {
-  "User_Account_template":
+  "class_name": "UserAccount",
+  "UserAccount_template":
     {
       "_type": "user-account",
       "base_required": {

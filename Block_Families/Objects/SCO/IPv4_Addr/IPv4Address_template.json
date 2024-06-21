@@ -1,5 +1,6 @@
 {
-  "IPv4_Addr_template":
+  "class_name": "IPv4Address",
+  "IPv4Address_template":
     {
       "_type": "ipv4-addr",
       "base_required": {

@@ -1,4 +1,5 @@
 {
+  "class_name": "Incident",
   "Incident_template":
     {
       "_type": "identity",

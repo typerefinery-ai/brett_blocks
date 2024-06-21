@@ -1,4 +1,5 @@
 {
+  "class_name": "Event",
   "Event_template":
     {
       "_type": "event",

@@ -1,5 +1,6 @@
 {
-  "Email_Message_template":
+  "class_name": "EmailMessage",
+  "EmailMessage_template":
     {
       "_type": "email-message",
       "base_required": {

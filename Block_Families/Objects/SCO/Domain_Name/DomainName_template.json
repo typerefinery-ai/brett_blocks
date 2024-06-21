@@ -1,7 +1,8 @@
 {
-  "Email_Addr_template":
+  "class_name": "DomainName",
+  "DomainName_template":
     {
-      "_type": "email-addr",
+      "_type": "domain-name",
       "base_required": {
         "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
         "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
@@ -14,8 +15,7 @@
       },
       "object": {
         "value": {"property":  "StringProperty", "parameters": {"required":  true}},
-        "display_name": {"property":  "StringProperty", "parameters": {}},
-        "belongs_to_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  "user-account", "spec_version":  "2.1"}}
+        "resolves_to_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types": ["ipv4-addr", "ipv6-addr", "domain-name"]}}
       },
       "extensions": {},
       "sub": {}
