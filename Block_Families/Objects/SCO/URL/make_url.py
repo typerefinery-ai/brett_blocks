@@ -57,6 +57,9 @@ import json
 import os
 
 import logging
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
 def make_url(url_form, hyperlink=None):
     # 1. Extract the components of the object
     required = url_form["base_required"]

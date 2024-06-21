@@ -174,9 +174,6 @@ def main(inputfile, outputfile):
 
     # setup logger for execution
     stix_dict = make_task(event_form, changed_objects)
-    results = {}
-    results["task"] = []
-    results["task"].append(stix_dict)
     with open(outputfile, "w") as outfile:
         json.dump(stix_dict, outfile)
 

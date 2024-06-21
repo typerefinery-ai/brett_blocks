@@ -1,0 +1,11 @@
+{
+  "name": "File",
+  "defanged":  "Defanged",
+  "object_marking_refs":  "Object Markings",
+  "granular_markings":  "Granular Markings",
+  "archive-ext" : "Archive Extension",
+  "ntfs-ext" : "NTFS Extension",
+  "pdf-ext": "PDF Extension",
+  "raster-image-ext": "Raster Image Extension",
+  "windows-pebinary-ext": "Windows Binary Extension"
+}
