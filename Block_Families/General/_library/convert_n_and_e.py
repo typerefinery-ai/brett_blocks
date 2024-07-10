@@ -121,7 +121,7 @@ def setup_relationship(obj):
     relation_replacement_edge = {}
     relation_replacement_edge["stix-id"] = obj["id"]
     relation_replacement_edge["type"] = "relationship"
-    relation_replacement_edge["name"] = obj["relationship_type"] + ", from " + source_role + " to " + target_role
+    relation_replacement_edge["name"] = obj["relationship_type"]
     relation_replacement_edge["source"] = obj["source_ref"]
     relation_replacement_edge["target"] = obj["target_ref"]
     relation_replacement_edge["id"] = obj["source_ref"] + '-' + obj["target_ref"]
@@ -130,7 +130,7 @@ def setup_relationship(obj):
     relation_edge = {}
     relation_edge["stix-id"] = obj["id"]
     relation_edge["type"] = "relationship"
-    relation_edge["name"] = obj["relationship_type"] + ", from " + source_role
+    relation_edge["name"] = obj["relationship_type"]
     relation_edge["source"] = obj["source_ref"]
     relation_edge["target"] = obj["id"]
     relation_edge["id"] = obj["source_ref"] + '-' + obj["id"]
@@ -139,7 +139,7 @@ def setup_relationship(obj):
     relation_edge = {}
     relation_edge["stix-id"] = obj["id"]
     relation_edge["type"] = "relationship"
-    relation_edge["name"] = obj["relationship_type"] + " to " + target_role
+    relation_edge["name"] = obj["relationship_type"]
     relation_edge["source"] = obj["id"]
     relation_edge["target"] = obj["target_ref"]
     relation_edge["id"] = obj["id"] + '-' + obj["target_ref"]
@@ -340,10 +340,10 @@ def sdo_icon(stix_object, node):
                 heading = "ATT&CK Data Source - " + aname
                 description = '<br>' + stix_object.get("description", "")
             elif sdo_type == "x-mitre-asset":
-                description = "ATT&CK Asset"
+                description = '<br>' + "ATT&CK Asset"
         elif sdo_type == "attack-pattern":
             T_id = stix_object.get("external_references", [{}])[0].get("external_id", "")
-            description = stix_object.get("description", "")
+            description = '<br>' + stix_object.get("description", "")
             name = "Technique"
             attack_type = "technique"
             heading = name + ' - ' + T_id + " - ATT&CK"
