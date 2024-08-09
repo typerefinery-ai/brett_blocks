@@ -3,8 +3,6 @@
 ## header start                                                               ##
 ################################################################################
 # allow importing og service local packages
-import os
-import sys
 import os.path
 
 where_am_i = os.path.dirname(os.path.abspath(__file__))
@@ -39,22 +37,10 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # This code is licensed under the terms of the BSD.
 ##############################################################################
 
-from stixorm.module.definitions.os_threat import (
-    StateChangeObject, EventCoreExt, Event, ImpactCoreExt,
-    Availability, Confidentiality, External, Integrity, Monetary, Physical,
-    Traceability, Impact, IncidentScoreObject, IncidentCoreExt, TaskCoreExt,
-    Task, SightingEvidence, Sequence, SequenceExt, ContactNumber, EmailContact,
-    SocialMediaContact, IdentityContact, AnecdoteExt, Anecdote,
-    SightingAnecdote, SightingAlert, SightingContext, SightingExclusion,
-    SightingEnrichment, SightingHunt, SightingFramework, SightingExternal
-)
 from stixorm.module.authorise import import_type_factory
 # from Block_Families.General._library.
-from Block_Families.General._library.convert_n_and_e import convert_relns, convert_sighting, convert_node, \
-    refine_edges, generate_legend
-from posixpath import basename
+from Orchestration.Common.convert_n_and_e import convert_relns, convert_sighting, convert_node
 import json
-import os
 
 import logging
 logger = logging.getLogger(__name__)
@@ -63,6 +49,7 @@ logger.setLevel(logging.INFO)
 import_type = import_type_factory.get_all_imports()
 
 TR_Context_Memory_Dir = "./Context_Mem"
+TR_Common_Files = "./Common_Files"
 local = {
     "global": "/global_variables_dict.json",
     "me" : "/cache_me.json",
@@ -152,6 +139,8 @@ def save_context(stix_object, context_type):
         return "context_type unknown " + str(context_type)
 
     # does directory exits
+    if not os.path.exists(TR_Common_Files):
+        os.makedirs(TR_Common_Files)
     if not os.path.exists(TR_Context_Memory_Dir):
         os.makedirs(TR_Context_Memory_Dir)
     if not os.path.exists(TR_Context_Memory_Dir + "/company_1"):

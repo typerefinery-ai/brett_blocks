@@ -1,19 +1,7 @@
-from Block_Families.Context.Tab_Selections.sighting_index import main as sighting_index
-from Block_Families.Context.Tab_Selections.task_index import main as task_index
-from Block_Families.Context.Tab_Selections.impact_index import main as impact_index
-from Block_Families.Context.Tab_Selections.event_index import main as event_index
-from Block_Families.Context.Tab_Selections.company_index import main as company_index
-from Block_Families.Context.Tab_Selections.me_index import main as me_index
 from stixorm.module.definitions.stix21 import (
-    Identity, EmailAddress, UserAccount, Relationship, Bundle, Software, Process, File
+    Process, File
 )
-from stixorm.module.definitions.os_threat import (
-    IdentityContact, EmailContact, SocialMediaContact, ContactNumber
-)
-from Block_Families.General._library.convert_n_and_e import convert_node
-from Block_Families.Context.Tab_Selections.get_unattached import get_unattached
-import json
-import os
+from Orchestration.Common.convert_n_and_e import convert_node
 from Utilities.util import conv
 
 

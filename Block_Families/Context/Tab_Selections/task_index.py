@@ -3,8 +3,6 @@
 ## header start                                                               ##
 ################################################################################
 # allow importing og service local packages
-import os
-import sys
 import os.path
 
 where_am_i = os.path.dirname(os.path.abspath(__file__))
@@ -38,22 +36,9 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # This code is licensed under the terms of the BSD.
 ##############################################################################
 
-from stixorm.module.definitions.os_threat import (
-    StateChangeObject, EventCoreExt, Event, ImpactCoreExt,
-    Availability, Confidentiality, External, Integrity, Monetary, Physical,
-    Traceability, Impact, IncidentScoreObject, IncidentCoreExt, TaskCoreExt,
-    Task, SightingEvidence, Sequence, SequenceExt, ContactNumber, EmailContact,
-    SocialMediaContact, IdentityContact, AnecdoteExt, Anecdote,
-    SightingAnecdote, SightingAlert, SightingContext, SightingExclusion,
-    SightingEnrichment, SightingHunt, SightingFramework, SightingExternal
-)
 from stixorm.module.authorise import import_type_factory
-from posixpath import basename
 import json
-import os
 import copy
-from Block_Families.General._library.convert_n_and_e import convert_relns, convert_sighting, convert_node, \
-    refine_edges, generate_legend
 
 import logging
 logger = logging.getLogger(__name__)
@@ -172,7 +157,7 @@ def get_task_index():
                 elif created_by_ref != "" and obj["id"] == created_by_ref:
                     created_by_obj = {}
                     created_by_obj = obj
-                    created_by_obj["edge"] = "observed_data_refs"
+                    created_by_obj["edge"] = "created_by_ref"
                     temp_list.append(created_by_obj)
             for reln in relations:
                 if sorted_obj["id"] == reln["original"]["source_ref"] and reln["original"]["target_ref"] != stix_incident_id:

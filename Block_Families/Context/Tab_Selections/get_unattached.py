@@ -3,8 +3,6 @@
 ## header start                                                               ##
 ################################################################################
 # allow importing og service local packages
-import os
-import sys
 import os.path
 
 where_am_i = os.path.dirname(os.path.abspath(__file__))
@@ -38,29 +36,13 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # This code is licensed under the terms of the BSD.
 ##############################################################################
 
-from stixorm.module.definitions.os_threat import (
-    StateChangeObject, EventCoreExt, Event, ImpactCoreExt,
-    Availability, Confidentiality, External, Integrity, Monetary, Physical,
-    Traceability, Impact, IncidentScoreObject, IncidentCoreExt, TaskCoreExt,
-    Task, SightingEvidence, Sequence, SequenceExt, ContactNumber, EmailContact,
-    SocialMediaContact, IdentityContact, AnecdoteExt, Anecdote,
-    SightingAnecdote, SightingAlert, SightingContext, SightingExclusion,
-    SightingEnrichment, SightingHunt, SightingFramework, SightingExternal
-)
 from stixorm.module.authorise import import_type_factory
-from posixpath import basename
 import json
-import os
-import copy
-from Block_Families.General._library.convert_n_and_e import convert_relns, convert_sighting, convert_node, \
-    refine_edges, generate_legend
 
 import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-from datetime import datetime
-from stixorm.module.typedb_lib.factories.auth_factory import get_auth_factory_instance
 import_type = import_type_factory.get_all_imports()
 
 TR_Context_Memory_Dir = "./Context_Mem"
