@@ -39,7 +39,8 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 
 from stixorm.module.authorise import import_type_factory
 # from Block_Families.General._library.
-from Orchestration.Common.convert_n_and_e import convert_relns, convert_sighting, convert_node
+# from Orchestration.Common.convert_n_and_e import convert_relns, convert_sighting, convert_node
+from urllib.request import urlretrieve
 import json
 
 import logging
@@ -48,8 +49,14 @@ logger.setLevel(logging.INFO)
 
 import_type = import_type_factory.get_all_imports()
 
-TR_Context_Memory_Dir = "./Context_Mem"
+# Common File Stuff
 TR_Common_Files = "./Common_Files"
+common = [
+    {"module": "n_and_e", "file": "convert_n_and_e.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/main/Orchestration/Common/convert_n_and_e.py"}
+]
+
+# Context Memory Stuff
+TR_Context_Memory_Dir = "./Context_Mem"
 local = {
     "global": "/global_variables_dict.json",
     "me" : "/cache_me.json",
@@ -86,6 +93,9 @@ field_names = {
     "other" : "other_object_refs"
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
+
+def download_common(TR_Common_Files):
+    pass
 
 
 def add_node(node, context_type):
@@ -141,6 +151,7 @@ def save_context(stix_object, context_type):
     # does directory exits
     if not os.path.exists(TR_Common_Files):
         os.makedirs(TR_Common_Files)
+        download_common(TR_Common_Files)
     if not os.path.exists(TR_Context_Memory_Dir):
         os.makedirs(TR_Context_Memory_Dir)
     if not os.path.exists(TR_Context_Memory_Dir + "/company_1"):

@@ -1,7 +1,7 @@
 from stixorm.module.definitions.stix21 import (
     Process, File
 )
-from Orchestration.Common.convert_n_and_e import convert_node
+from Block_Families.General._library.convert_n_and_e import convert_node
 from Utilities.util import conv
 
 

@@ -39,7 +39,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 from stixorm.module.definitions.stix21 import (
     Relationship
 )
-from Orchestration.Common.convert_n_and_e import convert_relns
+from Block_Families.General._library.convert_n_and_e import convert_relns
 from stixorm.module.authorise import import_type_factory
 import json
 

@@ -38,7 +38,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 
 from stixorm.module.authorise import import_type_factory
 import json
-from Orchestration.Common.convert_n_and_e import convert_relns, convert_sighting, convert_node
+from Block_Families.General._library.convert_n_and_e import convert_relns, convert_sighting, convert_node
 
 import logging
 logger = logging.getLogger(__name__)
