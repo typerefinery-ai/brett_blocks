@@ -11,15 +11,15 @@ from stixorm.module.parsing import parse_objects
 import json
 import os
 
-context_base = "../Orchestration/Context_Mem/"
-path_base = "../Block_Families/Objects/"
+# context_base = "../Orchestration/Context_Mem/"
+path_base = "../Block_Families/StixORM/"
 results_base = "../Orchestration/Results/"
 
 
-from Block_Families.Objects.SCO.URL.make_url import main as make_url
-from Block_Families.Objects.SCO.Email_Addr.make_email_addr import main as make_email_addr
-from Block_Families.Objects.SRO.Sighting.make_sighting import main as make_sighting
-from Block_Families.Objects.SRO.Relationship.make_sro import main as make_sro
+from Block_Families.StixORM.SCO.URL.make_url import main as make_url
+from Block_Families.StixORM.SCO.Email_Addr.make_email_addr import main as make_email_addr
+from Block_Families.StixORM.SRO.Sighting.make_sighting import main as make_sighting
+from Block_Families.StixORM.SRO.Relationship.make_sro import main as make_sro
 from .util import emulate_ports, unwind_ports, conv
 
 def invoke_sro_block(sro_data_path, results_path, source=None, target=None, relationship_type=None):

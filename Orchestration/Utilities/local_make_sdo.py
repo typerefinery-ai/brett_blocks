@@ -12,17 +12,17 @@ import json
 import os
 
 context_base = "../Orchestration/Context_Mem/"
-path_base = "../Block_Families/Objects/"
+path_base = "../Block_Families/StixORM/"
 results_base = "../Orchestration/Results/"
 
-from Block_Families.Objects.SDO.Identity.make_identity import main as make_identity
-from Block_Families.Objects.SDO.Observed_Data.make_observed_data import main as make_observed_data
-from Block_Families.Objects.SDO.Indicator.make_indicator import main as make_indicator
-from Block_Families.Objects.SDO.Event.make_event import main as make_event
-from Block_Families.Objects.SDO.Sequence.make_sequence import main as make_sequence
-from Block_Families.Objects.SDO.Task.make_task import main as make_task
-from Block_Families.Objects.SDO.Incident.make_incident import main as make_incident
-from Block_Families.Objects.SDO.Impact.make_impact import main as make_impact
+from Block_Families.StixORM.SDO.Identity.make_identity import main as make_identity
+from Block_Families.StixORM.SDO.Observed_Data.make_observed_data import main as make_observed_data
+from Block_Families.StixORM.SDO.Indicator.make_indicator import main as make_indicator
+from Block_Families.StixORM.SDO.Event.make_event import main as make_event
+from Block_Families.StixORM.SDO.Sequence.make_sequence import main as make_sequence
+from Block_Families.StixORM.SDO.Task.make_task import main as make_task
+from Block_Families.StixORM.SDO.Incident.make_incident import main as make_incident
+from Block_Families.StixORM.SDO.Impact.make_impact import main as make_impact
 from .util import emulate_ports, unwind_ports, conv
 
 

@@ -438,7 +438,7 @@ def sdo_icon(stix_object, node):
             if a_description:
                 description = "<br>" + a_description
             if context:
-                description += "<br>Context -> " + str(context)
+                description += "<br>OS_Triage -> " + str(context)
         elif sdo_type == "identity":
             if "extensions" in stix_object:
                 icon_type = "identity-contact"

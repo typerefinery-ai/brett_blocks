@@ -6,7 +6,7 @@ from Utilities.util import conv
 
 
 context_base = "../Orchestration/Context_Mem/"
-path_base = "../Block_Families/Objects/"
+path_base = "../Block_Families/StixORM/"
 results_base = "../Orchestration/Results/examples/"
 
 data_path = ""

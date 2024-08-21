@@ -1,0 +1,35 @@
+{
+  "incident_form": {
+    "base_required": {
+      "type": "incident",
+      "spec_version": "2.1",
+      "id": "",
+      "created": "",
+      "modified": ""
+    },
+    "base_optional": {
+      "created_by_ref": "",
+      "revoked": null,
+      "labels": [],
+      "lang": "",
+      "external_references": [],
+      "object_marking_refs": [],
+      "granular_markings": [],
+      "defanged": null
+    },
+    "object": {
+      "name": "potential phishing",
+      "description": ""
+    },
+    "extensions": {
+      "extension-definition--ef765651-680c-498d-9894-99799f2fa126": {
+        "extension_type": "property-extension",
+        "investigation_status": "new",
+        "incident_types": [
+          "dissemination-phishing-emails"
+        ]
+      }
+    },
+    "sub": {}
+  }
+}

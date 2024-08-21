@@ -3,7 +3,7 @@ from stixorm.module.typedb import TypeDBSink, TypeDBSource
 from stixorm.module.authorise import import_type_factory
 from deepdiff import DeepDiff, parse_path
 from Block_Families.General._library.update import handle_object_diff, find_list_diff
-from Block_Families.Context.Update_Context.update_context import load_context, synch_context
+from Block_Families.OS_Triage.Update_Context.update_context import load_context, synch_context
 
 import_type = import_type_factory.get_all_imports()
 all_imports = import_type_factory.get_all_imports()
@@ -21,14 +21,14 @@ connection = {
     "password": None
 }
 def load_OS_context():
-    # 1. Load the Context
+    # 1. Load the OS_Triage
     TR_Context_Memory_Path = "./Orchestration/Context_Mem/OS_Threat_Context.json"
     cwd = os.getcwd()
     print(f"cwd -> {cwd}")
     with open(TR_Context_Memory_Path, "r") as context_file:
         Type_Refinery_Context = json.load(context_file)
     #
-    # 2. Setup the  TR User Context
+    # 2. Setup the  TR User OS_Triage
     #
     local = Type_Refinery_Context["local"]
     local_context = local["context"]
@@ -38,7 +38,7 @@ def load_OS_context():
     systems = local_context["systems"]
     assets = local_context["assets"]
     #
-    # 3. Setup the Incident Context
+    # 3. Setup the Incident OS_Triage
     #
     incident = local["incident"]
     sequence_start_objs = incident["sequence_start_objs"]
@@ -50,7 +50,7 @@ def load_OS_context():
     incident_obj = incident["incident_obj"]
 
     #
-    # 4. Load the TypeDB Context
+    # 4. Load the TypeDB OS_Triage
     #
     remote = Type_Refinery_Context["remote"]
     remote_incident = remote["incident"]

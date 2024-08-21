@@ -12,15 +12,15 @@ import json
 import os
 
 context_base = "../Orchestration/Context_Mem/"
-path_base = "../Block_Families/Objects/"
+path_base = "../Block_Families/StixORM/"
 results_base = "../Orchestration/Results/"
 
 
-from Block_Families.Objects.SCO.URL.make_url import main as make_url
-from Block_Families.Objects.SCO.Email_Addr.make_email_addr import main as make_email_addr
-from Block_Families.Objects.SCO.Email_Message.make_email_msg import main as make_email_msg
-from Block_Families.Objects.SCO.User_Account.make_user_account import main as make_user_account
-from Block_Families.Objects.SCO.Anecdote.make_anecdote import main as make_anecdote
+from Block_Families.StixORM.SCO.URL.make_url import main as make_url
+from Block_Families.StixORM.SCO.Email_Addr.make_email_addr import main as make_email_addr
+from Block_Families.StixORM.SCO.Email_Message.make_email_msg import main as make_email_msg
+from Block_Families.StixORM.SCO.User_Account.make_user_account import main as make_user_account
+from Block_Families.StixORM.SCO.Anecdote.make_anecdote import main as make_anecdote
 from .util import emulate_ports, unwind_ports, conv
 
 

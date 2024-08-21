@@ -2,16 +2,28 @@ import json
 import os
 
 context_base = "../Orchestration/Context_Mem/"
-path_base = "../Block_Families/Objects/"
+path_base = "../Block_Families/StixORM/"
 results_base = "../Orchestration/Results/"
-
-from Block_Families.Context.Save_Context.save_incident_context2 import main as save_incident_context
-from Block_Families.Context.Save_Context.save_options_context2 import main as save_options_context
-from Block_Families.Context.Get_Context.get_from_incident import main as get_from_incident
-from Block_Families.Context.Get_Context.get_from_options import main as get_from_options
-from Block_Families.Context.Update_Context.update_company_relations import main as update_company_relations
-from Block_Families.Context.Update_Context.move_unattached_to_other import main as move_unattached_to_other
-
+################################################################################################
+#               OS-Triage Blocks
+###############################################################################################
+#       Save to OS_Triage -> Incident, Company, User
+from Block_Families.OS_Triage.Save_Context.save_incident_context import main as save_incident_context
+from Block_Families.OS_Triage.Save_Context.save_company_context import main as save_company_context
+from Block_Families.OS_Triage.Save_Context.save_user_context import main as save_user_context
+##############################################################################################
+#       Get From OS_Triage -> Incident, Company, User
+from Block_Families.OS_Triage.Get_Context.get_from_incident import main as get_from_incident
+from Block_Families.OS_Triage.Get_Context.get_from_company import main as get_from_options
+from Block_Families.OS_Triage.Get_Context.get_from_user import main as get_from_user
+################################################################################################
+#       Create OS_Triage -> Incident, Company
+from Block_Families.OS_Triage.Create_Context.create_incident_context import main as create_incident_context
+from Block_Families.OS_Triage.Create_Context.create_company_context import main as create_company_context
+################################################################################################
+#       Ancillary
+from Block_Families.OS_Triage.Update_Context.update_company_relations import main as update_company_relations
+from Block_Families.OS_Triage.Update_Context.move_unattached_to_other import main as move_unattached_to_other
 
 TR_Context_Memory_Dir = "./Context_Mem"
 local = {
@@ -33,6 +45,69 @@ refs = {
     "unattached" : "/incident_1/unattached_objs"
 }
 
+def invoke_create_company_context(stix_object_path, results_path):
+    #
+    # 1. Set the Relative Input and Output Paths for the block
+    #
+    #
+    # NOTE: This code is only To fake input ports
+    # Add the User Account object and the  EmailAddress
+    # NOTE: This code is only To fake input ports
+    ##
+    slices = stix_object_path.split('/')
+    full_filename = slices[-1]
+    filename = full_filename[:-5]
+    results_data = {}
+    context_path = "../Orchestration/Results/step1/context/"+ filename + "_incident_context.json"
+    if os.path.exists(stix_object_path):
+        with open(stix_object_path, "r") as sdo_form:
+            temp_data = json.load(sdo_form)
+            results_data["company"] = temp_data
+        with open(context_path, 'w') as f:
+            f.write(json.dumps(results_data))
+    # Make the Observed Data object
+    create_company_context(context_path,results_path)
+    #
+    # Remove the context type record
+    #
+    #
+    if os.path.exists(results_path):
+        with open(results_path, "r") as script_input:
+            export_data = json.load(script_input)
+            return export_data
+
+
+
+def invoke_create_incident_context(stix_object_path, results_path):
+    #
+    # 1. Set the Relative Input and Output Paths for the block
+    #
+    #
+    # NOTE: This code is only To fake input ports
+    # Add the User Account object and the  EmailAddress
+    # NOTE: This code is only To fake input ports
+    ##
+    slices = stix_object_path.split('/')
+    full_filename = slices[-1]
+    filename = full_filename[:-5]
+    results_data = {}
+    context_path = "../Orchestration/Results/step1/context/"+ filename + "_incident_context.json"
+    if os.path.exists(stix_object_path):
+        with open(stix_object_path, "r") as sdo_form:
+            temp_data = json.load(sdo_form)
+            results_data["incident"] = temp_data
+        with open(context_path, 'w') as f:
+            f.write(json.dumps(results_data))
+    # Make the Observed Data object
+    create_incident_context(context_path,results_path)
+    #
+    # Remove the context type record
+    #
+    #
+    if os.path.exists(results_path):
+        with open(results_path, "r") as script_input:
+            export_data = json.load(script_input)
+            return export_data
 
 
 def invoke_update_company_relations_block(stix_object_path, results_path):
@@ -54,6 +129,7 @@ def invoke_update_company_relations_block(stix_object_path, results_path):
         with open(results_path, "r") as script_input:
             export_data = json.load(script_input)
             return export_data
+
 
 
 
@@ -83,7 +159,7 @@ def invoke_move_unattached_to_other_block(stix_object_path, results_path, object
 
 
 
-def invoke_save_options_context_block(stix_object_path, results_path, context_type):
+def invoke_save_company_context_block(stix_object_path, results_path, context_type):
     #
     # 1. Set the Relative Input and Output Paths for the block
     #
@@ -106,7 +182,7 @@ def invoke_save_options_context_block(stix_object_path, results_path, context_ty
         with open(context_path, 'w') as f:
             f.write(json.dumps(results_data))
     # Make the Observed Data object
-    save_options_context(context_path,results_path)
+    save_company_context(context_path,results_path)
     #
     # Remove the context type record
     #
@@ -171,8 +247,50 @@ def invoke_save_incident_context_block(stix_object_path, results_path, context_t
             return export_data
 
 
+def invoke_save_user_context_block(stix_object_path, results_path, context_type):
+    #
+    # 1. Set the Relative Input and Output Paths for the block
+    #
+    #
+    # we get in the path to an actual stix object json, but we dont want to be writing back changes in that,
+    # instead we will create a new one based on a reliable transform to contaon object pust context data
+    ##
+    slices = stix_object_path.split('/')
+    full_filename = slices[-1]
+    filename = full_filename[:-6]
+    results_data = {}
+    context_path = "../Orchestration/Results/step1/context/" + filename + "_user_context.json"
+    results_data = {}
+    if os.path.exists(stix_object_path):
+        with open(stix_object_path, "r") as sdo_form:
+            temp_data = json.load(sdo_form)
+            results_data["stix_object"] = temp_data
+            if context_type:
+                results_data["context_type"] = context_type
+        with open(context_path, 'w') as f:
+            f.write(json.dumps(results_data))
+    # Make the Observed Data object
+    save_user_context(context_path,results_path)
+    #
+    # Remove the context type record
+    #
+    rewrite_data = {}
+    for key, value in results_data.items():
+        if key == "stix_object":
+            rewrite_data = value
+        else:
+            continue
+    #  Rewrite the original object
+    with open(stix_object_path, 'w') as f:
+        f.write(json.dumps(rewrite_data))
+    #
+    #
+    if os.path.exists(results_path):
+        with open(results_path, "r") as script_input:
+            export_data = json.load(script_input)
+            return export_data
 
-def invoke_get_from_options_block(get_query, context_type, source_value=None, source_id=None):
+def invoke_get_from_company_block(get_query, context_type, source_value=None, source_id=None):
     #
     # 1. Set the Relative Input and Output Paths for the block
     #
@@ -180,8 +298,23 @@ def invoke_get_from_options_block(get_query, context_type, source_value=None, so
     # NOTE: This code is only To fake input ports
     # Add the User Account object and the  EmailAddress
     #  Form data file
-    context_temp_path = results_base + "goq--" + str(get_query["type"]) + " .json"
-    context_res_path = results_base + "goq-results--" + str(get_query["type"]) + " .json"
+    unique_str = "company-"
+    print(f"company query->{get_query}")
+    if "type" in get_query:
+        unique_str += get_query["type"] + "-"
+    if "property" in get_query:
+        path = get_query["property"]["path"]
+        source_value = get_query["property"]["source_value"]
+        comparator = get_query["property"]["comparator"]
+        unique_str += path[0] + "-" + comparator + "-" + source_value[0]
+    if "embedded" in get_query:
+        path = get_query["embedded"]["path"]
+        source_value = get_query["embedded"]["source_value"]
+        comparator = get_query["embedded"]["comparator"]
+        unique_str += path[0] + "-" + comparator + "-" + source_value[0]
+
+    context_temp_path = results_base + "giq--" + unique_str + " .json"
+    context_res_path = results_base + "giq-results--" + unique_str + " .json"
     local_context = {}
     local_context["get_query"] = get_query
     local_context["context_type"] = context_type
@@ -210,8 +343,22 @@ def invoke_get_from_incident_block(get_query, context_type, source_value=None, s
     # NOTE: This code is only To fake input ports
     # Add the User Account object and the  EmailAddress
     #  Form data file
-    context_temp_path = results_base + "giq--" + str(get_query) + " .json"
-    context_res_path = results_base + "giq-results--" + str(get_query) + " .json"
+    unique_str = "incident-"
+    if "type" in get_query:
+        unique_str += get_query["type"] + "-"
+    if "property" in get_query:
+        path = get_query["property"]["path"]
+        source_value = get_query["property"]["source_value"]
+        comparator = get_query["property"]["comparator"]
+        unique_str += path[0] + "-" + comparator + "-" + source_value[0]
+    if "embedded" in get_query:
+        path = get_query["embedded"]["path"]
+        source_value = get_query["embedded"]["source_value"]
+        comparator = get_query["embedded"]["comparator"]
+        unique_str += path[0] + "-" + comparator + "-" + source_value[0]
+
+    context_temp_path = results_base + "giq--" + unique_str + " .json"
+    context_res_path = results_base + "giq-results--" + unique_str + " .json"
     local_context = {}
     local_context["get_query"] = get_query
     local_context["context_type"] = context_type
@@ -224,7 +371,51 @@ def invoke_get_from_incident_block(get_query, context_type, source_value=None, s
     #
     # Make the Email Address object
     #
-    get_from_options(context_temp_path,context_res_path)
+    get_from_incident(context_temp_path,context_res_path)
+    # Retrieve the saved file
+    if os.path.exists(context_res_path):
+        with open(context_res_path, "r") as script_input:
+            export_data = json.load(script_input)
+            return export_data
+
+
+def invoke_get_from_user_block(get_query, context_type, source_value=None, source_id=None):
+    #
+    # 1. Set the Relative Input and Output Paths for the block
+    #
+    #
+    # NOTE: This code is only To fake input ports
+    # Add the User Account object and the  EmailAddress
+    #  Form data file
+    unique_str = "user-"
+    if "type" in get_query:
+        unique_str += get_query["type"] + "-"
+    if "property" in get_query:
+        path = get_query["property"]["path"]
+        source_value = get_query["property"]["source_value"]
+        comparator = get_query["property"]["comparator"]
+        unique_str += path[0] + "-" + comparator + "-" + source_value[0]
+    if "embedded" in get_query:
+        path = get_query["embedded"]["path"]
+        source_value = get_query["embedded"]["source_value"]
+        comparator = get_query["embedded"]["comparator"]
+        unique_str += path[0] + "-" + comparator + "-" + source_value[0]
+
+    context_temp_path = results_base + "giq--" + unique_str + " .json"
+    context_res_path = results_base + "giq-results--" + unique_str + " .json"
+    local_context = {}
+    local_context["get_query"] = get_query
+    local_context["context_type"] = context_type
+    local_context["source_value"] = source_value
+    local_context["source_id"] = source_id
+    #
+    #
+    with open(context_temp_path, 'w') as f:
+        f.write(json.dumps(local_context))
+    #
+    # Make the Email Address object
+    #
+    get_from_user(context_temp_path,context_res_path)
     # Retrieve the saved file
     if os.path.exists(context_res_path):
         with open(context_res_path, "r") as script_input:

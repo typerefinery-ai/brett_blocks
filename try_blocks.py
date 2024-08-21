@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 
 from Block_Families.General.Get_Object.script import main as get_object
 from Block_Families.General.Import_Bundle.script import main as import_bundle
-from Block_Families.Stix.Get_Embedded.script import main as get_embedded
+from Block_Families.StixORM.Get_Embedded.script import main as get_embedded
 
 import_type = import_type_factory.get_all_imports()
 
