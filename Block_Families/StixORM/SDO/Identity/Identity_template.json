@@ -60,7 +60,7 @@
           "_type": "social-media-contact",
           "description": {"property":  "StringProperty", "parameters": {}},
           "digital_contact_type" : {"property":  "StringProperty", "parameters": {"required":  true}},
-          "extension_type" : {"property":  "StringProperty", "parameters": {"required":  true, "valid_types":  "user-account", "spec_version":  "2.1"}}
+          "user_account_ref" : {"property":  "ReferenceProperty", "parameters": {"required":  true, "valid_types":  "email-addr", "spec_version":  "2.1"}}
         }
       }
     }
