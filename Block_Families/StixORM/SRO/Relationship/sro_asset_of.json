@@ -20,7 +20,6 @@
     "object": {
       "relationship_type": "asset-of",
       "source_ref": "",
-      "identity_class": "",
       "target_ref": "",
       "start_time": null,
       "stop_time": null

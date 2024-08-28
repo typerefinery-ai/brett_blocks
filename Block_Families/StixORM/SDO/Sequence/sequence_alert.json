@@ -1,1 +1,31 @@
-{"sequence_form": {"base_required": {"type": "identity", "spec_version": "2.1", "id": "", "created": "", "modified": ""}, "base_optional": {"created_by_ref": "", "revoked": null, "labels": [], "lang": "", "external_references": [], "object_marking_refs": [], "granular_markings": []}, "object": {"sequence_type": "", "step_type": "", "sequenced_object": ""}, "extensions": {"extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {"extension_type": "new-sdo"}}, "sub": {}}}
+{
+  "sequence_form": {
+    "base_required": {
+      "type": "identity",
+      "spec_version": "2.1",
+      "id": "",
+      "created": "",
+      "modified": ""
+    },
+    "base_optional": {
+      "created_by_ref": "",
+      "revoked": null,
+      "labels": [],
+      "lang": "",
+      "external_references": [],
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "sequence_type": "",
+      "step_type": "",
+      "sequenced_object": ""
+    },
+    "extensions": {
+      "extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {
+        "extension_type": "new-sdo"
+      }
+    },
+    "sub": {}
+  }
+}
