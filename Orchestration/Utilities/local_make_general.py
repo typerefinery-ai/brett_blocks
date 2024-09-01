@@ -5,7 +5,7 @@ context_base = "../Orchestration/Context_Mem/"
 path_base = "../Block_Families/StixORM/"
 results_base = "../Orchestration/Results/"
 ################################################################################################
-#               OS-Triage Blocks
+#               os-triage Blocks
 ###############################################################################################
 #       Save to OS_Triage -> Incident, Company, User
 from Block_Families.OS_Triage.Save_Context.save_incident_context import main as save_incident_context

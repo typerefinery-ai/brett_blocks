@@ -51,13 +51,13 @@ import os
 import_type = import_type_factory.get_all_imports()
 
 # Common File Stuff
-TR_Common_Files = "./generated/OS-Triage/Common_Files"
+TR_Common_Files = "./generated/os-triage/common_files"
 common = [
     {"module": "convert_n_and_e", "file": "convert_n_and_e.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/main/Block_Families/General/_library/convert_n_and_e.py"}
 ]
 
 # OS_Triage Memory Stuff
-TR_Context_Memory_Dir = "./generated/OS-Triage/Context_Mem"
+TR_Context_Memory_Dir = "./generated/os-triage/context_mem"
 TR_User_Dir = "/usr"
 context_map = "context_map.json"
 user_data = {

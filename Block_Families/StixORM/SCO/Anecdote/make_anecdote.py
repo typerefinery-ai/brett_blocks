@@ -104,7 +104,7 @@ def make_anecdote(anecdote_form, anecdote_reporter=None):
 
 
 def main(inputfile, outputfile):
-    anecdote_provider = None
+    anecdote_reporter = ""
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
             input = json.load(script_input)
