@@ -24,7 +24,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # Title: Make SRO
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
-# Contact Email: denis@cloudaccelerator.co
+# Contact Email: brett@osthreat.com
 # Date: 07/08/2023
 #
 # Description: This script is designed to take in form, 2 Stix StixORM
@@ -38,7 +38,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # One Output
 # 1. Valid SRO (Dict)
 #
-# This code is licensed under the terms of the BSD.
+# This code is licensed under the terms of the Apache 2.
 ##############################################################################
 
 from stixorm.module.definitions.stix21 import (
@@ -132,20 +132,30 @@ def make_sro(sro_form, source, target, relationship_type):
 
 
 def main(inputfile, outputfile):
-    if os.path.exists(inputfile):
-        with open(inputfile, "r") as script_input:
-            input_data = json.load(script_input)
-
-    sro_form = input_data["relationship_form"]
     source = None
     target = None
     relationship_type = None
-    if "source" in input_data:
-        source = input_data["source"]
-    if "target" in input_data:
-        target = input_data["target"]
-    if "relationship_type" in input_data:
-        relationship_type = input_data["relationship_type"]
+    if os.path.exists(inputfile):
+        with open(inputfile, "r") as script_input:
+            input_data = json.load(script_input)
+            print(f"input file->{input_data}")
+            if "relationship_form" in input_data:
+                sro_form = input_data["relationship_form"]
+                if "source" in input_data:
+                    source = input_data["source"]
+                if "target" in input_data:
+                    target = input_data["target"]
+                if "relationship_type" in input_data:
+                    relationship_type = input_data["relationship_type"]
+            elif "api" in input_data:
+                api_input = input_data["api"]
+                sro_form = api_input["relationship_form"]
+                if "source" in api_input:
+                    source = api_input["source"]
+                if "target" in api_input:
+                    target = api_input["target"]
+                if "relationship_type" in api_input:
+                    relationship_type = api_input["relationship_type"]
 
     # setup logger for execution
     stix_dict = make_sro(sro_form, source, target, relationship_type)

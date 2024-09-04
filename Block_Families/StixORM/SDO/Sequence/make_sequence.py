@@ -21,7 +21,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Make Event
+# Title: Make Sequence
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: denis@cloudaccelerator.co
@@ -31,8 +31,14 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 #       and return a Stix object
 #
 # One Mandatory, One Optional Input:
-# 1. Event_Form
-# 2. Sighting (optional
+# 1. Sequence Form
+# 2. step_type(enum)
+# 3. sequence type (enum)
+# 4. sequenced_object {}
+# 5. on completion (sequence)
+# 6. on success (sequence)
+# 7. on failure (sequence)
+# 8. next steps (sequence)
 # One Output
 # 1. Indicator SDO  (Dict)
 #
@@ -191,22 +197,40 @@ def main(inputfile, outputfile):
     next_steps = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
-            input = json.load(script_input)
-    sequence_form = input["sequence_form"]
-    if "step_type" in input:
-        step_type = input["step_type"]
-    if "sequence_type" in input:
-        sequence_type = input["sequence_type"]
-    if "sequenced_object" in input:
-        sequenced_object = input["sequenced_object"]
-    if "on_completion" in input:
-        on_completion = input["on_completion"]
-    if "on_success" in input:
-        on_success = input["on_success"]
-    if "on_failure" in input:
-        on_failure = input["on_failure"]
-    if "next_steps" in input:
-        next_steps = input["next_steps"]
+            input_data = json.load(script_input)
+            if "sequence_form" in input_data:
+                sequence_form = input_data["sequence_form"]
+                if "step_type" in input_data:
+                    step_type = input_data["step_type"]
+                if "sequence_type" in input_data:
+                    sequence_type = input_data["sequence_type"]
+                if "sequenced_object" in input_data:
+                    sequenced_object = input_data["sequenced_object"]
+                if "on_completion" in input_data:
+                    on_completion = input_data["on_completion"]
+                if "on_success" in input_data:
+                    on_success = input_data["on_success"]
+                if "on_failure" in input_data:
+                    on_failure = input_data["on_failure"]
+                if "next_steps" in input_data:
+                    next_steps = input_data["next_steps"]
+            elif "api" in input_data:
+                api_input = input_data["api"]
+                sequence_form = api_input["sequence_form"]
+                if "step_type" in api_input:
+                    step_type = api_input["step_type"]
+                if "sequence_type" in api_input:
+                    sequence_type = api_input["sequence_type"]
+                if "sequenced_object" in api_input:
+                    sequenced_object = api_input["sequenced_object"]
+                if "on_completion" in api_input:
+                    on_completion = api_input["on_completion"]
+                if "on_success" in api_input:
+                    on_success = api_input["on_success"]
+                if "on_failure" in api_input:
+                    on_failure = api_input["on_failure"]
+                if "next_steps" in api_input:
+                    next_steps = api_input["next_steps"]
 
     # setup logger for execution
     stix_dict = make_sequence(sequence_form, step_type=step_type, sequence_type=sequence_type, sequenced_object=sequenced_object, on_completion=on_completion, on_success=on_success, on_failure=on_failure, next_steps=next_steps)

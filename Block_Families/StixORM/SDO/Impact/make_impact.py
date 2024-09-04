@@ -24,7 +24,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # Title: Make Impact
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
-# Contact Email: denis@cloudaccelerator.co
+# Contact Email: brett@osthreat.com
 # Date: 07/08/2023
 #
 # Description: This script is designed to take in a Stix Object ID
@@ -32,11 +32,13 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 #
 # One Mandatory, One Optional Input:
 # 1. Impact_Form
-# 2. changed_objects  (optional
+# 2. impacted_entity_counts  (optional
+# 3. impacted_refs (optional)
+# 4. superseded_by_ref (optional)
 # One Output
 # 1. Impact SDO  (Dict)
 #
-# This code is licensed under the terms of the BSD.
+# This code is licensed under the terms of the Apache 2.
 ##########b####################################################################
 
 from stixorm.module.definitions.stix21 import (
@@ -194,15 +196,24 @@ def main(inputfile, outputfile):
     superseded_by_ref = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
-            input = json.load(script_input)
-    event_form = input["impact_form"]
-    if "impacted_entity_counts" in input:
-        impacted_entity_counts = input["impacted_entity_counts"]
-    if "impacted_refs" in input:
-        impacted_refs = input["impacted_refs"]
-    if "superseded_by_ref" in input:
-        superseded_by_ref = input["superseded_by_ref"]
-
+            input_data = json.load(script_input)
+            if "impact_form" in input_data:
+                event_form = input_data["impact_form"]
+                if "impacted_entity_counts" in input_data:
+                    impacted_entity_counts = input_data["impacted_entity_counts"]
+                if "impacted_refs" in input_data:
+                    impacted_refs = input_data["impacted_refs"]
+                if "superseded_by_ref" in input_data:
+                    superseded_by_ref = input_data["superseded_by_ref"]
+            elif "api" in input_data:
+                api_input = input_data["api"]
+                event_form = api_input["impact_form"]
+                if "impacted_entity_counts" in api_input:
+                    impacted_entity_counts = api_input["impacted_entity_counts"]
+                if "impacted_refs" in api_input:
+                    impacted_refs = api_input["impacted_refs"]
+                if "superseded_by_ref" in api_input:
+                    superseded_by_ref = api_input["superseded_by_ref"]
 
     # setup logger for execution
     stix_dict = make_impact(event_form, impacted_entity_counts, impacted_refs, superseded_by_ref)

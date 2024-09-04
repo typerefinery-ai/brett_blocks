@@ -24,7 +24,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # Title: Make URL
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
-# Contact Email: denis@cloudaccelerator.co
+# Contact Email: brett@osthreat.com
 # Date: 07/08/2023
 #
 # Description: This script is designed to take in a Stix Object ID
@@ -36,7 +36,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # One Output
 # 1. URL SCO (Dict)
 #
-# This code is licensed under the terms of the BSD.
+# This code is licensed under the terms of the Apache 2.
 ##############################################################################
 
 from stixorm.module.definitions.stix21 import (
@@ -103,16 +103,26 @@ def make_url(url_form, hyperlink=None):
 
 
 def main(inputfile, outputfile):
-    belongs_to = None
+    hyperlink = None
+    url_form = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
-            input = json.load(script_input)
+            input_data = json.load(script_input)
 
-    url_form = input["url_form"]
-    if "hyperlink" in input:
-        hyperlink = input["hyperlink"]
-    else:
-        hyperlink = None
+    if "url_form" in input_data:
+        url_form = input_data["url_form"]
+        if "hyperlink" in input_data:
+            hyperlink = input_data["hyperlink"]
+        else:
+            hyperlink = None
+    elif "api" in input_data:
+        api_input = input_data["api"]
+        if "url_form" in api_input:
+            url_form = api_input["url_form"]
+            if "hyperlink" in api_input:
+                hyperlink = api_input["hyperlink"]
+            else:
+                hyperlink = None
 
     # setup logger for execution
     stix_dict = make_url(url_form, hyperlink)

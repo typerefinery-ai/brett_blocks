@@ -21,22 +21,25 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Make URL
+# Title: Make Email Message
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
-# Contact Email: denis@cloudaccelerator.co
+# Contact Email: brett@osthreat.com
 # Date: 07/08/2023
 #
 # Description: This script is designed to take in a Stix Object ID
 #       and return a Stix object
 #
 # One Mandatory, One Optional Input:
-# 1. URL_Form
-# 2. hyperlink string
+# 1. Email Message Form
+# 2. from email ref{}
+# 3. [to email refs]
+# 3.[cc email refs]
+# 4. [bcc email refs]
 # One Output
-# 1. URL SCO (Dict)
+# 1. Email Message SCO (Dict)
 #
-# This code is licensed under the terms of the BSD.
+# This code is licensed under the terms of the Apache 2.
 ##############################################################################
 
 from stixorm.module.definitions.stix21 import (
@@ -148,25 +151,45 @@ def main(inputfile, outputfile):
     belongs_to = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
-            input = json.load(script_input)
+            input_data = json.load(script_input)
 
-    email_msg_form = input["email_msg_form"]
-    if "from_ref" in input:
-        from_ref = input["from_ref"]
-    else:
-        from_ref=None
-    if "to_refs" in input:
-        to_refs = input["to_refs"]
-    else:
-        to_refs=None
-    if "cc_refs" in input:
-        cc_refs = input["cc_refs"]
-    else:
-        cc_refs=None
-    if "bcc_refs" in input:
-        bcc_refs = input["bcc_refs"]
-    else:
-        bcc_refs=None
+    if "email_msg_form" in input_data:
+        email_msg_form = input_data["email_msg_form"]
+        if "from_ref" in input_data:
+            from_ref = input_data["from_ref"]
+        else:
+            from_ref=None
+        if "to_refs" in input_data:
+            to_refs = input_data["to_refs"]
+        else:
+            to_refs=None
+        if "cc_refs" in input_data:
+            cc_refs = input_data["cc_refs"]
+        else:
+            cc_refs=None
+        if "bcc_refs" in input_data:
+            bcc_refs = input_data["bcc_refs"]
+        else:
+            bcc_refs=None
+    elif "api" in input_data:
+        api_input = input_data["api"]
+        email_msg_form = api_input["email_msg_form"]
+        if "from_ref" in api_input:
+            from_ref = api_input["from_ref"]
+        else:
+            from_ref = None
+        if "to_refs" in api_input:
+            to_refs = api_input["to_refs"]
+        else:
+            to_refs = None
+        if "cc_refs" in api_input:
+            cc_refs = api_input["cc_refs"]
+        else:
+            cc_refs = None
+        if "bcc_refs" in api_input:
+            bcc_refs = api_input["bcc_refs"]
+        else:
+            bcc_refs = None
 
     # setup logger for execution
     stix_dict = make_email_msg(email_msg_form, from_ref, to_refs, cc_refs, bcc_refs)

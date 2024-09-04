@@ -24,7 +24,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # Title: Make Incident
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
-# Contact Email: denis@cloudaccelerator.co
+# Contact Email: brett@osthreat.com
 # Date: 07/08/2023
 #
 # Description: This script is designed to take in a Stix Object ID
@@ -32,11 +32,16 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 #
 # One Mandatory, One Optional Input:
 # 1. Incident_Form
-# 2. Pattern (optional
+# 2. [sequence_Start_refs]
+# 3. [sequence_refs]
+# 4. [task_refs]
+# 5. [event_refs]
+# 6. [impact_refs]
+# 7. [other_object_refs
 # One Output
-# 1. Indicator SDO  (Dict)
+# 1. Incident SDO  (Dict)
 #
-# This code is licensed under the terms of the BSD.
+# This code is licensed under the terms of the Apache 2.
 ##########b####################################################################
 
 from stixorm.module.definitions.stix21 import (
@@ -171,6 +176,7 @@ def make_incident(incident_form, sequence_start_refs=None, sequence_refs=None, t
 
 
 def main(inputfile, outputfile):
+    incident_form = None
     sequence_start_refs = None
     sequence_refs = None
     task_refs = None
@@ -179,20 +185,36 @@ def main(inputfile, outputfile):
     other_object_refs = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
-            input = json.load(script_input)
-    incident_form = input["incident_form"]
-    if "sequence_start_refs" in input:
-        sequence_start_refs = input["sequence_start_refs"]
-    if "sequence_refs" in input:
-        sequence_refs = input["sequence_refs"]
-    if "task_refs" in input:
-        task_refs = input["task_refs"]
-    if "event_refs" in input:
-        event_refs = input["event_refs"]
-    if "impact_refs" in input:
-        impact_refs = input["impact_refs"]
-    if "other_object_refs" in input:
-        other_object_refs = input["other_object_refs"]
+            input_data = json.load(script_input)
+            if "incident_form" in input_data:
+                incident_form = input_data["incident_form"]
+                if "sequence_start_refs" in input_data:
+                    sequence_start_refs = input_data["sequence_start_refs"]
+                if "sequence_refs" in input_data:
+                    sequence_refs = input_data["sequence_refs"]
+                if "task_refs" in input_data:
+                    task_refs = input_data["task_refs"]
+                if "event_refs" in input_data:
+                    event_refs = input_data["event_refs"]
+                if "impact_refs" in input_data:
+                    impact_refs = input_data["impact_refs"]
+                if "other_object_refs" in input_data:
+                    other_object_refs = input_data["other_object_refs"]
+            elif "api" in input_data:
+                api_input = input_data["api"]
+                incident_form = api_input["incident_form"]
+                if "sequence_start_refs" in api_input:
+                    sequence_start_refs = api_input["sequence_start_refs"]
+                if "sequence_refs" in api_input:
+                    sequence_refs = api_input["sequence_refs"]
+                if "task_refs" in api_input:
+                    task_refs = api_input["task_refs"]
+                if "event_refs" in api_input:
+                    event_refs = api_input["event_refs"]
+                if "impact_refs" in api_input:
+                    impact_refs = api_input["impact_refs"]
+                if "other_object_refs" in api_input:
+                    other_object_refs = api_input["other_object_refs"]
 
     # setup logger for execution
     stix_dict = make_incident(incident_form, sequence_start_refs, sequence_refs, task_refs, event_refs, impact_refs, other_object_refs)

@@ -21,10 +21,10 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Get Object
+# Title: Make Anecdote
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
-# Contact Email: denis@cloudaccelerator.co
+# Contact Email: brett@osthreat.com
 # Date: 07/08/2023
 #
 # Description: This script is designed to take in a Stix Object ID
@@ -32,11 +32,11 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 #
 # One Mandatory, One Optional Input:
 # 1. Form_Anecdote
-# 2. Identity Providing Anecdote
+# 2. Identity Providing Anecdote (Reporter)
 # One Output
 # 1. Anecdote SCO Extension (Dict)
 #
-# This code is licensed under the terms of the BSD.
+# This code is licensed under the terms of the Apache 2.
 ##############################################################################
 
 from stixorm.module.definitions.os_threat import (
@@ -107,10 +107,16 @@ def main(inputfile, outputfile):
     anecdote_reporter = ""
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
-            input = json.load(script_input)
-    anecdote_form = input["anecdote_form"]
-    if "anecdote_reporter" in input:
-        anecdote_reporter = input["anecdote_reporter"]
+            input_data = json.load(script_input)
+    if "anecdote_form" in input_data:
+        anecdote_form = input_data["anecdote_form"]
+        if "anecdote_reporter" in input_data:
+            anecdote_reporter = input_data["anecdote_reporter"]
+    elif "api" in input_data:
+        api_input = input_data["api"]
+        anecdote_form = api_input["anecdote_form"]
+        if "anecdote_reporter" in api_input:
+            anecdote_reporter = api_input["anecdote_reporter"]
 
 
     # setup logger for execution

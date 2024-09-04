@@ -20,10 +20,10 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Make Identity
+# Title: Make Observed Data Object
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
-# Contact Email: denis@cloudaccelerator.co
+# Contact Email: brett@osthreat.com
 # Date: 07/08/2023
 #
 # Description: This script is designed to take in a Stix Object ID
@@ -35,7 +35,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # One Output
 # 1. Observed Data SDO  (Dict)
 #
-# This code is licensed under the terms of the BSD.
+# This code is licensed under the terms of the Apache 2.
 ##########b####################################################################
 
 from stixorm.module.definitions.stix21 import (
@@ -142,15 +142,22 @@ def make_observation(observed_data_form, observations=None):
 
 
 def main(inputfile, outputfile):
-    email_addr = None
-    user_account = None
+    observation_form = None
+    observations = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
-            input = json.load(script_input)
-    observation_form = input["observed_data_form"]
-    observations = []
-    if "observations" in input:
-        observations = input["observations"]
+            input_data = json.load(script_input)
+    if "observed_data_form" in input_data:
+        observation_form = input_data["observed_data_form"]
+        observations = []
+        if "observations" in input_data:
+            observations = input_data["observations"]
+    elif "api" in input_data:
+        api_input = input_data["api"]
+        observation_form = api_input["observed_data_form"]
+        observations = []
+        if "observations" in api_input:
+            observations = api_input["observations"]
 
 
     # setup logger for execution

@@ -23,7 +23,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # Title: Make Indicator
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
-# Contact Email: denis@cloudaccelerator.co
+# Contact Email: brett@osthreat.com
 # Date: 07/08/2023
 #
 # Description: This script is designed to take in a Stix Object ID
@@ -35,7 +35,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # One Output
 # 1. Indicator SDO  (Dict)
 #
-# This code is licensed under the terms of the BSD.
+# This code is licensed under the terms of the Apache 2.
 ##########b####################################################################
 
 from stixorm.module.definitions.stix21 import (
@@ -139,16 +139,24 @@ def make_indicator(indicator_form, pattern=None):
 
 
 def main(inputfile, outputfile):
+    indicator_form=None
     pattern = None
     print(f"inputfile->{inputfile}")
     if os.path.exists(inputfile):
         print(f"path exists")
         with open(inputfile, "r") as script_input:
-            input = json.load(script_input)
-            print(f"input->{input}")
-    indicator_form = input["indicator_form"]
-    if "pattern" in input:
-        pattern = input["pattern"]
+            input_data = json.load(script_input)
+            print(f"input->{input_data}")
+    if "indicator_form" in input_data:
+        indicator_form = input_data["indicator_form"]
+        if "pattern" in input_data:
+            pattern = input_data["pattern"]
+    elif "api" in input_data:
+        api_input = input_data["api"]
+        if "indicator_form" in api_input:
+            indicator_form = api_input["indicator_form"]
+            if "pattern" in api_input:
+                pattern = api_input["pattern"]
 
     # setup logger for execution
     print(f"pattern {pattern}")

@@ -21,24 +21,24 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Make SRO
+# Title: Make Sighting
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
-# Contact Email: denis@cloudaccelerator.co
+# Contact Email: brett@osthreat.com
 # Date: 07/08/2023
 #
 # Description: This script is designed to take in form, 2 Stix StixORM
 #       and a relationship type
 #
 # One Mandatory, 3 Optional Input Ports:
-# 1. SRO Form
-# 2. Source Stix Object
-# 3. Target Stix Object
-# 4. Relationship_Type
+# 1. Sighting Form
+# 2. [Observed Data]
+# 3. Sighted Stix Object (e.g. indicator)
+# 4. [where sighted]
 # One Output
 # 1. Valid SRO (Dict)
 #
-# This code is licensed under the terms of the BSD.
+# This code is licensed under the terms of the Apache 2.
 ##############################################################################
 
 from stixorm.module.definitions.stix21 import (
@@ -191,20 +191,32 @@ def make_sighting(sighting_form, observed_data_refs, sighting_of_ref, where_sigh
 
 
 def main(inputfile, outputfile):
-    if os.path.exists(inputfile):
-        with open(inputfile, "r") as script_input:
-            input_data = json.load(script_input)
-
-    sro_form = input_data["sighting_form"]
+    sro_form = None
     observed_data_refs = None
     where_sighted_refs = None
     sighting_of_ref = None
-    if "observed_data_refs" in input_data:
-        observed_data_refs = input_data["observed_data_refs"]
-    if "where_sighted_refs" in input_data:
-        where_sighted_refs = input_data["where_sighted_refs"]
-    if "sighting_of_ref" in input_data:
-        sighting_of_ref = input_data["sighting_of_ref"]
+    if os.path.exists(inputfile):
+        with open(inputfile, "r") as script_input:
+            input_data = json.load(script_input)
+            if "incident_form" in input_data:
+                sro_form = input_data["sighting_form"]
+                if "observed_data_refs" in input_data:
+                    observed_data_refs = input_data["observed_data_refs"]
+                if "where_sighted_refs" in input_data:
+                    where_sighted_refs = input_data["where_sighted_refs"]
+                if "sighting_of_ref" in input_data:
+                    sighting_of_ref = input_data["sighting_of_ref"]
+            elif "api" in input_data:
+                api_input = input_data["api"]
+                sro_form = api_input["sighting_form"]
+                if "observed_data_refs" in api_input:
+                    observed_data_refs = api_input["observed_data_refs"]
+                if "where_sighted_refs" in api_input:
+                    where_sighted_refs = api_input["where_sighted_refs"]
+                if "sighting_of_ref" in api_input:
+                    sighting_of_ref = api_input["sighting_of_ref"]
+
+
 
     # setup logger for execution
     stix_dict = make_sighting(sro_form, observed_data_refs=observed_data_refs, where_sighted_refs=where_sighted_refs, sighting_of_ref=sighting_of_ref)

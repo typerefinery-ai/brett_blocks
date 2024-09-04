@@ -23,7 +23,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # Title: Make Identity
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
-# Contact Email: denis@cloudaccelerator.co
+# Contact Email: brett@osthreat.com
 # Date: 07/08/2023
 #
 # Description: This script is designed to take in a Stix Object ID
@@ -36,7 +36,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # One Output
 # 1. Identity SDO Extension (Dict)
 #
-# This code is licensed under the terms of the BSD.
+# This code is licensed under the terms of the Apache 2.
 ##############################################################################
 
 from stixorm.module.definitions.stix21 import (
@@ -175,12 +175,23 @@ def main(inputfile, outputfile):
     user_account = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
-            input = json.load(script_input)
-    identity_form = input["identity_form"]
-    if "email-addr" in input:
-        email_addr = input["email-addr"]
-    if "user-account" in input:
-        user_account = input["user-account"]
+            input_data = json.load(script_input)
+            print(f"type identity->{input_data}")
+            if "identity_form" in input_data:
+                identity_form = input_data["identity_form"]
+                if "email-addr" in input_data:
+                    email_addr = input_data["email-addr"]
+                if "user-account" in input_data:
+                    user_account = input_data["user-account"]
+            elif "api" in input_data:
+                api_input = input_data["api"]
+                if "identity_form" in api_input:
+                    identity_form = api_input["identity_form"]
+                    if "email-addr" in api_input:
+                        email_addr = api_input["email-addr"]
+                    if "user-account" in api_input:
+                        user_account = api_input["user-account"]
+
 
     print(f"type identity->{type(identity_form)}, type email->{type(email_addr)}, type user acct->{type(user_account)}")
     # setup logger for execution

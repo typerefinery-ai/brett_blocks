@@ -24,7 +24,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # Title: Make Email Addr
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
-# Contact Email: denis@cloudaccelerator.co
+# Contact Email: brett@osthreat.com
 # Date: 07/08/2023
 #
 # Description: This script is designed to take in a Stix Object ID
@@ -36,7 +36,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # One Output
 # 1. Email_Addr SCO (Dict)
 #
-# This code is licensed under the terms of the BSD.
+# This code is licensed under the terms of the Apache 2.
 ##############################################################################
 
 from stixorm.module.definitions.stix21 import (
@@ -103,11 +103,17 @@ def main(inputfile, outputfile):
     belongs_to = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
-            input = json.load(script_input)
+            input_data = json.load(script_input)
 
-    email_addr_form = input["email_addr_form"]
-    if "user-account" in input:
-        belongs_to = input["user-account"]
+    if "email_addr_form" in input_data:
+        email_addr_form = input_data["email_addr_form"]
+        if "user-account" in input_data:
+            belongs_to = input_data["user-account"]
+    elif "api" in input_data:
+        api_input = input_data["api"]
+        email_addr_form = api_input["email_addr_form"]
+        if "user-account" in api_input:
+            belongs_to = api_input["user-account"]
 
     # setup logger for execution
     stix_dict = make_email_addr(email_addr_form, belongs_to)

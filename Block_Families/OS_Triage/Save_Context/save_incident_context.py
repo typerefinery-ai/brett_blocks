@@ -257,20 +257,33 @@ def save_context(stix_object, context_type):
 
 def main(inputfile, outputfile):
     context_type = None
+    context_type_string = ""
     stix_object = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
-            input = json.load(script_input)
-    stix_object = input["stix_object"]
-    if "context_type" in input:
-        context_type = input["context_type"]
+            input_data = json.load(script_input)
+            print(f"input data->{input_data}")
+            if "stix_object" in input_data:
+                stix_object = input_data["stix_object"]
+                if "context_type" in input_data:
+                    context_type_string = input_data["context_type"]["context_type"]
+                print(f"from ports \nstix_object->{stix_object}\ncontext type->{context_type_string}")
+                result_string = save_context(stix_object, context_type_string)
+            elif "api" in input_data:
+                api_input_data = input_data["api"]
+                stix_object = api_input_data["stix_object"]
+                if "context_type" in api_input_data:
+                    context_type_string = api_input_data["context_type"]["context_type"]
+                print(f"api \nstix_object->{stix_object}\ncontext type->{context_type_string}")
+                result_string = save_context(stix_object, context_type_string)
 
-    # setup logger for execution
-    result_string = save_context(stix_object, context_type["context_type"])
-    context_result = {}
-    context_result["context_result"] = result_string
-    with open(outputfile, "w") as outfile:
-        json.dump(context_result, outfile)
+            # setup logger for execution
+
+            context_result = {}
+            context_result["context_result"] = result_string
+
+            with open(outputfile, "w") as outfile:
+                json.dump(context_result, outfile)
 
 
 ################################################################################

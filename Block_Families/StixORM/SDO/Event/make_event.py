@@ -24,7 +24,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # Title: Make Event
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
-# Contact Email: denis@cloudaccelerator.co
+# Contact Email: brett@osthreat.com
 # Date: 07/08/2023
 #
 # Description: This script is designed to take in a Stix Object ID
@@ -36,7 +36,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # One Output
 # 1. Indicator SDO  (Dict)
 #
-# This code is licensed under the terms of the BSD.
+# This code is licensed under the terms of the Apache 2.
 ##########b####################################################################
 
 from stixorm.module.definitions.stix21 import (
@@ -169,12 +169,21 @@ def main(inputfile, outputfile):
     sighting_refs = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
-            input = json.load(script_input)
-    event_form = input["event_form"]
-    if "changed_objects" in input:
-        changed_objects = input["changed_objects"]
-    if "sighting" in input:
-        sighting_refs = input["sighting"]
+            input_data = json.load(script_input)
+            if "incident_form" in input_data:
+                event_form = input_data["event_form"]
+                if "changed_objects" in input_data:
+                    changed_objects = input_data["changed_objects"]
+                if "sighting" in input_data:
+                    sighting_refs = input_data["sighting"]
+            elif "api" in input_data:
+                api_input = input_data["api"]
+                event_form = api_input["event_form"]
+                if "changed_objects" in api_input:
+                    changed_objects = api_input["changed_objects"]
+                if "sighting" in api_input:
+                    sighting_refs = api_input["sighting"]
+
 
 
     # setup logger for execution

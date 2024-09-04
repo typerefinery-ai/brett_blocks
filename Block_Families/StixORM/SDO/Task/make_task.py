@@ -24,7 +24,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # Title: Make Task
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
-# Contact Email: denis@cloudaccelerator.co
+# Contact Email: brett@osthreat.com
 # Date: 07/08/2023
 #
 # Description: This script is designed to take in a Stix Object ID
@@ -36,7 +36,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # One Output
 # 1. Task SDO  (Dict)
 #
-# This code is licensed under the terms of the BSD.
+# This code is licensed under the terms of the Apache 2.
 ##########b####################################################################
 
 from stixorm.module.definitions.stix21 import (
@@ -163,19 +163,24 @@ def make_task(task_form, changed_objects=None):
 
 def main(inputfile, outputfile):
     changed_objects = None
-    sighting_refs = None
+    task_form = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
-            input = json.load(script_input)
-    event_form = input["task_form"]
-    if "changed_objects" in input:
-        changed_objects = input["changed_objects"]
+            input_data = json.load(script_input)
+            if"task_form" in input_data:
+                task_form = input_data["task_form"]
+                if "changed_objects" in input_data:
+                    changed_objects = input_data["changed_objects"]
+            elif "api" in input_data:
+                api_input = input_data["api"]
+                task_form = api_input["task_form"]
+                if "changed_objects" in api_input:
+                    changed_objects = api_input["changed_objects"]
 
-
-    # setup logger for execution
-    stix_dict = make_task(event_form, changed_objects)
-    with open(outputfile, "w") as outfile:
-        json.dump(stix_dict, outfile)
+            # setup logger for execution
+            stix_dict = make_task(task_form, changed_objects)
+            with open(outputfile, "w") as outfile:
+                json.dump(stix_dict, outfile)
 
 
 ################################################################################
