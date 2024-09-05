@@ -24,10 +24,10 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # Title: Get From User
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
-# Contact Email: denis@cloudaccelerator.co
+# Contact Email: brett@osthreat.com
 # Date: 07/08/2023
 #
-# Description: This script is designed to take in a Stix Object ID
+# Description: This script is designed to take in a Stix Object Form
 #       and return a Stix object
 #
 # One Mandatory Input:
@@ -38,7 +38,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # One Output
 # 1. OS_Triage
 #
-# This code is licensed under the terms of the BSD.
+# This code is licensed under the terms of the Apache 2.
 ##############################################################################
 
 from stixorm.module.definitions.os_threat import (
@@ -113,7 +113,6 @@ field_names = {
     "other" : "other_object_refs"
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
-
 
 def check_properties(cont, prop, source_value):
     source_val = ""
@@ -230,15 +229,25 @@ def main(inputfile, outputfile):
     source_id = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
-            input = json.load(script_input)
-    if "get_query" in input:
-        get_query = input["get_query"]
-    if "context_type" in input:
-        context_type = input["context_type"]
-    if "source_value" in input:
-        source_value = input["source_value"]
-    if "source_id" in input:
-        source_id = input["source_id"]
+            input_data = json.load(script_input)
+            if "get_query" in input_data:
+                get_query = input_data["get_query"]
+                if "context_type" in input_data:
+                    context_type = input_data["context_type"]
+                if "source_value" in input_data:
+                    source_value = input_data["source_value"]
+                if "source_id" in input_data:
+                    source_id = input_data["source_id"]
+            elif "api" in input_data:
+                api_input = input_data["api"]
+                if "get_query" in api_input:
+                    get_query = api_input["get_query"]
+                    if "context_type" in api_input:
+                        context_type = api_input["context_type"]
+                    if "source_value" in api_input:
+                        source_value = api_input["source_value"]
+                    if "source_id" in api_input:
+                        source_id = api_input["source_id"]
 
     # setup logger for execution
     context_data = get_context_object(get_query, context_type["context_type"], source_value, source_id)
