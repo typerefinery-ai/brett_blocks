@@ -83,6 +83,7 @@ incident_data = {
     "task" : "/task_refs.json",
     "other" : "/other_object_refs.json",
     "unattached" : "/unattached_objs.json",
+    "unattached_relations" : "/unattached_relation.json",
     "relations" : "/incident_relations.json",
     "edges" : "/incident_edges.json",
     "relation_edges" : "/relation_edges.json",
@@ -127,6 +128,10 @@ def get_unattached():
         if os.path.exists(TR_Incident_Context_Dir + incident_data["relations"]):
             with open(TR_Incident_Context_Dir + incident_data["relations"], "r") as mem_input:
                 relations = json.load(mem_input)
+        if os.path.exists(TR_Incident_Context_Dir + incident_data["unattached_relations"]):
+            with open(TR_Incident_Context_Dir + incident_data["unattached_relations"], "r") as mem_input:
+                unattached_relations = json.load(mem_input)
+                relations = relations + unattached_relations
         if os.path.exists(TR_Incident_Context_Dir + incident_data["relation_edges"]):
             with open(TR_Incident_Context_Dir + incident_data["relation_edges"], "r") as mem_input:
                 relation_edges = json.load(mem_input)

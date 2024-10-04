@@ -25,8 +25,8 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # Contact Email: brett@osthreat.com
 # Date: 07/08/2023
 #
-# Description: This script is designed to take in a Stix Object ID
-#       and return a Stix object
+# Description: This script is designed to take in a Stix Object
+#       and save it in the unattached list
 #
 # One Mandatory Input:
 # 1. OS_Triage
@@ -149,6 +149,7 @@ def add_edge(edge, context_dir, context_type):
     with open(context_dir + incident_data[context_type], 'w') as f:
         f.write(json.dumps(stix_edge_list))
 
+
 def process_node(stix_object, context_key, context_dir, n_and_e):
     if "original" in stix_object:
         add_node(stix_object, context_key)
@@ -159,7 +160,7 @@ def process_node(stix_object, context_key, context_dir, n_and_e):
             add_edge(edge, context_dir, "edges")
 
 
-def save_context(stix_object, context_type):
+def save_context(stix_object, context_type="unattached"):
     # 0 Check for "original"
     wrapped = False
     exists = False
@@ -169,10 +170,9 @@ def save_context(stix_object, context_type):
     local_map = {}
     with open(TR_Context_Memory_Dir + "/" + context_map, "r") as current_context:
         local_map = json.load(current_context)
-        # 1. Setup the incident context directory
+        # 1. Setup the directory
         current_incident_dir = local_map["current_incident"]
         TR_Incident_Context_Dir = TR_Context_Memory_Dir + "/" + current_incident_dir
-
         # 2. Check if the key directories exist, if not make them, and download common files
         if not os.path.exists(TR_Common_Files):
             os.makedirs(TR_Common_Files)
@@ -201,7 +201,7 @@ def save_context(stix_object, context_type):
                 add_node(stix_object, TR_Incident_Context_Dir, context_type)
             else:
                 nodes, edges, relation_edges, relation_replacement_edges = n_and_e.convert_relns(stix_object)
-                add_node(nodes[0],TR_Incident_Context_Dir, "relations")
+                add_node(nodes[0],TR_Incident_Context_Dir, "unattached_relations")
                 for edge in edges:
                     add_edge(edge, TR_Incident_Context_Dir, "edges")
                 for edge in relation_edges:
@@ -214,54 +214,15 @@ def save_context(stix_object, context_type):
                 add_node(stix_object, context_type)
             else:
                 nodes, edges = n_and_e.convert_sighting(stix_object)
-                add_node(nodes[0], TR_Incident_Context_Dir, "other")
+                add_node(nodes[0], TR_Incident_Context_Dir, "unattached")
                 for edge in edges:
                     add_edge(edge, TR_Incident_Context_Dir, "edges")
         else:
             # its a node-type of object
-            if context_type == "sequence":
-                if stix_object["step_type"] == "start_step":
-                    process_node(stix_object, "start", TR_Incident_Context_Dir, n_and_e)
-                else:
-                    process_node(stix_object, "sequence", TR_Incident_Context_Dir, n_and_e)
-            elif context_type == "task":
-                process_node(stix_object, "task", TR_Incident_Context_Dir, n_and_e)
-            elif context_type == "event":
-                process_node(stix_object, "event", TR_Incident_Context_Dir, n_and_e)
-            elif context_type == "impact":
-                process_node(stix_object, "impact", TR_Incident_Context_Dir, n_and_e)
-            elif context_type != "incident":
-                process_node(stix_object, "other", TR_Incident_Context_Dir, n_and_e)
+            process_node(stix_object, "unattached", TR_Incident_Context_Dir, n_and_e)
 
-            else:
-                # It is an Incident, so first, update all of the id lists on the incident object
-                for key in key_list:
-                    if os.path.exists(TR_Incident_Context_Dir + incident_data[key]):
-                        with open(TR_Incident_Context_Dir + incident_data[key], "r") as list_input:
-                            stix_list = json.load(list_input)
-                            if key == "other":
-                                # if we are filling the "other" list then add in the relations
-                                if os.path.exists(TR_Incident_Context_Dir + incident_data["relations"]):
-                                    with open(TR_Incident_Context_Dir + incident_data[key], "r") as list2_input:
-                                        stix_list2 = json.load(list2_input)
-                                        stix_list = stix_list + stix_list2
-                            stix_id_list = [x["id"] for x in stix_list]
-                            # does the stix_object already appear in the list?
-                            stix_object[field_names[key]] = stix_id_list
-                    else:
-                        # list is empty
-                        stix_object[field_names[key]] = []
 
-                # create the nodes and edges
-                if wrapped:
-                    add_node(stix_object, "incident")
-                else:
-                    nodes, edges = n_and_e.convert_node(stix_object)
-                    add_node(nodes[0], "incident")
-                    for edge in edges:
-                        add_edge(edge, "edges")
-
-    return " incident context saved - \nstix_id -> " + str(stix_object["id"])
+    return "object saved to unattached context - \nstix_id -> " + str(stix_object["id"])
 
 
 def main(inputfile, outputfile):
@@ -274,9 +235,6 @@ def main(inputfile, outputfile):
             print(f"input data->{input_data}")
             if "stix_object" in input_data:
                 stix_object = input_data["stix_object"]
-                if "context_type" in input_data:
-                    context_type_string = input_data["context_type"]["context_type"]
-                print(f"from ports \nstix_object->{stix_object}\ncontext type->{context_type_string}")
                 result_string = save_context(stix_object, context_type_string)
             elif "api" in input_data:
                 api_input_data = input_data["api"]
