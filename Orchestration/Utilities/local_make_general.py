@@ -10,6 +10,10 @@ results_base = "../Orchestration/Results/"
 #          Form Actions
 from Block_Families.OS_Triage.Form_Actions.get_relationship_type import main as get_relationship_type
 ###############################################################################################
+#              RMB Menu Actions
+from Block_Families.OS_Triage.Mouse.rmb_tree_copy import main as rmb_tree_copy
+from Block_Families.OS_Triage.Mouse.rmb_tree_edit_DAG import main as rmb_tree_edit_DAG
+###############################################################################################
 #       Save to OS_Triage -> Incident, Company, User
 from Block_Families.OS_Triage.Save_Context.save_incident_context import main as save_incident_context
 from Block_Families.OS_Triage.Save_Context.save_company_context import main as save_company_context
@@ -169,6 +173,54 @@ def invoke_get_relationship_type_block(source_dict_path, target_dict_path, resul
             return export_data
 
 
+
+
+def invoke_rmb_tree_editDAG(tree_object_path, results_path):
+    #
+    # 1. Set the Relative Input and Output Paths for the block
+    #
+    #
+    # NOTE: This code is only To fake input ports
+    # Add the User Account object and the  EmailAddress
+    # NOTE: This code is only To fake input ports
+    ##
+    # with open(tree_object_path, 'w') as f:
+    #     f.write(json.dumps(stix_list))
+    # Make the Observed Data object
+    rmb_tree_edit_DAG(tree_object_path,results_path)
+    #
+    # Remove the context type record
+    #
+    #
+    if os.path.exists(results_path):
+        with open(results_path, "r") as script_input:
+            export_data = json.load(script_input)
+            return export_data
+
+
+
+
+def invoke_rmb_tree_copy(tree_object_path, results_path):
+    #
+    # 1. Set the Relative Input and Output Paths for the block
+    #
+    #
+    # NOTE: This code is only To fake input ports
+    # Add the User Account object and the  EmailAddress
+    # NOTE: This code is only To fake input ports
+    ##
+    # with open(tree_object_path, 'w') as f:
+    #     f.write(json.dumps(stix_list))
+    # Make the Observed Data object
+    rmb_tree_copy(tree_object_path,results_path)
+    #
+    # Remove the context type record
+    #
+    #
+    if os.path.exists(results_path):
+        with open(results_path, "r") as script_input:
+            export_data = json.load(script_input)
+            return export_data
 
 
 
