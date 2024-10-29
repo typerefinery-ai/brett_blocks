@@ -19,35 +19,30 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Save OS_Triage
+# Title: Promote Objects
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
-# Contact Email: brett@osthreat.com
+# Contact Email: denis@cloudaccelerator.co
 # Date: 07/08/2023
 #
-# Description: This script is designed to take in a Stix Object
-#       and save it in the unattached list
+# Description: This block takes a sub-graph of nodes from "Unattached" to OS_Triage Memory
 #
 # One Mandatory Input:
-# 1. Stix Object
-# One Output
-# 1. Context Return
+# 1. Stix_list
+# One Outpute
+# 1. OS_Triage Return
 #
-#
-# This code is licensed under the terms of the Apache 2.
+# This code is licensed under the terms of the BSD.
 ##############################################################################
 
 from stixorm.module.authorise import import_type_factory
-# from Block_Families.General._library.
-# from Orchestration.Common.
-from urllib.request import urlretrieve
 import json
-import sys
+
 import importlib.util
 import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-import os
+
 import_type = import_type_factory.get_all_imports()
 
 # Common File Stuff
@@ -104,19 +99,11 @@ field_names = {
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
-def download_common(module_list):
-    for module in module_list:
-        # Step 1: download the module
-        result = urlretrieve(module["url"], TR_Common_Files + "/" + module["file"])
-        print(f'common file result ->', result)
-        # Step 2: install the module
-
-
 
 def add_node(node, context_dir, context_type):
     exists = False
     stix_nodes_list = []
-    if  os.path.exists(context_dir + incident_data[context_type]):
+    if os.path.exists(context_dir + incident_data[context_type]):
         with open(context_dir + incident_data[context_type], "r") as mem_input:
             stix_nodes_list = json.load(mem_input)
             for i in range(len(stix_nodes_list)):
@@ -131,59 +118,40 @@ def add_node(node, context_dir, context_type):
         f.write(json.dumps(stix_nodes_list))
 
 
-def add_edge(edge, context_dir, context_type):
+def del_node(node_id, context_dir, context_type):
     exists = False
-    stix_edge_list = []
+    stix_nodes_list = []
     if os.path.exists(context_dir + incident_data[context_type]):
         with open(context_dir + incident_data[context_type], "r") as mem_input:
-            stix_edge_list = json.load(mem_input)
-            for i in range(len(stix_edge_list)):
-                if stix_edge_list[i]["source"] == edge["source"] and stix_edge_list[i]["target"] == edge["target"]:
-                    stix_edge_list[i] = edge
-                    exists = True
-            if not exists:
-                stix_edge_list.append(edge)
-    else:
-        stix_edge_list = [edge]
+            stix_nodes_list = json.load(mem_input)
+            for i in range(len(stix_nodes_list)):
+                #print(f"i->{i}, len->{len(stix_nodes_list)} node {stix_nodes_list[i]}")
+                if stix_nodes_list[i]["id"] == node_id:
+                    del stix_nodes_list[i]
+                    print(f"delete element {i}, node id {node_id}")
+                    break
     with open(context_dir + incident_data[context_type], 'w') as f:
-        f.write(json.dumps(stix_edge_list))
+        f.write(json.dumps(stix_nodes_list))
 
 
-def process_node(stix_object, context_key, context_dir, n_and_e):
-    if "original" in stix_object:
-        add_node(stix_object, context_key)
-    else:
-        nodes, edges = n_and_e.convert_node(stix_object)
-        add_node(nodes[0], context_dir, context_key)
-        for edge in edges:
-            add_edge(edge, context_dir, "edges")
-
-
-def save_context(stix_object, context_type="unattached"):
-    # 0 Check for "original"
-    if "original" in stix_object:
-        wrapped = True
-    else:
-        wrapped = False
-    exists = False
-    # if "original" in stix_object:
-    #     wrapped = True
+def promote_objects(stix_list):
     # 1.B Find Current Incident directory
     local_map = {}
+    wrapped = False
+    exists = False
     with open(TR_Context_Memory_Dir + "/" + context_map, "r") as current_context:
         local_map = json.load(current_context)
-        # 1. Setup the directory
         current_incident_dir = local_map["current_incident"]
         TR_Incident_Context_Dir = TR_Context_Memory_Dir + "/" + current_incident_dir
-        # 2. Check if the key directories exist, if not make them, and download common files
-        if not os.path.exists(TR_Common_Files):
-            os.makedirs(TR_Common_Files)
-            download_common(common)
+        # 1. Extract the components of the object
+        TR_Context_Incident = TR_Incident_Context_Dir + incident_data["incident"]
+        # 2. Check basic directory exits
         if not os.path.exists(TR_Context_Memory_Dir):
             os.makedirs(TR_Context_Memory_Dir)
-        if not os.path.exists(TR_Context_Memory_Dir + "/usr"):
-            os.makedirs(TR_Context_Memory_Dir + "/usr")
+        # if not os.path.exists(TR_Context_Memory_Dir + "/company_1"):
+        #     os.makedirs(TR_Context_Memory_Dir + "/company_1")
         # if not os.path.exists(TR_Context_Memory_Dir + "/incident_1"):
+        #     os.makedirs(TR_Context_Memory_Dir + "/incident_1")
         #     os.makedirs(TR_Context_Memory_Dir + "/incident_1")
 
         # 3. Now we are sure the common files exist, we need to import them
@@ -195,64 +163,105 @@ def save_context(stix_object, context_type="unattached"):
         n_and_e = importlib.util.module_from_spec(spec)
         # Load the module
         spec.loader.exec_module(n_and_e)
-        # 4. Depending on Object Tupe, Get the Nodes and Edges, and save them to the lists
-        stix_nodes_list = []
-        incident = {}
-        if stix_object["type"] == "relationship":
-            if wrapped:
-                add_node(stix_object, TR_Incident_Context_Dir, "unattached_relations")
+
+        # 4. for each object receieved, add it to the Other List, and remove it from the Unattached List
+        report_id = []
+        for stix_obj in stix_list:
+            if "original" in stix_obj:
+                wrapped = True
+            if stix_obj["type"] == "relationship":
+                if wrapped:
+                    add_node(stix_obj, TR_Incident_Context_Dir, "relations")
+                else:
+                    nodes, edges, relation_edges, relation_replacement_edges = n_and_e.convert_relns(stix_obj)
+                    add_node(nodes[0],TR_Incident_Context_Dir, "relations")
+                    del_node(stix_obj["id"],TR_Incident_Context_Dir, "unattached")
+                    report_id.append(stix_obj["id"])
+    
+            elif stix_obj["type"] == "sighting":
+                if wrapped:
+                    add_node(stix_obj, "other")
+                else:
+                    nodes, edges = n_and_e.convert_node(stix_obj)
+                    add_node(nodes[0], TR_Incident_Context_Dir, "other")
+                    del_node(stix_obj["id"],TR_Incident_Context_Dir, "unattached")
+                    report_id.append(stix_obj["id"])
             else:
-                nodes, edges, relation_edges, relation_replacement_edges = n_and_e.convert_relns(stix_object)
-                add_node(nodes[0],TR_Incident_Context_Dir, "unattached_relations")
-                for edge in edges:
-                    add_edge(edge, TR_Incident_Context_Dir, "edges")
-                for edge in relation_edges:
-                    add_edge(edge, TR_Incident_Context_Dir, "relation_edges")
-                for edge in relation_replacement_edges:
-                    add_edge(edge, TR_Incident_Context_Dir, "relation_replacement_edges")
+                # its a node-type of object
+                if stix_obj["type"] == "sequence":
+                    if stix_obj["step_type"] == "start_step":
+                        if wrapped:
+                            add_node(stix_obj, "start")
+                        else:
+                            nodes, edges = n_and_e.convert_node(stix_obj)
+                            add_node(nodes[0], TR_Incident_Context_Dir, "start")
+                            del_node(stix_obj["id"],TR_Incident_Context_Dir, "unattached")
+                            report_id.append(stix_obj["id"])
+                    else:
+                        if wrapped:
+                            add_node(stix_obj, "sequence")
+                        else:
+                            nodes, edges = n_and_e.convert_node(stix_obj)
+                            add_node(nodes[0], TR_Incident_Context_Dir, "sequence")
+                            del_node(stix_obj["id"],TR_Incident_Context_Dir, "unattached")
+                            report_id.append(stix_obj["id"])
+                elif stix_obj["type"] == "task":
+                    if wrapped:
+                        add_node(stix_obj, "task")
+                    else:
+                        nodes, edges = n_and_e.convert_node(stix_obj)
+                        add_node(nodes[0], TR_Incident_Context_Dir, "task")
+                        del_node(stix_obj["id"],TR_Incident_Context_Dir, "unattached")
+                        report_id.append(stix_obj["id"])
+                elif stix_obj["type"] == "event":
+                    if wrapped:
+                        add_node(stix_obj, "event")
+                    else:
+                        nodes, edges = n_and_e.convert_node(stix_obj)
+                        add_node(nodes[0], TR_Incident_Context_Dir, "event")
+                        del_node(stix_obj["id"],TR_Incident_Context_Dir, "unattached")
+                        report_id.append(stix_obj["id"])
+                elif stix_obj["type"] == "impact":
+                    if wrapped:
+                        add_node(stix_obj, "impact")
+                    else:
+                        nodes, edges = n_and_e.convert_node(stix_obj)
+                        add_node(nodes[0], TR_Incident_Context_Dir, "impact")
+                        del_node(stix_obj["id"],TR_Incident_Context_Dir, "unattached")
+                        report_id.append(stix_obj["id"])
+                elif stix_obj["type"] != "incident":
+                    if wrapped:
+                        add_node(stix_obj, "other")
+                    else:
+                        nodes, edges = n_and_e.convert_node(stix_obj)
+                        add_node(nodes[0], TR_Incident_Context_Dir, "other")
+                        del_node(stix_obj["id"],TR_Incident_Context_Dir, "unattached")
+                        report_id.append(stix_obj["id"])
+                else:
+                    return "Error: You cannot promote an incident"
 
-        elif stix_object["type"] == "sighting":
-            if wrapped:
-                add_node(stix_object, "unattached")
-            else:
-                nodes, edges = n_and_e.convert_sighting(stix_object)
-                add_node(nodes[0], TR_Incident_Context_Dir, "unattached")
-                for edge in edges:
-                    add_edge(edge, TR_Incident_Context_Dir, "edges")
-        else:
-            # its a node-type of object
-            process_node(stix_object, "unattached", TR_Incident_Context_Dir, n_and_e)
-
-
-    return "object saved to unattached context - \nstix_id -> " + str(stix_object["id"])
+    return " transferred from 'Unattached' to 'Other' -> " + str(report_id)
 
 
 def main(inputfile, outputfile):
     context_type = None
-    context_type_string = ""
-    stix_object = None
+    stix_obj = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
-            input_data = json.load(script_input)
-            print(f"input data->{input_data}")
-            if "stix_object" in input_data:
-                stix_object = input_data["stix_object"]
-                result_string = save_context(stix_object, context_type_string)
-            elif "api" in input_data:
-                api_input_data = input_data["api"]
-                stix_object = api_input_data["stix_object"]
-                if "context_type" in api_input_data:
-                    context_type_string = api_input_data["context_type"]["context_type"]
-                print(f"api \nstix_object->{stix_object}\ncontext type->{context_type_string}")
-                result_string = save_context(stix_object, context_type_string)
+            input = json.load(script_input)
+    if "stix_list" in input:
+        stix_list = input["stix_list"]
 
-            # setup logger for execution
+    if "api" in input:
+        stix_list = input["api"]["stix_list"]
 
-            context_result = {}
-            context_result["context_result"] = result_string
+    # setup logger for execution
+    result_string = promote_objects(stix_list)
+    context_result = {}
+    context_result["context_result"] = result_string
 
-            with open(outputfile, "w") as outfile:
-                json.dump(context_result, outfile)
+    with open(outputfile, "w") as outfile:
+        json.dump(context_result, outfile)
 
 
 ################################################################################

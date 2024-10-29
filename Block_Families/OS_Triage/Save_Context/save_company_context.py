@@ -89,6 +89,7 @@ incident_data = {
     "task" : "/task_refs.json",
     "other" : "/other_object_refs.json",
     "unattached" : "/unattached_objs.json",
+    "unattached_relations" : "/unattached_relation.json",
     "relations" : "/incident_relations.json",
     "edges" : "/incident_edges.json",
     "relation_edges" : "/relation_edges.json",

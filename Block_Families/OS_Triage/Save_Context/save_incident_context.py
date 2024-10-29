@@ -163,8 +163,8 @@ def save_context(stix_object, context_type):
     # 0 Check for "original"
     wrapped = False
     exists = False
-    # if "original" in stix_object:
-    #     wrapped = True
+    if "original" in stix_object:
+        wrapped = True
     # 1.B Find Current Incident directory
     local_map = {}
     with open(TR_Context_Memory_Dir + "/" + context_map, "r") as current_context:
@@ -198,7 +198,7 @@ def save_context(stix_object, context_type):
         incident = {}
         if stix_object["type"] == "relationship":
             if wrapped:
-                add_node(stix_object, TR_Incident_Context_Dir, context_type)
+                add_node(stix_object, TR_Incident_Context_Dir, "relations")
             else:
                 nodes, edges, relation_edges, relation_replacement_edges = n_and_e.convert_relns(stix_object)
                 add_node(nodes[0],TR_Incident_Context_Dir, "relations")
@@ -211,7 +211,7 @@ def save_context(stix_object, context_type):
 
         elif stix_object["type"] == "sighting":
             if wrapped:
-                add_node(stix_object, context_type)
+                add_node(stix_object, "other")
             else:
                 nodes, edges = n_and_e.convert_sighting(stix_object)
                 add_node(nodes[0], TR_Incident_Context_Dir, "other")
@@ -219,20 +219,55 @@ def save_context(stix_object, context_type):
                     add_edge(edge, TR_Incident_Context_Dir, "edges")
         else:
             # its a node-type of object
-            if context_type == "sequence":
+            if stix_object["type"] == "sequence":
                 if stix_object["step_type"] == "start_step":
-                    process_node(stix_object, "start", TR_Incident_Context_Dir, n_and_e)
+                    if wrapped:
+                        add_node(stix_object, "start")
+                    else:
+                        nodes, edges = n_and_e.convert_node(stix_object)
+                        add_node(nodes[0], TR_Incident_Context_Dir, "start")
+                        for edge in edges:
+                            add_edge(edge, TR_Incident_Context_Dir, "edges")
                 else:
-                    process_node(stix_object, "sequence", TR_Incident_Context_Dir, n_and_e)
-            elif context_type == "task":
-                process_node(stix_object, "task", TR_Incident_Context_Dir, n_and_e)
-            elif context_type == "event":
-                process_node(stix_object, "event", TR_Incident_Context_Dir, n_and_e)
-            elif context_type == "impact":
-                process_node(stix_object, "impact", TR_Incident_Context_Dir, n_and_e)
-            elif context_type != "incident":
-                process_node(stix_object, "other", TR_Incident_Context_Dir, n_and_e)
-
+                    if wrapped:
+                        add_node(stix_object, "sequence")
+                    else:
+                        nodes, edges = n_and_e.convert_node(stix_object)
+                        add_node(nodes[0], TR_Incident_Context_Dir, "sequence")
+                        for edge in edges:
+                            add_edge(edge, TR_Incident_Context_Dir, "edges")
+            elif stix_object["type"] == "task":
+                if wrapped:
+                    add_node(stix_object, "task")
+                else:
+                    nodes, edges = n_and_e.convert_node(stix_object)
+                    add_node(nodes[0], TR_Incident_Context_Dir, "task")
+                    for edge in edges:
+                        add_edge(edge, TR_Incident_Context_Dir, "edges")
+            elif stix_object["type"] == "event":
+                if wrapped:
+                    add_node(stix_object, "event")
+                else:
+                    nodes, edges = n_and_e.convert_node(stix_object)
+                    add_node(nodes[0], TR_Incident_Context_Dir, "event")
+                    for edge in edges:
+                        add_edge(edge, TR_Incident_Context_Dir, "edges")
+            elif stix_object["type"] == "impact":
+                if wrapped:
+                    add_node(stix_object, "impact")
+                else:
+                    nodes, edges = n_and_e.convert_node(stix_object)
+                    add_node(nodes[0], TR_Incident_Context_Dir, "impact")
+                    for edge in edges:
+                        add_edge(edge, TR_Incident_Context_Dir, "edges")
+            elif stix_object["type"] != "incident":
+                if wrapped:
+                    add_node(stix_object, "other")
+                else:
+                    nodes, edges = n_and_e.convert_node(stix_object)
+                    add_node(nodes[0], TR_Incident_Context_Dir, "other")
+                    for edge in edges:
+                        add_edge(edge, TR_Incident_Context_Dir, "edges")
             else:
                 # It is an Incident, so first, update all of the id lists on the incident object
                 for key in key_list:
@@ -265,7 +300,6 @@ def save_context(stix_object, context_type):
 
 
 def main(inputfile, outputfile):
-    context_type = None
     context_type_string = ""
     stix_object = None
     if os.path.exists(inputfile):
