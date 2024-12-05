@@ -19,16 +19,16 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Save OS_Triage
+# Title: Save Object to User Context
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: brett@osthreat.com
 # Date: 07/08/2023
 #
-# Description: This script is designed to take in a Stix Object ID
-#       and return a Stix object
+# Description: This script is designed to take in a Stix Object
+#       and save it into a list inside the User Context, depending on context_type
 #
-# One Mandatory Input:
+# Two Mandatory Inputs:
 # 1. Stix Object
 # 2. Context Type
 # Ouput
@@ -86,6 +86,7 @@ incident_data = {
     "impact" : "/impact_refs.json",
     "event" : "/event_refs.json",
     "task" : "/task_refs.json",
+    "behavior" : "/behavior_refs.json",
     "other" : "/other_object_refs.json",
     "unattached" : "/unattached_objs.json",
     "relations" : "/incident_relations.json",

@@ -19,14 +19,14 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Save OS_Triage
+# Title: Save Object to Unattached Context Memory, Inside an Incident
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: brett@osthreat.com
 # Date: 07/08/2023
 #
 # Description: This script is designed to take in a Stix Object
-#       and save it in the unattached list
+#       and save it in the unattached list for the currently selected incident
 #
 # One Mandatory Input:
 # 1. Stix Object
@@ -86,6 +86,7 @@ incident_data = {
     "impact" : "/impact_refs.json",
     "event" : "/event_refs.json",
     "task" : "/task_refs.json",
+    "behavior" : "/behavior_refs.json",
     "other" : "/other_object_refs.json",
     "unattached" : "/unattached_objs.json",
     "unattached_relations" : "/unattached_relation.json",
@@ -161,13 +162,10 @@ def process_node(stix_object, context_key, context_dir, n_and_e):
 
 def save_context(stix_object, context_type="unattached"):
     # 0 Check for "original"
+    wrapped = False
     if "original" in stix_object:
         wrapped = True
-    else:
-        wrapped = False
     exists = False
-    # if "original" in stix_object:
-    #     wrapped = True
     # 1.B Find Current Incident directory
     local_map = {}
     with open(TR_Context_Memory_Dir + "/" + context_map, "r") as current_context:

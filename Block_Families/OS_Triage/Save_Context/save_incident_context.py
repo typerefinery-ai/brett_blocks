@@ -19,7 +19,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Save OS_Triage
+# Title: Save Incident Context
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: brett@osthreat.com
@@ -29,10 +29,10 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 #       and return a Stix object
 #
 # One Mandatory Input:
-# 1. OS_Triage
+# 1. Stix-type Object
 # 2. Context Type
 # One Output
-# 1. OS_Triage Return
+# 1. Context Memory Return Message
 #
 #
 # This code is licensed under the terms of the Apache 2.
@@ -87,6 +87,7 @@ incident_data = {
     "impact" : "/impact_refs.json",
     "event" : "/event_refs.json",
     "task" : "/task_refs.json",
+    "behavior" : "/behavior_refs.json",
     "other" : "/other_object_refs.json",
     "unattached" : "/unattached_objs.json",
     "unattached_relations" : "/unattached_relation.json",

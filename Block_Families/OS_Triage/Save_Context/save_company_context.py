@@ -87,6 +87,7 @@ incident_data = {
     "impact" : "/impact_refs.json",
     "event" : "/event_refs.json",
     "task" : "/task_refs.json",
+    "behavior" : "/behavior_refs.json",
     "other" : "/other_object_refs.json",
     "unattached" : "/unattached_objs.json",
     "unattached_relations" : "/unattached_relation.json",
