@@ -8,7 +8,8 @@ results_base = "../Orchestration/Results/"
 #               os-triage Blocks
 ###############################################################################################
 #          Form Actions
-from Block_Families.OS_Triage.Form_Actions.get_relationship_type import main as get_relationship_type
+from Block_Families.OS_Triage.Mouse.get_relationship_types import main as get_relationship_type
+from Block_Families.OS_Triage.Mouse.get_connection_types import main as get_connection_types
 ###############################################################################################
 #              RMB Menu Actions
 from Block_Families.OS_Triage.Mouse.rmb_tree_copy import main as rmb_tree_copy
@@ -163,6 +164,40 @@ def invoke_get_relationship_type_block(source_dict_path, target_dict_path, resul
         with open(source_target_path, 'w') as f:
             f.write(json.dumps(local_inputs))
     get_relationship_type(source_target_path,results_path)
+    #
+    # Remove the context type record
+    #
+    #
+    if os.path.exists(results_path):
+        with open(results_path, "r") as script_input:
+            export_data = json.load(script_input)
+            return export_data
+
+
+
+def invoke_get_connection_type_block(source_dict_path, target_dict_path, results_path):
+    #
+    # 1. Set the Relative Input and Output Paths for the block
+    #
+    #
+    # NOTE: This code is only To fake input ports
+    # Add the User Account object and the  EmailAddress
+    # NOTE: This code is only To fake input ports
+    ##
+    # Make the Observed Data object
+    local_inputs = {}
+    source_target_path = "../Orchestration/Results/step1/context/connection_type_inputs.json"
+    if os.path.exists(source_dict_path):
+        with open(source_dict_path, "r") as sdo_form:
+            temp_data = json.load(sdo_form)
+            local_inputs["source"] = temp_data
+    if os.path.exists(target_dict_path):
+        with open(target_dict_path, "r") as sdo_form:
+            temp_data = json.load(sdo_form)
+            local_inputs["target"] = temp_data
+        with open(source_target_path, 'w') as f:
+            f.write(json.dumps(local_inputs))
+    get_connection_types(source_target_path,results_path)
     #
     # Remove the context type record
     #
