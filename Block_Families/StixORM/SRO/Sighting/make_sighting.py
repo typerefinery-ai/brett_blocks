@@ -198,7 +198,9 @@ def main(inputfile, outputfile):
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
             input_data = json.load(script_input)
-            if "incident_form" in input_data:
+            print(type(input_data))
+            print([key for key in input_data])
+            if "sighting_form" in input_data:
                 sro_form = input_data["sighting_form"]
                 if "observed_data_refs" in input_data:
                     observed_data_refs = input_data["observed_data_refs"]

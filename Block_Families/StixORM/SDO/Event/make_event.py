@@ -170,7 +170,7 @@ def main(inputfile, outputfile):
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
             input_data = json.load(script_input)
-            if "incident_form" in input_data:
+            if "event_form" in input_data:
                 event_form = input_data["event_form"]
                 if "changed_objects" in input_data:
                     changed_objects = input_data["changed_objects"]
