@@ -19,7 +19,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Get Connection Types
+# Title: Get Connections
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: brett@osthreat.com
@@ -29,10 +29,9 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 #              return a list of relationship types, and provide the source_ref, target_ref
 #
 # One Mandatory Input:
-# 1. Object Type
-# 2. Object Field
+# 1. Enum_Name
 # One Output
-# 1. ID's of Suitable Objects
+# 1. Enum
 #
 #
 # This code is licensed under the terms of the Apache 2.
@@ -134,74 +133,69 @@ def  process_category(stix_object, constraint):
 
     return False
 
-def get_connection_type(source, target):
+def get_objects_from_unattached(object_type, target_types, description):
+    valid_connections = []
+    with open(TR_Context_Memory_Dir + "/" + context_map, "r") as current_context:
+        local_map = json.load(current_context)
+        current_incident_dir = local_map["current_incident"]
+        TR_Incident_Context_Dir = TR_Context_Memory_Dir + "/" + current_incident_dir
+        # 2. open files and fill lists
+        if os.path.exists(TR_Incident_Context_Dir + incident_data["unattached"]):
+            with open(TR_Incident_Context_Dir + incident_data["unattached"], "r") as mem_input:
+                unattached_nodes = json.load(mem_input)
+                for unattached_obj in unattached_nodes:
+                    object_passes = False
+                    for target_type in target_types:
+                        if target_type[:1] == "_":
+                            if target_type == "_same":
+                                if unattached_obj["type"] == object_type:
+                                    object_passes = True
+                                    continue
+                            else:
+                                # constraint type is general category
+                                object_passes = process_category(unattached_obj, target_type)
+                                continue
+                        else:
+                            # constraint type a direct type
+                            if unattached_obj["type"] == target_type:
+                                object_passes = True
+                                continue
+
+                        if object_passes:
+                            layer = {}
+                            layer["key"] = unattached_obj["id"]
+                            layer["label"] = unattached_obj["id"]
+                            layer["description"] = description
+                            valid_connections.append((layer))
+
+    return valid_connections
+
+def get_connection_type(object_type, object_field):
     # note they are stix objects, not dicts
     # 1. Get the SRO Types List open
-    SRO_Types_File = TR_dialect_data + connection_types
+    Connection_Types_File = TR_dialect_data + connection_types
 
     # 2. Check if the key directories exist, if not make them, and download common files
     if not os.path.exists(TR_dialect_data):
         os.makedirs(TR_dialect_data)
     # 3. Setup key variables needed
-    source_type = source.type
-    target_type = target.type
-    source_id = source.id
-    target_id = target.id
-    valid_connection_types = []
-    connect_type_object = {}
-    connection_list = []
-    if os.path.exists(SRO_Types_File):
-        with open(SRO_Types_File, "r") as mem_input:
+    valid_connections = []
+    if os.path.exists(Connection_Types_File):
+        with open(Connection_Types_File, "r") as mem_input:
             connection_list = json.load(mem_input)
     # 6. For each constraint in the list, find which ones fit the source-target
     for connect_layer in connection_list:
         source_passes = False
-        target_passes = False
         connect_source = connect_layer["source_type"]
-        connect_target_list = connect_layer["target_type"]
+        connect_field = connect_layer["field"]
         # 6.A Evaluate whether the source object is in the source
         # 1. Consider the constraint source first
-        if connect_source[:1] == "_":
-            if connect_source == "_same":
-                if source_type == target_type:
-                    source_passes = True
-                    target_passes = True
-            else:
-                # constraint type is general category
-                source_passes = process_category(source, connect_source)
-        else:
-            # constraint type a direct type
-            if connect_source == source_type:
-                source_passes = True
-        for connect_target in connect_target_list:
-            # 2. Consider the constraint target second
-            if connect_target[:1] == "_":
-                if connect_target == "_same":
-                    if source_type == source_type:
-                        source_passes = True
-                        target_passes = True
-                        break
-                else:
-                    # constraint type is a general category vs object
-                    target_passes = process_category(target, connect_target)
-            else:
-                # constraint type a direct type to  object comparison
-                if connect_target == target_type:
-                    target_passes = True
-                    break
+        if connect_source == object_type and connect_field == object_field:
+            target_types = connect_layer["target_type"]
+            description = connect_layer["description"]
+            valid_connections = get_objects_from_unattached(object_type, target_types, description)
 
-        # 3. Finally .If source and target both pass, then append the relationship type
-        if source_passes and target_passes:
-            valid_connection_types.append(connect_layer["field"])
-
-        # 4. Setup the object for the form fields
-        connect_form_values = {}
-        connect_form_values["source_ref"] = source_id
-        connect_form_values["target_ref"] = target_id
-        # 5. Setup and send the final object
-        connect_type_object["connection_field_list"] = valid_connection_types
-        connect_type_object["connect_objects"] = connect_form_values
-    return connect_type_object
+    return valid_connections
 
 
 def main(inputfile, outputfile):
@@ -212,22 +206,14 @@ def main(inputfile, outputfile):
         with open(inputfile, "r") as script_input:
             input = json.load(script_input)
             if "api" in input:
-                source_dict = input["api"]["source"]
-                target_dict = input["api"]["target"]
+                object_type = input["api"]["object_type"]
+                object_field = input["api"]["object_field"]
             else:
-                source_dict = input["source"]
-                target_dict = input["target"]
-            if "original" in source_dict:
-                source_obj = parse(source_dict["original"], import_type=import_type)
-            else:
-                source_obj = parse(source_dict, import_type=import_type)
-            if "original" in target_dict:
-                target_obj = parse(target_dict["original"], import_type=import_type)
-            else:
-                target_obj = parse(target_dict, import_type=import_type)
+                object_type = input["object_type"]
+                object_field = input["object_field"]
             #
             # setup logger for execution
-            connections_type_list = get_connection_type(source_obj, target_obj)
+            connections_type_list = get_connection_type(object_type, object_field)
 
     with open(outputfile, "w") as outfile:
         json.dump(connections_type_list, outfile)

@@ -30,7 +30,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 # Description: This script is designed to take in a Stix Object ID
 #       and return a Stix object
 #
-# One Mandatory Input:
+# One Mandatory Input, 3 Optional:
 # 1. Get Query Form
 # 2. Context_Path
 # 3. Source Value

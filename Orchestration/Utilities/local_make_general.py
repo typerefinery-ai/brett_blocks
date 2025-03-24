@@ -29,6 +29,11 @@ from Block_Families.OS_Triage.Get_Context.get_from_user import main as get_from_
 from Block_Families.OS_Triage.Create_Context.create_incident_context import main as create_incident_context
 from Block_Families.OS_Triage.Create_Context.create_company_context import main as create_company_context
 ################################################################################################
+# Overview PAge and Table of Incidents
+from Block_Families.OS_Triage.Open_Incident.get_an_incidents_objects import main as get_an_incidents_objects
+from Block_Families.OS_Triage.Open_Incident.get_all_incidents import main as get_all_incidents
+from Block_Families.OS_Triage.Open_Incident.get_default_incidents_objects import main as get_default_incidents_objects
+################################################################################################
 #       Ancillary
 from Block_Families.OS_Triage.Update_Context.update_company_relations import main as update_company_relations
 from Block_Families.OS_Triage.Update_Context.move_unattached_to_other import main as move_unattached_to_other
@@ -137,6 +142,75 @@ def invoke_update_company_relations_block(stix_object_path, results_path):
         with open(results_path, "r") as script_input:
             export_data = json.load(script_input)
             return export_data
+
+
+
+
+def invoke_get_all_incidents_block(stix_object_path, results_path):
+    #
+    # 1. Set the Relative Input and Output Paths for the block
+    #
+    #
+    # NOTE: This code is only To fake input ports
+    # Add the User Account object and the  EmailAddress
+    # NOTE: This code is only To fake input ports
+    ##
+    # Make the Observed Data object
+    get_all_incidents(stix_object_path,results_path)
+    #
+    # Remove the context type record
+    #
+    #
+    if os.path.exists(results_path):
+        with open(results_path, "r") as script_input:
+            export_data = json.load(script_input)
+            return export_data
+
+
+
+
+def invoke_get_default_incident_objects_block(stix_object_path, results_path):
+    #
+    # 1. Set the Relative Input and Output Paths for the block
+    #
+    #
+    # NOTE: This code is only To fake input ports
+    # Add the User Account object and the  EmailAddress
+    # NOTE: This code is only To fake input ports
+    ##
+    # Make the Observed Data object
+    get_default_incidents_objects(stix_object_path,results_path)
+    #
+    # Remove the context type record
+    #
+    #
+    if os.path.exists(results_path):
+        with open(results_path, "r") as script_input:
+            export_data = json.load(script_input)
+            return export_data
+
+
+
+def invoke_get_an_incidents_objects_block(stix_object_path, results_path):
+    #
+    # 1. Set the Relative Input and Output Paths for the block
+    #
+    #
+    # NOTE: This code is only To fake input ports
+    # Add the User Account object and the  EmailAddress
+    # NOTE: This code is only To fake input ports
+    ##
+    # Make the Observed Data object
+    get_an_incidents_objects(stix_object_path,results_path)
+    #
+    # Remove the context type record
+    #
+    #
+    if os.path.exists(results_path):
+        with open(results_path, "r") as script_input:
+            export_data = json.load(script_input)
+            return export_data
+
 
 
 

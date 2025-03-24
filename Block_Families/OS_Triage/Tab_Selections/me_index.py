@@ -115,11 +115,11 @@ def get_me_index():
     auth = auth_factory.get_auth_for_import(import_type)
     auth_types = copy.deepcopy(auth["types"])
     # 2. open the company file, and then the assets, systems and users
-    if os.path.exists(TR_Context_Memory_Dir + user_data["me"]):
-        with open(TR_Context_Memory_Dir + user_data["me"], "r") as mem_input:
+    if os.path.exists(TR_Context_Memory_Dir + TR_User_Dir + "/" + user_data["me"]):
+        with open(TR_Context_Memory_Dir + TR_User_Dir + "/" + user_data["me"], "r") as mem_input:
             stix_me_list = json.load(mem_input)
-    if os.path.exists(TR_Context_Memory_Dir + user_data["team"]):
-        with open(TR_Context_Memory_Dir + user_data["team"], "r") as mem_input:
+    if os.path.exists(TR_Context_Memory_Dir + TR_User_Dir + "/" + user_data["team"]):
+        with open(TR_Context_Memory_Dir + TR_User_Dir + "/" + user_data["team"], "r") as mem_input:
             stix_team_list = json.load(mem_input)
     # 3. sort sightings by time
     me_index["name"] = "Type Refinery User"
