@@ -1,1 +1,1 @@
-python try_update.py
+poetry run python ./Orchestration/try_print_update.py

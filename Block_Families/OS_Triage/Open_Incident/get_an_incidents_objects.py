@@ -105,13 +105,6 @@ field_names = {
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
-def download_common(module_list):
-    for module in module_list:
-        # Step 1: download the module
-        result = urlretrieve(module["url"], TR_Common_Files + "/" + module["file"])
-        print(f'common file result ->', result)
-        # Step 2: install the module
-
 
 
 def get_an_incidents_objects(incident_id):
@@ -119,7 +112,7 @@ def get_an_incidents_objects(incident_id):
     incident_list = []
     changed = False
     TR_Incident_Dir = TR_Context_Memory_Dir + "/" + incident_id
-    # 1.B Find Current Incident directory
+    # 1 First, Set the Current Incident directory to the new value
     if os.path.exists(TR_Context_Memory_Dir + "/" + context_map):
         with open(TR_Context_Memory_Dir + "/" + context_map, "r") as current_context:
             local_map = json.load(current_context)
@@ -131,31 +124,37 @@ def get_an_incidents_objects(incident_id):
         with open(TR_Context_Memory_Dir + "/" + context_map, "w") as f:
             f.write(json.dumps(local_map))
 
+        # 2. Open the Incident File, and extract the Ext (for checking/updating)
         with open(TR_Incident_Dir + "/" + incident_data["incident"] ) as current_obj:
             incident_list = json.load(current_obj)
-            incident_obj = incident_list[0]
+            wrapped_incident = incident_list[0]
+            incident = wrapped_incident["original"]
+            incident_ext = incident["extensions"]["extension-definition--ef765651-680c-498d-9894-99799f2fa126"]
+            # 3. For each of the lists of id's in the Icnident, collect objects and check whether they are registered
             for key in key_list:
                 if os.path.exists(TR_Incident_Dir + "/" + incident_data[key] ):
                     with open(TR_Incident_Dir + "/" + incident_data[key]) as prop_list:
                         list_of_objs = json.load(prop_list)
                         field_name = field_names[key]
-                        if field_name in incident_obj["original"]:
-                            current_refs_list = incident_obj["original"][field_name]
+                        # Either get the list, or make the list
+                        if field_name in incident_ext:
+                            current_refs_list = incident_ext[field_name]
                         else:
-                            incident_obj["original"][field_name] = []
-                            current_refs_list = incident_obj["original"][field_name]
+                            incident_ext[field_name] = []
+                            current_refs_list = incident_ext[field_name]
                             changed = True
+                        # 4. Add each object to the list, and register the id on the incident, if it is not already
                         for stix_obj in list_of_objs:
                             incident_list.append(stix_obj)
                             if stix_obj["id"] not in current_refs_list:
                                 current_refs_list.append(stix_obj["id"])
                                 changed = True
-            # if changed, may as well update it to latest
+            # 5. If the Incident has been changed, may as well update context mem
             if changed:
                 with open(TR_Incident_Dir + "/" + incident_data["incident"], 'w') as f:
-                    f.write(json.dumps([incident_obj]))
-            # Then, add it to the list
-            incident_list.append(incident_obj)
+                    f.write(json.dumps([wrapped_incident]))
+            # 6. Finally, add the incident to the list
+            incident_list.append(wrapped_incident)
 
     return incident_list
 

@@ -150,14 +150,25 @@ def add_edge(edge, context_dir, context_type):
     with open(context_dir + incident_data[context_type], 'w') as f:
         f.write(json.dumps(stix_edge_list))
 
-def process_node(stix_object, context_key, context_dir, n_and_e):
-    if "original" in stix_object:
-        add_node(stix_object, context_key)
-    else:
-        nodes, edges = n_and_e.convert_node(stix_object)
-        add_node(nodes[0], context_dir, context_key)
-        for edge in edges:
-            add_edge(edge, context_dir, "edges")
+def register_id(id, field, TR_Incident_Context_Dir):
+    incident_list = []
+    with open(TR_Incident_Context_Dir + incident_data["incident"], "r") as incident_object:
+        incident_list = json.load(incident_object)
+        wrapped_incident = incident_list[0]
+        incident = wrapped_incident["original"]
+        incident_ext = incident["extensions"]["extension-definition--ef765651-680c-498d-9894-99799f2fa126"]
+        # check whether field exists first
+        if field_names[field] in incident_ext:
+            id_list = incident_ext[field_names[field]]
+            if id not in id_list:
+                id_list.append(id)
+        else:
+            id_list = []
+            id_list.append(id)
+            incident_ext[field_names[field]] = id_list
+
+    with open(TR_Incident_Context_Dir + incident_data["incident"], 'w') as f:
+        f.write(json.dumps(incident_list))
 
 
 def save_context(stix_object, context_type):
@@ -194,15 +205,17 @@ def save_context(stix_object, context_type):
         n_and_e = importlib.util.module_from_spec(spec)
         # Load the module
         spec.loader.exec_module(n_and_e)
-        # 4. Depending on Object Tupe, Get the Nodes and Edges, and save them to the lists
+        # 4. Depending on Object Type, Get the Nodes and Edges, and save them to the lists
         stix_nodes_list = []
         incident = {}
         if stix_object["type"] == "relationship":
             if wrapped:
                 add_node(stix_object, TR_Incident_Context_Dir, "relations")
+                register_id(stix_object["id"], "other", TR_Incident_Context_Dir)
             else:
                 nodes, edges, relation_edges, relation_replacement_edges = n_and_e.convert_relns(stix_object)
                 add_node(nodes[0],TR_Incident_Context_Dir, "relations")
+                register_id(stix_object["id"], "other", TR_Incident_Context_Dir)
                 for edge in edges:
                     add_edge(edge, TR_Incident_Context_Dir, "edges")
                 for edge in relation_edges:
@@ -213,9 +226,11 @@ def save_context(stix_object, context_type):
         elif stix_object["type"] == "sighting":
             if wrapped:
                 add_node(stix_object, "other")
+                register_id(stix_object["id"], "other", TR_Incident_Context_Dir)
             else:
                 nodes, edges = n_and_e.convert_sighting(stix_object)
                 add_node(nodes[0], TR_Incident_Context_Dir, "other")
+                register_id(stix_object["id"], "other", TR_Incident_Context_Dir)
                 for edge in edges:
                     add_edge(edge, TR_Incident_Context_Dir, "edges")
         else:
@@ -224,49 +239,64 @@ def save_context(stix_object, context_type):
                 if stix_object["step_type"] == "start_step":
                     if wrapped:
                         add_node(stix_object, "start")
+                        register_id(stix_object["id"], "start", TR_Incident_Context_Dir)
                     else:
                         nodes, edges = n_and_e.convert_node(stix_object)
                         add_node(nodes[0], TR_Incident_Context_Dir, "start")
+                        register_id(stix_object["id"], "start", TR_Incident_Context_Dir)
                         for edge in edges:
                             add_edge(edge, TR_Incident_Context_Dir, "edges")
                 else:
                     if wrapped:
                         add_node(stix_object, "sequence")
+                        register_id(stix_object["id"], "sequence", TR_Incident_Context_Dir)
                     else:
                         nodes, edges = n_and_e.convert_node(stix_object)
                         add_node(nodes[0], TR_Incident_Context_Dir, "sequence")
+                        register_id(stix_object["id"], "sequence", TR_Incident_Context_Dir)
                         for edge in edges:
                             add_edge(edge, TR_Incident_Context_Dir, "edges")
             elif stix_object["type"] == "task":
                 if wrapped:
                     add_node(stix_object, "task")
+                    register_id(stix_object["id"], "task", TR_Incident_Context_Dir)
+
                 else:
                     nodes, edges = n_and_e.convert_node(stix_object)
                     add_node(nodes[0], TR_Incident_Context_Dir, "task")
+                    register_id(stix_object["id"], "task", TR_Incident_Context_Dir)
                     for edge in edges:
                         add_edge(edge, TR_Incident_Context_Dir, "edges")
             elif stix_object["type"] == "event":
                 if wrapped:
                     add_node(stix_object, "event")
+                    register_id(stix_object["id"], "event", TR_Incident_Context_Dir)
+
                 else:
                     nodes, edges = n_and_e.convert_node(stix_object)
                     add_node(nodes[0], TR_Incident_Context_Dir, "event")
+                    register_id(stix_object["id"], "event", TR_Incident_Context_Dir)
                     for edge in edges:
                         add_edge(edge, TR_Incident_Context_Dir, "edges")
             elif stix_object["type"] == "impact":
                 if wrapped:
                     add_node(stix_object, "impact")
+                    register_id(stix_object["id"], "impact", TR_Incident_Context_Dir)
+
                 else:
                     nodes, edges = n_and_e.convert_node(stix_object)
                     add_node(nodes[0], TR_Incident_Context_Dir, "impact")
+                    register_id(stix_object["id"], "impact", TR_Incident_Context_Dir)
                     for edge in edges:
                         add_edge(edge, TR_Incident_Context_Dir, "edges")
             elif stix_object["type"] != "incident":
                 if wrapped:
                     add_node(stix_object, "other")
+                    register_id(stix_object["id"], "other", TR_Incident_Context_Dir)
                 else:
                     nodes, edges = n_and_e.convert_node(stix_object)
                     add_node(nodes[0], TR_Incident_Context_Dir, "other")
+                    register_id(stix_object["id"], "other", TR_Incident_Context_Dir)
                     for edge in edges:
                         add_edge(edge, TR_Incident_Context_Dir, "edges")
             else:

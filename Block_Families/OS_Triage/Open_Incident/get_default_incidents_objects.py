@@ -1,4 +1,3 @@
-
 ################################################################################
 ## header start                                                               ##
 ################################################################################
@@ -45,15 +44,18 @@ import json
 import sys
 import importlib.util
 import logging
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 import os
+
 import_type = import_type_factory.get_all_imports()
 
 # Common File Stuff
 TR_Common_Files = "./generated/os-triage/common_files"
 common = [
-    {"module": "convert_n_and_e", "file": "convert_n_and_e.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/main/Block_Families/General/_library/convert_n_and_e.py"}
+    {"module": "convert_n_and_e", "file": "convert_n_and_e.py",
+     "url": "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/main/Block_Families/General/_library/convert_n_and_e.py"}
 ]
 
 # OS_Triage Memory Stuff
@@ -64,53 +66,46 @@ user_data = {
     "global": "/global_variables_dict.json",
     "me": "/cache_me.json",
     "team": "/cache_team.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "relations": "/relations.json",
+    "edges": "/edges.json",
+    "relation_edges": "/relation_edges.json",
+    "relation_replacement_edges": "/relation_replacement_edges.json"
 }
 comp_data = {
     "users": "/users.json",
-    "company" : "/company.json",
-    "assets" : "/assets.json",
-    "systems" : "/systems.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "company": "/company.json",
+    "assets": "/assets.json",
+    "systems": "/systems.json",
+    "relations": "/relations.json",
+    "edges": "/edges.json",
+    "relation_edges": "/relation_edges.json",
+    "relation_replacement_edges": "/relation_replacement_edges.json"
 }
 incident_data = {
-    "incident" : "/incident.json",
-    "start" : "/sequence_start_refs.json",
-    "sequence" : "/sequence_refs.json",
-    "impact" : "/impact_refs.json",
-    "event" : "/event_refs.json",
-    "task" : "/task_refs.json",
-    "behavior" : "/behavior_refs.json",
-    "other" : "/other_object_refs.json",
-    "unattached" : "/unattached_objs.json",
-    "unattached_relations" : "/unattached_relation.json",
-    "relations" : "/incident_relations.json",
-    "edges" : "/incident_edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "incident": "/incident.json",
+    "start": "/sequence_start_refs.json",
+    "sequence": "/sequence_refs.json",
+    "impact": "/impact_refs.json",
+    "event": "/event_refs.json",
+    "task": "/task_refs.json",
+    "behavior": "/behavior_refs.json",
+    "other": "/other_object_refs.json",
+    "unattached": "/unattached_objs.json",
+    "unattached_relations": "/unattached_relation.json",
+    "relations": "/incident_relations.json",
+    "edges": "/incident_edges.json",
+    "relation_edges": "/relation_edges.json",
+    "relation_replacement_edges": "/relation_replacement_edges.json"
 }
 field_names = {
-    "start" : "sequence_start_refs",
-    "sequence" : "sequence_refs",
-    "impact" : "impact_refs",
-    "event" : "event_refs",
-    "task" : "task_refs",
-    "other" : "other_object_refs"
+    "start": "sequence_start_refs",
+    "sequence": "sequence_refs",
+    "impact": "impact_refs",
+    "event": "event_refs",
+    "task": "task_refs",
+    "other": "other_object_refs"
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
-
-def download_common(module_list):
-    for module in module_list:
-        # Step 1: download the module
-        result = urlretrieve(module["url"], TR_Common_Files + "/" + module["file"])
-        print(f'common file result ->', result)
-        # Step 2: install the module
 
 
 
@@ -125,35 +120,40 @@ def get_default_incidents_objects():
             # 1. Since the map exists and the incident, then set the current incident details
             incident_id = local_map["current_incident"]
             TR_Incident_Dir = TR_Context_Memory_Dir + "/" + incident_id
-            with open(TR_Incident_Dir + "/" + incident_data["incident"] ) as current_obj:
+            # 2. Open the Incident File, and extract the Ext (for checking/updating)
+            with open(TR_Incident_Dir + "/" + incident_data["incident"]) as current_obj:
                 incident_list = json.load(current_obj)
-                print(f"incident list ->{incident_list}")
-                print(f"type ->{type(incident_list)}")
-                incident_obj = incident_list[0]
+                wrapped_incident = incident_list[0]
+                incident = wrapped_incident["original"]
+                incident_ext = incident["extensions"]["extension-definition--ef765651-680c-498d-9894-99799f2fa126"]
+                # 3. For each list of id's in the Incident, collect objects and check whether they are registered
                 for key in key_list:
-                    if os.path.exists(TR_Incident_Dir + "/" + incident_data[key] ):
+                    if os.path.exists(TR_Incident_Dir + "/" + incident_data[key]):
                         with open(TR_Incident_Dir + "/" + incident_data[key]) as prop_list:
-                            list_of_objs  = json.load(prop_list)
+                            list_of_objs = json.load(prop_list)
                             field_name = field_names[key]
-                            if field_name in incident_obj["original"]:
-                                current_refs_list = incident_obj["original"][field_name]
+                            # Either get the list, or make the list
+                            if field_name in incident_ext:
+                                current_refs_list = incident_ext[field_name]
                             else:
-                                incident_obj["original"][field_name] = []
-                                current_refs_list = incident_obj["original"][field_name]
+                                incident_ext[field_name] = []
+                                current_refs_list = incident_ext[field_name]
                                 changed = True
+                            # 4. Add each object to the list, and register the id on the incident, if it is not already
                             for stix_obj in list_of_objs:
                                 incident_list.append(stix_obj)
                                 if stix_obj["id"] not in current_refs_list:
                                     current_refs_list.append(stix_obj["id"])
                                     changed = True
-            # if changed, may as well update it to latest
-            if changed:
-                with open(TR_Incident_Dir + "/" + incident_data["incident"], 'w') as f:
-                    f.write(json.dumps([incident_obj]))
-            # Then, add it to the list
-            incident_list.append(incident_obj)
+                # 5. If the Incident has been changed, may as well update context mem
+                if changed:
+                    with open(TR_Incident_Dir + "/" + incident_data["incident"], 'w') as f:
+                        f.write(json.dumps([wrapped_incident]))
+                # 6. Finally, add the incident to the list
+                incident_list.append(wrapped_incident)
 
     return incident_list
+
 
 def main(inputfile, outputfile):
     # No input data, just a trigger
@@ -161,6 +161,7 @@ def main(inputfile, outputfile):
 
     with open(outputfile, "w") as outfile:
         json.dump(stix_list, outfile)
+
 
 ################################################################################
 ## body end                                                                   ##
@@ -175,22 +176,23 @@ import os
 
 
 def getArgs():
+    parser = argparse.ArgumentParser(description="Script params",
+                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument("inputfile", nargs='?', default=f"{os.path.basename(__file__)}.input",
+                        help="input file (default: %(default)s)")
+    parser.add_argument("outputfile", nargs='?', default=f"{os.path.basename(__file__)}.output",
+                        help="output file (default: %(default)s)")
+    return parser.parse_args()
 
-  parser = argparse.ArgumentParser(description="Script params",
-                                formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-  parser.add_argument("inputfile", nargs='?', default=f"{os.path.basename(__file__)}.input", help="input file (default: %(default)s)")
-  parser.add_argument("outputfile", nargs='?', default=f"{os.path.basename(__file__)}.output", help="output file (default: %(default)s)")
-  return parser.parse_args()
 
 if __name__ == '__main__':
-  args = getArgs()
-  # setup logger for init
-  # log = Logger
-  # log.remove()
-  # log.add(f'{os.path.basename(__file__)}.log', level="INFO")
-  # log.info(args)
-  main(args.inputfile, args.outputfile)
-
+    args = getArgs()
+    # setup logger for init
+    # log = Logger
+    # log.remove()
+    # log.add(f'{os.path.basename(__file__)}.log', level="INFO")
+    # log.info(args)
+    main(args.inputfile, args.outputfile)
 
 ################################################################################
 ## footer end                                                                 ##

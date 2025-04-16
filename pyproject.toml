@@ -12,6 +12,7 @@ typedb-client = "^2.18.1"
 stixorm = "^0.3.2"
 logging = "^0.4.9.6"
 requests = "^2.31.0"
+deepdiff = "^8.4.2"
 
 
 [build-system]

@@ -51,11 +51,11 @@ connection = {
 }
 
 
-def find_obj_diff(original_object, current_object):
+def find_obj_diff(original_object, changed_incident_obj):
     verbose_level = 2
     ignore_order = True
     group_by = 'id'
-    diff = DeepDiff(original_object, current_object, verbose_level=verbose_level, ignore_order=ignore_order)
+    diff = DeepDiff(original_object, changed_incident_obj, verbose_level=verbose_level, ignore_order=ignore_order)
     diff_local_path = "DeepDiff_object_output.json"
     diff_json = json.loads(diff.to_json())
     with open(diff_local_path, 'w') as f:
@@ -73,7 +73,7 @@ def find_list_diff(original_list, changed_list):
     add_objects_list = [x for x in changed_list if x["id"] in list(add_object_ids)]
     obj_ids_that_may_have_changed = set_original_id & set_changed_id
     may_have_changed_list = [x for x in changed_list if x["id"] in list(obj_ids_that_may_have_changed)]
-    return delete_object_ids, add_objects_list, may_have_changed_list
+    return list(delete_object_ids), list(add_objects_list), list(may_have_changed_list)
 
 
 def stix_to_tql_basis(stix_dict, import_type):
@@ -210,7 +210,9 @@ def consume_path_token(obj_tql, key_list, value, obj_var, source_var, i, op_type
 def handle_object_diff(obj_diff, orig_object, current_obj, connection, import_type=import_type):
     #
     # 1. First find the basic data for this object
+    print(f"\n==========obj dif===========\n{obj_diff}")
     i = 0
+    diff_report_list = []
     obj_tql, obj_tql_name, is_list, protocol, obj_var, core_ql, family = stix_to_tql_basis(orig_object, import_type)
     for diff_type, diff_value in obj_diff.items():
         if diff_type == "dictionary_item_added" or diff_type == "iterable_item_added":
@@ -240,58 +242,98 @@ def handle_object_diff(obj_diff, orig_object, current_obj, connection, import_ty
                     print(f"match -> {core_ql+match}")
                     print(f"insert -> {insert}")
                     print(f"delete -> {delete}")
-                    update_typeql(core_ql+match, insert, delete, op_type, connection)
+                    #update_typeql(core_ql+match, insert, delete, op_type, connection)
+                    diff_report = {}
+                    diff_report["original id"] = orig_object['id']
+                    diff_report["type"] = diff_type
+                    diff_report["value"] = diff_value
+                    diff_report["match core"] = core_ql
+                    diff_report["match object"] = match
+                    diff_report["insert"] = insert
+                    diff_report["delete"] = delete
+                    diff_report_list.append(diff_report)
         elif diff_type == "dictionary_item_removed" or diff_type == "iterable_item_removed":
             op_type = "remove"
             for key, value in diff_value.items():
-                match = ""
-                insert = ""
-                delete = ""
-                path_list = parse_path(key)
-                source_var = ""
-                i += 1
-                if value_is_id(value):
-                    source_var, match2 = get_embedded_match(value, import_type=import_type, i=i, protocol=protocol)
-                    match += match + match2
-                key_list = parse_path(key)
-                match2, insert2, delete2, op_type = consume_path_token(obj_tql, key_list, value, obj_var, source_var, i, op_type, protocol)
-                match += match2
-                insert += insert2
-                delete += delete2
-                print(f"\n----------------------- {orig_object['id']}")
-                print(f"match -> {core_ql+match}")
-                print(f"insert -> {insert}")
-                print(f"delete -> {delete}")
-                update_typeql(core_ql+match, insert, delete, op_type, connection)
-        elif diff_type == "values_changed":
-            op_type = "change"
-            for key, value in diff_value.items():
-                match = ""
-                insert = ""
-                delete = ""
-                path_list = parse_path(key)
-                source_var = ""
-                i += 1
-                if isinstance(value, dict):
-                    original_value = value["old_value"]
-                    new_value = value["new_value"]
+                value_list = []
+                if type(value) is list:
+                    value_list = value
+                else:
+                    value_list.append(value)
+                for v in value_list:
+                    match = ""
+                    insert = ""
+                    delete = ""
+                    path_list = parse_path(key)
                     source_var = ""
-                    if value_is_id(original_value):
-                        source_var, match2 = get_embedded_match(original_value, import_type=import_type, i=i, protocol=protocol)
+                    i += 1
+                    if value_is_id(v):
+                        source_var, match2 = get_embedded_match(v, import_type=import_type, i=i, protocol=protocol)
                         match += match + match2
                     key_list = parse_path(key)
-                    match2, insert2, delete2, op_type = consume_path_token(obj_tql, key_list, value, obj_var, source_var, i, op_type, protocol)
+                    match2, insert2, delete2, op_type = consume_path_token(obj_tql, key_list, v, obj_var, source_var, i, op_type, protocol)
                     match += match2
                     insert += insert2
                     delete += delete2
-                    print(f"----------------------- {orig_object['id']}")
+                    print(f"\n----------------------- {orig_object['id']}")
                     print(f"match -> {core_ql+match}")
                     print(f"insert -> {insert}")
                     print(f"delete -> {delete}")
-                    update_typeql(core_ql+match, insert, delete, op_type, connection)
+                    #update_typeql(core_ql+match, insert, delete, op_type, connection)
+                    diff_report = {}
+                    diff_report["original id"] = orig_object['id']
+                    diff_report["type"] = diff_type
+                    diff_report["value"] = diff_value
+                    diff_report["match core"] = core_ql
+                    diff_report["match object"] = match
+                    diff_report["insert"] = insert
+                    diff_report["delete"] = delete
+                    diff_report_list.append(diff_report)
+        elif diff_type == "values_changed":
+            op_type = "change"
+            for key, value in diff_value.items():
+                value_list = []
+                if type(value) is list:
+                    value_list = value
+                else:
+                    value_list.append(value)
+                for v in value_list:
+                    match = ""
+                    insert = ""
+                    delete = ""
+                    path_list = parse_path(key)
+                    source_var = ""
+                    i += 1
+                    if isinstance(value, dict):
+                        original_value = value["old_value"]
+                        new_value = value["new_value"]
+                        source_var = ""
+                        if value_is_id(original_value):
+                            source_var, match2 = get_embedded_match(original_value, import_type=import_type, i=i, protocol=protocol)
+                            match += match + match2
+                        key_list = parse_path(key)
+                        match2, insert2, delete2, op_type = consume_path_token(obj_tql, key_list, value, obj_var, source_var, i, op_type, protocol)
+                        match += match2
+                        insert += insert2
+                        delete += delete2
+                        print(f"----------------------- {orig_object['id']}")
+                        print(f"match -> {core_ql+match}")
+                        print(f"insert -> {insert}")
+                        print(f"delete -> {delete}")
+                        #update_typeql(core_ql+match, insert, delete, op_type, connection)
+                        diff_report = {}
+                        diff_report["original id"] = orig_object['id']
+                        diff_report["type"] = diff_type
+                        diff_report["value"] = diff_value
+                        diff_report["match core"] = core_ql
+                        diff_report["match object"] = match
+                        diff_report["insert"] = insert
+                        diff_report["delete"] = delete
+                        diff_report_list.append(diff_report)
         else:
             print(f"We dont account for diff-type -> {diff_type}")
-            pass
+
+    return diff_report_list
 
 
 def update_typeql(match, insert, delete, op_type, stix_connection):
