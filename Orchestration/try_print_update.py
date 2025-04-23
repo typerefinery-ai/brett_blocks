@@ -14,7 +14,6 @@
 
 from stixorm.module.typedb import TypeDBSink, TypeDBSource
 from stixorm.module.authorise import import_type_factory
-from deepdiff import DeepDiff, parse_path
 from Block_Families.General._library.update import handle_object_diff, find_list_diff, find_obj_diff
 from Block_Families.OS_Triage.Update_Context.update_context import load_context, synch_context
 from Block_Families.OS_Triage.Open_Incident.get_default_incidents_objects import get_default_incidents_objects
