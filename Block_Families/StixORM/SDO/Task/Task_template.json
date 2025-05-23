@@ -24,14 +24,14 @@
         "name": {"property":  "StringProperty", "parameters": {"required":  true}},
         "description": {"property":  "StringProperty", "parameters": {}},
         "outcome": {"property":  "StringProperty", "parameters": {}},
-        "task_types": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
+        "task_types": {"collection": "ListProperty", "property":  "OpenVocabProperty", "parameters": {"vocab":  "task-type-ov"}},
         "changed_objects": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type":  "StateChangeObject"}},
         "end_time": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
-        "end_time_fidelity": {"property":  "StringProperty", "parameters": {}},
+        "end_time_fidelity": {"property":  "EnumProperty", "parameters": {"vocab":  "TIMESTAMP_FIDELITY"}},
         "priority": {"property":  "IntegerProperty", "parameters": {"min": 0}},
         "owner": {"property":  "ReferenceProperty", "parameters": {"valid_types":  "identity", "spec_version":  "2.1"}},
         "start_time": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
-        "start_time_fidelity": {"property":  "StringProperty", "parameters": {}}
+        "start_time_fidelity": {"property":  "EnumProperty", "parameters": {"vocab":  "timestamp-fidelity-enum"}}
       },
       "extensions": {
         "extension-definition--2074a052-8be4-4932-849e-f5e7798e0030": {

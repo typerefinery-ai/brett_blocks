@@ -25,7 +25,7 @@
         "description": {"property":  "StringProperty", "parameters": {}},
         "indicator_types": {"collection": "ListProperty", "property":  "OpenVocabProperty", "parameters": {"OpenVocabProperty": "INDICATOR_TYPE" }},
         "pattern": {"property":  "PatternProperty", "parameters": {}},
-        "pattern_type": {"property":  "OpenVocabProperty", "parameters": {"OpenVocabProperty":  "PATTERN_TYPE", "required":  true}},
+        "pattern_type": {"property":  "OpenVocabProperty", "parameters": {"vocab":  "PATTERN_TYPE", "required":  true}},
         "pattern_version": {"property":  "StringProperty", "parameters": {}},
         "valid_from": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
         "valid_until": {"property":  "TimestampProperty", "parameters": {}},

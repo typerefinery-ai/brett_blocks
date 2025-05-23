@@ -22,8 +22,8 @@
       },
       "object": {
         "sequenced_object": {"property":  "ThreatReference", "parameters": {"valid_types":  "valid_obj", "spec_version":  "2.1"}},
-        "sequence_type": {"property":  "EnumProperty", "parameters": {"EnumProperty": "SEQUENCE_TYPE"}},
-        "step_type": {"property":  "EnumProperty", "parameters": {"EnumProperty": "STEP_TYPE"}},
+        "sequence_type": {"property":  "EnumProperty", "parameters": {"vocab": "SEQUENCE_TYPE"}},
+        "step_type": {"property":  "EnumProperty", "parameters": {"vocab": "STEP_TYPE"}},
         "on_completion": {"property":  "ThreatReference", "parameters": {"valid_types":  "sequence", "spec_version":  "2.1"}},
         "on_success": {"property":  "ThreatReference", "parameters": {"valid_types":  "sequence", "spec_version":  "2.1"}},
         "on_failure": {"property":  "ThreatReference", "parameters": {"valid_types":  "sequence", "spec_version":  "2.1"}},

@@ -24,7 +24,6 @@
         "first_observed": {"property":  "TimestampProperty", "parameters": {"required":  true}},
         "last_observed": {"property":  "TimestampProperty", "parameters": {"required":  true}},
         "number_observed": {"property":   "IntegerProperty", "parameters": {"min": 0}},
-        "objects": {"property":  "ObservableProperty", "parameters": {"spec_version":  "2.1"}},
         "object_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  "valid_obj" }}
       },
       "extensions": {},

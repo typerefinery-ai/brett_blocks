@@ -25,12 +25,12 @@
         "description": {"property":  "StringProperty", "parameters": {}},
         "criticality": {"property":  "IntegerProperty", "parameters": {"min": 0}},
         "end_time": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
-        "end_time_fidelity": {"property":  "StringProperty", "parameters": {}},
+        "end_time_fidelity": {"property":   "EnumProperty", "parameters": {"vocab":  "timestamp-fidelity-enum"}},
         "impacted_entity_counts": {"property":  "DictionaryProperty", "parameters": {"Spec_version":  "2.1"}},
         "impacted_refs": {"collection": "ListProperty", "property":  "ThreatReference", "parameters": {"valid_types":  "valid_obj"}},
-        "recoverability": {"property":  "StringProperty", "parameters": {}},
+        "recoverability": {"property":   "EnumProperty", "parameters": {"vocab":  "recoverability-enum"}},
         "start_time": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
-        "start_time_fidelity": {"property":  "StringProperty", "parameters": {}},
+        "start_time_fidelity": {"property":   "EnumProperty", "parameters": {"vocab":  "timestamp-fidelity-enum"}},
         "superseded_by_ref": {"property":  "ThreatReference", "parameters": {"valid_types":  "impact", "Spec_version":  "2.1"}}
       },
       "extensions": {
@@ -42,22 +42,22 @@
           "availability_impact": {"property":  "IntegerProperty", "parameters": {"min": 0}}
         },
         "confidentiality": {
-          "information_type": {"property":  "StringProperty", "parameters": {}},
-          "loss_type": {"property":  "StringProperty", "parameters": {}},
+          "information_type": {"property":  "OpenVocabProperty", "parameters": {"vocab":  "information-type-ov"}},
+          "loss_type": {"property":  "EnumProperty", "parameters": {"vocab":  "incident-confidentiality-loss-enum"}},
           "record_count": {"property":  "IntegerProperty", "parameters": {"min": 0}},
           "record_size": {"property":  "IntegerProperty", "parameters": {"min": 0}}
         },
         "external": {
-          "impact_type": {"property":  "StringProperty", "parameters": {}}
+          "impact_type": {"property":  "OpenVocabProperty", "parameters": {"vocab":  "external-impact-ov"}}
         },
         "integrity": {
-          "alteration": {"property":  "StringProperty", "parameters": {}},
-          "information_type": {"property":  "StringProperty", "parameters": {}},
+          "alteration": {"property":  "EnumProperty", "parameters": {"vocab":  "integrity-alteration-enum"}},
+          "information_type": {"property":  "OpenVocabProperty", "parameters": {"vocab":  "information-type-ov"}},
           "record_count": {"property":  "IntegerProperty", "parameters": {"min": 0}},
           "record_size": {"property":  "IntegerProperty", "parameters": {"min": 0}}
         },
         "monetary": {
-          "variety": {"property":  "StringProperty", "parameters": {}},
+          "variety": {"property":  "OpenVocabProperty", "parameters": {"vocab":  "monetary-impact-type-ov"}},
           "conversion_rate": {"property":  "FloatProperty", "parameters": {}},
           "conversion_time": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
           "currency": {"property":  "StringProperty", "parameters": {}},
@@ -66,11 +66,11 @@
           "min_amount": {"property":  "FloatProperty", "parameters": {}}
         },
         "physical": {
-          "impact_type": {"property":  "StringProperty", "parameters": {}},
-          "asset_type": {"property":  "StringProperty", "parameters": {}}
+          "impact_type": {"property":  "EnumProperty", "parameters": {"vocab":  "physical-impact-enum"}},
+          "asset_type": {"property":  "OpenVocabProperty", "parameters": {"vocab":  "asset-type-ov"}}
         },
         "traceability": {
-          "traceability_impact": {"property":  "StringProperty", "parameters": {}}
+          "traceability_impact": {"property":  "EnumProperty", "parameters": {"vocab":  "traceability-enum"}}
         }
       },
       "sub": {}

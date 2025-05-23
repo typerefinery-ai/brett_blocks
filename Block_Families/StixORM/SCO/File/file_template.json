@@ -49,7 +49,7 @@
             "exif_tags": {"property":  "DictionaryProperty", "parameters": {"spec_version":  "2.1"}}
         },
         "windows-pebinary-ext": {
-          "pe_type": {"property":  "OpenVocabProperty", "parameters": {"allowed": "WINDOWS_PEBINARY_TYPE", "required":  true}},
+          "pe_type": {"property":  "OpenVocabProperty", "parameters": {"vocab": "WINDOWS_PEBINARY_TYPE", "required":  true}},
           "imphash": {"property":  "StringProperty", "parameters": {}},
           "machine_hex": {"property":  "HexProperty", "parameters": {}},
           "number_of_sections": {"property":  "IntegerProperty", "parameters": {"min":  0}},

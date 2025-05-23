@@ -23,15 +23,15 @@
       "object": {
         "name": {"property":  "StringProperty", "parameters": {"required":  true}},
         "description": {"property":  "StringProperty", "parameters": {}},
-        "status": {"property":  "StringProperty", "parameters": {}},
+        "status": {"property":  "EnumProperty", "parameters": {"vocab":  "EVENT_STATUS"}},
         "goal": {"property":  "StringProperty", "parameters": {}},
         "changed_objects": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type":  "StateChangeObject"}},
         "end_time": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
-        "end_time_fidelity": {"property":  "StringProperty", "parameters": {}},
-        "event_types": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
+        "end_time_fidelity": {"property":   "EnumProperty", "parameters": {"vocab":  "timestamp-fidelity-enum"}},
+        "event_types": {"collection": "ListProperty", "property":   "OpenVocabProperty", "parameters": {"vocab":  "EVENT_TYPE"}},
         "sighting_refs": {"collection": "ListProperty", "property":  "ThreatReference", "parameters": {"valid_types":  "valid_obj"}},
         "start_time": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
-        "start_time_fidelity": {"property":  "StringProperty", "parameters": {}}
+        "start_time_fidelity": {"property":   "EnumProperty", "parameters": {"vocab":  "TIMESTAMP_FIDELITY"}}
       },
       "extensions": {
         "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
