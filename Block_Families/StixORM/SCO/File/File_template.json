@@ -104,7 +104,7 @@
         },
         "WindowsPESection": {
             "name": {"property":  "StringProperty", "parameters": {"required":  true}},
-            "size": {"property":  "HexProperty", "parameters": {"min":  0}}},
+            "size": {"property":  "HexProperty", "parameters": {"min":  0}},
             "entropy": {"property":  "FloatProperty", "parameters": {}},
             "hashes": {"property":  "HashesProperty", "parameters": {"spec_hash_names":  "HASHING_ALGORITHM", "spec_version":  "2.1"}}
         }
