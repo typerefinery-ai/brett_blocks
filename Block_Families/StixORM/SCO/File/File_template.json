@@ -3,441 +3,109 @@
   "File_template": {
     "_type": "file",
     "base_required": {
-      "type": {
-        "property": "TypeProperty",
-        "parameters": {
-          "value": "_type",
-          "spec_version": "2.1"
-        }
-      },
-      "spec_version": {
-        "property": "StringProperty",
-        "parameters": {
-          "fixed": "2.1"
-        }
-      },
-      "id": {
-        "property": "IDProperty",
-        "parameters": {
-          "value": "_type",
-          "spec_version": "2.1"
-        }
-      }
+      "type": {"property": "TypeProperty", "parameters": {"value": "_type", "spec_version": "2.1"}},
+      "spec_version": {"property": "StringProperty", "parameters": {"fixed": "2.1"}},
+      "id": {"property": "IDProperty", "parameters": {"value": "_type", "spec_version": "2.1"}}
     },
     "base_optional": {
-      "defanged": {
-        "property": "BooleanProperty",
-        "parameters": {
-          "default": "lambda: False"
-        }
-      },
-      "object_marking_refs": {
-        "collection": "ListProperty",
-        "property": "ReferenceProperty",
-        "parameters": {
-          "valid_types": "marking-definition",
-          "spec_version": "2.1"
-        }
-      },
-      "granular_markings": {
-        "collection": "ListProperty",
-        "property": "GranularMarking",
-        "parameters": {}
-      }
+      "defanged": {"property": "BooleanProperty", "parameters": {"default": "lambda: False"}},
+      "object_marking_refs": {"collection": "ListProperty", "property": "ReferenceProperty", "parameters": {"valid_types": ["marking-definition"], "spec_version": "2.1"}},
+      "granular_markings": {"collection": "ListProperty", "property": "GranularMarking","parameters": {}}
     },
     "object": {
-      "hashes": {
-        "property": "HashesProperty",
-        "parameters": {
-          "spec_hash_names": "HASHING_ALGORITHM",
-          "spec_version": "2.1"
-        }
-      },
-      "size": {
-        "property": "IntegerProperty",
-        "parameters": {
-          "min": 0
-        }
-      },
-      "name": {
-        "property": "StringProperty",
-        "parameters": {}
-      },
-      "name_enc": {
-        "property": "StringProperty",
-        "parameters": {}
-      },
-      "magic_number_hex": {
-        "property": "HexProperty",
-        "parameters": {}
-      },
-      "mime_type": {
-        "property": "StringProperty",
-        "parameters": {}
-      },
-      "ctime": {
-        "property": "TimestampProperty",
-        "parameters": {}
-      },
-      "mtime": {
-        "property": "TimestampProperty",
-        "parameters": {}
-      },
-      "atime": {
-        "property": "TimestampProperty",
-        "parameters": {}
-      },
-      "parent_directory_ref": {
-        "property": "ReferenceProperty",
-        "parameters": {
-          "valid_types": "directory",
-          "spec_version": "2.1"
-        }
-      },
-      "contains_refs": {
-        "collection": "ListProperty",
-        "property": "ReferenceProperty",
-        "parameters": {
-          "valid_types": "SCO",
-          "spec_version": "2.1"
-        }
-      },
-      "content_ref": {
-        "property": "ReferenceProperty",
-        "parameters": {
-          "valid_types": "artifact",
-          "spec_version": "2.1"
-        }
-      }
+      "hashes": {"property": "HashesProperty", "parameters": {"spec_hash_names": "HASHING_ALGORITHM", "spec_version": "2.1"}},
+      "size": {"property": "IntegerProperty", "parameters": {"min": 0}},
+      "name": {"property": "StringProperty", "parameters": {}},
+      "name_enc": {"property": "StringProperty", "parameters": {}},
+      "magic_number_hex": {"property": "HexProperty","parameters": {}},
+      "mime_type": {"property": "StringProperty", "parameters": {}},
+      "ctime": {"property": "TimestampProperty", "parameters": {}},
+      "mtime": {"property": "TimestampProperty", "parameters": {}},
+      "atime": {"property": "TimestampProperty", "parameters": {}},
+      "parent_directory_ref": {"property": "ReferenceProperty", "parameters": {"valid_types": ["directory"], "spec_version": "2.1"}},
+      "contains_refs": {"collection": "ListProperty", "property": "ReferenceProperty", "parameters": {"valid_types": ["_sco"], "spec_version": "2.1"}},
+      "content_ref": {"property": "ReferenceProperty", "parameters": {"valid_types": ["artifact"], "spec_version": "2.1"}}
     },
     "extensions": {
       "archive-ext": {
-        "contains_refs": {
-          "collection": "ListProperty",
-          "property": "ReferenceProperty",
-          "parameters": {
-            "valid_types": [
-              "file",
-              "directory"
-            ],
-            "spec_version": "2.1"
-          }
-        }
+        "contains_refs": {"collection": "ListProperty", "property": "ReferenceProperty", "parameters": {"valid_types": ["file", "directory"], "spec_version": "2.1"}}
       },
       "ntfs-ext": {
-        "name_enc": {
-          "property": "StringProperty",
-          "parameters": {}
-        },
-        "alternate_data_streams": {
-          "collection": "ListProperty",
-          "property": "EmbeddedObjectProperty",
-          "parameters": {
-            "type": "AlternateDataStream"
-          }
-        }
+        "name_enc": {"property": "StringProperty", "parameters": {}},
+        "alternate_data_streams": {"collection": "ListProperty", "property": "EmbeddedObjectProperty", "parameters": {"type": "AlternateDataStream"}}
       },
       "pdf-ext": {
-        "version": {
-          "property": "StringProperty",
-          "parameters": {
-            "min": 0
-          }
-        },
-        "is_optimizes": {
-          "property": "BooleanProperty",
-          "parameters": {}
-        },
-        "document_info_dict": {
-          "property": "DictionaryProperty",
-          "parameters": {
-            "spec_version": "2.1"
-          }
-        },
-        "pdfid0": {
-          "property": "StringProperty",
-          "parameters": {}
-        },
-        "pdfid1": {
-          "property": "StringProperty",
-          "parameters": {}
-        }
+        "version": {"property": "StringProperty", "parameters": {"min": 0}},
+        "is_optimizes": {"property": "BooleanProperty", "parameters": {}},
+        "document_info_dict": {"property": "DictionaryProperty", "parameters": {"spec_version": "2.1"}},
+        "pdfid0": {"property": "StringProperty", "parameters": {}},
+        "pdfid1": {"property": "StringProperty", "parameters": {}}
       },
       "raster-image-ext": {
-        "image_height": {
-          "property": "IntegerProperty",
-          "parameters": {}
-        },
-        "image_width": {
-          "property": "IntegerProperty",
-          "parameters": {}
-        },
-        "bits_per_pixel": {
-          "property": "IntegerProperty",
-          "parameters": {}
-        },
-        "exif_tags": {
-          "property": "DictionaryProperty",
-          "parameters": {
-            "spec_version": "2.1"
-          }
-        }
+        "image_height": {"property": "IntegerProperty", "parameters": {}},
+        "image_width": {"property": "IntegerProperty", "parameters": {}},
+        "bits_per_pixel": {"property": "IntegerProperty", "parameters": {}},
+        "exif_tags": {"property": "DictionaryProperty", "parameters": {"spec_version": "2.1"}}
       },
       "windows-pebinary-ext": {
-        "pe_type": {
-          "property": "OpenVocabProperty",
-          "parameters": {
-            "vocab": "WINDOWS_PEBINARY_TYPE",
-            "required": true
-          }
-        },
-        "imphash": {
-          "property": "StringProperty",
-          "parameters": {}
-        },
-        "machine_hex": {
-          "property": "HexProperty",
-          "parameters": {}
-        },
-        "number_of_sections": {
-          "property": "IntegerProperty",
-          "parameters": {
-            "min": 0
-          }
-        },
-        "time_date_stamp": {
-          "property": "TimestampProperty",
-          "parameters": {
-            "precision": "second"
-          }
-        },
-        "pointer_to_symbol_table_hex": {
-          "property": "HexProperty",
-          "parameters": {}
-        },
-        "number_of_symbols": {
-          "property": "IntegerProperty",
-          "parameters": {
-            "min": 0
-          }
-        },
-        "size_of_optional_header": {
-          "property": "IntegerProperty",
-          "parameters": {
-            "min": 0
-          }
-        },
-        "characteristics_hex": {
-          "property": "HexProperty",
-          "parameters": {}
-        },
-        "file_header_hashes": {
-          "property": "HashesProperty",
-          "parameters": {
-            "spec_hash_names": "HASHING_ALGORITHM",
-            "spec_version": "2.1"
-          }
-        },
-        "optional_header": {
-          "property": "EmbeddedObjectProperty",
-          "parameters": {
-            "type": "WindowsPEOptionalHeaderType"
-          }
-        },
-        "sections": {
-          "collection": "ListProperty",
-          "property": "EmbeddedObjectProperty",
-          "parameters": {
-            "type": "WindowsPESection"
-          }
-        }
+        "pe_type": {"property": "OpenVocabProperty", "parameters": {"vocab": "WINDOWS_PEBINARY_TYPE", "required": true}},
+        "imphash": {"property": "StringProperty", "parameters": {}},
+        "machine_hex": {"property": "HexProperty", "parameters": {}},
+        "number_of_sections": {"property": "IntegerProperty","parameters": {"min": 0}},
+        "time_date_stamp": {"property": "TimestampProperty", "parameters": {"precision": "second"}},
+        "pointer_to_symbol_table_hex": {"property": "HexProperty", "parameters": {}},
+        "number_of_symbols": {"property": "IntegerProperty", "parameters": {"min": 0}},
+        "size_of_optional_header": {"property": "IntegerProperty", "parameters": {"min": 0}},
+        "characteristics_hex": {"property": "HexProperty", "parameters": {}},
+        "file_header_hashes": {"property": "HashesProperty", "parameters": {"spec_hash_names": "HASHING_ALGORITHM", "spec_version": "2.1"}},
+        "optional_header": {"property": "EmbeddedObjectProperty", "parameters": {"type": "WindowsPEOptionalHeaderType"}},
+        "sections": {"collection": "ListProperty", "property": "EmbeddedObjectProperty", "parameters": {"type": "WindowsPESection"}}
       }
     },
     "sub": {
       "AlternateDataStream": {
-        "name": {
-          "property": "StringProperty",
-          "parameters": {
-            "required": true
-          }
-        },
-        "hashes": {
-          "property": "HashesProperty",
-          "parameters": {
-            "spec_hash_names": "HASHING_ALGORITHM",
-            "spec_version": "2.1"
-          }
-        },
-        "size": {
-          "property": "IntegerProperty",
-          "parameters": {
-            "min": 0
-          }
-        }
+        "name": {"property": "StringProperty", "parameters": {"required": true}},
+        "hashes": {"property": "HashesProperty", "parameters": {"spec_hash_names": "HASHING_ALGORITHM", "spec_version": "2.1"}},
+        "size": {"property": "IntegerProperty", "parameters": {"min": 0}}
       },
       "WindowsPEOptionalHeaderType": {
-        "magic_hex": {
-          "property": "HexProperty",
-          "parameters": {}
-        },
-        "major_linker_version": {
-          "property": "IntegerProperty",
-          "parameters": {}
-        },
-        "minor_linker_version": {
-          "property": "IntegerProperty",
-          "parameters": {}
-        },
-        "size_of_code": {
-          "property": "IntegerProperty",
-          "parameters": {
-            "min": 0
-          }
-        },
-        "size_of_initialized_data": {
-          "property": "IntegerProperty",
-          "parameters": {
-            "min": 0
-          }
-        },
-        "size_of_uninitialized_data": {
-          "property": "IntegerProperty",
-          "parameters": {
-            "min": 0
-          }
-        },
-        "address_of_entry_point": {
-          "property": "IntegerProperty",
-          "parameters": {}
-        },
-        "base_of_code": {
-          "property": "IntegerProperty",
-          "parameters": {}
-        },
-        "base_of_data": {
-          "property": "IntegerProperty",
-          "parameters": {}
-        },
-        "image_base": {
-          "property": "IntegerProperty",
-          "parameters": {}
-        },
-        "section_alignment": {
-          "property": "IntegerProperty",
-          "parameters": {}
-        },
-        "file_alignment": {
-          "property": "IntegerProperty",
-          "parameters": {}
-        },
-        "major_os_version": {
-          "property": "IntegerProperty",
-          "parameters": {}
-        },
-        "minor_os_version": {
-          "property": "IntegerProperty",
-          "parameters": {}
-        },
-        "major_image_version": {
-          "property": "IntegerProperty",
-          "parameters": {}
-        },
-        "minor_image_version": {
-          "property": "IntegerProperty",
-          "parameters": {}
-        },
-        "major_subsystem_version": {
-          "property": "IntegerProperty",
-          "parameters": {}
-        },
-        "minor_subsystem_version": {
-          "property": "IntegerProperty",
-          "parameters": {}
-        },
-        "win32_version_value_hex": {
-          "property": "HexProperty",
-          "parameters": {}
-        },
-        "size_of_image": {
-          "property": "IntegerProperty",
-          "parameters": {}
-        },
-        "size_of_headers": {
-          "property": "IntegerProperty",
-          "parameters": {}
-        },
-        "checksum_hex": {
-          "property": "HexProperty",
-          "parameters": {}
-        },
-        "subsystem_hex": {
-          "property": "HexProperty",
-          "parameters": {}
-        },
-        "dll_characteristics_hex": {
-          "property": "HexProperty",
-          "parameters": {}
-        },
-        "size_of_stack_reserve": {
-          "property": "IntegerProperty",
-          "parameters": {
-            "min": 0
-          }
-        },
-        "size_of_stack_commit": {
-          "property": "IntegerProperty",
-          "parameters": {
-            "min": 0
-          }
-        },
-        "size_of_heap_reserve": {
-          "property": "IntegerProperty",
-          "parameters": {}
-        },
-        "size_of_heap_commit": {
-          "property": "IntegerProperty",
-          "parameters": {}
-        },
-        "loader_flags_hex": {
-          "property": "HexProperty",
-          "parameters": {}
-        },
-        "number_of_rva_and_sizes": {
-          "property": "IntegerProperty",
-          "parameters": {}
-        },
-        "hashes": {
-          "property": "HashesProperty",
-          "parameters": {
-            "spec_hash_names": "HASHING_ALGORITHM",
-            "spec_version": "2.1"
-          }
-        }
+        "magic_hex": {"property": "HexProperty", "parameters": {}},
+        "major_linker_version": {"property": "IntegerProperty", "parameters": {}},
+        "minor_linker_version": {"property": "IntegerProperty", "parameters": {}},
+        "size_of_code": {"property": "IntegerProperty", "parameters": {"min": 0}},
+        "size_of_initialized_data": {"property": "IntegerProperty", "parameters": {"min": 0}},
+        "size_of_uninitialized_data": {"property": "IntegerProperty", "parameters": {"min": 0}},
+        "address_of_entry_point": {"property": "IntegerProperty", "parameters": {}},
+        "base_of_code": {"property": "IntegerProperty", "parameters": {}},
+        "base_of_data": {"property": "IntegerProperty", "parameters": {}},
+        "image_base": {"property": "IntegerProperty", "parameters": {}},
+        "section_alignment": {"property": "IntegerProperty", "parameters": {}},
+        "file_alignment": {"property": "IntegerProperty", "parameters": {}},
+        "major_os_version": {"property": "IntegerProperty", "parameters": {}},
+        "minor_os_version": {"property": "IntegerProperty", "parameters": {}},
+        "major_image_version": {"property": "IntegerProperty", "parameters": {}},
+        "minor_image_version": {"property": "IntegerProperty", "parameters": {}},
+        "major_subsystem_version": {"property": "IntegerProperty", "parameters": {}},
+        "minor_subsystem_version": {"property": "IntegerProperty", "parameters": {}},
+        "win32_version_value_hex": {"property": "HexProperty", "parameters": {}},
+        "size_of_image": {"property": "IntegerProperty", "parameters": {}},
+        "size_of_headers": {"property": "IntegerProperty", "parameters": {}},
+        "checksum_hex": {"property": "HexProperty", "parameters": {}},
+        "subsystem_hex": {"property": "HexProperty", "parameters": {}},
+        "dll_characteristics_hex": {"property": "HexProperty", "parameters": {}},
+        "size_of_stack_reserve": {"property": "IntegerProperty", "parameters": {"min": 0}},
+        "size_of_stack_commit": {"property": "IntegerProperty", "parameters": {"min": 0}},
+        "size_of_heap_reserve": {"property": "IntegerProperty", "parameters": {"min": 0}},
+        "size_of_heap_commit": {"property": "IntegerProperty", "parameters": {"min": 0}},
+        "loader_flags_hex": {"property": "HexProperty", "parameters": {}},
+        "number_of_rva_and_sizes": {"property": "IntegerProperty", "parameters": {}},
+        "hashes": {"property": "HashesProperty", "parameters": {"spec_hash_names": "HASHING_ALGORITHM", "spec_version": "2.1"}}
       },
       "WindowsPESection": {
-        "name": {
-          "property": "StringProperty",
-          "parameters": {
-            "required": true
-          }
-        },
-        "size": {
-          "property": "HexProperty",
-          "parameters": {
-            "min": 0
-          }
-        },
-        "entropy": {
-          "property": "FloatProperty",
-          "parameters": {}
-        },
-        "hashes": {
-          "property": "HashesProperty",
-          "parameters": {
-            "spec_hash_names": "HASHING_ALGORITHM",
-            "spec_version": "2.1"
-          }
-        }
+        "name": {"property": "StringProperty", "parameters": {"required": true}},
+        "size": {"property": "HexProperty", "parameters": {"min": 0}},
+        "entropy": {"property": "FloatProperty", "parameters": {}},
+        "hashes": {"property": "HashesProperty", "parameters": {"spec_hash_names": "HASHING_ALGORITHM", "spec_version": "2.1"}}
       }
     }
   }

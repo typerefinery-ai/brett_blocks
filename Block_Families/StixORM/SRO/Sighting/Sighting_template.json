@@ -11,13 +11,13 @@
         "modified": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}}
       },
       "base_optional": {
-        "created_by_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  "identity", "spec_version":  "2.1"}},
+        "created_by_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["identity"], "spec_version":  "2.1"}},
         "revoked": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
         "labels": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
         "confidence": {"property":  "IntegerProperty", "parameters": {"min": 0}},
         "lang": {"property":  "StringProperty", "parameters": {}},
         "external_references": {"collection": "ListProperty", "property":  "ExternalReference", "parameters": {}},
-        "object_marking_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  "marking-definition", "spec_version":  "2.1"}},
+        "object_marking_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  ["marking-definition"], "spec_version":  "2.1"}},
         "granular_markings": {"collection": "ListProperty", "property":  "GranularMarking", "parameters": {}}
       },
       "object": {
@@ -25,8 +25,8 @@
         "first_seen": {"property":  "TimestampProperty", "parameters": {}},
         "last_seen": {"property":  "TimestampProperty", "parameters": {}},
         "count": {"property":  "IntegerProperty", "parameters": {"min": 0}},
-        "sighting_of_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types": "SDO", "required":  true, "spec_version":  "2.1"}},
-        "observed_data_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types": "observed-data", "required":  true, "spec_version":  "2.1"}},
+        "sighting_of_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types": ["_sdo"], "required":  true, "spec_version":  "2.1"}},
+        "observed_data_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types": ["observed-data"], "required":  true, "spec_version":  "2.1"}},
         "where_sighted_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types": ["identity", "location"], "required":  true, "spec_version":  "2.1"}},
         "summary": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}}
       },

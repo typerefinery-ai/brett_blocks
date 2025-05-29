@@ -11,23 +11,23 @@
         "modified": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}}
       },
       "base_optional": {
-        "created_by_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  "identity", "spec_version":  "2.1"}},
+        "created_by_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["identity"], "spec_version":  "2.1"}},
         "revoked": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
         "labels": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
         "confidence": {"property":  "IntegerProperty", "parameters": {"min": 0}},
         "lang": {"property":  "StringProperty", "parameters": {}},
         "external_references": {"collection": "ListProperty", "property":  "ExternalReference", "parameters": {}},
-        "object_marking_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  "marking-definition", "spec_version":  "2.1"}},
+        "object_marking_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  ["marking-definition"], "spec_version":  "2.1"}},
         "granular_markings": {"collection": "ListProperty", "property":  "GranularMarking", "parameters": {}}
       },
       "object": {
-        "sequenced_object": {"property":  "ThreatReference", "parameters": {"valid_types":  "valid_obj", "spec_version":  "2.1"}},
+        "sequenced_object": {"property":  "ThreatReference", "parameters": {"valid_types":  ["event", "task"], "spec_version":  "2.1"}},
         "sequence_type": {"property":  "EnumProperty", "parameters": {"vocab": "SEQUENCE_TYPE"}},
         "step_type": {"property":  "EnumProperty", "parameters": {"vocab": "STEP_TYPE"}},
-        "on_completion": {"property":  "ThreatReference", "parameters": {"valid_types":  "sequence", "spec_version":  "2.1"}},
-        "on_success": {"property":  "ThreatReference", "parameters": {"valid_types":  "sequence", "spec_version":  "2.1"}},
-        "on_failure": {"property":  "ThreatReference", "parameters": {"valid_types":  "sequence", "spec_version":  "2.1"}},
-        "next_steps": {"collection": "ListProperty", "property":  "ThreatReference", "parameters": {"valid_types":  "sequence", "spec_version":  "2.1"}}
+        "on_completion": {"property":  "ThreatReference", "parameters": {"valid_types":  ["sequence"], "spec_version":  "2.1"}},
+        "on_success": {"property":  "ThreatReference", "parameters": {"valid_types":  ["sequence"], "spec_version":  "2.1"}},
+        "on_failure": {"property":  "ThreatReference", "parameters": {"valid_types":  ["sequence"], "spec_version":  "2.1"}},
+        "next_steps": {"collection": "ListProperty", "property":  "ThreatReference", "parameters": {"valid_types":  ["sequence"], "spec_version":  "2.1"}}
       },
       "extensions": {
         "extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {
