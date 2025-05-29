@@ -48,7 +48,6 @@
       },
       "sub": {
         "IncidentScoreObject": {
-          "_type": "IncidentScoreObject",
           "name": {"property":  "StringProperty", "parameters": {}},
           "value": {"property":  "IntegerProperty", "parameters": {"min": 0}},
           "description" : {"property":  "StringProperty", "parameters": {}}
