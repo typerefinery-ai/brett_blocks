@@ -39,10 +39,12 @@
           "extension_type" : {"property":  "StringProperty", "parameters": {"required":  true, "fixed":  "new-sdo"}}
         }
       },
-      "sub": {
-        "state_change_type": {"property":  "StringProperty", "parameters": {}},
-        "initial_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  "valid_obj", "spec_version":  "2.1"}},
-        "result_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  "valid_obj", "spec_version":  "2.1"}}
+      "sub": { "StateChangeObject":
+        {
+          "state_change_type": {"property": "StringProperty", "parameters": {}},
+          "initial_ref": {"property": "ReferenceProperty", "parameters": {"valid_types": "valid_obj", "spec_version": "2.1"}},
+          "result_ref": {"property": "ReferenceProperty", "parameters": {"valid_types": "valid_obj", "spec_version": "2.1"}}
+        }
       }
     }
 }

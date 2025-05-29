@@ -61,6 +61,7 @@
           "file_header_hashes": {"property":  "HashesProperty", "parameters": {"spec_hash_names":  "HASHING_ALGORITHM", "spec_version":  "2.1"}},
           "optional_header": {"property":  "EmbeddedObjectProperty", "parameters": {"type":  "WindowsPEOptionalHeaderType"}},
           "sections": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type":  "WindowsPESection"}}
+      }
       },
       "sub": {
         "AlternateDataStream": {
@@ -107,6 +108,5 @@
             "entropy": {"property":  "FloatProperty", "parameters": {}},
             "hashes": {"property":  "HashesProperty", "parameters": {"spec_hash_names":  "HASHING_ALGORITHM", "spec_version":  "2.1"}}
         }
-      }
     }
 }
