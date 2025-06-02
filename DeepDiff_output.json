@@ -1,0 +1,15 @@
+{
+  "dictionary_item_added": {
+    "root['extensions']['extension-definition--ef765651-680c-498d-9894-99799f2fa126']['impact_refs']": [
+      "impact--a9fc1b2c-1179-431a-b850-aea0cac944c2"
+    ]
+  },
+  "iterable_item_added": {
+    "root['extensions']['extension-definition--ef765651-680c-498d-9894-99799f2fa126']['sequence_refs'][2]": "sequence--fbc0005b-6b5c-4b59-b3a7-12dc40a3869d",
+    "root['extensions']['extension-definition--ef765651-680c-498d-9894-99799f2fa126']['task_refs'][1]": "task--07592b5c-e14c-4d69-8234-3b32b4b7a640",
+    "root['extensions']['extension-definition--ef765651-680c-498d-9894-99799f2fa126']['other_object_refs'][11]": "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f",
+    "root['extensions']['extension-definition--ef765651-680c-498d-9894-99799f2fa126']['other_object_refs'][12]": "observed-data--f3658ec0-d1a4-40e0-b360-20f8e6043c44",
+    "root['extensions']['extension-definition--ef765651-680c-498d-9894-99799f2fa126']['other_object_refs'][13]": "sighting--e82533f8-21a6-4eae-8ef4-649e61d7bcfd",
+    "root['extensions']['extension-definition--ef765651-680c-498d-9894-99799f2fa126']['other_object_refs'][14]": "identity--c3c03e76-08b5-4aa3-80ad-c5ef6ef6ce1d"
+  }
+}

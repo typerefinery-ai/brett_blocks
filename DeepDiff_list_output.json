@@ -1,0 +1,109 @@
+{
+  "dictionary_item_added": {
+    "root['sequence--fbc0005b-6b5c-4b59-b3a7-12dc40a3869d']": {
+      "type": "sequence",
+      "spec_version": "2.1",
+      "created": "2024-01-02T05:27:09.958719Z",
+      "modified": "2024-01-02T05:27:09.958719Z",
+      "sequenced_object": "task--07592b5c-e14c-4d69-8234-3b32b4b7a640",
+      "sequence_type": "task",
+      "step_type": "single_step",
+      "extensions": {
+        "extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {
+          "extension_type": "new-sdo"
+        }
+      },
+      "on_completion": "sequence--fbc0005b-6b5c-4b59-b3a7-12dc40a3869d"
+    },
+    "root['task--07592b5c-e14c-4d69-8234-3b32b4b7a640']": {
+      "type": "task",
+      "spec_version": "2.1",
+      "created": "2024-01-02T05:27:09.921928Z",
+      "modified": "2024-01-02T05:27:09.921928Z",
+      "description": "Find out who else got the email",
+      "end_time": "2024-01-02T05:27:09.921928Z",
+      "name": "Query Exchange Server",
+      "start_time": "2024-01-02T05:27:09.921928Z",
+      "extensions": {
+        "extension-definition--2074a052-8be4-4932-849e-f5e7798e0030": {
+          "extension_type": "new-sdo"
+        }
+      }
+    },
+    "root['impact--a9fc1b2c-1179-431a-b850-aea0cac944c2']": {
+      "type": "impact",
+      "spec_version": "2.1",
+      "created": "2024-01-02T05:27:09.880414Z",
+      "modified": "2024-01-02T05:27:09.880414Z",
+      "impact_category": "availability",
+      "criticality": 99,
+      "description": "Laptop is stuffed",
+      "end_time": "2024-01-02T05:27:09.880414Z",
+      "impacted_entity_counts": {
+        "computers-mobile": 1
+      },
+      "impacted_refs": [
+        "identity--c3c03e76-08b5-4aa3-80ad-c5ef6ef6ce1d"
+      ],
+      "recoverability": "regular",
+      "start_time": "2024-01-02T05:27:09.880414Z",
+      "extensions": {
+        "extension-definition--7cc33dd6-f6a1-489b-98ea-522d351d71b9": {
+          "extension_type": "new-sdo"
+        }
+      }
+    },
+    "root['anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f']": {
+      "type": "anecdote",
+      "spec_version": "2.1",
+      "value": "I clicked on the link, and my laptop screen went weird",
+      "report_date": "2024-01-02T05:27:09.769727Z",
+      "provided_by_ref": "identity--04ecf758-f80c-40f5-b26b-96cebb99f5b6"
+    },
+    "root['observed-data--f3658ec0-d1a4-40e0-b360-20f8e6043c44']": {
+      "type": "observed-data",
+      "spec_version": "2.1",
+      "created": "2024-01-02T05:27:09.801105Z",
+      "modified": "2024-01-02T05:27:09.801105Z",
+      "first_observed": "2020-10-19T01:01:01Z",
+      "last_observed": "2020-10-19T01:01:01Z",
+      "number_observed": 1,
+      "object_refs": [
+        "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f"
+      ]
+    },
+    "root['sighting--e82533f8-21a6-4eae-8ef4-649e61d7bcfd']": {
+      "type": "sighting",
+      "spec_version": "2.1",
+      "created": "2024-01-02T05:27:09.832121Z",
+      "modified": "2024-01-02T05:27:09.832121Z",
+      "count": 1,
+      "sighting_of_ref": "identity--04ecf758-f80c-40f5-b26b-96cebb99f5b6",
+      "observed_data_refs": [
+        "observed-data--f3658ec0-d1a4-40e0-b360-20f8e6043c44"
+      ],
+      "where_sighted_refs": [
+        "identity--75778969-3de6-4ddd-9dcd-fc3ba91b34aa"
+      ],
+      "extensions": {
+        "sighting-anecdote": {
+          "person_name": "user-report",
+          "person_context": "employee",
+          "report_submission": "interview"
+        },
+        "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {
+          "extension_type": "property-extension"
+        }
+      }
+    }
+  },
+  "dictionary_item_removed": {
+    "root['event--43880e1d-1c7f-4c48-89e8-757cf3884832']['end_time']": "2024-01-02T05:26:53.955115Z"
+  },
+  "values_changed": {
+    "root['task--548a5072-b48f-4499-9b38-bfe2a60665ac']['name']": {
+      "new_value": "Potential Phishing Email is Crank",
+      "old_value": "Potential Phishing Email"
+    }
+  }
+}

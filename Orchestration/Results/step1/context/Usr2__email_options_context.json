@@ -1,0 +1,1 @@
+{"stix_object": {"type": "email-addr", "spec_version": "2.1", "id": "email-addr--b0708db8-71e9-50f9-950c-610fccd2c30b", "value": "sbilly@example.com", "display_name": "Strange Billy", "belongs_to_ref": "user-account--5c0dcb9b-5784-5aaf-b393-d990a4d68dd3"}, "context_type": {"context_type": "users"}}

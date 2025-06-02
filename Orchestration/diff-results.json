@@ -1,0 +1,105 @@
+{
+  "add_objects_list": [
+    {
+      "type": "sequence",
+      "spec_version": "2.1",
+      "id": "sequence--bc87fff2-2f6b-4614-b36e-1d2572136fc1",
+      "created": "2025-04-07T05:14:18.717Z",
+      "modified": "2025-04-07T05:14:18.717Z",
+      "sequenced_object": "task--8b50a1b9-c227-47b6-8e0c-97f2a493171d",
+      "sequence_type": "task",
+      "step_type": "single_step",
+      "extensions": {
+        "extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {
+          "extension_type": "new-sdo"
+        }
+      }
+    },
+    {
+      "type": "task",
+      "spec_version": "2.1",
+      "id": "task--8b50a1b9-c227-47b6-8e0c-97f2a493171d",
+      "created": "2025-04-07T05:14:18.658Z",
+      "modified": "2025-04-07T05:14:18.658Z",
+      "description": "Find out who else got the email",
+      "end_time": "2025-04-07T05:14:18.658Z",
+      "name": "Query Exchange Server",
+      "start_time": "2025-04-07T05:14:18.658Z",
+      "extensions": {
+        "extension-definition--2074a052-8be4-4932-849e-f5e7798e0030": {
+          "extension_type": "new-sdo"
+        }
+      }
+    }
+  ],
+  "delete_id_list": [
+    "email-addr--0e889020-a432-5676-aa03-ba1e1851e6c4"
+  ],
+  "diff_report_list": [
+    [
+      {
+        "original id": "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+        "type": "dictionary_item_removed",
+        "value": {
+          "root['cc_refs']": [
+            "email-addr--0e889020-a432-5676-aa03-ba1e1851e6c4"
+          ]
+        },
+        "match core": "$email-message isa email-message, has stix-id $stix-id;\n$stix-id email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d;\n",
+        "match object": " $email-addr1 isa email-addr, has stix-id \"email-addr--0e889020-a432-5676-aa03-ba1e1851e6c4\";\n$cc-email1 (email:$email-message, email-address:$email-addr1) isa cc-email;\n",
+        "insert": "",
+        "delete": "$cc-email1 isa cc-email;"
+      }
+    ],
+    [
+      {
+        "original id": "observed-data--238e15ab-149e-49bb-a516-7bb28082f9df",
+        "type": "iterable_item_removed",
+        "value": {
+          "root['object_refs'][6]": "email-addr--0e889020-a432-5676-aa03-ba1e1851e6c4"
+        },
+        "match core": "$observed-data isa observed-data, has stix-id $stix-id;\n$stix-id \"observed-data--238e15ab-149e-49bb-a516-7bb28082f9df\";\n",
+        "match object": " $email-addr1 isa email-addr, has stix-id \"email-addr--0e889020-a432-5676-aa03-ba1e1851e6c4\";\n$obj-refs1 (object:$observed-data, referred:$email-addr1) isa obj-refs;\n",
+        "insert": "",
+        "delete": "$obj-refs1 isa obj-refs;"
+      }
+    ],
+    [
+      {
+        "original id": "incident--d1cdb31f-8e54-4bdd-b3f9-ce9d0c94acc8",
+        "type": "iterable_item_added",
+        "value": {
+          "root['extensions']['extension-definition--ef765651-680c-498d-9894-99799f2fa126']['sequence_refs'][2]": "sequence--bc87fff2-2f6b-4614-b36e-1d2572136fc1",
+          "root['extensions']['extension-definition--ef765651-680c-498d-9894-99799f2fa126']['task_refs'][1]": "task--8b50a1b9-c227-47b6-8e0c-97f2a493171d"
+        },
+        "match core": "$incident isa incident, has stix-id $stix-id;\n$stix-id \"incident--d1cdb31f-8e54-4bdd-b3f9-ce9d0c94acc8\";\n",
+        "match object": " $sequence1 isa sequence, has stix-id \"sequence--bc87fff2-2f6b-4614-b36e-1d2572136fc1\";\n$incident-ext1 isa incident-ext;$occurence-ext1 (occurence:$incident, incident-core:$incident-ext1) isa occurence-ext;",
+        "insert": "$sequence-refs1 (incident:$incident-ext1, the-steps:$sequence1) isa sequence-refs;\n",
+        "delete": ""
+      },
+      {
+        "original id": "incident--d1cdb31f-8e54-4bdd-b3f9-ce9d0c94acc8",
+        "type": "iterable_item_added",
+        "value": {
+          "root['extensions']['extension-definition--ef765651-680c-498d-9894-99799f2fa126']['sequence_refs'][2]": "sequence--bc87fff2-2f6b-4614-b36e-1d2572136fc1",
+          "root['extensions']['extension-definition--ef765651-680c-498d-9894-99799f2fa126']['task_refs'][1]": "task--8b50a1b9-c227-47b6-8e0c-97f2a493171d"
+        },
+        "match core": "$incident isa incident, has stix-id $stix-id;\n$stix-id \"incident--d1cdb31f-8e54-4bdd-b3f9-ce9d0c94acc8\";\n",
+        "match object": " $task2 isa task, has stix-id \"task--8b50a1b9-c227-47b6-8e0c-97f2a493171d\";\n$incident-ext2 isa incident-ext;$occurence-ext2 (occurence:$incident, incident-core:$incident-ext2) isa occurence-ext;",
+        "insert": "$task-refs2 (incident:$incident-ext2, the-task:$task2) isa task-refs;\n",
+        "delete": ""
+      },
+      {
+        "original id": "incident--d1cdb31f-8e54-4bdd-b3f9-ce9d0c94acc8",
+        "type": "iterable_item_removed",
+        "value": {
+          "root['extensions']['extension-definition--ef765651-680c-498d-9894-99799f2fa126']['other_object_refs'][15]": "email-addr--0e889020-a432-5676-aa03-ba1e1851e6c4"
+        },
+        "match core": "$incident isa incident, has stix-id $stix-id;\n$stix-id \"incident--d1cdb31f-8e54-4bdd-b3f9-ce9d0c94acc8\";\n",
+        "match object": " $email-addr3 isa email-addr, has stix-id \"email-addr--0e889020-a432-5676-aa03-ba1e1851e6c4\";\n$incident-ext3 isa incident-ext;$occurence-ext3 (occurence:$incident, incident-core:$incident-ext3) isa occurence-ext;$other-obj-refs3 (object:$incident-ext3, referred:$email-addr3) isa other-obj-refs;\n",
+        "insert": "",
+        "delete": "$other-obj-refs3 isa other-obj-refs;"
+      }
+    ]
+  ]
+}

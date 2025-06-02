@@ -1,0 +1,1 @@
+{"connection_field_list": ["from_ref", "sender_ref", "to_refs", "cc_refs", "bcc_refs"], "connect_objects": {"source_ref": "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d", "target_ref": "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212"}}

@@ -1,0 +1,1 @@
+{"stix_object": {"type": "user-account", "spec_version": "2.1", "id": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3", "user_id": "79563902", "account_login": "tjones", "account_type": "soc,", "display_name": "Trusty Jones"}, "context_type": {"context_type": "me"}}

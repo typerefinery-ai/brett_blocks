@@ -1,0 +1,1 @@
+{"stix_object": {"type": "identity", "spec_version": "2.1", "id": "identity--ea61147c-3ae7-463b-9599-14c161b9efbc", "created": "2024-08-12T04:13:49.840Z", "modified": "2024-08-12T04:13:49.840Z", "name": "Example Company", "description": "An Example Organisation", "identity_class": "organization", "sectors": ["technology"]}, "context_type": {"context_type": "company"}}

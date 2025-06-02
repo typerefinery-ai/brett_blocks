@@ -1,0 +1,1 @@
+{"get_query": {"type": "email-addr", "property": {"path": ["value"], "source_value": "naive@example.com", "comparator": "EQ"}}, "context_type": {"context_type": "users"}, "source_value": "naive@example.com", "source_id": null}
