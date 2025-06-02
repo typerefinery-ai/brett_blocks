@@ -1,1 +1,54 @@
-[{"id": "sequence--d3de19a2-8678-497d-af84-04a16a74d595", "type": "sequence", "original": {"type": "sequence", "spec_version": "2.1", "id": "sequence--d3de19a2-8678-497d-af84-04a16a74d595", "created": "2025-04-20T07:36:48.47Z", "modified": "2025-04-20T07:36:48.47Z", "sequence_type": "event", "step_type": "start_step", "on_completion": "sequence--65fd42cf-d7fe-467b-9621-566786afc073", "extensions": {"extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {"extension_type": "new-sdo"}}}, "icon": "step-terminal", "name": "Start Step", "heading": "Start Step for Event", "description": "", "object_form": "sequence", "object_group": "sdo-forms", "object_family": "extension-forms"}, {"id": "sequence--8ed6b725-d347-4c42-ad70-91b1c8f03fb8", "type": "sequence", "original": {"type": "sequence", "spec_version": "2.1", "id": "sequence--8ed6b725-d347-4c42-ad70-91b1c8f03fb8", "created": "2025-04-20T07:38:34.903Z", "modified": "2025-04-20T07:38:34.903Z", "sequence_type": "task", "step_type": "start_step", "on_completion": "sequence--0d253a30-b467-4de5-b20d-d37fc5b8fdf0", "extensions": {"extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {"extension_type": "new-sdo"}}}, "icon": "step-terminal", "name": "Start Step", "heading": "Start Step for Task", "description": "", "object_form": "sequence", "object_group": "sdo-forms", "object_family": "extension-forms"}]
+[
+    {
+        "id": "sequence--d3de19a2-8678-497d-af84-04a16a74d595",
+        "type": "sequence",
+        "original": {
+            "type": "sequence",
+            "spec_version": "2.1",
+            "id": "sequence--d3de19a2-8678-497d-af84-04a16a74d595",
+            "created": "2025-04-20T07:36:48.47Z",
+            "modified": "2025-04-20T07:36:48.47Z",
+            "sequence_type": "event",
+            "step_type": "start_step",
+            "on_completion": "sequence--65fd42cf-d7fe-467b-9621-566786afc073",
+            "extensions": {
+                "extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {
+                    "extension_type": "new-sdo"
+                }
+            }
+        },
+        "icon": "step-terminal",
+        "name": "Start Step",
+        "heading": "Start Step for Event",
+        "description": "",
+        "object_form": "sequence",
+        "object_group": "sdo-forms",
+        "object_family": "extension-forms"
+    },
+    {
+        "id": "sequence--8ed6b725-d347-4c42-ad70-91b1c8f03fb8",
+        "type": "sequence",
+        "original": {
+            "type": "sequence",
+            "spec_version": "2.1",
+            "id": "sequence--8ed6b725-d347-4c42-ad70-91b1c8f03fb8",
+            "created": "2025-04-20T07:38:34.903Z",
+            "modified": "2025-04-20T07:38:34.903Z",
+            "sequence_type": "task",
+            "step_type": "start_step",
+            "on_completion": "sequence--0d253a30-b467-4de5-b20d-d37fc5b8fdf0",
+            "extensions": {
+                "extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {
+                    "extension_type": "new-sdo"
+                }
+            }
+        },
+        "icon": "step-terminal",
+        "name": "Start Step",
+        "heading": "Start Step for Task",
+        "description": "",
+        "object_form": "sequence",
+        "object_group": "sdo-forms",
+        "object_family": "extension-forms"
+    }
+]

@@ -1,1 +1,32 @@
-[{"id": "event--b79ef231-2343-4654-9396-00ebbbd89a7f", "type": "event", "original": {"type": "event", "spec_version": "2.1", "id": "event--b79ef231-2343-4654-9396-00ebbbd89a7f", "created": "2025-04-20T08:15:08.924Z", "modified": "2025-04-20T08:15:08.924Z", "description": "Suspicious email reported by user", "end_time": "2025-04-20T08:15:08.924Z", "event_types": ["dissemination-phishing-emails"], "name": "Potential Phishing Email", "start_time": "2025-04-20T08:15:08.924Z", "extensions": {"extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {"extension_type": "new-sdo"}}}, "icon": "event", "name": "Event", "heading": "Event -> Potential Phishing Email, Status -> ", "description": "<br>Suspicious email reported by user", "object_form": "event", "object_group": "sdo-forms", "object_family": "extension-forms"}]
+[
+    {
+        "id": "event--b79ef231-2343-4654-9396-00ebbbd89a7f",
+        "type": "event",
+        "original": {
+            "type": "event",
+            "spec_version": "2.1",
+            "id": "event--b79ef231-2343-4654-9396-00ebbbd89a7f",
+            "created": "2025-04-20T08:15:08.924Z",
+            "modified": "2025-04-20T08:15:08.924Z",
+            "description": "Suspicious email reported by user",
+            "end_time": "2025-04-20T08:15:08.924Z",
+            "event_types": [
+                "dissemination-phishing-emails"
+            ],
+            "name": "Potential Phishing Email",
+            "start_time": "2025-04-20T08:15:08.924Z",
+            "extensions": {
+                "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+                    "extension_type": "new-sdo"
+                }
+            }
+        },
+        "icon": "event",
+        "name": "Event",
+        "heading": "Event -> Potential Phishing Email, Status -> ",
+        "description": "<br>Suspicious email reported by user",
+        "object_form": "event",
+        "object_group": "sdo-forms",
+        "object_family": "extension-forms"
+    }
+]

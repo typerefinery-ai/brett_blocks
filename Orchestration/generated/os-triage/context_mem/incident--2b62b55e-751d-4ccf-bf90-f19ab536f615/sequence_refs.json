@@ -1,1 +1,80 @@
-[{"id": "sequence--65fd42cf-d7fe-467b-9621-566786afc073", "type": "sequence", "original": {"type": "sequence", "spec_version": "2.1", "id": "sequence--65fd42cf-d7fe-467b-9621-566786afc073", "created": "2025-04-20T07:23:27.468Z", "modified": "2025-04-20T07:23:27.468Z", "sequenced_object": "event--5ef1afba-102d-4221-8bc3-846c81a8e718", "sequence_type": "event", "step_type": "single_step", "extensions": {"extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {"extension_type": "new-sdo"}}}, "icon": "step-single", "name": "Single Step", "heading": "Single Step for Event", "description": "", "object_form": "sequence", "object_group": "sdo-forms", "object_family": "extension-forms"}, {"id": "sequence--0d253a30-b467-4de5-b20d-d37fc5b8fdf0", "type": "sequence", "original": {"type": "sequence", "spec_version": "2.1", "id": "sequence--0d253a30-b467-4de5-b20d-d37fc5b8fdf0", "created": "2025-04-20T07:38:21.394Z", "modified": "2025-04-20T07:38:21.394Z", "sequenced_object": "task--dd830ef7-4788-452a-a93a-59572e21776e", "sequence_type": "task", "step_type": "single_step", "extensions": {"extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {"extension_type": "new-sdo"}}}, "icon": "step-single", "name": "Single Step", "heading": "Single Step for Task", "description": "", "object_form": "sequence", "object_group": "sdo-forms", "object_family": "extension-forms"}, {"id": "sequence--ae69d524-8038-4526-9a22-5f5885750a9f", "type": "sequence", "original": {"type": "sequence", "spec_version": "2.1", "id": "sequence--ae69d524-8038-4526-9a22-5f5885750a9f", "created": "2025-04-20T07:45:59.452Z", "modified": "2025-04-20T07:45:59.452Z", "sequenced_object": "task--23eb2b7b-f77c-434e-afae-534a83a83570", "sequence_type": "task", "step_type": "single_step", "extensions": {"extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {"extension_type": "new-sdo"}}}, "icon": "step-single", "name": "Single Step", "heading": "Single Step for Task", "description": "", "object_form": "sequence", "object_group": "sdo-forms", "object_family": "extension-forms"}]
+[
+    {
+        "id": "sequence--65fd42cf-d7fe-467b-9621-566786afc073",
+        "type": "sequence",
+        "original": {
+            "type": "sequence",
+            "spec_version": "2.1",
+            "id": "sequence--65fd42cf-d7fe-467b-9621-566786afc073",
+            "created": "2025-04-20T07:23:27.468Z",
+            "modified": "2025-04-20T07:23:27.468Z",
+            "sequenced_object": "event--5ef1afba-102d-4221-8bc3-846c81a8e718",
+            "sequence_type": "event",
+            "step_type": "single_step",
+            "extensions": {
+                "extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {
+                    "extension_type": "new-sdo"
+                }
+            }
+        },
+        "icon": "step-single",
+        "name": "Single Step",
+        "heading": "Single Step for Event",
+        "description": "",
+        "object_form": "sequence",
+        "object_group": "sdo-forms",
+        "object_family": "extension-forms"
+    },
+    {
+        "id": "sequence--0d253a30-b467-4de5-b20d-d37fc5b8fdf0",
+        "type": "sequence",
+        "original": {
+            "type": "sequence",
+            "spec_version": "2.1",
+            "id": "sequence--0d253a30-b467-4de5-b20d-d37fc5b8fdf0",
+            "created": "2025-04-20T07:38:21.394Z",
+            "modified": "2025-04-20T07:38:21.394Z",
+            "sequenced_object": "task--dd830ef7-4788-452a-a93a-59572e21776e",
+            "sequence_type": "task",
+            "step_type": "single_step",
+            "extensions": {
+                "extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {
+                    "extension_type": "new-sdo"
+                }
+            }
+        },
+        "icon": "step-single",
+        "name": "Single Step",
+        "heading": "Single Step for Task",
+        "description": "",
+        "object_form": "sequence",
+        "object_group": "sdo-forms",
+        "object_family": "extension-forms"
+    },
+    {
+        "id": "sequence--ae69d524-8038-4526-9a22-5f5885750a9f",
+        "type": "sequence",
+        "original": {
+            "type": "sequence",
+            "spec_version": "2.1",
+            "id": "sequence--ae69d524-8038-4526-9a22-5f5885750a9f",
+            "created": "2025-04-20T07:45:59.452Z",
+            "modified": "2025-04-20T07:45:59.452Z",
+            "sequenced_object": "task--23eb2b7b-f77c-434e-afae-534a83a83570",
+            "sequence_type": "task",
+            "step_type": "single_step",
+            "extensions": {
+                "extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {
+                    "extension_type": "new-sdo"
+                }
+            }
+        },
+        "icon": "step-single",
+        "name": "Single Step",
+        "heading": "Single Step for Task",
+        "description": "",
+        "object_form": "sequence",
+        "object_group": "sdo-forms",
+        "object_family": "extension-forms"
+    }
+]
