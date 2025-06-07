@@ -35,7 +35,6 @@
       },
       "extensions": {
         "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
-          "_type": "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e",
           "extension_type" : {"property":  "StringProperty", "parameters": {"required":  true, "fixed":  "new-sdo"}}
         }
       },

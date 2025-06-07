@@ -32,7 +32,6 @@
       },
       "extensions": {
         "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {
-          "_type": "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43",
           "extension_type" : {"property":  "StringProperty", "parameters": {"required":  true, "fixed":  "property-extension"}}
         },
         "sighting-alert": {

@@ -20,7 +20,6 @@
       },
       "extensions": {
         "extension-definition--23676abf-481e-4fee-ac8c-e3d0947287a4": {
-          "_type": "extension-definition--23676abf-481e-4fee-ac8c-e3d0947287a4",
           "extension_type" : {"property":  "StringProperty", "parameters": {"required":  true, "fixed":  "new-sco"}}
         }
       },

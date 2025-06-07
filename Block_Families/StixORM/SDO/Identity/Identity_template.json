@@ -30,7 +30,6 @@
       },
       "extensions": {
         "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
-          "_type": "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498",
           "extension_type" : {"property":  "StringProperty", "parameters": {"required":  true, "fixed":  "property-extension"}},
           "contact_numbers": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type": "ContactNumber"}},
           "email_addresses": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type": "EmailContact"}},
@@ -45,19 +44,16 @@
       },
       "sub": {
         "ContactNumber": {
-          "_type": "contact-number",
           "description": {"property":  "StringProperty", "parameters": {}},
           "contact_number_type" : {"property":  "StringProperty", "parameters": {"required":  true}},
           "contact_number" : {"property":  "StringProperty", "parameters": {"required":  true}}
         },
         "EmailContact": {
-          "_type": "email-contact",
           "description": {"property":  "StringProperty", "parameters": {}},
           "digital_contact_type" : {"property":  "StringProperty", "parameters": {"required":  true}},
           "email_address_ref" : {"property":  "ReferenceProperty", "parameters": {"required":  true, "valid_types":  ["email-addr"], "spec_version":  "2.1"}}
         },
         "SocialMediaContact": {
-          "_type": "social-media-contact",
           "description": {"property":  "StringProperty", "parameters": {}},
           "digital_contact_type" : {"property":  "StringProperty", "parameters": {"required":  true}},
           "user_account_ref" : {"property":  "ReferenceProperty", "parameters": {"required":  true, "valid_types":  ["email-addr"], "spec_version":  "2.1"}}
