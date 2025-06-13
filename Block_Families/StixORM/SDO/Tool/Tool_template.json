@@ -1,8 +1,8 @@
 {
-  "class_name": "Location",
-  "Location_template":
+  "class_name": "Tool",
+  "Tool_template":
     {
-      "_type": "location",
+      "_type": "tool",
       "base_required": {
         "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
         "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
@@ -21,17 +21,12 @@
         "granular_markings": {"collection": "ListProperty", "property":  "GranularMarking", "parameters": {}}
       },
       "object": {
-        "name": {"property":  "StringProperty", "parameters": {}},
+        "name": {"property":  "StringProperty", "parameters": {"required":  true}},
         "description": {"property":  "StringProperty", "parameters": {}},
-        "latitude": {"property":   "FloatProperty", "parameters": {}},
-        "longitude": {"property":  "FloatProperty", "parameters": {}},
-        "precision": {"property":  "FloatProperty", "parameters": {}},
-        "region": {"property":  "OpenVocabProperty", "parameters": {"vocab":  "REGION"}},
-        "country": {"property":  "StringProperty", "parameters": {}},
-        "administrative_area": {"property":  "StringProperty", "parameters": {}},
-        "city": {"property":  "StringProperty", "parameters": {}},
-        "street_address": {"property":  "StringProperty", "parameters": {}},
-        "postal_code": {"property":  "StringProperty", "parameters": {}}
+        "tool_types": {"collection": "ListProperty", "property":  "OpenVocabProperty", "parameters": {"vocab":  "TOOL_TYPE"}},
+        "aliases": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
+        "kill_chain_phases": {"collection": "ListProperty", "property":  "KillChainPhase", "parameters": {}},
+        "tool_version": {"property":  "StringProperty", "parameters": {}}
       },
       "extensions": {},
       "sub": {}
