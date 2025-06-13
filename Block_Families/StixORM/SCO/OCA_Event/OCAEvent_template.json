@@ -1,0 +1,85 @@
+{
+  "class_name": "OCAEvent",
+  "OCAEvent_template":
+    {
+      "_type": "x-oca-event",
+      "base_required": {
+        "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
+        "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
+        "id": {"property":  "IDProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}}
+      },
+      "base_optional": {
+        "defanged": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
+        "object_marking_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  ["marking-definition"], "spec_version":  "2.1"}},
+        "granular_markings": {"collection": "ListProperty", "property":  "GranularMarking", "parameters": {}}
+      },
+      "object": {
+        "action": {"property":  "StringProperty", "parameters": {}},
+        "category": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
+        "code": {"property":  "StringProperty", "parameters": {}},
+        "description": {"property":  "StringProperty", "parameters": {}},
+        "created": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
+        "start": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
+        "end": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
+        "duration": {"property":  "IntegerProperty", "parameters": {}},
+        "module": {"property":  "StringProperty", "parameters": {}},
+        "original_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["artifact"], "spec_version":  "2.1"}},
+        "provider": {"property":  "StringProperty", "parameters": {}},
+        "agent": {"property":  "StringProperty", "parameters": {}},
+        "host_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["x-oca-asset"], "spec_version":  "2.1"}},
+        "url_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["url"], "spec_version":  "2.1"}},
+        "file_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["file"], "spec_version":  "2.1"}},
+        "process_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["process"], "spec_version":  "2.1"}},
+        "parent_process_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["process"], "spec_version":  "2.1"}},
+        "cross_process_target_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["process"], "spec_version":  "2.1"}},
+        "domain_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["domain-name"], "spec_version":  "2.1"}},
+        "registry_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["windows-registry-key"], "spec_version":  "2.1"}},
+        "network_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["network-traffic"], "spec_version":  "2.1"}},
+        "ip_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  ["ipv4-addr", "ipv6-addr"], "spec_version":  "2.1"}},
+        "user_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["user-account"], "spec_version":  "2.1"}},
+        "severity": {"property":  "IntegerProperty", "parameters": {}},
+        "timezone": {"property":  "StringProperty", "parameters": {}},
+        "dataset": {"property":  "StringProperty", "parameters": {}},
+        "pipe_name": {"property":  "StringProperty", "parameters": {}},
+        "x_ttp_tagging_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  ["x-ibm-ttp-tagging"], "spec_version":  "2.1"}}
+      },
+      "extensions": {
+        "x-iam-ext": {
+          "name": {"property":  "StringProperty", "parameters": {}},
+          "sub_category": {"property":  "StringProperty", "parameters": {}},
+          "realm": {"property":  "StringProperty", "parameters": {}},
+          "application_id": {"property":  "StringProperty", "parameters": {}},
+          "user_id": {"property":  "StringProperty", "parameters": {}},
+          "application_type": {"property":  "StringProperty", "parameters": {}},
+          "browser_agent": {"property":  "StringProperty", "parameters": {}},
+          "application_name": {"property":  "StringProperty", "parameters": {}},
+          "cause": {"property":  "StringProperty", "parameters": {}},
+          "messageid": {"property":  "StringProperty", "parameters": {}},
+          "target": {"property":  "StringProperty", "parameters": {}},
+          "targetid": {"property":  "StringProperty", "parameters": {}},
+          "targetid_realm": {"property":  "StringProperty", "parameters": {}},
+          "targetid_username": {"property":  "StringProperty", "parameters": {}},
+          "performedby_clientname": {"property":  "StringProperty", "parameters": {}},
+          "performedby_realm": {"property":  "StringProperty", "parameters": {}},
+          "performedby_username": {"property":  "StringProperty", "parameters": {}},
+          "continent_name": {"property":  "StringProperty", "parameters": {}},
+          "country_iso_code": {"property":  "StringProperty", "parameters": {}},
+          "country_name": {"property":  "StringProperty", "parameters": {}},
+          "city_name": {"property":  "StringProperty", "parameters": {}},
+          "policy_action": {"property":  "StringProperty", "parameters": {}},
+          "policy_name": {"property":  "StringProperty", "parameters": {}},
+          "rule_name": {"property":  "StringProperty", "parameters": {}},
+          "decision_reason": {"property":  "StringProperty", "parameters": {}},
+          "location_lat": {"property":  "StringProperty", "parameters": {}},
+          "location_lon": {"property":  "StringProperty", "parameters": {}},
+          "risk_level": {"property":  "StringProperty", "parameters": {}},
+          "risk_score": {"property":  "StringProperty", "parameters": {}},
+          "deviceid": {"property":  "StringProperty", "parameters": {}},
+          "is_device_compliant": {"property":  "StringProperty", "parameters": {}},
+          "is_device_managed": {"property":  "StringProperty", "parameters": {}},
+          "mdm_customerid": {"property":  "StringProperty", "parameters": {}}
+        }
+      },
+      "sub": {}
+    }
+}

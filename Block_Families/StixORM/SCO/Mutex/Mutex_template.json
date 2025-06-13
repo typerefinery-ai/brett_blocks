@@ -1,0 +1,22 @@
+{
+  "class_name": "Mutex",
+  "Mutex_template":
+    {
+      "_type": "mutex",
+      "base_required": {
+        "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
+        "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
+        "id": {"property":  "IDProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}}
+      },
+      "base_optional": {
+        "defanged": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
+        "object_marking_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  ["marking-definition"], "spec_version":  "2.1"}},
+        "granular_markings": {"collection": "ListProperty", "property":  "GranularMarking", "parameters": {}}
+      },
+      "object": {
+        "name": {"property":  "StringProperty", "parameters": {"required":  true}}
+      },
+      "extensions": {},
+      "sub": {}
+    }
+}

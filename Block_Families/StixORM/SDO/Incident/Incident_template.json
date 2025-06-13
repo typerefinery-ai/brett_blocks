@@ -36,7 +36,7 @@
           "recoverability": {"property":   "EnumProperty", "parameters": {"vocab":  "RECOVERABILITY"}},
           "impacted_entity_counts": {"property":  "DictionaryProperty", "parameters": {"Spec_version":  "2.1"}},
           "scores": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type":  "IncidentScoreObject"}},
-          "sequence_start_refs": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {"valid_types":  ["sequence"]}},
+          "sequence_start_refs": {"collection": "ListProperty", "property":  "ThreatReference", "parameters": {"valid_types":  ["sequence"]}},
           "sequence_refs": {"collection": "ListProperty", "property":  "ThreatReference", "parameters": {"valid_types":  ["sequence"]}},
           "task_refs": {"collection": "ListProperty", "property":  "ThreatReference", "parameters": {"valid_types":  ["task"]}},
           "event_refs": {"collection": "ListProperty", "property":  "ThreatReference", "parameters": {"valid_types":  ["event"]}},

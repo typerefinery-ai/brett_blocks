@@ -1,0 +1,56 @@
+{
+  "class_name": "OCAAsset",
+  "OCAAsset_template":
+    {
+      "_type": "x-oca-asset",
+      "base_required": {
+        "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
+        "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
+        "id": {"property":  "IDProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}}
+      },
+      "base_optional": {
+        "defanged": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
+        "object_marking_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  ["marking-definition"], "spec_version":  "2.1"}},
+        "granular_markings": {"collection": "ListProperty", "property":  "GranularMarking", "parameters": {}}
+      },
+      "object": {
+        "device_id": {"property":  "StringProperty", "parameters": {}},
+        "hostname": {"property":  "StringProperty", "parameters": {}},
+        "ip_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  ["ipv4-addr", "ipv6-addr"], "spec_version":  "2.1"}},
+        "mac_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  ["mac-addr"], "spec_version":  "2.1"}},
+        "os_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["software"], "spec_version":  "2.1"}},
+        "architecture": {"property":  "StringProperty", "parameters": {}},
+        "uptime": {"property":  "StringProperty", "parameters": {}},
+        "host_type": {"property":  "StringProperty", "parameters": {}},
+        "ingress": {"property": "EmbeddedObjectProperty", "parameters": {"type": "OCATrafficSubObject"}},
+        "egress": {"property": "EmbeddedObjectProperty", "parameters": {"type": "OCATrafficSubObject"}},
+        "geo_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["x-oca-geo"], "spec_version":  "2.1"}}
+      },
+      "extensions": {
+        "x-oca-pod-ext": {
+          "type": {"property":  "StringProperty", "parameters": {}},
+          "name": {"property":  "StringProperty", "parameters": {}},
+          "ip_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  ["ipv4-addr", "ipv6-addr"], "spec_version":  "2.1"}}
+        },
+        "x-oca-container-ext": {
+          "name": {"property":  "StringProperty", "parameters": {}},
+          "container_id": {"property":  "StringProperty", "parameters": {}},
+          "image_name": {"property":  "StringProperty", "parameters": {}},
+          "image_id": {"property":  "StringProperty", "parameters": {}},
+          "container_type": {"property":  "StringProperty", "parameters": {}},
+          "privileged": {"property":  "BooleanProperty", "parameters": {}}
+        }
+      },
+      "sub": {
+        "OCATrafficSubObject": {
+          "zone": {"property":  "StringProperty", "parameters": {}},
+          "interfaces": {"collection": "ListProperty", "property": "EmbeddedObjectProperty", "parameters": {"type": "OCATrafficSubObject"}}
+        },
+        "OCAIntefaceSubObject": {
+          "alias": {"property":  "StringProperty", "parameters": {}},
+          "interface_id": {"property":  "StringProperty", "parameters": {}},
+          "name": {"property":  "StringProperty", "parameters": {}}
+        }
+      }
+    }
+}

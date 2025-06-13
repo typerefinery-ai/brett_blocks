@@ -1,6 +1,6 @@
 {
-  "class_name": "Process",
-  "Process_template":
+  "class_name": "OCAProcess",
+  "OCAProcess_template":
     {
       "_type": "process",
       "base_required": {
@@ -14,6 +14,12 @@
         "granular_markings": {"collection": "ListProperty", "property":  "GranularMarking", "parameters": {}}
       },
       "object": {
+        "x_window_title": {"property":  "StringProperty", "parameters": {}},
+        "x_thread_id": {"property":  "StringProperty", "parameters": {}},
+        "x_exit_code": {"property":  "StringProperty", "parameters": {}},
+        "x_uptime": {"property":  "StringProperty", "parameters": {}},
+        "x_unique_id": {"property":  "StringProperty", "parameters": {}},
+        "x_tags": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
         "is_hidden": {"property":  "BooleanProperty", "parameters": {"required":  true}},
         "pid": {"property":  "IntegerProperty", "parameters": {}},
         "created_time": {"property":  "TimestampProperty", "parameters": {}},

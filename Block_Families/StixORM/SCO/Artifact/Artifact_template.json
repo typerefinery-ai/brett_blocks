@@ -1,0 +1,27 @@
+{
+  "class_name": "Artifact",
+  "Artifact_template":
+    {
+      "_type": "artifact",
+      "base_required": {
+        "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
+        "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
+        "id": {"property":  "IDProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}}
+      },
+      "base_optional": {
+        "defanged": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
+        "object_marking_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  ["marking-definition"], "spec_version":  "2.1"}},
+        "granular_markings": {"collection": "ListProperty", "property":  "GranularMarking", "parameters": {}}
+      },
+      "object": {
+        "mime_type": {"property":  "StringProperty", "parameters": {}},
+        "payload_bin": {"property":  "BinaryProperty", "parameters": {}},
+        "url": {"property":  "StringProperty", "parameters": {}},
+        "hashes": {"property": "HashesProperty", "parameters": {"spec_hash_names": "HASHING_ALGORITHM", "spec_version": "2.1"}},
+        "encryption_algorithm": {"property":   "EnumProperty", "parameters": {"vocab":  "ENCRYPTION_ALGORITHM"}},
+        "decryption_key": {"property":  "StringProperty", "parameters": {}}
+      },
+      "extensions": {},
+      "sub": {}
+    }
+}

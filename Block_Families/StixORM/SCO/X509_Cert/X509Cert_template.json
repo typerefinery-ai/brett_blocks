@@ -1,0 +1,53 @@
+{
+  "class_name": "X509Certificate",
+  "X509Certificate_template":
+    {
+      "_type": "x509-certificate",
+      "base_required": {
+        "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
+        "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
+        "id": {"property":  "IDProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}}
+      },
+      "base_optional": {
+        "defanged": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
+        "object_marking_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  ["marking-definition"], "spec_version":  "2.1"}},
+        "granular_markings": {"collection": "ListProperty", "property":  "GranularMarking", "parameters": {}}
+      },
+      "object": {
+        "is_self_signed": {"property":  "BooleanProperty", "parameters": {}},
+        "hashes": {"property": "HashesProperty", "parameters": {"spec_hash_names": "HASHING_ALGORITHM", "spec_version": "2.1"}},
+        "version": {"property":  "StringProperty", "parameters": {}},
+        "serial_number": {"property":  "StringProperty", "parameters": {}},
+        "signature_algorithm": {"property":  "StringProperty", "parameters": {}},
+        "issuer": {"property":  "StringProperty", "parameters": {}},
+        "validity_not_before": {"property":  "TimestampProperty", "parameters": {}},
+        "validity_not_after": {"property":  "TimestampProperty", "parameters": {}},
+        "subject": {"property":  "StringProperty", "parameters": {}},
+        "subject_public_key_algorithm": {"property":  "StringProperty", "parameters": {}},
+        "subject_public_key_modulus": {"property":  "StringProperty", "parameters": {}},
+        "subject_public_key_exponent": {"property":  "IntegerProperty", "parameters": {}},
+        "alternate_data_streams": {"property": "EmbeddedObjectProperty", "parameters": {"type": "X509V3ExtensionsType"}}
+      },
+      "extensions": {},
+      "sub": {
+        "X509V3ExtensionsType": {
+          "basic_constraints": {"property":  "StringProperty", "parameters": {}},
+          "name_constraints": {"property":  "StringProperty", "parameters": {}},
+          "policy_constraints": {"property":  "StringProperty", "parameters": {}},
+          "key_usage": {"property":  "StringProperty", "parameters": {}},
+          "extended_key_usage": {"property":  "StringProperty", "parameters": {}},
+          "subject_key_identifier": {"property":  "StringProperty", "parameters": {}},
+          "authority_key_identifier": {"property":  "StringProperty", "parameters": {}},
+          "subject_alternative_name": {"property":  "StringProperty", "parameters": {}},
+          "issuer_alternative_name": {"property":  "StringProperty", "parameters": {}},
+          "subject_directory_attributes": {"property":  "StringProperty", "parameters": {}},
+          "crl_distribution_points": {"property":  "StringProperty", "parameters": {}},
+          "inhibit_any_policy": {"property":  "StringProperty", "parameters": {}},
+          "private_key_usage_period_not_before": {"property":  "TimestampProperty", "parameters": {}},
+          "private_key_usage_period_not_after": {"property":  "TimestampProperty", "parameters": {}},
+          "certificate_policies": {"property":  "StringProperty", "parameters": {}},
+          "policy_mappings": {"property":  "StringProperty", "parameters": {}}
+        }
+      }
+    }
+}

@@ -1,0 +1,42 @@
+{
+  "class_name": "WindowsRegistryKey",
+  "WindowsRegistryKey_template":
+    {
+      "_type": "windows-registry-key",
+      "base_required": {
+        "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
+        "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
+        "id": {"property":  "IDProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}}
+      },
+      "base_optional": {
+        "defanged": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
+        "object_marking_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  ["marking-definition"], "spec_version":  "2.1"}},
+        "granular_markings": {"collection": "ListProperty", "property":  "GranularMarking", "parameters": {}}
+      },
+      "object": {
+        "key": {"property":  "StringProperty", "parameters": {}},
+        "values": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type":  "WindowsRegistryValueType"}},
+        "modified_time": {"property":  "TimestampProperty", "parameters": {}},
+        "creator_user_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["user-account"], "spec_version":  "2.1"}},
+        "number_of_subkeys": {"property":  "IntegerProperty", "parameters": {}}
+      },
+      "extensions": {
+        "extension-definition--2cf8c8c2-69f5-40f7-aa34-efcef2b912b1": {
+          "extension_type" : {"property":  "StringProperty", "parameters": {"required":  true, "fixed":  "property-extension"}},
+          "operation_type": {"property": "StringProperty", "parameters": {}},
+          "user": {"property": "StringProperty", "parameters": {}},
+          "computer": {"property": "StringProperty", "parameters": {}},
+          "new_value": {"property": "StringProperty", "parameters": {}},
+          "process_id": {"property": "StringProperty", "parameters": {}},
+          "process_name": {"property": "StringProperty", "parameters": {}}
+        }
+      },
+      "sub": {
+        "WindowsRegistryValueType": {
+          "name": {"property":  "StringProperty", "parameters": {}},
+          "data": {"property":  "StringProperty", "parameters": {}},
+          "data_type": {"property":  "OpenVocabProperty", "parameters": {"vocab":  "WINDOWS_REGISTRY_DATATYPE", "required":  true}}
+        }
+      }
+    }
+}

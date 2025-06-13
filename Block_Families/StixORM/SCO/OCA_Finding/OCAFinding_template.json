@@ -1,0 +1,52 @@
+{
+  "class_name": "OCAFinding",
+  "OCAFinding_template":
+    {
+      "_type": "x-ibm-finding",
+      "base_required": {
+        "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
+        "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
+        "id": {"property":  "IDProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}}
+      },
+      "base_optional": {
+        "defanged": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
+        "object_marking_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  ["marking-definition"], "spec_version":  "2.1"}},
+        "granular_markings": {"collection": "ListProperty", "property":  "GranularMarking", "parameters": {}}
+      },
+      "object": {
+        "finding_type": {"property":  "StringProperty", "parameters": {"required":  true}},
+        "x_window_title": {"property":  "StringProperty", "parameters": {}},
+        "name": {"property":  "StringProperty", "parameters": {}},
+        "description": {"property":  "StringProperty", "parameters": {}},
+        "alert_id": {"property":  "StringProperty", "parameters": {}},
+        "src_ip_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["ipv4-addr", "ipv6-addr"], "spec_version":  "2.1"}},
+        "dst_ip_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["ipv4-addr", "ipv6-addr"], "spec_version":  "2.1"}},
+        "src_os_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["software"], "spec_version":  "2.1"}},
+        "dst_os_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["software"], "spec_version":  "2.1"}},
+        "src_application_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["software"], "spec_version":  "2.1"}},
+        "dst_application_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["software"], "spec_version":  "2.1"}},
+        "src_geo_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["x-oca-geo"], "spec_version":  "2.1"}},
+        "src_device": {"property":  "StringProperty", "parameters": {}},
+        "dst_device": {"property":  "StringProperty", "parameters": {}},
+        "src_application_user_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["user-account"], "spec_version":  "2.1"}},
+        "dst_application_user_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["user-account"], "spec_version":  "2.1"}},
+        "src_database_user_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["user-account"], "spec_version":  "2.1"}},
+        "dst_database_user_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["user-account"], "spec_version":  "2.1"}},
+        "src_os_user_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["user-account"], "spec_version":  "2.1"}},
+        "dst_os_user_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["user-account"], "spec_version":  "2.1"}},
+        "severity": {"property":  "StringProperty", "parameters": {}},
+        "confidence": {"property":  "StringProperty", "parameters": {}},
+        "magnitude": {"property":  "IntegerProperty", "parameters": {}},
+        "rule_trigger_count": {"property":  "IntegerProperty", "parameters": {}},
+        "rule_names": {"property":  "StringProperty", "parameters": {}},
+        "event_count": {"property":  "StringProperty", "parameters": {}},
+        "time_observed": {"property":  "StringProperty", "parameters": {}},
+        "start": {"property":  "IntegerProperty", "parameters": {}},
+        "end": {"property":  "IntegerProperty", "parameters": {}},
+        "ttp_tagging_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  ["attack-pattern", "x-mitre-tactic", "relationship"], "spec_version":  "2.1"}},
+        "ioc_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  ["file", "ipv4-addr", "ipv6-addr", "domain", "url"], "spec_version":  "2.1"}}
+      },
+      "extensions": {},
+      "sub": {}
+    }
+}

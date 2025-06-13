@@ -1,0 +1,35 @@
+{
+  "class_name": "OCAGeo",
+  "OCAGeo_template":
+    {
+      "_type": "x-oca-geo",
+      "base_required": {
+        "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
+        "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
+        "id": {"property":  "IDProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}}
+      },
+      "base_optional": {
+        "defanged": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
+        "object_marking_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  ["marking-definition"], "spec_version":  "2.1"}},
+        "granular_markings": {"collection": "ListProperty", "property":  "GranularMarking", "parameters": {}}
+      },
+      "object": {
+        "city_name": {"property":  "StringProperty", "parameters": {}},
+        "continent_name": {"property":  "StringProperty", "parameters": {}},
+        "country_iso_code": {"property":  "StringProperty", "parameters": {}},
+        "country_name": {"property":  "StringProperty", "parameters": {}},
+        "location": {"property": "EmbeddedObjectProperty", "parameters": {"type": "OCACoordinatesSubObject"}},
+        "name": {"property":  "StringProperty", "parameters": {}},
+        "region_iso_code": {"property":  "StringProperty", "parameters": {}},
+        "region_name": {"property":  "StringProperty", "parameters": {}},
+        "time_zone": {"property":  "StringProperty", "parameters": {}}
+      },
+      "extensions": {},
+      "sub": {
+        "OCACoordinatesSubObject": {
+          "lon": {"property": "FloatProperty", "parameters": {}},
+          "lat": {"property": "FloatProperty", "parameters": {}}
+        }
+      }
+    }
+}
