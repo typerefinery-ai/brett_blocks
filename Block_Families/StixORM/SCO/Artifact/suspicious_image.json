@@ -1,0 +1,24 @@
+{
+  "artifact_form": {
+    "base_required": {
+      "type": "artifact",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "external_references": [],
+      "object_marking_refs": [],
+      "granular_markings": [],
+      "defanged": false
+    },
+    "object": {
+      "mime_type": "image/jpeg",
+      "hashes": {
+        "SHA-256": "b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9"
+      },
+      "payload_bin": "/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

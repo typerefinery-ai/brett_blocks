@@ -1,0 +1,28 @@
+{
+  "artifact_form": {
+    "base_required": {
+      "type": "artifact",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "external_references": [],
+      "object_marking_refs": [],
+      "granular_markings": [],
+      "defanged": false
+    },
+    "object": {
+      "mime_type": "application/zip",
+      "hashes": {
+        "MD5": "098f6bcd4621d373cade4e832627b4f6",
+        "SHA-1": "a94a8fe5ccb19ba61c4c0873d391e987982fbbd3",
+        "SHA-256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+      },
+      "url": "https://attacker-infrastructure.com/payload.zip",
+      "encryption_algorithm": "AES256-CBC",
+      "decryption_key": "infected_archive_key"
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

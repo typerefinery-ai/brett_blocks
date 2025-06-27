@@ -1,0 +1,22 @@
+{
+  "artifact_form": {
+    "base_required": {
+      "type": "artifact",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "external_references": [],
+      "object_marking_refs": [],
+      "granular_markings": [],
+      "defanged": true
+    },
+    "object": {
+      "mime_type": "text/html",
+      "payload_bin": "PGh0bWw+PGJvZHk+PGgxPk1hbGljaW91cyBQYWdlPC9oMT48L2JvZHk+PC9odG1sPg==",
+      "url": "hxxp://bad-domain[.]com/phishing.html"
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}
