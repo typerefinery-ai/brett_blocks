@@ -1,0 +1,34 @@
+{
+  "class_name": "ExtensionDefinition",
+  "ExtensionDefinition_template":
+    {
+      "_type": "extension-definition",
+      "base_required": {
+        "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
+        "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
+        "id": {"property":  "IDProperty", "parameters": {"value":  "_type", "Spec_version":  "2.1"}},
+        "created": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
+        "modified": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}}
+      },
+      "base_optional": {
+        "created_by_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["identity"], "spec_version":  "2.1"}},
+        "revoked": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
+        "labels": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
+        "confidence": {"property":  "IntegerProperty", "parameters": {"min": 0}},
+        "lang": {"property":  "StringProperty", "parameters": {}},
+        "external_references": {"collection": "ListProperty", "property":  "ExternalReference", "parameters": {}},
+        "object_marking_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  ["marking-definition"], "spec_version":  "2.1"}},
+        "granular_markings": {"collection": "ListProperty", "property":  "GranularMarking", "parameters": {}}
+      },
+      "object": {
+        "name": {"property":  "StringProperty", "parameters": {"required":  true}},
+        "description": {"property":  "StringProperty", "parameters": {}},
+        "schema": {"property":  "StringProperty", "parameters": {}},
+        "version": {"property":  "StringProperty", "parameters": {}},
+        "extension_types": {"property":  "EnumProperty", "parameters": {"vocab":  "EXTENSION_TYPE"}},
+        "extension_properties": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}}
+      },
+      "extensions": {},
+      "sub": {}
+    }
+}
