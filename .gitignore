@@ -1,2 +1,66 @@
 /Orchestration/generated/os-triage/context_mem/
 /Orchestration/Results/
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.pyo
+*.pyd
+*.pdb
+*.log
+*.pot
+*.mo
+*.db
+*.sqlite3
+*.env
+*.venv
+venv/
+ENV/
+.env
+.env.*
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Archives
+*.zip
+*.tar.gz
+*.tar
+*.rar
+*.7z
+
+# Test & coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+
+# Misc
+*.swp
+*.swo
+*~
+
+# Project-specific
+/Orchestration/generated/
+/Orchestration/generate.zip
+/typedb_log.txt
+/DeepDiff_*.json
+/Orchestration/incident--*.json
+/Orchestration/test.json
+/Orchestration/Old - Step_3 _Get the Context.ipynb
+/Orchestration/Unzip_in_FastAPI_Directory.zip

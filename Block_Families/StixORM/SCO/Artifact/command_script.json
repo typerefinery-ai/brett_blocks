@@ -1,0 +1,24 @@
+{
+  "artifact_form": {
+    "base_required": {
+      "type": "artifact",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "external_references": [],
+      "object_marking_refs": [],
+      "granular_markings": [],
+      "defanged": false
+    },
+    "object": {
+      "mime_type": "text/plain",
+      "payload_bin": "VGhpcyBpcyBhIHNhbXBsZSB0ZXh0IGZpbGUgY29udGFpbmluZyBtYWxpY2lvdXMgY29udGVudC4gSXQgbWF5IGNvbnRhaW4gY29tbWFuZHMgb3IgZGF0YSB1c2VkIGJ5IGF0dGFja2Vycy4=",
+      "hashes": {
+        "SHA-256": "ed968e840d10d2d313a870bc131a4e2c311d7ad09bdf32b3418147221f51a6e2"
+      }
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}
