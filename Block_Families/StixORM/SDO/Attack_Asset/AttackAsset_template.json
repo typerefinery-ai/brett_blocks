@@ -1,8 +1,8 @@
 {
-  "class_name": "Event",
-  "Event_template":
+  "class_name": "AttackAsset",
+  "AttackAsset_template":
     {
-      "_type": "event",
+      "_type": "x-mitre-asset",
       "base_required": {
         "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
         "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
@@ -23,27 +23,21 @@
       "object": {
         "name": {"property":  "StringProperty", "parameters": {"required":  true}},
         "description": {"property":  "StringProperty", "parameters": {}},
-        "status": {"property":  "EnumProperty", "parameters": {"vocab":  "EVENT_STATUS"}},
-        "goal": {"property":  "StringProperty", "parameters": {}},
-        "changed_objects": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type":  "StateChangeObject"}},
-        "end_time": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
-        "end_time_fidelity": {"property":   "EnumProperty", "parameters": {"vocab":  "timestamp-fidelity-enum"}},
-        "event_types": {"collection": "ListProperty", "property":   "OpenVocabProperty", "parameters": {"vocab":  "EVENT_TYPE"}},
-        "sighting_refs": {"collection": "ListProperty", "property":  "ThreatReference", "parameters": {"valid_types":  ["_any"]}},
-        "start_time": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
-        "start_time_fidelity": {"property":   "EnumProperty", "parameters": {"vocab":  "TIMESTAMP_FIDELITY"}}
+        "x_mitre_version": {"property":  "StringProperty", "parameters": {}},
+        "x_mitre_contributors": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
+        "x_mitre_modified_by_ref": {"property":  "ThreatReference", "parameters": {"valid_types":  ["identity"], "spec_version":  "2.1"}},
+        "x_mitre_domains": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
+        "x_mitre_attack_spec_version": {"property":  "StringProperty", "parameters": {}},
+        "x_mitre_deprecated": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
+        "x_mitre_sectors": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
+        "x_mitre_related_assets": {"collection": "ListProperty", "property": "EmbeddedObjectProperty", "parameters": {"type": "RelatedAsset"}}
       },
-      "extensions": {
-        "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
-          "extension_type" : {"property":  "StringProperty", "parameters": {"required":  true, "fixed":  "new-sdo"}}
-        }
-      },
+      "extensions": {},
       "sub": {
-        "StateChangeObject": {
-          "_type": "contact-number",
-          "state_change_type": {"property":  "StringProperty", "parameters": {}},
-          "initial_ref" : {"property":  "ThreatReference", "parameters": {"valid_types":  ["_any"], "spec_version":  "2.1"}},
-          "result_ref" : {"property":  "ThreatReference", "parameters": {"valid_types":  ["_any"], "spec_version":  "2.1"}}
+        "RelatedAsset": {          
+          "name": {"property":  "StringProperty", "parameters": {}},
+          "related_asset_sectors": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
+          "description": {"property":  "StringProperty", "parameters": {}}
         }
       }
     }

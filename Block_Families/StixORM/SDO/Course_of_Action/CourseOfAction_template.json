@@ -22,9 +22,15 @@
       },
       "object": {
         "name": {"property":  "StringProperty", "parameters": {"required":  true}},
-        "description": {"property":  "StringProperty", "parameters": {}}
+        "description": {"property":  "StringProperty", "parameters": {}},
+        "action": {"property":  "StringProperty", "parameters": {}}
       },
-      "extensions": {},
+      "extensions": {
+        "extension-definition--bbc1d5c8-7ddc-4e89-be9c-f33ad02d71dd": {
+          "extension_type" : {"property":  "StringProperty", "parameters": {"required":  true, "fixed":  "property-extension"}},
+          "playbooks": {"property": "DictionaryProperty", "parameters": {"spec_version": "2.1"}}
+        }
+      },
       "sub": {}
     }
 }

@@ -28,7 +28,12 @@
         "kill_chain_phases": {"collection": "ListProperty", "property":  "KillChainPhase", "parameters": {}},
         "tool_version": {"property":  "StringProperty", "parameters": {}}
       },
-      "extensions": {},
+      "extensions": {
+        "extension-definition--fb58a27d-32d2-4b8d-9705-e3cfd2d3dcdf": {
+          "extension_type" : {"property":  "StringProperty", "parameters": {"required":  true, "fixed":  "property-extension"}},
+          "high_value_target_attributes": {"collection": "ListProperty", "property":   "OpenVocabProperty", "parameters": {"vocab":  "HIGH_VALE_TARGET_ATTRIBUTE"}}
+        }
+      },
       "sub": {}
     }
 }

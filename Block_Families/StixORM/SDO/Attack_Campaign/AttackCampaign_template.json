@@ -1,6 +1,6 @@
 {
-  "class_name": "Campaign",
-  "Campaign_template":
+  "class_name": "AttackCampaign",
+  "AttackCampaign_template":
     {
       "_type": "campaign",
       "base_required": {
@@ -27,7 +27,15 @@
         "aliases": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
         "first_seen": {"property":  "TimestampProperty", "parameters": {}},
         "last_seen": {"property":  "TimestampProperty", "parameters": {}},
-        "objective": {"property":  "StringProperty", "parameters": {}}
+        "objective": {"property":  "StringProperty", "parameters": {}},
+        "x_mitre_version": {"property":  "StringProperty", "parameters": {}},
+        "x_mitre_contributors": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
+        "x_mitre_modified_by_ref": {"property":  "ThreatReference", "parameters": {"valid_types":  ["identity"], "spec_version":  "2.1"}},
+        "x_mitre_domains": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
+        "x_mitre_attack_spec_version": {"property":  "StringProperty", "parameters": {}},
+        "x_mitre_deprecated": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
+        "x_mitre_first_seen_citation": {"property":  "StringProperty", "parameters": {}},
+        "x_mitre_last_seen_citation": {"property":  "StringProperty", "parameters": {}}
       },
       "extensions": {},
       "sub": {}

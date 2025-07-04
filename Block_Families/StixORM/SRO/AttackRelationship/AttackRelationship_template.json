@@ -1,12 +1,13 @@
 {
-  "class_name": "Tactic",
-  "Tactic_template":
+  "class_name": "AttackRelationship",
+  "AttackRelationship_template":
     {
-      "_type": "x-mitre-tactic",
+      "_type": "relationship",
+      "_invalid_source_target_types":  ["bundle", "language-content", "marking-definition", "relationship", "sighting"],
       "base_required": {
         "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
         "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
-        "id": {"property":  "IDProperty", "parameters": {"value":  "_type", "Spec_version":  "2.1"}},
+        "id": {"property":  "IDProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
         "created": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
         "modified": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}}
       },
@@ -21,15 +22,18 @@
         "granular_markings": {"collection": "ListProperty", "property":  "GranularMarking", "parameters": {}}
       },
       "object": {
-        "name": {"property":  "StringProperty", "parameters": {"required":  true}},
+        "relationship_type": {"property":  "StringProperty", "parameters": {"required":  true}},
         "description": {"property":  "StringProperty", "parameters": {}},
+        "source_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types": ["_any"], "required":  true, "spec_version":  "2.1"}},
+        "target_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types": ["_any"], "required":  true, "spec_version":  "2.1"}},
+        "start_time": {"property":  "TimestampProperty", "parameters": {}},
+        "stop_time": {"property":  "TimestampProperty", "parameters": {}},
         "x_mitre_version": {"property":  "StringProperty", "parameters": {}},
         "x_mitre_contributors": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
         "x_mitre_modified_by_ref": {"property":  "ThreatReference", "parameters": {"valid_types":  ["identity"], "spec_version":  "2.1"}},
         "x_mitre_domains": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
         "x_mitre_attack_spec_version": {"property":  "StringProperty", "parameters": {}},
-        "x_mitre_deprecated": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
-        "x_mitre_shortname": {"property":  "StringProperty", "parameters": {}}
+        "x_mitre_deprecated": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}}
       },
       "extensions": {},
       "sub": {}
