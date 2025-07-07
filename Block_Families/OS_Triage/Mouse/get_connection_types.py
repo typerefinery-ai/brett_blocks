@@ -110,6 +110,35 @@ field_names = {
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
+
+def clean_string_convert_to_list(string):
+	"""Convert a string to a list of strings."""	
+	result_list = []	
+	if isinstance(string, str):
+		# Check if a comma exists and split
+		if ',' in string:
+			result_list = string.split(',')
+		else:
+			result_list = [string]  # Keep the string as is if no comma
+		# strip out any space in the strings in the list
+		result_list = [item.strip() for item in result_list]
+		return result_list
+	elif isinstance(string, list):
+		# For each item in the list, split on any commas
+		for item in string:
+			if isinstance(item, str):
+				if ',' in item:
+					result_list += item.split(',')
+				else:
+					result_list.append(item)
+		# strip out any space in the strings in the list
+		result_list = [item.strip() for item in result_list]
+		return result_list
+	else:
+		return result_list
+
+
+
 def  process_category(stix_object, constraint):
     # 1. StixORM stuff
     auth_factory = get_auth_factory_instance()
@@ -158,7 +187,7 @@ def get_connection_type(source, target):
         source_passes = False
         target_passes = False
         connect_source = connect_layer["source_type"]
-        connect_target_list = connect_layer["target_type"]
+        connect_target_list = clean_string_convert_to_list(connect_layer["target_type"])
         # 6.A Evaluate whether the source object is in the source
         # 1. Consider the constraint source first
         if connect_source[:1] == "_":
@@ -177,7 +206,7 @@ def get_connection_type(source, target):
             # 2. Consider the constraint target second
             if connect_target[:1] == "_":
                 if connect_target == "_same":
-                    if source_type == source_type:
+                    if target_type == source_type:
                         source_passes = True
                         target_passes = True
                         break

@@ -226,7 +226,6 @@ def save_context(stix_object, context_type="unattached"):
 
 
 def main(inputfile, outputfile):
-    context_type = None
     context_type_string = ""
     stix_object = None
     if os.path.exists(inputfile):

@@ -56,7 +56,6 @@ htmlcov/
 *~
 
 # Project-specific
-/Orchestration/generated/
 /Orchestration/generate.zip
 /typedb_log.txt
 /DeepDiff_*.json

@@ -10,6 +10,7 @@ results_base = "../Orchestration/Results/"
 #          Form Actions
 from Block_Families.OS_Triage.Mouse.get_relationship_types import main as get_relationship_type
 from Block_Families.OS_Triage.Mouse.get_connection_types import main as get_connection_types
+from Block_Families.OS_Triage.Form_Actions.get_connections import main as get_connections
 ###############################################################################################
 #              RMB Menu Actions
 from Block_Families.OS_Triage.Mouse.rmb_tree_copy import main as rmb_tree_copy
@@ -252,7 +253,7 @@ def invoke_get_relationship_type_block(source_dict_path, target_dict_path, resul
 
 def invoke_get_connection_type_block(source_dict_path, target_dict_path, results_path):
     #
-    # 1. Set the Relative Input and Output Paths for the block
+    # 1. Set the Connection Types for two objects
     #
     #
     # NOTE: This code is only To fake input ports
@@ -281,6 +282,37 @@ def invoke_get_connection_type_block(source_dict_path, target_dict_path, results
         with open(results_path, "r") as script_input:
             export_data = json.load(script_input)
             return export_data
+
+
+
+
+
+def invoke_get_connections_block(object_type, object_field, results_path):
+    #
+    # 1. Get the valid Connection objects from unattached for a given form and field
+    #
+    #
+    # NOTE: This code is only To fake input ports
+    # Add the User Account object and the  EmailAddress
+    # NOTE: This code is only To fake input ports
+    ##
+    # Make the Observed Data object
+    local_inputs = {}
+    source_target_path = "../Orchestration/Results/step1/context/get_connections_from_unattached.json"
+    local_inputs["object_type"] = object_type
+    local_inputs["object_field"] = object_field
+    with open(source_target_path, 'w') as f:
+        f.write(json.dumps(local_inputs))
+    get_connections(source_target_path,results_path)
+    #
+    # Remove the context type record
+    #
+    #
+    if os.path.exists(results_path):
+        with open(results_path, "r") as script_input:
+            export_data = json.load(script_input)
+            return export_data
+
 
 
 

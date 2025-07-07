@@ -109,31 +109,65 @@ field_names = {
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
-def  process_category(stix_object, constraint):
-    # 1. StixORM stuff
-    auth_factory = get_auth_factory_instance()
-    auth = auth_factory.get_auth_for_import(import_type)
-    auth_types = copy.deepcopy(auth["types"])
-    stix_dict = stix_object.__dict__
-    # 2. Step through the constraints
-    if constraint == "_any":
-        return True
-    elif constraint == "_attack":
-        return False if not stix_dict.get("x_mitre_version", False) else True
-    elif constraint == "_sdo":
-        if stix_object.type in auth_types["sdo"]:
-            logger.debug(f' going into sdo ---? {stix_object}')
-            return True
-    elif constraint == "_sco":
-        if stix_object.type in auth_types["sco"]:
-            logger.debug(f' going into sco ---? {stix_object}')
-            return True
-    else:
-        pass
+
+
+def clean_string_convert_to_list(string):
+	"""Convert a string to a list of strings."""	
+	result_list = []	
+	if isinstance(string, str):
+		# Check if a comma exists and split
+		if ',' in string:
+			result_list = string.split(',')
+		else:
+			result_list = [string]  # Keep the string as is if no comma
+		# strip out any space in the strings in the list
+		result_list = [item.strip() for item in result_list]
+		return result_list
+	elif isinstance(string, list):
+		# For each item in the list, split on any commas
+		for item in string:
+			if isinstance(item, str):
+				if ',' in item:
+					result_list += item.split(',')
+				else:
+					result_list.append(item)
+		# strip out any space in the strings in the list
+		result_list = [item.strip() for item in result_list]
+		return result_list
+	else:
+		return result_list
+
+
+
+def check_object(unattached_obj, object_field, object_type, constraint_list):
+    """Check if the unattached object passes the constraints."""
+    # For each string constraint in the constraint list, run the clean string convert to list
+    for string_constraint in constraint_list:
+        # 1. clean the string and convert to a list
+        constraints = clean_string_convert_to_list(string_constraint)
+        # 2. for each constraint in constraints, check if the object passes
+        for constraint in constraints:
+            # 2.1 check if the object passes the constraint
+            if constraint == "_any":
+                    return True
+            elif constraint == "_same":
+                if unattached_obj["type"] == object_type:
+                    return True
+            elif constraint == "_attack":
+                if unattached_obj.get("x_mitre_version", False):
+                    return True
+            elif constraint == "_sdo":
+                if unattached_obj["type"] in import_type["types"]["sdo"]:
+                    return True
+            elif constraint == "_sco":
+                if unattached_obj["type"] in import_type["types"]["sco"]:
+                    return True
+            elif constraint == unattached_obj["type"]:
+                return True
 
     return False
 
-def get_objects_from_unattached(object_type, target_types, description):
+def get_objects_from_unattached(object_type, object_field, constraint_list):
     valid_connections = []
     with open(TR_Context_Memory_Dir + "/" + context_map, "r") as current_context:
         local_map = json.load(current_context)
@@ -145,32 +179,19 @@ def get_objects_from_unattached(object_type, target_types, description):
                 unattached_nodes = json.load(mem_input)
                 for unattached_obj in unattached_nodes:
                     object_passes = False
-                    for target_type in target_types:
-                        if target_type[:1] == "_":
-                            if target_type == "_same":
-                                if unattached_obj["type"] == object_type:
-                                    object_passes = True
-                                    continue
-                            else:
-                                # constraint type is general category
-                                object_passes = process_category(unattached_obj, target_type)
-                                continue
-                        else:
-                            # constraint type a direct type
-                            if unattached_obj["type"] == target_type:
-                                object_passes = True
-                                continue
-
-                        if object_passes:
-                            layer = {}
-                            layer["key"] = unattached_obj["id"]
-                            layer["label"] = unattached_obj["id"]
-                            layer["description"] = description
-                            valid_connections.append((layer))
+                    object_passes = check_object(unattached_obj, object_field, object_type, constraint_list)
+                    if object_passes:
+                        valid_connections.append(unattached_obj)
 
     return valid_connections
 
-def get_connection_type(object_type, object_field):
+def get_connections(object_type: str, object_field: str):
+    """Get the connections for a specific object type and field.
+    Args:
+        object_type (str): The type of the object to get connections for.
+        object_field (str): The field of the object to get connections for.
+    Returns:
+        list: A list of valid connections for the object type and field."""
     # note they are stix objects, not dicts
     # 1. Get the SRO Types List open
     Connection_Types_File = TR_dialect_data + connection_types
@@ -180,28 +201,20 @@ def get_connection_type(object_type, object_field):
         os.makedirs(TR_dialect_data)
     # 3. Setup key variables needed
     valid_connections = []
+    constraint_list = []
     if os.path.exists(Connection_Types_File):
         with open(Connection_Types_File, "r") as mem_input:
-            connection_list = json.load(mem_input)
+            constraint_list = json.load(mem_input)
     # 6. For each constraint in the list, find which ones fit the source-target
-    for connect_layer in connection_list:
-        source_passes = False
-        connect_source = connect_layer["source_type"]
-        connect_field = connect_layer["field"]
-        # 6.A Evaluate whether the source object is in the source
-        # 1. Consider the constraint source first
-        if connect_source == object_type and connect_field == object_field:
-            target_types = connect_layer["target_type"]
-            description = connect_layer["description"]
-            valid_connections = get_objects_from_unattached(object_type, target_types, description)
+    valid_connections = get_objects_from_unattached(object_type, object_field, constraint_list)
 
     return valid_connections
 
 
 def main(inputfile, outputfile):
-    source = None
-    target = None
-    reln_type_list = []
+    object_type = None
+    object_field = None
+    connections_type_list = []
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
             input = json.load(script_input)
@@ -213,7 +226,7 @@ def main(inputfile, outputfile):
                 object_field = input["object_field"]
             #
             # setup logger for execution
-            connections_type_list = get_connection_type(object_type, object_field)
+            connections_type_list = get_connections(object_type, object_field)
 
     with open(outputfile, "w") as outfile:
         json.dump(connections_type_list, outfile)
