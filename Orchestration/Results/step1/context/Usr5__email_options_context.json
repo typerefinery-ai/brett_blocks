@@ -1,1 +1,0 @@
-{"stix_object": {"type": "email-addr", "spec_version": "2.1", "id": "email-addr--30d9a416-203b-55c8-b796-8eb65ab5275e", "value": "dumbo@mycompany.com", "display_name": "Strange Guy", "belongs_to_ref": "user-account--9a5926a5-b2e9-56c0-82fd-3c858bf14832"}, "context_type": {"context_type": "users"}}
