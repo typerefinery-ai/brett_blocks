@@ -182,7 +182,7 @@ def promote_objects(stix_list):
                 if wrapped:
                     add_node(stix_obj, "other")
                 else:
-                    nodes, edges = n_and_e.convert_node(stix_obj)
+                    nodes, edges = n_and_e.convert_sighting(stix_obj)
                     add_node(nodes[0], TR_Incident_Context_Dir, "other")
                     del_node(stix_obj["id"],TR_Incident_Context_Dir, "unattached")
                     report_id.append(stix_obj["id"])

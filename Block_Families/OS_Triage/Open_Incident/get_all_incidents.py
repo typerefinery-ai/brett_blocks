@@ -86,7 +86,6 @@ incident_data = {
     "impact" : "/impact_refs.json",
     "event" : "/event_refs.json",
     "task" : "/task_refs.json",
-    "behavior" : "/behavior_refs.json",
     "other" : "/other_object_refs.json",
     "unattached" : "/unattached_objs.json",
     "unattached_relations" : "/unattached_relation.json",
@@ -117,14 +116,6 @@ def download_common(module_list):
 def get_all_incidents():
     # 0 Check for "original"
     incident_list = []
-    # 1.B Find Current Incident directory
-    if not os.path.exists(TR_Common_Files):
-        os.makedirs(TR_Common_Files)
-        download_common(common)
-    if not os.path.exists(TR_Context_Memory_Dir):
-        os.makedirs(TR_Context_Memory_Dir)
-    if not os.path.exists(TR_Context_Memory_Dir + "/usr"):
-        os.makedirs(TR_Context_Memory_Dir + "/usr")
     if os.path.exists(TR_Context_Memory_Dir + "/" + context_map):
         with open(TR_Context_Memory_Dir + "/" + context_map, "r") as current_context:
             local_map = json.load(current_context)
@@ -137,32 +128,9 @@ def get_all_incidents():
                 changed = False
                 TR_Incident_Dir = TR_Context_Memory_Dir + "/" + incident_id
                 with open(TR_Incident_Dir + "/" + incident_data["incident"] ) as current_obj:
-                    incident_list = json.load(current_obj)
-                    incident_obj = incident_list[0]
-                    for key in key_list:
-                        print(f"key is --> {key}")
-                        print(f"incident obj -> {incident_obj}")
-                        print(f"type of incident obj -?{type(incident_obj)}")
-                        if os.path.exists(TR_Incident_Dir + "/" + incident_data[key] ):
-                            with open(TR_Incident_Dir + "/" + incident_data[key]) as prop_list:
-                                list_of_objs  = json.load(prop_list)
-                                field_name = field_names[key]
-                                if field_name in incident_obj["original"]:
-                                    current_refs_list = incident_obj["original"][field_name]
-                                else:
-                                    incident_obj["original"][field_name] = []
-                                    current_refs_list = incident_obj["original"][field_name]
-                                    changed = True
-                                for stix_obj in list_of_objs:
-                                   if stix_obj["id"] not in current_refs_list:
-                                        current_refs_list.append(stix_obj["id"])
-                                        changed = True
-                # if changed, may as well update it to latest
-                if changed:
-                    with open(TR_Incident_Dir + "/" + incident_data["incident"], 'w') as f:
-                        f.write(json.dumps([incident_obj]))
-                # Then, add it to the list
-                incident_list.append(incident_obj)
+                    incident_obj_in_list = json.load(current_obj)
+                    incident_obj = incident_obj_in_list[0]
+                    incident_list.append(incident_obj)
 
     return incident_list
 

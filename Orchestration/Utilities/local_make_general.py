@@ -39,6 +39,7 @@ from Block_Families.OS_Triage.Open_Incident.get_default_incidents_objects import
 #       Ancillary
 from Block_Families.OS_Triage.Update_Context.update_company_relations import main as update_company_relations
 from Block_Families.OS_Triage.Update_Context.move_unattached_to_other import main as move_unattached_to_other
+from Block_Families.OS_Triage.Update_Context.promote_objects import main as promote_objects
 
 TR_Context_Memory_Dir = "./Context_Mem"
 local = {
@@ -193,7 +194,7 @@ def invoke_get_default_incident_objects_block(stix_object_path, results_path):
 
 
 
-def invoke_get_an_incidents_objects_block(stix_object_path, results_path):
+def invoke_get_an_incidents_objects_block(incident_id: str, source_path: str, results_path: str):
     #
     # 1. Set the Relative Input and Output Paths for the block
     #
@@ -203,7 +204,12 @@ def invoke_get_an_incidents_objects_block(stix_object_path, results_path):
     # NOTE: This code is only To fake input ports
     ##
     # Make the Observed Data object
-    get_an_incidents_objects(stix_object_path,results_path)
+    results_data = {
+        "incident_id": incident_id
+    }
+    with open(source_path, 'w') as f:
+        f.write(json.dumps(results_data))
+    get_an_incidents_objects(source_path, results_path)
     #
     # Remove the context type record
     #

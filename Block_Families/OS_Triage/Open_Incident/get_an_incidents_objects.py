@@ -86,7 +86,6 @@ incident_data = {
     "impact" : "/impact_refs.json",
     "event" : "/event_refs.json",
     "task" : "/task_refs.json",
-    "behavior" : "/behavior_refs.json",
     "other" : "/other_object_refs.json",
     "unattached" : "/unattached_objs.json",
     "unattached_relations" : "/unattached_relation.json",
@@ -111,50 +110,65 @@ def get_an_incidents_objects(incident_id):
     # 0 Check for "original"
     incident_list = []
     changed = False
-    TR_Incident_Dir = TR_Context_Memory_Dir + "/" + incident_id
-    # 1 First, Set the Current Incident directory to the new value
-    if os.path.exists(TR_Context_Memory_Dir + "/" + context_map):
-        with open(TR_Context_Memory_Dir + "/" + context_map, "r") as current_context:
-            local_map = json.load(current_context)
-            if os.path.exists(TR_Incident_Dir + "/" + incident_data["incident"]):
+    if incident_id is None: # open the default incident
+        if os.path.exists(TR_Context_Memory_Dir + "/" + context_map):
+            with open(TR_Context_Memory_Dir + "/" + context_map, "r") as current_context:
+                local_map = json.load(current_context)
                 # 1. Since the map exists and the incident, then set the current incident details
-                local_map["current_incident"] = incident_id
-            else:
-                return []
-        with open(TR_Context_Memory_Dir + "/" + context_map, "w") as f:
-            f.write(json.dumps(local_map))
+                incident_id = local_map["current_incident"]
+                TR_Incident_Dir = TR_Context_Memory_Dir + "/" + incident_id
+                # 2. Open the Incident File, and extract the Ext (for checking/updating)
+                with open(TR_Incident_Dir + "/" + incident_data["incident"]) as current_obj:
+                    incident_list = json.load(current_obj)
+
+    else:# 1.B Find input Incident directory
+        TR_Incident_Dir = TR_Context_Memory_Dir + "/" + incident_id
+        # 1 First, Set the Current Incident directory to the new value
+        if os.path.exists(TR_Context_Memory_Dir + "/" + context_map):
+            with open(TR_Context_Memory_Dir + "/" + context_map, "r") as current_context:
+                local_map = json.load(current_context)
+                if os.path.exists(TR_Incident_Dir + "/" + incident_data["incident"]):
+                    # 1. Since the map exists and the incident, then set the current incident details
+                    local_map["current_incident"] = incident_id
+                else:
+                    return []
+            with open(TR_Context_Memory_Dir + "/" + context_map, "w") as f:
+                f.write(json.dumps(local_map))
 
         # 2. Open the Incident File, and extract the Ext (for checking/updating)
         with open(TR_Incident_Dir + "/" + incident_data["incident"] ) as current_obj:
             incident_list = json.load(current_obj)
-            wrapped_incident = incident_list[0]
-            incident = wrapped_incident["original"]
-            incident_ext = incident["extensions"]["extension-definition--ef765651-680c-498d-9894-99799f2fa126"]
-            # 3. For each of the lists of id's in the Icnident, collect objects and check whether they are registered
-            for key in key_list:
-                if os.path.exists(TR_Incident_Dir + "/" + incident_data[key] ):
-                    with open(TR_Incident_Dir + "/" + incident_data[key]) as prop_list:
-                        list_of_objs = json.load(prop_list)
-                        field_name = field_names[key]
-                        # Either get the list, or make the list
-                        if field_name in incident_ext:
-                            current_refs_list = incident_ext[field_name]
-                        else:
-                            incident_ext[field_name] = []
-                            current_refs_list = incident_ext[field_name]
-                            changed = True
-                        # 4. Add each object to the list, and register the id on the incident, if it is not already
-                        for stix_obj in list_of_objs:
-                            incident_list.append(stix_obj)
-                            if stix_obj["id"] not in current_refs_list:
-                                current_refs_list.append(stix_obj["id"])
-                                changed = True
-            # 5. If the Incident has been changed, may as well update context mem
-            if changed:
-                with open(TR_Incident_Dir + "/" + incident_data["incident"], 'w') as f:
-                    f.write(json.dumps([wrapped_incident]))
-            # 6. Finally, add the incident to the list
-            incident_list.append(wrapped_incident)
+
+
+    wrapped_incident = incident_list[0]
+    incident = wrapped_incident["original"]
+    incident_ext = incident["extensions"]["extension-definition--ef765651-680c-498d-9894-99799f2fa126"]
+    # 3. For each of the lists of id's in the Icnident, collect objects and check whether they are registered
+    for key in key_list:
+        if os.path.exists(TR_Incident_Dir + "/" + incident_data[key] ):
+            with open(TR_Incident_Dir + "/" + incident_data[key]) as prop_list:
+                current_refs_list = []
+                list_of_objs = json.load(prop_list)
+                field_name = field_names[key]
+                # Either get the list, or make the list
+                if field_name in incident_ext:
+                    current_refs_list = incident_ext[field_name]
+                else:
+                    incident_ext[field_name] = []
+                    current_refs_list = incident_ext[field_name]
+                    changed = True
+                # 4. Add each object to the list, and register the id on the incident, if it is not already
+                for stix_obj in list_of_objs:
+                    incident_list.append(stix_obj)
+                    if stix_obj["id"] not in current_refs_list:
+                        current_refs_list.append(stix_obj["id"])
+                        changed = True
+    # 5. If the Incident has been changed, may as well update context mem
+    if changed:
+        with open(TR_Incident_Dir + "/" + incident_data["incident"], 'w') as f:
+            f.write(json.dumps([wrapped_incident]))
+    # 6. Finally, add the incident to the list
+    incident_list.append(wrapped_incident)
 
     return incident_list
 

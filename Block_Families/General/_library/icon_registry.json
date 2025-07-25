@@ -1,0 +1,482 @@
+[
+	{
+		"icon": "attack-pattern",
+		"type": "attack-pattern",
+		"protocol": "stix"
+	},
+	{
+		"icon": "campaign",
+		"type": "campaign",
+		"protocol": "stix"
+	},
+	{
+		"icon": "course-of-action",
+		"type": "course-of-action",
+		"protocol": "stix"
+	},
+	{
+		"icon": "grouping",
+		"type": "grouping",
+		"protocol": "stix"
+	},
+	{
+		"icon": "incident",
+		"type": "incident",
+		"protocol": "stix"
+	},
+	{
+		"icon": "identity-system",
+		"type": "identity",
+		"protocol": "stix"
+	},
+	{
+		"icon": "identity-class",
+		"type": "identity",
+		"protocol": "stix"
+	},
+	{
+		"icon": "identity-individual",
+		"type": "identity",
+		"protocol": "stix"
+	},
+	{
+		"icon": "identity-group",
+		"type": "identity",
+		"protocol": "stix"
+	},
+	{
+		"icon": "identity-unknown",
+		"type": "identity",
+		"protocol": "stix"
+	},
+	{
+		"icon": "identity-organization",
+		"type": "identity",
+		"protocol": "stix"
+	},
+	{
+		"icon": "indicator",
+		"type": "indicator",
+		"protocol": "stix"
+	},
+	{
+		"icon": "infrastructure",
+		"type": "infrastructure",
+		"protocol": "stix"
+	},
+	{
+		"icon": "intrusion-set",
+		"type": "intrusion-set",
+		"protocol": "stix"
+	},
+	{
+		"icon": "location",
+		"type": "location",
+		"protocol": "stix"
+	},
+	{
+		"icon": "malware",
+		"type": "malware",
+		"protocol": "stix"
+	},
+	{
+		"icon": "malware-family",
+		"type": "malware",
+		"protocol": "stix"
+	},
+	{
+		"icon": "malware-analysis",
+		"type": "malware-analysis",
+		"protocol": "stix"
+	},
+	{
+		"icon": "note",
+		"type": "note",
+		"protocol": "stix"
+	},
+	{
+		"icon": "observed-data",
+		"type": "observed-data",
+		"protocol": "stix"
+	},
+	{
+		"icon": "opinion",
+		"type": "opinion",
+		"protocol": "stix"
+	},
+	{
+		"icon": "report",
+		"type": "report",
+		"protocol": "stix"
+	},
+	{
+		"icon": "threat-actor",
+		"type": "threat-actor",
+		"protocol": "stix"
+	},
+	{
+		"icon": "tool",
+		"type": "tool",
+		"protocol": "stix"
+	},
+	{
+		"icon": "vulnerability",
+		"type": "vulnerability",
+		"protocol": "stix"
+	},
+	{
+		"icon": "relationship",
+		"type": "relationship",
+		"protocol": "stix"
+	},
+	{
+		"icon": "sighting",
+		"type": "sighting",
+		"protocol": "stix"
+	},
+	{
+		"icon": "marking",
+		"type": "marking",
+		"protocol": "stix"
+	},
+	{
+		"icon": "artifact",
+		"type": "artifact",
+		"protocol": "stix"
+	},
+	{
+		"icon": "autonomous-system",
+		"type": "autonomous-system",
+		"protocol": "stix"
+	},
+	{
+		"icon": "directory",
+		"type": "directory",
+		"protocol": "stix"
+	},
+	{
+		"icon": "domain",
+		"type": "domain",
+		"protocol": "stix"
+	},
+	{
+		"icon": "email-addr",
+		"type": "email-addr",
+		"protocol": "stix"
+	},
+	{
+		"icon": "email-message",
+		"type": "email-message",
+		"protocol": "stix"
+	},
+	{
+		"icon": "emailk-message-mime",
+		"type": "emailk-message",
+		"protocol": "stix"
+	},
+	{
+		"icon": "file",
+		"type": "file",
+		"protocol": "stix"
+	},
+	{
+		"icon": "file-archive",
+		"type": "file",
+		"protocol": "stix"
+	},
+	{
+		"icon": "file-ntfs",
+		"type": "file",
+		"protocol": "stix"
+	},
+	{
+		"icon": "file-pdf",
+		"type": "file",
+		"protocol": "stix"
+	},
+	{
+		"icon": "file-img",
+		"type": "file",
+		"protocol": "stix"
+	},
+	{
+		"icon": "file-bin",
+		"type": "file",
+		"protocol": "stix"
+	},
+	{
+		"icon": "ipv4-addr",
+		"type": "ipv4-addr",
+		"protocol": "stix"
+	},
+	{
+		"icon": "ipv6-addr",
+		"type": "ipv6-addr",
+		"protocol": "stix"
+	},
+	{
+		"icon": "mac-addr",
+		"type": "mac-addr",
+		"protocol": "stix"
+	},
+	{
+		"icon": "mutex",
+		"type": "mutex",
+		"protocol": "stix"
+	},
+	{
+		"icon": "network-traffic",
+		"type": "network-traffic",
+		"protocol": "stix"
+	},
+	{
+		"icon": "network-traffic-http",
+		"type": "network-traffic",
+		"protocol": "stix"
+	},
+	{
+		"icon": "network-traffic-icmp",
+		"type": "network-traffic",
+		"protocol": "stix"
+	},
+	{
+		"icon": "network-traffic-sock",
+		"type": "network-traffic",
+		"protocol": "stix"
+	},
+	{
+		"icon": "network-traffic-tcp",
+		"type": "network-traffic",
+		"protocol": "stix"
+	},
+	{
+		"icon": "process",
+		"type": "process",
+		"protocol": "stix"
+	},
+	{
+		"icon": "software",
+		"type": "software",
+		"protocol": "stix"
+	},
+	{
+		"icon": "url",
+		"type": "url",
+		"protocol": "stix"
+	},
+	{
+		"icon": "user-account",
+		"type": "user-account",
+		"protocol": "stix"
+	},
+	{
+		"icon": "user-account-unix",
+		"type": "user-account",
+		"protocol": "stix"
+	},
+	{
+		"icon": "windows-registry-key",
+		"type": "windows-registry-key",
+		"protocol": "stix"
+	},
+	{
+		"icon": "x509-certificate",
+		"type": "x509-certificate",
+		"protocol": "stix"
+	},
+	{
+		"icon": "attack-matrix",
+		"type": "x-mitre-matrix",
+		"protocol": "attack"
+	},
+	{
+		"icon": "attack-tactic",
+		"type": "x-mitre-tactic",
+		"protocol": "attack"
+	},
+	{
+		"icon": "attack-technique",
+		"type": "attack-pattern",
+		"protocol": "attack"
+	},
+	{
+		"icon": "attack-subtechnique",
+		"type": "attack-pattern",
+		"protocol": "attack"
+	},
+	{
+		"icon": "attack-procedure",
+		"type": "relationship",
+		"protocol": "attack"
+	},
+	{
+		"icon": "attack-mitigation",
+		"type": "course-of-action",
+		"protocol": "attack"
+	},
+	{
+		"icon": "attack-group",
+		"type": "intrusion-set",
+		"protocol": "attack"
+	},
+	{
+		"icon": "attack-software",
+		"type": "malware",
+		"protocol": "attack"
+	},
+	{
+		"icon": "attack-software",
+		"type": "tool",
+		"protocol": "attack"
+	},
+	{
+		"icon": "attack-collection",
+		"type": "x-mitre-collection",
+		"protocol": "attack"
+	},
+	{
+		"icon": "attack-data-source",
+		"type": "x-mitre-data-source",
+		"protocol": "attack"
+	},
+	{
+		"icon": "attack-data-component",
+		"type": "x-mitre-data-component",
+		"protocol": "attack"
+	},
+	{
+		"icon": "attack-campaign",
+		"type": "campaign",
+		"protocol": "attack"
+	},
+	{
+		"icon": "attack-identity",
+		"type": "identity",
+		"protocol": "attack"
+	},
+	{
+		"icon": "attack-asset",
+		"type": "x-mitre-asset",
+		"protocol": "attack"
+	},
+	{
+		"icon": "event",
+		"type": "event",
+		"protocol": "os-threat"
+	},
+	{
+		"icon": "task",
+		"type": "task",
+		"protocol": "os-threat"
+	},
+	{
+		"icon": "oca-file",
+		"type": "file",
+		"protocol": "oca"
+	},
+	{
+		"icon": "oca-process",
+		"type": "process",
+		"protocol": "oca"
+	},
+	{
+		"icon": "oca-software",
+		"type": "software",
+		"protocol": "oca"
+	},
+	{
+		"icon": "oca-user-account",
+		"type": "user-account",
+		"protocol": "oca"
+	},
+	{
+		"icon": "oca-network-traffic",
+		"type": "network-traffic",
+		"protocol": "oca"
+	},
+	{
+		"icon": "oca-finding",
+		"type": "x-ibm-finding",
+		"protocol": "oca"
+	},
+	{
+		"icon": "oca-ttp-tagging",
+		"type": "x-ibm-ttp-tagging",
+		"protocol": "oca"
+	},
+	{
+		"icon": "oca-asset",
+		"type": "x-oca-asset",
+		"protocol": "oca"
+	},
+	{
+		"icon": "oca-event",
+		"type": "x-oca-event",
+		"protocol": "oca"
+	},
+	{
+		"icon": "oca-geo",
+		"type": "x-oca-geo",
+		"protocol": "oca"
+	},
+	{
+		"icon": "oca-network-traffic-dns-ext",
+		"type": "network-traffic",
+		"protocol": "oca"
+	},
+	{
+		"icon": "oca-network-traffic-rita-ext",
+		"type": "network-traffic",
+		"protocol": "oca"
+	},
+	{
+		"icon": "oca-process-ext",
+		"type": "process",
+		"protocol": "oca"
+	},
+	{
+		"icon": "oca-windows-registry-key-ext",
+		"type": "pattern",
+		"protocol": "oca"
+	},
+	{
+		"icon": "pattern",
+		"type": "pattern",
+		"protocol": "oca"
+	},
+	{
+		"icon": "pattern",
+		"type": "pattern",
+		"protocol": "oca"
+	},
+	{
+		"icon": "pattern",
+		"type": "pattern",
+		"protocol": "oca"
+	},
+	{
+		"icon": "pattern",
+		"type": "pattern",
+		"protocol": "oca"
+	},
+	{
+		"icon": "pattern",
+		"type": "pattern",
+		"protocol": "oca"
+	},
+	{
+		"icon": "pattern",
+		"type": "pattern",
+		"protocol": "oca"
+	},
+	{
+		"icon": "pattern",
+		"type": "pattern",
+		"protocol": "oca"
+	},
+	{
+		"icon": "pattern",
+		"type": "pattern",
+		"protocol": "oca"
+	}
+]

@@ -142,7 +142,8 @@ def clean_string_convert_to_list(string):
 def check_object(unattached_obj, object_field, object_type, constraint_list):
     """Check if the unattached object passes the constraints."""
     # For each string constraint in the constraint list, run the clean string convert to list
-    for string_constraint in constraint_list:
+    for constraint_layer in constraint_list:
+        string_constraint = constraint_layer.get("target_type", "")
         # 1. clean the string and convert to a list
         constraints = clean_string_convert_to_list(string_constraint)
         # 2. for each constraint in constraints, check if the object passes

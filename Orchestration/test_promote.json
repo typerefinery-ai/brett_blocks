@@ -1,0 +1,242 @@
+[
+    {
+        "id": "sighting--f4134b5c-bfb8-40a8-a291-1ea2308b0de6",
+        "type": "sighting",
+        "original": {
+            "type": "sighting",
+            "spec_version": "2.1",
+            "id": "sighting--f4134b5c-bfb8-40a8-a291-1ea2308b0de6",
+            "created": "2025-07-09T21:47:59.847202Z",
+            "modified": "2025-07-09T21:47:59.847202Z",
+            "sighting_of_ref": "indicator--37507f17-3db1-4a14-b9ee-fa86cb6bf89c",
+            "observed_data_refs": [
+                "observed-data--8e3dc22d-29a5-4bf9-b176-f17814a93940"
+            ],
+            "extensions": {
+                "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {
+                    "extension_type": "property-extension"
+                },
+                "sighting-context": {
+                    "name": "Exchange",
+                    "description": "query from:silly@mycompany.com, subject:we are coming for you",
+                    "value": "[silly@mycompany.com, strange@mycompany.com, dumbo@mycompany.com]"
+                }
+            }
+        },
+        "icon": "sighting-context",
+        "name": "Sighting-Context",
+        "heading": "Sighting-Context",
+        "description": "Sighting of indicator<br>",
+        "object_form": "sighting",
+        "object_group": "sro-forms",
+        "object_family": "stix-forms"
+    },
+    {
+        "id": "observed-data--8e3dc22d-29a5-4bf9-b176-f17814a93940",
+        "type": "observed-data",
+        "original": {
+            "type": "observed-data",
+            "spec_version": "2.1",
+            "id": "observed-data--8e3dc22d-29a5-4bf9-b176-f17814a93940",
+            "created": "2025-07-09T21:47:59.786085Z",
+            "modified": "2025-07-09T21:47:59.786085Z",
+            "first_observed": "2020-10-19T01:01:01Z",
+            "last_observed": "2020-10-19T01:01:01Z",
+            "number_observed": 1,
+            "object_refs": [
+                "email-addr--a7155ffe-8ea7-563a-a54c-e94e23ec50c8",
+                "user-account--47df6d33-0005-5b45-9875-e7a609b12e9b",
+                "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+                "relationship--047a9943-44e2-4120-ba42-712522d2db6e",
+                "email-message--a9579bb2-e221-5df3-92bd-d452bd9b6d23",
+                "email-addr--b8048a91-def8-5ef7-8cd3-a7b3db9278e5",
+                "user-account--74f5352e-ea3f-526c-8430-1cbb9ccd3109",
+                "email-addr--30d9a416-203b-55c8-b796-8eb65ab5275e",
+                "user-account--5aaaa4e2-0974-5ab4-9069-41a16197f0ff",
+                "relationship--ea056bcc-bb4d-42ee-9f28-17c15c9c5689",
+                "relationship--79b89ad6-f3ba-4770-9750-c9d602d8e9df"
+            ]
+        },
+        "icon": "observed-data",
+        "name": "Observed Data",
+        "heading": "Observed Data",
+        "description": "<br>First Observed -> 2020-10-19T01:01:01Z, Last Observed -> 2020-10-19T01:01:01Z",
+        "object_form": "observed-data",
+        "object_group": "sdo-forms",
+        "object_family": "stix-forms"
+    },
+    {
+        "id": "indicator--37507f17-3db1-4a14-b9ee-fa86cb6bf89c",
+        "type": "indicator",
+        "original": {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--37507f17-3db1-4a14-b9ee-fa86cb6bf89c",
+            "created": "2025-07-09T21:47:59.840038Z",
+            "modified": "2025-07-09T21:47:59.840038Z",
+            "name": "Suspicious Email",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[email-addr:value = 'silly@mycompany.com' AND email:subject = 'we are coming for you']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-07-09T21:47:59.840038Z"
+        },
+        "icon": "indicator",
+        "name": "Indicator",
+        "heading": "Indicator - Suspicious Email",
+        "description": "<br>Pattern Type -> stixIndicator Types -> ['unknown']<br>Pattern -> [email-addr:value = 'silly@mycompany.com' AND email:subject = 'we are coming for you']",
+        "object_form": "indicator",
+        "object_group": "sdo-forms",
+        "object_family": "stix-forms"
+    },
+    {
+        "id": "user-account--47df6d33-0005-5b45-9875-e7a609b12e9b",
+        "type": "user-account",
+        "original": {
+            "type": "user-account",
+            "spec_version": "2.1",
+            "id": "user-account--47df6d33-0005-5b45-9875-e7a609b12e9b",
+            "account_login": "sthor",
+            "account_type": "unix",
+            "display_name": "silly thor"
+        },
+        "icon": "user-account",
+        "name": "User Account",
+        "heading": "User Account",
+        "description": "<br>Display Name -> silly thor<br>Account Type -> unix<br>Login String ->sthor",
+        "object_form": "user-account",
+        "object_group": "sco-forms",
+        "object_family": "stix-forms"
+    },
+    {
+        "id": "email-addr--a7155ffe-8ea7-563a-a54c-e94e23ec50c8",
+        "type": "email-addr",
+        "original": {
+            "type": "email-addr",
+            "spec_version": "2.1",
+            "id": "email-addr--a7155ffe-8ea7-563a-a54c-e94e23ec50c8",
+            "value": "silly@mycompany.com",
+            "belongs_to_ref": "user-account--47df6d33-0005-5b45-9875-e7a609b12e9b"
+        },
+        "icon": "email-addr",
+        "name": "Email Address",
+        "heading": "Email Address",
+        "description": "<br>Value -> silly@mycompany.com",
+        "object_form": "email-addr",
+        "object_group": "sco-forms",
+        "object_family": "stix-forms"
+    },
+    {
+        "id": "user-account--74f5352e-ea3f-526c-8430-1cbb9ccd3109",
+        "type": "user-account",
+        "original": {
+            "type": "user-account",
+            "spec_version": "2.1",
+            "id": "user-account--74f5352e-ea3f-526c-8430-1cbb9ccd3109",
+            "account_login": "sguy",
+            "account_type": "unix",
+            "display_name": "strange guy"
+        },
+        "icon": "user-account",
+        "name": "User Account",
+        "heading": "User Account",
+        "description": "<br>Display Name -> strange guy<br>Account Type -> unix<br>Login String ->sguy",
+        "object_form": "user-account",
+        "object_group": "sco-forms",
+        "object_family": "stix-forms"
+    },
+    {
+        "id": "email-addr--b8048a91-def8-5ef7-8cd3-a7b3db9278e5",
+        "type": "email-addr",
+        "original": {
+            "type": "email-addr",
+            "spec_version": "2.1",
+            "id": "email-addr--b8048a91-def8-5ef7-8cd3-a7b3db9278e5",
+            "value": "strange@mycompany.com",
+            "belongs_to_ref": "user-account--74f5352e-ea3f-526c-8430-1cbb9ccd3109"
+        },
+        "icon": "email-addr",
+        "name": "Email Address",
+        "heading": "Email Address",
+        "description": "<br>Value -> strange@mycompany.com",
+        "object_form": "email-addr",
+        "object_group": "sco-forms",
+        "object_family": "stix-forms"
+    },
+    {
+        "id": "user-account--5aaaa4e2-0974-5ab4-9069-41a16197f0ff",
+        "type": "user-account",
+        "original": {
+            "type": "user-account",
+            "spec_version": "2.1",
+            "id": "user-account--5aaaa4e2-0974-5ab4-9069-41a16197f0ff",
+            "account_login": "dguy",
+            "account_type": "unix",
+            "display_name": "dumbo guy"
+        },
+        "icon": "user-account",
+        "name": "User Account",
+        "heading": "User Account",
+        "description": "<br>Display Name -> dumbo guy<br>Account Type -> unix<br>Login String ->dguy",
+        "object_form": "user-account",
+        "object_group": "sco-forms",
+        "object_family": "stix-forms"
+    },
+    {
+        "id": "email-addr--30d9a416-203b-55c8-b796-8eb65ab5275e",
+        "type": "email-addr",
+        "original": {
+            "type": "email-addr",
+            "spec_version": "2.1",
+            "id": "email-addr--30d9a416-203b-55c8-b796-8eb65ab5275e",
+            "value": "dumbo@mycompany.com",
+            "belongs_to_ref": "user-account--5aaaa4e2-0974-5ab4-9069-41a16197f0ff"
+        },
+        "icon": "email-addr",
+        "name": "Email Address",
+        "heading": "Email Address",
+        "description": "<br>Value -> dumbo@mycompany.com",
+        "object_form": "email-addr",
+        "object_group": "sco-forms",
+        "object_family": "stix-forms"
+    },
+    {
+        "id": "email-message--a9579bb2-e221-5df3-92bd-d452bd9b6d23",
+        "type": "email-message",
+        "original": {
+            "type": "email-message",
+            "spec_version": "2.1",
+            "id": "email-message--a9579bb2-e221-5df3-92bd-d452bd9b6d23",
+            "is_multipart": false,
+            "date": "2020-10-19T01:01:01Z",
+            "from_ref": "email-addr--b8048a91-def8-5ef7-8cd3-a7b3db9278e5",
+            "to_refs": [
+                "email-addr--a7155ffe-8ea7-563a-a54c-e94e23ec50c8"
+            ],
+            "subject": "we are coming for you"
+        },
+        "icon": "email-message",
+        "name": "Email Message",
+        "heading": "Email Message",
+        "description": "<br>Subject -> we are coming for you, Date -> 2020-10-19T01:01:01Z",
+        "object_form": "email-message",
+        "object_group": "sco-forms",
+        "object_family": "stix-forms"
+    },
+    {
+        "id": "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+        "type": "url",
+        "original": {
+            "type": "url",
+            "spec_version": "2.1",
+            "id": "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+            "value": "https://www.northkorea.nk/we/are/mad/"
+        },
+        "icon": "url",
+        "name": "URL",
+        "heading": "URL",
+        "description": "<br>Value -> https://www.northkorea.nk/we/are/mad/"
+    }
+]

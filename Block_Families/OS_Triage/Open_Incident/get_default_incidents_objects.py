@@ -88,7 +88,6 @@ incident_data = {
     "impact": "/impact_refs.json",
     "event": "/event_refs.json",
     "task": "/task_refs.json",
-    "behavior": "/behavior_refs.json",
     "other": "/other_object_refs.json",
     "unattached": "/unattached_objs.json",
     "unattached_relations": "/unattached_relation.json",
@@ -130,6 +129,7 @@ def get_default_incidents_objects():
                 for key in key_list:
                     if os.path.exists(TR_Incident_Dir + "/" + incident_data[key]):
                         with open(TR_Incident_Dir + "/" + incident_data[key]) as prop_list:
+                            current_refs_list = []
                             list_of_objs = json.load(prop_list)
                             field_name = field_names[key]
                             # Either get the list, or make the list
