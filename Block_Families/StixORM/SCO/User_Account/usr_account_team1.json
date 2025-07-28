@@ -1,0 +1,25 @@
+{"user_account_form":
+  {
+    "base_required": {
+      "type": "user-account",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "external_references": [],
+      "object_marking_refs": [],
+      "granular_markings": [],
+      "defanged": null
+    },
+    "object": {
+      "user_id": "79563903",
+      "account_login": "hexpert",
+      "account_type": "soc,",
+      "display_name": "Helpful Expert"
+    },
+    "extensions": {
+    },
+    "sub": {
+    }
+  }
+}

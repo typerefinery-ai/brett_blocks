@@ -21,6 +21,7 @@ from Block_Families.OS_Triage.Save_Context.save_incident_context import main as 
 from Block_Families.OS_Triage.Save_Context.save_company_context import main as save_company_context
 from Block_Families.OS_Triage.Save_Context.save_user_context import main as save_user_context
 from Block_Families.OS_Triage.Save_Context.save_unattached_context import main as save_unattached_context
+from Block_Families.OS_Triage.Save_Context.save_team_context import main as save_team_context
 ##############################################################################################
 #       Get From OS_Triage -> Incident, Company, User
 from Block_Families.OS_Triage.Get_Context.get_from_incident import main as get_from_incident
@@ -485,7 +486,7 @@ def invoke_save_incident_context_block(stix_object_path, results_path, context_t
             return export_data
 
 
-def invoke_save_user_context_block(stix_object_path, results_path, context_type):
+def invoke_save_user_context_block(stix_object_path, results_path):
     #
     # 1. Set the Relative Input and Output Paths for the block
     #
@@ -503,12 +504,53 @@ def invoke_save_user_context_block(stix_object_path, results_path, context_type)
         with open(stix_object_path, "r") as sdo_form:
             temp_data = json.load(sdo_form)
             results_data["stix_object"] = temp_data
-            if context_type:
-                results_data["context_type"] = context_type
         with open(context_path, 'w') as f:
             f.write(json.dumps(results_data))
     # Make the Observed Data object
     save_user_context(context_path,results_path)
+    #
+    # Remove the context type record
+    #
+    rewrite_data = {}
+    for key, value in results_data.items():
+        if key == "stix_object":
+            rewrite_data = value
+        else:
+            continue
+    #  Rewrite the original object
+    with open(stix_object_path, 'w') as f:
+        f.write(json.dumps(rewrite_data))
+    #
+    #
+    if os.path.exists(results_path):
+        with open(results_path, "r") as script_input:
+            export_data = json.load(script_input)
+            return export_data
+        
+
+
+def invoke_save_team_context_block(stix_object_path, results_path):
+    #
+    # 1. Set the Relative Input and Output Paths for the block
+    #
+    #
+    # we get in the path to an actual stix object json, but we dont want to be writing back changes in that,
+    # instead we will create a new one based on a reliable transform to contaon object pust context data
+    ##
+    slices = stix_object_path.split('/')
+    full_filename = slices[-1]
+    filename = full_filename[:-6]
+    results_data = {}
+    context_path = "../Orchestration/Results/step1/context/" + filename + "_team_context.json"
+    results_data = {}
+    if os.path.exists(stix_object_path):
+        with open(stix_object_path, "r") as sdo_form:
+            temp_data = json.load(sdo_form)
+            results_data["stix_object"] = temp_data
+        with open(context_path, 'w') as f:
+            f.write(json.dumps(results_data))
+    # Make the Observed Data object
+    save_team_context(context_path,results_path)
     #
     # Remove the context type record
     #

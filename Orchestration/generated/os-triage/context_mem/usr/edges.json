@@ -1,1 +1,107 @@
-[{"name": "belongs-to", "type": "embedded", "source": "email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3", "target": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3", "id": "email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3-user-account--83658594-537d-5c32-b9f0-137354bd9bc3"}, {"name": "email address", "type": "embedded", "source": "identity--37154aac-c730-4782-9144-3f0f9f9d7c95", "target": "email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3", "id": "identity--37154aac-c730-4782-9144-3f0f9f9d7c95-email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3"}, {"name": "user account", "type": "embedded", "source": "identity--37154aac-c730-4782-9144-3f0f9f9d7c95", "target": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3", "id": "identity--37154aac-c730-4782-9144-3f0f9f9d7c95-user-account--83658594-537d-5c32-b9f0-137354bd9bc3"}]
+[
+    {
+        "name": "belongs-to",
+        "type": "embedded",
+        "source": "email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3",
+        "target": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3",
+        "id": "email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3-user-account--83658594-537d-5c32-b9f0-137354bd9bc3"
+    },
+    {
+        "name": "email address",
+        "type": "embedded",
+        "source": "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b",
+        "target": "email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3",
+        "id": "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b-email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3"
+    },
+    {
+        "name": "user account",
+        "type": "embedded",
+        "source": "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b",
+        "target": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3",
+        "id": "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b-user-account--83658594-537d-5c32-b9f0-137354bd9bc3"
+    },
+    {
+        "name": "belongs-to",
+        "type": "embedded",
+        "source": "email-addr--f4889f76-152d-5527-a85f-9e8c07bf71b9",
+        "target": "user-account--c58f2f3c-c3df-5f1a-9f19-e642a01bced3",
+        "id": "email-addr--f4889f76-152d-5527-a85f-9e8c07bf71b9-user-account--c58f2f3c-c3df-5f1a-9f19-e642a01bced3"
+    },
+    {
+        "name": "email address",
+        "type": "embedded",
+        "source": "identity--983b9688-e07b-4404-9f01-8494db7e4b1d",
+        "target": "email-addr--f4889f76-152d-5527-a85f-9e8c07bf71b9",
+        "id": "identity--983b9688-e07b-4404-9f01-8494db7e4b1d-email-addr--f4889f76-152d-5527-a85f-9e8c07bf71b9"
+    },
+    {
+        "name": "user account",
+        "type": "embedded",
+        "source": "identity--983b9688-e07b-4404-9f01-8494db7e4b1d",
+        "target": "user-account--c58f2f3c-c3df-5f1a-9f19-e642a01bced3",
+        "id": "identity--983b9688-e07b-4404-9f01-8494db7e4b1d-user-account--c58f2f3c-c3df-5f1a-9f19-e642a01bced3"
+    },
+    {
+        "name": "belongs-to",
+        "type": "embedded",
+        "source": "email-addr--54e892e4-776c-5866-ac6a-306b3eac53ce",
+        "target": "user-account--e794cc12-c6b8-56ce-be53-e466290476d1",
+        "id": "email-addr--54e892e4-776c-5866-ac6a-306b3eac53ce-user-account--e794cc12-c6b8-56ce-be53-e466290476d1"
+    },
+    {
+        "name": "email address",
+        "type": "embedded",
+        "source": "identity--3070785f-2cd8-42c7-a6d1-a760a83c89ce",
+        "target": "email-addr--54e892e4-776c-5866-ac6a-306b3eac53ce",
+        "id": "identity--3070785f-2cd8-42c7-a6d1-a760a83c89ce-email-addr--54e892e4-776c-5866-ac6a-306b3eac53ce"
+    },
+    {
+        "name": "user account",
+        "type": "embedded",
+        "source": "identity--3070785f-2cd8-42c7-a6d1-a760a83c89ce",
+        "target": "user-account--e794cc12-c6b8-56ce-be53-e466290476d1",
+        "id": "identity--3070785f-2cd8-42c7-a6d1-a760a83c89ce-user-account--e794cc12-c6b8-56ce-be53-e466290476d1"
+    },
+    {
+        "name": "belongs-to",
+        "type": "embedded",
+        "source": "email-addr--dac1c6fd-9c82-5f19-9549-aed64fc20326",
+        "target": "user-account--56e9bb55-726a-5f61-b628-82058d914a7d",
+        "id": "email-addr--dac1c6fd-9c82-5f19-9549-aed64fc20326-user-account--56e9bb55-726a-5f61-b628-82058d914a7d"
+    },
+    {
+        "name": "email address",
+        "type": "embedded",
+        "source": "identity--5570e85d-f102-40b4-8bf5-1d01ad6b5958",
+        "target": "email-addr--dac1c6fd-9c82-5f19-9549-aed64fc20326",
+        "id": "identity--5570e85d-f102-40b4-8bf5-1d01ad6b5958-email-addr--dac1c6fd-9c82-5f19-9549-aed64fc20326"
+    },
+    {
+        "name": "user account",
+        "type": "embedded",
+        "source": "identity--5570e85d-f102-40b4-8bf5-1d01ad6b5958",
+        "target": "user-account--56e9bb55-726a-5f61-b628-82058d914a7d",
+        "id": "identity--5570e85d-f102-40b4-8bf5-1d01ad6b5958-user-account--56e9bb55-726a-5f61-b628-82058d914a7d"
+    },
+    {
+        "name": "belongs-to",
+        "type": "embedded",
+        "source": "email-addr--4a76ab32-6c88-59a1-8e69-bbe58ddc61d0",
+        "target": "user-account--a21869a5-7e95-5639-a7a7-aef83445c46b",
+        "id": "email-addr--4a76ab32-6c88-59a1-8e69-bbe58ddc61d0-user-account--a21869a5-7e95-5639-a7a7-aef83445c46b"
+    },
+    {
+        "name": "email address",
+        "type": "embedded",
+        "source": "identity--812873d5-c41a-4dfd-859e-146a96c246a4",
+        "target": "email-addr--4a76ab32-6c88-59a1-8e69-bbe58ddc61d0",
+        "id": "identity--812873d5-c41a-4dfd-859e-146a96c246a4-email-addr--4a76ab32-6c88-59a1-8e69-bbe58ddc61d0"
+    },
+    {
+        "name": "user account",
+        "type": "embedded",
+        "source": "identity--812873d5-c41a-4dfd-859e-146a96c246a4",
+        "target": "user-account--a21869a5-7e95-5639-a7a7-aef83445c46b",
+        "id": "identity--812873d5-c41a-4dfd-859e-146a96c246a4-user-account--a21869a5-7e95-5639-a7a7-aef83445c46b"
+    }
+]

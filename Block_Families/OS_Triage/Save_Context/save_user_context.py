@@ -53,7 +53,7 @@ import_type = import_type_factory.get_all_imports()
 # Common File Stuff
 TR_Common_Files = "./generated/os-triage/common_files"
 common = [
-    {"module": "convert_n_and_e", "file": "convert_n_and_e.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/main/Block_Families/General/_library/convert_n_and_e.py"}
+    {"module": "convert_n_and_e", "file": "convert_n_and_e.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/refs/heads/main/Block_Families/General/_library/convert_n_and_e.py"}
 ]
 
 # OS_Triage Memory Stuff
@@ -147,15 +147,11 @@ def add_edge(edge, context_dir, context_type):
         f.write(json.dumps(stix_edge_list))
 
 
-def save_context(stix_object, context_type):
+def save_user_context(stix_object):
     # setup user directory
+    context_type = "me"
     TR_User_Context_Dir = TR_Context_Memory_Dir + TR_User_Dir
-
-    if context_type:
-        TR_Context_Filename = TR_User_Context_Dir + user_data[context_type]
-    else:
-        return "context_type unknown " + str(context_type)
-
+    TR_Context_Filename = TR_User_Context_Dir + user_data[context_type]
     # 2. Check if the key directories exist, if not make them, and download common files
     if not os.path.exists(TR_Common_Files):
         os.makedirs(TR_Common_Files)
@@ -192,7 +188,7 @@ def save_context(stix_object, context_type):
         for edge in edges:
             add_edge(edge, TR_User_Context_Dir, "edges")
 
-    return "USer Directory "+ str(TR_User_Context_Dir) + "\nOptions context saved -> " + str(context_type) + "\nstix_id -> " + str(stix_object["id"])
+    return "User Directory "+ str(TR_User_Context_Dir) + "\nOptions context saved -> " + str(context_type) + "\nstix_id -> " + str(stix_object["id"])
 
 
 def main(inputfile, outputfile):
@@ -205,17 +201,11 @@ def main(inputfile, outputfile):
             print(f"input data->{input_data}")
             if "stix_object" in input_data:
                 stix_object = input_data["stix_object"]
-                if "context_type" in input_data:
-                    context_type_string = input_data["context_type"]["context_type"]
-                print(f"from ports \nstix_object->{stix_object}\ncontext type->{context_type_string}")
-                result_string = save_context(stix_object, context_type_string)
+                result_string = save_user_context(stix_object)
             elif "api" in input_data:
                 api_input_data = input_data["api"]
                 stix_object = api_input_data["stix_object"]
-                if "context_type" in api_input_data:
-                    context_type_string = api_input_data["context_type"]["context_type"]
-                print(f"api \nstix_object->{stix_object}\ncontext type->{context_type_string}")
-                result_string = save_context(stix_object, context_type_string)
+                result_string = save_user_context(stix_object)
 
             # setup logger for execution
 
