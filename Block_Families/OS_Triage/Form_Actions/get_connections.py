@@ -139,7 +139,7 @@ def clean_string_convert_to_list(string):
 
 
 
-def check_object(unattached_obj, object_field, object_type, constraint_list):
+def check_object(unattached_obj, constraint_list):
     """Check if the unattached object passes the constraints."""
     # For each string constraint in the constraint list, run the clean string convert to list
     for constraint_layer in constraint_list:
@@ -150,9 +150,6 @@ def check_object(unattached_obj, object_field, object_type, constraint_list):
         for constraint in constraints:
             # 2.1 check if the object passes the constraint
             if constraint == "_any":
-                    return True
-            elif constraint == "_same":
-                if unattached_obj["type"] == object_type:
                     return True
             elif constraint == "_attack":
                 if unattached_obj.get("x_mitre_version", False):
@@ -168,7 +165,7 @@ def check_object(unattached_obj, object_field, object_type, constraint_list):
 
     return False
 
-def get_objects_from_unattached(object_type, object_field, constraint_list):
+def get_objects_from_unattached(constraint_list):
     valid_connections = []
     with open(TR_Context_Memory_Dir + "/" + context_map, "r") as current_context:
         local_map = json.load(current_context)
@@ -180,7 +177,7 @@ def get_objects_from_unattached(object_type, object_field, constraint_list):
                 unattached_nodes = json.load(mem_input)
                 for unattached_obj in unattached_nodes:
                     object_passes = False
-                    object_passes = check_object(unattached_obj, object_field, object_type, constraint_list)
+                    object_passes = check_object(unattached_obj, constraint_list)
                     if object_passes:
                         valid_connections.append(unattached_obj)
 
@@ -206,8 +203,12 @@ def get_connections(object_type: str, object_field: str):
     if os.path.exists(Connection_Types_File):
         with open(Connection_Types_File, "r") as mem_input:
             constraint_list = json.load(mem_input)
+    # 4. Filter the list based on the field "sourcetype" == object_type
+    object_Constraint_list = [constraint for constraint in constraint_list if constraint.get("source_type") == object_type]
+    # 5. Filter the object_Constraint_list based on the field "field" == object_field
+    final_constraint_list = [constraint for constraint in object_Constraint_list if constraint.get("field") == object_field]
     # 6. For each constraint in the list, find which ones fit the source-target
-    valid_connections = get_objects_from_unattached(object_type, object_field, constraint_list)
+    valid_connections = get_objects_from_unattached(final_constraint_list)
 
     return valid_connections
 
