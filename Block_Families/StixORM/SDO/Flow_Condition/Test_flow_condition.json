@@ -1,0 +1,30 @@
+{
+  "behavior_form":
+    {
+      "base_required": {
+          "type": "attack-condition",
+          "spec_version": "2.1",
+          "id": "",
+          "created": "",
+          "modified": ""
+      },
+      "base_optional": {
+          "created_by_ref": "",
+          "revoked": null,
+          "labels": [],
+          "lang": "",
+          "external_references": [],
+          "object_marking_refs": [],
+          "granular_markings": []
+        },
+      "object": {
+      "description": "Attacker obtained domain admin credentials for SQL Servers and a service account related to a cluster (MULTICLDBSIDE)"
+      },
+      "extensions": {
+          "extension-definition--fb9c968a-745b-4ade-9b25-c324172197f4": {
+            "extension_type": "new-sdo"
+          }
+      },
+      "sub": {}
+	}
+}

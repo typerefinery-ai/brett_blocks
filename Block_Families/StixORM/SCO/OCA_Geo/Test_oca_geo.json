@@ -1,7 +1,7 @@
 {
-    "anecdote_form": {
+    "oca_geo": {
         "base_required": {
-            "type": "anecdote",
+            "type": "x-oca-geo",
             "spec_version": "2.1",
             "id": "",
             "created": "",
@@ -14,8 +14,14 @@
             "defanged": null
         },
         "object": {
-            "value": "I clicked on the link, and my laptop screen went weird",
-            "provided_by_ref": ""
+            "name": "Dallas-1",
+            "time_zone": "America/Chicago",
+            "country_iso_code": "US",
+            "country_name": "United States of America",
+            "location": {
+                "lon": "-96.800496798",
+                "lat": "32.785663524"
+            }
         },
         "extensions": {},
         "sub": {}

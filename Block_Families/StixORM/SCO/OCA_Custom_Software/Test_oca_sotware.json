@@ -1,7 +1,7 @@
 {
-    "anecdote_form": {
+    "oca_software_form": {
         "base_required": {
-            "type": "anecdote",
+            "type": "software",
             "spec_version": "2.1",
             "id": "",
             "created": "",
@@ -14,8 +14,11 @@
             "defanged": null
         },
         "object": {
-            "value": "I clicked on the link, and my laptop screen went weird",
-            "provided_by_ref": ""
+            "version": "10.0.17763.1 (WinBuild.160101.0800)",
+            "x_product": "Microsoft® Windows® Operating System",
+            "x_description": "Host Process for Windows Services",
+            "vendor": "Microsoft Corporation",
+            "name": "svchost.exe"
         },
         "extensions": {},
         "sub": {}

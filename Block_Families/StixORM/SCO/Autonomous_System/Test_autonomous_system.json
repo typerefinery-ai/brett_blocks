@@ -1,9 +1,11 @@
 {
-    "email_addr_form": {
+    "autonomous_system_form": {
         "base_required": {
-            "type": "email-addr",
+            "type": "autonomous-system",
             "spec_version": "2.1",
-            "id": ""
+            "id": "",
+            "created": "",
+            "modified": ""
         },
         "base_optional": {
             "external_references": [],
@@ -12,8 +14,9 @@
             "defanged": null
         },
         "object": {
-            "value": "useful@example.com",
-            "display_name": "Useful Advisor"
+            "number": 15139,
+            "name": "Slime Industries",
+            "rir": "ARIN"
         },
         "extensions": {},
         "sub": {}

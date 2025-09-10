@@ -1,0 +1,32 @@
+{
+  "campaign_form":
+    {
+        "base_required": {
+            "type": "campaign",
+            "spec_version": "2.1",
+            "id": "",
+            "created": "",
+            "modified": ""
+        },
+        "base_optional": {
+            "created_by_ref": "identity--b085a68a-bf48-4316-9667-37af78cba894",
+            "revoked": null,
+            "labels": [],
+            "lang": "",
+            "external_references": [],
+            "object_marking_refs": [],
+            "granular_markings": []
+        },
+      "object": {
+        "name": "Reaper-Lite",
+        "description": "A lightweight campaign for testing purposes",
+        "status": "active",
+        "aliases": ["Reaper", "Light Reaper"],
+        "first_seen": "2023-01-01T00:00:00Z",
+        "last_seen": "2023-01-31T23:59:59Z",
+        "objective": ""
+      },
+      "extensions": {},
+      "sub": {}
+    }
+}

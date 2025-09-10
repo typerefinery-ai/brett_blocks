@@ -1,0 +1,41 @@
+{
+    "threat_actor_form": {
+        "base_required": {
+            "type": "threat-actor",
+            "spec_version": "2.1",
+            "id": "",
+            "created": "",
+            "modified": ""
+        },
+        "base_optional": {
+            "created_by_ref": "",
+            "revoked": null,
+            "labels": [],
+            "lang": "",
+            "external_references": [],
+            "object_marking_refs": [],
+            "granular_markings": []
+        },
+        "object": {
+            "name": "Ugly Gorilla",
+            "threat_actor_types": [
+                "nation-state",
+                "spy"
+            ],
+            "roles": [
+                "malware-author",
+                "agent",
+                "infrastructure-operator"
+            ],
+            "resource_level": "government",
+            "aliases": [
+                "Greenfield",
+                "JackWang",
+                "Wang Dong"
+            ],
+            "primary_motivation": "organizational-gain"
+        },
+        "extensions": {},
+        "sub": {}
+    }
+}

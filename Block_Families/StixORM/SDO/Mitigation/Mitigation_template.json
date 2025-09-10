@@ -1,8 +1,8 @@
 {
-  "class_name": "Event",
-  "Event_template":
+  "class_name": "Mitigaation",
+  "mitigation_template":
     {
-      "_type": "event",
+      "_type": "course-of-action",
       "base_required": {
         "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
         "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
@@ -28,6 +28,7 @@
         "x_mitre_modified_by_ref": {"property":  "ThreatReference", "parameters": {"valid_types":  ["identity"], "spec_version":  "2.1"}},
         "x_mitre_domains": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
         "x_mitre_attack_spec_version": {"property":  "StringProperty", "parameters": {}},
+        "x_mitre_old_attack_id": {"property":  "StringProperty", "parameters": {}},
         "x_mitre_deprecated": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
         "action": {"property":  "StringProperty", "parameters": {}}
       },

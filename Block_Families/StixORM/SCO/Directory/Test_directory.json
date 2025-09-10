@@ -1,9 +1,11 @@
 {
-    "email_addr_form": {
+    "directory_form": {
         "base_required": {
-            "type": "email-addr",
+            "type": "directory",
             "spec_version": "2.1",
-            "id": ""
+            "id": "",
+            "created": "",
+            "modified": ""
         },
         "base_optional": {
             "external_references": [],
@@ -12,8 +14,7 @@
             "defanged": null
         },
         "object": {
-            "value": "useful@example.com",
-            "display_name": "Useful Advisor"
+            "path": "C:\\Windows\\System32"
         },
         "extensions": {},
         "sub": {}

@@ -1,9 +1,11 @@
 {
-    "email_addr_form": {
+    "domain_name_form": {
         "base_required": {
-            "type": "email-addr",
+            "type": "domain-name",
             "spec_version": "2.1",
-            "id": ""
+            "id": "",
+            "created": "",
+            "modified": ""
         },
         "base_optional": {
             "external_references": [],
@@ -12,8 +14,10 @@
             "defanged": null
         },
         "object": {
-            "value": "useful@example.com",
-            "display_name": "Useful Advisor"
+            "value": "site.of.interest.zaz",
+            "resolves_to_refs": [
+                "ipv4-addr--ff26c055-6336-5bc5-b98d-13d6226742dd"
+            ]
         },
         "extensions": {},
         "sub": {}

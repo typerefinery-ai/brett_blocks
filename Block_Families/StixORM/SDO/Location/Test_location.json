@@ -1,21 +1,29 @@
 {
-    "anecdote_form": {
+    "location_form": {
         "base_required": {
-            "type": "anecdote",
+            "type": "location",
             "spec_version": "2.1",
             "id": "",
             "created": "",
             "modified": ""
         },
         "base_optional": {
+            "created_by_ref": "",
+            "revoked": null,
+            "labels": [],
+            "lang": "",
             "external_references": [],
             "object_marking_refs": [],
             "granular_markings": [],
             "defanged": null
         },
         "object": {
-            "value": "I clicked on the link, and my laptop screen went weird",
-            "provided_by_ref": ""
+            "region": "south-eastern-asia",
+            "country": "th",
+            "administrative_area": "Tak",
+            "postal_code": "63170",
+            "latitude": "48.8566",
+            "longitude": "2.3522"
         },
         "extensions": {},
         "sub": {}

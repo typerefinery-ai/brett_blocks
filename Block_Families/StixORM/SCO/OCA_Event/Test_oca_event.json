@@ -1,0 +1,28 @@
+{
+    "oca_event": {
+        "base_required": {
+            "type": "x-oca-event",
+            "spec_version": "2.1",
+            "id": "",
+            "created": "",
+            "modified": ""
+        },
+        "base_optional": {
+            "external_references": [],
+            "object_marking_refs": [],
+            "granular_markings": [],
+            "defanged": null
+        },
+        "object": {
+            "action": "FileCreated",
+            "file_ref": "10",
+            "host_ref": "x-oca-asset--430f5edd-6c7e-4f59-a361-a1979887fde3",
+            "provider": "EDR",
+            "original_ref": "user-account--1a9c7df9-1266-5a73-8d67-ceeb4f9d8fd8",
+            "user_ref": "user-account--1a9c7df9-1266-5a73-8d67-ceeb4f9d8fd8",
+            "process_ref": "process--5f4bbeb7-a991-4057-89cf-ea8f012f5e94"
+        },
+        "extensions": {},
+        "sub": {}
+    }
+}

@@ -1,0 +1,41 @@
+{
+  "behavior_form":
+    {
+      "base_required": {
+          "type": "x-oca-behavior",
+          "spec_version": "2.1",
+          "id": "",
+          "created": "",
+          "modified": ""
+      },
+      "base_optional": {
+          "created_by_ref": "identity--b085a68a-bf48-4316-9667-37af78cba894",
+          "revoked": null,
+          "labels": [],
+          "lang": "",
+          "external_references": [],
+          "object_marking_refs": [],
+          "granular_markings": []
+        },
+      "object": {
+			"name": "Cobalt Strike Payload Beaconing",
+			"description": "Network traffic matching a signature of Cobalt Strike's beaconing.",
+			"behavior_class": "anomalous",
+			"tactic": "Command and Control",
+			"technique": "T1071.001 - Application Layer Protocol - Web Protocols",
+			"first_seen": "2022-03-31T13:00:00.000Z",
+			"platforms": [
+				{
+				"operating_system": "Microsoft Windows",
+				"version": "10"
+				}
+			]
+      },
+      "extensions": {
+        "extension-definition--9c59fd79-4215-4ba2-920d-3e4f320e1e62": {
+          "extension_type" : "new-sdo"
+        }
+      },
+      "sub": {}
+    }
+}

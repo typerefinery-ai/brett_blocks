@@ -1,9 +1,11 @@
 {
-    "email_addr_form": {
+    "mac_addr_form": {
         "base_required": {
-            "type": "email-addr",
+            "type": "mac-addr",
             "spec_version": "2.1",
-            "id": ""
+            "id": "",
+            "created": "",
+            "modified": ""
         },
         "base_optional": {
             "external_references": [],
@@ -12,8 +14,7 @@
             "defanged": null
         },
         "object": {
-            "value": "useful@example.com",
-            "display_name": "Useful Advisor"
+            "value": "d2:fb:49:24:37:18"
         },
         "extensions": {},
         "sub": {}

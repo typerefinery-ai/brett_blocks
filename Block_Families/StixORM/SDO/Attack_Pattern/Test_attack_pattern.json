@@ -1,0 +1,43 @@
+{
+  "attack_pattern_form":
+    {
+        "base_required": {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "",
+            "created": "",
+            "modified": ""
+        },
+        "base_optional": {
+            "created_by_ref": "",
+            "revoked": null,
+            "labels": [],
+            "lang": "",
+            "external_references": [ 
+              {  
+                "source_name": "capec",  
+                "external_id": "CAPEC-163"  
+              }  
+            ],
+            "object_marking_refs": [],
+            "granular_markings": []
+        },
+      "object": {
+          "name": "Phishing",
+          "description": "A social engineering attack where an attacker sends fraudulent messages to trick the victim into revealing sensitive information.",
+          "aliases": ["Spear Phishing", "Whaling"],
+          "kill_chain_phases": [
+            {
+              "kill_chain_name": "mitre-attack",
+              "phase_name": "initial-access"
+            },
+            {
+              "kill_chain_name": "mitre-attack",
+              "phase_name": "execution"
+            }
+          ]
+      }, 
+      "extensions": {},
+      "sub": {}
+    }
+}

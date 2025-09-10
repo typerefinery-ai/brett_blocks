@@ -1,7 +1,8 @@
 {
-    "event_form": {
+  "course_of_action_form":
+    {
         "base_required": {
-            "type": "event",
+            "type": "course-of-action",
             "spec_version": "2.1",
             "id": "",
             "created": "",
@@ -17,17 +18,10 @@
             "granular_markings": []
         },
         "object": {
-            "name": "Potential Phishing Email",
-            "description": "Suspicious email reported by user",
-            "event_types": [
-                "dissemination-phishing-emails"
-            ]
+          "name": "Add TCP port 80 Filter Rule to the existing Block UDP 1434 Filter",
+          "description": "This is how to add a filter rule to block inbound access to TCP port 80 to the existing UDP 1434 filter ..."
         },
-        "extensions": {
-            "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
-                "extension_type": "new-sdo"
-            }
-        },
+        "extensions": {},
         "sub": {}
     }
 }

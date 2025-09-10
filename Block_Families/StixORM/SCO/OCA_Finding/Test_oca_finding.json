@@ -1,0 +1,38 @@
+{
+    "oca_finding": {
+        "base_required": {
+            "type": "x-ibm-finding",
+            "spec_version": "2.1",
+            "id": "",
+            "created": "",
+            "modified": ""
+        },
+        "base_optional": {
+            "external_references": [],
+            "object_marking_refs": [],
+            "granular_markings": [],
+            "defanged": null
+        },
+        "object": {
+            "name": "Some rule name",
+            "finding_type": "violation",
+            "time_observed": "2019-07-18T19:06:20.459257Z",
+            "severity": 80,
+            "src_ip_ref": "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8",
+            "dst_ip_ref": "ipv4-addr--5853f6a4-638f-5b4e-9b0f-ded361ae3812",
+            "src_application_user_ref": "user-account--0d5b424b-93b8-5cd8-ac36-306e1789d63c",
+            "src_application_ref": "software--a1827f6d-ca53-5605-9e93-4316cd22a00a",
+            "src_geo_ref": "x-oca-geo--ed82dd61-cc41-485b-b608-d278469e6259",
+            "src_device": "Chrome",
+            "ttp_tagging_refs": [
+                "x-ibm-ttp-tagging--fa5c2b89-ede5-425e-8d65-95dedb2d444f"
+            ],
+            "ioc_refs": [
+                "ipv4-addr--157aeca1-b949-5c83-89cb-ef99757be9c6",
+                "url--e9653306-7457-5316-a478-57559c06d87f"
+            ]
+        },
+        "extensions": {},
+        "sub": {}
+    }
+}

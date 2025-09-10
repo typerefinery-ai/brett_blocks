@@ -1,0 +1,35 @@
+{
+    "network_traffic_form": {
+        "base_required": {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": ""
+        },
+        "base_optional": {
+            "external_references": [],
+            "object_marking_refs": [],
+            "granular_markings": [],
+            "defanged": null
+        },
+      "object": {
+            "src_ref": "",
+            "src_port": 443,
+            "dst_ref": "",
+            "dst_port": 443,
+            "protocols": [
+              "ipv4",
+              "tcp",
+              "http",
+              "https"
+            ]
+      },
+      "extensions": {
+        "extension-definition--3b7505ce-2a18-496e-aa58-311dac6c1473": {
+          "connections": 4022,
+          "score": 0.834,
+          "extension_type": "property-extension"
+        }
+      },
+      "sub": {}
+    }
+}

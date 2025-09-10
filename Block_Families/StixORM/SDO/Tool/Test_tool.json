@@ -1,7 +1,7 @@
 {
-    "event_form": {
+    "tool_form": {
         "base_required": {
-            "type": "event",
+            "type": "tool",
             "spec_version": "2.1",
             "id": "",
             "created": "",
@@ -17,17 +17,12 @@
             "granular_markings": []
         },
         "object": {
-            "name": "Potential Phishing Email",
-            "description": "Suspicious email reported by user",
-            "event_types": [
-                "dissemination-phishing-emails"
-            ]
+            "tool_types": [
+                "remote-access"
+            ],
+            "name": "VNC"
         },
-        "extensions": {
-            "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
-                "extension_type": "new-sdo"
-            }
-        },
+        "extensions": {},
         "sub": {}
     }
 }

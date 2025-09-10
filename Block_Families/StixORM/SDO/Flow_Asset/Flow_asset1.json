@@ -1,0 +1,31 @@
+{
+  "attack_asset_form":
+    {
+      "base_required": {
+          "type": "attack-asset",
+          "spec_version": "2.1",
+          "id": "",
+          "created": "",
+          "modified": ""
+      },
+      "base_optional": {
+          "created_by_ref": "",
+          "revoked": null,
+          "labels": [],
+          "lang": "",
+          "external_references": [],
+          "object_marking_refs": [],
+          "granular_markings": []
+        },
+      "object": {
+      "name": "QTJPGPA1",
+      "description": "Machine on INTSRV network that allowed direct access to the internet"
+      },
+      "extensions": {
+        "extension-definition--fb9c968a-745b-4ade-9b25-c324172197f4": {
+          "extension_type": "new-sdo"
+        }
+      },
+      "sub": {}
+	}
+}

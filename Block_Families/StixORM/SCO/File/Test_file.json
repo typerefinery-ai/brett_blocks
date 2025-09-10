@@ -1,0 +1,34 @@
+{
+    "file_form": {
+        "base_required": {
+            "type": "file",
+            "spec_version": "2.1",
+            "id": "",
+            "created": "",
+            "modified": ""
+        },
+        "base_optional": {
+            "external_references": [],
+            "object_marking_refs": [],
+            "granular_markings": [],
+            "defanged": null
+        },
+        "object": {
+            "name": "picture.jpg",
+            "hashes": {
+                "SHA-256": "4bac27393bdd9777ce02453256c5577cd02275510b2227f473d03f533924f877"
+            }
+        },
+        "extensions": {
+            "raster-image-ext": {
+                "exif_tags": {
+                    "Make": "Nikon",
+                    "Model": "D7000",
+                    "XResolution": 4928,
+                    "YResolution": 3264
+                }
+            }
+        },
+        "sub": {}
+    }
+}

@@ -1,0 +1,38 @@
+{
+  "attack_action_form":
+    {
+      "base_required": {
+          "type": "attack-action",
+          "spec_version": "2.1",
+          "id": "",
+          "created": "",
+          "modified": ""
+      },
+      "base_optional": {
+          "created_by_ref": "",
+          "revoked": null,
+          "labels": [],
+          "lang": "",
+          "external_references": [],
+          "object_marking_refs": [],
+          "granular_markings": []
+        },
+      "object": {
+          "name": "Multi-Factor Authentication Interception",
+          "tactic_id": "TA0006",
+          "tactic_ref": "x-mitre-tactic--2558fd61-8c75-4730-94c4-11926db2a263",
+          "technique_id": "T1111",
+          "technique_ref": "attack-pattern--dd43c543-bb85-4a6f-aa6e-160d90d06a49",
+          "description": "Attackers cloned one of the SecurID servers in the VMware center",
+          "effect_refs": [
+            "attack-action--08bd0251-2db7-4ea0-854d-7a320c98ae6a"
+          ]
+      },
+      "extensions": {
+        "extension-definition--fb9c968a-745b-4ade-9b25-c324172197f4": {
+          "extension_type": "new-sdo"
+        }
+      },
+      "sub": {}
+	}
+}

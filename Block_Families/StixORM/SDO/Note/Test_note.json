@@ -1,0 +1,35 @@
+{
+    "note_form": {
+        "base_required": {
+            "type": "note",
+            "spec_version": "2.1",
+            "id": "",
+            "created": "",
+            "modified": ""
+        },
+        "base_optional": {
+            "created_by_ref": "",
+            "revoked": null,
+            "labels": [],
+            "lang": "",
+            "external_references": [
+                {
+                    "source_name": "job-tracker",
+                    "external_id": "job-id-1234"
+                }
+            ],
+            "object_marking_refs": [],
+            "granular_markings": []
+        },
+        "object": {
+            "abstract": "Tracking Team Note#1",
+            "content": "This note indicates the various steps taken by the threat analyst team to investigate this specific campaign. Step 1) Do a scan 2) Review scanned results for identified hosts not known by external intel…etc.",
+            "authors": [
+                "John Doe"
+            ],
+            "object_refs": []
+        },
+        "extensions": {},
+        "sub": {}
+    }
+}

@@ -1,0 +1,41 @@
+{
+  "detector_form":
+    {
+      "base_required": {
+          "type": "x-oca-detector",
+          "spec_version": "2.1",
+          "id": "",
+          "created": "",
+          "modified": ""
+      },
+      "base_optional": {
+          "created_by_ref": "identity--b085a68a-bf48-4316-9667-37af78cba894",
+          "revoked": null,
+          "labels": [],
+          "lang": "",
+          "external_references": [],
+          "object_marking_refs": [],
+          "granular_markings": []
+        },
+      "object": {
+          "name": "Zeek",
+          "description": "A network security monitoring tool.",
+          "cpe": "cpe:2.3:a:zeek:zeek:5.0.9:*:*:*:*:*:*:*",
+          "vendor": "Zeek",
+          "vendor_url": "https://zeek.org",
+          "product": "Zeek",
+          "product_url": "https://zeek.org/get-zeek/",
+          "product_version": "5.0.9",
+          "detection_types": ["dcsync"],
+          "detector_data_categories": ["network"],
+          "detector_data_sources": ["network tap"],
+          "valid_until": "2027-05-01T12:00:00.000Z"
+      },
+      "extensions": {
+        "extension-definition--9c59fd79-4215-4ba2-920d-3e4f320e1e62": {
+          "extension_type" : "new-sdo"
+        }
+      },
+      "sub": {}
+	}
+}

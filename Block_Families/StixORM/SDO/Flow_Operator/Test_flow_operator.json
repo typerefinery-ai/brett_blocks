@@ -1,0 +1,33 @@
+{
+  "behavior_form":
+    {
+      "base_required": {
+          "type": "attack-operator",
+          "spec_version": "2.1",
+          "id": "",
+          "created": "",
+          "modified": ""
+      },
+      "base_optional": {
+          "created_by_ref": "",
+          "revoked": null,
+          "labels": [],
+          "lang": "",
+          "external_references": [],
+          "object_marking_refs": [],
+          "granular_markings": []
+        },
+      "object": {
+          "operator": "AND",
+          "effect_refs": [
+            "attack-action--847def26-4d0a-4562-865d-d9c23e3820cf"
+          ]
+      },
+      "extensions": {
+          "extension-definition--fb9c968a-745b-4ade-9b25-c324172197f4": {
+            "extension_type": "new-sdo"
+          }
+        },
+      "sub": {}
+	}
+}

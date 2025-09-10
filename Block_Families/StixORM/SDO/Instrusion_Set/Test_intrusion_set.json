@@ -1,0 +1,29 @@
+{
+  "intrusion_set_form":
+    {
+        "base_required": {
+            "type": "intrusion-set",
+            "spec_version": "2.1",
+            "id": "",
+            "created": "",
+            "modified": ""
+        },
+        "base_optional": {
+            "created_by_ref": "",
+            "revoked": null,
+            "labels": [],
+            "lang": "",
+            "external_references": [],
+            "object_marking_refs": [],
+            "granular_markings": []
+        },
+      "object": {
+            "name": "Bobcat Breakin",  
+            "description": "Incidents usually feature a shared TTP of a bobcat being released within the building containing network access, scaring users to leave their computers without locking them first. Still determining where the threat actors are getting the bobcats.",  
+            "aliases": ["Zookeeper"],  
+            "goals": ["acquisition-theft", "harassment", "damage"]  
+      },
+      "extensions": {},
+      "sub": {}
+    }
+}

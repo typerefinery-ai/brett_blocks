@@ -1,0 +1,56 @@
+{
+    "anecdote_form": {
+        "base_required": {
+            "type": "anecdote",
+            "spec_version": "2.1",
+            "id": "",
+            "created": "",
+            "modified": ""
+        },
+        "base_optional": {
+            "external_references": [],
+            "object_marking_refs": [],
+            "granular_markings": [],
+            "defanged": null
+        },
+        "object": {
+            "ip_refs": [
+                "ipv4-addr--38609426-bc06-5cbc-9763-e77e99c9d9e4",
+                "ipv6-addr--dc0ef52f-b6cf-52a0-a6a1-977b32a57063"
+            ],
+            "hostname": "example host",
+            "host_id": "123A",
+            "geo_ref": "x-oca-geo--419f0ac4-2836-46f0-9985-820f7a4b7abc",
+            "mac_refs": [
+                "mac-addr--b5dbdbbb-5470-58c8-9b86-81b7d83a770b"
+            ],
+            "host_type": "APM Server",
+            "egress": {
+                "zone": "internal",
+                "interfaces": [
+                    {
+                        "alias": "inside",
+                        "interface_id": "10",
+                        "name": "eth0"
+                    }
+                ]
+            }
+        },
+        "extensions": {
+            "x-oca-container-ext": {
+                "name": "example container",
+                "container_id": "bf032feb4117",
+                "image_id": "92b1b5d66457...",
+                "image_name": "us.icr.io/...",
+                "container_type": "crio"
+            },
+            "x-oca-pod-ext": {
+                "name": "example pod",
+                "ip_refs": [
+                    "ipv4-addr--f1958dd5-5175-5702-beef-742d2cf3c0ec"
+                ]
+            }
+        },
+        "sub": {}
+    }
+}

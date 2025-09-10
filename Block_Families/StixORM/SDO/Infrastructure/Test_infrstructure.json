@@ -1,0 +1,27 @@
+{
+  "infrastructure_form":
+    {
+        "base_required": {
+            "type": "infrastructure",
+            "spec_version": "2.1",
+            "id": "",
+            "created": "",
+            "modified": ""
+        },
+        "base_optional": {
+            "created_by_ref": "",
+            "revoked": null,
+            "labels": [],
+            "lang": "",
+            "external_references": [],
+            "object_marking_refs": [],
+            "granular_markings": []
+        },
+      "object": {
+        "name":"Poison Ivy C2",
+        "infrastructure_types": ["command-and-control"]
+      },
+      "extensions": {},
+      "sub": {}
+    }
+}

@@ -1,0 +1,51 @@
+{
+  "attack_flow_form":
+    {
+      "base_required": {
+          "type": "attack-flow",
+          "spec_version": "2.1",
+          "id": "",
+          "created": "",
+          "modified": ""
+      },
+      "base_optional": {
+          "created_by_ref": "",
+          "revoked": null,
+          "labels": [],
+          "lang": "",
+          "external_references": [
+            {
+              "source_name": "Mandiant",
+              "description": "Blog",
+              "url": "https://www.mandiant.com/resources/blog/fin13-cybercriminal-mexico"
+            },
+            {
+              "source_name": "Sygnia",
+              "description": "Report",
+              "url": "https://f.hubspotusercontent30.net/hubfs/8776530/Sygnia-%20Elephant%20Beetle_Jan2022.pdf"
+            },
+            {
+              "source_name": "Netwitness",
+              "description": "Report",
+              "url": "https://www.netwitness.com/wp-content/uploads/FIN13-Elephant-Beetle-NetWitness.pdf"
+            }
+          ],
+          "object_marking_refs": [],
+          "granular_markings": []
+        },
+      "object": {
+          "start_refs": [
+            "attack-action--81e5c5eb-d20d-46e2-8755-d196dce3cf55"
+          ],
+          "name": "FIN13 Case 2",
+          "description": "Attack flow for the FIN13 campaign targeting a bank in Peru. ",
+          "scope": "incident"
+      },
+      "extensions": {
+          "extension-definition--fb9c968a-745b-4ade-9b25-c324172197f4": {
+            "extension_type": "new-sdo"
+          }
+      },
+      "sub": {}
+	}
+}
