@@ -1,5 +1,5 @@
 {
-    "email_addr_form": {
+    "ipv4_addr_form": {
         "base_required": {
             "type": "ipv4-addr",
             "spec_version": "2.1",

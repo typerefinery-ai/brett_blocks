@@ -1,7 +1,7 @@
 {
-    "anecdote_form": {
+    "oca_asset_form": {
         "base_required": {
-            "type": "anecdote",
+            "type": "x-oca-asset",
             "spec_version": "2.1",
             "id": "",
             "created": "",

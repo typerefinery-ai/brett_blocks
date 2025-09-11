@@ -1,5 +1,5 @@
 {
-    "oca_geo": {
+    "oca_geo_form": {
         "base_required": {
             "type": "x-oca-geo",
             "spec_version": "2.1",

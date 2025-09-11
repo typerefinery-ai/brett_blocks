@@ -1,6 +1,6 @@
 {
   "class_name": "OCACustomNetworkTraffic",
-  "EmailAddress_template":
+  "NetworkTraffic_template":
     {
       "_type": "network-traffic",
       "base_required": {

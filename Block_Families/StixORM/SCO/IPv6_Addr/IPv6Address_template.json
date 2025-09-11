@@ -1,6 +1,6 @@
 {
   "class_name": "IPv6Address",
-  "IPv4Address_template":
+  "IPv6Address_template":
     {
       "_type": "ipv6-addr",
       "base_required": {

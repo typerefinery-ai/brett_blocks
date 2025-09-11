@@ -1,5 +1,5 @@
 {
-  "behavior_form":
+  "flow_condition_form":
     {
       "base_required": {
           "type": "attack-condition",
