@@ -29,6 +29,7 @@
         "vendor_url": {"property":  "StringProperty", "parameters": {}},
         "product": {"property":  "StringProperty", "parameters": {}},
         "product_url": {"property":  "StringProperty", "parameters": {}},
+        "product_version": {"property":  "StringProperty", "parameters": {}},
         "detection_types": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
         "detector_data_categories": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
         "detector_data_sources": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}}

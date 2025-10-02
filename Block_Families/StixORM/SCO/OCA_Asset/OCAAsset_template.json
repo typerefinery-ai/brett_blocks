@@ -21,6 +21,7 @@
         "os_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["software"], "spec_version":  "2.1"}},
         "architecture": {"property":  "StringProperty", "parameters": {}},
         "uptime": {"property":  "StringProperty", "parameters": {}},
+        "host_id": {"property":  "StringProperty", "parameters": {}},
         "host_type": {"property":  "StringProperty", "parameters": {}},
         "ingress": {"property": "EmbeddedObjectProperty", "parameters": {"type": "OCATrafficSubObject"}},
         "egress": {"property": "EmbeddedObjectProperty", "parameters": {"type": "OCATrafficSubObject"}},
