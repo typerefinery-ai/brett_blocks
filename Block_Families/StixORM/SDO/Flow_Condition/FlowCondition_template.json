@@ -25,8 +25,8 @@
         "description": {"property":  "StringProperty", "parameters": {}},
         "pattern": {"property":  "StringProperty", "parameters": {}},
         "pattern_version": {"property":  "StringProperty", "parameters": {}},
-        "on_true_refs": {"collection": "ListProperty", "property":  "ThreatReference", "parameters": {"valid_types":  ["attack-action", "attack-operator", "attack-condition"]}},
-        "on_false_refs": {"collection": "ListProperty", "property":  "ThreatReference", "parameters": {"valid_types":  ["attack-action", "attack-operator", "attack-condition"]}}
+        "on_true_refs": {"collection": "ListProperty", "property":  "OSThreatReference", "parameters": {"valid_types":  ["attack-action", "attack-operator", "attack-condition"]}},
+        "on_false_refs": {"collection": "ListProperty", "property":  "OSThreatReference", "parameters": {"valid_types":  ["attack-action", "attack-operator", "attack-condition"]}}
       },
       "extensions": {
         "extension-definition--fb9c968a-745b-4ade-9b25-c324172197f4": {

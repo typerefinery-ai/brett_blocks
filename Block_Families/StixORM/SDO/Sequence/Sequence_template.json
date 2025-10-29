@@ -21,13 +21,13 @@
         "granular_markings": {"collection": "ListProperty", "property":  "GranularMarking", "parameters": {}}
       },
       "object": {
-        "sequenced_object": {"property":  "ThreatReference", "parameters": {"valid_types":  ["event", "task"], "spec_version":  "2.1"}},
+        "sequenced_object": {"property":  "OSThreatReference", "parameters": {"valid_types":  ["event", "task"], "spec_version":  "2.1"}},
         "sequence_type": {"property":  "EnumProperty", "parameters": {"vocab": "SEQUENCE_TYPE"}},
         "step_type": {"property":  "EnumProperty", "parameters": {"vocab": "STEP_TYPE"}},
-        "on_completion": {"property":  "ThreatReference", "parameters": {"valid_types":  ["sequence"], "spec_version":  "2.1"}},
-        "on_success": {"property":  "ThreatReference", "parameters": {"valid_types":  ["sequence"], "spec_version":  "2.1"}},
-        "on_failure": {"property":  "ThreatReference", "parameters": {"valid_types":  ["sequence"], "spec_version":  "2.1"}},
-        "next_steps": {"collection": "ListProperty", "property":  "ThreatReference", "parameters": {"valid_types":  ["sequence"], "spec_version":  "2.1"}}
+        "on_completion": {"property":  "OSThreatReference", "parameters": {"valid_types":  ["sequence"], "spec_version":  "2.1"}},
+        "on_success": {"property":  "OSThreatReference", "parameters": {"valid_types":  ["sequence"], "spec_version":  "2.1"}},
+        "on_failure": {"property":  "OSThreatReference", "parameters": {"valid_types":  ["sequence"], "spec_version":  "2.1"}},
+        "next_steps": {"collection": "ListProperty", "property":  "OSThreatReference", "parameters": {"valid_types":  ["sequence"], "spec_version":  "2.1"}}
       },
       "extensions": {
         "extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {

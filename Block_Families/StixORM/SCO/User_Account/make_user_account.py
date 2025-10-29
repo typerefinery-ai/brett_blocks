@@ -106,9 +106,13 @@ def make_user_account(user_account_form):
 
 
 def main(inputfile, outputfile):
+    input_data = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
             input_data = json.load(script_input)
+    
+    if input_data is None:
+        raise FileNotFoundError(f"Input file not found or could not be read: {inputfile}")
 
     user_account_form = input_data["user_account_form"]
 

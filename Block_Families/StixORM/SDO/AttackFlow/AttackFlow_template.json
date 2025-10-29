@@ -24,7 +24,7 @@
         "name": {"property":  "StringProperty", "parameters": {"required":  true}},
         "description": {"property":  "StringProperty", "parameters": {}},
         "scope": {"property":  "EnumProperty", "parameters": {"vocab":  "ATTACK_FLOW_SCOPE"}},
-        "start_refs": {"collection": "ListProperty", "property":  "ThreatReference", "parameters": {"valid_types":  ["attack-action", "attack-condition"]}}
+        "start_refs": {"collection": "ListProperty", "property":  "OSThreatReference", "parameters": {"valid_types":  ["attack-action", "attack-condition"]}}
       },
       "extensions": {
         "extension-definition--fb9c968a-745b-4ade-9b25-c324172197f4": {

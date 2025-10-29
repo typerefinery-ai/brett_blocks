@@ -23,7 +23,7 @@
       "object": {
         "name": {"property":  "StringProperty", "parameters": {"required":  true}},
         "description": {"property":  "StringProperty", "parameters": {}},
-        "object_ref": {"property":  "ThreatReference", "parameters": {"valid_types":  ["_any"]}}
+        "object_ref": {"property":  "OSThreatReference", "parameters": {"valid_types":  ["_any"]}}
       },
       "extensions": {
         "extension-definition--fb9c968a-745b-4ade-9b25-c324172197f4": {

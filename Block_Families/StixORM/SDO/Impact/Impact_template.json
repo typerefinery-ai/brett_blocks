@@ -27,11 +27,11 @@
         "end_time": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
         "end_time_fidelity": {"property":   "EnumProperty", "parameters": {"vocab":  "TIMESTAMP_FIDELITY"}},
         "impacted_entity_counts": {"property":  "DictionaryProperty", "parameters": {"Spec_version":  "2.1"}},
-        "impacted_refs": {"collection": "ListProperty", "property":  "ThreatReference", "parameters": {"valid_types":  ["_any"]}},
+        "impacted_refs": {"collection": "ListProperty", "property":  "OSThreatReference", "parameters": {"valid_types":  ["_any"]}},
         "recoverability": {"property":   "EnumProperty", "parameters": {"vocab":  "RECOVERABILITY"}},
         "start_time": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
         "start_time_fidelity": {"property":   "EnumProperty", "parameters": {"vocab":  "TIMESTAMP_FIDELITY"}},
-        "superseded_by_ref": {"property":  "ThreatReference", "parameters": {"valid_types":  ["impact"], "Spec_version":  "2.1"}}
+        "superseded_by_ref": {"property":  "OSThreatReference", "parameters": {"valid_types":  ["impact"], "Spec_version":  "2.1"}}
       },
       "extensions": {
         "extension-definition--7cc33dd6-f6a1-489b-98ea-522d351d71b9": {

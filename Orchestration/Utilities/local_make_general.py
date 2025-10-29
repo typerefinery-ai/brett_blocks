@@ -701,3 +701,47 @@ def invoke_get_from_user_block(get_query, context_type, source_value=None, sourc
         with open(context_res_path, "r") as script_input:
             export_data = json.load(script_input)
             return export_data
+
+
+def invoke_save_incident_context_block(stix_object_path, context_results_path, context_type):
+    """
+    Save a STIX object to incident context memory
+    
+    Args:
+        stix_object_path: Path to the STIX object JSON file
+        context_results_path: Path where context result will be saved
+        context_type: Dict with context_type key specifying where to save
+    
+    Returns:
+        Context result from save operation
+    """
+    # Load the STIX object
+    stix_object = None
+    if os.path.exists(stix_object_path):
+        with open(stix_object_path, "r") as obj_file:
+            stix_object = json.load(obj_file)
+    
+    # Create input for save_incident_context
+    save_input = {
+        "stix_object": stix_object,
+        "context_type": context_type
+    }
+    
+    # Create temporary input file
+    temp_input_path = context_results_path.replace(".json", "_input.json")
+    with open(temp_input_path, 'w') as f:
+        json.dump(save_input, f)
+    
+    # Call save_incident_context function
+    save_incident_context(temp_input_path, context_results_path)
+    
+    # Clean up temp file
+    if os.path.exists(temp_input_path):
+        os.remove(temp_input_path)
+    
+    # Return result
+    if os.path.exists(context_results_path):
+        with open(context_results_path, "r") as result_file:
+            return json.load(result_file)
+    
+    return {"context_result": "Save completed"}

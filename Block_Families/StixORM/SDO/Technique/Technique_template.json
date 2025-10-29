@@ -25,7 +25,7 @@
         "description": {"property":  "StringProperty", "parameters": {}},
         "x_mitre_version": {"property":  "StringProperty", "parameters": {}},
         "x_mitre_contributors": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
-        "x_mitre_modified_by_ref": {"property":  "ThreatReference", "parameters": {"valid_types":  ["identity"], "spec_version":  "2.1"}},
+        "x_mitre_modified_by_ref": {"property":  "OSThreatReference", "parameters": {"valid_types":  ["identity"], "spec_version":  "2.1"}},
         "x_mitre_domains": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
         "x_mitre_attack_spec_version": {"property":  "StringProperty", "parameters": {}},
         "x_mitre_deprecated": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
