@@ -1,5 +1,14 @@
 # STIX Object Creation Prompts
 
+## Overview
+
+**STIX Analysis Reference**: For comprehensive understanding of all 88 available STIX objects, their complexity distribution, and implementation patterns, see:
+- `architecture/stix-object-generation-patterns.md` - Complete complexity analysis
+- `architecture/complete-stix-pattern-matrix.md` - Function signature matrix for all implemented objects
+- `a_seed/2_initial_set_of_blocks.md` - Complete inventory of implemented and available objects
+
+**Current Implementation**: 15 objects implemented (8 SDO, 5 SCO, 2 SRO) with 73 additional objects available for expansion.
+
 ## Create Team Member Objects
 
 **Context:** When adding new team members to the system

@@ -4,6 +4,15 @@
 
 The Brett Blocks STIX object architecture implements comprehensive STIX 2.1 cybersecurity object management with **validated dual-layer storage format**. **Confirmed through practical execution**, this architecture ensures industry-standard compliance while providing enhanced visualization and user interface capabilities.
 
+## 📊 Comprehensive Analysis References
+
+For detailed pattern analysis and implementation insights:
+
+- **[stix-object-generation-patterns.md](stix-object-generation-patterns.md)** - Complete complexity distribution analysis of all 15 implemented STIX objects with automation feasibility assessment
+- **[complete-stix-pattern-matrix.md](complete-stix-pattern-matrix.md)** - Full function signature matrix showing parameter counts and complexity classifications
+
+These documents provide the complete empirical data underlying the architectural principles described below.
+
 ## 🏗️ STIX 2.1 Implementation (Validated)
 
 ### Template-Driven Architecture (Critical Understanding)

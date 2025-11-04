@@ -3,9 +3,19 @@
 ## 🎯 Essential System Facts - **Template-Driven Architecture**
 
 **System Purpose**: 🛡️ Cybersecurity intelligence platform using **template-driven automatic code generation** + **validated dual-layer STIX 2.1 objects**
+**Implementation Status**: 🔢 **15 objects implemented, 88 total available** (5.8x growth potential documented in `architecture/`)
 **Architecture**: 🔄 **Three-file patterns** (class template + data template + Python block) with automatic function parameter generation
 **Communication**: 📄 **Template-generated JSON objects** with `original` STIX data + UI metadata
 **Data Standard**: 🔒 **STIX 2.1 compliance in `original` field** + property type auto-generation
+
+## 📊 STIX Object Complexity Insights
+
+**Complexity Distribution** (from complete analysis):
+- **MINIMAL (0-1 params)**: 47% of objects → High automation feasibility
+- **MEDIUM (3 params)**: 20% of objects → Standard complexity
+- **EXTREME (6-7 params)**: 13% of objects → Require careful integration
+
+**Reference**: See `architecture/stix-object-generation-patterns.md` for complete function signature matrix and automation feasibility analysis.
 
 ## 🔧 Template-Driven Architecture Framework - **✅ Critical Pattern**
 

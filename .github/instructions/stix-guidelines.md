@@ -4,6 +4,23 @@
 
 **STIX 2.1** is the foundational data standard for all cybersecurity intelligence operations within the Brett Blocks system. **Template-driven architecture** processes cybersecurity data using **three-file patterns** that ensure STIX 2.1 compliance through automatic code generation and dual-layer object format.
 
+## 📊 Comprehensive STIX Object Analysis
+
+**Implementation Status**: Based on complete systematic analysis documented in `architecture/`:
+- **Current**: 15 implemented objects (8 SDO, 5 SCO, 2 SRO)
+- **Available**: 88 total STIX objects across standard and dialect categories
+- **Growth Potential**: 5.8x expansion with current StixORM library
+
+**Complexity Patterns**: See `architecture/complete-stix-pattern-matrix.md` for:
+- Function signature matrix for all 15 implemented objects
+- Parameter complexity distribution (MINIMAL to EXTREME)
+- Automation feasibility classifications
+
+**Implementation Roadmap**: See `architecture/stix-object-generation-patterns.md` for:
+- Complete analysis of all available STIX object types
+- Standard STIX 2.1 vs dialect object categorization
+- Development prioritization based on complexity analysis
+
 ## 🏗️ Template-Driven STIX Architecture - **Three-File Pattern**
 
 ### Critical Implementation Discovery - **✅ Template-Driven Auto-Generation**

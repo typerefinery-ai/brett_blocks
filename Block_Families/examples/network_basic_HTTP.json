@@ -1,0 +1,19 @@
+[
+    {
+        "type": "domain-name",      
+        "spec_version": "2.1",      
+        "id": "domain-name--3c10e93f-798e-5a26-a0c1-08156efab7f5",      
+        "value": "example.com"      
+    },
+    {      
+        "type": "network-traffic",      
+        "spec_version": "2.1",      
+        "id": "network-traffic--c95e972a-20a4-5307-b00d-b8393faf02c5",      
+        "dst_ref": "domain-name--3c10e93f-798e-5a26-a0c1-08156efab7f5",      
+        "protocols": [      
+          "ipv4",      
+          "tcp",      
+          "http"      
+        ]      
+      }
+]

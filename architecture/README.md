@@ -14,6 +14,10 @@ This directory contains comprehensive architecture documentation for the Brett B
 - **[block-architecture.md](block-architecture.md)** - Python block design patterns with automatic function signature generation
 - **[stix-object-architecture.md](stix-object-architecture.md)** - STIX 2.1 object management with class template specifications
 
+### STIX Object Pattern Analysis (NEW)
+- **[stix-object-generation-patterns.md](stix-object-generation-patterns.md)** - **NEW** - Comprehensive analysis of ALL 15 STIX objects with complexity distribution and automation feasibility
+- **[complete-stix-pattern-matrix.md](complete-stix-pattern-matrix.md)** - **NEW** - Complete function signature matrix and pattern analysis across all implemented STIX objects
+
 ### Component Architecture
 - **[context-memory-architecture.md](context-memory-architecture.md)** - Persistent storage and state management **[UPDATED with Three-Tier Edge Relationship System]**
 - **[orchestration-architecture.md](orchestration-architecture.md)** - Workflow composition and execution
@@ -43,6 +47,20 @@ Properties with `ReferenceProperty` or `OSThreatReference` types automatically b
 def make_incident(incident_form, event_refs=None, ...):
 ```
 
+## 🚀 MAJOR ARCHITECTURAL DISCOVERIES (October 2025)
+
+### Automatic STIX Object Routing
+**CRITICAL DISCOVERY**: The `save_incident_context.py` function implements intelligent object routing based on STIX type, eliminating the need for manual `context_type` parameters in most cases.
+
+### Brett Blocks File Path Patterns
+**VALIDATED PATTERN**: Creation functions produce files WITHOUT `.json` extensions. Save operations must use exact paths: `results_path` (not `results_path + ".json"`).
+
+### NEW vs OLD Notebook Mathematical Equivalence
+**VALIDATION COMPLETE**: The optimized NEW notebook sequence (4 notebooks) produces mathematically identical results to the legacy OLD sequence (3 notebooks) while providing improved code clarity and maintainability.
+
+### Context Memory Evolution Tracking
+**METHODOLOGY ESTABLISHED**: Complete validation protocol for testing notebook sequences with file-level monitoring and mathematical equivalence verification.
+
 ## 📋 Document Status
 
 | Document | Status | Last Updated | Key Updates |
@@ -51,10 +69,10 @@ def make_incident(incident_form, event_refs=None, ...):
 | [system-overview.md](./system-overview.md) | ✅ Updated | 2025-10-27 | Added template-driven architecture section with foreign key generation |
 | [block-architecture.md](./block-architecture.md) | ✅ Updated | 2025-10-27 | Added foreign key parameter generation patterns and property type specifications |
 | [stix-object-architecture.md](./stix-object-architecture.md) | ✅ Updated | 2025-10-27 | Added template structure specifications and property type documentation |
-| [context-memory-architecture.md](./context-memory-architecture.md) | ✅ Complete | 2025-10-30 | **CRITICAL UPDATE**: Three-Tier Edge Relationship System Discovery |
-| [orchestration-architecture.md](./orchestration-architecture.md) | ✅ Complete | 2024-10-25 | Workflow composition with block simulation framework |
+| [context-memory-architecture.md](./context-memory-architecture.md) | ✅ **MAJOR UPDATE** | 2025-10-30 | **CRITICAL DISCOVERIES**: Automatic STIX Object Routing, File Path Patterns, Context Evolution |
+| [orchestration-architecture.md](./orchestration-architecture.md) | ✅ **MAJOR UPDATE** | 2025-10-30 | **VALIDATION COMPLETE**: NEW vs OLD Notebook Mathematical Equivalence Proof |
 | [api-integration-architecture.md](./api-integration-architecture.md) | ✅ Complete | 2024-10-25 | External system interfaces and deployment strategies |
-| [new-knowledge-summary.md](./new-knowledge-summary.md) | ✅ Complete | 2024-10-25 | Summary of validated architectural patterns and discoveries |
+| [new-knowledge-summary.md](./new-knowledge-summary.md) | ✅ **MAJOR UPDATE** | 2025-10-30 | **BREAKTHROUGH DISCOVERIES**: Automatic STIX Routing, Mathematical Equivalence Proof, Template Optimization |
 
 ## 🎯 Target Audience
 

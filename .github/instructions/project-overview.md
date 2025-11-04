@@ -4,6 +4,19 @@
 
 **Brett Blocks** is a sophisticated cybersecurity intelligence platform implementing a **template-driven architecture** where class templates define both STIX object structure and Python function interfaces. **Validated through practical execution**, the system enables creation, testing, and deployment of atomic Python functions that process STIX 2.1 cybersecurity objects using **automatic foreign key parameter generation** and **confirmed dual-layer object format**.
 
+## 📚 Comprehensive Documentation
+
+**Unified Architecture Documentation**: All architectural documentation is consolidated in the `architecture/` directory:
+- **Core Architecture**: System overview, template-driven patterns, block architecture
+- **STIX Object Analysis**: Complete pattern matrix and generation analysis of all 88 available STIX objects
+- **Component Architecture**: Context memory, orchestration, API integration
+- **Implementation Guides**: Testing, validation, and development patterns
+
+**Key References**:
+- `architecture/stix-object-generation-patterns.md` - Complete STIX complexity analysis
+- `architecture/complete-stix-pattern-matrix.md` - Function signature matrix for all objects
+- `architecture/README.md` - Complete documentation index and navigation guide
+
 ## 🏗️ Template-Driven Architecture - **Critical Understanding**
 
 ### StixORM Template System - **Revolutionary Discovery**

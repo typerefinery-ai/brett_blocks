@@ -1,1 +1,41 @@
-{"identity_form": {"base_required": {"type": "identity", "spec_version": "2.1", "id": "", "created": "", "modified": ""}, "base_optional": {"created_by_ref": "", "revoked": null, "labels": [], "lang": "", "external_references": [{"source_name": "Apple MaxBook Pro", "description": "32GB RAM, 1TB SD, Microsoft Windows 11 Professional", "url": "https://our-assets.com", "external_id": "Asset--629457bb"}], "object_marking_refs": [], "granular_markings": [], "defanged": null}, "object": {"name": "Apple MacBook Pro", "description": "Usr 3's Laptop", "roles": ["laptop"], "identity_class": "asset", "sectors": ["technology"]}, "extensions": {}, "sub": {}}}
+{
+    "identity_form": {
+        "base_required": {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "",
+            "created": "",
+            "modified": ""
+        },
+        "base_optional": {
+            "created_by_ref": "",
+            "revoked": null,
+            "labels": [],
+            "lang": "",
+            "external_references": [
+                {
+                    "source_name": "Apple MaxBook Pro",
+                    "description": "32GB RAM, 1TB SD, Microsoft Windows 11 Professional",
+                    "url": "https://our-assets.com",
+                    "external_id": "Asset--629457bb"
+                }
+            ],
+            "object_marking_refs": [],
+            "granular_markings": [],
+            "defanged": null
+        },
+        "object": {
+            "name": "Apple MacBook Pro",
+            "description": "Usr 3's Laptop",
+            "roles": [
+                "laptop"
+            ],
+            "identity_class": "asset",
+            "sectors": [
+                "technology"
+            ]
+        },
+        "extensions": {},
+        "sub": {}
+    }
+}

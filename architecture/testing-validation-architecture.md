@@ -6,6 +6,15 @@ The Brett Blocks testing architecture ensures system reliability through systema
 
 ## 🧪 Testing Methodology (Validated Approach)
 
+### STIX Object Testing Patterns
+
+**Pattern-Based Testing**: Using insights from [stix-object-generation-patterns.md](stix-object-generation-patterns.md), testing should focus on the complexity distribution:
+
+- **MINIMAL objects (0-1 params)**: Simple validation patterns, automated testing feasible
+- **EXTREME objects (6-7 params)**: Require comprehensive integration testing with multiple reference dependencies
+
+See [complete-stix-pattern-matrix.md](complete-stix-pattern-matrix.md) for specific function signatures and parameter validation requirements.
+
 ### Context Memory Testing Protocol
 
 **CRITICAL DISCOVERY**: Context memory clearing affects system state and requires specific protocols:
