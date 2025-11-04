@@ -67,3 +67,73 @@ When creating a Python block that uses subobjects or extensions, copilot must en
 By using the above object conversion lists, copilot can convert the name from the class template to the correct Class Names for each extension to be used in the block, and add the appropriate import statements.
 
 The Python Classes for the sub objects is given in both the EmbeddedObjectProperty `property` field in the class template, and the `sub` key in the class template definition, and the copilot can use those names directly in the import statements.
+
+## 11. Example Class Template - Identity
+
+The Identity class is taken as a good example of a STIX object with both extensions and sub-objects. It includes a variety of properties that demonstrate the structure and requirements for STIX data forms.
+
+```json
+{
+  "class_name": "Identity",
+  "Identity_template":
+    {
+      "_type": "identity",
+      "base_required": {
+        "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
+        "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
+        "id": {"property":  "IDProperty", "parameters": {"value":  "_type", "Spec_version":  "2.1"}},
+        "created": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
+        "modified": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}}
+      },
+      "base_optional": {
+        "created_by_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["identity"], "spec_version":  "2.1"}},
+        "revoked": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
+        "labels": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
+        "confidence": {"property":  "IntegerProperty", "parameters": {}},
+        "lang": {"property":  "StringProperty", "parameters": {}},
+        "external_references": {"collection": "ListProperty", "property":  "ExternalReference", "parameters": {}},
+        "object_marking_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  ["marking-definition"], "spec_version":  "2.1"}},
+        "granular_markings": {"collection": "ListProperty", "property":  "GranularMarking", "parameters": {}}
+      },
+      "object": {
+        "name": {"property":  "StringProperty", "parameters": {"required": true}},
+        "description": {"property":  "StringProperty", "parameters": {}},
+        "roles": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
+        "identity_class": {"property":  "OpenVocabProperty", "parameters": {"vocab":  "IDENTITY_CLASS"}},
+        "sectors": {"collection": "ListProperty", "property":  "OpenVocabProperty", "parameters": {"vocab": "INDUSTRY_SECTOR"}},
+        "contact_information": {"property":  "StringProperty", "parameters": {}}
+      },
+      "extensions": {
+        "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+          "extension_type" : {"property":  "StringProperty", "parameters": {"required":  true, "fixed":  "property-extension"}},
+          "contact_numbers": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type": "ContactNumber"}},
+          "email_addresses": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type": "EmailContact"}},
+          "first_name": {"property":  "StringProperty", "parameters": {}},
+          "last_name": {"property":  "StringProperty", "parameters": {}},
+          "middle_name": {"property":  "StringProperty", "parameters": {}},
+          "prefix": {"property":  "StringProperty", "parameters": {}},
+          "social_media_accounts": {"collection": "ListProperty", "property":  "EmbeddedObjectProperty", "parameters": {"type": "SocialMediaContact"}},
+          "suffix": {"property":  "StringProperty", "parameters": {}},
+          "team": {"property":  "StringProperty", "parameters": {}}
+        }
+      },
+      "sub": {
+        "ContactNumber": {
+          "description": {"property":  "StringProperty", "parameters": {}},
+          "contact_number_type" : {"property":  "StringProperty", "parameters": {"required":  true}},
+          "contact_number" : {"property":  "StringProperty", "parameters": {"required":  true}}
+        },
+        "EmailContact": {
+          "description": {"property":  "StringProperty", "parameters": {}},
+          "digital_contact_type" : {"property":  "StringProperty", "parameters": {"required":  true}},
+          "email_address_ref" : {"property":  "ReferenceProperty", "parameters": {"required":  true, "valid_types":  ["email-addr"], "spec_version":  "2.1"}}
+        },
+        "SocialMediaContact": {
+          "description": {"property":  "StringProperty", "parameters": {}},
+          "digital_contact_type" : {"property":  "StringProperty", "parameters": {"required":  true}},
+          "user_account_ref" : {"property":  "ReferenceProperty", "parameters": {"required":  true, "valid_types":  ["email-addr"], "spec_version":  "2.1"}}
+        }
+      }
+    }
+}
+```

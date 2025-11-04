@@ -21,37 +21,91 @@
 - Standard STIX 2.1 vs dialect object categorization
 - Development prioritization based on complexity analysis
 
-## 🏗️ Template-Driven STIX Architecture - **Three-File Pattern**
+## 🏗️ Template-Driven STIX Architecture - **Data Form Creation from Class Templates**
 
-### Critical Implementation Discovery - **✅ Template-Driven Auto-Generation**
+### Critical Implementation Discovery - **✅ Class Template to Data Form Conversion**
 
-**Template-Driven STIX Creation** (validated across all StixORM directories):
+**Class Template to Data Form Conversion** (validated across 15 implemented objects):
 
+Based on systematic analysis documented in `architecture/stix-data-form-conversion-complete-analysis.md`, the Brett Blocks system uses a precise conversion pattern from class templates to data forms:
+
+#### Structure Preservation Pattern:
 ```json
-// 1. CLASS TEMPLATE (Identity_template.json) - Structure Definition
+// 1. CLASS TEMPLATE (Identity_template.json) - Property Definitions
 {
-  "type": "Identity",
-  "properties": {
-    "identity_class": {
-      "type": "OpenVocabProperty",
-      "vocab": "identity-class-ov"
+  "class_name": "Identity",
+  "Identity_template": {
+    "_type": "identity",
+    "base_required": {
+      "type": {"property": "TypeProperty", "parameters": {"value": "_type", "spec_version": "2.1"}},
+      "id": {"property": "IDProperty", "parameters": {"value": "_type", "Spec_version": "2.1"}}
     },
-    "name": {
-      "type": "StringProperty"
+    "base_optional": {
+      "created_by_ref": {"property": "ReferenceProperty", "parameters": {"valid_types": ["identity"]}},
+      "labels": {"collection": "ListProperty", "property": "StringProperty", "parameters": {}}
     },
-    "contact_information": {
-      "type": "EmbeddedObjectProperty",
-      "spec": "ContactInformation"
-    }
+    "object": {
+      "name": {"property": "StringProperty", "parameters": {"required": true}},
+      "identity_class": {"property": "OpenVocabProperty", "parameters": {"vocab": "identity-class-ov"}}
+    },
+    "extensions": {},
+    "sub": {}
   }
 }
 
-// 2. DATA TEMPLATE (identity_IT_user1.json) - Instance Data
+// 2. DATA FORM (identity_IT_user1.json) - Actual Values Following Template Structure
 {
+  "identity_form": {
+    "base_required": {
+      "type": "identity",
+      "spec_version": "2.1", 
+      "id": "",
+      "created": "",
+      "modified": ""
+    },
+    "base_optional": {
+      "created_by_ref": "",
+      "labels": [],
+      "external_references": []
+    },
+    "object": {
+      "name": "Naive Smith",
+      "identity_class": "individual"
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}
   "name": "John Smith - IT User",
   "identity_class": "individual",
   "contact_information": "jsmith@company.com"
 }
+
+#### Data Form Conversion Rules - **Critical for STIX JSON to Data Form Creation**
+
+**Property Type Mapping** (validated across 15 implemented objects):
+
+| Template Property | Data Form Value | Example |
+|------------------|------------------|---------|
+| `StringProperty` | String value or `""` | `"name": "John Smith"` |
+| `ListProperty` | Array with values or `[]` | `"labels": ["user", "sales"]` |
+| `ReferenceProperty` | Reference ID or `""` | `"created_by_ref": ""` |
+| `IntegerProperty` | Number value | `"criticality": 99` |
+| `BooleanProperty` | `true`/`false`/`null` | `"revoked": null` |
+| `TimestampProperty` | ISO timestamp or `""` | `"created": ""` |
+| `DictionaryProperty` | Object with key-value pairs | `"extensions": {}` |
+
+**Section Conversion Algorithm**:
+1. **base_required**: Use actual STIX type, empty strings for auto-generated fields
+2. **base_optional**: Use default values or empty arrays/strings  
+3. **object**: Map template properties to actual data values
+4. **extensions**: Convert extension definitions to actual extension values
+5. **sub**: Convert sub-object definitions to actual instances
+
+**Reference Extraction Rules**:
+- Fields ending in `_ref`: Single reference IDs (often empty for auto-population)
+- Fields ending in `_refs`: Arrays of reference IDs
+- Embedded objects: Move to `sub` section with actual data, not definitions
 
 // 3. PYTHON BLOCK (make_identity.py) - Auto-Generated Function
 def make_identity_block(json_object_file: str, results_path: str, 
