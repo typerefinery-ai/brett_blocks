@@ -1,0 +1,421 @@
+{
+  "summary": {
+    "total_tests": 16,
+    "prompt_successes": 9,
+    "notebook_successes": 9,
+    "both_successful": 9,
+    "objects_match": 6,
+    "prompt_success_rate": 56.25,
+    "notebook_success_rate": 56.25,
+    "match_rate": 66.66666666666666,
+    "winner": "TIE - Both work, minor differences"
+  },
+  "by_type": {
+    "email-addr": {
+      "type": "email-addr",
+      "total_objects": 3,
+      "prompt_successes": 3,
+      "notebook_successes": 3,
+      "both_successful": 3,
+      "objects_match": 3,
+      "object_tests": [
+        {
+          "object_id": "4722424c",
+          "prompt_success": true,
+          "notebook_success": true,
+          "prompt_error": null,
+          "notebook_error": null,
+          "objects_match": true,
+          "prompt_output": "temp_method_comparison/expanded_roundtrip/email-addr_4722424c_prompt_result.json",
+          "notebook_output": "temp_method_comparison/expanded_roundtrip/email-addr_4722424c_notebook_result.json"
+        },
+        {
+          "object_id": "c99b87bd",
+          "prompt_success": true,
+          "notebook_success": true,
+          "prompt_error": null,
+          "notebook_error": null,
+          "objects_match": true,
+          "prompt_output": "temp_method_comparison/expanded_roundtrip/email-addr_c99b87bd_prompt_result.json",
+          "notebook_output": "temp_method_comparison/expanded_roundtrip/email-addr_c99b87bd_notebook_result.json"
+        },
+        {
+          "object_id": "eb38d07e",
+          "prompt_success": true,
+          "notebook_success": true,
+          "prompt_error": null,
+          "notebook_error": null,
+          "objects_match": true,
+          "prompt_output": "temp_method_comparison/expanded_roundtrip/email-addr_eb38d07e_prompt_result.json",
+          "notebook_output": "temp_method_comparison/expanded_roundtrip/email-addr_eb38d07e_notebook_result.json"
+        }
+      ],
+      "prompt_success_rate": 100.0,
+      "notebook_success_rate": 100.0,
+      "both_success_rate": 100.0,
+      "match_rate": 100.0
+    },
+    "email-message": {
+      "type": "email-message",
+      "total_objects": 1,
+      "prompt_successes": 0,
+      "notebook_successes": 0,
+      "both_successful": 0,
+      "objects_match": 0,
+      "object_tests": [
+        {
+          "object_id": "6090e3d4",
+          "prompt_success": false,
+          "notebook_success": false,
+          "prompt_error": "cannot access local variable 'email_msg_form' where it is not associated with a value",
+          "notebook_error": "cannot access local variable 'email_msg_form' where it is not associated with a value"
+        }
+      ],
+      "prompt_success_rate": 0.0,
+      "notebook_success_rate": 0.0,
+      "both_success_rate": 0.0,
+      "match_rate": 0.0
+    },
+    "identity": {
+      "type": "identity",
+      "total_objects": 3,
+      "prompt_successes": 1,
+      "notebook_successes": 1,
+      "both_successful": 1,
+      "objects_match": 0,
+      "object_tests": [
+        {
+          "object_id": "31f2aeea",
+          "prompt_success": false,
+          "notebook_success": false,
+          "prompt_error": "Invalid value for EmailContact 'email_address_ref': not a valid STIX identifier, must match <object-type>--<UUID>: ",
+          "notebook_error": "Invalid value for EmailContact 'email_address_ref': not a valid STIX identifier, must match <object-type>--<UUID>: "
+        },
+        {
+          "object_id": "3789a438",
+          "prompt_success": true,
+          "notebook_success": true,
+          "prompt_error": null,
+          "notebook_error": null,
+          "objects_match": false,
+          "prompt_output": "temp_method_comparison/expanded_roundtrip/identity_3789a438_prompt_result.json",
+          "notebook_output": "temp_method_comparison/expanded_roundtrip/identity_3789a438_notebook_result.json"
+        },
+        {
+          "object_id": "ce31dd38",
+          "prompt_success": false,
+          "notebook_success": false,
+          "prompt_error": "Invalid value for EmailContact 'email_address_ref': not a valid STIX identifier, must match <object-type>--<UUID>: ",
+          "notebook_error": "Invalid value for EmailContact 'email_address_ref': not a valid STIX identifier, must match <object-type>--<UUID>: "
+        }
+      ],
+      "prompt_success_rate": 33.33333333333333,
+      "notebook_success_rate": 33.33333333333333,
+      "both_success_rate": 33.33333333333333,
+      "match_rate": 0.0
+    },
+    "incident": {
+      "type": "incident",
+      "total_objects": 1,
+      "prompt_successes": 1,
+      "notebook_successes": 1,
+      "both_successful": 1,
+      "objects_match": 0,
+      "object_tests": [
+        {
+          "object_id": "145eb841",
+          "prompt_success": true,
+          "notebook_success": true,
+          "prompt_error": null,
+          "notebook_error": null,
+          "objects_match": false,
+          "prompt_output": "temp_method_comparison/expanded_roundtrip/incident_145eb841_prompt_result.json",
+          "notebook_output": "temp_method_comparison/expanded_roundtrip/incident_145eb841_notebook_result.json"
+        }
+      ],
+      "prompt_success_rate": 100.0,
+      "notebook_success_rate": 100.0,
+      "both_success_rate": 100.0,
+      "match_rate": 0.0
+    },
+    "indicator": {
+      "type": "indicator",
+      "total_objects": 1,
+      "prompt_successes": 1,
+      "notebook_successes": 1,
+      "both_successful": 1,
+      "objects_match": 0,
+      "object_tests": [
+        {
+          "object_id": "dd52359a",
+          "prompt_success": true,
+          "notebook_success": true,
+          "prompt_error": null,
+          "notebook_error": null,
+          "objects_match": false,
+          "prompt_output": "temp_method_comparison/expanded_roundtrip/indicator_dd52359a_prompt_result.json",
+          "notebook_output": "temp_method_comparison/expanded_roundtrip/indicator_dd52359a_notebook_result.json"
+        }
+      ],
+      "prompt_success_rate": 100.0,
+      "notebook_success_rate": 100.0,
+      "both_success_rate": 100.0,
+      "match_rate": 0.0
+    },
+    "observed-data": {
+      "type": "observed-data",
+      "total_objects": 2,
+      "prompt_successes": 0,
+      "notebook_successes": 0,
+      "both_successful": 0,
+      "objects_match": 0,
+      "object_tests": [
+        {
+          "object_id": "5aa35ce5",
+          "prompt_success": false,
+          "notebook_success": false,
+          "prompt_error": "No values for required properties for ObservedData: (object_refs).",
+          "notebook_error": "No values for required properties for ObservedData: (object_refs)."
+        },
+        {
+          "object_id": "98f47f54",
+          "prompt_success": false,
+          "notebook_success": false,
+          "prompt_error": "No values for required properties for ObservedData: (object_refs).",
+          "notebook_error": "No values for required properties for ObservedData: (object_refs)."
+        }
+      ],
+      "prompt_success_rate": 0.0,
+      "notebook_success_rate": 0.0,
+      "both_success_rate": 0.0,
+      "match_rate": 0.0
+    },
+    "sighting": {
+      "type": "sighting",
+      "total_objects": 2,
+      "prompt_successes": 0,
+      "notebook_successes": 0,
+      "both_successful": 0,
+      "objects_match": 0,
+      "object_tests": [
+        {
+          "object_id": "06faabfe",
+          "prompt_success": false,
+          "notebook_success": false,
+          "prompt_error": "No values for required properties for Sighting: (sighting_of_ref).",
+          "notebook_error": "No values for required properties for Sighting: (sighting_of_ref)."
+        },
+        {
+          "object_id": "4fb5cd06",
+          "prompt_success": false,
+          "notebook_success": false,
+          "prompt_error": "No values for required properties for Sighting: (sighting_of_ref).",
+          "notebook_error": "No values for required properties for Sighting: (sighting_of_ref)."
+        }
+      ],
+      "prompt_success_rate": 0.0,
+      "notebook_success_rate": 0.0,
+      "both_success_rate": 0.0,
+      "match_rate": 0.0
+    },
+    "url": {
+      "type": "url",
+      "total_objects": 1,
+      "prompt_successes": 1,
+      "notebook_successes": 1,
+      "both_successful": 1,
+      "objects_match": 1,
+      "object_tests": [
+        {
+          "object_id": "3279c7de",
+          "prompt_success": true,
+          "notebook_success": true,
+          "prompt_error": null,
+          "notebook_error": null,
+          "objects_match": true,
+          "prompt_output": "temp_method_comparison/expanded_roundtrip/url_3279c7de_prompt_result.json",
+          "notebook_output": "temp_method_comparison/expanded_roundtrip/url_3279c7de_notebook_result.json"
+        }
+      ],
+      "prompt_success_rate": 100.0,
+      "notebook_success_rate": 100.0,
+      "both_success_rate": 100.0,
+      "match_rate": 100.0
+    },
+    "user-account": {
+      "type": "user-account",
+      "total_objects": 2,
+      "prompt_successes": 2,
+      "notebook_successes": 2,
+      "both_successful": 2,
+      "objects_match": 2,
+      "object_tests": [
+        {
+          "object_id": "597ad4d4",
+          "prompt_success": true,
+          "notebook_success": true,
+          "prompt_error": null,
+          "notebook_error": null,
+          "objects_match": true,
+          "prompt_output": "temp_method_comparison/expanded_roundtrip/user-account_597ad4d4_prompt_result.json",
+          "notebook_output": "temp_method_comparison/expanded_roundtrip/user-account_597ad4d4_notebook_result.json"
+        },
+        {
+          "object_id": "83658594",
+          "prompt_success": true,
+          "notebook_success": true,
+          "prompt_error": null,
+          "notebook_error": null,
+          "objects_match": true,
+          "prompt_output": "temp_method_comparison/expanded_roundtrip/user-account_83658594_prompt_result.json",
+          "notebook_output": "temp_method_comparison/expanded_roundtrip/user-account_83658594_notebook_result.json"
+        }
+      ],
+      "prompt_success_rate": 100.0,
+      "notebook_success_rate": 100.0,
+      "both_success_rate": 100.0,
+      "match_rate": 100.0
+    }
+  },
+  "detailed_results": [
+    {
+      "object_id": "4722424c",
+      "prompt_success": true,
+      "notebook_success": true,
+      "prompt_error": null,
+      "notebook_error": null,
+      "objects_match": true,
+      "prompt_output": "temp_method_comparison/expanded_roundtrip/email-addr_4722424c_prompt_result.json",
+      "notebook_output": "temp_method_comparison/expanded_roundtrip/email-addr_4722424c_notebook_result.json"
+    },
+    {
+      "object_id": "c99b87bd",
+      "prompt_success": true,
+      "notebook_success": true,
+      "prompt_error": null,
+      "notebook_error": null,
+      "objects_match": true,
+      "prompt_output": "temp_method_comparison/expanded_roundtrip/email-addr_c99b87bd_prompt_result.json",
+      "notebook_output": "temp_method_comparison/expanded_roundtrip/email-addr_c99b87bd_notebook_result.json"
+    },
+    {
+      "object_id": "eb38d07e",
+      "prompt_success": true,
+      "notebook_success": true,
+      "prompt_error": null,
+      "notebook_error": null,
+      "objects_match": true,
+      "prompt_output": "temp_method_comparison/expanded_roundtrip/email-addr_eb38d07e_prompt_result.json",
+      "notebook_output": "temp_method_comparison/expanded_roundtrip/email-addr_eb38d07e_notebook_result.json"
+    },
+    {
+      "object_id": "6090e3d4",
+      "prompt_success": false,
+      "notebook_success": false,
+      "prompt_error": "cannot access local variable 'email_msg_form' where it is not associated with a value",
+      "notebook_error": "cannot access local variable 'email_msg_form' where it is not associated with a value"
+    },
+    {
+      "object_id": "31f2aeea",
+      "prompt_success": false,
+      "notebook_success": false,
+      "prompt_error": "Invalid value for EmailContact 'email_address_ref': not a valid STIX identifier, must match <object-type>--<UUID>: ",
+      "notebook_error": "Invalid value for EmailContact 'email_address_ref': not a valid STIX identifier, must match <object-type>--<UUID>: "
+    },
+    {
+      "object_id": "3789a438",
+      "prompt_success": true,
+      "notebook_success": true,
+      "prompt_error": null,
+      "notebook_error": null,
+      "objects_match": false,
+      "prompt_output": "temp_method_comparison/expanded_roundtrip/identity_3789a438_prompt_result.json",
+      "notebook_output": "temp_method_comparison/expanded_roundtrip/identity_3789a438_notebook_result.json"
+    },
+    {
+      "object_id": "ce31dd38",
+      "prompt_success": false,
+      "notebook_success": false,
+      "prompt_error": "Invalid value for EmailContact 'email_address_ref': not a valid STIX identifier, must match <object-type>--<UUID>: ",
+      "notebook_error": "Invalid value for EmailContact 'email_address_ref': not a valid STIX identifier, must match <object-type>--<UUID>: "
+    },
+    {
+      "object_id": "145eb841",
+      "prompt_success": true,
+      "notebook_success": true,
+      "prompt_error": null,
+      "notebook_error": null,
+      "objects_match": false,
+      "prompt_output": "temp_method_comparison/expanded_roundtrip/incident_145eb841_prompt_result.json",
+      "notebook_output": "temp_method_comparison/expanded_roundtrip/incident_145eb841_notebook_result.json"
+    },
+    {
+      "object_id": "dd52359a",
+      "prompt_success": true,
+      "notebook_success": true,
+      "prompt_error": null,
+      "notebook_error": null,
+      "objects_match": false,
+      "prompt_output": "temp_method_comparison/expanded_roundtrip/indicator_dd52359a_prompt_result.json",
+      "notebook_output": "temp_method_comparison/expanded_roundtrip/indicator_dd52359a_notebook_result.json"
+    },
+    {
+      "object_id": "5aa35ce5",
+      "prompt_success": false,
+      "notebook_success": false,
+      "prompt_error": "No values for required properties for ObservedData: (object_refs).",
+      "notebook_error": "No values for required properties for ObservedData: (object_refs)."
+    },
+    {
+      "object_id": "98f47f54",
+      "prompt_success": false,
+      "notebook_success": false,
+      "prompt_error": "No values for required properties for ObservedData: (object_refs).",
+      "notebook_error": "No values for required properties for ObservedData: (object_refs)."
+    },
+    {
+      "object_id": "06faabfe",
+      "prompt_success": false,
+      "notebook_success": false,
+      "prompt_error": "No values for required properties for Sighting: (sighting_of_ref).",
+      "notebook_error": "No values for required properties for Sighting: (sighting_of_ref)."
+    },
+    {
+      "object_id": "4fb5cd06",
+      "prompt_success": false,
+      "notebook_success": false,
+      "prompt_error": "No values for required properties for Sighting: (sighting_of_ref).",
+      "notebook_error": "No values for required properties for Sighting: (sighting_of_ref)."
+    },
+    {
+      "object_id": "3279c7de",
+      "prompt_success": true,
+      "notebook_success": true,
+      "prompt_error": null,
+      "notebook_error": null,
+      "objects_match": true,
+      "prompt_output": "temp_method_comparison/expanded_roundtrip/url_3279c7de_prompt_result.json",
+      "notebook_output": "temp_method_comparison/expanded_roundtrip/url_3279c7de_notebook_result.json"
+    },
+    {
+      "object_id": "597ad4d4",
+      "prompt_success": true,
+      "notebook_success": true,
+      "prompt_error": null,
+      "notebook_error": null,
+      "objects_match": true,
+      "prompt_output": "temp_method_comparison/expanded_roundtrip/user-account_597ad4d4_prompt_result.json",
+      "notebook_output": "temp_method_comparison/expanded_roundtrip/user-account_597ad4d4_notebook_result.json"
+    },
+    {
+      "object_id": "83658594",
+      "prompt_success": true,
+      "notebook_success": true,
+      "prompt_error": null,
+      "notebook_error": null,
+      "objects_match": true,
+      "prompt_output": "temp_method_comparison/expanded_roundtrip/user-account_83658594_prompt_result.json",
+      "notebook_output": "temp_method_comparison/expanded_roundtrip/user-account_83658594_notebook_result.json"
+    }
+  ]
+}

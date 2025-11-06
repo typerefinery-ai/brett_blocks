@@ -1,0 +1,32 @@
+{
+  "user_account_form": {
+    "base_required": {
+      "type": "user-account",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "defanged": null,
+      "object_marking_refs": null,
+      "granular_markings": null
+    },
+    "object": {
+      "user_id": "79563902",
+      "credential": "",
+      "account_login": "nsmith",
+      "account_type": "sales,",
+      "display_name": "Naive Smith",
+      "is_service_account": null,
+      "is_privileged": null,
+      "can_escalate_privs": null,
+      "is_disabled": null,
+      "account_created": "",
+      "account_expires": "",
+      "credential_last_changed": "",
+      "account_first_login": "",
+      "account_last_login": ""
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

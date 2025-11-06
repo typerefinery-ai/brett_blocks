@@ -1,0 +1,43 @@
+{
+  "sighting_form": {
+    "base_required": {
+      "type": "sighting",
+      "spec_version": "2.1",
+      "id": "",
+      "created": "",
+      "modified": ""
+    },
+    "base_optional": {
+      "created_by_ref": null,
+      "revoked": null,
+      "labels": null,
+      "confidence": 0,
+      "lang": null,
+      "external_references": null,
+      "object_marking_refs": null,
+      "granular_markings": null
+    },
+    "object": {
+      "description": "",
+      "first_seen": "",
+      "last_seen": "",
+      "count": 1,
+      "sighting_of_ref": "",
+      "observed_data_refs": [],
+      "where_sighted_refs": [],
+      "summary": null
+    },
+    "extensions": {
+      "sighting-alert": {
+        "name": "user-report",
+        "log": "I have found a suspicious email",
+        "system_id": "XYZ-1234",
+        "source": "user submission"
+      },
+      "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {
+        "extension_type": "property-extension"
+      }
+    },
+    "sub": {}
+  }
+}

@@ -1,0 +1,381 @@
+{
+  "summary": {
+    "total_types_found": 14,
+    "supported_types": 9,
+    "unsupported_types": 5,
+    "total_tested": 16,
+    "prompt_successes": 16,
+    "notebook_successes": 16,
+    "both_successful": 16,
+    "forms_match": 0,
+    "prompt_success_rate": 100.0,
+    "notebook_success_rate": 100.0,
+    "match_rate": 0.0
+  },
+  "supported_types": [
+    {
+      "type": "email-addr",
+      "category": "SCO",
+      "python_class": "EmailAddress",
+      "total_objects": 3,
+      "prompt_successes": 3,
+      "notebook_successes": 3,
+      "both_successful": 3,
+      "objects_match": 0,
+      "template_path": "Block_Families/StixORM/SCO/Email_Addr/EmailAddress_template.json",
+      "object_results": [
+        {
+          "object_id": "eb38d07e",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": false,
+          "prompt_file": "temp_method_comparison/expanded_dataset/email-addr_eb38d07e_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/email-addr_eb38d07e_notebook.json"
+        },
+        {
+          "object_id": "c99b87bd",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": false,
+          "prompt_file": "temp_method_comparison/expanded_dataset/email-addr_c99b87bd_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/email-addr_c99b87bd_notebook.json"
+        },
+        {
+          "object_id": "4722424c",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": false,
+          "prompt_file": "temp_method_comparison/expanded_dataset/email-addr_4722424c_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/email-addr_4722424c_notebook.json"
+        }
+      ],
+      "tested_objects": 3,
+      "prompt_success_rate": 100.0,
+      "notebook_success_rate": 100.0,
+      "match_rate": 0.0
+    },
+    {
+      "type": "email-message",
+      "category": "SCO",
+      "python_class": "EmailMessage",
+      "total_objects": 1,
+      "prompt_successes": 1,
+      "notebook_successes": 1,
+      "both_successful": 1,
+      "objects_match": 0,
+      "template_path": "Block_Families/StixORM/SCO/Email_Message/EmailMessage_template.json",
+      "object_results": [
+        {
+          "object_id": "6090e3d4",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": false,
+          "prompt_file": "temp_method_comparison/expanded_dataset/email-message_6090e3d4_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/email-message_6090e3d4_notebook.json"
+        }
+      ],
+      "tested_objects": 1,
+      "prompt_success_rate": 100.0,
+      "notebook_success_rate": 100.0,
+      "match_rate": 0.0
+    },
+    {
+      "type": "identity",
+      "category": "SDO",
+      "python_class": "Identity",
+      "total_objects": 3,
+      "prompt_successes": 3,
+      "notebook_successes": 3,
+      "both_successful": 3,
+      "objects_match": 0,
+      "template_path": "Block_Families/StixORM/SDO/Identity/Identity_template.json",
+      "object_results": [
+        {
+          "object_id": "ce31dd38",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": false,
+          "prompt_file": "temp_method_comparison/expanded_dataset/identity_ce31dd38_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/identity_ce31dd38_notebook.json"
+        },
+        {
+          "object_id": "31f2aeea",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": false,
+          "prompt_file": "temp_method_comparison/expanded_dataset/identity_31f2aeea_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/identity_31f2aeea_notebook.json"
+        },
+        {
+          "object_id": "3789a438",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": false,
+          "prompt_file": "temp_method_comparison/expanded_dataset/identity_3789a438_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/identity_3789a438_notebook.json"
+        }
+      ],
+      "tested_objects": 3,
+      "prompt_success_rate": 100.0,
+      "notebook_success_rate": 100.0,
+      "match_rate": 0.0
+    },
+    {
+      "type": "incident",
+      "category": "SDO",
+      "python_class": "Incident",
+      "total_objects": 1,
+      "prompt_successes": 1,
+      "notebook_successes": 1,
+      "both_successful": 1,
+      "objects_match": 0,
+      "template_path": "Block_Families/StixORM/SDO/Incident/Incident_template.json",
+      "object_results": [
+        {
+          "object_id": "145eb841",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": false,
+          "prompt_file": "temp_method_comparison/expanded_dataset/incident_145eb841_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/incident_145eb841_notebook.json"
+        }
+      ],
+      "tested_objects": 1,
+      "prompt_success_rate": 100.0,
+      "notebook_success_rate": 100.0,
+      "match_rate": 0.0
+    },
+    {
+      "type": "indicator",
+      "category": "SDO",
+      "python_class": "Indicator",
+      "total_objects": 1,
+      "prompt_successes": 1,
+      "notebook_successes": 1,
+      "both_successful": 1,
+      "objects_match": 0,
+      "template_path": "Block_Families/StixORM/SDO/Indicator/Indicator_template.json",
+      "object_results": [
+        {
+          "object_id": "dd52359a",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": false,
+          "prompt_file": "temp_method_comparison/expanded_dataset/indicator_dd52359a_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/indicator_dd52359a_notebook.json"
+        }
+      ],
+      "tested_objects": 1,
+      "prompt_success_rate": 100.0,
+      "notebook_success_rate": 100.0,
+      "match_rate": 0.0
+    },
+    {
+      "type": "observed-data",
+      "category": "SDO",
+      "python_class": "ObservedData",
+      "total_objects": 2,
+      "prompt_successes": 2,
+      "notebook_successes": 2,
+      "both_successful": 2,
+      "objects_match": 0,
+      "template_path": "Block_Families/StixORM/SDO/Observed_Data/ObservedData_template.json",
+      "object_results": [
+        {
+          "object_id": "5aa35ce5",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": false,
+          "prompt_file": "temp_method_comparison/expanded_dataset/observed-data_5aa35ce5_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/observed-data_5aa35ce5_notebook.json"
+        },
+        {
+          "object_id": "98f47f54",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": false,
+          "prompt_file": "temp_method_comparison/expanded_dataset/observed-data_98f47f54_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/observed-data_98f47f54_notebook.json"
+        }
+      ],
+      "tested_objects": 2,
+      "prompt_success_rate": 100.0,
+      "notebook_success_rate": 100.0,
+      "match_rate": 0.0
+    },
+    {
+      "type": "sighting",
+      "category": "SRO",
+      "python_class": "Sighting",
+      "total_objects": 2,
+      "prompt_successes": 2,
+      "notebook_successes": 2,
+      "both_successful": 2,
+      "objects_match": 0,
+      "template_path": "Block_Families/StixORM/SRO/Sighting/Sighting_template.json",
+      "object_results": [
+        {
+          "object_id": "06faabfe",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": false,
+          "prompt_file": "temp_method_comparison/expanded_dataset/sighting_06faabfe_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/sighting_06faabfe_notebook.json"
+        },
+        {
+          "object_id": "4fb5cd06",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": false,
+          "prompt_file": "temp_method_comparison/expanded_dataset/sighting_4fb5cd06_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/sighting_4fb5cd06_notebook.json"
+        }
+      ],
+      "tested_objects": 2,
+      "prompt_success_rate": 100.0,
+      "notebook_success_rate": 100.0,
+      "match_rate": 0.0
+    },
+    {
+      "type": "url",
+      "category": "SCO",
+      "python_class": "URL",
+      "total_objects": 1,
+      "prompt_successes": 1,
+      "notebook_successes": 1,
+      "both_successful": 1,
+      "objects_match": 0,
+      "template_path": "Block_Families/StixORM/SCO/URL/URL_template.json",
+      "object_results": [
+        {
+          "object_id": "3279c7de",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": false,
+          "prompt_file": "temp_method_comparison/expanded_dataset/url_3279c7de_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/url_3279c7de_notebook.json"
+        }
+      ],
+      "tested_objects": 1,
+      "prompt_success_rate": 100.0,
+      "notebook_success_rate": 100.0,
+      "match_rate": 0.0
+    },
+    {
+      "type": "user-account",
+      "category": "SCO",
+      "python_class": "UserAccount",
+      "total_objects": 2,
+      "prompt_successes": 2,
+      "notebook_successes": 2,
+      "both_successful": 2,
+      "objects_match": 0,
+      "template_path": "Block_Families/StixORM/SCO/User_Account/UserAccount_template.json",
+      "object_results": [
+        {
+          "object_id": "597ad4d4",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": false,
+          "prompt_file": "temp_method_comparison/expanded_dataset/user-account_597ad4d4_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/user-account_597ad4d4_notebook.json"
+        },
+        {
+          "object_id": "83658594",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": false,
+          "prompt_file": "temp_method_comparison/expanded_dataset/user-account_83658594_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/user-account_83658594_notebook.json"
+        }
+      ],
+      "tested_objects": 2,
+      "prompt_success_rate": 100.0,
+      "notebook_success_rate": 100.0,
+      "match_rate": 0.0
+    }
+  ],
+  "unsupported_types": [
+    {
+      "type": "anecdote",
+      "count": 1,
+      "reason": "No template mapping"
+    },
+    {
+      "type": "event",
+      "count": 1,
+      "reason": "No template mapping"
+    },
+    {
+      "type": "impact",
+      "count": 1,
+      "reason": "No template mapping"
+    },
+    {
+      "type": "sequence",
+      "count": 5,
+      "reason": "No template mapping"
+    },
+    {
+      "type": "task",
+      "count": 2,
+      "reason": "No template mapping"
+    }
+  ],
+  "template_mapping": {
+    "identity": {
+      "template_path": "Block_Families/StixORM/SDO/Identity/Identity_template.json",
+      "python_class": "Identity",
+      "category": "SDO",
+      "make_function": "Block_Families.StixORM.SDO.Identity.make_identity"
+    },
+    "indicator": {
+      "template_path": "Block_Families/StixORM/SDO/Indicator/Indicator_template.json",
+      "python_class": "Indicator",
+      "category": "SDO",
+      "make_function": "Block_Families.StixORM.SDO.Indicator.make_indicator"
+    },
+    "incident": {
+      "template_path": "Block_Families/StixORM/SDO/Incident/Incident_template.json",
+      "python_class": "Incident",
+      "category": "SDO",
+      "make_function": "Block_Families.StixORM.SDO.Incident.make_incident"
+    },
+    "observed-data": {
+      "template_path": "Block_Families/StixORM/SDO/Observed_Data/ObservedData_template.json",
+      "python_class": "ObservedData",
+      "category": "SDO",
+      "make_function": "Block_Families.StixORM.SDO.Observed_Data.make_observed_data"
+    },
+    "email-addr": {
+      "template_path": "Block_Families/StixORM/SCO/Email_Addr/EmailAddress_template.json",
+      "python_class": "EmailAddress",
+      "category": "SCO",
+      "make_function": "Block_Families.StixORM.SCO.Email_Addr.make_email_addr"
+    },
+    "email-message": {
+      "template_path": "Block_Families/StixORM/SCO/Email_Message/EmailMessage_template.json",
+      "python_class": "EmailMessage",
+      "category": "SCO",
+      "make_function": "Block_Families.StixORM.SCO.Email_Message.make_email_msg"
+    },
+    "user-account": {
+      "template_path": "Block_Families/StixORM/SCO/User_Account/UserAccount_template.json",
+      "python_class": "UserAccount",
+      "category": "SCO",
+      "make_function": "Block_Families.StixORM.SCO.User_Account.make_user_account"
+    },
+    "url": {
+      "template_path": "Block_Families/StixORM/SCO/URL/URL_template.json",
+      "python_class": "URL",
+      "category": "SCO",
+      "make_function": "Block_Families.StixORM.SCO.URL.make_url"
+    },
+    "sighting": {
+      "template_path": "Block_Families/StixORM/SRO/Sighting/Sighting_template.json",
+      "python_class": "Sighting",
+      "category": "SRO",
+      "make_function": "Block_Families.StixORM.SRO.Sighting.make_sighting"
+    }
+  }
+}

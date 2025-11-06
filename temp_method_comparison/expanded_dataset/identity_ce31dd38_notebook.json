@@ -1,0 +1,67 @@
+{
+  "identity_form": {
+    "base_required": {
+      "type": "identity",
+      "spec_version": "2.1",
+      "id": "",
+      "created": "",
+      "modified": ""
+    },
+    "base_optional": {
+      "created_by_ref": null,
+      "revoked": null,
+      "labels": null,
+      "confidence": 0,
+      "lang": null,
+      "external_references": null,
+      "object_marking_refs": null,
+      "granular_markings": null
+    },
+    "object": {
+      "name": "Naive Smith",
+      "description": "A Naive Individual",
+      "roles": [
+        "user",
+        "sales"
+      ],
+      "identity_class": "individual",
+      "sectors": [
+        "technology"
+      ],
+      "contact_information": ""
+    },
+    "extensions": {
+      "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+        "extension_type": "property-extension",
+        "contact_numbers": [],
+        "email_addresses": [],
+        "first_name": "Naive",
+        "last_name": "Smith",
+        "middle_name": "Weakling",
+        "prefix": "Mr",
+        "social_media_accounts": [],
+        "team": "Sales"
+      }
+    },
+    "sub": {
+      "contact_numbers": [
+        {
+          "contact_number_type": "work-phone",
+          "contact_number": "0499-999-109"
+        }
+      ],
+      "email_addresses": [
+        {
+          "digital_contact_type": "work",
+          "email_address_ref": ""
+        }
+      ],
+      "social_media_accounts": [
+        {
+          "digital_contact_type": "work",
+          "user_account_ref": ""
+        }
+      ]
+    }
+  }
+}

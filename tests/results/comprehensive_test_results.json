@@ -1,0 +1,215 @@
+{
+  "total_tests": 8,
+  "passed_tests": 0,
+  "failed_tests": 8,
+  "success_rate": 0.0,
+  "test_results": [
+    {
+      "python_class": "Identity",
+      "data_form_path": "c:\\projects\\brett_blocks\\test_data_forms\\identity_Adversary_Bravo.json",
+      "template_path": "c:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Identity\\Identity_template.json",
+      "python_file": "Block_Families/StixORM/SDO/Identity/make_identity.py",
+      "references": [],
+      "original_stix": {
+        "type": "identity",
+        "spec_version": "2.1",
+        "id": "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
+        "created": "2015-05-10T16:27:17.760Z",
+        "modified": "2015-05-10T16:27:17.760Z",
+        "name": "Adversary Bravo",
+        "description": "Adversary Bravo is a threat actor that utilizes phishing attacks.",
+        "identity_class": "unknown"
+      },
+      "generation_success": true,
+      "generation_error": "Success",
+      "generated_stix": {
+        "type": "identity",
+        "spec_version": "2.1",
+        "id": "identity--c778689d-b18d-44bf-a045-95b2fafa07cd",
+        "created": "2025-11-05T07:16:01.141Z",
+        "modified": "2025-11-05T07:16:01.141Z",
+        "name": "Adversary Bravo",
+        "description": "Adversary Bravo is a threat actor that utilizes phishing attacks.",
+        "identity_class": "unknown"
+      },
+      "test_passed": false,
+      "exception": "'NoneType' object is not callable"
+    },
+    {
+      "python_class": "Indicator",
+      "data_form_path": "c:\\projects\\brett_blocks\\test_data_forms\\indicator_Poison_Ivy_Malware.json",
+      "template_path": "c:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Indicator\\Indicator_template.json",
+      "python_file": "Block_Families/StixORM/SDO/Indicator/make_indicator.py",
+      "references": [
+        "created_by_ref"
+      ],
+      "original_stix": {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
+        "created_by_ref": "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
+        "created": "2016-04-06T20:03:48.000Z",
+        "modified": "2016-04-06T20:03:48.000Z",
+        "indicator_types": [
+          "malicious-activity"
+        ],
+        "name": "Poison Ivy Malware",
+        "description": "This file is part of Poison Ivy",
+        "pattern": "[ file:hashes.'SHA-256' = '4bac27393bdd9777ce02453256c5577cd02275510b2227f473d03f533924f877' ]",
+        "pattern_type": "stix",
+        "valid_from": "2016-01-01T00:00:00Z"
+      },
+      "generation_success": false,
+      "generation_error": "'list' object has no attribute 'items'",
+      "test_passed": false
+    },
+    {
+      "python_class": "Incident",
+      "data_form_path": "c:\\projects\\brett_blocks\\test_data_forms\\incident_Incident_43.json",
+      "template_path": "c:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Incident\\Incident_template.json",
+      "python_file": "Block_Families/StixORM/SDO/Incident/make_incident.py",
+      "references": [
+        "created_by_ref"
+      ],
+      "original_stix": {
+        "type": "incident",
+        "spec_version": "2.1",
+        "id": "incident--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
+        "created_by_ref": "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
+        "created": "2016-04-06T20:03:48.000Z",
+        "modified": "2016-04-06T20:03:48.000Z",
+        "name": "Incident 43",
+        "description": "This incident addresses APT 28 ..."
+      },
+      "generation_success": false,
+      "generation_error": "'list' object has no attribute 'items'",
+      "test_passed": false
+    },
+    {
+      "python_class": "ObservedData",
+      "data_form_path": "c:\\projects\\brett_blocks\\test_data_forms\\observeddata_198.51.100.3.json",
+      "template_path": "c:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Observed_Data\\ObservedData_template.json",
+      "python_file": "Block_Families/StixORM/SDO/Observed_Data/make_observed_data.py",
+      "references": [],
+      "original_stix": {
+        "type": "ipv4-addr",
+        "spec_version": "2.1",
+        "id": "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8",
+        "value": "198.51.100.3"
+      },
+      "generation_success": false,
+      "generation_error": "'NoneType' object is not subscriptable",
+      "test_passed": false
+    },
+    {
+      "python_class": "EmailAddress",
+      "data_form_path": "c:\\projects\\brett_blocks\\test_data_forms\\emailaddress_john@example.com.json",
+      "template_path": "c:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\Email_Addr\\EmailAddress_template.json",
+      "python_file": "Block_Families/StixORM/SCO/Email_Addr/make_email_addr.py",
+      "references": [],
+      "original_stix": {
+        "type": "email-addr",
+        "spec_version": "2.1",
+        "id": "email-addr--2d77a846-6264-5d51-b586-e48322ea1ea3",
+        "value": "john@example.com",
+        "display_name": "John Doe"
+      },
+      "generation_success": true,
+      "generation_error": "Success",
+      "generated_stix": {
+        "type": "email-addr",
+        "spec_version": "2.1",
+        "id": "email-addr--7165e2a9-671f-585d-b1e1-ca59c671d934",
+        "value": "john@example.com",
+        "display_name": "John Doe"
+      },
+      "test_passed": false,
+      "exception": "'NoneType' object is not callable"
+    },
+    {
+      "python_class": "UserAccount",
+      "data_form_path": "c:\\projects\\brett_blocks\\test_data_forms\\useraccount_user-account--0d5b424b-93b8-5c.json",
+      "template_path": "c:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\User_Account\\UserAccount_template.json",
+      "python_file": "Block_Families/StixORM/SCO/User_Account/make_user_account.py",
+      "references": [],
+      "original_stix": {
+        "type": "user-account",
+        "spec_version": "2.1",
+        "id": "user-account--0d5b424b-93b8-5cd8-ac36-306e1789d63c",
+        "user_id": "1001",
+        "account_login": "jdoe",
+        "account_type": "unix",
+        "display_name": "John Doe",
+        "is_service_account": false,
+        "is_privileged": false,
+        "can_escalate_privs": true,
+        "extensions": {
+          "unix-account-ext": {
+            "gid": 1001,
+            "groups": [
+              "wheel"
+            ],
+            "home_dir": "/home/jdoe",
+            "shell": "/bin/bash"
+          }
+        }
+      },
+      "generation_success": true,
+      "generation_error": "Success",
+      "generated_stix": {
+        "type": "user-account",
+        "spec_version": "2.1",
+        "id": "user-account--f94d689e-707d-58c3-b803-c720bb6ed096",
+        "user_id": "1001",
+        "account_login": "jdoe",
+        "account_type": "unix",
+        "display_name": "John Doe",
+        "is_service_account": false,
+        "is_privileged": false,
+        "can_escalate_privs": true
+      },
+      "test_passed": false,
+      "exception": "'NoneType' object is not callable"
+    },
+    {
+      "python_class": "URL",
+      "data_form_path": "c:\\projects\\brett_blocks\\test_data_forms\\url_https:__example.com_research_i.json",
+      "template_path": "c:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\URL\\URL_template.json",
+      "python_file": "Block_Families/StixORM/SCO/URL/make_url.py",
+      "references": [],
+      "original_stix": {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--c1477287-23ac-5971-a010-5c287877fa60",
+        "value": "https://example.com/research/index.html"
+      },
+      "generation_success": true,
+      "generation_error": "Success",
+      "generated_stix": {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--47c3cf9a-5027-5bf0-997a-017c7edc7c55",
+        "value": "https://example.com/research/index.html"
+      },
+      "test_passed": false,
+      "exception": "'NoneType' object is not callable"
+    },
+    {
+      "python_class": "EmailMessage",
+      "data_form_path": "c:\\projects\\brett_blocks\\test_data_forms\\emailmessage_jdoe@example.com.json",
+      "template_path": "c:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\Email_Message\\EmailMessage_template.json",
+      "python_file": "Block_Families/StixORM/SCO/Email_Message/make_email_msg.py",
+      "references": [],
+      "original_stix": {
+        "type": "email-addr",
+        "spec_version": "2.1",
+        "id": "email-addr--89f52ea8-d6ef-51e9-8fce-6a29236436ed",
+        "value": "jdoe@example.com",
+        "display_name": "John Doe"
+      },
+      "generation_success": false,
+      "generation_error": "cannot access local variable 'email_msg_form' where it is not associated with a value",
+      "test_passed": false
+    }
+  ]
+}

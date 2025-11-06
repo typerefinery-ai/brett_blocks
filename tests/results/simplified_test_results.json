@@ -1,0 +1,630 @@
+{
+  "summary": {
+    "total_tests": 15,
+    "successful_tests": 12,
+    "equivalent_tests": 12,
+    "success_rate": 80.0
+  },
+  "detailed_results": [
+    {
+      "success": true,
+      "equivalent": true,
+      "differences": [],
+      "generated_object": {
+        "type": "identity",
+        "spec_version": "2.1",
+        "id": "identity--f3916166-05eb-4556-aa7d-465c89ca42e6",
+        "created": "2025-11-05T23:40:27.127Z",
+        "modified": "2025-11-05T23:40:27.127Z",
+        "name": "Adversary Bravo",
+        "description": "Adversary Bravo is a threat actor that utilizes phishing attacks.",
+        "identity_class": "unknown"
+      },
+      "python_class": "Identity",
+      "test_data": {
+        "python_class": "Identity",
+        "stix_type": "identity",
+        "example_file": "c:\\projects\\brett_blocks\\Block_Families\\examples\\aaa_identity.json",
+        "template_path": "c:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Identity\\Identity_template.json",
+        "data_form_path": "c:\\projects\\brett_blocks\\test_data_forms\\identity_Adversary_Bravo.json",
+        "form_name": "identity_form",
+        "references": [],
+        "python_file": "Block_Families/StixORM/SDO/Identity/make_identity.py",
+        "original_stix": {
+          "type": "identity",
+          "spec_version": "2.1",
+          "id": "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
+          "created": "2015-05-10T16:27:17.760Z",
+          "modified": "2015-05-10T16:27:17.760Z",
+          "name": "Adversary Bravo",
+          "description": "Adversary Bravo is a threat actor that utilizes phishing attacks.",
+          "identity_class": "unknown"
+        },
+        "success": true
+      }
+    },
+    {
+      "success": true,
+      "equivalent": true,
+      "differences": [],
+      "generated_object": {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--e332a043-a133-436a-bff2-1d10c911d416",
+        "created_by_ref": "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
+        "created": "2025-11-05T23:40:27.174Z",
+        "modified": "2025-11-05T23:40:27.174Z",
+        "name": "Poison Ivy Malware",
+        "description": "This file is part of Poison Ivy",
+        "indicator_types": [
+          "malicious-activity"
+        ],
+        "pattern": "[ file:hashes.'SHA-256' = '4bac27393bdd9777ce02453256c5577cd02275510b2227f473d03f533924f877' ]",
+        "pattern_type": "stix",
+        "pattern_version": "2.1",
+        "valid_from": "2016-01-01T00:00:00.000Z"
+      },
+      "python_class": "Indicator",
+      "test_data": {
+        "python_class": "Indicator",
+        "stix_type": "indicator",
+        "example_file": "c:\\projects\\brett_blocks\\Block_Families\\examples\\aaa_indicator.json",
+        "template_path": "c:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Indicator\\Indicator_template.json",
+        "data_form_path": "c:\\projects\\brett_blocks\\test_data_forms\\indicator_Poison_Ivy_Malware.json",
+        "form_name": "indicator_form",
+        "references": [
+          "created_by_ref"
+        ],
+        "python_file": "Block_Families/StixORM/SDO/Indicator/make_indicator.py",
+        "original_stix": {
+          "type": "indicator",
+          "spec_version": "2.1",
+          "id": "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
+          "created_by_ref": "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
+          "created": "2016-04-06T20:03:48.000Z",
+          "modified": "2016-04-06T20:03:48.000Z",
+          "indicator_types": [
+            "malicious-activity"
+          ],
+          "name": "Poison Ivy Malware",
+          "description": "This file is part of Poison Ivy",
+          "pattern": "[ file:hashes.'SHA-256' = '4bac27393bdd9777ce02453256c5577cd02275510b2227f473d03f533924f877' ]",
+          "pattern_type": "stix",
+          "valid_from": "2016-01-01T00:00:00Z"
+        },
+        "success": true
+      }
+    },
+    {
+      "success": true,
+      "equivalent": true,
+      "differences": [],
+      "generated_object": {
+        "type": "incident",
+        "spec_version": "2.1",
+        "id": "incident--e4904207-93ee-420f-b9f1-1188a43b4863",
+        "created_by_ref": "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
+        "created": "2025-11-05T23:40:27.224Z",
+        "modified": "2025-11-05T23:40:27.224Z",
+        "name": "Incident 43",
+        "description": "This incident addresses APT 28 ..."
+      },
+      "python_class": "Incident",
+      "test_data": {
+        "python_class": "Incident",
+        "stix_type": "incident",
+        "example_file": "c:\\projects\\brett_blocks\\Block_Families\\examples\\incident.json",
+        "template_path": "c:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Incident\\Incident_template.json",
+        "data_form_path": "c:\\projects\\brett_blocks\\test_data_forms\\incident_Incident_43.json",
+        "form_name": "incident_form",
+        "references": [
+          "created_by_ref"
+        ],
+        "python_file": "Block_Families/StixORM/SDO/Incident/make_incident.py",
+        "original_stix": {
+          "type": "incident",
+          "spec_version": "2.1",
+          "id": "incident--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
+          "created_by_ref": "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
+          "created": "2016-04-06T20:03:48.000Z",
+          "modified": "2016-04-06T20:03:48.000Z",
+          "name": "Incident 43",
+          "description": "This incident addresses APT 28 ..."
+        },
+        "success": true
+      }
+    },
+    {
+      "success": false,
+      "error": "'NoneType' object is not subscriptable",
+      "python_class": "ObservedData",
+      "test_data": {
+        "python_class": "ObservedData",
+        "stix_type": "ipv4-addr",
+        "example_file": "c:\\projects\\brett_blocks\\Block_Families\\examples\\observed.json",
+        "template_path": "c:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Observed_Data\\ObservedData_template.json",
+        "data_form_path": "c:\\projects\\brett_blocks\\test_data_forms\\observeddata_198.51.100.3.json",
+        "form_name": "ipv4_addr_form",
+        "references": [],
+        "python_file": "Block_Families/StixORM/SDO/Observed_Data/make_observed_data.py",
+        "original_stix": {
+          "type": "ipv4-addr",
+          "spec_version": "2.1",
+          "id": "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8",
+          "value": "198.51.100.3"
+        },
+        "success": true
+      }
+    },
+    {
+      "success": true,
+      "equivalent": true,
+      "differences": [],
+      "generated_object": {
+        "type": "email-addr",
+        "spec_version": "2.1",
+        "id": "email-addr--7165e2a9-671f-585d-b1e1-ca59c671d934",
+        "value": "john@example.com",
+        "display_name": "John Doe"
+      },
+      "python_class": "EmailAddress",
+      "test_data": {
+        "python_class": "EmailAddress",
+        "stix_type": "email-addr",
+        "example_file": "c:\\projects\\brett_blocks\\Block_Families\\examples\\email_basic_addr.json",
+        "template_path": "c:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\Email_Addr\\EmailAddress_template.json",
+        "data_form_path": "c:\\projects\\brett_blocks\\test_data_forms\\emailaddress_john@example.com.json",
+        "form_name": "email_addr_form",
+        "references": [],
+        "python_file": "Block_Families/StixORM/SCO/Email_Addr/make_email_addr.py",
+        "original_stix": {
+          "type": "email-addr",
+          "spec_version": "2.1",
+          "id": "email-addr--2d77a846-6264-5d51-b586-e48322ea1ea3",
+          "value": "john@example.com",
+          "display_name": "John Doe"
+        },
+        "success": true
+      }
+    },
+    {
+      "success": true,
+      "equivalent": true,
+      "differences": [],
+      "generated_object": {
+        "type": "user-account",
+        "spec_version": "2.1",
+        "id": "user-account--f94d689e-707d-58c3-b803-c720bb6ed096",
+        "user_id": "1001",
+        "account_login": "jdoe",
+        "account_type": "unix",
+        "display_name": "John Doe",
+        "is_service_account": false,
+        "is_privileged": false,
+        "can_escalate_privs": true
+      },
+      "python_class": "UserAccount",
+      "test_data": {
+        "python_class": "UserAccount",
+        "stix_type": "user-account",
+        "example_file": "c:\\projects\\brett_blocks\\Block_Families\\examples\\user_account_ext_unix.json",
+        "template_path": "c:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\User_Account\\UserAccount_template.json",
+        "data_form_path": "c:\\projects\\brett_blocks\\test_data_forms\\useraccount_user-account--0d5b424b-93b8-5c.json",
+        "form_name": "user_account_form",
+        "references": [],
+        "python_file": "Block_Families/StixORM/SCO/User_Account/make_user_account.py",
+        "original_stix": {
+          "type": "user-account",
+          "spec_version": "2.1",
+          "id": "user-account--0d5b424b-93b8-5cd8-ac36-306e1789d63c",
+          "user_id": "1001",
+          "account_login": "jdoe",
+          "account_type": "unix",
+          "display_name": "John Doe",
+          "is_service_account": false,
+          "is_privileged": false,
+          "can_escalate_privs": true,
+          "extensions": {
+            "unix-account-ext": {
+              "gid": 1001,
+              "groups": [
+                "wheel"
+              ],
+              "home_dir": "/home/jdoe",
+              "shell": "/bin/bash"
+            }
+          }
+        },
+        "success": true
+      }
+    },
+    {
+      "success": true,
+      "equivalent": true,
+      "differences": [],
+      "generated_object": {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--47c3cf9a-5027-5bf0-997a-017c7edc7c55",
+        "value": "https://example.com/research/index.html"
+      },
+      "python_class": "URL",
+      "test_data": {
+        "python_class": "URL",
+        "stix_type": "url",
+        "example_file": "c:\\projects\\brett_blocks\\Block_Families\\examples\\url.json",
+        "template_path": "c:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\URL\\URL_template.json",
+        "data_form_path": "c:\\projects\\brett_blocks\\test_data_forms\\url_https:__example.com_research_i.json",
+        "form_name": "url_form",
+        "references": [],
+        "python_file": "Block_Families/StixORM/SCO/URL/make_url.py",
+        "original_stix": {
+          "type": "url",
+          "spec_version": "2.1",
+          "id": "url--c1477287-23ac-5971-a010-5c287877fa60",
+          "value": "https://example.com/research/index.html"
+        },
+        "success": true
+      }
+    },
+    {
+      "success": false,
+      "error": "cannot access local variable 'email_msg_form' where it is not associated with a value",
+      "python_class": "EmailMessage",
+      "test_data": {
+        "python_class": "EmailMessage",
+        "stix_type": "email-addr",
+        "example_file": "c:\\projects\\brett_blocks\\Block_Families\\examples\\email_mime.json",
+        "template_path": "c:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\Email_Message\\EmailMessage_template.json",
+        "data_form_path": "c:\\projects\\brett_blocks\\test_data_forms\\emailmessage_jdoe@example.com.json",
+        "form_name": "email_addr_form",
+        "references": [],
+        "python_file": "Block_Families/StixORM/SCO/Email_Message/make_email_msg.py",
+        "original_stix": {
+          "type": "email-addr",
+          "spec_version": "2.1",
+          "id": "email-addr--89f52ea8-d6ef-51e9-8fce-6a29236436ed",
+          "value": "jdoe@example.com",
+          "display_name": "John Doe"
+        },
+        "success": true
+      }
+    },
+    {
+      "success": true,
+      "equivalent": true,
+      "differences": [],
+      "generated_object": {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--6a46061b-cbcb-4d71-a9ea-31d9de910c53",
+        "created": "2025-11-05T23:40:27.411Z",
+        "modified": "2025-11-05T23:40:27.411Z",
+        "name": "Potential Phishing Email",
+        "description": "Suspicious email reported by user",
+        "indicator_types": [
+          "unknown"
+        ],
+        "pattern": "[email-addr:value = 'evil@northkorea.nk' AND email:subject = 'we are coming for you']",
+        "pattern_type": "stix",
+        "pattern_version": "2.1",
+        "valid_from": "2025-07-27T06:01:15.680Z"
+      },
+      "python_class": "Indicator",
+      "test_data": {
+        "python_class": "Indicator",
+        "stix_type": "indicator",
+        "example_file": "test_output\\extracted_objects\\indicator_Potential Phishing Email.json",
+        "template_path": "Block_Families/StixORM/SDO/Indicator/Indicator_template.json",
+        "data_form_path": "test_data_forms_skipped\\indicator_Potential Phishing Email.json",
+        "form_name": "indicator_form",
+        "references": {},
+        "python_file": "Block_Families/StixORM/SDO/Indicator/make_indicator.py",
+        "original_stix": {
+          "type": "indicator",
+          "spec_version": "2.1",
+          "id": "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544",
+          "created": "2025-07-27T06:01:15.680Z",
+          "modified": "2025-07-27T06:01:15.680Z",
+          "name": "Potential Phishing Email",
+          "description": "Suspicious email reported by user",
+          "indicator_types": [
+            "unknown"
+          ],
+          "pattern": "[email-addr:value = 'evil@northkorea.nk' AND email:subject = 'we are coming for you']",
+          "pattern_type": "stix",
+          "pattern_version": "2.1",
+          "valid_from": "2025-07-27T06:01:15.680Z"
+        },
+        "success": true
+      }
+    },
+    {
+      "success": true,
+      "equivalent": true,
+      "differences": [],
+      "generated_object": {
+        "type": "incident",
+        "spec_version": "2.1",
+        "id": "incident--e25efd31-aaeb-4f91-a2ed-656c09e5da2e",
+        "created": "2025-11-05T23:40:27.447Z",
+        "modified": "2025-11-05T23:40:27.447Z",
+        "name": "potential phishing"
+      },
+      "python_class": "Incident",
+      "test_data": {
+        "python_class": "Incident",
+        "stix_type": "incident",
+        "example_file": "test_output\\extracted_objects\\incident_potential phishing.json",
+        "template_path": "Block_Families/StixORM/SDO/Incident/Incident_template.json",
+        "data_form_path": "test_data_forms_skipped\\incident_potential phishing.json",
+        "form_name": "incident_form",
+        "references": {},
+        "python_file": "Block_Families/StixORM/SDO/Incident/make_incident.py",
+        "original_stix": {
+          "type": "incident",
+          "spec_version": "2.1",
+          "id": "incident--145eb841-90db-4526-8407-b25fd2d705c1",
+          "created": "2025-07-27T06:01:14.656Z",
+          "modified": "2025-07-27T06:01:14.656Z",
+          "name": "potential phishing",
+          "extensions": {
+            "extension-definition--ef765651-680c-498d-9894-99799f2fa126": {
+              "extension_type": "property-extension",
+              "investigation_status": "new",
+              "incident_types": [
+                "dissemination-phishing-emails"
+              ],
+              "other_object_refs": [
+                "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+                "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+                "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+                "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
+                "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b",
+                "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+                "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+                "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
+                "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544",
+                "sighting--06faabfe-490a-4516-a66e-1340aad78870",
+                "identity--3789a438-8d49-4f2a-bb1a-06d3575d2f33",
+                "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f",
+                "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e",
+                "sighting--4fb5cd06-3c90-42d7-be38-abea7f752fba"
+              ],
+              "event_refs": [
+                "event--e8f641e7-89ca-4776-a828-6838d8eccdca"
+              ],
+              "sequence_refs": [
+                "sequence--4c9100f2-06a1-4570-ba51-7dabde2371b8",
+                "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef",
+                "sequence--10fe3d71-a3d1-4f83-ad54-9c290d7136e9"
+              ],
+              "sequence_start_refs": [
+                "sequence--5ced78bf-aab8-4650-9c9e-a6914d68b46e",
+                "sequence--fb97db29-be35-4f8d-b483-c2899750838d"
+              ],
+              "task_refs": [
+                "task--3f23faa4-e21e-4880-bd8a-c8d89aa453aa",
+                "task--01537439-3b2d-4afe-81a3-45b2dd35c655"
+              ],
+              "impact_refs": [
+                "impact--1b87fa10-78fd-4b3e-970e-dea91e9a7457"
+              ]
+            }
+          }
+        },
+        "success": true
+      }
+    },
+    {
+      "success": true,
+      "equivalent": true,
+      "differences": [],
+      "generated_object": {
+        "type": "observed-data",
+        "spec_version": "2.1",
+        "id": "observed-data--7af0956d-ea7a-420a-bd4c-8eef16ec337b",
+        "created": "2025-11-05T23:40:27.473Z",
+        "modified": "2025-11-05T23:40:27.473Z",
+        "first_observed": "2020-10-19T01:01:01.000Z",
+        "last_observed": "2020-10-19T01:01:01.000Z",
+        "number_observed": 1,
+        "object_refs": [
+          "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+          "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+          "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+          "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+          "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d"
+        ]
+      },
+      "python_class": "ObservedData",
+      "test_data": {
+        "python_class": "ObservedData",
+        "stix_type": "observed-data",
+        "example_file": "test_output\\extracted_objects\\observed_data_observed-data_5aa35ce5-7d95-4.json",
+        "template_path": "Block_Families/StixORM/SDO/Observed_Data/ObservedData_template.json",
+        "data_form_path": "test_data_forms_skipped\\observeddata_observed-data_5aa35ce5-7d95-4.json",
+        "form_name": "observed_data_form",
+        "references": {
+          "object_refs": [
+            "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+            "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+            "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+            "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+            "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d"
+          ]
+        },
+        "python_file": "Block_Families/StixORM/SDO/Observed_Data/make_observed_data.py",
+        "original_stix": {
+          "type": "observed-data",
+          "spec_version": "2.1",
+          "id": "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
+          "created": "2025-07-27T06:01:15.521Z",
+          "modified": "2025-07-27T06:01:15.521Z",
+          "first_observed": "2020-10-19T01:01:01.000Z",
+          "last_observed": "2020-10-19T01:01:01.000Z",
+          "number_observed": 1,
+          "object_refs": [
+            "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+            "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+            "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+            "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+            "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d"
+          ]
+        },
+        "success": true
+      }
+    },
+    {
+      "success": true,
+      "equivalent": true,
+      "differences": [],
+      "generated_object": {
+        "type": "observed-data",
+        "spec_version": "2.1",
+        "id": "observed-data--d83929c0-edfc-431b-b6bb-202e2387460c",
+        "created": "2025-11-05T23:40:27.502Z",
+        "modified": "2025-11-05T23:40:27.502Z",
+        "first_observed": "2020-10-19T01:01:01.000Z",
+        "last_observed": "2020-10-19T01:01:01.000Z",
+        "number_observed": 1,
+        "object_refs": [
+          "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f"
+        ]
+      },
+      "python_class": "ObservedData",
+      "test_data": {
+        "python_class": "ObservedData",
+        "stix_type": "observed-data",
+        "example_file": "test_output\\extracted_objects\\observed_data_observed-data_98f47f54-715a-4.json",
+        "template_path": "Block_Families/StixORM/SDO/Observed_Data/ObservedData_template.json",
+        "data_form_path": "test_data_forms_skipped\\observeddata_observed-data_98f47f54-715a-4.json",
+        "form_name": "observed_data_form",
+        "references": {
+          "object_refs": [
+            "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f"
+          ]
+        },
+        "python_file": "Block_Families/StixORM/SDO/Observed_Data/make_observed_data.py",
+        "original_stix": {
+          "type": "observed-data",
+          "spec_version": "2.1",
+          "id": "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e",
+          "created": "2025-07-27T06:01:27.617Z",
+          "modified": "2025-07-27T06:01:27.617Z",
+          "first_observed": "2020-10-19T01:01:01Z",
+          "last_observed": "2020-10-19T01:01:01Z",
+          "number_observed": 1,
+          "object_refs": [
+            "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f"
+          ]
+        },
+        "success": true
+      }
+    },
+    {
+      "success": true,
+      "equivalent": true,
+      "differences": [],
+      "generated_object": {
+        "type": "user-account",
+        "spec_version": "2.1",
+        "id": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+        "user_id": "79563902",
+        "account_login": "nsmith",
+        "account_type": "sales,",
+        "display_name": "Naive Smith"
+      },
+      "python_class": "UserAccount",
+      "test_data": {
+        "python_class": "UserAccount",
+        "stix_type": "user-account",
+        "example_file": "test_output\\extracted_objects\\user_account_user-account_597ad4d4-35ba-58.json",
+        "template_path": "Block_Families/StixORM/SCO/User_Account/UserAccount_template.json",
+        "data_form_path": "test_data_forms_skipped\\useraccount_user-account_597ad4d4-35ba-58.json",
+        "form_name": "user_account_form",
+        "references": {},
+        "python_file": "Block_Families/StixORM/SCO/User_Account/make_user_account.py",
+        "original_stix": {
+          "type": "user-account",
+          "spec_version": "2.1",
+          "id": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+          "user_id": "79563902",
+          "account_login": "nsmith",
+          "account_type": "sales,",
+          "display_name": "Naive Smith"
+        },
+        "success": true
+      }
+    },
+    {
+      "success": true,
+      "equivalent": true,
+      "differences": [],
+      "generated_object": {
+        "type": "user-account",
+        "spec_version": "2.1",
+        "id": "user-account--d5dba9a1-a32f-5b37-a013-1e55439e62fb",
+        "user_id": "79563902",
+        "account_login": "dman",
+        "account_type": "sales,",
+        "display_name": "Different Man"
+      },
+      "python_class": "UserAccount",
+      "test_data": {
+        "python_class": "UserAccount",
+        "stix_type": "user-account",
+        "example_file": "test_output\\extracted_objects\\user_account_user-account_83658594-537d-5c.json",
+        "template_path": "Block_Families/StixORM/SCO/User_Account/UserAccount_template.json",
+        "data_form_path": "test_data_forms_skipped\\useraccount_user-account_83658594-537d-5c.json",
+        "form_name": "user_account_form",
+        "references": {},
+        "python_file": "Block_Families/StixORM/SCO/User_Account/make_user_account.py",
+        "original_stix": {
+          "type": "user-account",
+          "spec_version": "2.1",
+          "id": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3",
+          "user_id": "79563902",
+          "account_login": "dman",
+          "account_type": "sales,",
+          "display_name": "Different Man"
+        },
+        "success": true
+      }
+    },
+    {
+      "success": false,
+      "error": "cannot access local variable 'email_msg_form' where it is not associated with a value",
+      "python_class": "EmailMessage",
+      "test_data": {
+        "python_class": "EmailMessage",
+        "stix_type": "email-message",
+        "example_file": "test_output\\extracted_objects\\email_message_email-message_6090e3d4-1fa8-5.json",
+        "template_path": "Block_Families/StixORM/SCO/Email_Message/EmailMessage_template.json",
+        "data_form_path": "test_data_forms_skipped\\emailmessage_email-message_6090e3d4-1fa8-5.json",
+        "form_name": "email_message_form",
+        "references": {
+          "from_ref": "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+          "to_refs": [
+            "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
+          ]
+        },
+        "python_file": "Block_Families/StixORM/SCO/Email_Message/make_email_msg.py",
+        "original_stix": {
+          "type": "email-message",
+          "spec_version": "2.1",
+          "id": "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+          "is_multipart": false,
+          "date": "2020-10-19T01:01:01.000Z",
+          "from_ref": "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+          "to_refs": [
+            "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
+          ],
+          "subject": "we are coming for you",
+          "body": "some bad stuff written here"
+        },
+        "success": true
+      }
+    }
+  ]
+}

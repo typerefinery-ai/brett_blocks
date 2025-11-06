@@ -38,11 +38,17 @@ Block_Families/StixORM/{SDO|SCO|SRO}/{ClassName}/{ClassName}_template.json
 
 **Conversion Requirements:**
 
+**⚠️ CRITICAL RULES FOR EXTENSIONS AND SUB-OBJECTS:**
+
+1. **Extension Reference Rule**: Any field ending in `_ref` or `_refs` inside extensions must be empty string "" or empty array []
+2. **Extension Embedded Objects Rule**: Arrays of embedded objects (like contact_numbers, email_addresses) must be empty arrays [] in extensions
+3. **Sub Section Rule**: All embedded object data goes to the `sub` section with references removed
+
 1. **Structure Preservation**: Follow the exact template structure:
    - `base_required`: Required base STIX properties
    - `base_optional`: Optional base STIX properties  
    - `object`: Main object-specific properties
-   - `extensions`: STIX extensions with actual values
+   - `extensions`: STIX extensions with simple values only (no embedded objects, no references)
    - `sub`: Sub-objects extracted from embedded references
 
 2. **Property Conversion Rules**:
@@ -55,9 +61,11 @@ Block_Families/StixORM/{SDO|SCO|SRO}/{ClassName}/{ClassName}_template.json
    - TimestampProperty → ISO timestamp or "" for auto-generation
 
 3. **Reference Extraction**:
-   - Properties ending in `_ref`: Extract as separate parameter, leave empty string in data form
-   - Properties ending in `_refs`: Extract as separate parameter, leave empty array in data form
-   - Embedded objects: Move to `sub` section with actual data (not definitions)
+   - Properties ending in `_ref`: Extract as separate parameter, leave empty string "" in data form
+   - Properties ending in `_refs`: Extract as separate parameter, leave empty array [] in data form
+   - All other values that are single stix-id (<object-type>--<uuid>) or arrays of stix-ids: Extract as separate parameters
+   - **CRITICAL**: This applies EVERYWHERE including inside extensions and sub-objects
+   - **CRITICAL**: When extracting references from extensions, the extension field becomes empty string or empty array, and the actual reference data goes to sub section
 
 4. **Type Accuracy**:
    - Ensure `base_required.type` matches the correct STIX object type
@@ -67,7 +75,73 @@ Block_Families/StixORM/{SDO|SCO|SRO}/{ClassName}/{ClassName}_template.json
    - Leave `id`, `created`, `modified` as empty strings for auto-generation
    - Keep `type` and `spec_version` with actual values
 
+6. **Sub-Objects Handling**:
+   - When the class template uses an `EmbeddedObjectProperty`, ensure that the `sub` section contains the actual embedded object data and use the field name as the key.
+   - The `sub` section may contain either a single sub-object or an array of sub-objects, depending on the template definition.
+   - **CRITICAL**: For extensions with embedded objects (like contact_numbers, email_addresses, social_media_accounts):
+     - Leave the extension field as empty array []
+     - Move the actual embedded object data to the sub section
+     - Remove any reference values (_ref fields) from the sub section data and leave as empty strings
+
+7. **Extension Processing Rules**:
+   - Extensions contain property definitions and simple values only
+   - **NO embedded objects** in extensions - move to sub section
+   - **NO reference values** in extensions - extract as separate parameters
+   - Arrays of embedded objects become empty arrays [] in extensions
+   - Reference fields become empty strings "" in extensions
+   - All extensions and sub-objects should also be searched for `EmbeddedObjectProperty` usages and handled similarly.
+
 Please create the data form and identify any extracted references that should be separate Python block parameters.
+```
+
+## ⚠️ COMMON MISTAKES TO AVOID
+
+### **❌ WRONG - References and Embedded Objects in Extensions:**
+```json
+"extensions": {
+    "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+        "extension_type": "property-extension",
+        "contact_numbers": [
+            {
+                "contact_number_type": "work-phone",
+                "contact_number": "123-456-7890"
+            }
+        ],
+        "email_addresses": [
+            {
+                "digital_contact_type": "work",
+                "email_address_ref": "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
+            }
+        ]
+    }
+}
+```
+
+### **✅ CORRECT - Empty Arrays in Extensions, Data in Sub:**
+```json
+"extensions": {
+    "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+        "extension_type": "property-extension",
+        "contact_numbers": [],
+        "email_addresses": [],
+        "first_name": "Paolo",
+        "team": "responders"
+    }
+},
+"sub": {
+    "contact_numbers": [
+        {
+            "contact_number_type": "work-phone",
+            "contact_number": "123-456-7890"
+        }
+    ],
+    "email_addresses": [
+        {
+            "digital_contact_type": "work",
+            "email_address_ref": ""
+        }
+    ]
+}
 ```
 
 ## Example Usage
@@ -199,9 +273,14 @@ Compare the two examples below with the class template here Block_Families\StixO
 - [ ] Type field matches correct STIX object type
 - [ ] Auto-generated fields (id, created, modified) are empty strings
 - [ ] Reference fields are empty strings/arrays (extracted separately)
+- [ ] **CRITICAL**: Extensions contain NO reference values (_ref fields are empty strings)
+- [ ] **CRITICAL**: Extensions contain NO embedded objects (arrays are empty [])
+- [ ] **CRITICAL**: Sub section contains all embedded object data
+- [ ] **CRITICAL**: Reference fields in sub objects are empty strings (extracted separately)
 - [ ] Embedded objects moved to sub section
 - [ ] Property types converted according to mapping rules
-- [ ] Extensions contain actual values, not property definitions
+- [ ] Extensions contain simple values only, not property definitions
+- [ ] Sub section contains actual embedded object data, when the EmbeddedObjectProperty is used in a template
 
 ## Reference Documentation
 

@@ -1,0 +1,21 @@
+{
+  "email_addr_form": {
+    "base_required": {
+      "type": "email-addr",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "defanged": null,
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "value": "john@example.com",
+      "display_name": "John Doe",
+      "belongs_to_ref": null
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "email_message_form": {
+    "base_required": {
+      "type": "email-message",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "defanged": null,
+      "object_marking_refs": null,
+      "granular_markings": null
+    },
+    "object": {
+      "is_multipart": false,
+      "date": "2020-10-19T01:01:01.000Z",
+      "content_type": "",
+      "from_ref": "",
+      "sender_ref": "",
+      "to_refs": [],
+      "cc_refs": "",
+      "bcc_refs": "",
+      "message_id": "",
+      "subject": "we are coming for you",
+      "received_lines": "",
+      "additional_header_fields": "",
+      "body": "some bad stuff written here",
+      "body_multipart": "",
+      "raw_email_ref": ""
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}
