@@ -1,18 +1,43 @@
 {
   "summary": {
     "total_types_found": 14,
-    "supported_types": 9,
-    "unsupported_types": 5,
-    "total_tested": 16,
-    "prompt_successes": 16,
-    "notebook_successes": 16,
-    "both_successful": 16,
-    "forms_match": 0,
+    "supported_types": 14,
+    "unsupported_types": 0,
+    "total_tested": 24,
+    "prompt_successes": 24,
+    "notebook_successes": 24,
+    "both_successful": 24,
+    "forms_match": 24,
     "prompt_success_rate": 100.0,
     "notebook_success_rate": 100.0,
-    "match_rate": 0.0
+    "match_rate": 100.0
   },
   "supported_types": [
+    {
+      "type": "anecdote",
+      "category": "SCO",
+      "python_class": "Anecdote",
+      "total_objects": 1,
+      "prompt_successes": 1,
+      "notebook_successes": 1,
+      "both_successful": 1,
+      "objects_match": 1,
+      "template_path": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\Anecdote\\Anecdote_template.json",
+      "object_results": [
+        {
+          "object_id": "e1298bc0",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": true,
+          "prompt_file": "temp_method_comparison/expanded_dataset/anecdote_e1298bc0_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/anecdote_e1298bc0_notebook.json"
+        }
+      ],
+      "tested_objects": 1,
+      "prompt_success_rate": 100.0,
+      "notebook_success_rate": 100.0,
+      "match_rate": 100.0
+    },
     {
       "type": "email-addr",
       "category": "SCO",
@@ -21,14 +46,14 @@
       "prompt_successes": 3,
       "notebook_successes": 3,
       "both_successful": 3,
-      "objects_match": 0,
-      "template_path": "Block_Families/StixORM/SCO/Email_Addr/EmailAddress_template.json",
+      "objects_match": 3,
+      "template_path": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\Email_Addr\\EmailAddress_template.json",
       "object_results": [
         {
           "object_id": "eb38d07e",
           "prompt_success": true,
           "notebook_success": true,
-          "forms_match": false,
+          "forms_match": true,
           "prompt_file": "temp_method_comparison/expanded_dataset/email-addr_eb38d07e_prompt.json",
           "notebook_file": "temp_method_comparison/expanded_dataset/email-addr_eb38d07e_notebook.json"
         },
@@ -36,7 +61,7 @@
           "object_id": "c99b87bd",
           "prompt_success": true,
           "notebook_success": true,
-          "forms_match": false,
+          "forms_match": true,
           "prompt_file": "temp_method_comparison/expanded_dataset/email-addr_c99b87bd_prompt.json",
           "notebook_file": "temp_method_comparison/expanded_dataset/email-addr_c99b87bd_notebook.json"
         },
@@ -44,7 +69,7 @@
           "object_id": "4722424c",
           "prompt_success": true,
           "notebook_success": true,
-          "forms_match": false,
+          "forms_match": true,
           "prompt_file": "temp_method_comparison/expanded_dataset/email-addr_4722424c_prompt.json",
           "notebook_file": "temp_method_comparison/expanded_dataset/email-addr_4722424c_notebook.json"
         }
@@ -52,7 +77,7 @@
       "tested_objects": 3,
       "prompt_success_rate": 100.0,
       "notebook_success_rate": 100.0,
-      "match_rate": 0.0
+      "match_rate": 100.0
     },
     {
       "type": "email-message",
@@ -62,14 +87,14 @@
       "prompt_successes": 1,
       "notebook_successes": 1,
       "both_successful": 1,
-      "objects_match": 0,
-      "template_path": "Block_Families/StixORM/SCO/Email_Message/EmailMessage_template.json",
+      "objects_match": 1,
+      "template_path": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\Email_Message\\EmailMessage_template.json",
       "object_results": [
         {
           "object_id": "6090e3d4",
           "prompt_success": true,
           "notebook_success": true,
-          "forms_match": false,
+          "forms_match": true,
           "prompt_file": "temp_method_comparison/expanded_dataset/email-message_6090e3d4_prompt.json",
           "notebook_file": "temp_method_comparison/expanded_dataset/email-message_6090e3d4_notebook.json"
         }
@@ -77,7 +102,32 @@
       "tested_objects": 1,
       "prompt_success_rate": 100.0,
       "notebook_success_rate": 100.0,
-      "match_rate": 0.0
+      "match_rate": 100.0
+    },
+    {
+      "type": "event",
+      "category": "SDO",
+      "python_class": "Event",
+      "total_objects": 1,
+      "prompt_successes": 1,
+      "notebook_successes": 1,
+      "both_successful": 1,
+      "objects_match": 1,
+      "template_path": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Event\\Event_template.json",
+      "object_results": [
+        {
+          "object_id": "e8f641e7",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": true,
+          "prompt_file": "temp_method_comparison/expanded_dataset/event_e8f641e7_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/event_e8f641e7_notebook.json"
+        }
+      ],
+      "tested_objects": 1,
+      "prompt_success_rate": 100.0,
+      "notebook_success_rate": 100.0,
+      "match_rate": 100.0
     },
     {
       "type": "identity",
@@ -87,14 +137,14 @@
       "prompt_successes": 3,
       "notebook_successes": 3,
       "both_successful": 3,
-      "objects_match": 0,
-      "template_path": "Block_Families/StixORM/SDO/Identity/Identity_template.json",
+      "objects_match": 3,
+      "template_path": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Identity\\Identity_template.json",
       "object_results": [
         {
           "object_id": "ce31dd38",
           "prompt_success": true,
           "notebook_success": true,
-          "forms_match": false,
+          "forms_match": true,
           "prompt_file": "temp_method_comparison/expanded_dataset/identity_ce31dd38_prompt.json",
           "notebook_file": "temp_method_comparison/expanded_dataset/identity_ce31dd38_notebook.json"
         },
@@ -102,7 +152,7 @@
           "object_id": "31f2aeea",
           "prompt_success": true,
           "notebook_success": true,
-          "forms_match": false,
+          "forms_match": true,
           "prompt_file": "temp_method_comparison/expanded_dataset/identity_31f2aeea_prompt.json",
           "notebook_file": "temp_method_comparison/expanded_dataset/identity_31f2aeea_notebook.json"
         },
@@ -110,7 +160,7 @@
           "object_id": "3789a438",
           "prompt_success": true,
           "notebook_success": true,
-          "forms_match": false,
+          "forms_match": true,
           "prompt_file": "temp_method_comparison/expanded_dataset/identity_3789a438_prompt.json",
           "notebook_file": "temp_method_comparison/expanded_dataset/identity_3789a438_notebook.json"
         }
@@ -118,7 +168,32 @@
       "tested_objects": 3,
       "prompt_success_rate": 100.0,
       "notebook_success_rate": 100.0,
-      "match_rate": 0.0
+      "match_rate": 100.0
+    },
+    {
+      "type": "impact",
+      "category": "SDO",
+      "python_class": "Impact",
+      "total_objects": 1,
+      "prompt_successes": 1,
+      "notebook_successes": 1,
+      "both_successful": 1,
+      "objects_match": 1,
+      "template_path": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Impact\\Impact_template.json",
+      "object_results": [
+        {
+          "object_id": "1b87fa10",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": true,
+          "prompt_file": "temp_method_comparison/expanded_dataset/impact_1b87fa10_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/impact_1b87fa10_notebook.json"
+        }
+      ],
+      "tested_objects": 1,
+      "prompt_success_rate": 100.0,
+      "notebook_success_rate": 100.0,
+      "match_rate": 100.0
     },
     {
       "type": "incident",
@@ -128,14 +203,14 @@
       "prompt_successes": 1,
       "notebook_successes": 1,
       "both_successful": 1,
-      "objects_match": 0,
-      "template_path": "Block_Families/StixORM/SDO/Incident/Incident_template.json",
+      "objects_match": 1,
+      "template_path": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Incident\\Incident_template.json",
       "object_results": [
         {
           "object_id": "145eb841",
           "prompt_success": true,
           "notebook_success": true,
-          "forms_match": false,
+          "forms_match": true,
           "prompt_file": "temp_method_comparison/expanded_dataset/incident_145eb841_prompt.json",
           "notebook_file": "temp_method_comparison/expanded_dataset/incident_145eb841_notebook.json"
         }
@@ -143,7 +218,7 @@
       "tested_objects": 1,
       "prompt_success_rate": 100.0,
       "notebook_success_rate": 100.0,
-      "match_rate": 0.0
+      "match_rate": 100.0
     },
     {
       "type": "indicator",
@@ -153,14 +228,14 @@
       "prompt_successes": 1,
       "notebook_successes": 1,
       "both_successful": 1,
-      "objects_match": 0,
-      "template_path": "Block_Families/StixORM/SDO/Indicator/Indicator_template.json",
+      "objects_match": 1,
+      "template_path": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Indicator\\Indicator_template.json",
       "object_results": [
         {
           "object_id": "dd52359a",
           "prompt_success": true,
           "notebook_success": true,
-          "forms_match": false,
+          "forms_match": true,
           "prompt_file": "temp_method_comparison/expanded_dataset/indicator_dd52359a_prompt.json",
           "notebook_file": "temp_method_comparison/expanded_dataset/indicator_dd52359a_notebook.json"
         }
@@ -168,7 +243,7 @@
       "tested_objects": 1,
       "prompt_success_rate": 100.0,
       "notebook_success_rate": 100.0,
-      "match_rate": 0.0
+      "match_rate": 100.0
     },
     {
       "type": "observed-data",
@@ -178,14 +253,14 @@
       "prompt_successes": 2,
       "notebook_successes": 2,
       "both_successful": 2,
-      "objects_match": 0,
-      "template_path": "Block_Families/StixORM/SDO/Observed_Data/ObservedData_template.json",
+      "objects_match": 2,
+      "template_path": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Observed_Data\\ObservedData_template.json",
       "object_results": [
         {
           "object_id": "5aa35ce5",
           "prompt_success": true,
           "notebook_success": true,
-          "forms_match": false,
+          "forms_match": true,
           "prompt_file": "temp_method_comparison/expanded_dataset/observed-data_5aa35ce5_prompt.json",
           "notebook_file": "temp_method_comparison/expanded_dataset/observed-data_5aa35ce5_notebook.json"
         },
@@ -193,7 +268,7 @@
           "object_id": "98f47f54",
           "prompt_success": true,
           "notebook_success": true,
-          "forms_match": false,
+          "forms_match": true,
           "prompt_file": "temp_method_comparison/expanded_dataset/observed-data_98f47f54_prompt.json",
           "notebook_file": "temp_method_comparison/expanded_dataset/observed-data_98f47f54_notebook.json"
         }
@@ -201,7 +276,48 @@
       "tested_objects": 2,
       "prompt_success_rate": 100.0,
       "notebook_success_rate": 100.0,
-      "match_rate": 0.0
+      "match_rate": 100.0
+    },
+    {
+      "type": "sequence",
+      "category": "SDO",
+      "python_class": "Sequence",
+      "total_objects": 5,
+      "prompt_successes": 3,
+      "notebook_successes": 3,
+      "both_successful": 3,
+      "objects_match": 3,
+      "template_path": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Sequence\\Sequence_template.json",
+      "object_results": [
+        {
+          "object_id": "5ced78bf",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": true,
+          "prompt_file": "temp_method_comparison/expanded_dataset/sequence_5ced78bf_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/sequence_5ced78bf_notebook.json"
+        },
+        {
+          "object_id": "fb97db29",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": true,
+          "prompt_file": "temp_method_comparison/expanded_dataset/sequence_fb97db29_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/sequence_fb97db29_notebook.json"
+        },
+        {
+          "object_id": "4c9100f2",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": true,
+          "prompt_file": "temp_method_comparison/expanded_dataset/sequence_4c9100f2_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/sequence_4c9100f2_notebook.json"
+        }
+      ],
+      "tested_objects": 3,
+      "prompt_success_rate": 100.0,
+      "notebook_success_rate": 100.0,
+      "match_rate": 100.0
     },
     {
       "type": "sighting",
@@ -211,14 +327,14 @@
       "prompt_successes": 2,
       "notebook_successes": 2,
       "both_successful": 2,
-      "objects_match": 0,
-      "template_path": "Block_Families/StixORM/SRO/Sighting/Sighting_template.json",
+      "objects_match": 2,
+      "template_path": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SRO\\Sighting\\Sighting_template.json",
       "object_results": [
         {
           "object_id": "06faabfe",
           "prompt_success": true,
           "notebook_success": true,
-          "forms_match": false,
+          "forms_match": true,
           "prompt_file": "temp_method_comparison/expanded_dataset/sighting_06faabfe_prompt.json",
           "notebook_file": "temp_method_comparison/expanded_dataset/sighting_06faabfe_notebook.json"
         },
@@ -226,7 +342,7 @@
           "object_id": "4fb5cd06",
           "prompt_success": true,
           "notebook_success": true,
-          "forms_match": false,
+          "forms_match": true,
           "prompt_file": "temp_method_comparison/expanded_dataset/sighting_4fb5cd06_prompt.json",
           "notebook_file": "temp_method_comparison/expanded_dataset/sighting_4fb5cd06_notebook.json"
         }
@@ -234,7 +350,40 @@
       "tested_objects": 2,
       "prompt_success_rate": 100.0,
       "notebook_success_rate": 100.0,
-      "match_rate": 0.0
+      "match_rate": 100.0
+    },
+    {
+      "type": "task",
+      "category": "SDO",
+      "python_class": "Task",
+      "total_objects": 2,
+      "prompt_successes": 2,
+      "notebook_successes": 2,
+      "both_successful": 2,
+      "objects_match": 2,
+      "template_path": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Task\\Task_template.json",
+      "object_results": [
+        {
+          "object_id": "3f23faa4",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": true,
+          "prompt_file": "temp_method_comparison/expanded_dataset/task_3f23faa4_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/task_3f23faa4_notebook.json"
+        },
+        {
+          "object_id": "01537439",
+          "prompt_success": true,
+          "notebook_success": true,
+          "forms_match": true,
+          "prompt_file": "temp_method_comparison/expanded_dataset/task_01537439_prompt.json",
+          "notebook_file": "temp_method_comparison/expanded_dataset/task_01537439_notebook.json"
+        }
+      ],
+      "tested_objects": 2,
+      "prompt_success_rate": 100.0,
+      "notebook_success_rate": 100.0,
+      "match_rate": 100.0
     },
     {
       "type": "url",
@@ -244,14 +393,14 @@
       "prompt_successes": 1,
       "notebook_successes": 1,
       "both_successful": 1,
-      "objects_match": 0,
-      "template_path": "Block_Families/StixORM/SCO/URL/URL_template.json",
+      "objects_match": 1,
+      "template_path": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\URL\\URL_template.json",
       "object_results": [
         {
           "object_id": "3279c7de",
           "prompt_success": true,
           "notebook_success": true,
-          "forms_match": false,
+          "forms_match": true,
           "prompt_file": "temp_method_comparison/expanded_dataset/url_3279c7de_prompt.json",
           "notebook_file": "temp_method_comparison/expanded_dataset/url_3279c7de_notebook.json"
         }
@@ -259,7 +408,7 @@
       "tested_objects": 1,
       "prompt_success_rate": 100.0,
       "notebook_success_rate": 100.0,
-      "match_rate": 0.0
+      "match_rate": 100.0
     },
     {
       "type": "user-account",
@@ -269,14 +418,14 @@
       "prompt_successes": 2,
       "notebook_successes": 2,
       "both_successful": 2,
-      "objects_match": 0,
-      "template_path": "Block_Families/StixORM/SCO/User_Account/UserAccount_template.json",
+      "objects_match": 2,
+      "template_path": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\User_Account\\UserAccount_template.json",
       "object_results": [
         {
           "object_id": "597ad4d4",
           "prompt_success": true,
           "notebook_success": true,
-          "forms_match": false,
+          "forms_match": true,
           "prompt_file": "temp_method_comparison/expanded_dataset/user-account_597ad4d4_prompt.json",
           "notebook_file": "temp_method_comparison/expanded_dataset/user-account_597ad4d4_notebook.json"
         },
@@ -284,7 +433,7 @@
           "object_id": "83658594",
           "prompt_success": true,
           "notebook_success": true,
-          "forms_match": false,
+          "forms_match": true,
           "prompt_file": "temp_method_comparison/expanded_dataset/user-account_83658594_prompt.json",
           "notebook_file": "temp_method_comparison/expanded_dataset/user-account_83658594_notebook.json"
         }
@@ -292,90 +441,75 @@
       "tested_objects": 2,
       "prompt_success_rate": 100.0,
       "notebook_success_rate": 100.0,
-      "match_rate": 0.0
+      "match_rate": 100.0
     }
   ],
-  "unsupported_types": [
-    {
-      "type": "anecdote",
-      "count": 1,
-      "reason": "No template mapping"
-    },
-    {
-      "type": "event",
-      "count": 1,
-      "reason": "No template mapping"
-    },
-    {
-      "type": "impact",
-      "count": 1,
-      "reason": "No template mapping"
-    },
-    {
-      "type": "sequence",
-      "count": 5,
-      "reason": "No template mapping"
-    },
-    {
-      "type": "task",
-      "count": 2,
-      "reason": "No template mapping"
-    }
-  ],
+  "unsupported_types": [],
   "template_mapping": {
-    "identity": {
-      "template_path": "Block_Families/StixORM/SDO/Identity/Identity_template.json",
-      "python_class": "Identity",
-      "category": "SDO",
-      "make_function": "Block_Families.StixORM.SDO.Identity.make_identity"
-    },
-    "indicator": {
-      "template_path": "Block_Families/StixORM/SDO/Indicator/Indicator_template.json",
-      "python_class": "Indicator",
-      "category": "SDO",
-      "make_function": "Block_Families.StixORM.SDO.Indicator.make_indicator"
-    },
-    "incident": {
-      "template_path": "Block_Families/StixORM/SDO/Incident/Incident_template.json",
-      "python_class": "Incident",
-      "category": "SDO",
-      "make_function": "Block_Families.StixORM.SDO.Incident.make_incident"
-    },
-    "observed-data": {
-      "template_path": "Block_Families/StixORM/SDO/Observed_Data/ObservedData_template.json",
-      "python_class": "ObservedData",
-      "category": "SDO",
-      "make_function": "Block_Families.StixORM.SDO.Observed_Data.make_observed_data"
-    },
-    "email-addr": {
-      "template_path": "Block_Families/StixORM/SCO/Email_Addr/EmailAddress_template.json",
-      "python_class": "EmailAddress",
-      "category": "SCO",
-      "make_function": "Block_Families.StixORM.SCO.Email_Addr.make_email_addr"
-    },
-    "email-message": {
-      "template_path": "Block_Families/StixORM/SCO/Email_Message/EmailMessage_template.json",
-      "python_class": "EmailMessage",
-      "category": "SCO",
-      "make_function": "Block_Families.StixORM.SCO.Email_Message.make_email_msg"
-    },
-    "user-account": {
-      "template_path": "Block_Families/StixORM/SCO/User_Account/UserAccount_template.json",
-      "python_class": "UserAccount",
-      "category": "SCO",
-      "make_function": "Block_Families.StixORM.SCO.User_Account.make_user_account"
-    },
-    "url": {
-      "template_path": "Block_Families/StixORM/SCO/URL/URL_template.json",
-      "python_class": "URL",
-      "category": "SCO",
-      "make_function": "Block_Families.StixORM.SCO.URL.make_url"
-    },
-    "sighting": {
-      "template_path": "Block_Families/StixORM/SRO/Sighting/Sighting_template.json",
-      "python_class": "Sighting",
-      "category": "SRO",
-      "make_function": "Block_Families.StixORM.SRO.Sighting.make_sighting"
-    }
+    "attack-flow": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\AttackFlow\\AttackFlow_template.json",
+    "x-mitre-asset": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Attack_Asset\\AttackAsset_template.json",
+    "campaign": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Campaign\\Campaign_template.json",
+    "x-mitre-data-component": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Attack_DataComponent\\AttackDataComponent_template.json",
+    "x-mitre-data-source": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Attack_DataSource\\AttackDataSource_template.json",
+    "intrusion-set": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Instrusion_Set\\IntrusionSet_template.json",
+    "malware": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Malware\\Malware_template.json",
+    "attack-pattern": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Technique\\Technique_template.json",
+    "tool": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Tool\\Tool_template.json",
+    "x-oca-behavior": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Behavior\\Behavior_template.json",
+    "course-of-action": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Course_of_Action\\CourseOfAction_template.json",
+    "x-oca-detection": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Detection\\Detection_template.json",
+    "x-oca-detector": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Detector\\Detector_template.json",
+    "event": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Event\\Event_template.json",
+    "extension-definition": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Extension_Definition\\ExtensionDefinition_template.json",
+    "attack-action": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Flow_Action\\FlowAction_template.json",
+    "attack-asset": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Flow_Asset\\FlowAsset_template.json",
+    "attack-condition": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Flow_Condition\\FlowCondition_template.json",
+    "attack-operator": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Flow_Operator\\FlowOperator_template.json",
+    "grouping": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Grouping\\Grouping_template.json",
+    "identity": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Identity\\Identity_template.json",
+    "impact": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Impact\\Impact_template.json",
+    "incident": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Incident\\Incident_template.json",
+    "indicator": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Indicator\\Indicator_template.json",
+    "infrastructure": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Infrastructure\\Infrastructure_template.json",
+    "location": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Location\\Location_template.json",
+    "malware-analysis": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Malware_Analysis\\MalwareAnalysis_template.json",
+    "malware-behavior": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Malware_Behavior\\MalwareBehavior_template.json",
+    "x-mitre-matrix": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Matrix\\Matrix_template.json",
+    "note": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Note\\Note_template.json",
+    "observed-data": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Observed_Data\\ObservedData_template.json",
+    "opinion": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Opinion\\Opinion_template.json",
+    "x-oca-playbook": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Playbook\\Playbook_template.json",
+    "report": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Report\\Report_template.json",
+    "sequence": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Sequence\\Sequence_template.json",
+    "x-mitre-tactic": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Tactic\\Tactic_template.json",
+    "task": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Task\\Task_template.json",
+    "threat-actor": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Threat_Actor\\ThreatActor_template.json",
+    "vulnerability": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SDO\\Vulnerability\\Vulnerability_template.json",
+    "anecdote": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\Anecdote\\Anecdote_template.json",
+    "artifact": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\Artifact\\Artifact_template.json",
+    "autonomous-system": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\Autonomous_System\\AutonomousSystem_template.json",
+    "directory": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\Directory\\Directory_template.json",
+    "domain-name": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\Domain_Name\\DomainName_template.json",
+    "email-addr": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\Email_Addr\\EmailAddress_template.json",
+    "email-message": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\Email_Message\\EmailMessage_template.json",
+    "file": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\OCA_Custom_File\\OCAFile_template.json",
+    "ipv4-addr": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\IPv4_Addr\\IPv4Address_template.json",
+    "ipv6-addr": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\IPv6_Addr\\IPv6Address_template.json",
+    "mac-addr": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\MAC_Address\\MACAddress_template.json",
+    "mutex": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\Mutex\\Mutex_template.json",
+    "network-traffic": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\Network_Traffic\\NetworkTraffic_template.json",
+    "x-oca-asset": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\OCA_Asset\\OCAAsset_template.json",
+    "process": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\Process\\Process_template.json",
+    "software": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\Software\\Software_template.json",
+    "user-account": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\User_Account\\UserAccount_template.json",
+    "x-oca-event": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\OCA_Event\\OCAEvent_template.json",
+    "x-ibm-finding": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\OCA_Finding\\OCAFinding_template.json",
+    "x-oca-geo": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\OCA_Geo\\OCAGeo_template.json",
+    "x-ibm-ttp-tagging": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\OCA_TTP_Tag\\OCATTPTag_template.json",
+    "url": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\URL\\URL_template.json",
+    "windows-registry-key": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\Windows_Registry_Key\\WindowsRegistryKey_template.json",
+    "x509-certificate": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SCO\\X509_Cert\\X509Cert_template.json",
+    "relationship": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SRO\\Relationship\\Relationship_template.json",
+    "sighting": "C:\\projects\\brett_blocks\\Block_Families\\StixORM\\SRO\\Sighting\\Sighting_template.json"
   }
 }

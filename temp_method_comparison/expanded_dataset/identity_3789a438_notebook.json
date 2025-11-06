@@ -10,8 +10,8 @@
     "base_optional": {
       "created_by_ref": null,
       "revoked": null,
-      "labels": null,
-      "confidence": 0,
+      "labels": [],
+      "confidence": null,
       "lang": null,
       "external_references": [
         {
@@ -21,8 +21,8 @@
           "external_id": "Asset--629456a"
         }
       ],
-      "object_marking_refs": null,
-      "granular_markings": null
+      "object_marking_refs": [],
+      "granular_markings": []
     },
     "object": {
       "name": "HP Laptop 1",

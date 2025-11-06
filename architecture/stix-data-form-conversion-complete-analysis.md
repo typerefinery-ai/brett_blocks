@@ -116,9 +116,39 @@ Every data form mirrors its class template structure exactly:
 | DictionaryProperty | Object with key-value pairs |
 
 ### Reference Handling
+
+#### Critical Discovery: STIX ID Pattern Detection
+
+**Issue Identified**: Traditional reference extraction only looked for fields ending with `_ref` or `_refs`, but many STIX objects contain reference fields with non-standard naming conventions.
+
+**Example from Sequence Objects**:
+- `sequenced_object`: Contains STIX IDs like `"event--e8f641e7-89ca-4776-a828-6838d8eccdca"`  
+- `on_completion`: Contains STIX IDs like `"sequence--4c9100f2-06a1-4570-ba51-7dabde2371b8"`
+- `on_success`: Contains STIX IDs  
+- `on_failure`: Contains STIX IDs
+
+**Solution**: Enhanced reference extraction with dual detection rules:
+
+1. **Field Name Pattern Detection**: `_ref` and `_refs` field endings
+2. **STIX ID Pattern Detection**: Any field containing `type--uuid` format values
+
+**STIX ID Pattern Logic**:
+```python
+if isinstance(value, str) and '--' in value and len(value.split('--')) == 2:
+    type_part, uuid_part = value.split('--', 1)
+    if len(uuid_part) >= 36:  # UUID-like length
+        # Extract as reference, replace with empty string
+        extracted_refs[field_path] = value
+        field_value = ""
+```
+
+**Impact**: This discovery affects all object types that use non-standard reference field names. Without proper STIX ID detection, reference values remain embedded in data forms instead of being extracted for separate parameter handling.
+
+#### Standard Reference Rules
 - **_ref fields**: Single reference IDs (often empty strings for auto-population)
 - **_refs fields**: Arrays of reference IDs 
 - **Embedded objects**: Moved to sub section with actual data instead of definitions
+- **STIX ID values**: Any field containing STIX ID patterns, regardless of field name
 
 ## Directory Analysis Results
 
@@ -160,10 +190,20 @@ Every data form mirrors its class template structure exactly:
 - **extensions**: Convert extension definitions to actual extension values  
 - **sub**: Convert sub-object definitions to actual instances
 
-### Step 4: Handle References
-- Extract `_ref` and `_refs` fields for separate parameter handling
-- Place actual sub-objects in sub section
-- Use empty strings for references to be populated by Python blocks
+### Step 4: Handle References (Enhanced)
+- **Traditional Pattern**: Extract `_ref` and `_refs` fields for separate parameter handling  
+- **STIX ID Pattern**: Extract any field containing `type--uuid` format, regardless of field name
+- **Embedded Objects**: Place actual sub-objects in sub section with references removed
+- **Reference Replacement**: Use empty strings for single references, empty arrays for reference lists
+
+**Enhanced Reference Extraction Algorithm**:
+1. Scan all fields recursively for reference patterns
+2. Apply dual detection: field name patterns (`_ref`/`_refs`) AND STIX ID patterns (`type--uuid`)
+3. Extract detected references to separate parameters
+4. Replace extracted values with empty strings/arrays in data form
+5. Process embedded objects by moving to sub section and removing their references
+
+**Critical for Objects**: Sequence, Task, Event, and other objects with non-standard reference field names
 
 ## Best Practices
 

@@ -7,8 +7,8 @@
     },
     "base_optional": {
       "defanged": null,
-      "object_marking_refs": null,
-      "granular_markings": null
+      "object_marking_refs": [],
+      "granular_markings": []
     },
     "object": {
       "value": "naive@example.com",

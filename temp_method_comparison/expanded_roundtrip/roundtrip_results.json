@@ -4,11 +4,11 @@
     "prompt_successes": 9,
     "notebook_successes": 9,
     "both_successful": 9,
-    "objects_match": 6,
+    "objects_match": 9,
     "prompt_success_rate": 56.25,
     "notebook_success_rate": 56.25,
-    "match_rate": 66.66666666666666,
-    "winner": "TIE - Both work, minor differences"
+    "match_rate": 100.0,
+    "winner": "TIE - Perfect equivalence"
   },
   "by_type": {
     "email-addr": {
@@ -82,7 +82,7 @@
       "prompt_successes": 1,
       "notebook_successes": 1,
       "both_successful": 1,
-      "objects_match": 0,
+      "objects_match": 1,
       "object_tests": [
         {
           "object_id": "31f2aeea",
@@ -97,7 +97,7 @@
           "notebook_success": true,
           "prompt_error": null,
           "notebook_error": null,
-          "objects_match": false,
+          "objects_match": true,
           "prompt_output": "temp_method_comparison/expanded_roundtrip/identity_3789a438_prompt_result.json",
           "notebook_output": "temp_method_comparison/expanded_roundtrip/identity_3789a438_notebook_result.json"
         },
@@ -112,7 +112,7 @@
       "prompt_success_rate": 33.33333333333333,
       "notebook_success_rate": 33.33333333333333,
       "both_success_rate": 33.33333333333333,
-      "match_rate": 0.0
+      "match_rate": 100.0
     },
     "incident": {
       "type": "incident",
@@ -120,7 +120,7 @@
       "prompt_successes": 1,
       "notebook_successes": 1,
       "both_successful": 1,
-      "objects_match": 0,
+      "objects_match": 1,
       "object_tests": [
         {
           "object_id": "145eb841",
@@ -128,7 +128,7 @@
           "notebook_success": true,
           "prompt_error": null,
           "notebook_error": null,
-          "objects_match": false,
+          "objects_match": true,
           "prompt_output": "temp_method_comparison/expanded_roundtrip/incident_145eb841_prompt_result.json",
           "notebook_output": "temp_method_comparison/expanded_roundtrip/incident_145eb841_notebook_result.json"
         }
@@ -136,7 +136,7 @@
       "prompt_success_rate": 100.0,
       "notebook_success_rate": 100.0,
       "both_success_rate": 100.0,
-      "match_rate": 0.0
+      "match_rate": 100.0
     },
     "indicator": {
       "type": "indicator",
@@ -144,7 +144,7 @@
       "prompt_successes": 1,
       "notebook_successes": 1,
       "both_successful": 1,
-      "objects_match": 0,
+      "objects_match": 1,
       "object_tests": [
         {
           "object_id": "dd52359a",
@@ -152,7 +152,7 @@
           "notebook_success": true,
           "prompt_error": null,
           "notebook_error": null,
-          "objects_match": false,
+          "objects_match": true,
           "prompt_output": "temp_method_comparison/expanded_roundtrip/indicator_dd52359a_prompt_result.json",
           "notebook_output": "temp_method_comparison/expanded_roundtrip/indicator_dd52359a_notebook_result.json"
         }
@@ -160,7 +160,7 @@
       "prompt_success_rate": 100.0,
       "notebook_success_rate": 100.0,
       "both_success_rate": 100.0,
-      "match_rate": 0.0
+      "match_rate": 100.0
     },
     "observed-data": {
       "type": "observed-data",
@@ -328,7 +328,7 @@
       "notebook_success": true,
       "prompt_error": null,
       "notebook_error": null,
-      "objects_match": false,
+      "objects_match": true,
       "prompt_output": "temp_method_comparison/expanded_roundtrip/identity_3789a438_prompt_result.json",
       "notebook_output": "temp_method_comparison/expanded_roundtrip/identity_3789a438_notebook_result.json"
     },
@@ -345,7 +345,7 @@
       "notebook_success": true,
       "prompt_error": null,
       "notebook_error": null,
-      "objects_match": false,
+      "objects_match": true,
       "prompt_output": "temp_method_comparison/expanded_roundtrip/incident_145eb841_prompt_result.json",
       "notebook_output": "temp_method_comparison/expanded_roundtrip/incident_145eb841_notebook_result.json"
     },
@@ -355,7 +355,7 @@
       "notebook_success": true,
       "prompt_error": null,
       "notebook_error": null,
-      "objects_match": false,
+      "objects_match": true,
       "prompt_output": "temp_method_comparison/expanded_roundtrip/indicator_dd52359a_prompt_result.json",
       "notebook_output": "temp_method_comparison/expanded_roundtrip/indicator_dd52359a_notebook_result.json"
     },

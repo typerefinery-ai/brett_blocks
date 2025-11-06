@@ -7,8 +7,8 @@
     },
     "base_optional": {
       "defanged": null,
-      "object_marking_refs": null,
-      "granular_markings": null
+      "object_marking_refs": [],
+      "granular_markings": []
     },
     "object": {
       "is_multipart": false,
@@ -17,14 +17,14 @@
       "from_ref": "",
       "sender_ref": "",
       "to_refs": [],
-      "cc_refs": "",
-      "bcc_refs": "",
+      "cc_refs": [],
+      "bcc_refs": [],
       "message_id": "",
       "subject": "we are coming for you",
-      "received_lines": "",
+      "received_lines": [],
       "additional_header_fields": "",
       "body": "some bad stuff written here",
-      "body_multipart": "",
+      "body_multipart": [],
       "raw_email_ref": ""
     },
     "extensions": {},

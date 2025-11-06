@@ -1,7 +1,7 @@
 {
-  "observed_data_form": {
+  "sequence_form": {
     "base_required": {
-      "type": "observed-data",
+      "type": "sequence",
       "spec_version": "2.1",
       "id": "",
       "created": "",
@@ -18,12 +18,19 @@
       "granular_markings": []
     },
     "object": {
-      "first_observed": "2020-10-19T01:01:01Z",
-      "last_observed": "2020-10-19T01:01:01Z",
-      "number_observed": 1,
-      "object_refs": []
+      "sequenced_object": "",
+      "sequence_type": "event",
+      "step_type": "single_step",
+      "on_completion": "",
+      "on_success": "",
+      "on_failure": "",
+      "next_steps": []
     },
-    "extensions": {},
+    "extensions": {
+      "extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {
+        "extension_type": "new-sdo"
+      }
+    },
     "sub": {}
   }
 }

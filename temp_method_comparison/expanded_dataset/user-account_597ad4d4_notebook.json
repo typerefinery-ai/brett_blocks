@@ -7,8 +7,8 @@
     },
     "base_optional": {
       "defanged": null,
-      "object_marking_refs": null,
-      "granular_markings": null
+      "object_marking_refs": [],
+      "granular_markings": []
     },
     "object": {
       "user_id": "79563902",
@@ -16,10 +16,10 @@
       "account_login": "nsmith",
       "account_type": "sales,",
       "display_name": "Naive Smith",
-      "is_service_account": null,
-      "is_privileged": null,
-      "can_escalate_privs": null,
-      "is_disabled": null,
+      "is_service_account": "",
+      "is_privileged": "",
+      "can_escalate_privs": "",
+      "is_disabled": "",
       "account_created": "",
       "account_expires": "",
       "credential_last_changed": "",

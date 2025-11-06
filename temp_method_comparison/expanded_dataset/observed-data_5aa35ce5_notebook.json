@@ -10,12 +10,12 @@
     "base_optional": {
       "created_by_ref": null,
       "revoked": null,
-      "labels": null,
-      "confidence": 0,
+      "labels": [],
+      "confidence": null,
       "lang": null,
-      "external_references": null,
-      "object_marking_refs": null,
-      "granular_markings": null
+      "external_references": [],
+      "object_marking_refs": [],
+      "granular_markings": []
     },
     "object": {
       "first_observed": "2020-10-19T01:01:01.000Z",

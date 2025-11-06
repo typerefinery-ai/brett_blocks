@@ -1,5 +1,19 @@
 # STIX Data Form Creation Analysis
 
+## Note: Updated Documentation Available
+
+**⚠️ This document has been superseded by the complete analysis document.**
+
+**Current Documentation**: See `stix-data-form-conversion-complete-analysis.md` for:
+- Comprehensive directory analysis across all 15 working implementations
+- Enhanced reference extraction with STIX ID pattern detection
+- Utility function implementation details
+- Validation results across 24 objects and 14 STIX types
+
+**Critical Enhancement (November 2025)**: Reference detection now includes both field name patterns (`_ref`/`_refs`) AND STIX ID patterns (`type--uuid`) to handle objects like Sequence with non-standard reference field names.
+
+---
+
 ## Understanding the Pattern Between Class Templates and Data Forms
 
 After systematic examination of class templates and their corresponding data form examples across SDO, SCO, and SRO directories, I have identified the consistent conversion pattern used in the Brett Blocks template-driven architecture.

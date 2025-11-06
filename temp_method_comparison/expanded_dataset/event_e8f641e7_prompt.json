@@ -1,7 +1,7 @@
 {
-  "indicator_form": {
+  "event_form": {
     "base_required": {
-      "type": "indicator",
+      "type": "event",
       "spec_version": "2.1",
       "id": "",
       "created": "",
@@ -20,17 +20,23 @@
     "object": {
       "name": "Potential Phishing Email",
       "description": "Suspicious email reported by user",
-      "indicator_types": [
-        "unknown"
+      "status": "",
+      "goal": "",
+      "changed_objects": [],
+      "end_time": "2025-07-27T06:01:15.914Z",
+      "end_time_fidelity": "",
+      "event_types": [
+        "dissemination-phishing-emails"
       ],
-      "pattern": "[email-addr:value = 'evil@northkorea.nk' AND email:subject = 'we are coming for you']",
-      "pattern_type": "stix",
-      "pattern_version": "2.1",
-      "valid_from": "2025-07-27T06:01:15.680Z",
-      "valid_until": "",
-      "kill_chain_phases": []
+      "sighting_refs": [],
+      "start_time": "2025-07-27T06:01:15.914Z",
+      "start_time_fidelity": ""
     },
-    "extensions": {},
+    "extensions": {
+      "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+        "extension_type": "new-sdo"
+      }
+    },
     "sub": {}
   }
 }

@@ -186,16 +186,7 @@ def create_data_form_prompt_method(stix_obj: Dict[str, Any], template: Dict[str,
                     # References become empty
                     data_form['object'][prop] = [] if prop.endswith('_refs') else ""
                 else:
-                    value = stix_obj[prop]
-                    # Check if value is a STIX ID pattern (type--uuid format)
-                    if isinstance(value, str) and '--' in value and len(value.split('--')) == 2:
-                        type_part, uuid_part = value.split('--', 1)
-                        if len(uuid_part) >= 36:  # UUID-like length
-                            data_form['object'][prop] = ""  # Extract STIX ID, leave empty string
-                        else:
-                            data_form['object'][prop] = value
-                    else:
-                        data_form['object'][prop] = value
+                    data_form['object'][prop] = stix_obj[prop]
             else:
                 if isinstance(template_def, dict) and template_def.get('collection'):
                     data_form['object'][prop] = []
@@ -214,14 +205,7 @@ def create_data_form_prompt_method(stix_obj: Dict[str, Any], template: Dict[str,
                     corrected_ext[prop] = ""
                 elif prop.endswith('_refs'):
                     corrected_ext[prop] = []
-                # Rule 2: STIX ID values become empty strings
-                elif isinstance(value, str) and '--' in value and len(value.split('--')) == 2:
-                    type_part, uuid_part = value.split('--', 1)
-                    if len(uuid_part) >= 36:  # UUID-like length
-                        corrected_ext[prop] = ""  # Extract STIX ID, leave empty string
-                    else:
-                        corrected_ext[prop] = value
-                # Rule 3: Embedded object arrays become empty arrays in extensions
+                # Rule 2: Embedded object arrays become empty arrays in extensions
                 elif isinstance(value, list) and value and isinstance(value[0], dict):
                     corrected_ext[prop] = []
                     # Move embedded objects to sub section, removing references
@@ -233,18 +217,11 @@ def create_data_form_prompt_method(stix_obj: Dict[str, Any], template: Dict[str,
                                 cleaned_obj[sub_prop] = ""
                             elif sub_prop.endswith('_refs'):
                                 cleaned_obj[sub_prop] = []
-                            # Also check for STIX IDs in sub-objects
-                            elif isinstance(sub_value, str) and '--' in sub_value and len(sub_value.split('--')) == 2:
-                                type_part, uuid_part = sub_value.split('--', 1)
-                                if len(uuid_part) >= 36:
-                                    cleaned_obj[sub_prop] = ""
-                                else:
-                                    cleaned_obj[sub_prop] = sub_value
                             else:
                                 cleaned_obj[sub_prop] = sub_value
                         cleaned_sub_objects.append(cleaned_obj)
                     sub_objects[prop] = cleaned_sub_objects
-                # Rule 4: Simple values stay in extensions
+                # Rule 3: Simple values stay in extensions
                 else:
                     corrected_ext[prop] = value
             
@@ -258,39 +235,7 @@ def create_data_form_prompt_method(stix_obj: Dict[str, Any], template: Dict[str,
 
 # NOTEBOOK METHOD - Use actual notebook conversion function
 def create_data_form_notebook_method(stix_obj: Dict[str, Any], template: Dict[str, Any]) -> Dict[str, Any]:
-    """Create data form using the utility function from Orchestration/Utilities"""
-    
-    if not template:
-        return None
-    
-    # Import the utility function
-    import sys
-    from pathlib import Path
-    
-    # Add Orchestration/Utilities to path
-    utilities_path = Path(__file__).parent.parent / "Orchestration" / "Utilities"
-    if str(utilities_path) not in sys.path:
-        sys.path.insert(0, str(utilities_path))
-    
-    try:
-        from convert_object_list_to_data_forms import convert_stix_to_data_form
-        
-        # Convert the STIX object using the utility function
-        result = convert_stix_to_data_form(stix_obj, template)
-        
-        # Extract just the data form part (remove extracted_references for comparison)
-        if result and isinstance(result, dict):
-            # Get the form name (first key that's not 'extracted_references')
-            form_keys = [k for k in result.keys() if k != 'extracted_references']
-            if form_keys:
-                form_name = form_keys[0]
-                return result[form_name]
-        
-        return None
-        
-    except Exception as e:
-        print(f"Error using utility function: {e}")
-        return None
+    """Create data form using the actual notebook conversion function"""
     
     if not template:
         return None
@@ -580,15 +525,7 @@ def run_expanded_comparison():
     
     # Load data and mapping
     objects_by_type = load_block_output_objects()
-    # Use the utility's template discovery instead of hardcoded mapping
-    import sys
-    utilities_path = Path(__file__).parent.parent / "Orchestration" / "Utilities"
-    if str(utilities_path) not in sys.path:
-        sys.path.insert(0, str(utilities_path))
-    
-    from convert_object_list_to_data_forms import discover_class_templates
-    stixorm_path = Path(__file__).parent.parent / "Block_Families" / "StixORM"
-    available_templates = discover_class_templates(stixorm_path)
+    template_mapping = get_template_mapping()
     
     results = []
     supported_results = []
@@ -600,7 +537,7 @@ def run_expanded_comparison():
     for obj_type, objects in sorted(objects_by_type.items()):
         print(f"\n📋 Processing {obj_type} ({len(objects)} objects)")
         
-        if obj_type not in available_templates:
+        if obj_type not in template_mapping:
             print(f"   ⏭️  Skipped: No template mapping available")
             unsupported_types.append({
                 'type': obj_type,
@@ -609,30 +546,30 @@ def run_expanded_comparison():
             })
             continue
         
-        template_info = available_templates[obj_type]
+        mapping = template_mapping[obj_type]
         
-        # Load template from the discovered template info
-        template = template_info['template_data']
+        # Load template
+        template = load_class_template(mapping['template_path'])
         if not template:
-            print(f"   ❌ Template not found: {template_info['template_path']}")
+            print(f"   ❌ Template not found: {mapping['template_path']}")
             unsupported_types.append({
                 'type': obj_type,
                 'count': len(objects),
-                'reason': f"Template not found: {template_info['template_path']}"
+                'reason': f"Template not found: {mapping['template_path']}"
             })
             continue
         
         # Test each object
         type_results = {
             'type': obj_type,
-            'category': template_info['category'],
-            'python_class': template_info['class_name'],
+            'category': mapping['category'],
+            'python_class': mapping['python_class'],
             'total_objects': len(objects),
             'prompt_successes': 0,
             'notebook_successes': 0,
             'both_successful': 0,
             'objects_match': 0,
-            'template_path': str(template_info['template_path']),
+            'template_path': mapping['template_path'],
             'object_results': []
         }
         
@@ -746,7 +683,7 @@ def run_expanded_comparison():
         },
         'supported_types': supported_results,
         'unsupported_types': unsupported_types,
-        'template_mapping': {stix_type: str(info['template_path']) for stix_type, info in available_templates.items()}
+        'template_mapping': template_mapping
     }
     
     with open("temp_method_comparison/expanded_results/comprehensive_results.json", 'w', encoding='utf-8') as f:

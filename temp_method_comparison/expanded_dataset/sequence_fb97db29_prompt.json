@@ -1,7 +1,7 @@
 {
-  "identity_form": {
+  "sequence_form": {
     "base_required": {
-      "type": "identity",
+      "type": "sequence",
       "spec_version": "2.1",
       "id": "",
       "created": "",
@@ -18,14 +18,19 @@
       "granular_markings": []
     },
     "object": {
-      "name": "Adversary Bravo",
-      "description": "Adversary Bravo is a threat actor that utilizes phishing attacks.",
-      "roles": [],
-      "identity_class": "unknown",
-      "sectors": [],
-      "contact_information": ""
+      "sequenced_object": "",
+      "sequence_type": "task",
+      "step_type": "start_step",
+      "on_completion": "",
+      "on_success": "",
+      "on_failure": "",
+      "next_steps": []
     },
-    "extensions": {},
+    "extensions": {
+      "extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {
+        "extension_type": "new-sdo"
+      }
+    },
     "sub": {}
   }
 }

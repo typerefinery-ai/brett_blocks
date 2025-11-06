@@ -7,14 +7,14 @@
 
 **DATASET:** All objects from Block_Families/examples/block_output.json  
 **TOTAL OBJECT TYPES:** 14  
-**SUPPORTED TYPES:** 9 (64.3%)  
-**TOTAL OBJECTS TESTED:** 16
+**SUPPORTED TYPES:** 14 (100.0%)  
+**TOTAL OBJECTS TESTED:** 24
 
 ### **Overall Results:**
-- **Prompt Method Success Rate:** 100.0% (16/16)
-- **Notebook Method Success Rate:** 100.0% (16/16)
-- **Both Methods Successful:** 16/16 (100.0%)
-- **Generated Forms Match:** 0/16 (0.0%)
+- **Prompt Method Success Rate:** 100.0% (24/24)
+- **Notebook Method Success Rate:** 100.0% (24/24)
+- **Both Methods Successful:** 24/24 (100.0%)
+- **Generated Forms Match:** 24/24 (100.0%)
 
 ---
 
@@ -23,100 +23,117 @@
 ### **✅ SUPPORTED OBJECT TYPES**
 
 
+#### ANECDOTE (SCO)
+- **Python Class:** Anecdote
+- **Objects Tested:** 1/1
+- **Prompt Success:** 100.0% (1/1)
+- **Notebook Success:** 100.0% (1/1)
+- **Forms Match:** 100.0% (1/1)
+- **Template:** `C:\projects\brett_blocks\Block_Families\StixORM\SCO\Anecdote\Anecdote_template.json`
+
 #### EMAIL-ADDR (SCO)
 - **Python Class:** EmailAddress
 - **Objects Tested:** 3/3
 - **Prompt Success:** 100.0% (3/3)
 - **Notebook Success:** 100.0% (3/3)
-- **Forms Match:** 0.0% (0/3)
-- **Template:** `Block_Families/StixORM/SCO/Email_Addr/EmailAddress_template.json`
+- **Forms Match:** 100.0% (3/3)
+- **Template:** `C:\projects\brett_blocks\Block_Families\StixORM\SCO\Email_Addr\EmailAddress_template.json`
 
 #### EMAIL-MESSAGE (SCO)
 - **Python Class:** EmailMessage
 - **Objects Tested:** 1/1
 - **Prompt Success:** 100.0% (1/1)
 - **Notebook Success:** 100.0% (1/1)
-- **Forms Match:** 0.0% (0/1)
-- **Template:** `Block_Families/StixORM/SCO/Email_Message/EmailMessage_template.json`
+- **Forms Match:** 100.0% (1/1)
+- **Template:** `C:\projects\brett_blocks\Block_Families\StixORM\SCO\Email_Message\EmailMessage_template.json`
+
+#### EVENT (SDO)
+- **Python Class:** Event
+- **Objects Tested:** 1/1
+- **Prompt Success:** 100.0% (1/1)
+- **Notebook Success:** 100.0% (1/1)
+- **Forms Match:** 100.0% (1/1)
+- **Template:** `C:\projects\brett_blocks\Block_Families\StixORM\SDO\Event\Event_template.json`
 
 #### IDENTITY (SDO)
 - **Python Class:** Identity
 - **Objects Tested:** 3/3
 - **Prompt Success:** 100.0% (3/3)
 - **Notebook Success:** 100.0% (3/3)
-- **Forms Match:** 0.0% (0/3)
-- **Template:** `Block_Families/StixORM/SDO/Identity/Identity_template.json`
+- **Forms Match:** 100.0% (3/3)
+- **Template:** `C:\projects\brett_blocks\Block_Families\StixORM\SDO\Identity\Identity_template.json`
+
+#### IMPACT (SDO)
+- **Python Class:** Impact
+- **Objects Tested:** 1/1
+- **Prompt Success:** 100.0% (1/1)
+- **Notebook Success:** 100.0% (1/1)
+- **Forms Match:** 100.0% (1/1)
+- **Template:** `C:\projects\brett_blocks\Block_Families\StixORM\SDO\Impact\Impact_template.json`
 
 #### INCIDENT (SDO)
 - **Python Class:** Incident
 - **Objects Tested:** 1/1
 - **Prompt Success:** 100.0% (1/1)
 - **Notebook Success:** 100.0% (1/1)
-- **Forms Match:** 0.0% (0/1)
-- **Template:** `Block_Families/StixORM/SDO/Incident/Incident_template.json`
+- **Forms Match:** 100.0% (1/1)
+- **Template:** `C:\projects\brett_blocks\Block_Families\StixORM\SDO\Incident\Incident_template.json`
 
 #### INDICATOR (SDO)
 - **Python Class:** Indicator
 - **Objects Tested:** 1/1
 - **Prompt Success:** 100.0% (1/1)
 - **Notebook Success:** 100.0% (1/1)
-- **Forms Match:** 0.0% (0/1)
-- **Template:** `Block_Families/StixORM/SDO/Indicator/Indicator_template.json`
+- **Forms Match:** 100.0% (1/1)
+- **Template:** `C:\projects\brett_blocks\Block_Families\StixORM\SDO\Indicator\Indicator_template.json`
 
 #### OBSERVED-DATA (SDO)
 - **Python Class:** ObservedData
 - **Objects Tested:** 2/2
 - **Prompt Success:** 100.0% (2/2)
 - **Notebook Success:** 100.0% (2/2)
-- **Forms Match:** 0.0% (0/2)
-- **Template:** `Block_Families/StixORM/SDO/Observed_Data/ObservedData_template.json`
+- **Forms Match:** 100.0% (2/2)
+- **Template:** `C:\projects\brett_blocks\Block_Families\StixORM\SDO\Observed_Data\ObservedData_template.json`
+
+#### SEQUENCE (SDO)
+- **Python Class:** Sequence
+- **Objects Tested:** 3/5
+- **Prompt Success:** 100.0% (3/3)
+- **Notebook Success:** 100.0% (3/3)
+- **Forms Match:** 100.0% (3/3)
+- **Template:** `C:\projects\brett_blocks\Block_Families\StixORM\SDO\Sequence\Sequence_template.json`
 
 #### SIGHTING (SRO)
 - **Python Class:** Sighting
 - **Objects Tested:** 2/2
 - **Prompt Success:** 100.0% (2/2)
 - **Notebook Success:** 100.0% (2/2)
-- **Forms Match:** 0.0% (0/2)
-- **Template:** `Block_Families/StixORM/SRO/Sighting/Sighting_template.json`
+- **Forms Match:** 100.0% (2/2)
+- **Template:** `C:\projects\brett_blocks\Block_Families\StixORM\SRO\Sighting\Sighting_template.json`
+
+#### TASK (SDO)
+- **Python Class:** Task
+- **Objects Tested:** 2/2
+- **Prompt Success:** 100.0% (2/2)
+- **Notebook Success:** 100.0% (2/2)
+- **Forms Match:** 100.0% (2/2)
+- **Template:** `C:\projects\brett_blocks\Block_Families\StixORM\SDO\Task\Task_template.json`
 
 #### URL (SCO)
 - **Python Class:** URL
 - **Objects Tested:** 1/1
 - **Prompt Success:** 100.0% (1/1)
 - **Notebook Success:** 100.0% (1/1)
-- **Forms Match:** 0.0% (0/1)
-- **Template:** `Block_Families/StixORM/SCO/URL/URL_template.json`
+- **Forms Match:** 100.0% (1/1)
+- **Template:** `C:\projects\brett_blocks\Block_Families\StixORM\SCO\URL\URL_template.json`
 
 #### USER-ACCOUNT (SCO)
 - **Python Class:** UserAccount
 - **Objects Tested:** 2/2
 - **Prompt Success:** 100.0% (2/2)
 - **Notebook Success:** 100.0% (2/2)
-- **Forms Match:** 0.0% (0/2)
-- **Template:** `Block_Families/StixORM/SCO/User_Account/UserAccount_template.json`
-
-### **❌ UNSUPPORTED OBJECT TYPES**
-
-
-#### ANECDOTE
-- **Objects Available:** 1
-- **Reason:** No template mapping
-
-#### EVENT
-- **Objects Available:** 1
-- **Reason:** No template mapping
-
-#### IMPACT
-- **Objects Available:** 1
-- **Reason:** No template mapping
-
-#### SEQUENCE
-- **Objects Available:** 5
-- **Reason:** No template mapping
-
-#### TASK
-- **Objects Available:** 2
-- **Reason:** No template mapping
+- **Forms Match:** 100.0% (2/2)
+- **Template:** `C:\projects\brett_blocks\Block_Families\StixORM\SCO\User_Account\UserAccount_template.json`
 
 ---
 
@@ -124,16 +141,16 @@
 
 ### **Prompt Method Performance:**
 - **Overall Success Rate:** 100.0%
-- **Best Performing Types:** email-addr, email-message, identity, incident, indicator
+- **Best Performing Types:** anecdote, email-addr, email-message, event, identity
 - **Strengths:** Consistent, well-documented, simple implementation
 
 ### **Notebook Method Performance:**
 - **Overall Success Rate:** 100.0%
-- **Best Performing Types:** email-addr, email-message, identity, incident, indicator
+- **Best Performing Types:** anecdote, email-addr, email-message, event, identity
 - **Strengths:** Advanced processing, complex extension handling
 
 ### **Form Matching Analysis:**
-- **Perfect Matches:** 0.0% of successful conversions
+- **Perfect Matches:** 100.0% of successful conversions
 - **Key Differences:** Handling of missing/null fields
 - **Impact:** Both methods produce functionally equivalent results
 
@@ -143,8 +160,8 @@
 
 | Category | Prompt Method | Notebook Method | Both Successful |
 |----------|---------------|-----------------|-----------------|
-| **SCO** | 7/7 (100.0%) | 7/7 (100.0%) | 7/7 (100.0%) |
-| **SDO** | 7/7 (100.0%) | 7/7 (100.0%) | 7/7 (100.0%) |
+| **SCO** | 8/8 (100.0%) | 8/8 (100.0%) | 8/8 (100.0%) |
+| **SDO** | 14/14 (100.0%) | 14/14 (100.0%) | 14/14 (100.0%) |
 | **SRO** | 2/2 (100.0%) | 2/2 (100.0%) | 2/2 (100.0%) |
 
 ---
@@ -153,12 +170,12 @@
 
 ### **✅ SUCCESSES:**
 1. **High Compatibility:** Both methods achieve 100.0%+ success rates
-2. **Broad Coverage:** 9/14 object types supported
-3. **Functional Equivalence:** 0.0% of results produce equivalent forms
+2. **Broad Coverage:** 14/14 object types supported
+3. **Functional Equivalence:** 100.0% of results produce equivalent forms
 4. **Template-Driven Approach:** Both methods successfully use class templates
 
 ### **⚠️ OBSERVATIONS:**
-1. **Unsupported Types:** 5 object types lack template mappings
+1. **Unsupported Types:** 0 object types lack template mappings
 2. **Minor Differences:** Methods differ in handling missing/null fields
 3. **Extension Types:** Some types (sequence, event, task, impact, anecdote) not yet supported
 
@@ -172,8 +189,8 @@
 
 ## 📁 GENERATED ARTIFACTS
 
-### **Data Forms Created:** 16 files
-### **Test Coverage:** 9 object types × 3 objects each
+### **Data Forms Created:** 24 files
+### **Test Coverage:** 14 object types × 3 objects each
 ### **Comparison Files:** Available in `temp_method_comparison/expanded_dataset/`
 
 ---
