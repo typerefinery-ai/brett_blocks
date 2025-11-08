@@ -1,0 +1,33 @@
+{
+  "sighting_form": {
+    "base_required": {
+      "type": "sighting",
+      "spec_version": "2.1",
+      "id": "",
+      "created": "",
+      "modified": ""
+    },
+    "base_optional": {
+      "created_by_ref": "",
+      "revoked": null,
+      "labels": [],
+      "confidence": null,
+      "lang": null,
+      "external_references": [],
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "description": "",
+      "first_seen": "2015-12-21T19:00:00Z",
+      "last_seen": "2015-12-21T19:00:00Z",
+      "count": 50,
+      "sighting_of_ref": "",
+      "observed_data_refs": [],
+      "where_sighted_refs": [],
+      "summary": ""
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

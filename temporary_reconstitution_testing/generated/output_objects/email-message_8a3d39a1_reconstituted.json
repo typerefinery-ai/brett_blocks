@@ -1,0 +1,12 @@
+{
+  "type": "email-message",
+  "spec_version": "2.1",
+  "id": "email-message--8a3d39a1-29de-45b9-b0f5-7205abcc2668",
+  "is_multipart": false,
+  "date": "1997-11-21T15:55:06.000Z",
+  "from_ref": "email-addr--680e3bb2-c8c0-49ec-9641-beb9a569a13c",
+  "to_refs": [
+    "email-addr--202cebfd-5fae-4abb-9d10-8317461d1bd1"
+  ],
+  "subject": "Conference Info"
+}

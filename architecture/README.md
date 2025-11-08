@@ -18,6 +18,9 @@ This directory contains comprehensive architecture documentation for the Brett B
 - **[stix-object-generation-patterns.md](stix-object-generation-patterns.md)** - **NEW** - Comprehensive analysis of ALL 15 STIX objects with complexity distribution and automation feasibility
 - **[complete-stix-pattern-matrix.md](complete-stix-pattern-matrix.md)** - **NEW** - Complete function signature matrix and pattern analysis across all implemented STIX objects
 
+### Data Forms & Reconstitution (NEW - Nov 2025)
+- **[reconstitution-and-notebook-generation.md](reconstitution-and-notebook-generation.md)** - **NEW** - Dual-mode system for STIX object reconstitution and automated notebook generation with 99.3%+ accuracy
+
 ### Component Architecture
 - **[context-memory-architecture.md](context-memory-architecture.md)** - Persistent storage and state management **[UPDATED with Three-Tier Edge Relationship System]**
 - **[orchestration-architecture.md](orchestration-architecture.md)** - Workflow composition and execution

@@ -1,0 +1,34 @@
+{
+  "intrusion_set_form": {
+    "base_required": {
+      "type": "intrusion-set",
+      "spec_version": "2.1",
+      "id": "",
+      "created": "",
+      "modified": ""
+    },
+    "base_optional": {
+      "created_by_ref": null,
+      "revoked": null,
+      "labels": [],
+      "confidence": null,
+      "lang": null,
+      "external_references": [],
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "name": "Adversary X",
+      "description": "",
+      "aliases": [],
+      "first_seen": "",
+      "last_seen": "",
+      "goals": [],
+      "resource_level": "",
+      "primary_motivation": "",
+      "secondary_motivations": []
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

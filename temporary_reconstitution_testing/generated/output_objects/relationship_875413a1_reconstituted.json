@@ -1,0 +1,10 @@
+{
+  "type": "relationship",
+  "spec_version": "2.1",
+  "id": "relationship--875413a1-bf60-4e20-8a17-346e185a47ca",
+  "created": "2025-11-08T02:27:17.794Z",
+  "modified": "2025-11-08T02:27:17.794Z",
+  "relationship_type": "consists-of",
+  "source_ref": "infrastructure--e65d7ade-5700-47bf-b5e3-3360a6e1cd19",
+  "target_ref": "ipv4-addr--f1ca602c-baf9-4b06-8ff7-60d16959e7d6"
+}

@@ -1,0 +1,37 @@
+{
+  "process_form": {
+    "base_required": {
+      "type": "process",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "defanged": null,
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "is_hidden": "",
+      "pid": 2217,
+      "created_time": "",
+      "cwd": "",
+      "command_line": "C:\\Windows\\System32\\sirvizio.exe /s",
+      "environment_variables": "",
+      "opened_connection_refs": [],
+      "creator_user_ref": "",
+      "image_ref": "",
+      "parent_ref": "",
+      "child_refs": []
+    },
+    "extensions": {
+      "windows-service-ext": {
+        "service_name": "sirvizio",
+        "display_name": "Sirvizio",
+        "start_type": "SERVICE_AUTO_START",
+        "service_type": "SERVICE_WIN32_OWN_PROCESS",
+        "service_status": "SERVICE_RUNNING"
+      }
+    },
+    "sub": {}
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "file_form": {
+    "base_required": {
+      "type": "file",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "defanged": null,
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "x_attributes": [],
+      "x_extension": "",
+      "x_path": "",
+      "x_target_path": "",
+      "x_type": "",
+      "x_unix": "",
+      "x_owner_ref": "",
+      "x_code_signature": "",
+      "x_win_drive_letter": "",
+      "x_software_ref": "",
+      "hashes": {
+        "SHA-256": "35a01331e9ad96f751278b891b6ea09699806faedfa237d40513d92ad1b7100f"
+      },
+      "size": "",
+      "name": "foo.zip",
+      "name_enc": "",
+      "magic_number_hex": "",
+      "mime_type": "application/zip",
+      "ctime": "",
+      "mtime": "",
+      "atime": "",
+      "parent_directory_ref": "",
+      "contains_refs": [],
+      "content_ref": ""
+    },
+    "extensions": {
+      "archive-ext": {
+        "contains_refs": []
+      }
+    },
+    "sub": {}
+  }
+}

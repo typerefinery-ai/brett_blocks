@@ -1,0 +1,16 @@
+{
+  "type": "task",
+  "spec_version": "2.1",
+  "id": "task--0b61df5f-663b-482d-b1d0-549ce6a9f095",
+  "created": "2025-11-08T02:27:17.815Z",
+  "modified": "2025-11-08T02:27:17.815Z",
+  "name": "Potential Phishing Email",
+  "description": "Suspicious email reported by user",
+  "end_time": "2025-07-27T06:01:16.214Z",
+  "start_time": "2025-07-27T06:01:16.214Z",
+  "extensions": {
+    "extension-definition--2074a052-8be4-4932-849e-f5e7798e0030": {
+      "extension_type": "new-sdo"
+    }
+  }
+}

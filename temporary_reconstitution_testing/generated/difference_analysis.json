@@ -1,0 +1,1631 @@
+{
+  "patterns": {
+    "values_changed": {
+      "relationship": [
+        {
+          "path": "root['relationship_type']",
+          "old": "indicates",
+          "new": "controls",
+          "id": "relationship--44298a74-ba52-4f0c-87a3-1824e67d7fad"
+        },
+        {
+          "path": "root['source_ref']",
+          "old": "indicator--normalized-uuid",
+          "new": "infrastructure--normalized-uuid",
+          "id": "relationship--44298a74-ba52-4f0c-87a3-1824e67d7fad"
+        },
+        {
+          "path": "root['relationship_type']",
+          "old": "mitigates",
+          "new": "controls",
+          "id": "relationship--44298a74-ba52-4f0c-87a3-1824e67d7fad"
+        },
+        {
+          "path": "root['source_ref']",
+          "old": "course-of-action--normalized-uuid",
+          "new": "infrastructure--normalized-uuid",
+          "id": "relationship--44298a74-ba52-4f0c-87a3-1824e67d7fad"
+        },
+        {
+          "path": "root['target_ref']",
+          "old": "malware--normalized-uuid",
+          "new": "ipv4-addr--normalized-uuid",
+          "id": "relationship--44298a74-ba52-4f0c-87a3-1824e67d7fad"
+        },
+        {
+          "path": "root['relationship_type']",
+          "old": "consists-of",
+          "new": "analysis-of",
+          "id": "relationship--b82b2819-3b86-4bd5-afb3-fa36cfbc3f18"
+        },
+        {
+          "path": "root['source_ref']",
+          "old": "infrastructure--normalized-uuid",
+          "new": "malware-analysis--normalized-uuid",
+          "id": "relationship--b82b2819-3b86-4bd5-afb3-fa36cfbc3f18"
+        },
+        {
+          "path": "root['target_ref']",
+          "old": "ipv4-addr--normalized-uuid",
+          "new": "malware--normalized-uuid",
+          "id": "relationship--b82b2819-3b86-4bd5-afb3-fa36cfbc3f18"
+        },
+        {
+          "path": "root['relationship_type']",
+          "old": "controls",
+          "new": "mitigates",
+          "id": "relationship--7aebe2f0-28d6-48a2-9c3e-b0aaa60266ed"
+        },
+        {
+          "path": "root['source_ref']",
+          "old": "infrastructure--normalized-uuid",
+          "new": "course-of-action--normalized-uuid",
+          "id": "relationship--7aebe2f0-28d6-48a2-9c3e-b0aaa60266ed"
+        }
+      ],
+      "malware": [
+        {
+          "path": "root['malware_types'][0]",
+          "old": "trojan",
+          "new": "remote-access-trojan",
+          "id": "malware--31b940d4-6f7f-459a-80ea-9c1f17b5891b"
+        },
+        {
+          "path": "root['malware_types'][0]",
+          "old": "remote-access-trojan",
+          "new": "trojan",
+          "id": "malware--16f4f3f9-1b68-4abb-bb66-7639d49f1e30"
+        }
+      ],
+      "sequence": [
+        {
+          "path": "root['sequence_type']",
+          "old": "event",
+          "new": "task",
+          "id": "sequence--5ced78bf-aab8-4650-9c9e-a6914d68b46e"
+        },
+        {
+          "path": "root['step_type']",
+          "old": "start_step",
+          "new": "single_step",
+          "id": "sequence--5ced78bf-aab8-4650-9c9e-a6914d68b46e"
+        },
+        {
+          "path": "root['step_type']",
+          "old": "start_step",
+          "new": "single_step",
+          "id": "sequence--fb97db29-be35-4f8d-b483-c2899750838d"
+        },
+        {
+          "path": "root['sequenced_object']",
+          "old": "event--e8f641e7-89ca-4776-a828-6838d8eccdca",
+          "new": "event--b06dcf7f-5a7b-4d54-a8d1-f913952c67ce",
+          "id": "sequence--4c9100f2-06a1-4570-ba51-7dabde2371b8"
+        },
+        {
+          "path": "root['sequence_type']",
+          "old": "task",
+          "new": "event",
+          "id": "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef"
+        },
+        {
+          "path": "root['step_type']",
+          "old": "single_step",
+          "new": "start_step",
+          "id": "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef"
+        },
+        {
+          "path": "root['step_type']",
+          "old": "single_step",
+          "new": "start_step",
+          "id": "sequence--10fe3d71-a3d1-4f83-ad54-9c290d7136e9"
+        }
+      ],
+      "email-addr": [
+        {
+          "path": "root['value']",
+          "old": "evil@northkorea.nk",
+          "new": "bob@example.com",
+          "id": "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212"
+        },
+        {
+          "path": "root['display_name']",
+          "old": "Bad Man",
+          "new": "Bob Smith",
+          "id": "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212"
+        },
+        {
+          "path": "root['value']",
+          "old": "different5@man.org",
+          "new": "bob@example.com",
+          "id": "email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3"
+        },
+        {
+          "path": "root['display_name']",
+          "old": "Different Man",
+          "new": "Bob Smith",
+          "id": "email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3"
+        },
+        {
+          "path": "root['value']",
+          "old": "john@example.com",
+          "new": "jdoe@example.com",
+          "id": "email-addr--2d77a846-6264-5d51-b586-e48322ea1ea3"
+        },
+        {
+          "path": "root['value']",
+          "old": "joe@example.com",
+          "new": "jdoe@example.com",
+          "id": "email-addr--9b7e29b3-fd8d-562e-b3f0-8fc8134f5dda"
+        },
+        {
+          "path": "root['display_name']",
+          "old": "Joe Smith",
+          "new": "John Doe",
+          "id": "email-addr--9b7e29b3-fd8d-562e-b3f0-8fc8134f5dda"
+        },
+        {
+          "path": "root['value']",
+          "old": "bob@example.com",
+          "new": "joe@example.com",
+          "id": "email-addr--2d77a846-6264-5d51-b586-e43822ea1ea3"
+        },
+        {
+          "path": "root['display_name']",
+          "old": "Bob Smith",
+          "new": "Joe Smith",
+          "id": "email-addr--2d77a846-6264-5d51-b586-e43822ea1ea3"
+        },
+        {
+          "path": "root['value']",
+          "old": "jdoe@example.com",
+          "new": "different5@man.org",
+          "id": "email-addr--89f52ea8-d6ef-51e9-8fce-6a29236436ed"
+        },
+        {
+          "path": "root['display_name']",
+          "old": "John Doe",
+          "new": "Different Man",
+          "id": "email-addr--89f52ea8-d6ef-51e9-8fce-6a29236436ed"
+        },
+        {
+          "path": "root['value']",
+          "old": "jdoe@example.com",
+          "new": "mary@example.com",
+          "id": "email-addr--98f25ea8-d6ef-51e9-8fce-6a29236436ed"
+        },
+        {
+          "path": "root['display_name']",
+          "old": "John Doe",
+          "new": "Mary Smith",
+          "id": "email-addr--98f25ea8-d6ef-51e9-8fce-6a29236436ed"
+        },
+        {
+          "path": "root['value']",
+          "old": "mary@example.com",
+          "new": "evil@northkorea.nk",
+          "id": "email-addr--e4ee5301-b52d-59cd-a8fa-7630838c7194"
+        },
+        {
+          "path": "root['display_name']",
+          "old": "Mary Smith",
+          "new": "Bad Man",
+          "id": "email-addr--e4ee5301-b52d-59cd-a8fa-7630838c7194"
+        }
+      ],
+      "user-account": [
+        {
+          "path": "root['user_id']",
+          "old": "79563902",
+          "new": "1001",
+          "id": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+        },
+        {
+          "path": "root['account_login']",
+          "old": "nsmith",
+          "new": "jdoe",
+          "id": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+        },
+        {
+          "path": "root['account_type']",
+          "old": "sales,",
+          "new": "unix",
+          "id": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+        },
+        {
+          "path": "root['display_name']",
+          "old": "Naive Smith",
+          "new": "John Doe",
+          "id": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+        },
+        {
+          "path": "root['user_id']",
+          "old": "79563902",
+          "new": "1001",
+          "id": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3"
+        },
+        {
+          "path": "root['account_login']",
+          "old": "dman",
+          "new": "jdoe",
+          "id": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3"
+        },
+        {
+          "path": "root['account_type']",
+          "old": "sales,",
+          "new": "unix",
+          "id": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3"
+        },
+        {
+          "path": "root['display_name']",
+          "old": "Different Man",
+          "new": "John Doe",
+          "id": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3"
+        },
+        {
+          "path": "root['user_id']",
+          "old": "1001",
+          "new": "79563902",
+          "id": "user-account--0d5b424b-93b8-5cd8-ac36-306e1789d63c"
+        },
+        {
+          "path": "root['account_login']",
+          "old": "jdoe",
+          "new": "nsmith",
+          "id": "user-account--0d5b424b-93b8-5cd8-ac36-306e1789d63c"
+        },
+        {
+          "path": "root['account_type']",
+          "old": "unix",
+          "new": "sales,",
+          "id": "user-account--0d5b424b-93b8-5cd8-ac36-306e1789d63c"
+        },
+        {
+          "path": "root['display_name']",
+          "old": "John Doe",
+          "new": "Naive Smith",
+          "id": "user-account--0d5b424b-93b8-5cd8-ac36-306e1789d63c"
+        },
+        {
+          "path": "root['user_id']",
+          "old": "thegrugq_ebooks",
+          "new": "79563902",
+          "id": "user-account--9bd3afcf-deee-54f9-83e2-520653cb6bba"
+        },
+        {
+          "path": "root['account_login']",
+          "old": "thegrugq_ebooks",
+          "new": "dman",
+          "id": "user-account--9bd3afcf-deee-54f9-83e2-520653cb6bba"
+        },
+        {
+          "path": "root['account_type']",
+          "old": "twitter",
+          "new": "sales,",
+          "id": "user-account--9bd3afcf-deee-54f9-83e2-520653cb6bba"
+        },
+        {
+          "path": "root['display_name']",
+          "old": "the grugq",
+          "new": "Different Man",
+          "id": "user-account--9bd3afcf-deee-54f9-83e2-520653cb6bba"
+        },
+        {
+          "path": "root['user_id']",
+          "old": "1001",
+          "new": "thegrugq_ebooks",
+          "id": "user-account--0d5b424b-93b8-5cd8-a3c6-306e1789d63c"
+        },
+        {
+          "path": "root['account_login']",
+          "old": "jdoe",
+          "new": "thegrugq_ebooks",
+          "id": "user-account--0d5b424b-93b8-5cd8-a3c6-306e1789d63c"
+        },
+        {
+          "path": "root['account_type']",
+          "old": "unix",
+          "new": "twitter",
+          "id": "user-account--0d5b424b-93b8-5cd8-a3c6-306e1789d63c"
+        },
+        {
+          "path": "root['display_name']",
+          "old": "John Doe",
+          "new": "the grugq",
+          "id": "user-account--0d5b424b-93b8-5cd8-a3c6-306e1789d63c"
+        }
+      ],
+      "identity": [
+        {
+          "path": "root['extensions']['extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498']['email_addresses'][0]['email_address_ref']",
+          "old": "email-addr--normalized-uuid",
+          "new": "",
+          "id": "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017"
+        },
+        {
+          "path": "root['extensions']['extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498']['social_media_accounts'][0]['user_account_ref']",
+          "old": "user-account--normalized-uuid",
+          "new": "",
+          "id": "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017"
+        },
+        {
+          "path": "root['extensions']['extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498']['email_addresses'][0]['email_address_ref']",
+          "old": "email-addr--normalized-uuid",
+          "new": "",
+          "id": "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b"
+        },
+        {
+          "path": "root['extensions']['extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498']['social_media_accounts'][0]['user_account_ref']",
+          "old": "user-account--normalized-uuid",
+          "new": "",
+          "id": "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b"
+        }
+      ],
+      "email-message": [
+        {
+          "path": "root['date']",
+          "old": "2020-10-19T01:01:01.000Z",
+          "new": "2004-04-19T12:22:23.000Z",
+          "id": "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d"
+        },
+        {
+          "path": "root['subject']",
+          "old": "we are coming for you",
+          "new": "Did you see this?",
+          "id": "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d"
+        },
+        {
+          "path": "root['date']",
+          "old": "2004-04-19T12:22:23.000Z",
+          "new": "1997-11-21T15:55:06.000Z",
+          "id": "email-message--0c57a381-2a17-5e61-8754-5ef96efb286c"
+        },
+        {
+          "path": "root['subject']",
+          "old": "Did you see this?",
+          "new": "Conference Info",
+          "id": "email-message--0c57a381-2a17-5e61-8754-5ef96efb286c"
+        },
+        {
+          "path": "root['date']",
+          "old": "1997-11-21T15:55:06.000Z",
+          "new": "2020-10-19T01:01:01.000Z",
+          "id": "email-message--72b7698f-10c2-565a-a2a6-b4996a2f2265"
+        },
+        {
+          "path": "root['subject']",
+          "old": "Conference Info",
+          "new": "we are coming for you",
+          "id": "email-message--72b7698f-10c2-565a-a2a6-b4996a2f2265"
+        }
+      ],
+      "observed-data": [
+        {
+          "path": "root['first_observed']",
+          "old": "2020-10-19T01:01:01.000Z",
+          "new": "2015-12-21T19:00:00Z",
+          "id": "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad"
+        },
+        {
+          "path": "root['last_observed']",
+          "old": "2020-10-19T01:01:01.000Z",
+          "new": "2016-04-06T19:58:16Z",
+          "id": "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad"
+        },
+        {
+          "path": "root['number_observed']",
+          "old": 1,
+          "new": 50,
+          "id": "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad"
+        },
+        {
+          "path": "root['object_refs'][0]",
+          "old": "email-addr--normalized-uuid",
+          "new": "file--normalized-uuid",
+          "id": "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad"
+        },
+        {
+          "path": "root['first_observed']",
+          "old": "2020-10-19T01:01:01Z",
+          "new": "2020-10-19T01:01:01.000Z",
+          "id": "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e"
+        },
+        {
+          "path": "root['last_observed']",
+          "old": "2020-10-19T01:01:01Z",
+          "new": "2020-10-19T01:01:01.000Z",
+          "id": "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e"
+        },
+        {
+          "path": "root['object_refs'][0]",
+          "old": "anecdote--normalized-uuid",
+          "new": "email-addr--normalized-uuid",
+          "id": "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e"
+        },
+        {
+          "path": "root['first_observed']",
+          "old": "2015-12-21T19:00:00Z",
+          "new": "2020-10-19T01:01:01Z",
+          "id": "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf"
+        },
+        {
+          "path": "root['last_observed']",
+          "old": "2015-12-21T19:00:00Z",
+          "new": "2020-10-19T01:01:01Z",
+          "id": "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf"
+        },
+        {
+          "path": "root['number_observed']",
+          "old": 50,
+          "new": 1,
+          "id": "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf"
+        },
+        {
+          "path": "root['object_refs'][0]",
+          "old": "ipv4-addr--normalized-uuid",
+          "new": "anecdote--normalized-uuid",
+          "id": "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf"
+        }
+      ],
+      "sighting": [
+        {
+          "path": "root['count']",
+          "old": 1,
+          "new": 50,
+          "id": "sighting--06faabfe-490a-4516-a66e-1340aad78870"
+        },
+        {
+          "path": "root['sighting_of_ref']",
+          "old": "identity--normalized-uuid",
+          "new": "indicator--normalized-uuid",
+          "id": "sighting--4fb5cd06-3c90-42d7-be38-abea7f752fba"
+        },
+        {
+          "path": "root['count']",
+          "old": 50,
+          "new": 1,
+          "id": "sighting--ee20065d-2555-424f-ad9e-0f8428623c75"
+        },
+        {
+          "path": "root['sighting_of_ref']",
+          "old": "indicator--normalized-uuid",
+          "new": "identity--normalized-uuid",
+          "id": "sighting--ee20065d-2555-424f-ad9e-0f8428623c75"
+        }
+      ],
+      "directory": [
+        {
+          "path": "root['path']",
+          "old": "C:\\Windows\\System32",
+          "new": "C:\\",
+          "id": "directory--93c0a9b0-520d-545d-9094-1d80adf46b05"
+        },
+        {
+          "path": "root['path']",
+          "old": "C:\\",
+          "new": "C:\\Windows\\System32",
+          "id": "directory--255cb0e4-8bdb-5d63-bb32-9c6f0b733ab2"
+        }
+      ],
+      "ipv4-addr": [
+        {
+          "path": "root['value']",
+          "old": "198.51.100.3",
+          "new": "203.0.113.5",
+          "id": "ipv4-addr--ff26c055-6336-5bc5-b98d-13d6226742dd"
+        },
+        {
+          "path": "root['value']",
+          "old": "198.51.100.3",
+          "new": "203.0.113.5",
+          "id": "ipv4-addr--b4e29b62-2053-47c4-bab4-bbce39e5ed67"
+        },
+        {
+          "path": "root['value']",
+          "old": "198.52.200.4",
+          "new": "198.51.100.6",
+          "id": "ipv4-addr--84445275-e371-444b-baea-ac7d07a180fd"
+        },
+        {
+          "path": "root['value']",
+          "old": "198.51.100.0/24",
+          "new": "198.51.100.2",
+          "id": "ipv4-addr--5853f6a4-638f-5b4e-9b0f-ded361ae3812"
+        },
+        {
+          "path": "root['value']",
+          "old": "198.51.100.3",
+          "new": "198.51.100.2",
+          "id": "ipv4-addr--ff26c055-6336-5bc5-b89d-13d6226742dd"
+        },
+        {
+          "path": "root['value']",
+          "old": "198.51.100.2",
+          "new": "198.51.100.0/24",
+          "id": "ipv4-addr--4d22aae0-9fb2-5427-8819-e4f6abf20a53"
+        },
+        {
+          "path": "root['value']",
+          "old": "198.51.100.3",
+          "new": "198.51.100.53",
+          "id": "ipv4-addr--ff26c055-6336-b55c-b98d-13d6226742dd"
+        },
+        {
+          "path": "root['value']",
+          "old": "198.51.100.53",
+          "new": "198.52.200.4",
+          "id": "ipv4-addr--6da8dad3-4de3-5f8e-ab23-45d0b8f12f16"
+        },
+        {
+          "path": "root['value']",
+          "old": "198.51.100.9",
+          "new": "198.51.100.5",
+          "id": "ipv4-addr--d7177770-fc12-586b-9244-426596a7008e"
+        },
+        {
+          "path": "root['value']",
+          "old": "203.0.113.5",
+          "new": "198.51.100.3",
+          "id": "ipv4-addr--03b708d9-7761-5523-ab75-5ea096294a68"
+        },
+        {
+          "path": "root['value']",
+          "old": "198.51.100.5",
+          "new": "198.51.100.54",
+          "id": "ipv4-addr--89830c10-2e94-57fa-8ca6-e0537d2719d1"
+        },
+        {
+          "path": "root['value']",
+          "old": "198.51.100.6",
+          "new": "198.51.100.9",
+          "id": "ipv4-addr--45f4c6fb-2d7d-576a-a571-edc78d899a72"
+        },
+        {
+          "path": "root['value']",
+          "old": "203.0.113.5",
+          "new": "198.51.100.3",
+          "id": "ipv4-addr--03b708d9-7761-2355-ab75-5ea096294a68"
+        },
+        {
+          "path": "root['value']",
+          "old": "198.51.100.3",
+          "new": "198.51.100.34",
+          "id": "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8"
+        },
+        {
+          "path": "root['value']",
+          "old": "198.51.100.2",
+          "new": "198.51.100.3",
+          "id": "ipv4-addr--4d22aae0-2bf9-5427-8819-e4f6abf20a53"
+        },
+        {
+          "path": "root['value']",
+          "old": "203.0.113.1",
+          "new": "198.51.100.3",
+          "id": "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7"
+        },
+        {
+          "path": "root['value']",
+          "old": "203.0.113.2",
+          "new": "198.51.100.3",
+          "id": "ipv4-addr--ffe65ce3-bf2a-577c-bb7e-947d39198637"
+        },
+        {
+          "path": "root['value']",
+          "old": "203.0.113.1",
+          "new": "203.0.113.2",
+          "id": "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7"
+        }
+      ],
+      "domain-name": [
+        {
+          "path": "root['value']",
+          "old": "site.of.interest.zaz",
+          "new": "example.com",
+          "id": "domain-name--3c10e93f-798e-52a6-a0c1-08156efab7f5"
+        }
+      ],
+      "file": [
+        {
+          "path": "root['hashes']['SHA-256']",
+          "old": "19c549ec2628b989382f6b280cbd7bb836a0b461332c0fe53511ce7d584b89d3",
+          "new": "35a01331e9ad96f751278b891b6ea09699806faedfa237d40513d92ad1b7100f",
+          "id": "file--94fc2163-dec3-5715-b824-6e689c4de865"
+        },
+        {
+          "path": "root['hashes']['SHA-256']",
+          "old": "0969de02ecf8a5f003e3f6d063d848c8a193aada092623f8ce408c15bcb5f038",
+          "new": "19c549ec2628b989382f6b280cbd7bb836a0b461332c0fe53511ce7d584b89d3",
+          "id": "file--d07ff290-d7e0-545b-a2ff-04602a9e0b73"
+        },
+        {
+          "path": "root['hashes']['SHA-256']",
+          "old": "35a01331e9ad96f751278b891b6ea09699806faedfa237d40513d92ad1b7100f",
+          "new": "0969de02ecf8a5f003e3f6d063d848c8a193aada092623f8ce408c15bcb5f038",
+          "id": "file--73c4cd13-7206-5100-88ef-822c42d3f02c"
+        }
+      ],
+      "ipv6-addr": [
+        {
+          "path": "root['value']",
+          "old": "2001:0db8::/96",
+          "new": "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
+          "id": "ipv6-addr--5daf7456-8863-5481-9d42-237d477697f4"
+        },
+        {
+          "path": "root['value']",
+          "old": "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
+          "new": "2001:0db8::/96",
+          "id": "ipv6-addr--1e61d36c-a16c-53b7-a80f-2a00161c96b1"
+        }
+      ],
+      "network-traffic": [
+        {
+          "path": "root['dst_ref']",
+          "old": "domain-name--normalized-uuid",
+          "new": "ipv4-addr--normalized-uuid",
+          "id": "network-traffic--c95e972a-20a4-5307-b00d-b8393faf02c5"
+        },
+        {
+          "path": "root['src_ref']",
+          "old": "ipv4-addr--normalized-uuid",
+          "new": "ipv6-addr--normalized-uuid",
+          "id": "network-traffic--e7a939ca-78c6-5f27-8ae0-4ad112454626"
+        },
+        {
+          "path": "root['extensions']",
+          "old": {
+            "icmp-ext": {
+              "icmp_type_hex": "08",
+              "icmp_code_hex": "00"
+            }
+          },
+          "new": {
+            "socket-ext": {
+              "is_listening": true,
+              "address_family": "AF_INET",
+              "socket_type": "SOCK_STREAM"
+            }
+          },
+          "id": "network-traffic--e7a939ca-78c6-5f27-8ae0-4ad112454626"
+        },
+        {
+          "path": "root['protocols'][0]",
+          "old": "icmp",
+          "new": "ip",
+          "id": "network-traffic--e7a939ca-78c6-5f27-8ae0-4ad112454626"
+        },
+        {
+          "path": "root['src_ref']",
+          "old": "ipv6-addr--normalized-uuid",
+          "new": "ipv4-addr--normalized-uuid",
+          "id": "network-traffic--c95e972a-20a4-5307-b00d-b8393faf02c5"
+        },
+        {
+          "path": "root['extensions']",
+          "old": {
+            "socket-ext": {
+              "is_listening": true,
+              "address_family": "AF_INET",
+              "socket_type": "SOCK_STREAM"
+            }
+          },
+          "new": {
+            "icmp-ext": {
+              "icmp_type_hex": "08",
+              "icmp_code_hex": "00"
+            }
+          },
+          "id": "network-traffic--c95e972a-20a4-5307-b00d-b8393faf02c5"
+        },
+        {
+          "path": "root['protocols'][0]",
+          "old": "ip",
+          "new": "icmp",
+          "id": "network-traffic--c95e972a-20a4-5307-b00d-b8393faf02c5"
+        },
+        {
+          "path": "root['extensions']",
+          "old": {
+            "tcp-ext": {
+              "src_flags_hex": "00000002"
+            }
+          },
+          "new": {
+            "http-request-ext": {
+              "request_method": "get",
+              "request_value": "/download.html",
+              "request_version": "http/1.1",
+              "request_header": {
+                "Accept-Encoding": "gzip,deflate",
+                "User-Agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113",
+                "Host": "www.example.com"
+              }
+            }
+          },
+          "id": "network-traffic--09ca55c3-97e5-5966-bad0-1d41d557ae13"
+        },
+        {
+          "path": "root['src_packets']",
+          "old": 100,
+          "new": 14356,
+          "id": "network-traffic--630d7bb1-0bbc-53a6-a6d4-f3c2d35c2734"
+        },
+        {
+          "path": "root['src_port']",
+          "old": 2487,
+          "new": 24678,
+          "id": "network-traffic--ac267abc-1a41-536d-8e8d-98458d9bf491"
+        },
+        {
+          "path": "root['dst_port']",
+          "old": 1723,
+          "new": 443,
+          "id": "network-traffic--ac267abc-1a41-536d-8e8d-98458d9bf491"
+        },
+        {
+          "path": "root['protocols'][1]",
+          "old": "pptp",
+          "new": "tcp",
+          "id": "network-traffic--ac267abc-1a41-536d-8e8d-98458d9bf491"
+        },
+        {
+          "path": "root['src_port']",
+          "old": 24678,
+          "new": 2487,
+          "id": "network-traffic--53e0bf48-2eee-5c03-8bde-ed7049d2c0a3"
+        },
+        {
+          "path": "root['dst_port']",
+          "old": 80,
+          "new": 1723,
+          "id": "network-traffic--53e0bf48-2eee-5c03-8bde-ed7049d2c0a3"
+        },
+        {
+          "path": "root['protocols'][1]",
+          "old": "tcp",
+          "new": "pptp",
+          "id": "network-traffic--53e0bf48-2eee-5c03-8bde-ed7049d2c0a3"
+        }
+      ],
+      "process": [
+        {
+          "path": "root['pid']",
+          "old": 1221,
+          "new": 2217,
+          "id": "process--d2ec5aab-808d-4492-890a-3c1a1e3cb06e"
+        },
+        {
+          "path": "root['command_line']",
+          "old": "./gedit-bin --new-window",
+          "new": "C:\\Windows\\System32\\sirvizio.exe /s",
+          "id": "process--d2ec5aab-808d-4492-890a-3c1a1e3cb06e"
+        },
+        {
+          "path": "root['pid']",
+          "old": 314,
+          "new": 1221,
+          "id": "process--de02a3e4-4b96-460a-b799-684347004444"
+        },
+        {
+          "path": "root['pid']",
+          "old": 2217,
+          "new": 314,
+          "id": "process--70b17c6c-93e5-4c80-8683-5a4d4e51f2c1"
+        },
+        {
+          "path": "root['extensions']",
+          "old": {
+            "windows-service-ext": {
+              "service_name": "sirvizio",
+              "display_name": "Sirvizio",
+              "start_type": "SERVICE_AUTO_START",
+              "service_type": "SERVICE_WIN32_OWN_PROCESS",
+              "service_status": "SERVICE_RUNNING"
+            }
+          },
+          "new": {
+            "windows-process-ext": {
+              "aslr_enabled": true,
+              "dep_enabled": true,
+              "priority": "HIGH_PRIORITY_CLASS",
+              "owner_sid": "S-1-5-21-186985262-1144665072-74031268-1309"
+            }
+          },
+          "id": "process--70b17c6c-93e5-4c80-8683-5a4d4e51f2c1"
+        }
+      ],
+      "windows-registry-key": [
+        {
+          "path": "root['key']",
+          "old": "HKEY_LOCAL_MACHINE\\System\\Foo\\Bar",
+          "new": "hkey_local_machine\\system\\bar\\foo",
+          "id": "windows-registry-key--9d60798d-4e3e-5fe4-af8a-0e4986f0f90b"
+        },
+        {
+          "path": "root['key']",
+          "old": "hkey_local_machine\\system\\bar\\foo",
+          "new": "HKEY_LOCAL_MACHINE\\System\\Foo\\Bar",
+          "id": "windows-registry-key--2ba37ae7-2745-5082-9dfd-9486dad41016"
+        }
+      ]
+    },
+    "dictionary_item_added": {
+      "relationship": [
+        {
+          "field": "created_by_ref",
+          "id": "relationship--7aebe2f0-28d6-48a2-9c3e-b0aaa60266ed"
+        }
+      ],
+      "malware": [
+        {
+          "field": "created_by_ref",
+          "id": "malware--16f4f3f9-1b68-4abb-bb66-7639d49f1e30"
+        }
+      ],
+      "artifact": [
+        {
+          "field": "hashes",
+          "id": "artifact--ca17bcf8-9846-5ab4-8662-75c1bf6e63ee"
+        }
+      ],
+      "sequence": [
+        {
+          "field": "sequenced_object",
+          "id": "sequence--5ced78bf-aab8-4650-9c9e-a6914d68b46e"
+        },
+        {
+          "field": "sequenced_object",
+          "id": "sequence--fb97db29-be35-4f8d-b483-c2899750838d"
+        },
+        {
+          "field": "on_completion",
+          "id": "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef"
+        },
+        {
+          "field": "on_completion",
+          "id": "sequence--10fe3d71-a3d1-4f83-ad54-9c290d7136e9"
+        }
+      ],
+      "user-account": [
+        {
+          "field": "is_service_account",
+          "id": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+        },
+        {
+          "field": "is_privileged",
+          "id": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+        },
+        {
+          "field": "can_escalate_privs",
+          "id": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+        },
+        {
+          "field": "account_created",
+          "id": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+        },
+        {
+          "field": "credential_last_changed",
+          "id": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+        },
+        {
+          "field": "account_first_login",
+          "id": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+        },
+        {
+          "field": "account_last_login",
+          "id": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+        },
+        {
+          "field": "is_service_account",
+          "id": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3"
+        },
+        {
+          "field": "is_privileged",
+          "id": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3"
+        },
+        {
+          "field": "can_escalate_privs",
+          "id": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3"
+        },
+        {
+          "field": "account_created",
+          "id": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3"
+        },
+        {
+          "field": "credential_last_changed",
+          "id": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3"
+        },
+        {
+          "field": "account_first_login",
+          "id": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3"
+        },
+        {
+          "field": "account_last_login",
+          "id": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3"
+        }
+      ],
+      "email-message": [
+        {
+          "field": "additional_header_fields",
+          "id": "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d"
+        },
+        {
+          "field": "body",
+          "id": "email-message--72b7698f-10c2-565a-a2a6-b4996a2f2265"
+        }
+      ],
+      "observed-data": [
+        {
+          "field": "created_by_ref",
+          "id": "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad"
+        }
+      ],
+      "sighting": [
+        {
+          "field": "created_by_ref",
+          "id": "sighting--06faabfe-490a-4516-a66e-1340aad78870"
+        },
+        {
+          "field": "first_seen",
+          "id": "sighting--06faabfe-490a-4516-a66e-1340aad78870"
+        },
+        {
+          "field": "last_seen",
+          "id": "sighting--06faabfe-490a-4516-a66e-1340aad78870"
+        },
+        {
+          "field": "extensions",
+          "id": "sighting--4fb5cd06-3c90-42d7-be38-abea7f752fba"
+        },
+        {
+          "field": "sighting-alert",
+          "id": "sighting--4fb5cd06-3c90-42d7-be38-abea7f752fba"
+        },
+        {
+          "field": "extensions",
+          "id": "sighting--ee20065d-2555-424f-ad9e-0f8428623c75"
+        }
+      ],
+      "file": [
+        {
+          "field": "extensions",
+          "id": "file--94fc2163-dec3-5715-b824-6e689c4de865"
+        },
+        {
+          "field": "contains_refs",
+          "id": "file--9a1f834d-2506-5367-baec-7aa63996ac43"
+        }
+      ],
+      "location": [
+        {
+          "field": "latitude",
+          "id": "location--a6e9345f-5a15-4c29-8bb3-7dcc5d168d64"
+        },
+        {
+          "field": "longitude",
+          "id": "location--a6e9345f-5a15-4c29-8bb3-7dcc5d168d64"
+        }
+      ],
+      "network-traffic": [
+        {
+          "field": "src_ref",
+          "id": "network-traffic--c95e972a-20a4-5307-b00d-b8393faf02c5"
+        },
+        {
+          "field": "src_port",
+          "id": "network-traffic--c95e972a-20a4-5307-b00d-b8393faf02c5"
+        },
+        {
+          "field": "dst_port",
+          "id": "network-traffic--c95e972a-20a4-5307-b00d-b8393faf02c5"
+        },
+        {
+          "field": "extensions",
+          "id": "network-traffic--c95e972a-20a4-5307-b00d-b8393faf02c5"
+        },
+        {
+          "field": "src_ref",
+          "id": "network-traffic--f8ae967a-3dc3-5cdf-8f94-8505abff00c2"
+        },
+        {
+          "field": "src_byte_count",
+          "id": "network-traffic--f8ae967a-3dc3-5cdf-8f94-8505abff00c2"
+        },
+        {
+          "field": "src_packets",
+          "id": "network-traffic--f8ae967a-3dc3-5cdf-8f94-8505abff00c2"
+        },
+        {
+          "field": "ipfix",
+          "id": "network-traffic--f8ae967a-3dc3-5cdf-8f94-8505abff00c2"
+        },
+        {
+          "field": "src_port",
+          "id": "network-traffic--e7a939ca-78c6-5f27-8ae0-4ad112454626"
+        },
+        {
+          "field": "dst_ref",
+          "id": "network-traffic--c95e972a-20a4-5307-b00d-b8393faf02c5"
+        },
+        {
+          "field": "src_port",
+          "id": "network-traffic--630d7bb1-0bbc-53a6-a6d4-f3c2d35c2734"
+        },
+        {
+          "field": "dst_port",
+          "id": "network-traffic--630d7bb1-0bbc-53a6-a6d4-f3c2d35c2734"
+        },
+        {
+          "field": "dst_packets",
+          "id": "network-traffic--630d7bb1-0bbc-53a6-a6d4-f3c2d35c2734"
+        },
+        {
+          "field": "encapsulated_by_ref",
+          "id": "network-traffic--630d7bb1-0bbc-53a6-a6d4-f3c2d35c2734"
+        },
+        {
+          "field": "src_packets",
+          "id": "network-traffic--ac267abc-1a41-536d-8e8d-98458d9bf491"
+        },
+        {
+          "field": "dst_packets",
+          "id": "network-traffic--ac267abc-1a41-536d-8e8d-98458d9bf491"
+        },
+        {
+          "field": "encapsulated_by_ref",
+          "id": "network-traffic--ac267abc-1a41-536d-8e8d-98458d9bf491"
+        },
+        {
+          "field": "src_byte_count",
+          "id": "network-traffic--53e0bf48-2eee-5c03-8bde-ed7049d2c0a3"
+        },
+        {
+          "field": "dst_byte_count",
+          "id": "network-traffic--53e0bf48-2eee-5c03-8bde-ed7049d2c0a3"
+        },
+        {
+          "field": "encapsulates_refs",
+          "id": "network-traffic--53e0bf48-2eee-5c03-8bde-ed7049d2c0a3"
+        }
+      ],
+      "process": [
+        {
+          "field": "extensions",
+          "id": "process--d2ec5aab-808d-4492-890a-3c1a1e3cb06e"
+        },
+        {
+          "field": "created_time",
+          "id": "process--de02a3e4-4b96-460a-b799-684347004444"
+        },
+        {
+          "field": "command_line",
+          "id": "process--de02a3e4-4b96-460a-b799-684347004444"
+        },
+        {
+          "field": "image_ref",
+          "id": "process--de02a3e4-4b96-460a-b799-684347004444"
+        }
+      ],
+      "windows-registry-key": [
+        {
+          "field": "values",
+          "id": "windows-registry-key--9d60798d-4e3e-5fe4-af8a-0e4986f0f90b"
+        }
+      ]
+    },
+    "dictionary_item_removed": {
+      "relationship": [
+        {
+          "field": "created_by_ref",
+          "id": "relationship--44298a74-ba52-4f0c-87a3-1824e67d7fad"
+        },
+        {
+          "field": "created_by_ref",
+          "id": "relationship--44298a74-ba52-4f0c-87a3-1824e67d7fad"
+        }
+      ],
+      "malware": [
+        {
+          "field": "created_by_ref",
+          "id": "malware--31b940d4-6f7f-459a-80ea-9c1f17b5891b"
+        }
+      ],
+      "artifact": [
+        {
+          "field": "hashes",
+          "id": "artifact--4cce66f8-6eaa-53cb-85d5-3a85fca3a6c5"
+        }
+      ],
+      "sequence": [
+        {
+          "field": "on_completion",
+          "id": "sequence--5ced78bf-aab8-4650-9c9e-a6914d68b46e"
+        },
+        {
+          "field": "on_completion",
+          "id": "sequence--fb97db29-be35-4f8d-b483-c2899750838d"
+        },
+        {
+          "field": "sequenced_object",
+          "id": "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef"
+        },
+        {
+          "field": "sequenced_object",
+          "id": "sequence--10fe3d71-a3d1-4f83-ad54-9c290d7136e9"
+        }
+      ],
+      "user-account": [
+        {
+          "field": "is_service_account",
+          "id": "user-account--0d5b424b-93b8-5cd8-ac36-306e1789d63c"
+        },
+        {
+          "field": "is_privileged",
+          "id": "user-account--0d5b424b-93b8-5cd8-ac36-306e1789d63c"
+        },
+        {
+          "field": "can_escalate_privs",
+          "id": "user-account--0d5b424b-93b8-5cd8-ac36-306e1789d63c"
+        },
+        {
+          "field": "extensions",
+          "id": "user-account--0d5b424b-93b8-5cd8-ac36-306e1789d63c"
+        },
+        {
+          "field": "is_service_account",
+          "id": "user-account--0d5b424b-93b8-5cd8-a3c6-306e1789d63c"
+        },
+        {
+          "field": "is_privileged",
+          "id": "user-account--0d5b424b-93b8-5cd8-a3c6-306e1789d63c"
+        },
+        {
+          "field": "can_escalate_privs",
+          "id": "user-account--0d5b424b-93b8-5cd8-a3c6-306e1789d63c"
+        },
+        {
+          "field": "account_created",
+          "id": "user-account--0d5b424b-93b8-5cd8-a3c6-306e1789d63c"
+        },
+        {
+          "field": "credential_last_changed",
+          "id": "user-account--0d5b424b-93b8-5cd8-a3c6-306e1789d63c"
+        },
+        {
+          "field": "account_first_login",
+          "id": "user-account--0d5b424b-93b8-5cd8-a3c6-306e1789d63c"
+        },
+        {
+          "field": "account_last_login",
+          "id": "user-account--0d5b424b-93b8-5cd8-a3c6-306e1789d63c"
+        }
+      ],
+      "email-message": [
+        {
+          "field": "body",
+          "id": "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d"
+        },
+        {
+          "field": "additional_header_fields",
+          "id": "email-message--0c57a381-2a17-5e61-8754-5ef96efb286c"
+        }
+      ],
+      "observed-data": [
+        {
+          "field": "created_by_ref",
+          "id": "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf"
+        }
+      ],
+      "sighting": [
+        {
+          "field": "extensions",
+          "id": "sighting--06faabfe-490a-4516-a66e-1340aad78870"
+        },
+        {
+          "field": "extensions",
+          "id": "sighting--4fb5cd06-3c90-42d7-be38-abea7f752fba"
+        },
+        {
+          "field": "sighting-anecdote",
+          "id": "sighting--4fb5cd06-3c90-42d7-be38-abea7f752fba"
+        },
+        {
+          "field": "created_by_ref",
+          "id": "sighting--ee20065d-2555-424f-ad9e-0f8428623c75"
+        },
+        {
+          "field": "first_seen",
+          "id": "sighting--ee20065d-2555-424f-ad9e-0f8428623c75"
+        },
+        {
+          "field": "last_seen",
+          "id": "sighting--ee20065d-2555-424f-ad9e-0f8428623c75"
+        }
+      ],
+      "file": [
+        {
+          "field": "extensions",
+          "id": "file--73c4cd13-7206-5100-88ef-822c42d3f02c"
+        }
+      ],
+      "location": [
+        {
+          "field": "region",
+          "id": "location--a6e9345f-5a15-4c29-8bb3-7dcc5d168d64"
+        }
+      ],
+      "network-traffic": [
+        {
+          "field": "extensions",
+          "id": "network-traffic--f8ae967a-3dc3-5cdf-8f94-8505abff00c2"
+        },
+        {
+          "field": "dst_ref",
+          "id": "network-traffic--e7a939ca-78c6-5f27-8ae0-4ad112454626"
+        },
+        {
+          "field": "src_port",
+          "id": "network-traffic--c95e972a-20a4-5307-b00d-b8393faf02c5"
+        },
+        {
+          "field": "src_ref",
+          "id": "network-traffic--09ca55c3-97e5-5966-bad0-1d41d557ae13"
+        },
+        {
+          "field": "src_port",
+          "id": "network-traffic--09ca55c3-97e5-5966-bad0-1d41d557ae13"
+        },
+        {
+          "field": "dst_port",
+          "id": "network-traffic--09ca55c3-97e5-5966-bad0-1d41d557ae13"
+        },
+        {
+          "field": "src_byte_count",
+          "id": "network-traffic--630d7bb1-0bbc-53a6-a6d4-f3c2d35c2734"
+        },
+        {
+          "field": "ipfix",
+          "id": "network-traffic--630d7bb1-0bbc-53a6-a6d4-f3c2d35c2734"
+        },
+        {
+          "field": "src_byte_count",
+          "id": "network-traffic--ac267abc-1a41-536d-8e8d-98458d9bf491"
+        },
+        {
+          "field": "dst_byte_count",
+          "id": "network-traffic--ac267abc-1a41-536d-8e8d-98458d9bf491"
+        },
+        {
+          "field": "encapsulates_refs",
+          "id": "network-traffic--ac267abc-1a41-536d-8e8d-98458d9bf491"
+        },
+        {
+          "field": "src_packets",
+          "id": "network-traffic--53e0bf48-2eee-5c03-8bde-ed7049d2c0a3"
+        },
+        {
+          "field": "dst_packets",
+          "id": "network-traffic--53e0bf48-2eee-5c03-8bde-ed7049d2c0a3"
+        },
+        {
+          "field": "encapsulated_by_ref",
+          "id": "network-traffic--53e0bf48-2eee-5c03-8bde-ed7049d2c0a3"
+        }
+      ],
+      "note": [
+        {
+          "field": "authors",
+          "id": "note--0c7b5b88-8ff7-4a4d-aa9d-feb398cd0061"
+        }
+      ],
+      "process": [
+        {
+          "field": "created_time",
+          "id": "process--d2ec5aab-808d-4492-890a-3c1a1e3cb06e"
+        },
+        {
+          "field": "extensions",
+          "id": "process--de02a3e4-4b96-460a-b799-684347004444"
+        },
+        {
+          "field": "command_line",
+          "id": "process--70b17c6c-93e5-4c80-8683-5a4d4e51f2c1"
+        },
+        {
+          "field": "image_ref",
+          "id": "process--70b17c6c-93e5-4c80-8683-5a4d4e51f2c1"
+        }
+      ],
+      "windows-registry-key": [
+        {
+          "field": "values",
+          "id": "windows-registry-key--2ba37ae7-2745-5082-9dfd-9486dad41016"
+        }
+      ],
+      "x509-certificate": [
+        {
+          "field": "x509_v3_extensions",
+          "id": "x509-certificate--b595eaf0-0b28-5dad-9e8e-0fab9c1facc9"
+        }
+      ]
+    },
+    "iterable_item_added": {
+      "observed-data": [
+        {
+          "changes": {
+            "root['object_refs'][1]": "user-account--normalized-uuid",
+            "root['object_refs'][3]": "url--normalized-uuid",
+            "root['object_refs'][4]": "email-message--normalized-uuid"
+          },
+          "id": "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e"
+        }
+      ],
+      "network-traffic": [
+        {
+          "changes": {
+            "root['protocols'][0]": "ipv4"
+          },
+          "id": "network-traffic--f8ae967a-3dc3-5cdf-8f94-8505abff00c2"
+        },
+        {
+          "changes": {
+            "root['protocols'][1]": "tcp"
+          },
+          "id": "network-traffic--e7a939ca-78c6-5f27-8ae0-4ad112454626"
+        },
+        {
+          "changes": {
+            "root['protocols'][1]": "http"
+          },
+          "id": "network-traffic--09ca55c3-97e5-5966-bad0-1d41d557ae13"
+        },
+        {
+          "changes": {
+            "root['protocols'][2]": "http"
+          },
+          "id": "network-traffic--630d7bb1-0bbc-53a6-a6d4-f3c2d35c2734"
+        },
+        {
+          "changes": {
+            "root['protocols'][2]": "ssl",
+            "root['protocols'][3]": "http"
+          },
+          "id": "network-traffic--ac267abc-1a41-536d-8e8d-98458d9bf491"
+        }
+      ]
+    },
+    "iterable_item_removed": {
+      "observed-data": [
+        {
+          "changes": {
+            "root['object_refs'][1]": "user-account--normalized-uuid",
+            "root['object_refs'][3]": "url--normalized-uuid",
+            "root['object_refs'][4]": "email-message--normalized-uuid"
+          },
+          "id": "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad"
+        },
+        {
+          "changes": {
+            "root['object_refs'][1]": "domain-name--normalized-uuid"
+          },
+          "id": "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf"
+        }
+      ],
+      "file": [
+        {
+          "changes": {
+            "root['extensions']['archive-ext']['contains_refs'][0]": "file--normalized-uuid"
+          },
+          "id": "file--9a1f834d-2506-5367-baec-7aa63996ac43"
+        }
+      ],
+      "network-traffic": [
+        {
+          "changes": {
+            "root['protocols'][0]": "ipv4",
+            "root['protocols'][2]": "http"
+          },
+          "id": "network-traffic--c95e972a-20a4-5307-b00d-b8393faf02c5"
+        },
+        {
+          "changes": {
+            "root['protocols'][1]": "http"
+          },
+          "id": "network-traffic--f8ae967a-3dc3-5cdf-8f94-8505abff00c2"
+        },
+        {
+          "changes": {
+            "root['protocols'][1]": "tcp"
+          },
+          "id": "network-traffic--c95e972a-20a4-5307-b00d-b8393faf02c5"
+        },
+        {
+          "changes": {
+            "root['protocols'][2]": "http"
+          },
+          "id": "network-traffic--53e0bf48-2eee-5c03-8bde-ed7049d2c0a3"
+        }
+      ]
+    },
+    "type_changes": {}
+  },
+  "objects_by_type": {
+    "attack-pattern": {
+      "identical": 1,
+      "different": 0
+    },
+    "intrusion-set": {
+      "identical": 2,
+      "different": 0
+    },
+    "relationship": {
+      "identical": 2,
+      "different": 4
+    },
+    "identity": {
+      "identical": 3,
+      "different": 2
+    },
+    "indicator": {
+      "identical": 2,
+      "different": 0
+    },
+    "malware": {
+      "identical": 2,
+      "different": 2
+    },
+    "artifact": {
+      "identical": 1,
+      "different": 2
+    },
+    "autonomous-system": {
+      "identical": 1,
+      "different": 0
+    },
+    "sequence": {
+      "identical": 0,
+      "different": 5
+    },
+    "impact": {
+      "identical": 1,
+      "different": 0
+    },
+    "event": {
+      "identical": 1,
+      "different": 0
+    },
+    "task": {
+      "identical": 2,
+      "different": 0
+    },
+    "email-addr": {
+      "identical": 3,
+      "different": 8
+    },
+    "user-account": {
+      "identical": 0,
+      "different": 5
+    },
+    "url": {
+      "identical": 2,
+      "different": 0
+    },
+    "email-message": {
+      "identical": 1,
+      "different": 3
+    },
+    "observed-data": {
+      "identical": 0,
+      "different": 3
+    },
+    "sighting": {
+      "identical": 0,
+      "different": 3
+    },
+    "anecdote": {
+      "identical": 1,
+      "different": 0
+    },
+    "incident": {
+      "identical": 2,
+      "different": 0
+    },
+    "campaign": {
+      "identical": 2,
+      "different": 0
+    },
+    "course-of-action": {
+      "identical": 1,
+      "different": 0
+    },
+    "directory": {
+      "identical": 1,
+      "different": 2
+    },
+    "ipv4-addr": {
+      "identical": 1,
+      "different": 18
+    },
+    "domain-name": {
+      "identical": 2,
+      "different": 1
+    },
+    "file": {
+      "identical": 11,
+      "different": 4
+    },
+    "grouping": {
+      "identical": 1,
+      "different": 0
+    },
+    "infrastructure": {
+      "identical": 1,
+      "different": 0
+    },
+    "ipv6-addr": {
+      "identical": 0,
+      "different": 2
+    },
+    "location": {
+      "identical": 0,
+      "different": 1
+    },
+    "mac-addr": {
+      "identical": 1,
+      "different": 0
+    },
+    "malware-analysis": {
+      "identical": 1,
+      "different": 0
+    },
+    "mutex": {
+      "identical": 1,
+      "different": 0
+    },
+    "network-traffic": {
+      "identical": 2,
+      "different": 8
+    },
+    "note": {
+      "identical": 0,
+      "different": 1
+    },
+    "opinion": {
+      "identical": 1,
+      "different": 0
+    },
+    "process": {
+      "identical": 0,
+      "different": 3
+    },
+    "software": {
+      "identical": 1,
+      "different": 0
+    },
+    "threat-actor": {
+      "identical": 1,
+      "different": 0
+    },
+    "tool": {
+      "identical": 1,
+      "different": 0
+    },
+    "vulnerability": {
+      "identical": 1,
+      "different": 0
+    },
+    "windows-registry-key": {
+      "identical": 0,
+      "different": 2
+    },
+    "x509-certificate": {
+      "identical": 1,
+      "different": 1
+    },
+    "report": {
+      "identical": 1,
+      "different": 0
+    }
+  }
+}

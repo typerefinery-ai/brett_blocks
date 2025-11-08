@@ -1,0 +1,32 @@
+{
+  "user_account_form": {
+    "base_required": {
+      "type": "user-account",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "defanged": null,
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "user_id": "thegrugq_ebooks",
+      "credential": "",
+      "account_login": "thegrugq_ebooks",
+      "account_type": "twitter",
+      "display_name": "the grugq",
+      "is_service_account": "",
+      "is_privileged": "",
+      "can_escalate_privs": "",
+      "is_disabled": "",
+      "account_created": "",
+      "account_expires": "",
+      "credential_last_changed": "",
+      "account_first_login": "",
+      "account_last_login": ""
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

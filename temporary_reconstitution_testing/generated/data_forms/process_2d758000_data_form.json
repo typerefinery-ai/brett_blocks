@@ -1,0 +1,29 @@
+{
+  "process_form": {
+    "base_required": {
+      "type": "process",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "defanged": null,
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "is_hidden": "",
+      "pid": 1221,
+      "created_time": "2016-01-20T14:11:25.55Z",
+      "cwd": "",
+      "command_line": "./gedit-bin --new-window",
+      "environment_variables": "",
+      "opened_connection_refs": [],
+      "creator_user_ref": "",
+      "image_ref": "",
+      "parent_ref": "",
+      "child_refs": []
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

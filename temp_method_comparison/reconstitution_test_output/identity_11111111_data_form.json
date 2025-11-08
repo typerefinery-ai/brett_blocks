@@ -1,0 +1,31 @@
+{
+  "identity_form": {
+    "base_required": {
+      "type": "identity",
+      "spec_version": "2.1",
+      "id": "",
+      "created": "",
+      "modified": ""
+    },
+    "base_optional": {
+      "created_by_ref": null,
+      "revoked": null,
+      "labels": [],
+      "confidence": null,
+      "lang": null,
+      "external_references": [],
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "name": "Test Organization",
+      "description": "",
+      "roles": [],
+      "identity_class": "organization",
+      "sectors": [],
+      "contact_information": ""
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

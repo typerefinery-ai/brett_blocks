@@ -1,0 +1,39 @@
+{
+  "network_traffic_form": {
+    "base_required": {
+      "type": "network-traffic",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "defanged": null,
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "start": "",
+      "end": "",
+      "is_active": "",
+      "src_ref": "",
+      "dst_ref": "",
+      "src_port": 2487,
+      "dst_port": 53,
+      "protocols": [
+        "ipv4",
+        "udp",
+        "dns"
+      ],
+      "src_byte_count": 35779,
+      "dst_byte_count": 935750,
+      "src_packets": "",
+      "dst_packets": "",
+      "ipfix": "",
+      "src_payload_ref": "",
+      "dst_payload_ref": "",
+      "encapsulates_refs": [],
+      "encapsulated_by_ref": ""
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

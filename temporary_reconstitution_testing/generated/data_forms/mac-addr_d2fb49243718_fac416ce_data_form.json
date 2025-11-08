@@ -1,0 +1,19 @@
+{
+  "mac_addr_form": {
+    "base_required": {
+      "type": "mac-addr",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "defanged": null,
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "value": "d2:fb:49:24:37:18"
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

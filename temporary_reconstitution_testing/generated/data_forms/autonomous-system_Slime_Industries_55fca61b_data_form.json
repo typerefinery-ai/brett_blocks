@@ -1,0 +1,21 @@
+{
+  "autonomous_system_form": {
+    "base_required": {
+      "type": "autonomous-system",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "defanged": null,
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "number": 15139,
+      "name": "Slime Industries",
+      "rir": "ARIN"
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

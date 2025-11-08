@@ -1,0 +1,15 @@
+{
+  "type": "sequence",
+  "spec_version": "2.1",
+  "id": "sequence--10fe3d71-a3d1-4f83-ad54-9c290d7136e9",
+  "created": "2025-07-27T06:01:28.363Z",
+  "modified": "2025-07-27T06:01:28.363Z",
+  "sequenced_object": "task--01537439-3b2d-4afe-81a3-45b2dd35c655",
+  "sequence_type": "task",
+  "step_type": "single_step",
+  "extensions": {
+    "extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {
+      "extension_type": "new-sdo"
+    }
+  }
+}

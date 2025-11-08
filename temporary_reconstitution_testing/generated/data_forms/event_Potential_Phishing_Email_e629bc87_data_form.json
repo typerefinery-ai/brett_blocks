@@ -1,0 +1,42 @@
+{
+  "event_form": {
+    "base_required": {
+      "type": "event",
+      "spec_version": "2.1",
+      "id": "",
+      "created": "",
+      "modified": ""
+    },
+    "base_optional": {
+      "created_by_ref": null,
+      "revoked": null,
+      "labels": [],
+      "confidence": null,
+      "lang": null,
+      "external_references": [],
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "name": "Potential Phishing Email",
+      "description": "Suspicious email reported by user",
+      "status": "",
+      "goal": "",
+      "changed_objects": [],
+      "end_time": "2025-07-27T06:01:15.914Z",
+      "end_time_fidelity": "",
+      "event_types": [
+        "dissemination-phishing-emails"
+      ],
+      "sighting_refs": [],
+      "start_time": "2025-07-27T06:01:15.914Z",
+      "start_time_fidelity": ""
+    },
+    "extensions": {
+      "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+        "extension_type": "new-sdo"
+      }
+    },
+    "sub": {}
+  }
+}

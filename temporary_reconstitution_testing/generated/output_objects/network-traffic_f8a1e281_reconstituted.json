@@ -1,0 +1,22 @@
+{
+  "type": "network-traffic",
+  "spec_version": "2.1",
+  "id": "network-traffic--f8a1e281-e724-41be-af73-5216b282bf03",
+  "dst_ref": "ipv4-addr--549653e5-4676-41ca-ac2a-a1ff6ebd52b4",
+  "protocols": [
+    "tcp",
+    "http"
+  ],
+  "extensions": {
+    "http-request-ext": {
+      "request_method": "get",
+      "request_value": "/download.html",
+      "request_version": "http/1.1",
+      "request_header": {
+        "Accept-Encoding": "gzip,deflate",
+        "User-Agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113",
+        "Host": "www.example.com"
+      }
+    }
+  }
+}

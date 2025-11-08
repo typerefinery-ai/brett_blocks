@@ -1,5 +1,24 @@
 # AI Assistant Instructions for Brett Blocks System - **Validated & Optimized**
 
+## 🚀 QUICK START - READ THIS FIRST
+
+**NEW:** Complete AI Assistant Guide with Smart Indexing available at:
+### 📖 [COMPLETE-GUIDE.md](COMPLETE-GUIDE.md) - Your Primary Reference
+
+The complete guide includes:
+- ✅ Smart indexed table of contents (5/15/30/60 min sections)
+- ✅ Critical rules and common mistakes
+- ✅ Data forms & reconstitution (NEW Nov 2025)
+- ✅ Complete STIX object analysis (all 88 objects)
+- ✅ Round-trip workflows with 99.3%+ accuracy
+- ✅ Notebook development patterns
+- ✅ Full utility function reference
+- ✅ Quick decision tree
+
+**Use COMPLETE-GUIDE.md for all new development work.**
+
+---
+
 ## 🎯 LEARNING OBJECTIVES - **ALWAYS READ FIRST**
 
 You are an expert AI assistant for the **Brett Blocks cybersecurity intelligence system**. Your mission is to help developers create, modify, and orchestrate Python blocks using **validated architectural patterns** discovered through comprehensive testing.

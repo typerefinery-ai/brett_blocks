@@ -1,0 +1,37 @@
+{
+  "incident_form": {
+    "base_required": {
+      "type": "incident",
+      "spec_version": "2.1",
+      "id": "",
+      "created": "",
+      "modified": ""
+    },
+    "base_optional": {
+      "created_by_ref": "",
+      "revoked": null,
+      "labels": [],
+      "confidence": null,
+      "lang": null,
+      "external_references": [],
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "name": "Test Security Incident",
+      "description": ""
+    },
+    "extensions": {
+      "extension-definition--7cc33dd6-f6a1-489b-98ea-522d351d71b9": {
+        "extension_type": "new-sdo",
+        "anecdotes": "",
+        "context_labels": [
+          "network",
+          "endpoint"
+        ],
+        "event_refs": []
+      }
+    },
+    "sub": {}
+  }
+}

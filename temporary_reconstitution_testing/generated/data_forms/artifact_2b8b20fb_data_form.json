@@ -1,0 +1,26 @@
+{
+  "artifact_form": {
+    "base_required": {
+      "type": "artifact",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "defanged": null,
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "mime_type": "image/jpeg",
+      "payload_bin": "VBORw0KGgoAAAANSUhEUgAAADI== ...",
+      "url": "",
+      "hashes": {
+        "SHA-256": "effb46bba03f6c8aea5c653f9cf984f170dcdd3bbbe2ff6843c3e5da0e698766"
+      },
+      "encryption_algorithm": "",
+      "decryption_key": ""
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

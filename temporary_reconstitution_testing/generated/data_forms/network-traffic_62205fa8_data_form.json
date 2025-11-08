@@ -1,0 +1,41 @@
+{
+  "network_traffic_form": {
+    "base_required": {
+      "type": "network-traffic",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "defanged": null,
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "start": "",
+      "end": "",
+      "is_active": "",
+      "src_ref": "",
+      "dst_ref": "",
+      "src_port": 3372,
+      "dst_port": 80,
+      "protocols": [
+        "tcp"
+      ],
+      "src_byte_count": "",
+      "dst_byte_count": "",
+      "src_packets": "",
+      "dst_packets": "",
+      "ipfix": "",
+      "src_payload_ref": "",
+      "dst_payload_ref": "",
+      "encapsulates_refs": [],
+      "encapsulated_by_ref": ""
+    },
+    "extensions": {
+      "tcp-ext": {
+        "src_flags_hex": "00000002"
+      }
+    },
+    "sub": {}
+  }
+}

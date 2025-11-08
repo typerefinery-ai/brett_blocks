@@ -1,0 +1,36 @@
+{
+  "location_form": {
+    "base_required": {
+      "type": "location",
+      "spec_version": "2.1",
+      "id": "",
+      "created": "",
+      "modified": ""
+    },
+    "base_optional": {
+      "created_by_ref": "",
+      "revoked": null,
+      "labels": [],
+      "confidence": null,
+      "lang": null,
+      "external_references": [],
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "name": "",
+      "description": "",
+      "latitude": "",
+      "longitude": "",
+      "precision": "",
+      "region": "south-eastern-asia",
+      "country": "th",
+      "administrative_area": "Tak",
+      "city": "",
+      "street_address": "",
+      "postal_code": "63170"
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

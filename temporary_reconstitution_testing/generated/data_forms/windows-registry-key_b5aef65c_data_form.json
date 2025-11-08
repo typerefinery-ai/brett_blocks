@@ -1,0 +1,23 @@
+{
+  "windows_registry_key_form": {
+    "base_required": {
+      "type": "windows-registry-key",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "defanged": null,
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "key": "HKEY_LOCAL_MACHINE\\System\\Foo\\Bar",
+      "values": [],
+      "modified_time": "",
+      "creator_user_ref": "",
+      "number_of_subkeys": ""
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

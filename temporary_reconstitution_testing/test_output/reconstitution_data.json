@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "total_objects": 1,
+    "objects_with_references": 0,
+    "objects_without_references": 0,
+    "total_extracted_references": 0,
+    "creation_date": "2025-11-07",
+    "mode": "reference_extraction_for_reconstitution"
+  },
+  "id_to_filename_mapping": {},
+  "id_to_form_name_mapping": {},
+  "dependency_graph": {},
+  "creation_sequence": [],
+  "detailed_reference_extraction": [],
+  "reconstitution_instructions": {
+    "step_1": "Create objects in creation_sequence order",
+    "step_2": "For each object, load its data form and restore references from detailed_reference_extraction",
+    "step_3": "Use id_to_filename_mapping to find referenced object data forms",
+    "step_4": "For list references, preserve order from original_values",
+    "step_5": "Replace empty strings/arrays in data forms with actual reference values"
+  },
+  "statistics": {
+    "reference_patterns": {},
+    "field_types": {},
+    "by_object_type": {}
+  }
+}

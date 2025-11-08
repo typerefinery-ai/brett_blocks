@@ -1,0 +1,24 @@
+{
+  "directory_form": {
+    "base_required": {
+      "type": "directory",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "defanged": null,
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "path": "C:\\Windows\\System32",
+      "path_enc": "",
+      "ctime": "",
+      "mtime": "",
+      "atime": "",
+      "contains_refs": []
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

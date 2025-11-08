@@ -1,0 +1,24 @@
+{
+  "artifact_form": {
+    "base_required": {
+      "type": "artifact",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "defanged": null,
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "mime_type": "application/zip",
+      "payload_bin": "ZX7HIBWPQA99NSUhEUgAAADI== ...",
+      "url": "",
+      "hashes": "",
+      "encryption_algorithm": "mime-type-indicated",
+      "decryption_key": "My voice is my passport"
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

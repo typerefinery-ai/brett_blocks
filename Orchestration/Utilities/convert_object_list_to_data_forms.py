@@ -11,6 +11,7 @@ and the conversion logic in .github/prompts/create-data-forms.md
 
 import json
 import copy
+import hashlib
 from pathlib import Path
 from typing import Dict, List, Any, Optional
 from collections import defaultdict
@@ -362,6 +363,46 @@ def convert_stix_to_data_form(stix_obj: Dict[str, Any], class_template: Dict[str
     return result
 
 
+def compute_stable_filename_from_content(stix_obj: Dict[str, Any], obj_type: str, maxlen: int = 32) -> str:
+    """
+    Compute a stable, content-derived filename key for a STIX object.
+
+    Strategy:
+    - Always compute a hash from canonical JSON (excluding id/created/modified) for uniqueness
+    - For readability, if the object has a descriptive 'value' or 'name' field, prefix the hash with it
+    - This ensures no filename collisions even when multiple objects share the same name/value
+    
+    The returned string is filesystem-safe (only alphanumerics, - and _).
+    """
+    # Helper to sanitize simple strings for filenames
+    def _sanitize(s: str) -> str:
+        s = str(s).strip()
+        # replace whitespace and slashes
+        s = s.replace('\\', '_').replace('/', '_')
+        s = s.replace(' ', '_')
+        # Keep alphanumerics and limited punctuation
+        safe = ''.join(c for c in s if c.isalnum() or c in ('-', '_', '.'))
+        return safe[:maxlen]
+    
+    # ALWAYS compute hash for uniqueness to avoid collisions
+    obj_copy = {k: v for k, v in stix_obj.items() if k not in ('id', 'created', 'modified')}
+    try:
+        canonical = json.dumps(obj_copy, sort_keys=True, ensure_ascii=False)
+    except Exception:
+        canonical = json.dumps(obj_copy, sort_keys=True, ensure_ascii=True)
+    
+    digest = hashlib.sha1(canonical.encode('utf-8')).hexdigest()[:8]
+    
+    # For readability, prefix with a descriptive field if available
+    for candidate in ['value', 'name', 'observable_value', 'url', 'email']:
+        if candidate in stix_obj and stix_obj[candidate]:
+            prefix = _sanitize(stix_obj[candidate])
+            return f"{obj_type}_{prefix}_{digest}_data_form.json"
+    
+    # No descriptive field - just use hash
+    return f"{obj_type}_{digest}_data_form.json"
+
+
 def create_data_forms_from_stix_objects(
     stix_objects: List[Dict],
     test_directory: Optional[str] = None
@@ -397,7 +438,9 @@ def create_data_forms_from_stix_objects(
     
     # Set up paths
     base_path = Path.cwd()
-    if base_path.name == "Orchestration":
+    
+    # Navigate to project root from various possible starting directories
+    while base_path.name in ["Orchestration", "temp_method_comparison", "temporary_reconstitution_testing", "Utilities"] and base_path.parent != base_path:
         base_path = base_path.parent
     
     stixorm_path = base_path / "Block_Families" / "StixORM"
@@ -426,6 +469,9 @@ def create_data_forms_from_stix_objects(
         test_path = Path(test_directory)
         test_path.mkdir(parents=True, exist_ok=True)
     
+    # Track duplicate IDs to skip subsequent occurrences
+    seen_ids = {}  # Maps object_id -> count of occurrences
+    
     # Process each STIX object
     for idx, stix_obj in enumerate(stix_objects):
         try:
@@ -449,6 +495,11 @@ def create_data_forms_from_stix_objects(
             template_info = available_templates[obj_type]
             template = template_info['template_data']
             
+            # Extract references FIRST to get cleaned object for stable filename generation
+            # This ensures the filename hash is based on object content WITHOUT embedded references
+            # so the same hash can be computed during reconstitution (when references have new UUIDs)
+            extracted_refs_for_filename, cleaned_obj_for_filename = extract_references_from_object(stix_obj)
+            
             # Convert to data form
             conversion_result = convert_stix_to_data_form(stix_obj, template)
             
@@ -457,9 +508,24 @@ def create_data_forms_from_stix_objects(
             form_data = conversion_result[form_name]
             extracted_refs = conversion_result.get('extracted_references', {})
             
-            # Generate filename
-            obj_short_id = obj_id.split('--')[-1][:8] if '--' in obj_id else str(idx)
-            filename = f"{obj_type}_{obj_short_id}_data_form.json"
+            # Generate stable filename derived from CLEANED object content (after reference extraction)
+            # so filenames remain the same even if embedded references get new UUIDs during reconstitution
+            filename = compute_stable_filename_from_content(cleaned_obj_for_filename, obj_type)
+            
+            # Handle duplicate IDs - skip subsequent occurrences and warn
+            if obj_id in seen_ids:
+                seen_ids[obj_id] += 1
+                version = seen_ids[obj_id]
+                
+                # Warn about duplicate ID
+                if test_directory is not None:  # Only warn in Mode 2 (testing)
+                    print(f"      ⚠️  Skipping duplicate ID: {obj_id} (occurrence #{version}) - keeping first")
+                
+                # Skip processing this duplicate - don't create data form
+                results['report']['successful'] += 1  # Count as "successful" (intentionally skipped)
+                continue
+            else:
+                seen_ids[obj_id] = 1
             
             # Determine save path
             if test_directory is None:
@@ -483,16 +549,54 @@ def create_data_forms_from_stix_objects(
             })
             
             # Mode 2: Track extracted references for reconstitution
-            if test_directory is not None and extracted_refs:
-                results['extracted_references'].append({
+            if test_directory is not None:
+                ref_entry = {
                     'object_id': obj_id,
                     'object_type': obj_type,
                     'object_index': idx,  # Preserve order for reconstitution
                     'filename': filename,
                     'form_name': form_name,
-                    'extracted_references': extracted_refs,
-                    'reference_fields': list(extracted_refs.keys())
-                })
+                    'data_form_path': str(save_path)
+                }
+                
+                if extracted_refs:
+                    # Enhanced reference tracking for reconstitution
+                    detailed_refs = {}
+                    referenced_objects = []  # All STIX IDs this object references
+                    
+                    for field_path, ref_value in extracted_refs.items():
+                        if isinstance(ref_value, list):
+                            # List of references - preserve order
+                            detailed_refs[field_path] = {
+                                'type': 'list',
+                                'original_values': ref_value,
+                                'count': len(ref_value),
+                                'order_matters': True
+                            }
+                            referenced_objects.extend(ref_value)
+                        else:
+                            # Single reference
+                            detailed_refs[field_path] = {
+                                'type': 'single',
+                                'original_value': ref_value,
+                                'order_matters': False
+                            }
+                            referenced_objects.append(ref_value)
+                    
+                    ref_entry.update({
+                        'has_references': True,
+                        'extracted_references': detailed_refs,
+                        'referenced_object_ids': list(set(referenced_objects)),  # Unique IDs this object depends on
+                        'reference_count': len(detailed_refs)
+                    })
+                else:
+                    ref_entry.update({
+                        'has_references': False,
+                        'referenced_object_ids': [],
+                        'reference_count': 0
+                    })
+                
+                results['extracted_references'].append(ref_entry)
             
             results['report']['successful'] += 1
             
@@ -511,35 +615,127 @@ def create_data_forms_from_stix_objects(
     )
     
     # Mode 2: Save comprehensive reference documentation
-    if test_directory is not None and results['extracted_references']:
+    if test_directory is not None:
+        # Create ID → filename mapping for all objects
+        id_to_filename = {}
+        id_to_form_name = {}
+        
+        for file_info in results['created_files']:
+            id_to_filename[file_info['object_id']] = file_info['filename']
+            id_to_form_name[file_info['object_id']] = file_info['form_name']
+        
+        # Build dependency graph for sequencing
+        dependency_graph = {}
+        objects_without_dependencies = []
+        
+        for ref_info in results['extracted_references']:
+            obj_id = ref_info['object_id']
+            referenced_ids = ref_info['referenced_object_ids']
+            
+            # Exclude self-references (object's own ID) from dependencies
+            # An object referencing itself via the 'id' field is not a real dependency
+            external_dependencies = [ref_id for ref_id in referenced_ids if ref_id != obj_id]
+            
+            dependency_graph[obj_id] = {
+                'depends_on': external_dependencies,
+                'filename': ref_info['filename'],
+                'form_name': ref_info['form_name'],
+                'object_type': ref_info['object_type']
+            }
+            
+            if not external_dependencies:
+                objects_without_dependencies.append(obj_id)
+        
+        # Calculate creation sequence (topological sort)
+        creation_sequence = []
+        remaining_objects = set(dependency_graph.keys())
+        available_objects = set(objects_without_dependencies)
+        
+        while remaining_objects:
+            # Find objects whose dependencies are all satisfied
+            ready_objects = []
+            for obj_id in remaining_objects:
+                deps = dependency_graph[obj_id]['depends_on']
+                if all(dep in available_objects or dep not in dependency_graph for dep in deps):
+                    ready_objects.append(obj_id)
+            
+            if not ready_objects:
+                # Circular dependency or missing references - add remaining objects
+                ready_objects = list(remaining_objects)
+            
+            # Sort for deterministic ordering
+            ready_objects.sort()
+            
+            for obj_id in ready_objects:
+                creation_sequence.append({
+                    'sequence_order': len(creation_sequence) + 1,
+                    'object_id': obj_id,
+                    'filename': dependency_graph[obj_id]['filename'],
+                    'form_name': dependency_graph[obj_id]['form_name'],
+                    'object_type': dependency_graph[obj_id]['object_type'],
+                    'dependencies': dependency_graph[obj_id]['depends_on']
+                })
+                available_objects.add(obj_id)
+                remaining_objects.remove(obj_id)
+        
+        # Create comprehensive reference summary
         reference_summary = {
-            'total_objects': len(stix_objects),
-            'objects_with_references': len(results['extracted_references']),
-            'total_references': sum(len(item['extracted_references']) for item in results['extracted_references']),
-            'by_type': defaultdict(int),
-            'reference_patterns': defaultdict(int),
-            'reconstitution_order': []
+            'metadata': {
+                'total_objects': len(stix_objects),
+                'objects_with_references': len([r for r in results['extracted_references'] if r['has_references']]),
+                'objects_without_references': len([r for r in results['extracted_references'] if not r['has_references']]),
+                'total_extracted_references': sum(r['reference_count'] for r in results['extracted_references']),
+                'creation_date': '2025-11-07',
+                'mode': 'reference_extraction_for_reconstitution'
+            },
+            
+            'id_to_filename_mapping': id_to_filename,
+            'id_to_form_name_mapping': id_to_form_name,
+            
+            'dependency_graph': dependency_graph,
+            'creation_sequence': creation_sequence,
+            
+            'detailed_reference_extraction': results['extracted_references'],
+            
+            'reconstitution_instructions': {
+                'step_1': 'Create objects in creation_sequence order',
+                'step_2': 'For each object, load its data form and restore references from detailed_reference_extraction',
+                'step_3': 'Use id_to_filename_mapping to find referenced object data forms',
+                'step_4': 'For list references, preserve order from original_values',
+                'step_5': 'Replace empty strings/arrays in data forms with actual reference values'
+            }
+        }
+        
+        # Add reference pattern statistics
+        reference_patterns = defaultdict(int)
+        field_types = defaultdict(int)
+        
+        for ref_info in results['extracted_references']:
+            if ref_info['has_references']:
+                for field_path, ref_data in ref_info['extracted_references'].items():
+                    reference_patterns[field_path] += 1
+                    field_types[ref_data['type']] += 1
+        
+        reference_summary['statistics'] = {
+            'reference_patterns': dict(reference_patterns),
+            'field_types': dict(field_types),
+            'by_object_type': defaultdict(int)
         }
         
         for ref_info in results['extracted_references']:
-            reference_summary['by_type'][ref_info['object_type']] += 1
-            reference_summary['reconstitution_order'].append({
-                'index': ref_info['object_index'],
-                'object_id': ref_info['object_id'],
-                'object_type': ref_info['object_type'],
-                'filename': ref_info['filename'],
-                'form_name': ref_info['form_name'],
-                'reference_count': len(ref_info['extracted_references'])
-            })
-            
-            # Track reference patterns
-            for ref_field in ref_info['reference_fields']:
-                reference_summary['reference_patterns'][ref_field] += 1
+            reference_summary['statistics']['by_object_type'][ref_info['object_type']] += 1
+        
+        reference_summary['statistics']['by_object_type'] = dict(reference_summary['statistics']['by_object_type'])
         
         # Save reference summary
-        summary_path = Path(test_directory) / "extracted_references_summary.json"
+        summary_path = Path(test_directory) / "reconstitution_data.json"
         with open(summary_path, 'w', encoding='utf-8') as f:
-            json.dump(dict(reference_summary), f, indent=2, ensure_ascii=False)
+            json.dump(reference_summary, f, indent=2, ensure_ascii=False)
+        
+        # Also save just the creation sequence as a separate file
+        sequence_path = Path(test_directory) / "creation_sequence.json"
+        with open(sequence_path, 'w', encoding='utf-8') as f:
+            json.dump(creation_sequence, f, indent=2, ensure_ascii=False)
     
     return results
 

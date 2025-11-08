@@ -1,0 +1,21 @@
+{
+  "anecdote_form": {
+    "base_required": {
+      "type": "anecdote",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "defanged": null,
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "value": "",
+      "report_date": "",
+      "provided_by_ref": ""
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

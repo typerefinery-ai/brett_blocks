@@ -1,0 +1,26 @@
+{
+  "type": "sighting",
+  "spec_version": "2.1",
+  "id": "sighting--825c4634-1193-4636-aae4-44a4971f7355",
+  "created": "2025-11-08T02:27:17.921Z",
+  "modified": "2025-11-08T02:27:17.921Z",
+  "count": 1,
+  "sighting_of_ref": "indicator--d508defd-8778-4178-8c24-83aa43669802",
+  "observed_data_refs": [
+    "observed-data--5384cc19-81ed-43d4-81af-38ab2865d0b5"
+  ],
+  "where_sighted_refs": [
+    "identity--729b537a-aede-4b25-a77d-e3056cf37705"
+  ],
+  "extensions": {
+    "sighting-alert": {
+      "name": "user-report",
+      "log": "I have found a suspicious email",
+      "system_id": "XYZ-1234",
+      "source": "user submission"
+    },
+    "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {
+      "extension_type": "property-extension"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "type": "email-addr",
+  "spec_version": "2.1",
+  "id": "email-addr--54d61d50-0d72-42b5-9228-c4fd51d1ca4a",
+  "value": "jdoe@example.com",
+  "display_name": "John Doe"
+}

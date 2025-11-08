@@ -1,0 +1,24 @@
+{
+  "artifact_form": {
+    "base_required": {
+      "type": "artifact",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "defanged": null,
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "mime_type": "image/jpeg",
+      "payload_bin": "VBORw0KGgoAAAANSUhEUgAAADI== ...",
+      "url": "",
+      "hashes": "",
+      "encryption_algorithm": "",
+      "decryption_key": ""
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

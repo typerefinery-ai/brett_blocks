@@ -570,6 +570,91 @@ def invoke_save_team_context_block(stix_object_path, results_path):
             export_data = json.load(script_input)
             return export_data
 
+def invoke_save_unattached_context_block(stix_object_path, results_path):
+    #
+    # 1. Save object to unattached context (no context_type needed for unattached)
+    #
+    slices = stix_object_path.split('/')
+    full_filename = slices[-1]
+    filename = full_filename[:-5]
+    results_data = {}
+    context_path = "../Orchestration/Results/step1/context/"+ filename + "_context.json"
+    if os.path.exists(stix_object_path):
+        with open(stix_object_path, "r") as sdo_form:
+            temp_data = json.load(sdo_form)
+            results_data["stix_object"] = temp_data
+        with open(context_path, 'w') as f:
+            f.write(json.dumps(results_data))
+    # Save to unattached context
+    save_unattached_context(context_path, results_path)
+    #
+    # Rewrite the original object (clean format)
+    #
+    rewrite_data = {}
+    for key, value in results_data.items():
+        if key == "stix_object":
+            rewrite_data = value
+        else:
+            continue
+    with open(stix_object_path, 'w') as f:
+        f.write(json.dumps(rewrite_data))
+    #
+    if os.path.exists(results_path):
+        with open(results_path, "r") as script_input:
+            export_data = json.load(script_input)
+            return export_data
+
+def invoke_make_object_from_data_form_block(data_form_path, results_path):
+    """
+    Create a STIX object from a data form file.
+    This function loads a data form JSON and converts it to a STIX object,
+    then saves it to the results path.
+    
+    Args:
+        data_form_path: Path to the data form JSON file (relative to path_base)
+        results_path: Path where the created object should be saved (relative to results_base)
+    
+    Returns:
+        The created STIX object dictionary
+    """
+    from stixorm.module.authorise import import_type_factory
+    from stixorm.module.typedb_lib.factories.import_type_factory import ImportTypeFactory
+    import_type = import_type_factory.get_all_imports()
+    
+    # Load the data form
+    full_data_form_path = path_base + data_form_path
+    if not os.path.exists(full_data_form_path):
+        raise FileNotFoundError(f"Data form not found: {full_data_form_path}")
+    
+    with open(full_data_form_path, "r") as f:
+        data_form = json.load(f)
+    
+    # Create STIX object from data form
+    # The data form should contain the object type as a key
+    stix_object = None
+    
+    # Try to find the form type in the data
+    for key in data_form.keys():
+        if key.endswith('_form') or key.endswith('_Form'):
+            form_data = data_form[key]
+            # The form data is the STIX object structure
+            stix_object = form_data
+            break
+    
+    if stix_object is None:
+        # If no _form key, the whole data_form might be the object
+        stix_object = data_form
+    
+    # Save the object to results path
+    full_results_path = results_base + results_path
+    # Ensure directory exists
+    os.makedirs(os.path.dirname(full_results_path), exist_ok=True)
+    
+    with open(full_results_path, 'w') as f:
+        json.dump(stix_object, f, indent=2)
+    
+    return stix_object
+
 def invoke_get_from_company_block(get_query, context_type, source_value=None, source_id=None):
     #
     # 1. Set the Relative Input and Output Paths for the block

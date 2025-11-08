@@ -1,0 +1,31 @@
+{
+  "relationship_form": {
+    "base_required": {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "",
+      "created": "",
+      "modified": ""
+    },
+    "base_optional": {
+      "created_by_ref": null,
+      "revoked": null,
+      "labels": [],
+      "confidence": null,
+      "lang": null,
+      "external_references": [],
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "relationship_type": "uses",
+      "description": "",
+      "source_ref": "",
+      "target_ref": "",
+      "start_time": "",
+      "stop_time": ""
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

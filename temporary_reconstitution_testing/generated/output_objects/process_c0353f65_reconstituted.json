@@ -1,0 +1,14 @@
+{
+  "type": "process",
+  "spec_version": "2.1",
+  "id": "process--c0353f65-22b1-4011-ab48-b834efafa57b",
+  "pid": 314,
+  "extensions": {
+    "windows-process-ext": {
+      "aslr_enabled": true,
+      "dep_enabled": true,
+      "priority": "HIGH_PRIORITY_CLASS",
+      "owner_sid": "S-1-5-21-186985262-1144665072-74031268-1309"
+    }
+  }
+}

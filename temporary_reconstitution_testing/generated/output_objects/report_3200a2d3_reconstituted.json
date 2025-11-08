@@ -1,0 +1,19 @@
+{
+  "type": "report",
+  "spec_version": "2.1",
+  "id": "report--3200a2d3-cf88-4078-a8a6-36faf322a843",
+  "created": "2025-11-08T02:27:17.796Z",
+  "modified": "2025-11-08T02:27:17.796Z",
+  "created_by_ref": "identity--0a8b8af0-6817-4c3b-a038-7c16bdc67ff6",
+  "name": "The Black Vine Cyberespionage Group",
+  "description": "A simple report with an indicator and campaign",
+  "report_types": [
+    "campaign"
+  ],
+  "published": "2016-01-20T17:00:00.000Z",
+  "object_refs": [
+    "indicator--897546bc-5e73-4beb-be89-ab9026af4656",
+    "campaign--f52ef981-dee1-44e9-8f01-da62344bd001",
+    "relationship--300d2f1d-0fd7-4f0a-a5ad-6dbd3c8b30cd"
+  ]
+}

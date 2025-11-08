@@ -1,0 +1,49 @@
+{
+  "network_traffic_form": {
+    "base_required": {
+      "type": "network-traffic",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "defanged": null,
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "start": "",
+      "end": "",
+      "is_active": "",
+      "src_ref": "",
+      "dst_ref": "",
+      "src_port": "",
+      "dst_port": "",
+      "protocols": [
+        "tcp",
+        "http"
+      ],
+      "src_byte_count": "",
+      "dst_byte_count": "",
+      "src_packets": "",
+      "dst_packets": "",
+      "ipfix": "",
+      "src_payload_ref": "",
+      "dst_payload_ref": "",
+      "encapsulates_refs": [],
+      "encapsulated_by_ref": ""
+    },
+    "extensions": {
+      "http-request-ext": {
+        "request_method": "get",
+        "request_value": "/download.html",
+        "request_version": "http/1.1",
+        "request_header": {
+          "Accept-Encoding": "gzip,deflate",
+          "User-Agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113",
+          "Host": "www.example.com"
+        }
+      }
+    },
+    "sub": {}
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "identity",
+  "spec_version": "2.1",
+  "id": "identity--3789a438-8d49-4f2a-bb1a-06d3575d2f33",
+  "created": "2025-07-27T06:00:43.719Z",
+  "modified": "2025-07-27T06:00:43.719Z",
+  "name": "HP Laptop 1",
+  "description": "Usr 1's Laptop",
+  "roles": [
+    "laptop"
+  ],
+  "identity_class": "asset",
+  "sectors": [
+    "technology"
+  ],
+  "external_references": [
+    {
+      "source_name": "HP Ultima 10",
+      "description": "16GB RAM, 1TB SD, Microsoft Windows 11 Professional",
+      "url": "https://mail.echange.microsoft.com",
+      "external_id": "Asset--629456a"
+    }
+  ]
+}

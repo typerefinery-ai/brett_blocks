@@ -1,0 +1,20 @@
+{
+  "domain_name_form": {
+    "base_required": {
+      "type": "domain-name",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "defanged": null,
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "value": "site.of.interest.zaz",
+      "resolves_to_refs": []
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

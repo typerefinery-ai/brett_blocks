@@ -1,0 +1,36 @@
+{
+  "sequence_form": {
+    "base_required": {
+      "type": "sequence",
+      "spec_version": "2.1",
+      "id": "",
+      "created": "",
+      "modified": ""
+    },
+    "base_optional": {
+      "created_by_ref": null,
+      "revoked": null,
+      "labels": [],
+      "confidence": null,
+      "lang": null,
+      "external_references": [],
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "sequenced_object": "",
+      "sequence_type": "task",
+      "step_type": "single_step",
+      "on_completion": "",
+      "on_success": "",
+      "on_failure": "",
+      "next_steps": []
+    },
+    "extensions": {
+      "extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {
+        "extension_type": "new-sdo"
+      }
+    },
+    "sub": {}
+  }
+}

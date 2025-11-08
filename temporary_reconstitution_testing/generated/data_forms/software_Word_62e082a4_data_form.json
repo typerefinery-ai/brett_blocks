@@ -1,0 +1,24 @@
+{
+  "software_form": {
+    "base_required": {
+      "type": "software",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "defanged": null,
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "name": "Word",
+      "cpe": "cpe:2.3:a:microsoft:word:2000:*:*:*:*:*:*:*",
+      "swid": "",
+      "languages": [],
+      "vendor": "Microsoft",
+      "version": "2002"
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

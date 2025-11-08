@@ -1,0 +1,18 @@
+{
+  "type": "network-traffic",
+  "spec_version": "2.1",
+  "id": "network-traffic--65a6016d-a91c-5781-baad-178cd55f01d4",
+  "src_ref": "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89",
+  "dst_ref": "ipv4-addr--bb884ffe-f2e4-56bb-a0c3-21f6711cb649",
+  "src_port": 24678,
+  "dst_port": 443,
+  "protocols": [
+    "ipv4",
+    "tcp",
+    "ssl",
+    "http"
+  ],
+  "src_packets": 14356,
+  "dst_packets": 14356,
+  "encapsulated_by_ref": "network-traffic--b4a8c150-e214-57a3-9017-e85dfa345f46"
+}

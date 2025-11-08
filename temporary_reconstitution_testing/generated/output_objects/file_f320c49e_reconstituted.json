@@ -1,0 +1,10 @@
+{
+  "type": "file",
+  "spec_version": "2.1",
+  "id": "file--f320c49e-8d3d-4e18-bfb3-9dc612d5bb99",
+  "hashes": {
+    "SHA-256": "fe90a7e910cb3a4739bed9180e807e93fa70c90f25a8915476f5e4bfbac681db"
+  },
+  "size": 25536,
+  "name": "foo.dll"
+}

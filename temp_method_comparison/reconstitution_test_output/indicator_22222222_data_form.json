@@ -1,0 +1,36 @@
+{
+  "indicator_form": {
+    "base_required": {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "",
+      "created": "",
+      "modified": ""
+    },
+    "base_optional": {
+      "created_by_ref": "",
+      "revoked": null,
+      "labels": [
+        "malicious-activity"
+      ],
+      "confidence": null,
+      "lang": null,
+      "external_references": [],
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "name": "",
+      "description": "",
+      "indicator_types": [],
+      "pattern": "[file:hashes.MD5 = 'd41d8cd98f00b204e9800998ecf8427e']",
+      "pattern_type": "",
+      "pattern_version": "",
+      "valid_from": "",
+      "valid_until": "",
+      "kill_chain_phases": []
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

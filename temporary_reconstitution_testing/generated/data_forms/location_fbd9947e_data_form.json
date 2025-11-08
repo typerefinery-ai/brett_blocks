@@ -1,0 +1,36 @@
+{
+  "location_form": {
+    "base_required": {
+      "type": "location",
+      "spec_version": "2.1",
+      "id": "",
+      "created": "",
+      "modified": ""
+    },
+    "base_optional": {
+      "created_by_ref": "",
+      "revoked": null,
+      "labels": [],
+      "confidence": null,
+      "lang": null,
+      "external_references": [],
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "name": "",
+      "description": "",
+      "latitude": "48.8566",
+      "longitude": "2.3522",
+      "precision": "",
+      "region": "",
+      "country": "",
+      "administrative_area": "",
+      "city": "",
+      "street_address": "",
+      "postal_code": ""
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

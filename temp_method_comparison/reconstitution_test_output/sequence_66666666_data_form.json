@@ -1,0 +1,32 @@
+{
+  "sequence_form": {
+    "base_required": {
+      "type": "sequence",
+      "spec_version": "2.1",
+      "id": "",
+      "created": "",
+      "modified": ""
+    },
+    "base_optional": {
+      "created_by_ref": "",
+      "revoked": null,
+      "labels": [],
+      "confidence": null,
+      "lang": null,
+      "external_references": [],
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "sequenced_object": "",
+      "sequence_type": "",
+      "step_type": "",
+      "on_completion": "",
+      "on_success": "",
+      "on_failure": "",
+      "next_steps": []
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

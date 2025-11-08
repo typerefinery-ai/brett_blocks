@@ -1,0 +1,15 @@
+{
+  "type": "sequence",
+  "spec_version": "2.1",
+  "id": "sequence--dd84f681-9fa5-4e78-97f4-84df0dddef99",
+  "created": "2025-11-08T02:27:17.801Z",
+  "modified": "2025-11-08T02:27:17.801Z",
+  "sequenced_object": "event--230fc1c7-3aa5-4c17-9a25-d6ac427a9772",
+  "sequence_type": "event",
+  "step_type": "single_step",
+  "extensions": {
+    "extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {
+      "extension_type": "new-sdo"
+    }
+  }
+}

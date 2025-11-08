@@ -1,0 +1,18 @@
+{
+  "type": "email-message",
+  "spec_version": "2.1",
+  "id": "email-message--6feab60d-3b75-4b3e-8dc7-9c30d96ef0ce",
+  "is_multipart": false,
+  "date": "2004-04-19T12:22:23.000Z",
+  "from_ref": "email-addr--b307a312-575d-486e-8a7b-d3ab53e7227c",
+  "to_refs": [
+    "email-addr--68576982-47f5-41b8-834a-d68c84513e9d"
+  ],
+  "subject": "Did you see this?",
+  "additional_header_fields": {
+    "Reply-To": [
+      "steve@example.com",
+      "jane@example.com"
+    ]
+  }
+}

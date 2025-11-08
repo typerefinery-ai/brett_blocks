@@ -1,0 +1,1919 @@
+[
+  {
+    "type": "artifact",
+    "spec_version": "2.1",
+    "id": "artifact--eb48ad49-8936-4301-b089-867bad9d02cd",
+    "mime_type": "image/jpeg",
+    "payload_bin": "VBORw0KGgoAAAANSUhEUgAAADI== ...",
+    "hashes": {
+      "SHA-256": "effb46bba03f6c8aea5c653f9cf984f170dcdd3bbbe2ff6843c3e5da0e698766"
+    }
+  },
+  {
+    "type": "artifact",
+    "spec_version": "2.1",
+    "id": "artifact--f2173f24-23c5-4ffa-b8f1-42b66606b42f",
+    "mime_type": "application/zip",
+    "payload_bin": "ZX7HIBWPQA99NSUhEUgAAADI== ...",
+    "encryption_algorithm": "mime-type-indicated",
+    "decryption_key": "My voice is my passport"
+  },
+  {
+    "type": "artifact",
+    "spec_version": "2.1",
+    "id": "artifact--d6c430b8-4bad-4196-ae0d-c497ff355a75",
+    "mime_type": "image/jpeg",
+    "payload_bin": "VBORw0KGgoAAAANSUhEUgAAADI== ..."
+  },
+  {
+    "type": "attack-pattern",
+    "spec_version": "2.1",
+    "id": "attack-pattern--3c1842d9-675f-4902-be32-0406f422d62b",
+    "created": "2025-11-08T02:27:17.542Z",
+    "modified": "2025-11-08T02:27:17.542Z",
+    "external_references": [
+      {
+        "source_name": "capec",
+        "external_id": "CAPEC-163"
+      }
+    ],
+    "name": "Spear Phishing as Practiced by Adversary X",
+    "description": "A particular form of spear phishing where the attacker claims that the target had won a contest, including personal details, to get them to click on a link."
+  },
+  {
+    "type": "autonomous-system",
+    "spec_version": "2.1",
+    "id": "autonomous-system--fd943fc1-13a7-4a34-bdee-ecb02e65af3a",
+    "number": 15139,
+    "name": "Slime Industries",
+    "rir": "ARIN"
+  },
+  {
+    "type": "campaign",
+    "spec_version": "2.1",
+    "id": "campaign--0b4336ed-d46f-4e2a-970e-fe724edc089f",
+    "created": "2025-11-08T02:27:17.547Z",
+    "modified": "2025-11-08T02:27:17.547Z",
+    "lang": "en",
+    "name": "Bank Attack",
+    "description": "More information about bank attack"
+  },
+  {
+    "type": "directory",
+    "spec_version": "2.1",
+    "id": "directory--517b3dae-da8c-48ba-b529-fae7d43aa815",
+    "path": "C:\\"
+  },
+  {
+    "type": "directory",
+    "spec_version": "2.1",
+    "id": "directory--6a225bbc-9bae-45a6-8a42-97e9d80c3854",
+    "path": "C:\\Windows\\System32"
+  },
+  {
+    "type": "directory",
+    "spec_version": "2.1",
+    "id": "directory--288fc79d-6d16-439e-b075-3a5a7d7d0b31",
+    "path": "C:\\Windows\\System32"
+  },
+  {
+    "type": "domain-name",
+    "spec_version": "2.1",
+    "id": "domain-name--1fd7c26b-338d-4df8-9e35-b46be6459ce7",
+    "value": "site.of.interest.zaz",
+    "resolves_to_refs": [
+      "ipv4-addr--1db57600-64b1-4abd-a3e3-32e9d2780673"
+    ]
+  },
+  {
+    "type": "domain-name",
+    "spec_version": "2.1",
+    "id": "domain-name--fe148d94-0e40-41aa-8b31-89a0665cafc0",
+    "value": "example.com"
+  },
+  {
+    "type": "domain-name",
+    "spec_version": "2.1",
+    "id": "domain-name--54f29140-e33c-4064-b42e-27b511ef8d17",
+    "value": "example.com",
+    "resolves_to_refs": [
+      "ipv4-addr--3872d5ee-aa6d-440f-a6f1-3afdc1c21331"
+    ]
+  },
+  {
+    "type": "email-addr",
+    "spec_version": "2.1",
+    "id": "email-addr--68576982-47f5-41b8-834a-d68c84513e9d",
+    "value": "bob@example.com",
+    "display_name": "Bob Smith"
+  },
+  {
+    "type": "email-addr",
+    "spec_version": "2.1",
+    "id": "email-addr--f5c66fc9-4114-4a9d-982a-8c9fbc9f2e7a",
+    "value": "john@example.com",
+    "display_name": "John Doe"
+  },
+  {
+    "type": "email-addr",
+    "spec_version": "2.1",
+    "id": "email-addr--722a43fa-418b-4152-b9f3-94b8948240d3",
+    "value": "naive@example.com",
+    "display_name": "Naive Smith",
+    "belongs_to_ref": "user-account--c43839de-0e3d-4c31-a918-0bc722bf068f"
+  },
+  {
+    "type": "email-addr",
+    "spec_version": "2.1",
+    "id": "email-addr--54d61d50-0d72-42b5-9228-c4fd51d1ca4a",
+    "value": "jdoe@example.com",
+    "display_name": "John Doe"
+  },
+  {
+    "type": "email-addr",
+    "spec_version": "2.1",
+    "id": "email-addr--680e3bb2-c8c0-49ec-9641-beb9a569a13c",
+    "value": "jdoe@example.com",
+    "display_name": "John Doe"
+  },
+  {
+    "type": "email-addr",
+    "spec_version": "2.1",
+    "id": "email-addr--b307a312-575d-486e-8a7b-d3ab53e7227c",
+    "value": "joe@example.com",
+    "display_name": "Joe Smith"
+  },
+  {
+    "type": "email-addr",
+    "spec_version": "2.1",
+    "id": "email-addr--391cfdfe-9bb2-455f-a6d6-91837a85f282",
+    "value": "different5@man.org",
+    "display_name": "Different Man"
+  },
+  {
+    "type": "email-addr",
+    "spec_version": "2.1",
+    "id": "email-addr--8dda81ce-f9e1-42fb-9359-475367d1d335",
+    "value": "bob@example.com",
+    "display_name": "Bob Smith"
+  },
+  {
+    "type": "email-addr",
+    "spec_version": "2.1",
+    "id": "email-addr--202cebfd-5fae-4abb-9d10-8317461d1bd1",
+    "value": "mary@example.com",
+    "display_name": "Mary Smith"
+  },
+  {
+    "type": "email-addr",
+    "spec_version": "2.1",
+    "id": "email-addr--cd639bce-fba9-4806-ae39-2bdb1e87a9cb",
+    "value": "mary@example.com",
+    "display_name": "Mary Smith"
+  },
+  {
+    "type": "email-addr",
+    "spec_version": "2.1",
+    "id": "email-addr--e0bb9611-99e7-408f-b355-3141ecf6d7ae",
+    "value": "evil@northkorea.nk",
+    "display_name": "Bad Man"
+  },
+  {
+    "type": "email-message",
+    "spec_version": "2.1",
+    "id": "email-message--6feab60d-3b75-4b3e-8dc7-9c30d96ef0ce",
+    "is_multipart": false,
+    "date": "2004-04-19T12:22:23.000Z",
+    "from_ref": "email-addr--b307a312-575d-486e-8a7b-d3ab53e7227c",
+    "to_refs": [
+      "email-addr--68576982-47f5-41b8-834a-d68c84513e9d"
+    ],
+    "subject": "Did you see this?",
+    "additional_header_fields": {
+      "Reply-To": [
+        "steve@example.com",
+        "jane@example.com"
+      ]
+    }
+  },
+  {
+    "type": "email-message",
+    "spec_version": "2.1",
+    "id": "email-message--8a3d39a1-29de-45b9-b0f5-7205abcc2668",
+    "is_multipart": false,
+    "date": "1997-11-21T15:55:06.000Z",
+    "from_ref": "email-addr--680e3bb2-c8c0-49ec-9641-beb9a569a13c",
+    "to_refs": [
+      "email-addr--202cebfd-5fae-4abb-9d10-8317461d1bd1"
+    ],
+    "subject": "Conference Info"
+  },
+  {
+    "type": "email-message",
+    "spec_version": "2.1",
+    "id": "email-message--96df70b0-2373-4ce0-a717-95b7505b407a",
+    "is_multipart": true,
+    "date": "2016-06-19T14:20:40.000Z",
+    "content_type": "multipart/mixed",
+    "from_ref": "email-addr--54d61d50-0d72-42b5-9228-c4fd51d1ca4a",
+    "to_refs": [
+      "email-addr--8dda81ce-f9e1-42fb-9359-475367d1d335"
+    ],
+    "cc_refs": [
+      "email-addr--cd639bce-fba9-4806-ae39-2bdb1e87a9cb"
+    ],
+    "subject": "Check out this picture of a cat!",
+    "received_lines": [
+      "from mail.example.com ([198.51.100.3]) by smtp.gmail.com with ESMTPSA id q23sm23309939wme.17.2016.07.19.07.20.32 (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128); Tue, 19 Jul 2016 07:20:40 -0700 (PDT)"
+    ],
+    "additional_header_fields": {
+      "Content-Disposition": "inline",
+      "X-Mailer": "Mutt/1.5.23",
+      "X-Originating-IP": "198.51.100.3"
+    },
+    "body_multipart": [
+      {
+        "content_type": "text/plain; charset=utf-8",
+        "content_disposition": "inline",
+        "body": "Cats are funny!"
+      },
+      {
+        "content_type": "image/png",
+        "content_disposition": "attachment; filename=\"tabby.png\"",
+        "body_raw_ref": "artifact--4cce66f8-6eaa-53cb-85d5-3a85fca3a6c5"
+      },
+      {
+        "content_type": "application/zip",
+        "content_disposition": "attachment; filename=\"tabby_pics.zip\"",
+        "body_raw_ref": "file--6ce09d9c-0ad3-5ebf-900c-e3cb288955b5"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "spec_version": "2.1",
+    "id": "event--230fc1c7-3aa5-4c17-9a25-d6ac427a9772",
+    "created": "2025-11-08T02:27:17.597Z",
+    "modified": "2025-11-08T02:27:17.597Z",
+    "name": "Potential Phishing Email",
+    "description": "Suspicious email reported by user",
+    "end_time": "2025-07-27T06:01:15.914Z",
+    "event_types": [
+      "dissemination-phishing-emails"
+    ],
+    "start_time": "2025-07-27T06:01:15.914Z",
+    "extensions": {
+      "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+        "extension_type": "new-sdo"
+      }
+    }
+  },
+  {
+    "type": "file",
+    "spec_version": "2.1",
+    "id": "file--6af1bcde-c6ff-4f8c-894b-073fa3eac08e",
+    "hashes": {
+      "SHA-256": "ceafbfd424be2ca4a5f0402cae090dda2fb0526cf521b60b60077c0f622b285a"
+    }
+  },
+  {
+    "type": "file",
+    "spec_version": "2.1",
+    "id": "file--56ec28f5-23a2-4795-936f-5e23277d577c",
+    "hashes": {
+      "MD5": "a92e5b2bae0b4b3a3d81c85610b95cd4",
+      "SHA-1": "5374e08903744ceeaedd8f5e1bfc06b2c4688e76"
+    },
+    "size": 77312,
+    "name": "a92e5b2bae.exe",
+    "parent_directory_ref": "directory--517b3dae-da8c-48ba-b529-fae7d43aa815"
+  },
+  {
+    "type": "file",
+    "spec_version": "2.1",
+    "id": "file--1ae1f8cd-c8c3-4314-afb9-d8894ce5e54b",
+    "hashes": {
+      "SHA-256": "bf07a7fbb825fc0aae7bf4a1177b2b31fcf8a3feeaf7092761e18c859ee52a9c"
+    },
+    "name": "sirvizio.exe"
+  },
+  {
+    "type": "file",
+    "spec_version": "2.1",
+    "id": "file--fb6130b6-0be9-40b7-9dd5-c6dc7d080ac6",
+    "hashes": {
+      "SHA-256": "ceafbfd424be2ca4a5f0402cae090dda2fb0526cf521b60b60077c0f622b285a"
+    },
+    "name": "qwerty.dll",
+    "parent_directory_ref": "directory--6a225bbc-9bae-45a6-8a42-97e9d80c3854"
+  },
+  {
+    "type": "file",
+    "spec_version": "2.1",
+    "id": "file--80dc2afe-89d9-4103-8add-b182b2376f56",
+    "hashes": {
+      "SHA-256": "fe90a7e910cb3a4739bed9180e807e93fa70c90f25a8915476f5e4bfbac681db"
+    },
+    "name": "tabby_pics.zip",
+    "magic_number_hex": "504B0304"
+  },
+  {
+    "type": "file",
+    "spec_version": "2.1",
+    "id": "file--c4d20038-a7c6-48fe-b741-1968408e466e",
+    "hashes": {
+      "SHA-256": "35a01331e9ad96f751278b891b6ea09699806faedfa237d40513d92ad1b7100f"
+    },
+    "extensions": {
+      "ntfs-ext": {
+        "alternate_data_streams": [
+          {
+            "name": "second.stream",
+            "size": 25536
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "file",
+    "spec_version": "2.1",
+    "id": "file--7d4e7c10-6ab5-4d1e-a064-6a60faa2b4e1",
+    "hashes": {
+      "SHA-256": "19c549ec2628b989382f6b280cbd7bb836a0b461332c0fe53511ce7d584b89d3"
+    }
+  },
+  {
+    "type": "file",
+    "spec_version": "2.1",
+    "id": "file--03d6659e-a53c-4471-9241-e6fbba5c5e37",
+    "hashes": {
+      "SHA-256": "35a01331e9ad96f751278b891b6ea09699806faedfa237d40513d92ad1b7100f"
+    },
+    "name": "foo.zip",
+    "mime_type": "application/zip",
+    "extensions": {
+      "archive-ext": {
+        "contains_refs": [
+          "file--6af1bcde-c6ff-4f8c-894b-073fa3eac08e",
+          "file--7d4e7c10-6ab5-4d1e-a064-6a60faa2b4e1",
+          "file--fef990af-013d-41c1-b1ed-861a38a73984"
+        ]
+      }
+    }
+  },
+  {
+    "type": "file",
+    "spec_version": "2.1",
+    "id": "file--1a23f874-d481-4275-ada0-a1fd84e7b74b",
+    "hashes": {
+      "SHA-256": "4bac27393bdd9777ce02453256c5577cd02275510b2227f473d03f533924f877"
+    },
+    "name": "picture.jpg",
+    "extensions": {
+      "raster-image-ext": {
+        "exif_tags": {
+          "Make": "Nikon",
+          "Model": "D7000",
+          "XResolution": 4928,
+          "YResolution": 3264
+        }
+      }
+    }
+  },
+  {
+    "type": "file",
+    "spec_version": "2.1",
+    "id": "file--fef990af-013d-41c1-b1ed-861a38a73984",
+    "hashes": {
+      "SHA-256": "0969de02ecf8a5f003e3f6d063d848c8a193aada092623f8ce408c15bcb5f038"
+    }
+  },
+  {
+    "type": "file",
+    "spec_version": "2.1",
+    "id": "file--c53c5c70-fe33-477b-9795-a7ffd2470e97",
+    "hashes": {
+      "SHA-256": "fe90a7e910cb3a4739bed9180e807e93fa70c90f25a8915476f5e4bfbac681db"
+    },
+    "size": 25536,
+    "name": "foo.dll"
+  },
+  {
+    "type": "file",
+    "spec_version": "2.1",
+    "id": "file--f320c49e-8d3d-4e18-bfb3-9dc612d5bb99",
+    "hashes": {
+      "SHA-256": "fe90a7e910cb3a4739bed9180e807e93fa70c90f25a8915476f5e4bfbac681db"
+    },
+    "size": 25536,
+    "name": "foo.dll"
+  },
+  {
+    "type": "file",
+    "spec_version": "2.1",
+    "id": "file--8ac57308-7b5e-45a6-a57b-369a00a4712e",
+    "name": "example.pdf",
+    "extensions": {
+      "pdf-ext": {
+        "version": "1.7",
+        "document_info_dict": {
+          "Title": "Sample document",
+          "Author": "Adobe Systems Incorporated",
+          "Creator": "Adobe FrameMaker 5.5.3 for Power Macintosh",
+          "Producer": "Acrobat Distiller 3.01 for Power Macintosh",
+          "CreationDate": "20070412090123-02"
+        },
+        "pdfid0": "DFCE52BD827ECF765649852119D",
+        "pdfid1": "57A1E0F9ED2AE523E313C"
+      }
+    }
+  },
+  {
+    "type": "file",
+    "spec_version": "2.1",
+    "id": "file--7cd0b713-e340-490f-b409-cccb7cbd0e50",
+    "hashes": {
+      "SHA-256": "aec070645fe53ee3b3763059376134f058cc337247c978add178b6ccdfb0019f"
+    },
+    "name": "gedit-bin"
+  },
+  {
+    "type": "file",
+    "spec_version": "2.1",
+    "id": "file--a09ca786-80da-4f9e-ad7c-a5e009c39bf7",
+    "name": "example.exe",
+    "extensions": {
+      "windows-pebinary-ext": {
+        "pe_type": "exe",
+        "machine_hex": "014c",
+        "number_of_sections": 4,
+        "time_date_stamp": "2016-01-22T12:31:12Z",
+        "pointer_to_symbol_table_hex": "74726144",
+        "number_of_symbols": 4542568,
+        "size_of_optional_header": 224,
+        "characteristics_hex": "818f",
+        "optional_header": {
+          "magic_hex": "010b",
+          "major_linker_version": 2,
+          "minor_linker_version": 25,
+          "size_of_code": 512,
+          "size_of_initialized_data": 283648,
+          "size_of_uninitialized_data": 0,
+          "address_of_entry_point": 4096,
+          "base_of_code": 4096,
+          "base_of_data": 8192,
+          "image_base": 14548992,
+          "section_alignment": 4096,
+          "file_alignment": 4096,
+          "major_os_version": 1,
+          "minor_os_version": 0,
+          "major_image_version": 0,
+          "minor_image_version": 0,
+          "major_subsystem_version": 4,
+          "minor_subsystem_version": 0,
+          "win32_version_value_hex": "00",
+          "size_of_image": 299008,
+          "size_of_headers": 4096,
+          "checksum_hex": "00",
+          "subsystem_hex": "03",
+          "dll_characteristics_hex": "00",
+          "size_of_stack_reserve": 100000,
+          "size_of_stack_commit": 8192,
+          "size_of_heap_reserve": 100000,
+          "size_of_heap_commit": 4096,
+          "loader_flags_hex": "abdbffde",
+          "number_of_rva_and_sizes": 3758087646
+        },
+        "sections": [
+          {
+            "name": "CODE",
+            "entropy": 0.061089
+          },
+          {
+            "name": "DATA",
+            "entropy": 7.980693
+          },
+          {
+            "name": "NicolasB",
+            "entropy": 0.607433
+          },
+          {
+            "name": ".idata",
+            "entropy": 0.607433
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "identity",
+    "spec_version": "2.1",
+    "id": "identity--9e77bf9e-37b5-4d98-a54a-bed16971de7c",
+    "created": "2025-11-08T02:27:17.654Z",
+    "modified": "2025-11-08T02:27:17.654Z",
+    "name": "Trusty Jones",
+    "description": "A Trusty Individual",
+    "roles": [
+      "soc",
+      "support"
+    ],
+    "identity_class": "individual",
+    "sectors": [
+      "technology"
+    ],
+    "extensions": {
+      "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+        "extension_type": "property-extension",
+        "contact_numbers": [
+          {
+            "contact_number_type": "work-phone",
+            "contact_number": "0418-208-368"
+          }
+        ],
+        "email_addresses": [
+          {
+            "digital_contact_type": "work",
+            "email_address_ref": "email-addr--391cfdfe-9bb2-455f-a6d6-91837a85f282"
+          }
+        ],
+        "first_name": "Me",
+        "last_name": "Jones",
+        "middle_name": "Percival",
+        "prefix": "Dr",
+        "social_media_accounts": [
+          {
+            "digital_contact_type": "work",
+            "user_account_ref": "user-account--36513670-538e-4fd2-a35a-732e28354baf"
+          }
+        ],
+        "team": "os-threat"
+      }
+    }
+  },
+  {
+    "type": "identity",
+    "spec_version": "2.1",
+    "id": "identity--ecccc4ac-b89e-41b8-8a7f-e46c4d355681",
+    "created": "2025-11-08T02:27:17.658Z",
+    "modified": "2025-11-08T02:27:17.658Z",
+    "external_references": [
+      {
+        "source_name": "HP Ultima 10",
+        "description": "16GB RAM, 1TB SD, Microsoft Windows 11 Professional",
+        "url": "https://mail.echange.microsoft.com",
+        "external_id": "Asset--629456a"
+      }
+    ],
+    "name": "HP Laptop 1",
+    "description": "Usr 1's Laptop",
+    "roles": [
+      "laptop"
+    ],
+    "identity_class": "asset",
+    "sectors": [
+      "technology"
+    ]
+  },
+  {
+    "type": "identity",
+    "spec_version": "2.1",
+    "id": "identity--b25986bc-ab74-4383-8a9b-0b82a9f668fa",
+    "created": "2025-11-08T02:27:17.662Z",
+    "modified": "2025-11-08T02:27:17.662Z",
+    "created_by_ref": "identity--e2e79144-ee44-4538-a137-cd8345999d7e",
+    "name": "ACME Widget, Inc.",
+    "identity_class": "organization"
+  },
+  {
+    "type": "identity",
+    "spec_version": "2.1",
+    "id": "identity--e2e79144-ee44-4538-a137-cd8345999d7e",
+    "created": "2025-11-08T02:27:17.665Z",
+    "modified": "2025-11-08T02:27:17.665Z",
+    "name": "Adversary Bravo",
+    "description": "Adversary Bravo is a threat actor that utilizes phishing attacks.",
+    "identity_class": "unknown"
+  },
+  {
+    "type": "impact",
+    "spec_version": "2.1",
+    "id": "impact--490f9734-d31f-4bfb-bd60-bef4147bae3b",
+    "created": "2025-11-08T02:27:17.679Z",
+    "modified": "2025-11-08T02:27:17.679Z",
+    "impact_category": "availability",
+    "description": "Laptop is stuffed",
+    "criticality": 99,
+    "end_time": "2025-07-27T06:01:28.148Z",
+    "impacted_entity_counts": {
+      "computers-mobile": 1
+    },
+    "impacted_refs": [
+      "identity--ecccc4ac-b89e-41b8-8a7f-e46c4d355681"
+    ],
+    "recoverability": "regular",
+    "start_time": "2025-07-27T06:01:28.148Z",
+    "extensions": {
+      "availability": {
+        "availability_impact": 99
+      },
+      "extension-definition--7cc33dd6-f6a1-489b-98ea-522d351d71b9": {
+        "extension_type": "new-sdo"
+      }
+    }
+  },
+  {
+    "type": "indicator",
+    "spec_version": "2.1",
+    "id": "indicator--d508defd-8778-4178-8c24-83aa43669802",
+    "created": "2025-11-08T02:27:17.684Z",
+    "modified": "2025-11-08T02:27:17.684Z",
+    "name": "Potential Phishing Email",
+    "description": "Suspicious email reported by user",
+    "indicator_types": [
+      "unknown"
+    ],
+    "pattern": "[email-addr:value = 'evil@northkorea.nk' AND email:subject = 'we are coming for you']",
+    "pattern_type": "stix",
+    "pattern_version": "2.1",
+    "valid_from": "2025-07-27T06:01:15.680Z"
+  },
+  {
+    "type": "infrastructure",
+    "spec_version": "2.1",
+    "id": "infrastructure--e65d7ade-5700-47bf-b5e3-3360a6e1cd19",
+    "created": "2025-11-08T02:27:17.708Z",
+    "modified": "2025-11-08T02:27:17.708Z",
+    "name": "Poison Ivy C2",
+    "infrastructure_types": [
+      "command-and-control"
+    ]
+  },
+  {
+    "type": "intrusion-set",
+    "spec_version": "2.1",
+    "id": "intrusion-set--f1cdcb46-8e54-4ae8-8c3e-c5a4465666bc",
+    "created": "2025-11-08T02:27:17.708Z",
+    "modified": "2025-11-08T02:27:17.708Z",
+    "name": "Adversary X"
+  },
+  {
+    "type": "ipv4-addr",
+    "spec_version": "2.1",
+    "id": "ipv4-addr--de4b6f38-7191-4679-95af-07518ac08b64",
+    "value": "203.0.113.5"
+  },
+  {
+    "type": "ipv4-addr",
+    "spec_version": "2.1",
+    "id": "ipv4-addr--ae463d49-68e7-48de-bfaf-633491b80386",
+    "value": "203.0.113.5"
+  },
+  {
+    "type": "ipv4-addr",
+    "spec_version": "2.1",
+    "id": "ipv4-addr--aeda2f8c-b90c-4f3d-a57e-9178823a22a2",
+    "value": "198.51.100.6"
+  },
+  {
+    "type": "ipv4-addr",
+    "spec_version": "2.1",
+    "id": "ipv4-addr--b4dcec6d-e736-473f-85c9-c0ea97ecbc62",
+    "value": "198.51.100.2"
+  },
+  {
+    "type": "ipv4-addr",
+    "spec_version": "2.1",
+    "id": "ipv4-addr--b2cbdfcd-5bfc-4ff0-bca0-0613cf870fd5",
+    "value": "198.51.100.2"
+  },
+  {
+    "type": "ipv4-addr",
+    "spec_version": "2.1",
+    "id": "ipv4-addr--7be49470-9b36-4b0b-82bf-d9773057d3c4",
+    "value": "198.51.100.0/24"
+  },
+  {
+    "type": "ipv4-addr",
+    "spec_version": "2.1",
+    "id": "ipv4-addr--549653e5-4676-41ca-ac2a-a1ff6ebd52b4",
+    "value": "198.51.100.53"
+  },
+  {
+    "type": "ipv4-addr",
+    "spec_version": "2.1",
+    "id": "ipv4-addr--b46552ab-6c77-4878-b133-ce7e515fcbd9",
+    "value": "198.52.200.4"
+  },
+  {
+    "type": "ipv4-addr",
+    "spec_version": "2.1",
+    "id": "ipv4-addr--4ea4315c-54c0-4dd4-aa62-85cdfd929c36",
+    "value": "198.51.100.5"
+  },
+  {
+    "type": "ipv4-addr",
+    "spec_version": "2.1",
+    "id": "ipv4-addr--f1ca602c-baf9-4b06-8ff7-60d16959e7d6",
+    "value": "198.51.100.3"
+  },
+  {
+    "type": "ipv4-addr",
+    "spec_version": "2.1",
+    "id": "ipv4-addr--620b1499-d1f3-47cc-9a2e-5947b8c42622",
+    "value": "198.51.100.54"
+  },
+  {
+    "type": "ipv4-addr",
+    "spec_version": "2.1",
+    "id": "ipv4-addr--00cf9380-f507-419e-bc44-2064feebf71e",
+    "value": "198.51.100.9"
+  },
+  {
+    "type": "ipv4-addr",
+    "spec_version": "2.1",
+    "id": "ipv4-addr--0441d5ec-fbba-4a0d-9030-d1114aa90040",
+    "value": "203.0.113.1"
+  },
+  {
+    "type": "ipv4-addr",
+    "spec_version": "2.1",
+    "id": "ipv4-addr--3872d5ee-aa6d-440f-a6f1-3afdc1c21331",
+    "value": "198.51.100.3"
+  },
+  {
+    "type": "ipv4-addr",
+    "spec_version": "2.1",
+    "id": "ipv4-addr--4f1c082f-afc2-475a-b803-da5516c9e176",
+    "value": "198.51.100.34"
+  },
+  {
+    "type": "ipv4-addr",
+    "spec_version": "2.1",
+    "id": "ipv4-addr--9c7c0e28-280f-4703-9c56-395d9d632d2a",
+    "value": "198.51.100.3"
+  },
+  {
+    "type": "ipv4-addr",
+    "spec_version": "2.1",
+    "id": "ipv4-addr--1db57600-64b1-4abd-a3e3-32e9d2780673",
+    "value": "198.51.100.3"
+  },
+  {
+    "type": "ipv4-addr",
+    "spec_version": "2.1",
+    "id": "ipv4-addr--dbf3de32-c876-4d44-b7b0-f14726f52bdc",
+    "value": "198.51.100.3"
+  },
+  {
+    "type": "ipv4-addr",
+    "spec_version": "2.1",
+    "id": "ipv4-addr--cbfc8337-30cb-42be-91d1-1858eaf646bb",
+    "value": "203.0.113.2"
+  },
+  {
+    "type": "ipv6-addr",
+    "spec_version": "2.1",
+    "id": "ipv6-addr--6af65eaa-e620-4d08-9ac7-907d67441f22",
+    "value": "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+  },
+  {
+    "type": "ipv6-addr",
+    "spec_version": "2.1",
+    "id": "ipv6-addr--42f4044c-692c-4701-9a16-b53ee13ae99c",
+    "value": "2001:0db8::/96"
+  },
+  {
+    "type": "mac-addr",
+    "spec_version": "2.1",
+    "id": "mac-addr--9ff4c1ba-84bd-477f-872c-28e5db899a66",
+    "value": "d2:fb:49:24:37:18"
+  },
+  {
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--77c0e961-2973-47a9-b09d-07ff95b99f60",
+    "created": "2025-11-08T02:27:17.763Z",
+    "modified": "2025-11-08T02:27:17.763Z",
+    "name": "Cryptolocker",
+    "description": "A variant of the cryptolocker family",
+    "malware_types": [
+      "ransomware"
+    ],
+    "is_family": false
+  },
+  {
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--403d98e3-8fa5-4964-af0f-8327d822d065",
+    "created": "2025-11-08T02:27:17.763Z",
+    "modified": "2025-11-08T02:27:17.763Z",
+    "name": "Poison Ivy",
+    "malware_types": [
+      "remote-access-trojan"
+    ],
+    "is_family": true
+  },
+  {
+    "type": "malware-analysis",
+    "spec_version": "2.1",
+    "id": "malware-analysis--daa08526-ee7d-42a0-9ddc-95f33a833e9a",
+    "created": "2025-11-08T02:27:17.763Z",
+    "modified": "2025-11-08T02:27:17.763Z",
+    "product": "microsoft",
+    "analysis_engine_version": "5.1.0",
+    "analysis_definition_version": "053514-0062",
+    "analysis_started": "2012-02-11T08:36:14Z",
+    "analysis_ended": "2012-02-11T08:36:14Z",
+    "result": "malicious"
+  },
+  {
+    "type": "mutex",
+    "spec_version": "2.1",
+    "id": "mutex--51d3a306-0e6d-48a6-9ff9-80ea177a6394",
+    "name": "__CLEANSWEEP__"
+  },
+  {
+    "type": "network-traffic",
+    "spec_version": "2.1",
+    "id": "network-traffic--be9a523a-6752-45ee-bcd5-a201b0c68617",
+    "src_ref": "ipv4-addr--4ea4315c-54c0-4dd4-aa62-85cdfd929c36",
+    "dst_ref": "ipv4-addr--aeda2f8c-b90c-4f3d-a57e-9178823a22a2",
+    "src_port": 3372,
+    "dst_port": 80,
+    "protocols": [
+      "tcp"
+    ],
+    "extensions": {
+      "tcp-ext": {
+        "src_flags_hex": "00000002"
+      }
+    }
+  },
+  {
+    "type": "network-traffic",
+    "spec_version": "2.1",
+    "id": "network-traffic--ced08b6a-4866-4c93-a43a-8ffb7e967935",
+    "src_ref": "ipv4-addr--b2cbdfcd-5bfc-4ff0-bca0-0613cf870fd5",
+    "dst_ref": "ipv4-addr--dbf3de32-c876-4d44-b7b0-f14726f52bdc",
+    "protocols": [
+      "tcp"
+    ]
+  },
+  {
+    "type": "network-traffic",
+    "spec_version": "2.1",
+    "id": "network-traffic--7c94f622-4724-4fac-90ef-b330315112c4",
+    "src_ref": "ipv4-addr--0441d5ec-fbba-4a0d-9030-d1114aa90040",
+    "dst_ref": "ipv4-addr--de4b6f38-7191-4679-95af-07518ac08b64",
+    "protocols": [
+      "ipv4",
+      "tcp"
+    ],
+    "src_byte_count": 147600,
+    "src_packets": 100,
+    "ipfix": {
+      "minimumIpTotalLength": 32,
+      "maximumIpTotalLength": 2556
+    }
+  },
+  {
+    "type": "network-traffic",
+    "spec_version": "2.1",
+    "id": "network-traffic--60a9566c-401a-4511-9c58-e2a8ce8ab96b",
+    "src_ref": "ipv6-addr--6af65eaa-e620-4d08-9ac7-907d67441f22",
+    "src_port": 223,
+    "protocols": [
+      "ip",
+      "tcp"
+    ],
+    "extensions": {
+      "socket-ext": {
+        "is_listening": true,
+        "address_family": "AF_INET",
+        "socket_type": "SOCK_STREAM"
+      }
+    }
+  },
+  {
+    "type": "network-traffic",
+    "spec_version": "2.1",
+    "id": "network-traffic--d625b9dc-3b4d-4d1c-a76e-71ae6af0bfbc",
+    "dst_ref": "domain-name--fe148d94-0e40-41aa-8b31-89a0665cafc0",
+    "protocols": [
+      "ipv4",
+      "tcp",
+      "http"
+    ]
+  },
+  {
+    "type": "network-traffic",
+    "spec_version": "2.1",
+    "id": "network-traffic--f05395a4-851f-4a6b-bb84-45f4c2b2b19f",
+    "src_ref": "ipv4-addr--00cf9380-f507-419e-bc44-2064feebf71e",
+    "dst_ref": "ipv4-addr--ae463d49-68e7-48de-bfaf-633491b80386",
+    "protocols": [
+      "icmp"
+    ],
+    "extensions": {
+      "icmp-ext": {
+        "icmp_type_hex": "08",
+        "icmp_code_hex": "00"
+      }
+    }
+  },
+  {
+    "type": "network-traffic",
+    "spec_version": "2.1",
+    "id": "network-traffic--f8a1e281-e724-41be-af73-5216b282bf03",
+    "dst_ref": "ipv4-addr--549653e5-4676-41ca-ac2a-a1ff6ebd52b4",
+    "protocols": [
+      "tcp",
+      "http"
+    ],
+    "extensions": {
+      "http-request-ext": {
+        "request_method": "get",
+        "request_value": "/download.html",
+        "request_version": "http/1.1",
+        "request_header": {
+          "Accept-Encoding": "gzip,deflate",
+          "User-Agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113",
+          "Host": "www.example.com"
+        }
+      }
+    }
+  },
+  {
+    "type": "observed-data",
+    "spec_version": "2.1",
+    "id": "observed-data--e1a0d3a2-c49f-42b5-a3f2-d7df209bc9a5",
+    "created": "2025-11-08T02:27:17.783Z",
+    "modified": "2025-11-08T02:27:17.783Z",
+    "created_by_ref": "identity--e2e79144-ee44-4538-a137-cd8345999d7e",
+    "first_observed": "2015-12-21T19:00:00Z",
+    "last_observed": "2016-04-06T19:58:16Z",
+    "number_observed": 50,
+    "object_refs": [
+      "file--f148b548-0a36-47ce-bcd3-3b81e00b65bf"
+    ]
+  },
+  {
+    "type": "observed-data",
+    "spec_version": "2.1",
+    "id": "observed-data--c82bf677-0a97-4212-8d30-4555053eda03",
+    "created": "2025-11-08T02:27:17.784Z",
+    "modified": "2025-11-08T02:27:17.784Z",
+    "created_by_ref": "identity--e2e79144-ee44-4538-a137-cd8345999d7e",
+    "first_observed": "2015-12-21T19:00:00Z",
+    "last_observed": "2016-04-06T19:58:16Z",
+    "number_observed": 50,
+    "object_refs": [
+      "file--f148b548-0a36-47ce-bcd3-3b81e00b65bf"
+    ]
+  },
+  {
+    "type": "process",
+    "spec_version": "2.1",
+    "id": "process--3083dfa7-d083-4bbb-ae4b-4ee5d4892630",
+    "pid": 2217,
+    "command_line": "C:\\Windows\\System32\\sirvizio.exe /s",
+    "image_ref": "file--1a23f874-d481-4275-ada0-a1fd84e7b74b",
+    "extensions": {
+      "windows-service-ext": {
+        "service_name": "sirvizio",
+        "display_name": "Sirvizio",
+        "start_type": "SERVICE_AUTO_START",
+        "service_type": "SERVICE_WIN32_OWN_PROCESS",
+        "service_status": "SERVICE_RUNNING"
+      }
+    }
+  },
+  {
+    "type": "process",
+    "spec_version": "2.1",
+    "id": "process--f08a856f-7bcc-44a6-860e-f298ecd9bca9",
+    "pid": 1221,
+    "created_time": "2016-01-20T14:11:25.55Z",
+    "command_line": "./gedit-bin --new-window",
+    "image_ref": "file--1a23f874-d481-4275-ada0-a1fd84e7b74b"
+  },
+  {
+    "type": "process",
+    "spec_version": "2.1",
+    "id": "process--c0353f65-22b1-4011-ab48-b834efafa57b",
+    "pid": 314,
+    "extensions": {
+      "windows-process-ext": {
+        "aslr_enabled": true,
+        "dep_enabled": true,
+        "priority": "HIGH_PRIORITY_CLASS",
+        "owner_sid": "S-1-5-21-186985262-1144665072-74031268-1309"
+      }
+    }
+  },
+  {
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--38a75869-40ce-4c94-b483-230b1bfd10bb",
+    "created": "2025-11-08T02:27:17.791Z",
+    "modified": "2025-11-08T02:27:17.791Z",
+    "relationship_type": "uses",
+    "source_ref": "intrusion-set--f1cdcb46-8e54-4ae8-8c3e-c5a4465666bc",
+    "target_ref": "attack-pattern--3c1842d9-675f-4902-be32-0406f422d62b"
+  },
+  {
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--c49dc615-3ea6-4ffb-9ee3-4bdf87daa5ac",
+    "created": "2025-11-08T02:27:17.792Z",
+    "modified": "2025-11-08T02:27:17.792Z",
+    "relationship_type": "controls",
+    "source_ref": "infrastructure--e65d7ade-5700-47bf-b5e3-3360a6e1cd19",
+    "target_ref": "malware--403d98e3-8fa5-4964-af0f-8327d822d065"
+  },
+  {
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--875413a1-bf60-4e20-8a17-346e185a47ca",
+    "created": "2025-11-08T02:27:17.794Z",
+    "modified": "2025-11-08T02:27:17.794Z",
+    "relationship_type": "consists-of",
+    "source_ref": "infrastructure--e65d7ade-5700-47bf-b5e3-3360a6e1cd19",
+    "target_ref": "ipv4-addr--f1ca602c-baf9-4b06-8ff7-60d16959e7d6"
+  },
+  {
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--a7552d8e-f954-4109-843f-1b4fc00da1df",
+    "created": "2025-11-08T02:27:17.794Z",
+    "modified": "2025-11-08T02:27:17.794Z",
+    "relationship_type": "consists-of",
+    "source_ref": "infrastructure--e65d7ade-5700-47bf-b5e3-3360a6e1cd19",
+    "target_ref": "ipv4-addr--b46552ab-6c77-4878-b133-ce7e515fcbd9"
+  },
+  {
+    "type": "report",
+    "spec_version": "2.1",
+    "id": "report--3200a2d3-cf88-4078-a8a6-36faf322a843",
+    "created": "2025-11-08T02:27:17.796Z",
+    "modified": "2025-11-08T02:27:17.796Z",
+    "created_by_ref": "identity--0a8b8af0-6817-4c3b-a038-7c16bdc67ff6",
+    "name": "The Black Vine Cyberespionage Group",
+    "description": "A simple report with an indicator and campaign",
+    "report_types": [
+      "campaign"
+    ],
+    "published": "2016-01-20T17:00:00.000Z",
+    "object_refs": [
+      "indicator--897546bc-5e73-4beb-be89-ab9026af4656",
+      "campaign--f52ef981-dee1-44e9-8f01-da62344bd001",
+      "relationship--300d2f1d-0fd7-4f0a-a5ad-6dbd3c8b30cd"
+    ]
+  },
+  {
+    "type": "sequence",
+    "spec_version": "2.1",
+    "id": "sequence--a50fc580-a8e8-421a-b566-55127f4f5a6a",
+    "created": "2025-11-08T02:27:17.796Z",
+    "modified": "2025-11-08T02:27:17.796Z",
+    "sequenced_object": "task--b8238ead-7084-498b-8369-945007c24080",
+    "sequence_type": "task",
+    "step_type": "single_step",
+    "extensions": {
+      "extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {
+        "extension_type": "new-sdo"
+      }
+    }
+  },
+  {
+    "type": "sequence",
+    "spec_version": "2.1",
+    "id": "sequence--b854de06-429e-4834-b88c-3ef77f16b9a3",
+    "created": "2025-11-08T02:27:17.796Z",
+    "modified": "2025-11-08T02:27:17.796Z",
+    "sequenced_object": "task--0b61df5f-663b-482d-b1d0-549ce6a9f095",
+    "sequence_type": "task",
+    "step_type": "single_step",
+    "extensions": {
+      "extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {
+        "extension_type": "new-sdo"
+      }
+    }
+  },
+  {
+    "type": "sequence",
+    "spec_version": "2.1",
+    "id": "sequence--dd84f681-9fa5-4e78-97f4-84df0dddef99",
+    "created": "2025-11-08T02:27:17.801Z",
+    "modified": "2025-11-08T02:27:17.801Z",
+    "sequenced_object": "event--230fc1c7-3aa5-4c17-9a25-d6ac427a9772",
+    "sequence_type": "event",
+    "step_type": "single_step",
+    "extensions": {
+      "extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {
+        "extension_type": "new-sdo"
+      }
+    }
+  },
+  {
+    "type": "software",
+    "spec_version": "2.1",
+    "id": "software--092149d5-89d2-4c36-bd76-e184f54c0c7e",
+    "name": "Word",
+    "cpe": "cpe:2.3:a:microsoft:word:2000:*:*:*:*:*:*:*",
+    "vendor": "Microsoft",
+    "version": "2002"
+  },
+  {
+    "type": "task",
+    "spec_version": "2.1",
+    "id": "task--b8238ead-7084-498b-8369-945007c24080",
+    "created": "2025-11-08T02:27:17.813Z",
+    "modified": "2025-11-08T02:27:17.813Z",
+    "name": "Query Exchange Server",
+    "description": "Find out who else got the email",
+    "end_time": "2025-07-27T06:01:28.264Z",
+    "start_time": "2025-07-27T06:01:28.264Z",
+    "extensions": {
+      "extension-definition--2074a052-8be4-4932-849e-f5e7798e0030": {
+        "extension_type": "new-sdo"
+      }
+    }
+  },
+  {
+    "type": "task",
+    "spec_version": "2.1",
+    "id": "task--0b61df5f-663b-482d-b1d0-549ce6a9f095",
+    "created": "2025-11-08T02:27:17.815Z",
+    "modified": "2025-11-08T02:27:17.815Z",
+    "name": "Potential Phishing Email",
+    "description": "Suspicious email reported by user",
+    "end_time": "2025-07-27T06:01:16.214Z",
+    "start_time": "2025-07-27T06:01:16.214Z",
+    "extensions": {
+      "extension-definition--2074a052-8be4-4932-849e-f5e7798e0030": {
+        "extension_type": "new-sdo"
+      }
+    }
+  },
+  {
+    "type": "threat-actor",
+    "spec_version": "2.1",
+    "id": "threat-actor--ffdd80f5-9d57-4e7e-8ff3-25e2af52ed51",
+    "created": "2025-11-08T02:27:17.815Z",
+    "modified": "2025-11-08T02:27:17.815Z",
+    "created_by_ref": "identity--e2e79144-ee44-4538-a137-cd8345999d7e",
+    "name": "Evil Org",
+    "description": "The Evil Org threat actor group",
+    "threat_actor_types": [
+      "crime-syndicate"
+    ],
+    "aliases": [
+      "Syndicate 1",
+      "Evil Syndicate 99"
+    ],
+    "roles": [
+      "director"
+    ],
+    "goals": [
+      "Steal bank money",
+      "Steal credit cards"
+    ],
+    "sophistication": "advanced",
+    "resource_level": "team",
+    "primary_motivation": "organizational-gain"
+  },
+  {
+    "type": "tool",
+    "spec_version": "2.1",
+    "id": "tool--f3c4f997-cfee-456e-a702-192d3adb8964",
+    "created": "2025-11-08T02:27:17.815Z",
+    "modified": "2025-11-08T02:27:17.815Z",
+    "created_by_ref": "identity--e2e79144-ee44-4538-a137-cd8345999d7e",
+    "name": "VNC",
+    "tool_types": [
+      "remote-access"
+    ]
+  },
+  {
+    "type": "url",
+    "spec_version": "2.1",
+    "id": "url--bc5e3f96-0b78-4ce4-8fdc-1aac42e85e8b",
+    "value": "https://www.northkorea.nk/we/are/mad/"
+  },
+  {
+    "type": "url",
+    "spec_version": "2.1",
+    "id": "url--26cf2983-b000-4999-868f-d023b36ceee8",
+    "value": "https://example.com/research/index.html"
+  },
+  {
+    "type": "user-account",
+    "spec_version": "2.1",
+    "id": "user-account--59ecc621-65ff-4373-b9cd-32278a9f385d",
+    "user_id": "1001",
+    "account_login": "jdoe",
+    "account_type": "unix",
+    "display_name": "John Doe",
+    "is_service_account": false,
+    "is_privileged": false,
+    "can_escalate_privs": true,
+    "account_created": "2016-01-20T12:31:12Z",
+    "credential_last_changed": "2016-01-20T14:27:43Z",
+    "account_first_login": "2016-01-20T14:26:07Z",
+    "account_last_login": "2016-07-22T16:08:28Z"
+  },
+  {
+    "type": "user-account",
+    "spec_version": "2.1",
+    "id": "user-account--1642e505-d93c-4eb0-bf61-7c41f463af44",
+    "user_id": "1001",
+    "account_login": "jdoe",
+    "account_type": "unix",
+    "display_name": "John Doe",
+    "is_service_account": false,
+    "is_privileged": false,
+    "can_escalate_privs": true,
+    "extensions": {
+      "unix-account-ext": {
+        "gid": 1001,
+        "groups": [
+          "wheel"
+        ],
+        "home_dir": "/home/jdoe",
+        "shell": "/bin/bash"
+      }
+    }
+  },
+  {
+    "type": "user-account",
+    "spec_version": "2.1",
+    "id": "user-account--c43839de-0e3d-4c31-a918-0bc722bf068f",
+    "user_id": "79563902",
+    "account_login": "nsmith",
+    "account_type": "sales,",
+    "display_name": "Naive Smith"
+  },
+  {
+    "type": "user-account",
+    "spec_version": "2.1",
+    "id": "user-account--36513670-538e-4fd2-a35a-732e28354baf",
+    "user_id": "79563902",
+    "account_login": "dman",
+    "account_type": "sales,",
+    "display_name": "Different Man"
+  },
+  {
+    "type": "user-account",
+    "spec_version": "2.1",
+    "id": "user-account--2d1acbed-e6e4-4528-8014-1c33e983e964",
+    "user_id": "thegrugq_ebooks",
+    "account_login": "thegrugq_ebooks",
+    "account_type": "twitter",
+    "display_name": "the grugq"
+  },
+  {
+    "type": "vulnerability",
+    "spec_version": "2.1",
+    "id": "vulnerability--6174933d-38c1-4047-a2af-0df427a34711",
+    "created": "2025-11-08T02:27:17.835Z",
+    "modified": "2025-11-08T02:27:17.835Z",
+    "created_by_ref": "identity--e2e79144-ee44-4538-a137-cd8345999d7e",
+    "external_references": [
+      {
+        "source_name": "cve",
+        "external_id": "CVE-2016-1234"
+      }
+    ],
+    "name": "CVE-2016-1234"
+  },
+  {
+    "type": "windows-registry-key",
+    "spec_version": "2.1",
+    "id": "windows-registry-key--f6b075f7-1170-46b3-9fdd-39ca88c42c7f",
+    "key": "hkey_local_machine\\system\\bar\\foo",
+    "values": [
+      {
+        "name": "Foo",
+        "data": "qwerty",
+        "data_type": "REG_SZ"
+      },
+      {
+        "name": "Bar",
+        "data": "42",
+        "data_type": "REG_DWORD"
+      }
+    ]
+  },
+  {
+    "type": "windows-registry-key",
+    "spec_version": "2.1",
+    "id": "windows-registry-key--e463b4a2-f9ef-4138-80b8-64a989680de1",
+    "key": "HKEY_LOCAL_MACHINE\\System\\Foo\\Bar"
+  },
+  {
+    "type": "x509-certificate",
+    "spec_version": "2.1",
+    "id": "x509-certificate--ea83187c-6a1b-4099-9e2a-f6c681a65baf",
+    "serial_number": "36:f7:d4:32:f4:ab:70:ea:d3:ce:98:6e:ea:99:93:49:32:0a:b7:06",
+    "issuer": "C=ZA, ST=Western Cape, L=Cape Town, O=Thawte Consulting cc, OU=Certification Services Division, CN=Thawte Server CA/emailAddress=server-certs@thawte.com",
+    "validity_not_before": "2016-03-12T12:00:00Z",
+    "validity_not_after": "2016-08-21T12:00:00Z",
+    "subject": "C=US, ST=Maryland, L=Pasadena, O=Brent Baccala, OU=FreeSoft, CN=www.freesoft.org/emailAddress=baccala@freesoft.org"
+  },
+  {
+    "type": "x509-certificate",
+    "spec_version": "2.1",
+    "id": "x509-certificate--a3d91f42-96ae-4256-8aaa-93c247e4b4ea",
+    "serial_number": "02:08:87:83:f2:13:58:1f:79:52:1e:66:90:0a:02:24:c9:6b:c7:dc",
+    "issuer": "C=ZA, ST=Western Cape, L=Cape Town, O=Thawte Consulting cc, OU=Certification Services Division, CN=Thawte Server CA/emailAddress=server-certs@thawte.com",
+    "validity_not_before": "2016-03-12T12:00:00Z",
+    "validity_not_after": "2016-08-21T12:00:00Z",
+    "subject": "C=US, ST=Maryland, L=Pasadena, O=Brent Baccala, OU=FreeSoft, CN=www.freesoft.org/emailAddress=baccala@freesoft.org",
+    "x509_v3_extensions": {
+      "basic_constraints": "critical,CA:TRUE, pathlen:0",
+      "name_constraints": "permitted;IP:192.168.0.0/255.255.0.0",
+      "policy_constraints": "requireExplicitPolicy:3",
+      "key_usage": "critical, keyCertSign",
+      "extended_key_usage": "critical,codeSigning,1.2.3.4",
+      "subject_key_identifier": "hash",
+      "authority_key_identifier": "keyid,issuer",
+      "subject_alternative_name": "email:my@other.address,RID:1.2.3.4",
+      "issuer_alternative_name": "issuer:copy",
+      "crl_distribution_points": "URI:http://myhost.com/myca.crl",
+      "inhibit_any_policy": "2",
+      "private_key_usage_period_not_before": "2016-03-12T12:00:00Z",
+      "private_key_usage_period_not_after": "2018-03-12T12:00:00Z",
+      "certificate_policies": "1.2.4.5, 1.1.3.4"
+    }
+  },
+  {
+    "type": "campaign",
+    "spec_version": "2.1",
+    "id": "campaign--655d23ea-8bc1-4170-a83b-ec31fcf0ef03",
+    "created": "2025-11-08T02:27:17.848Z",
+    "modified": "2025-11-08T02:27:17.848Z",
+    "created_by_ref": "identity--b25986bc-ab74-4383-8a9b-0b82a9f668fa",
+    "name": "Green Group Attacks Against Finance",
+    "description": "Campaign by Green Group against a series of targets in the financial services sector."
+  },
+  {
+    "type": "course-of-action",
+    "spec_version": "2.1",
+    "id": "course-of-action--db81fb5f-e9ec-4b60-a24b-006ac210535c",
+    "created": "2025-11-08T02:27:17.851Z",
+    "modified": "2025-11-08T02:27:17.851Z",
+    "created_by_ref": "identity--b25986bc-ab74-4383-8a9b-0b82a9f668fa",
+    "name": "Add TCP port 80 Filter Rule to the existing Block UDP 1434 Filter",
+    "description": "This is how to add a filter rule to block inbound access to TCP port 80 to the existing UDP 1434 filter ..."
+  },
+  {
+    "type": "email-message",
+    "spec_version": "2.1",
+    "id": "email-message--87dbb5ae-44d9-4c41-b7b3-b802cb22b077",
+    "is_multipart": false,
+    "date": "2020-10-19T01:01:01.000Z",
+    "from_ref": "email-addr--e0bb9611-99e7-408f-b355-3141ecf6d7ae",
+    "to_refs": [
+      "email-addr--722a43fa-418b-4152-b9f3-94b8948240d3"
+    ],
+    "subject": "we are coming for you",
+    "body": "some bad stuff written here"
+  },
+  {
+    "type": "identity",
+    "spec_version": "2.1",
+    "id": "identity--729b537a-aede-4b25-a77d-e3056cf37705",
+    "created": "2025-11-08T02:27:17.857Z",
+    "modified": "2025-11-08T02:27:17.857Z",
+    "name": "Naive Smith",
+    "description": "A Naive Individual",
+    "roles": [
+      "user",
+      "sales"
+    ],
+    "identity_class": "individual",
+    "sectors": [
+      "technology"
+    ],
+    "extensions": {
+      "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+        "extension_type": "property-extension",
+        "contact_numbers": [
+          {
+            "contact_number_type": "work-phone",
+            "contact_number": "0499-999-109"
+          }
+        ],
+        "email_addresses": [
+          {
+            "digital_contact_type": "work",
+            "email_address_ref": "email-addr--722a43fa-418b-4152-b9f3-94b8948240d3"
+          }
+        ],
+        "first_name": "Naive",
+        "last_name": "Smith",
+        "middle_name": "Weakling",
+        "prefix": "Mr",
+        "social_media_accounts": [
+          {
+            "digital_contact_type": "work",
+            "user_account_ref": "user-account--c43839de-0e3d-4c31-a918-0bc722bf068f"
+          }
+        ],
+        "team": "Sales"
+      }
+    }
+  },
+  {
+    "type": "incident",
+    "spec_version": "2.1",
+    "id": "incident--354a5d17-05ae-4824-815c-f1490037be1a",
+    "created": "2025-11-08T02:27:17.860Z",
+    "modified": "2025-11-08T02:27:17.860Z",
+    "created_by_ref": "identity--b25986bc-ab74-4383-8a9b-0b82a9f668fa",
+    "name": "Incident 43",
+    "description": "This incident addresses APT 28 ..."
+  },
+  {
+    "type": "indicator",
+    "spec_version": "2.1",
+    "id": "indicator--acc2a864-604b-4311-9790-3d8d4cfedd38",
+    "created": "2025-11-08T02:27:17.862Z",
+    "modified": "2025-11-08T02:27:17.862Z",
+    "created_by_ref": "identity--b25986bc-ab74-4383-8a9b-0b82a9f668fa",
+    "name": "Poison Ivy Malware",
+    "description": "This file is part of Poison Ivy",
+    "indicator_types": [
+      "malicious-activity"
+    ],
+    "pattern": "[ file:hashes.'SHA-256' = '4bac27393bdd9777ce02453256c5577cd02275510b2227f473d03f533924f877' ]",
+    "pattern_type": "stix",
+    "valid_from": "2016-01-01T00:00:00Z"
+  },
+  {
+    "type": "intrusion-set",
+    "spec_version": "2.1",
+    "id": "intrusion-set--983215ca-e773-47fb-8630-44cbcd6ea503",
+    "created": "2025-11-08T02:27:17.864Z",
+    "modified": "2025-11-08T02:27:17.864Z",
+    "created_by_ref": "identity--b25986bc-ab74-4383-8a9b-0b82a9f668fa",
+    "name": "Bobcat Breakin",
+    "description": "Incidents usually feature a shared TTP of a bobcat being released within the building containing network access, scaring users to leave their computers without locking them first. Still determining where the threat actors are getting the bobcats.",
+    "aliases": [
+      "Zookeeper"
+    ],
+    "goals": [
+      "acquisition-theft",
+      "harassment",
+      "damage"
+    ]
+  },
+  {
+    "type": "location",
+    "spec_version": "2.1",
+    "id": "location--9b97581e-45fd-46af-a47c-0e5056b528b4",
+    "created": "2025-11-08T02:27:17.867Z",
+    "modified": "2025-11-08T02:27:17.867Z",
+    "created_by_ref": "identity--b25986bc-ab74-4383-8a9b-0b82a9f668fa",
+    "latitude": "48.8566",
+    "longitude": "2.3522"
+  },
+  {
+    "type": "location",
+    "spec_version": "2.1",
+    "id": "location--76436f8f-d3f0-4897-be41-9562103bfba5",
+    "created": "2025-11-08T02:27:17.869Z",
+    "modified": "2025-11-08T02:27:17.869Z",
+    "created_by_ref": "identity--b25986bc-ab74-4383-8a9b-0b82a9f668fa",
+    "region": "south-eastern-asia",
+    "country": "th",
+    "administrative_area": "Tak",
+    "postal_code": "63170"
+  },
+  {
+    "type": "location",
+    "spec_version": "2.1",
+    "id": "location--33e2b56a-dd7b-4cfa-b1a9-dc3ecd3ba4a9",
+    "created": "2025-11-08T02:27:17.870Z",
+    "modified": "2025-11-08T02:27:17.870Z",
+    "created_by_ref": "identity--b25986bc-ab74-4383-8a9b-0b82a9f668fa",
+    "latitude": "48.8566",
+    "longitude": "2.3522"
+  },
+  {
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--91f9bb2c-0609-45bc-b5b1-2abddfe0fa4d",
+    "created": "2025-11-08T02:27:17.872Z",
+    "modified": "2025-11-08T02:27:17.872Z",
+    "created_by_ref": "identity--b25986bc-ab74-4383-8a9b-0b82a9f668fa",
+    "name": "Poison Ivy",
+    "malware_types": [
+      "trojan"
+    ],
+    "is_family": true
+  },
+  {
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--9dd1c08c-fc12-4b0f-8295-ca7314f780f8",
+    "created": "2025-11-08T02:27:17.876Z",
+    "modified": "2025-11-08T02:27:17.876Z",
+    "name": "a92e5b2bae.exe",
+    "malware_types": [
+      "unknown"
+    ],
+    "is_family": false,
+    "sample_refs": [
+      "file--56ec28f5-23a2-4795-936f-5e23277d577c"
+    ]
+  },
+  {
+    "type": "observed-data",
+    "spec_version": "2.1",
+    "id": "observed-data--2eb7a12d-7bb8-4f8e-958f-66121d91971e",
+    "created": "2025-11-08T02:27:17.877Z",
+    "modified": "2025-11-08T02:27:17.877Z",
+    "created_by_ref": "identity--b25986bc-ab74-4383-8a9b-0b82a9f668fa",
+    "first_observed": "2015-12-21T19:00:00Z",
+    "last_observed": "2015-12-21T19:00:00Z",
+    "number_observed": 50,
+    "object_refs": [
+      "ipv4-addr--3872d5ee-aa6d-440f-a6f1-3afdc1c21331",
+      "domain-name--54f29140-e33c-4064-b42e-27b511ef8d17"
+    ]
+  },
+  {
+    "type": "opinion",
+    "spec_version": "2.1",
+    "id": "opinion--beef14f8-ee4b-42c9-8250-d3432d40e896",
+    "created": "2025-11-08T02:27:17.879Z",
+    "modified": "2025-11-08T02:27:17.879Z",
+    "created_by_ref": "identity--e2e79144-ee44-4538-a137-cd8345999d7e",
+    "explanation": "This doesn't seem like it is feasible. We've seen how PandaCat has attacked Spanish infrastructure over the last 3 years, so this change in targeting seems too great to be viable. The methods used are more commonly associated with the FlameDragonCrew.",
+    "opinion": "strongly-disagree",
+    "object_refs": [
+      "relationship--38a75869-40ce-4c94-b483-230b1bfd10bb"
+    ]
+  },
+  {
+    "type": "sequence",
+    "spec_version": "2.1",
+    "id": "sequence--c187ab23-aeee-454a-bca3-6a6f85eef5f0",
+    "created": "2025-11-08T02:27:17.882Z",
+    "modified": "2025-11-08T02:27:17.882Z",
+    "sequence_type": "event",
+    "step_type": "start_step",
+    "on_completion": "sequence--dd84f681-9fa5-4e78-97f4-84df0dddef99",
+    "extensions": {
+      "extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {
+        "extension_type": "new-sdo"
+      }
+    }
+  },
+  {
+    "type": "sequence",
+    "spec_version": "2.1",
+    "id": "sequence--00723191-a436-4a3e-bbbf-c155c274675a",
+    "created": "2025-11-08T02:27:17.884Z",
+    "modified": "2025-11-08T02:27:17.884Z",
+    "sequence_type": "task",
+    "step_type": "start_step",
+    "on_completion": "sequence--b854de06-429e-4834-b88c-3ef77f16b9a3",
+    "extensions": {
+      "extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {
+        "extension_type": "new-sdo"
+      }
+    }
+  },
+  {
+    "type": "anecdote",
+    "spec_version": "2.1",
+    "id": "anecdote--b64127fa-70e1-47cc-bf41-c5ab7580786c",
+    "value": "I clicked on the link, and my laptop screen went weird",
+    "report_date": "2025-07-27T06:01:27.511568Z",
+    "provided_by_ref": "identity--729b537a-aede-4b25-a77d-e3056cf37705"
+  },
+  {
+    "type": "note",
+    "spec_version": "2.1",
+    "id": "note--93c06adf-d7ef-4cf8-a702-b06681159e77",
+    "created": "2025-11-08T02:27:17.889Z",
+    "modified": "2025-11-08T02:27:17.889Z",
+    "external_references": [
+      {
+        "source_name": "job-tracker",
+        "external_id": "job-id-1234"
+      }
+    ],
+    "content": "This note indicates the various steps taken by the threat analyst team to investigate this specific campaign. Step 1) Do a scan 2) Review scanned results for identified hosts not known by external intel…etc.",
+    "abstract": "Tracking Team Note#1",
+    "authors": [
+      "John Doe"
+    ],
+    "object_refs": [
+      "campaign--655d23ea-8bc1-4170-a83b-ec31fcf0ef03"
+    ]
+  },
+  {
+    "type": "observed-data",
+    "spec_version": "2.1",
+    "id": "observed-data--5384cc19-81ed-43d4-81af-38ab2865d0b5",
+    "created": "2025-11-08T02:27:17.890Z",
+    "modified": "2025-11-08T02:27:17.890Z",
+    "first_observed": "2020-10-19T01:01:01.000Z",
+    "last_observed": "2020-10-19T01:01:01.000Z",
+    "number_observed": 1,
+    "object_refs": [
+      "email-addr--e0bb9611-99e7-408f-b355-3141ecf6d7ae",
+      "user-account--c43839de-0e3d-4c31-a918-0bc722bf068f",
+      "email-addr--722a43fa-418b-4152-b9f3-94b8948240d3",
+      "url--bc5e3f96-0b78-4ce4-8fdc-1aac42e85e8b",
+      "email-message--87dbb5ae-44d9-4c41-b7b3-b802cb22b077"
+    ]
+  },
+  {
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--eedbc20c-3dff-4105-a9e5-a09bc7140806",
+    "created": "2025-11-08T02:27:17.895Z",
+    "modified": "2025-11-08T02:27:17.895Z",
+    "relationship_type": "analysis-of",
+    "source_ref": "malware-analysis--daa08526-ee7d-42a0-9ddc-95f33a833e9a",
+    "target_ref": "malware--9dd1c08c-fc12-4b0f-8295-ca7314f780f8"
+  },
+  {
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--5c5c1fd8-d08c-4e66-beea-a82e13233875",
+    "created": "2025-11-08T02:27:17.897Z",
+    "modified": "2025-11-08T02:27:17.897Z",
+    "created_by_ref": "identity--b25986bc-ab74-4383-8a9b-0b82a9f668fa",
+    "relationship_type": "mitigates",
+    "source_ref": "course-of-action--db81fb5f-e9ec-4b60-a24b-006ac210535c",
+    "target_ref": "malware--77c0e961-2973-47a9-b09d-07ff95b99f60"
+  },
+  {
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--9c588188-7499-4c41-bbe0-db404ceb8488",
+    "created": "2025-11-08T02:27:17.898Z",
+    "modified": "2025-11-08T02:27:17.898Z",
+    "created_by_ref": "identity--b25986bc-ab74-4383-8a9b-0b82a9f668fa",
+    "relationship_type": "indicates",
+    "source_ref": "indicator--acc2a864-604b-4311-9790-3d8d4cfedd38",
+    "target_ref": "malware--91f9bb2c-0609-45bc-b5b1-2abddfe0fa4d"
+  },
+  {
+    "type": "sighting",
+    "spec_version": "2.1",
+    "id": "sighting--fdbc37ed-3312-44e7-a0fd-60a96efa8201",
+    "created": "2025-11-08T02:27:17.899Z",
+    "modified": "2025-11-08T02:27:17.899Z",
+    "created_by_ref": "identity--e2e79144-ee44-4538-a137-cd8345999d7e",
+    "first_seen": "2015-12-21T19:00:00Z",
+    "last_seen": "2015-12-21T19:00:00Z",
+    "count": 50,
+    "sighting_of_ref": "indicator--acc2a864-604b-4311-9790-3d8d4cfedd38",
+    "observed_data_refs": [
+      "observed-data--2eb7a12d-7bb8-4f8e-958f-66121d91971e"
+    ],
+    "where_sighted_refs": [
+      "identity--a513fc29-2741-485d-844f-9d39557020b8"
+    ]
+  },
+  {
+    "type": "sighting",
+    "spec_version": "2.1",
+    "id": "sighting--119e51d2-dad4-4873-895c-a63faca4a19d",
+    "created": "2025-11-08T02:27:17.902Z",
+    "modified": "2025-11-08T02:27:17.902Z",
+    "created_by_ref": "identity--e2e79144-ee44-4538-a137-cd8345999d7e",
+    "first_seen": "2015-12-21T19:00:00Z",
+    "last_seen": "2015-12-21T19:00:00Z",
+    "count": 50,
+    "sighting_of_ref": "indicator--acc2a864-604b-4311-9790-3d8d4cfedd38",
+    "observed_data_refs": [
+      "observed-data--2eb7a12d-7bb8-4f8e-958f-66121d91971e"
+    ],
+    "where_sighted_refs": [
+      "identity--a513fc29-2741-485d-844f-9d39557020b8"
+    ]
+  },
+  {
+    "type": "sighting",
+    "spec_version": "2.1",
+    "id": "sighting--e2c32ce8-0a07-4e6a-9175-37363faf23a6",
+    "created": "2025-11-08T02:27:17.903Z",
+    "modified": "2025-11-08T02:27:17.903Z",
+    "created_by_ref": "identity--e2e79144-ee44-4538-a137-cd8345999d7e",
+    "sighting_of_ref": "indicator--acc2a864-604b-4311-9790-3d8d4cfedd38"
+  },
+  {
+    "type": "grouping",
+    "spec_version": "2.1",
+    "id": "grouping--7fef024d-cb15-4370-92fa-fd7dc1a1674a",
+    "created": "2025-11-08T02:27:17.913Z",
+    "modified": "2025-11-08T02:27:17.913Z",
+    "created_by_ref": "identity--b25986bc-ab74-4383-8a9b-0b82a9f668fa",
+    "name": "The Black Vine Cyberespionage Group",
+    "description": "A simple collection of Black Vine Cyberespionage Group attributed intel",
+    "context": "suspicious-activity",
+    "object_refs": [
+      "indicator--acc2a864-604b-4311-9790-3d8d4cfedd38",
+      "identity--b25986bc-ab74-4383-8a9b-0b82a9f668fa",
+      "relationship--9c588188-7499-4c41-bbe0-db404ceb8488",
+      "file--a09ca786-80da-4f9e-ad7c-a5e009c39bf7"
+    ]
+  },
+  {
+    "type": "observed-data",
+    "spec_version": "2.1",
+    "id": "observed-data--a891837b-6407-40d2-9716-2586d519467a",
+    "created": "2025-11-08T02:27:17.917Z",
+    "modified": "2025-11-08T02:27:17.917Z",
+    "first_observed": "2020-10-19T01:01:01Z",
+    "last_observed": "2020-10-19T01:01:01Z",
+    "number_observed": 1,
+    "object_refs": [
+      "anecdote--b64127fa-70e1-47cc-bf41-c5ab7580786c"
+    ]
+  },
+  {
+    "type": "sighting",
+    "spec_version": "2.1",
+    "id": "sighting--825c4634-1193-4636-aae4-44a4971f7355",
+    "created": "2025-11-08T02:27:17.921Z",
+    "modified": "2025-11-08T02:27:17.921Z",
+    "count": 1,
+    "sighting_of_ref": "indicator--d508defd-8778-4178-8c24-83aa43669802",
+    "observed_data_refs": [
+      "observed-data--5384cc19-81ed-43d4-81af-38ab2865d0b5"
+    ],
+    "where_sighted_refs": [
+      "identity--729b537a-aede-4b25-a77d-e3056cf37705"
+    ],
+    "extensions": {
+      "sighting-alert": {
+        "name": "user-report",
+        "log": "I have found a suspicious email",
+        "system_id": "XYZ-1234",
+        "source": "user submission"
+      },
+      "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {
+        "extension_type": "property-extension"
+      }
+    }
+  },
+  {
+    "type": "sighting",
+    "spec_version": "2.1",
+    "id": "sighting--d07bc30d-0a35-4953-88c0-2ef899a9fec4",
+    "created": "2025-11-08T02:27:17.924Z",
+    "modified": "2025-11-08T02:27:17.924Z",
+    "count": 1,
+    "sighting_of_ref": "identity--729b537a-aede-4b25-a77d-e3056cf37705",
+    "observed_data_refs": [
+      "observed-data--a891837b-6407-40d2-9716-2586d519467a"
+    ],
+    "where_sighted_refs": [
+      "identity--9e77bf9e-37b5-4d98-a54a-bed16971de7c"
+    ],
+    "extensions": {
+      "sighting-anecdote": {
+        "person_name": "user-report",
+        "person_context": "employee",
+        "report_submission": "interview"
+      },
+      "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {
+        "extension_type": "property-extension"
+      }
+    }
+  },
+  {
+    "type": "incident",
+    "spec_version": "2.1",
+    "id": "incident--245e4702-6907-45ea-a870-ab8a0bd7f470",
+    "created": "2025-11-08T02:27:17.927Z",
+    "modified": "2025-11-08T02:27:17.927Z",
+    "name": "potential phishing",
+    "extensions": {
+      "extension-definition--ef765651-680c-498d-9894-99799f2fa126": {
+        "extension_type": "property-extension",
+        "investigation_status": "new",
+        "incident_types": [
+          "dissemination-phishing-emails"
+        ],
+        "other_object_refs": [
+          "email-addr--e0bb9611-99e7-408f-b355-3141ecf6d7ae",
+          "email-addr--722a43fa-418b-4152-b9f3-94b8948240d3",
+          "user-account--c43839de-0e3d-4c31-a918-0bc722bf068f",
+          "identity--729b537a-aede-4b25-a77d-e3056cf37705",
+          "identity--9e77bf9e-37b5-4d98-a54a-bed16971de7c",
+          "url--bc5e3f96-0b78-4ce4-8fdc-1aac42e85e8b",
+          "email-message--87dbb5ae-44d9-4c41-b7b3-b802cb22b077",
+          "observed-data--5384cc19-81ed-43d4-81af-38ab2865d0b5",
+          "indicator--d508defd-8778-4178-8c24-83aa43669802",
+          "sighting--825c4634-1193-4636-aae4-44a4971f7355",
+          "identity--ecccc4ac-b89e-41b8-8a7f-e46c4d355681",
+          "anecdote--b64127fa-70e1-47cc-bf41-c5ab7580786c",
+          "observed-data--a891837b-6407-40d2-9716-2586d519467a",
+          "sighting--d07bc30d-0a35-4953-88c0-2ef899a9fec4"
+        ],
+        "event_refs": [
+          "event--230fc1c7-3aa5-4c17-9a25-d6ac427a9772"
+        ],
+        "sequence_refs": [
+          "sequence--dd84f681-9fa5-4e78-97f4-84df0dddef99",
+          "sequence--b854de06-429e-4834-b88c-3ef77f16b9a3",
+          "sequence--a50fc580-a8e8-421a-b566-55127f4f5a6a"
+        ],
+        "sequence_start_refs": [
+          "sequence--c187ab23-aeee-454a-bca3-6a6f85eef5f0",
+          "sequence--00723191-a436-4a3e-bbbf-c155c274675a"
+        ],
+        "task_refs": [
+          "task--0b61df5f-663b-482d-b1d0-549ce6a9f095",
+          "task--b8238ead-7084-498b-8369-945007c24080"
+        ],
+        "impact_refs": [
+          "impact--490f9734-d31f-4bfb-bd60-bef4147bae3b"
+        ]
+      }
+    }
+  },
+  {
+    "type": "network-traffic",
+    "spec_version": "2.1",
+    "id": "network-traffic--6a968667-1269-4dde-ae6a-1e07eb14512e",
+    "src_ref": "ipv4-addr--b4dcec6d-e736-473f-85c9-c0ea97ecbc62",
+    "dst_ref": "ipv4-addr--cbfc8337-30cb-42be-91d1-1858eaf646bb",
+    "src_port": 24678,
+    "dst_port": 80,
+    "protocols": [
+      "ipv4",
+      "tcp",
+      "http"
+    ],
+    "src_packets": 14356,
+    "dst_packets": 14356,
+    "encapsulated_by_ref": "network-traffic--0aa0b47d-5199-4876-a548-2a897d223df1"
+  },
+  {
+    "type": "network-traffic",
+    "spec_version": "2.1",
+    "id": "network-traffic--9c13018e-65be-4e36-b4cb-dc0b93464adb",
+    "src_ref": "ipv4-addr--4f1c082f-afc2-475a-b803-da5516c9e176",
+    "dst_ref": "ipv4-addr--620b1499-d1f3-47cc-9a2e-5947b8c42622",
+    "src_port": 24678,
+    "dst_port": 443,
+    "protocols": [
+      "ipv4",
+      "tcp",
+      "ssl",
+      "http"
+    ],
+    "src_packets": 14356,
+    "dst_packets": 14356,
+    "encapsulated_by_ref": "network-traffic--05b7d5e9-a9f3-42a2-83a1-ce3fe4dcfb73"
+  },
+  {
+    "type": "network-traffic",
+    "spec_version": "2.1",
+    "id": "network-traffic--0aa0b47d-5199-4876-a548-2a897d223df1",
+    "src_ref": "ipv4-addr--b4dcec6d-e736-473f-85c9-c0ea97ecbc62",
+    "dst_ref": "ipv4-addr--0441d5ec-fbba-4a0d-9030-d1114aa90040",
+    "src_port": 2487,
+    "dst_port": 1723,
+    "protocols": [
+      "ipv4",
+      "pptp"
+    ],
+    "src_byte_count": 35779,
+    "dst_byte_count": 935750,
+    "encapsulates_refs": [
+      "network-traffic--6a968667-1269-4dde-ae6a-1e07eb14512e"
+    ]
+  },
+  {
+    "type": "network-traffic",
+    "spec_version": "2.1",
+    "id": "network-traffic--05b7d5e9-a9f3-42a2-83a1-ce3fe4dcfb73",
+    "src_ref": "ipv4-addr--0441d5ec-fbba-4a0d-9030-d1114aa90040",
+    "dst_ref": "ipv4-addr--4f1c082f-afc2-475a-b803-da5516c9e176",
+    "src_port": 2487,
+    "dst_port": 53,
+    "protocols": [
+      "ipv4",
+      "udp",
+      "dns"
+    ],
+    "src_byte_count": 35779,
+    "dst_byte_count": 935750,
+    "encapsulates_refs": [
+      "network-traffic--9c13018e-65be-4e36-b4cb-dc0b93464adb"
+    ]
+  }
+]

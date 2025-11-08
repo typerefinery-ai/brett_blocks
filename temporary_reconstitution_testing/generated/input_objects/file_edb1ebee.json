@@ -1,0 +1,9 @@
+{
+  "type": "file",
+  "spec_version": "2.1",
+  "id": "file--edb1ebee-4387-41cc-943b-f94fd491118c",
+  "name": "gedit-bin",
+  "hashes": {
+    "SHA-256": "aec070645fe53ee3b3763059376134f058cc337247c978add178b6ccdfb0019f"
+  }
+}

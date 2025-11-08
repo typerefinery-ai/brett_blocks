@@ -1,0 +1,21 @@
+{
+  "anecdote_form": {
+    "base_required": {
+      "type": "anecdote",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "defanged": null,
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "value": "I clicked on the link, and my laptop screen went weird",
+      "report_date": "2025-07-27T06:01:27.511568Z",
+      "provided_by_ref": ""
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

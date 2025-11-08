@@ -1,0 +1,32 @@
+{
+  "campaign_form": {
+    "base_required": {
+      "type": "campaign",
+      "spec_version": "2.1",
+      "id": "",
+      "created": "",
+      "modified": ""
+    },
+    "base_optional": {
+      "created_by_ref": null,
+      "revoked": null,
+      "labels": [],
+      "confidence": null,
+      "lang": "en",
+      "external_references": [],
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "name": "Bank Attack",
+      "description": "More information about bank attack",
+      "status": "",
+      "aliases": [],
+      "first_seen": "",
+      "last_seen": "",
+      "objective": ""
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

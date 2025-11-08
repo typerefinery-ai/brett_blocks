@@ -1,0 +1,38 @@
+{
+  "email_message_form": {
+    "base_required": {
+      "type": "email-message",
+      "spec_version": "2.1",
+      "id": ""
+    },
+    "base_optional": {
+      "defanged": null,
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "is_multipart": false,
+      "date": "2004-04-19T12:22:23.000Z",
+      "content_type": "",
+      "from_ref": "",
+      "sender_ref": "",
+      "to_refs": [],
+      "cc_refs": [],
+      "bcc_refs": [],
+      "message_id": "",
+      "subject": "Did you see this?",
+      "received_lines": [],
+      "additional_header_fields": {
+        "Reply-To": [
+          "steve@example.com",
+          "jane@example.com"
+        ]
+      },
+      "body": "",
+      "body_multipart": [],
+      "raw_email_ref": ""
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

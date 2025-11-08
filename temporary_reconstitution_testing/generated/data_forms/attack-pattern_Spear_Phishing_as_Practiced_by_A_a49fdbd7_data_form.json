@@ -1,0 +1,51 @@
+{
+  "attack_pattern_form": {
+    "base_required": {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "",
+      "created": "",
+      "modified": ""
+    },
+    "base_optional": {
+      "created_by_ref": null,
+      "revoked": null,
+      "labels": [],
+      "confidence": null,
+      "lang": null,
+      "external_references": [
+        {
+          "source_name": "capec",
+          "external_id": "CAPEC-163"
+        }
+      ],
+      "object_marking_refs": [],
+      "granular_markings": []
+    },
+    "object": {
+      "name": "Spear Phishing as Practiced by Adversary X",
+      "description": "A particular form of spear phishing where the attacker claims that the target had won a contest, including personal details, to get them to click on a link.",
+      "x_mitre_version": "",
+      "x_mitre_contributors": [],
+      "x_mitre_modified_by_ref": "",
+      "x_mitre_domains": [],
+      "x_mitre_attack_spec_version": "",
+      "x_mitre_deprecated": "",
+      "aliases": [],
+      "kill_chain_phases": [],
+      "x_mitre_detection": "",
+      "x_mitre_platforms": [],
+      "x_mitre_data_sources": [],
+      "x_mitre_is_subtechnique": "",
+      "x_mitre_system_requirements": [],
+      "x_mitre_tactic_type": [],
+      "x_mitre_permissions_required": [],
+      "x_mitre_effective_permissions": [],
+      "x_mitre_defense_bypassed": [],
+      "x_mitre_remote_support": "",
+      "x_mitre_impact_type": []
+    },
+    "extensions": {},
+    "sub": {}
+  }
+}

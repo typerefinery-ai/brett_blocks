@@ -26,7 +26,7 @@
         "subject_public_key_algorithm": {"property":  "StringProperty", "parameters": {}},
         "subject_public_key_modulus": {"property":  "StringProperty", "parameters": {}},
         "subject_public_key_exponent": {"property":  "IntegerProperty", "parameters": {}},
-        "alternate_data_streams": {"property": "EmbeddedObjectProperty", "parameters": {"type": "X509V3ExtensionsType"}}
+        "x509_v3_extensions": {"property": "EmbeddedObjectProperty", "parameters": {"type": "X509V3ExtensionsType"}}
       },
       "extensions": {},
       "sub": {
