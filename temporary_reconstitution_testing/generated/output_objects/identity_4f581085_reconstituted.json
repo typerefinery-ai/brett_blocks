@@ -1,0 +1,10 @@
+{
+  "type": "identity",
+  "spec_version": "2.1",
+  "id": "identity--4f581085-98f0-40e9-b5f9-c1c55dd52bc7",
+  "created": "2025-11-09T13:10:44.465Z",
+  "modified": "2025-11-09T13:10:44.465Z",
+  "created_by_ref": "identity--9cec718a-bd91-424f-966b-9598b490c098",
+  "name": "ACME Widget, Inc.",
+  "identity_class": "organization"
+}

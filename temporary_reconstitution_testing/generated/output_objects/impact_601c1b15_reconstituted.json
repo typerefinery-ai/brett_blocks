@@ -1,0 +1,27 @@
+{
+  "type": "impact",
+  "spec_version": "2.1",
+  "id": "impact--601c1b15-c7a6-4f6f-ac63-32fb6198b2b4",
+  "created": "2025-11-09T13:10:44.469Z",
+  "modified": "2025-11-09T13:10:44.469Z",
+  "impact_category": "availability",
+  "description": "Laptop is stuffed",
+  "criticality": 99,
+  "end_time": "2025-07-27T06:01:28.148Z",
+  "impacted_entity_counts": {
+    "computers-mobile": 1
+  },
+  "impacted_refs": [
+    "identity--aca0fdc6-cf7e-44da-8543-4b77abdecb3f"
+  ],
+  "recoverability": "regular",
+  "start_time": "2025-07-27T06:01:28.148Z",
+  "extensions": {
+    "availability": {
+      "availability_impact": 99
+    },
+    "extension-definition--7cc33dd6-f6a1-489b-98ea-522d351d71b9": {
+      "extension_type": "new-sdo"
+    }
+  }
+}

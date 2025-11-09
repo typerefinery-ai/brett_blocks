@@ -1,5 +1,5 @@
 {
-  "domain_name_form": {
+  "domain-name_form": {
     "base_required": {
       "type": "domain-name",
       "spec_version": "2.1",

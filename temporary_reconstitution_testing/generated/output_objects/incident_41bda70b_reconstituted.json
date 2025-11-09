@@ -1,0 +1,10 @@
+{
+  "type": "incident",
+  "spec_version": "2.1",
+  "id": "incident--41bda70b-a49f-44a6-b817-7e32ebebb049",
+  "created": "2025-11-09T13:10:44.685Z",
+  "modified": "2025-11-09T13:10:44.685Z",
+  "created_by_ref": "identity--4f581085-98f0-40e9-b5f9-c1c55dd52bc7",
+  "name": "Incident 43",
+  "description": "This incident addresses APT 28 ..."
+}

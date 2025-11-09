@@ -1,5 +1,5 @@
 {
-  "intrusion_set_form": {
+  "intrusion-set_form": {
     "base_required": {
       "type": "intrusion-set",
       "spec_version": "2.1",

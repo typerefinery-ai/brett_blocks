@@ -1,0 +1,10 @@
+{
+  "type": "campaign",
+  "spec_version": "2.1",
+  "id": "campaign--43a54efa-a2f0-4c1e-8ca8-921d50c44ff5",
+  "created": "2025-11-09T13:10:44.672Z",
+  "modified": "2025-11-09T13:10:44.672Z",
+  "created_by_ref": "identity--4f581085-98f0-40e9-b5f9-c1c55dd52bc7",
+  "name": "Green Group Attacks Against Finance",
+  "description": "Campaign by Green Group against a series of targets in the financial services sector."
+}

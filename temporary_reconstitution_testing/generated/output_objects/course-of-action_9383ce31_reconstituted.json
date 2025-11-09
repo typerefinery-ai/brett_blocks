@@ -1,0 +1,10 @@
+{
+  "type": "course-of-action",
+  "spec_version": "2.1",
+  "id": "course-of-action--9383ce31-53e7-4701-b7b1-44ec4669294a",
+  "created": "2025-11-09T13:10:44.675Z",
+  "modified": "2025-11-09T13:10:44.675Z",
+  "created_by_ref": "identity--4f581085-98f0-40e9-b5f9-c1c55dd52bc7",
+  "name": "Add TCP port 80 Filter Rule to the existing Block UDP 1434 Filter",
+  "description": "This is how to add a filter rule to block inbound access to TCP port 80 to the existing UDP 1434 filter ..."
+}

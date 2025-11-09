@@ -1,0 +1,10 @@
+{
+  "type": "network-traffic",
+  "spec_version": "2.1",
+  "id": "network-traffic--e0defb22-0bb7-48f1-9939-7e101aaf238b",
+  "src_ref": "ipv4-addr--58833e61-e985-41d6-bdde-4f4a73d18a63",
+  "dst_ref": "ipv4-addr--e4c5bc1d-7765-4b39-b60f-4e137a11678a",
+  "protocols": [
+    "tcp"
+  ]
+}

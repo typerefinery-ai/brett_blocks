@@ -1,0 +1,11 @@
+{
+  "type": "network-traffic",
+  "spec_version": "2.1",
+  "id": "network-traffic--24f8956a-2959-4930-bcbb-aacd45b29fe0",
+  "dst_ref": "domain-name--b19fcbdc-ae3d-4948-ae61-ad84f39072b6",
+  "protocols": [
+    "ipv4",
+    "tcp",
+    "http"
+  ]
+}

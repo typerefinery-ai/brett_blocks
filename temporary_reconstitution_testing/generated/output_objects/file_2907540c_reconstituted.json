@@ -1,0 +1,19 @@
+{
+  "type": "file",
+  "spec_version": "2.1",
+  "id": "file--2907540c-d48f-4deb-9895-1b8892a59b6e",
+  "hashes": {
+    "SHA-256": "35a01331e9ad96f751278b891b6ea09699806faedfa237d40513d92ad1b7100f"
+  },
+  "name": "foo.zip",
+  "mime_type": "application/zip",
+  "extensions": {
+    "archive-ext": {
+      "contains_refs": [
+        "file--2f925c72-7573-426d-84a3-5b051b814338",
+        "file--bca116fc-263b-4a84-b781-f1c17579d617",
+        "file--ba4725f8-a358-493e-baf2-eb3624631b28"
+      ]
+    }
+  }
+}

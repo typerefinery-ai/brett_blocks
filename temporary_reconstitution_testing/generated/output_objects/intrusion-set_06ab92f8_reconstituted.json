@@ -1,0 +1,8 @@
+{
+  "type": "intrusion-set",
+  "spec_version": "2.1",
+  "id": "intrusion-set--06ab92f8-7856-460b-a68e-8c1473991e1a",
+  "created": "2025-11-09T13:10:44.479Z",
+  "modified": "2025-11-09T13:10:44.479Z",
+  "name": "Adversary X"
+}

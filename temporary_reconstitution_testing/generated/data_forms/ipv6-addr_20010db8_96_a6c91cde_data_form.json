@@ -1,5 +1,5 @@
 {
-  "ipv6_addr_form": {
+  "ipv6-addr_form": {
     "base_required": {
       "type": "ipv6-addr",
       "spec_version": "2.1",

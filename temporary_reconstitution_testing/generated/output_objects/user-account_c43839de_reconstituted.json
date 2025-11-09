@@ -1,9 +1,0 @@
-{
-  "type": "user-account",
-  "spec_version": "2.1",
-  "id": "user-account--c43839de-0e3d-4c31-a918-0bc722bf068f",
-  "user_id": "79563902",
-  "account_login": "nsmith",
-  "account_type": "sales,",
-  "display_name": "Naive Smith"
-}

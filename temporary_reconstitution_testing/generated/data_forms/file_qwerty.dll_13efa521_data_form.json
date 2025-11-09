@@ -1,5 +1,5 @@
 {
-  "file_form": {
+  "oca-file_form": {
     "base_required": {
       "type": "file",
       "spec_version": "2.1",
@@ -11,16 +11,6 @@
       "granular_markings": []
     },
     "object": {
-      "x_attributes": [],
-      "x_extension": "",
-      "x_path": "",
-      "x_target_path": "",
-      "x_type": "",
-      "x_unix": "",
-      "x_owner_ref": "",
-      "x_code_signature": "",
-      "x_win_drive_letter": "",
-      "x_software_ref": "",
       "hashes": {
         "SHA-256": "ceafbfd424be2ca4a5f0402cae090dda2fb0526cf521b60b60077c0f622b285a"
       },

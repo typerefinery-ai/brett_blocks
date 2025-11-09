@@ -1,5 +1,5 @@
 {
-  "user_account_form": {
+  "user-account_form": {
     "base_required": {
       "type": "user-account",
       "spec_version": "2.1",

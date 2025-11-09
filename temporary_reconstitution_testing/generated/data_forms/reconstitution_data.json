@@ -157,8 +157,8 @@
     "campaign--12a111f0-b824-4baf-a224-83b80237a094": "campaign_Bank_Attack_c1815d13_data_form.json"
   },
   "id_to_form_name_mapping": {
-    "attack-pattern--7e33a43e-e34b-40ec-89da-36c9bb2cacd5": "attack_pattern_form",
-    "intrusion-set--0c7e22ad-b099-4dc3-b0df-2ea3f49ae2e6": "intrusion_set_form",
+    "attack-pattern--7e33a43e-e34b-40ec-89da-36c9bb2cacd5": "attack-pattern_form",
+    "intrusion-set--0c7e22ad-b099-4dc3-b0df-2ea3f49ae2e6": "intrusion-set_form",
     "relationship--57b56a43-b8b0-4cba-9deb-34e3e1faed9e": "relationship_form",
     "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff": "identity_form",
     "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65": "identity_form",
@@ -168,60 +168,60 @@
     "malware--0c7b5b88-8ff7-4a4d-aa9d-feb398cd0061": "malware_form",
     "artifact--ca17bcf8-9846-5ab4-8662-75c1bf6e63ee": "artifact_form",
     "artifact--6f437177-6e48-5cf8-9d9e-872a2bddd641": "artifact_form",
-    "autonomous-system--f720c34b-98ae-597f-ade5-27dc241e8c74": "autonomous_system_form",
+    "autonomous-system--f720c34b-98ae-597f-ade5-27dc241e8c74": "autonomous-system_form",
     "sequence--5ced78bf-aab8-4650-9c9e-a6914d68b46e": "sequence_form",
     "sequence--fb97db29-be35-4f8d-b483-c2899750838d": "sequence_form",
-    "sequence--4c9100f2-06a1-4570-ba51-7dabde2371b8": "sequence_form",
-    "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef": "sequence_form",
-    "sequence--10fe3d71-a3d1-4f83-ad54-9c290d7136e9": "sequence_form",
+    "sequence--4c9100f2-06a1-4570-ba51-7dabde2371b8": "single-step_form",
+    "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef": "single-step_form",
+    "sequence--10fe3d71-a3d1-4f83-ad54-9c290d7136e9": "single-step_form",
     "impact--1b87fa10-78fd-4b3e-970e-dea91e9a7457": "impact_form",
     "event--e8f641e7-89ca-4776-a828-6838d8eccdca": "event_form",
     "task--3f23faa4-e21e-4880-bd8a-c8d89aa453aa": "task_form",
     "task--01537439-3b2d-4afe-81a3-45b2dd35c655": "task_form",
-    "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212": "email_addr_form",
-    "email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3": "email_addr_form",
-    "email-addr--4722424c-7012-56b0-84d5-01d076fc547b": "email_addr_form",
-    "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b": "user_account_form",
-    "user-account--83658594-537d-5c32-b9f0-137354bd9bc3": "user_account_form",
+    "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212": "email-addr_form",
+    "email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3": "email-addr_form",
+    "email-addr--4722424c-7012-56b0-84d5-01d076fc547b": "email-addr_form",
+    "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b": "user-account_form",
+    "user-account--83658594-537d-5c32-b9f0-137354bd9bc3": "user-account_form",
     "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017": "identity_form",
     "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b": "identity_form",
     "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7": "url_form",
-    "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d": "email_message_form",
-    "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad": "observed_data_form",
+    "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d": "email-message_form",
+    "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad": "observed-data_form",
     "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544": "indicator_form",
-    "sighting--06faabfe-490a-4516-a66e-1340aad78870": "sighting_form",
+    "sighting--06faabfe-490a-4516-a66e-1340aad78870": "parallel-step_form",
     "identity--3789a438-8d49-4f2a-bb1a-06d3575d2f33": "identity_form",
     "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f": "anecdote_form",
-    "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e": "observed_data_form",
+    "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e": "observed-data_form",
     "sighting--4fb5cd06-3c90-42d7-be38-abea7f752fba": "sighting_form",
     "incident--145eb841-90db-4526-8407-b25fd2d705c1": "incident_form",
     "campaign--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f": "campaign_form",
-    "course-of-action--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f": "course_of_action_form",
+    "course-of-action--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f": "course-of-action_form",
     "relationship--183159a8-3919-4c9a-ad77-054c1fa9ac5a": "relationship_form",
     "directory--93c0a9b0-520d-545d-9094-1d80adf46b05": "directory_form",
-    "ipv4-addr--ff26c055-6336-5bc5-b98d-13d6226742dd": "ipv4_addr_form",
-    "domain-name--3c10e93f-798e-52a6-a0c1-08156efab7f5": "domain_name_form",
-    "email-addr--2d77a846-6264-5d51-b586-e48322ea1ea3": "email_addr_form",
-    "email-addr--9b7e29b3-fd8d-562e-b3f0-8fc8134f5dda": "email_addr_form",
-    "email-addr--2d77a846-6264-5d51-b586-e43822ea1ea3": "email_addr_form",
-    "email-message--0c57a381-2a17-5e61-8754-5ef96efb286c": "email_message_form",
-    "email-addr--89f52ea8-d6ef-51e9-8fce-6a29236436ed": "email_addr_form",
-    "email-addr--d1b3bf0c-f02a-51a1-8102-11aba7959868": "email_addr_form",
-    "email-addr--e4ee5301-b52d-59cd-a8fa-8036738c7194": "email_addr_form",
+    "ipv4-addr--ff26c055-6336-5bc5-b98d-13d6226742dd": "ipv4-addr_form",
+    "domain-name--3c10e93f-798e-52a6-a0c1-08156efab7f5": "domain-name_form",
+    "email-addr--2d77a846-6264-5d51-b586-e48322ea1ea3": "email-addr_form",
+    "email-addr--9b7e29b3-fd8d-562e-b3f0-8fc8134f5dda": "email-addr_form",
+    "email-addr--2d77a846-6264-5d51-b586-e43822ea1ea3": "email-addr_form",
+    "email-message--0c57a381-2a17-5e61-8754-5ef96efb286c": "email-message_form",
+    "email-addr--89f52ea8-d6ef-51e9-8fce-6a29236436ed": "email-addr_form",
+    "email-addr--d1b3bf0c-f02a-51a1-8102-11aba7959868": "email-addr_form",
+    "email-addr--e4ee5301-b52d-59cd-a8fa-8036738c7194": "email-addr_form",
     "artifact--4cce66f8-6eaa-53cb-85d5-3a85fca3a6c5": "artifact_form",
-    "file--6ce09d9c-0ad3-5ebf-900c-e3cb288955b5": "file_form",
-    "email-message--cf9b4b7f-14c8-5955-8065-020e0316b559": "email_message_form",
-    "email-addr--98f25ea8-d6ef-51e9-8fce-6a29236436ed": "email_addr_form",
-    "email-addr--e4ee5301-b52d-59cd-a8fa-7630838c7194": "email_addr_form",
-    "email-message--72b7698f-10c2-565a-a2a6-b4996a2f2265": "email_message_form",
-    "file--019fde1c-94ca-5967-8b3c-a906a51d87ac": "file_form",
-    "file--94fc2163-dec3-5715-b824-6e689c4de865": "file_form",
-    "file--d07ff290-d7e0-545b-a2ff-04602a9e0b73": "file_form",
+    "file--6ce09d9c-0ad3-5ebf-900c-e3cb288955b5": "oca-file_form",
+    "email-message--cf9b4b7f-14c8-5955-8065-020e0316b559": "email-message_form",
+    "email-addr--98f25ea8-d6ef-51e9-8fce-6a29236436ed": "email-addr_form",
+    "email-addr--e4ee5301-b52d-59cd-a8fa-7630838c7194": "email-addr_form",
+    "email-message--72b7698f-10c2-565a-a2a6-b4996a2f2265": "email-message_form",
+    "file--019fde1c-94ca-5967-8b3c-a906a51d87ac": "oca-file_form",
+    "file--94fc2163-dec3-5715-b824-6e689c4de865": "oca-file_form",
+    "file--d07ff290-d7e0-545b-a2ff-04602a9e0b73": "oca-file_form",
     "file--9a1f834d-2506-5367-baec-7aa63996ac43": "file_form",
-    "file--e277603e-1060-5ad4-9937-c26c97f1ca68": "file_form",
-    "file--e277603e-6010-5ad4-9937-c26c97f1ca68": "file_form",
+    "file--e277603e-1060-5ad4-9937-c26c97f1ca68": "oca-file_form",
+    "file--e277603e-6010-5ad4-9937-c26c97f1ca68": "oca-file_form",
     "directory--93c0a9b0-520d-545d-9094-1a08ddf46b05": "directory_form",
-    "file--5a27d487-c542-5f97-a131-a8866b477b46": "file_form",
+    "file--5a27d487-c542-5f97-a131-a8866b477b46": "oca-file_form",
     "file--fb0419a8-f09c-57f8-be64-71a80417591c": "file_form",
     "file--c7d1e135-8b34-549a-bb47-302f5cf998ed": "file_form",
     "file--73c4cd13-7206-5100-88ef-822c42d3f02c": "file_form",
@@ -229,93 +229,93 @@
     "grouping--84e4d88f-44ea-4bcd-bbf3-b2c1c320bcb3": "grouping_form",
     "incident--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f": "incident_form",
     "infrastructure--38c47d93-d984-4fd9-b87b-d69d0841628d": "infrastructure_form",
-    "ipv4-addr--b4e29b62-2053-47c4-bab4-bbce39e5ed67": "ipv4_addr_form",
-    "ipv4-addr--84445275-e371-444b-baea-ac7d07a180fd": "ipv4_addr_form",
+    "ipv4-addr--b4e29b62-2053-47c4-bab4-bbce39e5ed67": "ipv4-addr_form",
+    "ipv4-addr--84445275-e371-444b-baea-ac7d07a180fd": "ipv4-addr_form",
     "malware--16f4f3f9-1b68-4abb-bb66-7639d49f1e30": "malware_form",
     "relationship--7aebe2f0-28d6-48a2-9c3e-b0aaa60266ef": "relationship_form",
     "relationship--b82b2819-3b86-4bd5-afb3-fa36cfbc3f18": "relationship_form",
     "relationship--7aebe2f0-28d6-48a2-9c3e-b0aaa60266ed": "relationship_form",
-    "intrusion-set--4e78f46f-a023-4e5f-bc24-71b3ca22ec29": "intrusion_set_form",
-    "ipv4-addr--5853f6a4-638f-5b4e-9b0f-ded361ae3812": "ipv4_addr_form",
-    "ipv4-addr--ff26c055-6336-5bc5-b89d-13d6226742dd": "ipv4_addr_form",
-    "ipv6-addr--5daf7456-8863-5481-9d42-237d477697f4": "ipv6_addr_form",
-    "ipv6-addr--1e61d36c-a16c-53b7-a80f-2a00161c96b1": "ipv6_addr_form",
+    "intrusion-set--4e78f46f-a023-4e5f-bc24-71b3ca22ec29": "intrusion-set_form",
+    "ipv4-addr--5853f6a4-638f-5b4e-9b0f-ded361ae3812": "ipv4-addr_form",
+    "ipv4-addr--ff26c055-6336-5bc5-b89d-13d6226742dd": "ipv4-addr_form",
+    "ipv6-addr--5daf7456-8863-5481-9d42-237d477697f4": "ipv6-addr_form",
+    "ipv6-addr--1e61d36c-a16c-53b7-a80f-2a00161c96b1": "ipv6-addr_form",
     "location--a48985a2-5c0a-40e3-ae33-446a5553fcec": "location_form",
     "location--328aa5fd-b278-4a7b-8243-987c53862ec1": "location_form",
     "location--a6e9345f-5a15-4c29-8bb3-7dcc5d168d64": "location_form",
-    "mac-addr--65cfcf98-8a6e-5a1b-8f61-379ac4f92d00": "mac_addr_form",
+    "mac-addr--65cfcf98-8a6e-5a1b-8f61-379ac4f92d00": "mac-addr_form",
     "directory--255cb0e4-8bdb-5d63-bb32-9c6f0b733ab2": "directory_form",
-    "file--1190f2c9-166f-55f1-9706-eea3971d8082": "file_form",
+    "file--1190f2c9-166f-55f1-9706-eea3971d8082": "oca-file_form",
     "malware--8bcf14e9-2ba2-44ef-9e32-fbbc9d2608b2": "malware_form",
-    "malware-analysis--d25167b7-fed0-4068-9ccd-a73dd2c5b07c": "malware_analysis_form",
+    "malware-analysis--d25167b7-fed0-4068-9ccd-a73dd2c5b07c": "malware-analysis_form",
     "relationship--014841f8-eb38-4673-9904-70f67c92dd8b": "relationship_form",
     "mutex--eba44954-d4e4-5d3b-814c-2b17dd8de300": "mutex_form",
-    "domain-name--3c10e93f-798e-5a26-a0c1-08156efab7f5": "domain_name_form",
-    "network-traffic--c95e972a-20a4-5307-b00d-b8393faf02c5": "network_traffic_form",
-    "ipv4-addr--4d22aae0-9fb2-5427-8819-e4f6abf20a53": "ipv4_addr_form",
-    "ipv4-addr--ff26c055-6336-b55c-b98d-13d6226742dd": "ipv4_addr_form",
-    "network-traffic--2568d22a-8998-58eb-99ec-3c8ca74f527d": "network_traffic_form",
-    "ipv4-addr--6da8dad3-4de3-5f8e-ab23-45d0b8f12f16": "ipv4_addr_form",
-    "network-traffic--f8ae967a-3dc3-5cdf-8f94-8505abff00c2": "network_traffic_form",
-    "ipv4-addr--d7177770-fc12-586b-9244-426596a7008e": "ipv4_addr_form",
-    "ipv4-addr--03b708d9-7761-5523-ab75-5ea096294a68": "ipv4_addr_form",
-    "network-traffic--e7a939ca-78c6-5f27-8ae0-4ad112454626": "network_traffic_form",
-    "network-traffic--b800571d-124f-5a56-a0c7-581e0dc3dcd3": "network_traffic_form",
-    "ipv4-addr--89830c10-2e94-57fa-8ca6-e0537d2719d1": "ipv4_addr_form",
-    "ipv4-addr--45f4c6fb-2d7d-576a-a571-edc78d899a72": "ipv4_addr_form",
-    "network-traffic--09ca55c3-97e5-5966-bad0-1d41d557ae13": "network_traffic_form",
-    "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7": "ipv4_addr_form",
-    "ipv4-addr--03b708d9-7761-2355-ab75-5ea096294a68": "ipv4_addr_form",
-    "network-traffic--630d7bb1-0bbc-53a6-a6d4-f3c2d35c2734": "network_traffic_form",
+    "domain-name--3c10e93f-798e-5a26-a0c1-08156efab7f5": "domain-name_form",
+    "network-traffic--c95e972a-20a4-5307-b00d-b8393faf02c5": "network-traffic_form",
+    "ipv4-addr--4d22aae0-9fb2-5427-8819-e4f6abf20a53": "ipv4-addr_form",
+    "ipv4-addr--ff26c055-6336-b55c-b98d-13d6226742dd": "ipv4-addr_form",
+    "network-traffic--2568d22a-8998-58eb-99ec-3c8ca74f527d": "network-traffic_form",
+    "ipv4-addr--6da8dad3-4de3-5f8e-ab23-45d0b8f12f16": "ipv4-addr_form",
+    "network-traffic--f8ae967a-3dc3-5cdf-8f94-8505abff00c2": "network-traffic_form",
+    "ipv4-addr--d7177770-fc12-586b-9244-426596a7008e": "ipv4-addr_form",
+    "ipv4-addr--03b708d9-7761-5523-ab75-5ea096294a68": "ipv4-addr_form",
+    "network-traffic--e7a939ca-78c6-5f27-8ae0-4ad112454626": "network-traffic_form",
+    "network-traffic--b800571d-124f-5a56-a0c7-581e0dc3dcd3": "network-traffic_form",
+    "ipv4-addr--89830c10-2e94-57fa-8ca6-e0537d2719d1": "ipv4-addr_form",
+    "ipv4-addr--45f4c6fb-2d7d-576a-a571-edc78d899a72": "ipv4-addr_form",
+    "network-traffic--09ca55c3-97e5-5966-bad0-1d41d557ae13": "network-traffic_form",
+    "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7": "ipv4-addr_form",
+    "ipv4-addr--03b708d9-7761-2355-ab75-5ea096294a68": "ipv4-addr_form",
+    "network-traffic--630d7bb1-0bbc-53a6-a6d4-f3c2d35c2734": "network-traffic_form",
     "note--0c7b5b88-8ff7-4a4d-aa9d-feb398cd0061": "note_form",
-    "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8": "ipv4_addr_form",
-    "domain-name--ecb120bf-2694-4902-a737-62b74539a41b": "domain_name_form",
-    "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf": "observed_data_form",
-    "opinion--b01efc25-77b4-4003-b18b-f6e24b5cd9f7": "opinion_form",
-    "file--edb1ebee-4387-41cc-943b-f94fd491118c": "file_form",
-    "process--d2ec5aab-808d-4492-890a-3c1a1e3cb06e": "process_form",
-    "process--de02a3e4-4b96-460a-b799-684347004444": "process_form",
-    "file--4b9a516b-4974-4ff8-a50d-a8b8d552ce1f": "file_form",
-    "process--70b17c6c-93e5-4c80-8683-5a4d4e51f2c1": "process_form",
+    "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8": "ipv4-addr_form",
+    "domain-name--ecb120bf-2694-4902-a737-62b74539a41b": "domain-name_form",
+    "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf": "observed-data_form",
+    "opinion--b01efc25-77b4-4003-b18b-f6e24b5cd9f7": "observed-data_form",
+    "file--edb1ebee-4387-41cc-943b-f94fd491118c": "oca-file_form",
+    "process--d2ec5aab-808d-4492-890a-3c1a1e3cb06e": "observed-data_form",
+    "process--de02a3e4-4b96-460a-b799-684347004444": "observed-data_form",
+    "file--4b9a516b-4974-4ff8-a50d-a8b8d552ce1f": "oca-file_form",
+    "process--70b17c6c-93e5-4c80-8683-5a4d4e51f2c1": "observed-data_form",
     "software--a1827f6d-ca53-5605-9e93-4316cd22a00a": "software_form",
-    "threat-actor--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f": "threat_actor_form",
+    "threat-actor--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f": "threat-actor_form",
     "tool--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f": "tool_form",
     "url--c1477287-23ac-5971-a010-5c287877fa60": "url_form",
-    "user-account--0d5b424b-93b8-5cd8-ac36-306e1789d63c": "user_account_form",
-    "user-account--9bd3afcf-deee-54f9-83e2-520653cb6bba": "user_account_form",
-    "user-account--0d5b424b-93b8-5cd8-a3c6-306e1789d63c": "user_account_form",
+    "user-account--0d5b424b-93b8-5cd8-ac36-306e1789d63c": "user-account_form",
+    "user-account--9bd3afcf-deee-54f9-83e2-520653cb6bba": "user-account_form",
+    "user-account--0d5b424b-93b8-5cd8-a3c6-306e1789d63c": "user-account_form",
     "vulnerability--0c7b5b88-8ff7-4a4d-aa9d-feb398cd0061": "vulnerability_form",
-    "windows-registry-key--9d60798d-4e3e-5fe4-af8a-0e4986f0f90b": "windows_registry_key_form",
-    "windows-registry-key--2ba37ae7-2745-5082-9dfd-9486dad41016": "windows_registry_key_form",
-    "x509-certificate--463d7b2a-8516-5a50-a3d7-6f801465d5de": "x509_certificate_form",
-    "x509-certificate--b595eaf0-0b28-5dad-9e8e-0fab9c1facc9": "x509_certificate_form",
+    "windows-registry-key--9d60798d-4e3e-5fe4-af8a-0e4986f0f90b": "windows-registry-key_form",
+    "windows-registry-key--2ba37ae7-2745-5082-9dfd-9486dad41016": "windows-registry-key_form",
+    "x509-certificate--463d7b2a-8516-5a50-a3d7-6f801465d5de": "x509-certificate_form",
+    "x509-certificate--b595eaf0-0b28-5dad-9e8e-0fab9c1facc9": "x509-certificate_form",
     "report--84e4d88f-44ea-4bcd-bbf3-b2c1c320bcb3": "report_form",
     "sighting--ee20065d-2555-424f-ad9e-0f8428623c75": "sighting_form",
-    "observed-data--d0f26641-47df-4cb2-a790-9ae96f534519": "observed_data_form",
+    "observed-data--d0f26641-47df-4cb2-a790-9ae96f534519": "observed-data_form",
     "sighting--f9b0225b-fe10-4bf6-a24b-680d9b88b3a6": "sighting_form",
     "sighting--2b02cd96-a136-4914-8881-4b882babce45": "sighting_form",
-    "observed-data--59bf6dfb-544a-44ae-bc53-007cba6c0ef4": "observed_data_form",
-    "ipv4-addr--4d22aae0-2bf9-5427-8819-e4f6abf20a53": "ipv4_addr_form",
-    "ipv4-addr--ffe65ce3-bf2a-577c-bb7e-947d39198637": "ipv4_addr_form",
-    "network-traffic--ac267abc-1a41-536d-8e8d-98458d9bf491": "network_traffic_form",
-    "network-traffic--53e0bf48-2eee-5c03-8bde-ed7049d2c0a3": "network_traffic_form",
-    "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89": "ipv4_addr_form",
-    "ipv4-addr--bb884ffe-f2e4-56bb-a0c3-21f6711cb649": "ipv4_addr_form",
-    "network-traffic--b4a8c150-e214-57a3-9017-e85dfa345f46": "network_traffic_form",
-    "network-traffic--65a6016d-a91c-5781-baad-178cd55f01d4": "network_traffic_form",
+    "observed-data--59bf6dfb-544a-44ae-bc53-007cba6c0ef4": "observed-data_form",
+    "ipv4-addr--4d22aae0-2bf9-5427-8819-e4f6abf20a53": "ipv4-addr_form",
+    "ipv4-addr--ffe65ce3-bf2a-577c-bb7e-947d39198637": "ipv4-addr_form",
+    "network-traffic--ac267abc-1a41-536d-8e8d-98458d9bf491": "network-traffic_form",
+    "network-traffic--53e0bf48-2eee-5c03-8bde-ed7049d2c0a3": "network-traffic_form",
+    "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89": "ipv4-addr_form",
+    "ipv4-addr--bb884ffe-f2e4-56bb-a0c3-21f6711cb649": "ipv4-addr_form",
+    "network-traffic--b4a8c150-e214-57a3-9017-e85dfa345f46": "network-traffic_form",
+    "network-traffic--65a6016d-a91c-5781-baad-178cd55f01d4": "network-traffic_form",
     "campaign--12a111f0-b824-4baf-a224-83b80237a094": "campaign_form"
   },
   "dependency_graph": {
     "attack-pattern--7e33a43e-e34b-40ec-89da-36c9bb2cacd5": {
       "depends_on": [],
       "filename": "attack-pattern_Spear_Phishing_as_Practiced_by_A_a49fdbd7_data_form.json",
-      "form_name": "attack_pattern_form",
+      "form_name": "attack-pattern_form",
       "object_type": "attack-pattern"
     },
     "intrusion-set--0c7e22ad-b099-4dc3-b0df-2ea3f49ae2e6": {
       "depends_on": [],
       "filename": "intrusion-set_Adversary_X_e86d86a1_data_form.json",
-      "form_name": "intrusion_set_form",
+      "form_name": "intrusion-set_form",
       "object_type": "intrusion-set"
     },
     "relationship--57b56a43-b8b0-4cba-9deb-34e3e1faed9e": {
@@ -360,8 +360,8 @@
     "relationship--44298a74-ba52-4f0c-87a3-1824e67d7fad": {
       "depends_on": [
         "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
-        "malware--31b940d4-6f7f-459a-80ea-9c1f17b5891b"
+        "malware--31b940d4-6f7f-459a-80ea-9c1f17b5891b",
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
       ],
       "filename": "relationship_9712544f_data_form.json",
       "form_name": "relationship_form",
@@ -388,7 +388,7 @@
     "autonomous-system--f720c34b-98ae-597f-ade5-27dc241e8c74": {
       "depends_on": [],
       "filename": "autonomous-system_Slime_Industries_55fca61b_data_form.json",
-      "form_name": "autonomous_system_form",
+      "form_name": "autonomous-system_form",
       "object_type": "autonomous-system"
     },
     "sequence--5ced78bf-aab8-4650-9c9e-a6914d68b46e": {
@@ -412,7 +412,7 @@
         "event--e8f641e7-89ca-4776-a828-6838d8eccdca"
       ],
       "filename": "sequence_4b18341e_data_form.json",
-      "form_name": "sequence_form",
+      "form_name": "single-step_form",
       "object_type": "sequence"
     },
     "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef": {
@@ -420,7 +420,7 @@
         "task--3f23faa4-e21e-4880-bd8a-c8d89aa453aa"
       ],
       "filename": "sequence_1a3e2c78_data_form.json",
-      "form_name": "sequence_form",
+      "form_name": "single-step_form",
       "object_type": "sequence"
     },
     "sequence--10fe3d71-a3d1-4f83-ad54-9c290d7136e9": {
@@ -428,7 +428,7 @@
         "task--01537439-3b2d-4afe-81a3-45b2dd35c655"
       ],
       "filename": "sequence_1a3e2c78_data_form.json",
-      "form_name": "sequence_form",
+      "form_name": "single-step_form",
       "object_type": "sequence"
     },
     "impact--1b87fa10-78fd-4b3e-970e-dea91e9a7457": {
@@ -460,13 +460,13 @@
     "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212": {
       "depends_on": [],
       "filename": "email-addr_evilnorthkorea.nk_ac6bb56a_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "object_type": "email-addr"
     },
     "email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3": {
       "depends_on": [],
       "filename": "email-addr_different5man.org_a118483c_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "object_type": "email-addr"
     },
     "email-addr--4722424c-7012-56b0-84d5-01d076fc547b": {
@@ -474,25 +474,25 @@
         "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
       ],
       "filename": "email-addr_naiveexample.com_cba8054e_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "object_type": "email-addr"
     },
     "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b": {
       "depends_on": [],
       "filename": "user-account_34099ef3_data_form.json",
-      "form_name": "user_account_form",
+      "form_name": "user-account_form",
       "object_type": "user-account"
     },
     "user-account--83658594-537d-5c32-b9f0-137354bd9bc3": {
       "depends_on": [],
       "filename": "user-account_14278140_data_form.json",
-      "form_name": "user_account_form",
+      "form_name": "user-account_form",
       "object_type": "user-account"
     },
     "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017": {
       "depends_on": [
-        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
-        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
       ],
       "filename": "identity_Naive_Smith_5dcc2148_data_form.json",
       "form_name": "identity_form",
@@ -519,19 +519,19 @@
         "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212"
       ],
       "filename": "email-message_ba6cfdcd_data_form.json",
-      "form_name": "email_message_form",
+      "form_name": "email-message_form",
       "object_type": "email-message"
     },
     "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad": {
       "depends_on": [
-        "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
-        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
-        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
         "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
-        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d"
+        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+        "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
       ],
       "filename": "observed-data_647b2235_data_form.json",
-      "form_name": "observed_data_form",
+      "form_name": "observed-data_form",
       "object_type": "observed-data"
     },
     "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544": {
@@ -542,12 +542,12 @@
     },
     "sighting--06faabfe-490a-4516-a66e-1340aad78870": {
       "depends_on": [
+        "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544",
         "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
-        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
-        "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544"
+        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017"
       ],
       "filename": "sighting_a34c747d_data_form.json",
-      "form_name": "sighting_form",
+      "form_name": "parallel-step_form",
       "object_type": "sighting"
     },
     "identity--3789a438-8d49-4f2a-bb1a-06d3575d2f33": {
@@ -569,14 +569,14 @@
         "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f"
       ],
       "filename": "observed-data_2592880d_data_form.json",
-      "form_name": "observed_data_form",
+      "form_name": "observed-data_form",
       "object_type": "observed-data"
     },
     "sighting--4fb5cd06-3c90-42d7-be38-abea7f752fba": {
       "depends_on": [
         "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b",
-        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
-        "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e"
+        "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e",
+        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017"
       ],
       "filename": "sighting_967a9232_data_form.json",
       "form_name": "sighting_form",
@@ -584,29 +584,29 @@
     },
     "incident--145eb841-90db-4526-8407-b25fd2d705c1": {
       "depends_on": [
-        "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b",
-        "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f",
-        "event--e8f641e7-89ca-4776-a828-6838d8eccdca",
-        "identity--3789a438-8d49-4f2a-bb1a-06d3575d2f33",
-        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
-        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
-        "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef",
-        "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
-        "task--01537439-3b2d-4afe-81a3-45b2dd35c655",
-        "sighting--4fb5cd06-3c90-42d7-be38-abea7f752fba",
-        "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544",
         "sighting--06faabfe-490a-4516-a66e-1340aad78870",
-        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
-        "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e",
+        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+        "identity--3789a438-8d49-4f2a-bb1a-06d3575d2f33",
+        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+        "sighting--4fb5cd06-3c90-42d7-be38-abea7f752fba",
+        "event--e8f641e7-89ca-4776-a828-6838d8eccdca",
+        "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
         "sequence--fb97db29-be35-4f8d-b483-c2899750838d",
+        "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b",
+        "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+        "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f",
         "sequence--4c9100f2-06a1-4570-ba51-7dabde2371b8",
         "sequence--5ced78bf-aab8-4650-9c9e-a6914d68b46e",
-        "sequence--10fe3d71-a3d1-4f83-ad54-9c290d7136e9",
+        "task--01537439-3b2d-4afe-81a3-45b2dd35c655",
+        "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef",
+        "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e",
+        "task--3f23faa4-e21e-4880-bd8a-c8d89aa453aa",
+        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
         "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
-        "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
-        "impact--1b87fa10-78fd-4b3e-970e-dea91e9a7457",
-        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
-        "task--3f23faa4-e21e-4880-bd8a-c8d89aa453aa"
+        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+        "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544",
+        "sequence--10fe3d71-a3d1-4f83-ad54-9c290d7136e9",
+        "impact--1b87fa10-78fd-4b3e-970e-dea91e9a7457"
       ],
       "filename": "incident_potential_phishing_6cd0514f_data_form.json",
       "form_name": "incident_form",
@@ -625,14 +625,14 @@
         "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
       ],
       "filename": "course-of-action_Add_TCP_port_80_Filter_Rule_to_t_40745bee_data_form.json",
-      "form_name": "course_of_action_form",
+      "form_name": "course-of-action_form",
       "object_type": "course-of-action"
     },
     "relationship--183159a8-3919-4c9a-ad77-054c1fa9ac5a": {
       "depends_on": [
         "course-of-action--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
-        "malware--0c7b5b88-8ff7-4a4d-aa9d-feb398cd0061",
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
+        "malware--0c7b5b88-8ff7-4a4d-aa9d-feb398cd0061"
       ],
       "filename": "relationship_cbf4e6e2_data_form.json",
       "form_name": "relationship_form",
@@ -647,7 +647,7 @@
     "ipv4-addr--ff26c055-6336-5bc5-b98d-13d6226742dd": {
       "depends_on": [],
       "filename": "ipv4-addr_198.51.100.3_21757ef6_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr"
     },
     "domain-name--3c10e93f-798e-52a6-a0c1-08156efab7f5": {
@@ -655,25 +655,25 @@
         "ipv4-addr--ff26c055-6336-5bc5-b98d-13d6226742dd"
       ],
       "filename": "domain-name_site.of.interest.zaz_1b323b39_data_form.json",
-      "form_name": "domain_name_form",
+      "form_name": "domain-name_form",
       "object_type": "domain-name"
     },
     "email-addr--2d77a846-6264-5d51-b586-e48322ea1ea3": {
       "depends_on": [],
       "filename": "email-addr_johnexample.com_5c1979cf_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "object_type": "email-addr"
     },
     "email-addr--9b7e29b3-fd8d-562e-b3f0-8fc8134f5dda": {
       "depends_on": [],
       "filename": "email-addr_joeexample.com_ee0443d3_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "object_type": "email-addr"
     },
     "email-addr--2d77a846-6264-5d51-b586-e43822ea1ea3": {
       "depends_on": [],
       "filename": "email-addr_bobexample.com_a75fb53b_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "object_type": "email-addr"
     },
     "email-message--0c57a381-2a17-5e61-8754-5ef96efb286c": {
@@ -682,25 +682,25 @@
         "email-addr--2d77a846-6264-5d51-b586-e43822ea1ea3"
       ],
       "filename": "email-message_a318d8be_data_form.json",
-      "form_name": "email_message_form",
+      "form_name": "email-message_form",
       "object_type": "email-message"
     },
     "email-addr--89f52ea8-d6ef-51e9-8fce-6a29236436ed": {
       "depends_on": [],
       "filename": "email-addr_jdoeexample.com_aa0a050e_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "object_type": "email-addr"
     },
     "email-addr--d1b3bf0c-f02a-51a1-8102-11aba7959868": {
       "depends_on": [],
       "filename": "email-addr_bobexample.com_a75fb53b_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "object_type": "email-addr"
     },
     "email-addr--e4ee5301-b52d-59cd-a8fa-8036738c7194": {
       "depends_on": [],
       "filename": "email-addr_maryexample.com_d0701be4_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "object_type": "email-addr"
     },
     "artifact--4cce66f8-6eaa-53cb-85d5-3a85fca3a6c5": {
@@ -712,29 +712,29 @@
     "file--6ce09d9c-0ad3-5ebf-900c-e3cb288955b5": {
       "depends_on": [],
       "filename": "file_tabby_pics.zip_7c48eb11_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "object_type": "file"
     },
     "email-message--cf9b4b7f-14c8-5955-8065-020e0316b559": {
       "depends_on": [
         "email-addr--e4ee5301-b52d-59cd-a8fa-8036738c7194",
-        "email-addr--89f52ea8-d6ef-51e9-8fce-6a29236436ed",
-        "email-addr--d1b3bf0c-f02a-51a1-8102-11aba7959868"
+        "email-addr--d1b3bf0c-f02a-51a1-8102-11aba7959868",
+        "email-addr--89f52ea8-d6ef-51e9-8fce-6a29236436ed"
       ],
       "filename": "email-message_8c03ed61_data_form.json",
-      "form_name": "email_message_form",
+      "form_name": "email-message_form",
       "object_type": "email-message"
     },
     "email-addr--98f25ea8-d6ef-51e9-8fce-6a29236436ed": {
       "depends_on": [],
       "filename": "email-addr_jdoeexample.com_aa0a050e_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "object_type": "email-addr"
     },
     "email-addr--e4ee5301-b52d-59cd-a8fa-7630838c7194": {
       "depends_on": [],
       "filename": "email-addr_maryexample.com_d0701be4_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "object_type": "email-addr"
     },
     "email-message--72b7698f-10c2-565a-a2a6-b4996a2f2265": {
@@ -743,32 +743,32 @@
         "email-addr--98f25ea8-d6ef-51e9-8fce-6a29236436ed"
       ],
       "filename": "email-message_87012e40_data_form.json",
-      "form_name": "email_message_form",
+      "form_name": "email-message_form",
       "object_type": "email-message"
     },
     "file--019fde1c-94ca-5967-8b3c-a906a51d87ac": {
       "depends_on": [],
       "filename": "file_849f89a1_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "object_type": "file"
     },
     "file--94fc2163-dec3-5715-b824-6e689c4de865": {
       "depends_on": [],
       "filename": "file_5a32d9b7_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "object_type": "file"
     },
     "file--d07ff290-d7e0-545b-a2ff-04602a9e0b73": {
       "depends_on": [],
       "filename": "file_efd3b44a_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "object_type": "file"
     },
     "file--9a1f834d-2506-5367-baec-7aa63996ac43": {
       "depends_on": [
-        "file--94fc2163-dec3-5715-b824-6e689c4de865",
         "file--d07ff290-d7e0-545b-a2ff-04602a9e0b73",
-        "file--019fde1c-94ca-5967-8b3c-a906a51d87ac"
+        "file--019fde1c-94ca-5967-8b3c-a906a51d87ac",
+        "file--94fc2163-dec3-5715-b824-6e689c4de865"
       ],
       "filename": "file_foo.zip_69003771_data_form.json",
       "form_name": "file_form",
@@ -777,13 +777,13 @@
     "file--e277603e-1060-5ad4-9937-c26c97f1ca68": {
       "depends_on": [],
       "filename": "file_foo.dll_27cb6b87_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "object_type": "file"
     },
     "file--e277603e-6010-5ad4-9937-c26c97f1ca68": {
       "depends_on": [],
       "filename": "file_foo.dll_27cb6b87_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "object_type": "file"
     },
     "directory--93c0a9b0-520d-545d-9094-1a08ddf46b05": {
@@ -797,7 +797,7 @@
         "directory--93c0a9b0-520d-545d-9094-1a08ddf46b05"
       ],
       "filename": "file_qwerty.dll_13efa521_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "object_type": "file"
     },
     "file--fb0419a8-f09c-57f8-be64-71a80417591c": {
@@ -826,10 +826,10 @@
     },
     "grouping--84e4d88f-44ea-4bcd-bbf3-b2c1c320bcb3": {
       "depends_on": [
-        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
         "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
+        "file--fb0419a8-f09c-57f8-be64-71a80417591c",
         "relationship--44298a74-ba52-4f0c-87a3-1824e67d7fad",
-        "file--fb0419a8-f09c-57f8-be64-71a80417591c"
+        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
       ],
       "filename": "grouping_The_Black_Vine_Cyberespionage_Gr_1c741f9d_data_form.json",
       "form_name": "grouping_form",
@@ -852,13 +852,13 @@
     "ipv4-addr--b4e29b62-2053-47c4-bab4-bbce39e5ed67": {
       "depends_on": [],
       "filename": "ipv4-addr_198.51.100.3_21757ef6_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr"
     },
     "ipv4-addr--84445275-e371-444b-baea-ac7d07a180fd": {
       "depends_on": [],
       "filename": "ipv4-addr_198.52.200.4_2a9a193e_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr"
     },
     "malware--16f4f3f9-1b68-4abb-bb66-7639d49f1e30": {
@@ -878,8 +878,8 @@
     },
     "relationship--b82b2819-3b86-4bd5-afb3-fa36cfbc3f18": {
       "depends_on": [
-        "infrastructure--38c47d93-d984-4fd9-b87b-d69d0841628d",
-        "ipv4-addr--84445275-e371-444b-baea-ac7d07a180fd"
+        "ipv4-addr--84445275-e371-444b-baea-ac7d07a180fd",
+        "infrastructure--38c47d93-d984-4fd9-b87b-d69d0841628d"
       ],
       "filename": "relationship_9e317227_data_form.json",
       "form_name": "relationship_form",
@@ -899,31 +899,31 @@
         "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
       ],
       "filename": "intrusion-set_Bobcat_Breakin_ae38d9d4_data_form.json",
-      "form_name": "intrusion_set_form",
+      "form_name": "intrusion-set_form",
       "object_type": "intrusion-set"
     },
     "ipv4-addr--5853f6a4-638f-5b4e-9b0f-ded361ae3812": {
       "depends_on": [],
       "filename": "ipv4-addr_198.51.100.0_24_d680028f_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr"
     },
     "ipv4-addr--ff26c055-6336-5bc5-b89d-13d6226742dd": {
       "depends_on": [],
       "filename": "ipv4-addr_198.51.100.3_21757ef6_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr"
     },
     "ipv6-addr--5daf7456-8863-5481-9d42-237d477697f4": {
       "depends_on": [],
       "filename": "ipv6-addr_20010db8_96_a6c91cde_data_form.json",
-      "form_name": "ipv6_addr_form",
+      "form_name": "ipv6-addr_form",
       "object_type": "ipv6-addr"
     },
     "ipv6-addr--1e61d36c-a16c-53b7-a80f-2a00161c96b1": {
       "depends_on": [],
       "filename": "ipv6-addr_20010db885a3000000008a2e03707334_a9004842_data_form.json",
-      "form_name": "ipv6_addr_form",
+      "form_name": "ipv6-addr_form",
       "object_type": "ipv6-addr"
     },
     "location--a48985a2-5c0a-40e3-ae33-446a5553fcec": {
@@ -953,7 +953,7 @@
     "mac-addr--65cfcf98-8a6e-5a1b-8f61-379ac4f92d00": {
       "depends_on": [],
       "filename": "mac-addr_d2fb49243718_fac416ce_data_form.json",
-      "form_name": "mac_addr_form",
+      "form_name": "mac-addr_form",
       "object_type": "mac-addr"
     },
     "directory--255cb0e4-8bdb-5d63-bb32-9c6f0b733ab2": {
@@ -967,7 +967,7 @@
         "directory--255cb0e4-8bdb-5d63-bb32-9c6f0b733ab2"
       ],
       "filename": "file_a92e5b2bae.exe_2dd9e10b_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "object_type": "file"
     },
     "malware--8bcf14e9-2ba2-44ef-9e32-fbbc9d2608b2": {
@@ -981,13 +981,13 @@
     "malware-analysis--d25167b7-fed0-4068-9ccd-a73dd2c5b07c": {
       "depends_on": [],
       "filename": "malware-analysis_8f58f153_data_form.json",
-      "form_name": "malware_analysis_form",
+      "form_name": "malware-analysis_form",
       "object_type": "malware-analysis"
     },
     "relationship--014841f8-eb38-4673-9904-70f67c92dd8b": {
       "depends_on": [
-        "malware--8bcf14e9-2ba2-44ef-9e32-fbbc9d2608b2",
-        "malware-analysis--d25167b7-fed0-4068-9ccd-a73dd2c5b07c"
+        "malware-analysis--d25167b7-fed0-4068-9ccd-a73dd2c5b07c",
+        "malware--8bcf14e9-2ba2-44ef-9e32-fbbc9d2608b2"
       ],
       "filename": "relationship_9eec8d5d_data_form.json",
       "form_name": "relationship_form",
@@ -1002,7 +1002,7 @@
     "domain-name--3c10e93f-798e-5a26-a0c1-08156efab7f5": {
       "depends_on": [],
       "filename": "domain-name_example.com_54a697e8_data_form.json",
-      "form_name": "domain_name_form",
+      "form_name": "domain-name_form",
       "object_type": "domain-name"
     },
     "network-traffic--c95e972a-20a4-5307-b00d-b8393faf02c5": {
@@ -1010,19 +1010,19 @@
         "domain-name--3c10e93f-798e-5a26-a0c1-08156efab7f5"
       ],
       "filename": "network-traffic_211a3aab_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "object_type": "network-traffic"
     },
     "ipv4-addr--4d22aae0-9fb2-5427-8819-e4f6abf20a53": {
       "depends_on": [],
       "filename": "ipv4-addr_198.51.100.2_f63f223a_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr"
     },
     "ipv4-addr--ff26c055-6336-b55c-b98d-13d6226742dd": {
       "depends_on": [],
       "filename": "ipv4-addr_198.51.100.3_21757ef6_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr"
     },
     "network-traffic--2568d22a-8998-58eb-99ec-3c8ca74f527d": {
@@ -1031,13 +1031,13 @@
         "ipv4-addr--4d22aae0-9fb2-5427-8819-e4f6abf20a53"
       ],
       "filename": "network-traffic_86252141_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "object_type": "network-traffic"
     },
     "ipv4-addr--6da8dad3-4de3-5f8e-ab23-45d0b8f12f16": {
       "depends_on": [],
       "filename": "ipv4-addr_198.51.100.53_81e9614b_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr"
     },
     "network-traffic--f8ae967a-3dc3-5cdf-8f94-8505abff00c2": {
@@ -1045,19 +1045,19 @@
         "ipv4-addr--6da8dad3-4de3-5f8e-ab23-45d0b8f12f16"
       ],
       "filename": "network-traffic_c86e22e5_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "object_type": "network-traffic"
     },
     "ipv4-addr--d7177770-fc12-586b-9244-426596a7008e": {
       "depends_on": [],
       "filename": "ipv4-addr_198.51.100.9_93cdc724_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr"
     },
     "ipv4-addr--03b708d9-7761-5523-ab75-5ea096294a68": {
       "depends_on": [],
       "filename": "ipv4-addr_203.0.113.5_3400006b_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr"
     },
     "network-traffic--e7a939ca-78c6-5f27-8ae0-4ad112454626": {
@@ -1066,7 +1066,7 @@
         "ipv4-addr--03b708d9-7761-5523-ab75-5ea096294a68"
       ],
       "filename": "network-traffic_788d76e7_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "object_type": "network-traffic"
     },
     "network-traffic--b800571d-124f-5a56-a0c7-581e0dc3dcd3": {
@@ -1074,49 +1074,49 @@
         "ipv6-addr--1e61d36c-a16c-53b7-a80f-2a00161c96b1"
       ],
       "filename": "network-traffic_d26a64b2_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "object_type": "network-traffic"
     },
     "ipv4-addr--89830c10-2e94-57fa-8ca6-e0537d2719d1": {
       "depends_on": [],
       "filename": "ipv4-addr_198.51.100.5_3099f011_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr"
     },
     "ipv4-addr--45f4c6fb-2d7d-576a-a571-edc78d899a72": {
       "depends_on": [],
       "filename": "ipv4-addr_198.51.100.6_6117c400_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr"
     },
     "network-traffic--09ca55c3-97e5-5966-bad0-1d41d557ae13": {
       "depends_on": [
-        "ipv4-addr--45f4c6fb-2d7d-576a-a571-edc78d899a72",
-        "ipv4-addr--89830c10-2e94-57fa-8ca6-e0537d2719d1"
+        "ipv4-addr--89830c10-2e94-57fa-8ca6-e0537d2719d1",
+        "ipv4-addr--45f4c6fb-2d7d-576a-a571-edc78d899a72"
       ],
       "filename": "network-traffic_62205fa8_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "object_type": "network-traffic"
     },
     "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7": {
       "depends_on": [],
       "filename": "ipv4-addr_203.0.113.1_15a5b86f_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr"
     },
     "ipv4-addr--03b708d9-7761-2355-ab75-5ea096294a68": {
       "depends_on": [],
       "filename": "ipv4-addr_203.0.113.5_3400006b_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr"
     },
     "network-traffic--630d7bb1-0bbc-53a6-a6d4-f3c2d35c2734": {
       "depends_on": [
-        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7",
-        "ipv4-addr--03b708d9-7761-2355-ab75-5ea096294a68"
+        "ipv4-addr--03b708d9-7761-2355-ab75-5ea096294a68",
+        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7"
       ],
       "filename": "network-traffic_6f98752b_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "object_type": "network-traffic"
     },
     "note--0c7b5b88-8ff7-4a4d-aa9d-feb398cd0061": {
@@ -1130,7 +1130,7 @@
     "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8": {
       "depends_on": [],
       "filename": "ipv4-addr_198.51.100.3_21757ef6_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr"
     },
     "domain-name--ecb120bf-2694-4902-a737-62b74539a41b": {
@@ -1138,17 +1138,17 @@
         "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8"
       ],
       "filename": "domain-name_example.com_ed7de34f_data_form.json",
-      "form_name": "domain_name_form",
+      "form_name": "domain-name_form",
       "object_type": "domain-name"
     },
     "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf": {
       "depends_on": [
-        "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8",
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
         "domain-name--ecb120bf-2694-4902-a737-62b74539a41b",
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
+        "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8"
       ],
       "filename": "observed-data_54bd39a6_data_form.json",
-      "form_name": "observed_data_form",
+      "form_name": "observed-data_form",
       "object_type": "observed-data"
     },
     "opinion--b01efc25-77b4-4003-b18b-f6e24b5cd9f7": {
@@ -1157,13 +1157,13 @@
         "relationship--57b56a43-b8b0-4cba-9deb-34e3e1faed9e"
       ],
       "filename": "opinion_0e4d9347_data_form.json",
-      "form_name": "opinion_form",
+      "form_name": "observed-data_form",
       "object_type": "opinion"
     },
     "file--edb1ebee-4387-41cc-943b-f94fd491118c": {
       "depends_on": [],
       "filename": "file_gedit-bin_d28b09ef_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "object_type": "file"
     },
     "process--d2ec5aab-808d-4492-890a-3c1a1e3cb06e": {
@@ -1171,19 +1171,19 @@
         "file--c7d1e135-8b34-549a-bb47-302f5cf998ed"
       ],
       "filename": "process_2d758000_data_form.json",
-      "form_name": "process_form",
+      "form_name": "observed-data_form",
       "object_type": "process"
     },
     "process--de02a3e4-4b96-460a-b799-684347004444": {
       "depends_on": [],
       "filename": "process_04b3272d_data_form.json",
-      "form_name": "process_form",
+      "form_name": "observed-data_form",
       "object_type": "process"
     },
     "file--4b9a516b-4974-4ff8-a50d-a8b8d552ce1f": {
       "depends_on": [],
       "filename": "file_sirvizio.exe_7d95b079_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "object_type": "file"
     },
     "process--70b17c6c-93e5-4c80-8683-5a4d4e51f2c1": {
@@ -1191,7 +1191,7 @@
         "file--c7d1e135-8b34-549a-bb47-302f5cf998ed"
       ],
       "filename": "process_042f2703_data_form.json",
-      "form_name": "process_form",
+      "form_name": "observed-data_form",
       "object_type": "process"
     },
     "software--a1827f6d-ca53-5605-9e93-4316cd22a00a": {
@@ -1205,7 +1205,7 @@
         "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff"
       ],
       "filename": "threat-actor_Evil_Org_a5fa248e_data_form.json",
-      "form_name": "threat_actor_form",
+      "form_name": "threat-actor_form",
       "object_type": "threat-actor"
     },
     "tool--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f": {
@@ -1225,19 +1225,19 @@
     "user-account--0d5b424b-93b8-5cd8-ac36-306e1789d63c": {
       "depends_on": [],
       "filename": "user-account_0af53392_data_form.json",
-      "form_name": "user_account_form",
+      "form_name": "user-account_form",
       "object_type": "user-account"
     },
     "user-account--9bd3afcf-deee-54f9-83e2-520653cb6bba": {
       "depends_on": [],
       "filename": "user-account_118eff22_data_form.json",
-      "form_name": "user_account_form",
+      "form_name": "user-account_form",
       "object_type": "user-account"
     },
     "user-account--0d5b424b-93b8-5cd8-a3c6-306e1789d63c": {
       "depends_on": [],
       "filename": "user-account_aa564010_data_form.json",
-      "form_name": "user_account_form",
+      "form_name": "user-account_form",
       "object_type": "user-account"
     },
     "vulnerability--0c7b5b88-8ff7-4a4d-aa9d-feb398cd0061": {
@@ -1251,33 +1251,33 @@
     "windows-registry-key--9d60798d-4e3e-5fe4-af8a-0e4986f0f90b": {
       "depends_on": [],
       "filename": "windows-registry-key_b5aef65c_data_form.json",
-      "form_name": "windows_registry_key_form",
+      "form_name": "windows-registry-key_form",
       "object_type": "windows-registry-key"
     },
     "windows-registry-key--2ba37ae7-2745-5082-9dfd-9486dad41016": {
       "depends_on": [],
       "filename": "windows-registry-key_ff4d5744_data_form.json",
-      "form_name": "windows_registry_key_form",
+      "form_name": "windows-registry-key_form",
       "object_type": "windows-registry-key"
     },
     "x509-certificate--463d7b2a-8516-5a50-a3d7-6f801465d5de": {
       "depends_on": [],
       "filename": "x509-certificate_1b49af9f_data_form.json",
-      "form_name": "x509_certificate_form",
+      "form_name": "x509-certificate_form",
       "object_type": "x509-certificate"
     },
     "x509-certificate--b595eaf0-0b28-5dad-9e8e-0fab9c1facc9": {
       "depends_on": [],
       "filename": "x509-certificate_4c5a4de0_data_form.json",
-      "form_name": "x509_certificate_form",
+      "form_name": "x509-certificate_form",
       "object_type": "x509-certificate"
     },
     "report--84e4d88f-44ea-4bcd-bbf3-b2c1c320bcb3": {
       "depends_on": [
         "relationship--f82356ae-fe6c-437c-9c24-6b64314ae68a",
         "indicator--26ffb872-1dd9-446e-b6f5-d58527e5b5d2",
-        "identity--a463ffb3-1bd9-4d94-b02d-74e4f1658283",
-        "campaign--83422c77-904c-4dc1-aff5-5c38f3a2c55c"
+        "campaign--83422c77-904c-4dc1-aff5-5c38f3a2c55c",
+        "identity--a463ffb3-1bd9-4d94-b02d-74e4f1658283"
       ],
       "filename": "report_The_Black_Vine_Cyberespionage_Gr_f0130b16_data_form.json",
       "form_name": "report_form",
@@ -1285,10 +1285,10 @@
     },
     "sighting--ee20065d-2555-424f-ad9e-0f8428623c75": {
       "depends_on": [
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
         "identity--b67d30ff-02ac-498a-92f9-32f845f448ff",
-        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
-        "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf"
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
+        "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf",
+        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
       ],
       "filename": "sighting_c7402765_data_form.json",
       "form_name": "sighting_form",
@@ -1296,17 +1296,17 @@
     },
     "observed-data--d0f26641-47df-4cb2-a790-9ae96f534519": {
       "depends_on": [
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
-        "file--30038539-3eb6-44bc-a59e-d0d3fe84695a"
+        "file--30038539-3eb6-44bc-a59e-d0d3fe84695a",
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff"
       ],
       "filename": "observed-data_66e05e73_data_form.json",
-      "form_name": "observed_data_form",
+      "form_name": "observed-data_form",
       "object_type": "observed-data"
     },
     "sighting--f9b0225b-fe10-4bf6-a24b-680d9b88b3a6": {
       "depends_on": [
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
-        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
+        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff"
       ],
       "filename": "sighting_4a02881e_data_form.json",
       "form_name": "sighting_form",
@@ -1314,10 +1314,10 @@
     },
     "sighting--2b02cd96-a136-4914-8881-4b882babce45": {
       "depends_on": [
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
         "identity--b67d30ff-02ac-498a-92f9-32f845f448ff",
-        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
-        "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf"
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
+        "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf",
+        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
       ],
       "filename": "sighting_c7402765_data_form.json",
       "form_name": "sighting_form",
@@ -1329,29 +1329,29 @@
         "file--30038539-3eb6-44bc-a59e-d0d3fe84695a"
       ],
       "filename": "observed-data_66e05e73_data_form.json",
-      "form_name": "observed_data_form",
+      "form_name": "observed-data_form",
       "object_type": "observed-data"
     },
     "ipv4-addr--4d22aae0-2bf9-5427-8819-e4f6abf20a53": {
       "depends_on": [],
       "filename": "ipv4-addr_198.51.100.2_f63f223a_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr"
     },
     "ipv4-addr--ffe65ce3-bf2a-577c-bb7e-947d39198637": {
       "depends_on": [],
       "filename": "ipv4-addr_203.0.113.2_74fed45c_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr"
     },
     "network-traffic--ac267abc-1a41-536d-8e8d-98458d9bf491": {
       "depends_on": [
         "network-traffic--53e0bf48-2eee-5c03-8bde-ed7049d2c0a3",
-        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7",
-        "ipv4-addr--4d22aae0-2bf9-5427-8819-e4f6abf20a53"
+        "ipv4-addr--4d22aae0-2bf9-5427-8819-e4f6abf20a53",
+        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7"
       ],
       "filename": "network-traffic_4e7703fa_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "object_type": "network-traffic"
     },
     "network-traffic--53e0bf48-2eee-5c03-8bde-ed7049d2c0a3": {
@@ -1361,39 +1361,39 @@
         "ipv4-addr--4d22aae0-2bf9-5427-8819-e4f6abf20a53"
       ],
       "filename": "network-traffic_514c7f76_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "object_type": "network-traffic"
     },
     "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89": {
       "depends_on": [],
       "filename": "ipv4-addr_198.51.100.34_87c94326_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr"
     },
     "ipv4-addr--bb884ffe-f2e4-56bb-a0c3-21f6711cb649": {
       "depends_on": [],
       "filename": "ipv4-addr_198.51.100.54_12b1a5ee_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr"
     },
     "network-traffic--b4a8c150-e214-57a3-9017-e85dfa345f46": {
       "depends_on": [
         "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89",
-        "network-traffic--65a6016d-a91c-5781-baad-178cd55f01d4",
-        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7"
+        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7",
+        "network-traffic--65a6016d-a91c-5781-baad-178cd55f01d4"
       ],
       "filename": "network-traffic_6fc7bbe9_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "object_type": "network-traffic"
     },
     "network-traffic--65a6016d-a91c-5781-baad-178cd55f01d4": {
       "depends_on": [
-        "ipv4-addr--bb884ffe-f2e4-56bb-a0c3-21f6711cb649",
+        "network-traffic--b4a8c150-e214-57a3-9017-e85dfa345f46",
         "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89",
-        "network-traffic--b4a8c150-e214-57a3-9017-e85dfa345f46"
+        "ipv4-addr--bb884ffe-f2e4-56bb-a0c3-21f6711cb649"
       ],
       "filename": "network-traffic_8bfd500e_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "object_type": "network-traffic"
     },
     "campaign--12a111f0-b824-4baf-a224-83b80237a094": {
@@ -1432,7 +1432,7 @@
       "sequence_order": 4,
       "object_id": "attack-pattern--7e33a43e-e34b-40ec-89da-36c9bb2cacd5",
       "filename": "attack-pattern_Spear_Phishing_as_Practiced_by_A_a49fdbd7_data_form.json",
-      "form_name": "attack_pattern_form",
+      "form_name": "attack-pattern_form",
       "object_type": "attack-pattern",
       "dependencies": []
     },
@@ -1440,7 +1440,7 @@
       "sequence_order": 5,
       "object_id": "autonomous-system--f720c34b-98ae-597f-ade5-27dc241e8c74",
       "filename": "autonomous-system_Slime_Industries_55fca61b_data_form.json",
-      "form_name": "autonomous_system_form",
+      "form_name": "autonomous-system_form",
       "object_type": "autonomous-system",
       "dependencies": []
     },
@@ -1480,7 +1480,7 @@
       "sequence_order": 10,
       "object_id": "domain-name--3c10e93f-798e-52a6-a0c1-08156efab7f5",
       "filename": "domain-name_site.of.interest.zaz_1b323b39_data_form.json",
-      "form_name": "domain_name_form",
+      "form_name": "domain-name_form",
       "object_type": "domain-name",
       "dependencies": [
         "ipv4-addr--ff26c055-6336-5bc5-b98d-13d6226742dd"
@@ -1490,7 +1490,7 @@
       "sequence_order": 11,
       "object_id": "domain-name--3c10e93f-798e-5a26-a0c1-08156efab7f5",
       "filename": "domain-name_example.com_54a697e8_data_form.json",
-      "form_name": "domain_name_form",
+      "form_name": "domain-name_form",
       "object_type": "domain-name",
       "dependencies": []
     },
@@ -1498,7 +1498,7 @@
       "sequence_order": 12,
       "object_id": "domain-name--ecb120bf-2694-4902-a737-62b74539a41b",
       "filename": "domain-name_example.com_ed7de34f_data_form.json",
-      "form_name": "domain_name_form",
+      "form_name": "domain-name_form",
       "object_type": "domain-name",
       "dependencies": [
         "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8"
@@ -1508,7 +1508,7 @@
       "sequence_order": 13,
       "object_id": "email-addr--2d77a846-6264-5d51-b586-e43822ea1ea3",
       "filename": "email-addr_bobexample.com_a75fb53b_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "object_type": "email-addr",
       "dependencies": []
     },
@@ -1516,7 +1516,7 @@
       "sequence_order": 14,
       "object_id": "email-addr--2d77a846-6264-5d51-b586-e48322ea1ea3",
       "filename": "email-addr_johnexample.com_5c1979cf_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "object_type": "email-addr",
       "dependencies": []
     },
@@ -1524,7 +1524,7 @@
       "sequence_order": 15,
       "object_id": "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
       "filename": "email-addr_naiveexample.com_cba8054e_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "object_type": "email-addr",
       "dependencies": [
         "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
@@ -1534,7 +1534,7 @@
       "sequence_order": 16,
       "object_id": "email-addr--89f52ea8-d6ef-51e9-8fce-6a29236436ed",
       "filename": "email-addr_jdoeexample.com_aa0a050e_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "object_type": "email-addr",
       "dependencies": []
     },
@@ -1542,7 +1542,7 @@
       "sequence_order": 17,
       "object_id": "email-addr--98f25ea8-d6ef-51e9-8fce-6a29236436ed",
       "filename": "email-addr_jdoeexample.com_aa0a050e_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "object_type": "email-addr",
       "dependencies": []
     },
@@ -1550,7 +1550,7 @@
       "sequence_order": 18,
       "object_id": "email-addr--9b7e29b3-fd8d-562e-b3f0-8fc8134f5dda",
       "filename": "email-addr_joeexample.com_ee0443d3_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "object_type": "email-addr",
       "dependencies": []
     },
@@ -1558,7 +1558,7 @@
       "sequence_order": 19,
       "object_id": "email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3",
       "filename": "email-addr_different5man.org_a118483c_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "object_type": "email-addr",
       "dependencies": []
     },
@@ -1566,7 +1566,7 @@
       "sequence_order": 20,
       "object_id": "email-addr--d1b3bf0c-f02a-51a1-8102-11aba7959868",
       "filename": "email-addr_bobexample.com_a75fb53b_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "object_type": "email-addr",
       "dependencies": []
     },
@@ -1574,7 +1574,7 @@
       "sequence_order": 21,
       "object_id": "email-addr--e4ee5301-b52d-59cd-a8fa-7630838c7194",
       "filename": "email-addr_maryexample.com_d0701be4_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "object_type": "email-addr",
       "dependencies": []
     },
@@ -1582,7 +1582,7 @@
       "sequence_order": 22,
       "object_id": "email-addr--e4ee5301-b52d-59cd-a8fa-8036738c7194",
       "filename": "email-addr_maryexample.com_d0701be4_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "object_type": "email-addr",
       "dependencies": []
     },
@@ -1590,7 +1590,7 @@
       "sequence_order": 23,
       "object_id": "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
       "filename": "email-addr_evilnorthkorea.nk_ac6bb56a_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "object_type": "email-addr",
       "dependencies": []
     },
@@ -1598,7 +1598,7 @@
       "sequence_order": 24,
       "object_id": "email-message--0c57a381-2a17-5e61-8754-5ef96efb286c",
       "filename": "email-message_a318d8be_data_form.json",
-      "form_name": "email_message_form",
+      "form_name": "email-message_form",
       "object_type": "email-message",
       "dependencies": [
         "email-addr--9b7e29b3-fd8d-562e-b3f0-8fc8134f5dda",
@@ -1609,7 +1609,7 @@
       "sequence_order": 25,
       "object_id": "email-message--72b7698f-10c2-565a-a2a6-b4996a2f2265",
       "filename": "email-message_87012e40_data_form.json",
-      "form_name": "email_message_form",
+      "form_name": "email-message_form",
       "object_type": "email-message",
       "dependencies": [
         "email-addr--e4ee5301-b52d-59cd-a8fa-7630838c7194",
@@ -1620,12 +1620,12 @@
       "sequence_order": 26,
       "object_id": "email-message--cf9b4b7f-14c8-5955-8065-020e0316b559",
       "filename": "email-message_8c03ed61_data_form.json",
-      "form_name": "email_message_form",
+      "form_name": "email-message_form",
       "object_type": "email-message",
       "dependencies": [
         "email-addr--e4ee5301-b52d-59cd-a8fa-8036738c7194",
-        "email-addr--89f52ea8-d6ef-51e9-8fce-6a29236436ed",
-        "email-addr--d1b3bf0c-f02a-51a1-8102-11aba7959868"
+        "email-addr--d1b3bf0c-f02a-51a1-8102-11aba7959868",
+        "email-addr--89f52ea8-d6ef-51e9-8fce-6a29236436ed"
       ]
     },
     {
@@ -1640,7 +1640,7 @@
       "sequence_order": 28,
       "object_id": "file--019fde1c-94ca-5967-8b3c-a906a51d87ac",
       "filename": "file_849f89a1_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "object_type": "file",
       "dependencies": []
     },
@@ -1648,7 +1648,7 @@
       "sequence_order": 29,
       "object_id": "file--1190f2c9-166f-55f1-9706-eea3971d8082",
       "filename": "file_a92e5b2bae.exe_2dd9e10b_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "object_type": "file",
       "dependencies": [
         "directory--255cb0e4-8bdb-5d63-bb32-9c6f0b733ab2"
@@ -1658,7 +1658,7 @@
       "sequence_order": 30,
       "object_id": "file--4b9a516b-4974-4ff8-a50d-a8b8d552ce1f",
       "filename": "file_sirvizio.exe_7d95b079_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "object_type": "file",
       "dependencies": []
     },
@@ -1666,7 +1666,7 @@
       "sequence_order": 31,
       "object_id": "file--5a27d487-c542-5f97-a131-a8866b477b46",
       "filename": "file_qwerty.dll_13efa521_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "object_type": "file",
       "dependencies": [
         "directory--93c0a9b0-520d-545d-9094-1a08ddf46b05"
@@ -1676,7 +1676,7 @@
       "sequence_order": 32,
       "object_id": "file--6ce09d9c-0ad3-5ebf-900c-e3cb288955b5",
       "filename": "file_tabby_pics.zip_7c48eb11_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "object_type": "file",
       "dependencies": []
     },
@@ -1692,7 +1692,7 @@
       "sequence_order": 34,
       "object_id": "file--94fc2163-dec3-5715-b824-6e689c4de865",
       "filename": "file_5a32d9b7_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "object_type": "file",
       "dependencies": []
     },
@@ -1703,9 +1703,9 @@
       "form_name": "file_form",
       "object_type": "file",
       "dependencies": [
-        "file--94fc2163-dec3-5715-b824-6e689c4de865",
         "file--d07ff290-d7e0-545b-a2ff-04602a9e0b73",
-        "file--019fde1c-94ca-5967-8b3c-a906a51d87ac"
+        "file--019fde1c-94ca-5967-8b3c-a906a51d87ac",
+        "file--94fc2163-dec3-5715-b824-6e689c4de865"
       ]
     },
     {
@@ -1720,7 +1720,7 @@
       "sequence_order": 37,
       "object_id": "file--d07ff290-d7e0-545b-a2ff-04602a9e0b73",
       "filename": "file_efd3b44a_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "object_type": "file",
       "dependencies": []
     },
@@ -1728,7 +1728,7 @@
       "sequence_order": 38,
       "object_id": "file--e277603e-1060-5ad4-9937-c26c97f1ca68",
       "filename": "file_foo.dll_27cb6b87_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "object_type": "file",
       "dependencies": []
     },
@@ -1736,7 +1736,7 @@
       "sequence_order": 39,
       "object_id": "file--e277603e-6010-5ad4-9937-c26c97f1ca68",
       "filename": "file_foo.dll_27cb6b87_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "object_type": "file",
       "dependencies": []
     },
@@ -1752,7 +1752,7 @@
       "sequence_order": 41,
       "object_id": "file--edb1ebee-4387-41cc-943b-f94fd491118c",
       "filename": "file_gedit-bin_d28b09ef_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "object_type": "file",
       "dependencies": []
     },
@@ -1831,7 +1831,7 @@
       "sequence_order": 50,
       "object_id": "intrusion-set--0c7e22ad-b099-4dc3-b0df-2ea3f49ae2e6",
       "filename": "intrusion-set_Adversary_X_e86d86a1_data_form.json",
-      "form_name": "intrusion_set_form",
+      "form_name": "intrusion-set_form",
       "object_type": "intrusion-set",
       "dependencies": []
     },
@@ -1839,7 +1839,7 @@
       "sequence_order": 51,
       "object_id": "ipv4-addr--03b708d9-7761-2355-ab75-5ea096294a68",
       "filename": "ipv4-addr_203.0.113.5_3400006b_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr",
       "dependencies": []
     },
@@ -1847,7 +1847,7 @@
       "sequence_order": 52,
       "object_id": "ipv4-addr--03b708d9-7761-5523-ab75-5ea096294a68",
       "filename": "ipv4-addr_203.0.113.5_3400006b_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr",
       "dependencies": []
     },
@@ -1855,7 +1855,7 @@
       "sequence_order": 53,
       "object_id": "ipv4-addr--45f4c6fb-2d7d-576a-a571-edc78d899a72",
       "filename": "ipv4-addr_198.51.100.6_6117c400_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr",
       "dependencies": []
     },
@@ -1863,7 +1863,7 @@
       "sequence_order": 54,
       "object_id": "ipv4-addr--4d22aae0-2bf9-5427-8819-e4f6abf20a53",
       "filename": "ipv4-addr_198.51.100.2_f63f223a_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr",
       "dependencies": []
     },
@@ -1871,7 +1871,7 @@
       "sequence_order": 55,
       "object_id": "ipv4-addr--4d22aae0-9fb2-5427-8819-e4f6abf20a53",
       "filename": "ipv4-addr_198.51.100.2_f63f223a_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr",
       "dependencies": []
     },
@@ -1879,7 +1879,7 @@
       "sequence_order": 56,
       "object_id": "ipv4-addr--5853f6a4-638f-5b4e-9b0f-ded361ae3812",
       "filename": "ipv4-addr_198.51.100.0_24_d680028f_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr",
       "dependencies": []
     },
@@ -1887,7 +1887,7 @@
       "sequence_order": 57,
       "object_id": "ipv4-addr--6da8dad3-4de3-5f8e-ab23-45d0b8f12f16",
       "filename": "ipv4-addr_198.51.100.53_81e9614b_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr",
       "dependencies": []
     },
@@ -1895,7 +1895,7 @@
       "sequence_order": 58,
       "object_id": "ipv4-addr--84445275-e371-444b-baea-ac7d07a180fd",
       "filename": "ipv4-addr_198.52.200.4_2a9a193e_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr",
       "dependencies": []
     },
@@ -1903,7 +1903,7 @@
       "sequence_order": 59,
       "object_id": "ipv4-addr--89830c10-2e94-57fa-8ca6-e0537d2719d1",
       "filename": "ipv4-addr_198.51.100.5_3099f011_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr",
       "dependencies": []
     },
@@ -1911,7 +1911,7 @@
       "sequence_order": 60,
       "object_id": "ipv4-addr--b4e29b62-2053-47c4-bab4-bbce39e5ed67",
       "filename": "ipv4-addr_198.51.100.3_21757ef6_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr",
       "dependencies": []
     },
@@ -1919,7 +1919,7 @@
       "sequence_order": 61,
       "object_id": "ipv4-addr--bb884ffe-f2e4-56bb-a0c3-21f6711cb649",
       "filename": "ipv4-addr_198.51.100.54_12b1a5ee_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr",
       "dependencies": []
     },
@@ -1927,7 +1927,7 @@
       "sequence_order": 62,
       "object_id": "ipv4-addr--d7177770-fc12-586b-9244-426596a7008e",
       "filename": "ipv4-addr_198.51.100.9_93cdc724_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr",
       "dependencies": []
     },
@@ -1935,7 +1935,7 @@
       "sequence_order": 63,
       "object_id": "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7",
       "filename": "ipv4-addr_203.0.113.1_15a5b86f_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr",
       "dependencies": []
     },
@@ -1943,7 +1943,7 @@
       "sequence_order": 64,
       "object_id": "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8",
       "filename": "ipv4-addr_198.51.100.3_21757ef6_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr",
       "dependencies": []
     },
@@ -1951,7 +1951,7 @@
       "sequence_order": 65,
       "object_id": "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89",
       "filename": "ipv4-addr_198.51.100.34_87c94326_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr",
       "dependencies": []
     },
@@ -1959,7 +1959,7 @@
       "sequence_order": 66,
       "object_id": "ipv4-addr--ff26c055-6336-5bc5-b89d-13d6226742dd",
       "filename": "ipv4-addr_198.51.100.3_21757ef6_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr",
       "dependencies": []
     },
@@ -1967,7 +1967,7 @@
       "sequence_order": 67,
       "object_id": "ipv4-addr--ff26c055-6336-5bc5-b98d-13d6226742dd",
       "filename": "ipv4-addr_198.51.100.3_21757ef6_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr",
       "dependencies": []
     },
@@ -1975,7 +1975,7 @@
       "sequence_order": 68,
       "object_id": "ipv4-addr--ff26c055-6336-b55c-b98d-13d6226742dd",
       "filename": "ipv4-addr_198.51.100.3_21757ef6_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr",
       "dependencies": []
     },
@@ -1983,7 +1983,7 @@
       "sequence_order": 69,
       "object_id": "ipv4-addr--ffe65ce3-bf2a-577c-bb7e-947d39198637",
       "filename": "ipv4-addr_203.0.113.2_74fed45c_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "object_type": "ipv4-addr",
       "dependencies": []
     },
@@ -1991,7 +1991,7 @@
       "sequence_order": 70,
       "object_id": "ipv6-addr--1e61d36c-a16c-53b7-a80f-2a00161c96b1",
       "filename": "ipv6-addr_20010db885a3000000008a2e03707334_a9004842_data_form.json",
-      "form_name": "ipv6_addr_form",
+      "form_name": "ipv6-addr_form",
       "object_type": "ipv6-addr",
       "dependencies": []
     },
@@ -1999,7 +1999,7 @@
       "sequence_order": 71,
       "object_id": "ipv6-addr--5daf7456-8863-5481-9d42-237d477697f4",
       "filename": "ipv6-addr_20010db8_96_a6c91cde_data_form.json",
-      "form_name": "ipv6_addr_form",
+      "form_name": "ipv6-addr_form",
       "object_type": "ipv6-addr",
       "dependencies": []
     },
@@ -2007,7 +2007,7 @@
       "sequence_order": 72,
       "object_id": "mac-addr--65cfcf98-8a6e-5a1b-8f61-379ac4f92d00",
       "filename": "mac-addr_d2fb49243718_fac416ce_data_form.json",
-      "form_name": "mac_addr_form",
+      "form_name": "mac-addr_form",
       "object_type": "mac-addr",
       "dependencies": []
     },
@@ -2031,7 +2031,7 @@
       "sequence_order": 75,
       "object_id": "malware-analysis--d25167b7-fed0-4068-9ccd-a73dd2c5b07c",
       "filename": "malware-analysis_8f58f153_data_form.json",
-      "form_name": "malware_analysis_form",
+      "form_name": "malware-analysis_form",
       "object_type": "malware-analysis",
       "dependencies": []
     },
@@ -2047,18 +2047,18 @@
       "sequence_order": 77,
       "object_id": "network-traffic--09ca55c3-97e5-5966-bad0-1d41d557ae13",
       "filename": "network-traffic_62205fa8_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "object_type": "network-traffic",
       "dependencies": [
-        "ipv4-addr--45f4c6fb-2d7d-576a-a571-edc78d899a72",
-        "ipv4-addr--89830c10-2e94-57fa-8ca6-e0537d2719d1"
+        "ipv4-addr--89830c10-2e94-57fa-8ca6-e0537d2719d1",
+        "ipv4-addr--45f4c6fb-2d7d-576a-a571-edc78d899a72"
       ]
     },
     {
       "sequence_order": 78,
       "object_id": "network-traffic--2568d22a-8998-58eb-99ec-3c8ca74f527d",
       "filename": "network-traffic_86252141_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "object_type": "network-traffic",
       "dependencies": [
         "ipv4-addr--ff26c055-6336-b55c-b98d-13d6226742dd",
@@ -2069,18 +2069,18 @@
       "sequence_order": 79,
       "object_id": "network-traffic--630d7bb1-0bbc-53a6-a6d4-f3c2d35c2734",
       "filename": "network-traffic_6f98752b_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "object_type": "network-traffic",
       "dependencies": [
-        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7",
-        "ipv4-addr--03b708d9-7761-2355-ab75-5ea096294a68"
+        "ipv4-addr--03b708d9-7761-2355-ab75-5ea096294a68",
+        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7"
       ]
     },
     {
       "sequence_order": 80,
       "object_id": "network-traffic--b800571d-124f-5a56-a0c7-581e0dc3dcd3",
       "filename": "network-traffic_d26a64b2_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "object_type": "network-traffic",
       "dependencies": [
         "ipv6-addr--1e61d36c-a16c-53b7-a80f-2a00161c96b1"
@@ -2090,7 +2090,7 @@
       "sequence_order": 81,
       "object_id": "network-traffic--c95e972a-20a4-5307-b00d-b8393faf02c5",
       "filename": "network-traffic_211a3aab_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "object_type": "network-traffic",
       "dependencies": [
         "domain-name--3c10e93f-798e-5a26-a0c1-08156efab7f5"
@@ -2100,7 +2100,7 @@
       "sequence_order": 82,
       "object_id": "network-traffic--e7a939ca-78c6-5f27-8ae0-4ad112454626",
       "filename": "network-traffic_788d76e7_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "object_type": "network-traffic",
       "dependencies": [
         "ipv4-addr--d7177770-fc12-586b-9244-426596a7008e",
@@ -2111,7 +2111,7 @@
       "sequence_order": 83,
       "object_id": "network-traffic--f8ae967a-3dc3-5cdf-8f94-8505abff00c2",
       "filename": "network-traffic_c86e22e5_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "object_type": "network-traffic",
       "dependencies": [
         "ipv4-addr--6da8dad3-4de3-5f8e-ab23-45d0b8f12f16"
@@ -2121,7 +2121,7 @@
       "sequence_order": 84,
       "object_id": "observed-data--59bf6dfb-544a-44ae-bc53-007cba6c0ef4",
       "filename": "observed-data_66e05e73_data_form.json",
-      "form_name": "observed_data_form",
+      "form_name": "observed-data_form",
       "object_type": "observed-data",
       "dependencies": [
         "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
@@ -2132,18 +2132,18 @@
       "sequence_order": 85,
       "object_id": "observed-data--d0f26641-47df-4cb2-a790-9ae96f534519",
       "filename": "observed-data_66e05e73_data_form.json",
-      "form_name": "observed_data_form",
+      "form_name": "observed-data_form",
       "object_type": "observed-data",
       "dependencies": [
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
-        "file--30038539-3eb6-44bc-a59e-d0d3fe84695a"
+        "file--30038539-3eb6-44bc-a59e-d0d3fe84695a",
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff"
       ]
     },
     {
       "sequence_order": 86,
       "object_id": "process--70b17c6c-93e5-4c80-8683-5a4d4e51f2c1",
       "filename": "process_042f2703_data_form.json",
-      "form_name": "process_form",
+      "form_name": "observed-data_form",
       "object_type": "process",
       "dependencies": [
         "file--c7d1e135-8b34-549a-bb47-302f5cf998ed"
@@ -2153,7 +2153,7 @@
       "sequence_order": 87,
       "object_id": "process--d2ec5aab-808d-4492-890a-3c1a1e3cb06e",
       "filename": "process_2d758000_data_form.json",
-      "form_name": "process_form",
+      "form_name": "observed-data_form",
       "object_type": "process",
       "dependencies": [
         "file--c7d1e135-8b34-549a-bb47-302f5cf998ed"
@@ -2163,7 +2163,7 @@
       "sequence_order": 88,
       "object_id": "process--de02a3e4-4b96-460a-b799-684347004444",
       "filename": "process_04b3272d_data_form.json",
-      "form_name": "process_form",
+      "form_name": "observed-data_form",
       "object_type": "process",
       "dependencies": []
     },
@@ -2207,8 +2207,8 @@
       "form_name": "relationship_form",
       "object_type": "relationship",
       "dependencies": [
-        "infrastructure--38c47d93-d984-4fd9-b87b-d69d0841628d",
-        "ipv4-addr--84445275-e371-444b-baea-ac7d07a180fd"
+        "ipv4-addr--84445275-e371-444b-baea-ac7d07a180fd",
+        "infrastructure--38c47d93-d984-4fd9-b87b-d69d0841628d"
       ]
     },
     {
@@ -2220,15 +2220,15 @@
       "dependencies": [
         "relationship--f82356ae-fe6c-437c-9c24-6b64314ae68a",
         "indicator--26ffb872-1dd9-446e-b6f5-d58527e5b5d2",
-        "identity--a463ffb3-1bd9-4d94-b02d-74e4f1658283",
-        "campaign--83422c77-904c-4dc1-aff5-5c38f3a2c55c"
+        "campaign--83422c77-904c-4dc1-aff5-5c38f3a2c55c",
+        "identity--a463ffb3-1bd9-4d94-b02d-74e4f1658283"
       ]
     },
     {
       "sequence_order": 94,
       "object_id": "sequence--10fe3d71-a3d1-4f83-ad54-9c290d7136e9",
       "filename": "sequence_1a3e2c78_data_form.json",
-      "form_name": "sequence_form",
+      "form_name": "single-step_form",
       "object_type": "sequence",
       "dependencies": [
         "task--01537439-3b2d-4afe-81a3-45b2dd35c655"
@@ -2238,7 +2238,7 @@
       "sequence_order": 95,
       "object_id": "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef",
       "filename": "sequence_1a3e2c78_data_form.json",
-      "form_name": "sequence_form",
+      "form_name": "single-step_form",
       "object_type": "sequence",
       "dependencies": [
         "task--3f23faa4-e21e-4880-bd8a-c8d89aa453aa"
@@ -2248,7 +2248,7 @@
       "sequence_order": 96,
       "object_id": "sequence--4c9100f2-06a1-4570-ba51-7dabde2371b8",
       "filename": "sequence_4b18341e_data_form.json",
-      "form_name": "sequence_form",
+      "form_name": "single-step_form",
       "object_type": "sequence",
       "dependencies": [
         "event--e8f641e7-89ca-4776-a828-6838d8eccdca"
@@ -2282,7 +2282,7 @@
       "sequence_order": 100,
       "object_id": "threat-actor--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
       "filename": "threat-actor_Evil_Org_a5fa248e_data_form.json",
-      "form_name": "threat_actor_form",
+      "form_name": "threat-actor_form",
       "object_type": "threat-actor",
       "dependencies": [
         "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff"
@@ -2318,7 +2318,7 @@
       "sequence_order": 104,
       "object_id": "user-account--0d5b424b-93b8-5cd8-a3c6-306e1789d63c",
       "filename": "user-account_aa564010_data_form.json",
-      "form_name": "user_account_form",
+      "form_name": "user-account_form",
       "object_type": "user-account",
       "dependencies": []
     },
@@ -2326,7 +2326,7 @@
       "sequence_order": 105,
       "object_id": "user-account--0d5b424b-93b8-5cd8-ac36-306e1789d63c",
       "filename": "user-account_0af53392_data_form.json",
-      "form_name": "user_account_form",
+      "form_name": "user-account_form",
       "object_type": "user-account",
       "dependencies": []
     },
@@ -2334,7 +2334,7 @@
       "sequence_order": 106,
       "object_id": "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
       "filename": "user-account_34099ef3_data_form.json",
-      "form_name": "user_account_form",
+      "form_name": "user-account_form",
       "object_type": "user-account",
       "dependencies": []
     },
@@ -2342,7 +2342,7 @@
       "sequence_order": 107,
       "object_id": "user-account--83658594-537d-5c32-b9f0-137354bd9bc3",
       "filename": "user-account_14278140_data_form.json",
-      "form_name": "user_account_form",
+      "form_name": "user-account_form",
       "object_type": "user-account",
       "dependencies": []
     },
@@ -2350,7 +2350,7 @@
       "sequence_order": 108,
       "object_id": "user-account--9bd3afcf-deee-54f9-83e2-520653cb6bba",
       "filename": "user-account_118eff22_data_form.json",
-      "form_name": "user_account_form",
+      "form_name": "user-account_form",
       "object_type": "user-account",
       "dependencies": []
     },
@@ -2368,7 +2368,7 @@
       "sequence_order": 110,
       "object_id": "windows-registry-key--2ba37ae7-2745-5082-9dfd-9486dad41016",
       "filename": "windows-registry-key_ff4d5744_data_form.json",
-      "form_name": "windows_registry_key_form",
+      "form_name": "windows-registry-key_form",
       "object_type": "windows-registry-key",
       "dependencies": []
     },
@@ -2376,7 +2376,7 @@
       "sequence_order": 111,
       "object_id": "windows-registry-key--9d60798d-4e3e-5fe4-af8a-0e4986f0f90b",
       "filename": "windows-registry-key_b5aef65c_data_form.json",
-      "form_name": "windows_registry_key_form",
+      "form_name": "windows-registry-key_form",
       "object_type": "windows-registry-key",
       "dependencies": []
     },
@@ -2384,7 +2384,7 @@
       "sequence_order": 112,
       "object_id": "x509-certificate--463d7b2a-8516-5a50-a3d7-6f801465d5de",
       "filename": "x509-certificate_1b49af9f_data_form.json",
-      "form_name": "x509_certificate_form",
+      "form_name": "x509-certificate_form",
       "object_type": "x509-certificate",
       "dependencies": []
     },
@@ -2392,7 +2392,7 @@
       "sequence_order": 113,
       "object_id": "x509-certificate--b595eaf0-0b28-5dad-9e8e-0fab9c1facc9",
       "filename": "x509-certificate_4c5a4de0_data_form.json",
-      "form_name": "x509_certificate_form",
+      "form_name": "x509-certificate_form",
       "object_type": "x509-certificate",
       "dependencies": []
     },
@@ -2410,7 +2410,7 @@
       "sequence_order": 115,
       "object_id": "course-of-action--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
       "filename": "course-of-action_Add_TCP_port_80_Filter_Rule_to_t_40745bee_data_form.json",
-      "form_name": "course_of_action_form",
+      "form_name": "course-of-action_form",
       "object_type": "course-of-action",
       "dependencies": [
         "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
@@ -2420,7 +2420,7 @@
       "sequence_order": 116,
       "object_id": "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
       "filename": "email-message_ba6cfdcd_data_form.json",
-      "form_name": "email_message_form",
+      "form_name": "email-message_form",
       "object_type": "email-message",
       "dependencies": [
         "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
@@ -2434,8 +2434,8 @@
       "form_name": "identity_form",
       "object_type": "identity",
       "dependencies": [
-        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
-        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
       ]
     },
     {
@@ -2462,7 +2462,7 @@
       "sequence_order": 120,
       "object_id": "intrusion-set--4e78f46f-a023-4e5f-bc24-71b3ca22ec29",
       "filename": "intrusion-set_Bobcat_Breakin_ae38d9d4_data_form.json",
-      "form_name": "intrusion_set_form",
+      "form_name": "intrusion-set_form",
       "object_type": "intrusion-set",
       "dependencies": [
         "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
@@ -2522,19 +2522,19 @@
       "sequence_order": 126,
       "object_id": "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf",
       "filename": "observed-data_54bd39a6_data_form.json",
-      "form_name": "observed_data_form",
+      "form_name": "observed-data_form",
       "object_type": "observed-data",
       "dependencies": [
-        "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8",
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
         "domain-name--ecb120bf-2694-4902-a737-62b74539a41b",
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
+        "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8"
       ]
     },
     {
       "sequence_order": 127,
       "object_id": "opinion--b01efc25-77b4-4003-b18b-f6e24b5cd9f7",
       "filename": "opinion_0e4d9347_data_form.json",
-      "form_name": "opinion_form",
+      "form_name": "observed-data_form",
       "object_type": "opinion",
       "dependencies": [
         "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
@@ -2585,14 +2585,14 @@
       "sequence_order": 132,
       "object_id": "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
       "filename": "observed-data_647b2235_data_form.json",
-      "form_name": "observed_data_form",
+      "form_name": "observed-data_form",
       "object_type": "observed-data",
       "dependencies": [
-        "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
-        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
-        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
         "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
-        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d"
+        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+        "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
       ]
     },
     {
@@ -2602,8 +2602,8 @@
       "form_name": "relationship_form",
       "object_type": "relationship",
       "dependencies": [
-        "malware--8bcf14e9-2ba2-44ef-9e32-fbbc9d2608b2",
-        "malware-analysis--d25167b7-fed0-4068-9ccd-a73dd2c5b07c"
+        "malware-analysis--d25167b7-fed0-4068-9ccd-a73dd2c5b07c",
+        "malware--8bcf14e9-2ba2-44ef-9e32-fbbc9d2608b2"
       ]
     },
     {
@@ -2614,8 +2614,8 @@
       "object_type": "relationship",
       "dependencies": [
         "course-of-action--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
-        "malware--0c7b5b88-8ff7-4a4d-aa9d-feb398cd0061",
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
+        "malware--0c7b5b88-8ff7-4a4d-aa9d-feb398cd0061"
       ]
     },
     {
@@ -2626,8 +2626,8 @@
       "object_type": "relationship",
       "dependencies": [
         "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
-        "malware--31b940d4-6f7f-459a-80ea-9c1f17b5891b"
+        "malware--31b940d4-6f7f-459a-80ea-9c1f17b5891b",
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
       ]
     },
     {
@@ -2637,10 +2637,10 @@
       "form_name": "sighting_form",
       "object_type": "sighting",
       "dependencies": [
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
         "identity--b67d30ff-02ac-498a-92f9-32f845f448ff",
-        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
-        "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf"
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
+        "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf",
+        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
       ]
     },
     {
@@ -2650,10 +2650,10 @@
       "form_name": "sighting_form",
       "object_type": "sighting",
       "dependencies": [
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
         "identity--b67d30ff-02ac-498a-92f9-32f845f448ff",
-        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
-        "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf"
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
+        "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf",
+        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
       ]
     },
     {
@@ -2663,8 +2663,8 @@
       "form_name": "sighting_form",
       "object_type": "sighting",
       "dependencies": [
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
-        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
+        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff"
       ]
     },
     {
@@ -2674,17 +2674,17 @@
       "form_name": "grouping_form",
       "object_type": "grouping",
       "dependencies": [
-        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
         "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
+        "file--fb0419a8-f09c-57f8-be64-71a80417591c",
         "relationship--44298a74-ba52-4f0c-87a3-1824e67d7fad",
-        "file--fb0419a8-f09c-57f8-be64-71a80417591c"
+        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
       ]
     },
     {
       "sequence_order": 140,
       "object_id": "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e",
       "filename": "observed-data_2592880d_data_form.json",
-      "form_name": "observed_data_form",
+      "form_name": "observed-data_form",
       "object_type": "observed-data",
       "dependencies": [
         "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f"
@@ -2694,12 +2694,12 @@
       "sequence_order": 141,
       "object_id": "sighting--06faabfe-490a-4516-a66e-1340aad78870",
       "filename": "sighting_a34c747d_data_form.json",
-      "form_name": "sighting_form",
+      "form_name": "parallel-step_form",
       "object_type": "sighting",
       "dependencies": [
+        "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544",
         "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
-        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
-        "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544"
+        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017"
       ]
     },
     {
@@ -2710,8 +2710,8 @@
       "object_type": "sighting",
       "dependencies": [
         "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b",
-        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
-        "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e"
+        "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e",
+        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017"
       ]
     },
     {
@@ -2721,36 +2721,36 @@
       "form_name": "incident_form",
       "object_type": "incident",
       "dependencies": [
-        "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b",
-        "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f",
-        "event--e8f641e7-89ca-4776-a828-6838d8eccdca",
-        "identity--3789a438-8d49-4f2a-bb1a-06d3575d2f33",
-        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
-        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
-        "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef",
-        "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
-        "task--01537439-3b2d-4afe-81a3-45b2dd35c655",
-        "sighting--4fb5cd06-3c90-42d7-be38-abea7f752fba",
-        "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544",
         "sighting--06faabfe-490a-4516-a66e-1340aad78870",
-        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
-        "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e",
+        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+        "identity--3789a438-8d49-4f2a-bb1a-06d3575d2f33",
+        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+        "sighting--4fb5cd06-3c90-42d7-be38-abea7f752fba",
+        "event--e8f641e7-89ca-4776-a828-6838d8eccdca",
+        "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
         "sequence--fb97db29-be35-4f8d-b483-c2899750838d",
+        "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b",
+        "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+        "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f",
         "sequence--4c9100f2-06a1-4570-ba51-7dabde2371b8",
         "sequence--5ced78bf-aab8-4650-9c9e-a6914d68b46e",
-        "sequence--10fe3d71-a3d1-4f83-ad54-9c290d7136e9",
+        "task--01537439-3b2d-4afe-81a3-45b2dd35c655",
+        "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef",
+        "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e",
+        "task--3f23faa4-e21e-4880-bd8a-c8d89aa453aa",
+        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
         "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
-        "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
-        "impact--1b87fa10-78fd-4b3e-970e-dea91e9a7457",
-        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
-        "task--3f23faa4-e21e-4880-bd8a-c8d89aa453aa"
+        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+        "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544",
+        "sequence--10fe3d71-a3d1-4f83-ad54-9c290d7136e9",
+        "impact--1b87fa10-78fd-4b3e-970e-dea91e9a7457"
       ]
     },
     {
       "sequence_order": 144,
       "object_id": "network-traffic--53e0bf48-2eee-5c03-8bde-ed7049d2c0a3",
       "filename": "network-traffic_514c7f76_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "object_type": "network-traffic",
       "dependencies": [
         "network-traffic--ac267abc-1a41-536d-8e8d-98458d9bf491",
@@ -2762,36 +2762,36 @@
       "sequence_order": 145,
       "object_id": "network-traffic--65a6016d-a91c-5781-baad-178cd55f01d4",
       "filename": "network-traffic_8bfd500e_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "object_type": "network-traffic",
       "dependencies": [
-        "ipv4-addr--bb884ffe-f2e4-56bb-a0c3-21f6711cb649",
+        "network-traffic--b4a8c150-e214-57a3-9017-e85dfa345f46",
         "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89",
-        "network-traffic--b4a8c150-e214-57a3-9017-e85dfa345f46"
+        "ipv4-addr--bb884ffe-f2e4-56bb-a0c3-21f6711cb649"
       ]
     },
     {
       "sequence_order": 146,
       "object_id": "network-traffic--ac267abc-1a41-536d-8e8d-98458d9bf491",
       "filename": "network-traffic_4e7703fa_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "object_type": "network-traffic",
       "dependencies": [
         "network-traffic--53e0bf48-2eee-5c03-8bde-ed7049d2c0a3",
-        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7",
-        "ipv4-addr--4d22aae0-2bf9-5427-8819-e4f6abf20a53"
+        "ipv4-addr--4d22aae0-2bf9-5427-8819-e4f6abf20a53",
+        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7"
       ]
     },
     {
       "sequence_order": 147,
       "object_id": "network-traffic--b4a8c150-e214-57a3-9017-e85dfa345f46",
       "filename": "network-traffic_6fc7bbe9_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "object_type": "network-traffic",
       "dependencies": [
         "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89",
-        "network-traffic--65a6016d-a91c-5781-baad-178cd55f01d4",
-        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7"
+        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7",
+        "network-traffic--65a6016d-a91c-5781-baad-178cd55f01d4"
       ]
     }
   ],
@@ -2801,7 +2801,7 @@
       "object_type": "attack-pattern",
       "object_index": 0,
       "filename": "attack-pattern_Spear_Phishing_as_Practiced_by_A_a49fdbd7_data_form.json",
-      "form_name": "attack_pattern_form",
+      "form_name": "attack-pattern_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\attack-pattern_Spear_Phishing_as_Practiced_by_A_a49fdbd7_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -2821,7 +2821,7 @@
       "object_type": "intrusion-set",
       "object_index": 1,
       "filename": "intrusion-set_Adversary_X_e86d86a1_data_form.json",
-      "form_name": "intrusion_set_form",
+      "form_name": "intrusion-set_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\intrusion-set_Adversary_X_e86d86a1_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -2863,8 +2863,8 @@
       },
       "referenced_object_ids": [
         "attack-pattern--7e33a43e-e34b-40ec-89da-36c9bb2cacd5",
-        "relationship--57b56a43-b8b0-4cba-9deb-34e3e1faed9e",
-        "intrusion-set--0c7e22ad-b099-4dc3-b0df-2ea3f49ae2e6"
+        "intrusion-set--0c7e22ad-b099-4dc3-b0df-2ea3f49ae2e6",
+        "relationship--57b56a43-b8b0-4cba-9deb-34e3e1faed9e"
       ],
       "reference_count": 3
     },
@@ -2935,8 +2935,8 @@
         }
       },
       "referenced_object_ids": [
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
-        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
+        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
       ],
       "reference_count": 2
     },
@@ -2961,8 +2961,8 @@
         }
       },
       "referenced_object_ids": [
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
-        "malware--31b940d4-6f7f-459a-80ea-9c1f17b5891b"
+        "malware--31b940d4-6f7f-459a-80ea-9c1f17b5891b",
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
       ],
       "reference_count": 2
     },
@@ -2998,9 +2998,9 @@
       },
       "referenced_object_ids": [
         "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
         "relationship--44298a74-ba52-4f0c-87a3-1824e67d7fad",
-        "malware--31b940d4-6f7f-459a-80ea-9c1f17b5891b"
+        "malware--31b940d4-6f7f-459a-80ea-9c1f17b5891b",
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
       ],
       "reference_count": 4
     },
@@ -3069,7 +3069,7 @@
       "object_type": "autonomous-system",
       "object_index": 11,
       "filename": "autonomous-system_Slime_Industries_55fca61b_data_form.json",
-      "form_name": "autonomous_system_form",
+      "form_name": "autonomous-system_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\autonomous-system_Slime_Industries_55fca61b_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -3141,7 +3141,7 @@
       "object_type": "sequence",
       "object_index": 14,
       "filename": "sequence_4b18341e_data_form.json",
-      "form_name": "sequence_form",
+      "form_name": "single-step_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\sequence_4b18341e_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -3157,8 +3157,8 @@
         }
       },
       "referenced_object_ids": [
-        "sequence--4c9100f2-06a1-4570-ba51-7dabde2371b8",
-        "event--e8f641e7-89ca-4776-a828-6838d8eccdca"
+        "event--e8f641e7-89ca-4776-a828-6838d8eccdca",
+        "sequence--4c9100f2-06a1-4570-ba51-7dabde2371b8"
       ],
       "reference_count": 2
     },
@@ -3167,7 +3167,7 @@
       "object_type": "sequence",
       "object_index": 15,
       "filename": "sequence_1a3e2c78_data_form.json",
-      "form_name": "sequence_form",
+      "form_name": "single-step_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\sequence_1a3e2c78_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -3183,8 +3183,8 @@
         }
       },
       "referenced_object_ids": [
-        "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef",
-        "task--3f23faa4-e21e-4880-bd8a-c8d89aa453aa"
+        "task--3f23faa4-e21e-4880-bd8a-c8d89aa453aa",
+        "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef"
       ],
       "reference_count": 2
     },
@@ -3193,7 +3193,7 @@
       "object_type": "sequence",
       "object_index": 16,
       "filename": "sequence_1a3e2c78_data_form.json",
-      "form_name": "sequence_form",
+      "form_name": "single-step_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\sequence_1a3e2c78_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -3308,7 +3308,7 @@
       "object_type": "email-addr",
       "object_index": 21,
       "filename": "email-addr_evilnorthkorea.nk_ac6bb56a_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\email-addr_evilnorthkorea.nk_ac6bb56a_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -3328,7 +3328,7 @@
       "object_type": "email-addr",
       "object_index": 22,
       "filename": "email-addr_different5man.org_a118483c_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\email-addr_different5man.org_a118483c_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -3348,7 +3348,7 @@
       "object_type": "email-addr",
       "object_index": 23,
       "filename": "email-addr_naiveexample.com_cba8054e_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\email-addr_naiveexample.com_cba8054e_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -3364,8 +3364,8 @@
         }
       },
       "referenced_object_ids": [
-        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
-        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
       ],
       "reference_count": 2
     },
@@ -3374,7 +3374,7 @@
       "object_type": "user-account",
       "object_index": 24,
       "filename": "user-account_34099ef3_data_form.json",
-      "form_name": "user_account_form",
+      "form_name": "user-account_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\user-account_34099ef3_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -3394,7 +3394,7 @@
       "object_type": "user-account",
       "object_index": 25,
       "filename": "user-account_14278140_data_form.json",
-      "form_name": "user_account_form",
+      "form_name": "user-account_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\user-account_14278140_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -3435,9 +3435,9 @@
         }
       },
       "referenced_object_ids": [
+        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
         "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
-        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
-        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
+        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017"
       ],
       "reference_count": 3
     },
@@ -3467,9 +3467,9 @@
         }
       },
       "referenced_object_ids": [
+        "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b",
         "user-account--83658594-537d-5c32-b9f0-137354bd9bc3",
-        "email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3",
-        "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b"
+        "email-addr--c99b87bd-f0a8-50ca-9f84-68072efc61e3"
       ],
       "reference_count": 3
     },
@@ -3498,7 +3498,7 @@
       "object_type": "email-message",
       "object_index": 29,
       "filename": "email-message_ba6cfdcd_data_form.json",
-      "form_name": "email_message_form",
+      "form_name": "email-message_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\email-message_ba6cfdcd_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -3522,8 +3522,8 @@
         }
       },
       "referenced_object_ids": [
-        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
         "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
         "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212"
       ],
       "reference_count": 3
@@ -3533,7 +3533,7 @@
       "object_type": "observed-data",
       "object_index": 30,
       "filename": "observed-data_647b2235_data_form.json",
-      "form_name": "observed_data_form",
+      "form_name": "observed-data_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\observed-data_647b2235_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -3556,12 +3556,12 @@
         }
       },
       "referenced_object_ids": [
-        "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
-        "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
-        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
-        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
         "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
-        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d"
+        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+        "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+        "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
+        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
       ],
       "reference_count": 2
     },
@@ -3590,7 +3590,7 @@
       "object_type": "sighting",
       "object_index": 32,
       "filename": "sighting_a34c747d_data_form.json",
-      "form_name": "sighting_form",
+      "form_name": "parallel-step_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\sighting_a34c747d_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -3622,10 +3622,10 @@
         }
       },
       "referenced_object_ids": [
-        "sighting--06faabfe-490a-4516-a66e-1340aad78870",
+        "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544",
         "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
         "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
-        "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544"
+        "sighting--06faabfe-490a-4516-a66e-1340aad78870"
       ],
       "reference_count": 4
     },
@@ -3680,7 +3680,7 @@
       "object_type": "observed-data",
       "object_index": 35,
       "filename": "observed-data_2592880d_data_form.json",
-      "form_name": "observed_data_form",
+      "form_name": "observed-data_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\observed-data_2592880d_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -3741,10 +3741,10 @@
         }
       },
       "referenced_object_ids": [
-        "sighting--4fb5cd06-3c90-42d7-be38-abea7f752fba",
         "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b",
-        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
-        "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e"
+        "sighting--4fb5cd06-3c90-42d7-be38-abea7f752fba",
+        "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e",
+        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017"
       ],
       "reference_count": 4
     },
@@ -3829,30 +3829,30 @@
         }
       },
       "referenced_object_ids": [
-        "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b",
-        "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f",
-        "event--e8f641e7-89ca-4776-a828-6838d8eccdca",
-        "identity--3789a438-8d49-4f2a-bb1a-06d3575d2f33",
-        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
-        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
-        "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef",
-        "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
-        "task--01537439-3b2d-4afe-81a3-45b2dd35c655",
-        "sighting--4fb5cd06-3c90-42d7-be38-abea7f752fba",
-        "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544",
         "sighting--06faabfe-490a-4516-a66e-1340aad78870",
-        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
-        "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e",
-        "incident--145eb841-90db-4526-8407-b25fd2d705c1",
+        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+        "identity--3789a438-8d49-4f2a-bb1a-06d3575d2f33",
+        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+        "sighting--4fb5cd06-3c90-42d7-be38-abea7f752fba",
+        "event--e8f641e7-89ca-4776-a828-6838d8eccdca",
+        "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
         "sequence--fb97db29-be35-4f8d-b483-c2899750838d",
+        "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b",
+        "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+        "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f",
         "sequence--4c9100f2-06a1-4570-ba51-7dabde2371b8",
         "sequence--5ced78bf-aab8-4650-9c9e-a6914d68b46e",
-        "sequence--10fe3d71-a3d1-4f83-ad54-9c290d7136e9",
+        "task--01537439-3b2d-4afe-81a3-45b2dd35c655",
+        "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef",
+        "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e",
+        "task--3f23faa4-e21e-4880-bd8a-c8d89aa453aa",
+        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
         "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
-        "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
+        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+        "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544",
+        "sequence--10fe3d71-a3d1-4f83-ad54-9c290d7136e9",
         "impact--1b87fa10-78fd-4b3e-970e-dea91e9a7457",
-        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
-        "task--3f23faa4-e21e-4880-bd8a-c8d89aa453aa"
+        "incident--145eb841-90db-4526-8407-b25fd2d705c1"
       ],
       "reference_count": 7
     },
@@ -3877,8 +3877,8 @@
         }
       },
       "referenced_object_ids": [
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
-        "campaign--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
+        "campaign--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
       ],
       "reference_count": 2
     },
@@ -3887,7 +3887,7 @@
       "object_type": "course-of-action",
       "object_index": 39,
       "filename": "course-of-action_Add_TCP_port_80_Filter_Rule_to_t_40745bee_data_form.json",
-      "form_name": "course_of_action_form",
+      "form_name": "course-of-action_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\course-of-action_Add_TCP_port_80_Filter_Rule_to_t_40745bee_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -3940,9 +3940,9 @@
       },
       "referenced_object_ids": [
         "course-of-action--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
-        "relationship--183159a8-3919-4c9a-ad77-054c1fa9ac5a",
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
         "malware--0c7b5b88-8ff7-4a4d-aa9d-feb398cd0061",
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
+        "relationship--183159a8-3919-4c9a-ad77-054c1fa9ac5a"
       ],
       "reference_count": 4
     },
@@ -3971,7 +3971,7 @@
       "object_type": "ipv4-addr",
       "object_index": 42,
       "filename": "ipv4-addr_198.51.100.3_21757ef6_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\ipv4-addr_198.51.100.3_21757ef6_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -3991,7 +3991,7 @@
       "object_type": "domain-name",
       "object_index": 43,
       "filename": "domain-name_site.of.interest.zaz_1b323b39_data_form.json",
-      "form_name": "domain_name_form",
+      "form_name": "domain-name_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\domain-name_site.of.interest.zaz_1b323b39_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4020,7 +4020,7 @@
       "object_type": "email-addr",
       "object_index": 44,
       "filename": "email-addr_johnexample.com_5c1979cf_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\email-addr_johnexample.com_5c1979cf_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4040,7 +4040,7 @@
       "object_type": "email-addr",
       "object_index": 45,
       "filename": "email-addr_joeexample.com_ee0443d3_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\email-addr_joeexample.com_ee0443d3_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4060,7 +4060,7 @@
       "object_type": "email-addr",
       "object_index": 46,
       "filename": "email-addr_bobexample.com_a75fb53b_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\email-addr_bobexample.com_a75fb53b_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4080,7 +4080,7 @@
       "object_type": "email-message",
       "object_index": 47,
       "filename": "email-message_a318d8be_data_form.json",
-      "form_name": "email_message_form",
+      "form_name": "email-message_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\email-message_a318d8be_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4115,7 +4115,7 @@
       "object_type": "email-addr",
       "object_index": 48,
       "filename": "email-addr_jdoeexample.com_aa0a050e_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\email-addr_jdoeexample.com_aa0a050e_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4135,7 +4135,7 @@
       "object_type": "email-addr",
       "object_index": 49,
       "filename": "email-addr_bobexample.com_a75fb53b_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\email-addr_bobexample.com_a75fb53b_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4155,7 +4155,7 @@
       "object_type": "email-addr",
       "object_index": 50,
       "filename": "email-addr_maryexample.com_d0701be4_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\email-addr_maryexample.com_d0701be4_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4195,7 +4195,7 @@
       "object_type": "file",
       "object_index": 52,
       "filename": "file_tabby_pics.zip_7c48eb11_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\file_tabby_pics.zip_7c48eb11_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4215,7 +4215,7 @@
       "object_type": "email-message",
       "object_index": 53,
       "filename": "email-message_8c03ed61_data_form.json",
-      "form_name": "email_message_form",
+      "form_name": "email-message_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\email-message_8c03ed61_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4247,10 +4247,10 @@
         }
       },
       "referenced_object_ids": [
-        "email-addr--e4ee5301-b52d-59cd-a8fa-8036738c7194",
         "email-message--cf9b4b7f-14c8-5955-8065-020e0316b559",
-        "email-addr--89f52ea8-d6ef-51e9-8fce-6a29236436ed",
-        "email-addr--d1b3bf0c-f02a-51a1-8102-11aba7959868"
+        "email-addr--e4ee5301-b52d-59cd-a8fa-8036738c7194",
+        "email-addr--d1b3bf0c-f02a-51a1-8102-11aba7959868",
+        "email-addr--89f52ea8-d6ef-51e9-8fce-6a29236436ed"
       ],
       "reference_count": 4
     },
@@ -4259,7 +4259,7 @@
       "object_type": "email-addr",
       "object_index": 54,
       "filename": "email-addr_jdoeexample.com_aa0a050e_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\email-addr_jdoeexample.com_aa0a050e_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4279,7 +4279,7 @@
       "object_type": "email-addr",
       "object_index": 55,
       "filename": "email-addr_maryexample.com_d0701be4_data_form.json",
-      "form_name": "email_addr_form",
+      "form_name": "email-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\email-addr_maryexample.com_d0701be4_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4299,7 +4299,7 @@
       "object_type": "email-message",
       "object_index": 56,
       "filename": "email-message_87012e40_data_form.json",
-      "form_name": "email_message_form",
+      "form_name": "email-message_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\email-message_87012e40_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4323,8 +4323,8 @@
         }
       },
       "referenced_object_ids": [
-        "email-addr--e4ee5301-b52d-59cd-a8fa-7630838c7194",
         "email-message--72b7698f-10c2-565a-a2a6-b4996a2f2265",
+        "email-addr--e4ee5301-b52d-59cd-a8fa-7630838c7194",
         "email-addr--98f25ea8-d6ef-51e9-8fce-6a29236436ed"
       ],
       "reference_count": 3
@@ -4334,7 +4334,7 @@
       "object_type": "file",
       "object_index": 57,
       "filename": "file_849f89a1_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\file_849f89a1_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4354,7 +4354,7 @@
       "object_type": "file",
       "object_index": 58,
       "filename": "file_5a32d9b7_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\file_5a32d9b7_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4374,7 +4374,7 @@
       "object_type": "file",
       "object_index": 59,
       "filename": "file_efd3b44a_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\file_efd3b44a_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4415,10 +4415,10 @@
         }
       },
       "referenced_object_ids": [
-        "file--94fc2163-dec3-5715-b824-6e689c4de865",
         "file--d07ff290-d7e0-545b-a2ff-04602a9e0b73",
-        "file--9a1f834d-2506-5367-baec-7aa63996ac43",
-        "file--019fde1c-94ca-5967-8b3c-a906a51d87ac"
+        "file--019fde1c-94ca-5967-8b3c-a906a51d87ac",
+        "file--94fc2163-dec3-5715-b824-6e689c4de865",
+        "file--9a1f834d-2506-5367-baec-7aa63996ac43"
       ],
       "reference_count": 2
     },
@@ -4427,7 +4427,7 @@
       "object_type": "file",
       "object_index": 61,
       "filename": "file_foo.dll_27cb6b87_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\file_foo.dll_27cb6b87_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4447,7 +4447,7 @@
       "object_type": "file",
       "object_index": 62,
       "filename": "file_foo.dll_27cb6b87_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\file_foo.dll_27cb6b87_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4487,7 +4487,7 @@
       "object_type": "file",
       "object_index": 64,
       "filename": "file_qwerty.dll_13efa521_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\file_qwerty.dll_13efa521_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4503,8 +4503,8 @@
         }
       },
       "referenced_object_ids": [
-        "directory--93c0a9b0-520d-545d-9094-1a08ddf46b05",
-        "file--5a27d487-c542-5f97-a131-a8866b477b46"
+        "file--5a27d487-c542-5f97-a131-a8866b477b46",
+        "directory--93c0a9b0-520d-545d-9094-1a08ddf46b05"
       ],
       "reference_count": 2
     },
@@ -4620,11 +4620,11 @@
         }
       },
       "referenced_object_ids": [
-        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
         "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
-        "grouping--84e4d88f-44ea-4bcd-bbf3-b2c1c320bcb3",
+        "file--fb0419a8-f09c-57f8-be64-71a80417591c",
         "relationship--44298a74-ba52-4f0c-87a3-1824e67d7fad",
-        "file--fb0419a8-f09c-57f8-be64-71a80417591c"
+        "grouping--84e4d88f-44ea-4bcd-bbf3-b2c1c320bcb3",
+        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
       ],
       "reference_count": 3
     },
@@ -4679,7 +4679,7 @@
       "object_type": "ipv4-addr",
       "object_index": 72,
       "filename": "ipv4-addr_198.51.100.3_21757ef6_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\ipv4-addr_198.51.100.3_21757ef6_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4699,7 +4699,7 @@
       "object_type": "ipv4-addr",
       "object_index": 73,
       "filename": "ipv4-addr_198.52.200.4_2a9a193e_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\ipv4-addr_198.52.200.4_2a9a193e_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4761,8 +4761,8 @@
       },
       "referenced_object_ids": [
         "ipv4-addr--b4e29b62-2053-47c4-bab4-bbce39e5ed67",
-        "infrastructure--38c47d93-d984-4fd9-b87b-d69d0841628d",
-        "relationship--7aebe2f0-28d6-48a2-9c3e-b0aaa60266ef"
+        "relationship--7aebe2f0-28d6-48a2-9c3e-b0aaa60266ef",
+        "infrastructure--38c47d93-d984-4fd9-b87b-d69d0841628d"
       ],
       "reference_count": 3
     },
@@ -4792,9 +4792,9 @@
         }
       },
       "referenced_object_ids": [
+        "ipv4-addr--84445275-e371-444b-baea-ac7d07a180fd",
         "infrastructure--38c47d93-d984-4fd9-b87b-d69d0841628d",
-        "relationship--b82b2819-3b86-4bd5-afb3-fa36cfbc3f18",
-        "ipv4-addr--84445275-e371-444b-baea-ac7d07a180fd"
+        "relationship--b82b2819-3b86-4bd5-afb3-fa36cfbc3f18"
       ],
       "reference_count": 3
     },
@@ -4835,7 +4835,7 @@
       "object_type": "intrusion-set",
       "object_index": 78,
       "filename": "intrusion-set_Bobcat_Breakin_ae38d9d4_data_form.json",
-      "form_name": "intrusion_set_form",
+      "form_name": "intrusion-set_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\intrusion-set_Bobcat_Breakin_ae38d9d4_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4861,7 +4861,7 @@
       "object_type": "ipv4-addr",
       "object_index": 79,
       "filename": "ipv4-addr_198.51.100.0_24_d680028f_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\ipv4-addr_198.51.100.0_24_d680028f_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4881,7 +4881,7 @@
       "object_type": "ipv4-addr",
       "object_index": 80,
       "filename": "ipv4-addr_198.51.100.3_21757ef6_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\ipv4-addr_198.51.100.3_21757ef6_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4901,7 +4901,7 @@
       "object_type": "ipv6-addr",
       "object_index": 81,
       "filename": "ipv6-addr_20010db8_96_a6c91cde_data_form.json",
-      "form_name": "ipv6_addr_form",
+      "form_name": "ipv6-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\ipv6-addr_20010db8_96_a6c91cde_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4921,7 +4921,7 @@
       "object_type": "ipv6-addr",
       "object_index": 82,
       "filename": "ipv6-addr_20010db885a3000000008a2e03707334_a9004842_data_form.json",
-      "form_name": "ipv6_addr_form",
+      "form_name": "ipv6-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\ipv6-addr_20010db885a3000000008a2e03707334_a9004842_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -4983,8 +4983,8 @@
         }
       },
       "referenced_object_ids": [
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
-        "location--328aa5fd-b278-4a7b-8243-987c53862ec1"
+        "location--328aa5fd-b278-4a7b-8243-987c53862ec1",
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
       ],
       "reference_count": 2
     },
@@ -5019,7 +5019,7 @@
       "object_type": "mac-addr",
       "object_index": 86,
       "filename": "mac-addr_d2fb49243718_fac416ce_data_form.json",
-      "form_name": "mac_addr_form",
+      "form_name": "mac-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\mac-addr_d2fb49243718_fac416ce_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5059,7 +5059,7 @@
       "object_type": "file",
       "object_index": 88,
       "filename": "file_a92e5b2bae.exe_2dd9e10b_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\file_a92e5b2bae.exe_2dd9e10b_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5075,8 +5075,8 @@
         }
       },
       "referenced_object_ids": [
-        "directory--255cb0e4-8bdb-5d63-bb32-9c6f0b733ab2",
-        "file--1190f2c9-166f-55f1-9706-eea3971d8082"
+        "file--1190f2c9-166f-55f1-9706-eea3971d8082",
+        "directory--255cb0e4-8bdb-5d63-bb32-9c6f0b733ab2"
       ],
       "reference_count": 2
     },
@@ -5114,7 +5114,7 @@
       "object_type": "malware-analysis",
       "object_index": 90,
       "filename": "malware-analysis_8f58f153_data_form.json",
-      "form_name": "malware_analysis_form",
+      "form_name": "malware-analysis_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\malware-analysis_8f58f153_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5155,9 +5155,9 @@
         }
       },
       "referenced_object_ids": [
+        "malware-analysis--d25167b7-fed0-4068-9ccd-a73dd2c5b07c",
         "malware--8bcf14e9-2ba2-44ef-9e32-fbbc9d2608b2",
-        "relationship--014841f8-eb38-4673-9904-70f67c92dd8b",
-        "malware-analysis--d25167b7-fed0-4068-9ccd-a73dd2c5b07c"
+        "relationship--014841f8-eb38-4673-9904-70f67c92dd8b"
       ],
       "reference_count": 3
     },
@@ -5186,7 +5186,7 @@
       "object_type": "domain-name",
       "object_index": 93,
       "filename": "domain-name_example.com_54a697e8_data_form.json",
-      "form_name": "domain_name_form",
+      "form_name": "domain-name_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\domain-name_example.com_54a697e8_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5206,7 +5206,7 @@
       "object_type": "network-traffic",
       "object_index": 94,
       "filename": "network-traffic_211a3aab_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\network-traffic_211a3aab_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5222,8 +5222,8 @@
         }
       },
       "referenced_object_ids": [
-        "network-traffic--c95e972a-20a4-5307-b00d-b8393faf02c5",
-        "domain-name--3c10e93f-798e-5a26-a0c1-08156efab7f5"
+        "domain-name--3c10e93f-798e-5a26-a0c1-08156efab7f5",
+        "network-traffic--c95e972a-20a4-5307-b00d-b8393faf02c5"
       ],
       "reference_count": 2
     },
@@ -5232,7 +5232,7 @@
       "object_type": "ipv4-addr",
       "object_index": 95,
       "filename": "ipv4-addr_198.51.100.2_f63f223a_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\ipv4-addr_198.51.100.2_f63f223a_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5252,7 +5252,7 @@
       "object_type": "ipv4-addr",
       "object_index": 96,
       "filename": "ipv4-addr_198.51.100.3_21757ef6_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\ipv4-addr_198.51.100.3_21757ef6_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5272,7 +5272,7 @@
       "object_type": "network-traffic",
       "object_index": 97,
       "filename": "network-traffic_86252141_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\network-traffic_86252141_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5304,7 +5304,7 @@
       "object_type": "ipv4-addr",
       "object_index": 98,
       "filename": "ipv4-addr_198.51.100.53_81e9614b_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\ipv4-addr_198.51.100.53_81e9614b_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5324,7 +5324,7 @@
       "object_type": "network-traffic",
       "object_index": 99,
       "filename": "network-traffic_c86e22e5_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\network-traffic_c86e22e5_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5340,8 +5340,8 @@
         }
       },
       "referenced_object_ids": [
-        "network-traffic--f8ae967a-3dc3-5cdf-8f94-8505abff00c2",
-        "ipv4-addr--6da8dad3-4de3-5f8e-ab23-45d0b8f12f16"
+        "ipv4-addr--6da8dad3-4de3-5f8e-ab23-45d0b8f12f16",
+        "network-traffic--f8ae967a-3dc3-5cdf-8f94-8505abff00c2"
       ],
       "reference_count": 2
     },
@@ -5350,7 +5350,7 @@
       "object_type": "ipv4-addr",
       "object_index": 100,
       "filename": "ipv4-addr_198.51.100.9_93cdc724_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\ipv4-addr_198.51.100.9_93cdc724_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5370,7 +5370,7 @@
       "object_type": "ipv4-addr",
       "object_index": 101,
       "filename": "ipv4-addr_203.0.113.5_3400006b_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\ipv4-addr_203.0.113.5_3400006b_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5390,7 +5390,7 @@
       "object_type": "network-traffic",
       "object_index": 102,
       "filename": "network-traffic_788d76e7_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\network-traffic_788d76e7_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5411,8 +5411,8 @@
         }
       },
       "referenced_object_ids": [
-        "ipv4-addr--d7177770-fc12-586b-9244-426596a7008e",
         "network-traffic--e7a939ca-78c6-5f27-8ae0-4ad112454626",
+        "ipv4-addr--d7177770-fc12-586b-9244-426596a7008e",
         "ipv4-addr--03b708d9-7761-5523-ab75-5ea096294a68"
       ],
       "reference_count": 3
@@ -5422,7 +5422,7 @@
       "object_type": "network-traffic",
       "object_index": 104,
       "filename": "network-traffic_d26a64b2_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\network-traffic_d26a64b2_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5438,8 +5438,8 @@
         }
       },
       "referenced_object_ids": [
-        "ipv6-addr--1e61d36c-a16c-53b7-a80f-2a00161c96b1",
-        "network-traffic--b800571d-124f-5a56-a0c7-581e0dc3dcd3"
+        "network-traffic--b800571d-124f-5a56-a0c7-581e0dc3dcd3",
+        "ipv6-addr--1e61d36c-a16c-53b7-a80f-2a00161c96b1"
       ],
       "reference_count": 2
     },
@@ -5448,7 +5448,7 @@
       "object_type": "ipv4-addr",
       "object_index": 105,
       "filename": "ipv4-addr_198.51.100.5_3099f011_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\ipv4-addr_198.51.100.5_3099f011_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5468,7 +5468,7 @@
       "object_type": "ipv4-addr",
       "object_index": 106,
       "filename": "ipv4-addr_198.51.100.6_6117c400_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\ipv4-addr_198.51.100.6_6117c400_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5488,7 +5488,7 @@
       "object_type": "network-traffic",
       "object_index": 107,
       "filename": "network-traffic_62205fa8_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\network-traffic_62205fa8_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5509,9 +5509,9 @@
         }
       },
       "referenced_object_ids": [
-        "network-traffic--09ca55c3-97e5-5966-bad0-1d41d557ae13",
+        "ipv4-addr--89830c10-2e94-57fa-8ca6-e0537d2719d1",
         "ipv4-addr--45f4c6fb-2d7d-576a-a571-edc78d899a72",
-        "ipv4-addr--89830c10-2e94-57fa-8ca6-e0537d2719d1"
+        "network-traffic--09ca55c3-97e5-5966-bad0-1d41d557ae13"
       ],
       "reference_count": 3
     },
@@ -5520,7 +5520,7 @@
       "object_type": "ipv4-addr",
       "object_index": 108,
       "filename": "ipv4-addr_203.0.113.1_15a5b86f_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\ipv4-addr_203.0.113.1_15a5b86f_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5540,7 +5540,7 @@
       "object_type": "ipv4-addr",
       "object_index": 109,
       "filename": "ipv4-addr_203.0.113.5_3400006b_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\ipv4-addr_203.0.113.5_3400006b_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5560,7 +5560,7 @@
       "object_type": "network-traffic",
       "object_index": 110,
       "filename": "network-traffic_6f98752b_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\network-traffic_6f98752b_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5581,9 +5581,9 @@
         }
       },
       "referenced_object_ids": [
-        "network-traffic--630d7bb1-0bbc-53a6-a6d4-f3c2d35c2734",
+        "ipv4-addr--03b708d9-7761-2355-ab75-5ea096294a68",
         "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7",
-        "ipv4-addr--03b708d9-7761-2355-ab75-5ea096294a68"
+        "network-traffic--630d7bb1-0bbc-53a6-a6d4-f3c2d35c2734"
       ],
       "reference_count": 3
     },
@@ -5611,8 +5611,8 @@
         }
       },
       "referenced_object_ids": [
-        "campaign--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
-        "note--0c7b5b88-8ff7-4a4d-aa9d-feb398cd0061"
+        "note--0c7b5b88-8ff7-4a4d-aa9d-feb398cd0061",
+        "campaign--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
       ],
       "reference_count": 2
     },
@@ -5621,7 +5621,7 @@
       "object_type": "ipv4-addr",
       "object_index": 112,
       "filename": "ipv4-addr_198.51.100.3_21757ef6_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\ipv4-addr_198.51.100.3_21757ef6_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5641,7 +5641,7 @@
       "object_type": "domain-name",
       "object_index": 113,
       "filename": "domain-name_example.com_ed7de34f_data_form.json",
-      "form_name": "domain_name_form",
+      "form_name": "domain-name_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\domain-name_example.com_ed7de34f_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5660,8 +5660,8 @@
         }
       },
       "referenced_object_ids": [
-        "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8",
-        "domain-name--ecb120bf-2694-4902-a737-62b74539a41b"
+        "domain-name--ecb120bf-2694-4902-a737-62b74539a41b",
+        "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8"
       ],
       "reference_count": 2
     },
@@ -5670,7 +5670,7 @@
       "object_type": "observed-data",
       "object_index": 114,
       "filename": "observed-data_54bd39a6_data_form.json",
-      "form_name": "observed_data_form",
+      "form_name": "observed-data_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\observed-data_54bd39a6_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5695,10 +5695,10 @@
         }
       },
       "referenced_object_ids": [
-        "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8",
-        "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf",
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
         "domain-name--ecb120bf-2694-4902-a737-62b74539a41b",
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
+        "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8",
+        "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf"
       ],
       "reference_count": 3
     },
@@ -5707,7 +5707,7 @@
       "object_type": "opinion",
       "object_index": 115,
       "filename": "opinion_0e4d9347_data_form.json",
-      "form_name": "opinion_form",
+      "form_name": "observed-data_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\opinion_0e4d9347_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5731,9 +5731,9 @@
         }
       },
       "referenced_object_ids": [
-        "opinion--b01efc25-77b4-4003-b18b-f6e24b5cd9f7",
         "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
-        "relationship--57b56a43-b8b0-4cba-9deb-34e3e1faed9e"
+        "relationship--57b56a43-b8b0-4cba-9deb-34e3e1faed9e",
+        "opinion--b01efc25-77b4-4003-b18b-f6e24b5cd9f7"
       ],
       "reference_count": 3
     },
@@ -5742,7 +5742,7 @@
       "object_type": "file",
       "object_index": 116,
       "filename": "file_gedit-bin_d28b09ef_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\file_gedit-bin_d28b09ef_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5762,7 +5762,7 @@
       "object_type": "process",
       "object_index": 117,
       "filename": "process_2d758000_data_form.json",
-      "form_name": "process_form",
+      "form_name": "observed-data_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\process_2d758000_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5778,8 +5778,8 @@
         }
       },
       "referenced_object_ids": [
-        "process--d2ec5aab-808d-4492-890a-3c1a1e3cb06e",
-        "file--c7d1e135-8b34-549a-bb47-302f5cf998ed"
+        "file--c7d1e135-8b34-549a-bb47-302f5cf998ed",
+        "process--d2ec5aab-808d-4492-890a-3c1a1e3cb06e"
       ],
       "reference_count": 2
     },
@@ -5788,7 +5788,7 @@
       "object_type": "process",
       "object_index": 118,
       "filename": "process_04b3272d_data_form.json",
-      "form_name": "process_form",
+      "form_name": "observed-data_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\process_04b3272d_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5808,7 +5808,7 @@
       "object_type": "file",
       "object_index": 119,
       "filename": "file_sirvizio.exe_7d95b079_data_form.json",
-      "form_name": "file_form",
+      "form_name": "oca-file_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\file_sirvizio.exe_7d95b079_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5828,7 +5828,7 @@
       "object_type": "process",
       "object_index": 120,
       "filename": "process_042f2703_data_form.json",
-      "form_name": "process_form",
+      "form_name": "observed-data_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\process_042f2703_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5874,7 +5874,7 @@
       "object_type": "threat-actor",
       "object_index": 122,
       "filename": "threat-actor_Evil_Org_a5fa248e_data_form.json",
-      "form_name": "threat_actor_form",
+      "form_name": "threat-actor_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\threat-actor_Evil_Org_a5fa248e_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5916,8 +5916,8 @@
         }
       },
       "referenced_object_ids": [
-        "tool--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff"
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
+        "tool--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
       ],
       "reference_count": 2
     },
@@ -5946,7 +5946,7 @@
       "object_type": "user-account",
       "object_index": 125,
       "filename": "user-account_0af53392_data_form.json",
-      "form_name": "user_account_form",
+      "form_name": "user-account_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\user-account_0af53392_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5966,7 +5966,7 @@
       "object_type": "user-account",
       "object_index": 126,
       "filename": "user-account_118eff22_data_form.json",
-      "form_name": "user_account_form",
+      "form_name": "user-account_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\user-account_118eff22_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -5986,7 +5986,7 @@
       "object_type": "user-account",
       "object_index": 127,
       "filename": "user-account_aa564010_data_form.json",
-      "form_name": "user_account_form",
+      "form_name": "user-account_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\user-account_aa564010_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -6032,7 +6032,7 @@
       "object_type": "windows-registry-key",
       "object_index": 129,
       "filename": "windows-registry-key_b5aef65c_data_form.json",
-      "form_name": "windows_registry_key_form",
+      "form_name": "windows-registry-key_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\windows-registry-key_b5aef65c_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -6052,7 +6052,7 @@
       "object_type": "windows-registry-key",
       "object_index": 130,
       "filename": "windows-registry-key_ff4d5744_data_form.json",
-      "form_name": "windows_registry_key_form",
+      "form_name": "windows-registry-key_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\windows-registry-key_ff4d5744_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -6072,7 +6072,7 @@
       "object_type": "x509-certificate",
       "object_index": 131,
       "filename": "x509-certificate_1b49af9f_data_form.json",
-      "form_name": "x509_certificate_form",
+      "form_name": "x509-certificate_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\x509-certificate_1b49af9f_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -6092,7 +6092,7 @@
       "object_type": "x509-certificate",
       "object_index": 132,
       "filename": "x509-certificate_4c5a4de0_data_form.json",
-      "form_name": "x509_certificate_form",
+      "form_name": "x509-certificate_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\x509-certificate_4c5a4de0_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -6139,10 +6139,10 @@
       },
       "referenced_object_ids": [
         "relationship--f82356ae-fe6c-437c-9c24-6b64314ae68a",
-        "report--84e4d88f-44ea-4bcd-bbf3-b2c1c320bcb3",
         "indicator--26ffb872-1dd9-446e-b6f5-d58527e5b5d2",
-        "identity--a463ffb3-1bd9-4d94-b02d-74e4f1658283",
-        "campaign--83422c77-904c-4dc1-aff5-5c38f3a2c55c"
+        "campaign--83422c77-904c-4dc1-aff5-5c38f3a2c55c",
+        "report--84e4d88f-44ea-4bcd-bbf3-b2c1c320bcb3",
+        "identity--a463ffb3-1bd9-4d94-b02d-74e4f1658283"
       ],
       "reference_count": 3
     },
@@ -6188,11 +6188,11 @@
         }
       },
       "referenced_object_ids": [
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
         "identity--b67d30ff-02ac-498a-92f9-32f845f448ff",
         "sighting--ee20065d-2555-424f-ad9e-0f8428623c75",
-        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
-        "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf"
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
+        "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf",
+        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
       ],
       "reference_count": 5
     },
@@ -6201,7 +6201,7 @@
       "object_type": "observed-data",
       "object_index": 136,
       "filename": "observed-data_66e05e73_data_form.json",
-      "form_name": "observed_data_form",
+      "form_name": "observed-data_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\observed-data_66e05e73_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -6225,8 +6225,8 @@
         }
       },
       "referenced_object_ids": [
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
         "file--30038539-3eb6-44bc-a59e-d0d3fe84695a",
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
         "observed-data--d0f26641-47df-4cb2-a790-9ae96f534519"
       ],
       "reference_count": 3
@@ -6257,8 +6257,8 @@
         }
       },
       "referenced_object_ids": [
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
         "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
         "sighting--f9b0225b-fe10-4bf6-a24b-680d9b88b3a6"
       ],
       "reference_count": 3
@@ -6305,11 +6305,11 @@
         }
       },
       "referenced_object_ids": [
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
+        "sighting--2b02cd96-a136-4914-8881-4b882babce45",
         "identity--b67d30ff-02ac-498a-92f9-32f845f448ff",
-        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
         "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf",
-        "sighting--2b02cd96-a136-4914-8881-4b882babce45"
+        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
       ],
       "reference_count": 5
     },
@@ -6318,7 +6318,7 @@
       "object_type": "observed-data",
       "object_index": 139,
       "filename": "observed-data_66e05e73_data_form.json",
-      "form_name": "observed_data_form",
+      "form_name": "observed-data_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\observed-data_66e05e73_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -6353,7 +6353,7 @@
       "object_type": "ipv4-addr",
       "object_index": 140,
       "filename": "ipv4-addr_198.51.100.2_f63f223a_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\ipv4-addr_198.51.100.2_f63f223a_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -6373,7 +6373,7 @@
       "object_type": "ipv4-addr",
       "object_index": 142,
       "filename": "ipv4-addr_203.0.113.2_74fed45c_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\ipv4-addr_203.0.113.2_74fed45c_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -6393,7 +6393,7 @@
       "object_type": "network-traffic",
       "object_index": 143,
       "filename": "network-traffic_4e7703fa_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\network-traffic_4e7703fa_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -6424,8 +6424,8 @@
       "referenced_object_ids": [
         "network-traffic--53e0bf48-2eee-5c03-8bde-ed7049d2c0a3",
         "network-traffic--ac267abc-1a41-536d-8e8d-98458d9bf491",
-        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7",
-        "ipv4-addr--4d22aae0-2bf9-5427-8819-e4f6abf20a53"
+        "ipv4-addr--4d22aae0-2bf9-5427-8819-e4f6abf20a53",
+        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7"
       ],
       "reference_count": 4
     },
@@ -6434,7 +6434,7 @@
       "object_type": "network-traffic",
       "object_index": 144,
       "filename": "network-traffic_514c7f76_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\network-traffic_514c7f76_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -6472,7 +6472,7 @@
       "object_type": "ipv4-addr",
       "object_index": 146,
       "filename": "ipv4-addr_198.51.100.34_87c94326_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\ipv4-addr_198.51.100.34_87c94326_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -6492,7 +6492,7 @@
       "object_type": "ipv4-addr",
       "object_index": 147,
       "filename": "ipv4-addr_198.51.100.54_12b1a5ee_data_form.json",
-      "form_name": "ipv4_addr_form",
+      "form_name": "ipv4-addr_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\ipv4-addr_198.51.100.54_12b1a5ee_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -6512,7 +6512,7 @@
       "object_type": "network-traffic",
       "object_index": 148,
       "filename": "network-traffic_6fc7bbe9_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\network-traffic_6fc7bbe9_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -6543,8 +6543,8 @@
       "referenced_object_ids": [
         "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89",
         "network-traffic--b4a8c150-e214-57a3-9017-e85dfa345f46",
-        "network-traffic--65a6016d-a91c-5781-baad-178cd55f01d4",
-        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7"
+        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7",
+        "network-traffic--65a6016d-a91c-5781-baad-178cd55f01d4"
       ],
       "reference_count": 4
     },
@@ -6553,7 +6553,7 @@
       "object_type": "network-traffic",
       "object_index": 149,
       "filename": "network-traffic_8bfd500e_data_form.json",
-      "form_name": "network_traffic_form",
+      "form_name": "network-traffic_form",
       "data_form_path": "C:\\projects\\brett_blocks\\temporary_reconstitution_testing\\generated\\data_forms\\network-traffic_8bfd500e_data_form.json",
       "has_references": true,
       "extracted_references": {
@@ -6579,10 +6579,10 @@
         }
       },
       "referenced_object_ids": [
-        "ipv4-addr--bb884ffe-f2e4-56bb-a0c3-21f6711cb649",
-        "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89",
         "network-traffic--65a6016d-a91c-5781-baad-178cd55f01d4",
-        "network-traffic--b4a8c150-e214-57a3-9017-e85dfa345f46"
+        "network-traffic--b4a8c150-e214-57a3-9017-e85dfa345f46",
+        "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89",
+        "ipv4-addr--bb884ffe-f2e4-56bb-a0c3-21f6711cb649"
       ],
       "reference_count": 4
     },

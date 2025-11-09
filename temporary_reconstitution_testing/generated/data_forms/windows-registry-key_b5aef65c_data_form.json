@@ -1,5 +1,5 @@
 {
-  "windows_registry_key_form": {
+  "windows-registry-key_form": {
     "base_required": {
       "type": "windows-registry-key",
       "spec_version": "2.1",

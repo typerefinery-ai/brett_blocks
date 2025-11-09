@@ -1,5 +1,5 @@
 {
-  "network_traffic_form": {
+  "network-traffic_form": {
     "base_required": {
       "type": "network-traffic",
       "spec_version": "2.1",

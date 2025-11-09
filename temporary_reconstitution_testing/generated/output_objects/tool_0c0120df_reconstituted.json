@@ -1,0 +1,12 @@
+{
+  "type": "tool",
+  "spec_version": "2.1",
+  "id": "tool--0c0120df-74ba-4245-9f6c-de847cb1c4d0",
+  "created": "2025-11-09T13:10:44.613Z",
+  "modified": "2025-11-09T13:10:44.613Z",
+  "created_by_ref": "identity--9cec718a-bd91-424f-966b-9598b490c098",
+  "name": "VNC",
+  "tool_types": [
+    "remote-access"
+  ]
+}

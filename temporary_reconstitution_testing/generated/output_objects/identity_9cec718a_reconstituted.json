@@ -1,0 +1,10 @@
+{
+  "type": "identity",
+  "spec_version": "2.1",
+  "id": "identity--9cec718a-bd91-424f-966b-9598b490c098",
+  "created": "2025-11-09T13:10:44.467Z",
+  "modified": "2025-11-09T13:10:44.467Z",
+  "name": "Adversary Bravo",
+  "description": "Adversary Bravo is a threat actor that utilizes phishing attacks.",
+  "identity_class": "unknown"
+}

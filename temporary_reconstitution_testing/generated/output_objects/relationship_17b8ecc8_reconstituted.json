@@ -1,0 +1,10 @@
+{
+  "type": "relationship",
+  "spec_version": "2.1",
+  "id": "relationship--17b8ecc8-c9f2-422a-9920-c69e1df81180",
+  "created": "2025-11-09T13:10:44.723Z",
+  "modified": "2025-11-09T13:10:44.723Z",
+  "relationship_type": "analysis-of",
+  "source_ref": "malware-analysis--9d79eece-ae42-45e3-9779-cc8ba6defb9d",
+  "target_ref": "malware--b982faf1-aad4-4f65-a937-efaf4199013e"
+}

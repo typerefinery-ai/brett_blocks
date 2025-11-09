@@ -1,0 +1,52 @@
+{
+  "type": "incident",
+  "spec_version": "2.1",
+  "id": "incident--51bf65b5-71f8-4f48-86d7-95f2ebc41929",
+  "created": "2025-11-09T13:10:44.750Z",
+  "modified": "2025-11-09T13:10:44.750Z",
+  "name": "potential phishing",
+  "extensions": {
+    "extension-definition--ef765651-680c-498d-9894-99799f2fa126": {
+      "extension_type": "property-extension",
+      "investigation_status": "new",
+      "incident_types": [
+        "dissemination-phishing-emails"
+      ],
+      "other_object_refs": [
+        "email-addr--2724e563-9470-4eec-aa04-cf9fa4f1a3e8",
+        "email-addr--7f3f43ed-0ca4-48c1-a45f-55f499e7b984",
+        "user-account--673d1070-c7cd-4143-9634-5e5f55305a37",
+        "identity--89bb46d8-08ff-4385-bbbf-ed5a42559655",
+        "identity--dbc2230f-d484-48b3-b3a7-83b1b3ff852a",
+        "url--c50eb0b2-8a48-4421-b5bc-8efbab15a0d2",
+        "email-message--393f36dd-e6c4-40a3-8623-9c9b89fe3a56",
+        "observed-data--1865c46e-d2e7-4e72-a3ee-5e5f3777ab20",
+        "indicator--24c1d447-871f-4a3e-b610-c3fffce01f59",
+        "sighting--3ce2a3c5-de61-41a6-81c6-5ba7ce380735",
+        "identity--aca0fdc6-cf7e-44da-8543-4b77abdecb3f",
+        "anecdote--600f178e-779b-40dd-9461-529b6f58bfcb",
+        "observed-data--ebba92f5-4280-4661-a22c-21422f5f6ae7",
+        "sighting--f6c0ce22-1420-4f65-ae92-d117a3fa32b6"
+      ],
+      "event_refs": [
+        "event--f619f973-8f9c-48dd-84d6-3b71f353c23b"
+      ],
+      "sequence_refs": [
+        "sequence--85d7f8f8-84dc-45e4-ba27-d5fa35c7c4f0",
+        "sequence--d8a8e810-6592-4e66-af46-64dd656c4403",
+        "sequence--adf2f6a7-0040-41b1-9ccd-79d45f7950ed"
+      ],
+      "sequence_start_refs": [
+        "sequence--90d7d39c-d2bb-4b72-87a8-c000e88eb7f6",
+        "sequence--76b1e779-ea0c-4125-a73b-9636d2857ebd"
+      ],
+      "task_refs": [
+        "task--0e679b92-402f-4588-8a6e-98b5c5e7c5cd",
+        "task--4763350c-6b37-409b-a4fa-8bf7285313e9"
+      ],
+      "impact_refs": [
+        "impact--601c1b15-c7a6-4f6f-ac63-32fb6198b2b4"
+      ]
+    }
+  }
+}

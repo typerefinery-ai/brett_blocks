@@ -1,5 +1,5 @@
 {
-  "course_of_action_form": {
+  "course-of-action_form": {
     "base_required": {
       "type": "course-of-action",
       "spec_version": "2.1",

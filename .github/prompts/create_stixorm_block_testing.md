@@ -21,7 +21,7 @@ All of the details to do with all testing, including scripts and generated files
 
 4. **Test Input Data**:
    - Open all of the lists of stix objects from `Block_Families/StixORM/examples/` for use as a single input
-   - Open all directories using 
+   - Open all directories using  
    - Only use data objects where there is a make_object.py file in the same directory as the template
 
 5. **Identical Test Sequence for Each Block**: 

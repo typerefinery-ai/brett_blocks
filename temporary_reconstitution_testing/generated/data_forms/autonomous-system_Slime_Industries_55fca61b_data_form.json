@@ -1,5 +1,5 @@
 {
-  "autonomous_system_form": {
+  "autonomous-system_form": {
     "base_required": {
       "type": "autonomous-system",
       "spec_version": "2.1",

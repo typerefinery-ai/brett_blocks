@@ -1,0 +1,19 @@
+{
+  "type": "network-traffic",
+  "spec_version": "2.1",
+  "id": "network-traffic--71293908-1bd5-43b5-9c02-9f0964caed7b",
+  "src_ref": "ipv4-addr--00b28c2a-2fbe-447c-9765-d2736c19472b",
+  "dst_ref": "ipv4-addr--27cc533d-cc63-4386-bce6-1a41fd0ce2e6",
+  "src_port": 2487,
+  "dst_port": 53,
+  "protocols": [
+    "ipv4",
+    "udp",
+    "dns"
+  ],
+  "src_byte_count": 35779,
+  "dst_byte_count": 935750,
+  "encapsulates_refs": [
+    "network-traffic--bc5a2c1c-c67a-4aff-98e2-367446e23d14"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "type": "file",
+  "spec_version": "2.1",
+  "id": "file--07447bc0-514c-4c03-aa91-5256d6125fe2",
+  "hashes": {
+    "MD5": "a92e5b2bae0b4b3a3d81c85610b95cd4",
+    "SHA-1": "5374e08903744ceeaedd8f5e1bfc06b2c4688e76"
+  },
+  "size": 77312,
+  "name": "a92e5b2bae.exe",
+  "parent_directory_ref": "directory--0e5941bc-7b6b-446d-aef5-251b31795bc1"
+}

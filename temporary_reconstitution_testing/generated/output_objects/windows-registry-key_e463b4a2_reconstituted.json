@@ -1,6 +1,0 @@
-{
-  "type": "windows-registry-key",
-  "spec_version": "2.1",
-  "id": "windows-registry-key--e463b4a2-f9ef-4138-80b8-64a989680de1",
-  "key": "HKEY_LOCAL_MACHINE\\System\\Foo\\Bar"
-}

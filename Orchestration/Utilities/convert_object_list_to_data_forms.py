@@ -5,6 +5,9 @@ Convert Object List to Data Forms Utility
 This utility refactors the data form creation logic from the notebook into a reusable 
 Python function that can be called from anywhere in the codebase.
 
+Now uses dynamic ParseContent-based identification instead of static type mappings.
+All STIX type metadata is loaded from icon_registry.csv via parse.py.
+
 Based on the requirements from .github/prompts/convert-create-data-forms-notebook-to-python-utility.md
 and the conversion logic in .github/prompts/create-data-forms.md
 """
@@ -12,71 +15,90 @@ and the conversion logic in .github/prompts/create-data-forms.md
 import json
 import copy
 import hashlib
+import sys
 from pathlib import Path
 from typing import Dict, List, Any, Optional
 from collections import defaultdict
 
+# Add project root to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-def get_stix_type_mapping():
-    """Map STIX types to their expected directory structure"""
+try:
+    from Block_Families.General._library.parse import (
+        determine_content_object_from_list_by_tests,
+        ParseContent
+    )
+except ImportError as e:
+    raise ImportError(
+        f"Failed to import parse.py: {e}\n"
+        f"Ensure Block_Families/General/_library/parse.py exists"
+    )
+
+
+def get_parse_content_for_object(stix_obj: Dict[str, Any]) -> Optional[ParseContent]:
+    """
+    Get ParseContent metadata for a STIX object from icon_registry.csv.
     
-    # Load the inventory from the documentation
-    inventory = {
-        # SDO types (currently implemented)
-        'identity': 'SDO/Identity',
-        'indicator': 'SDO/Indicator', 
-        'impact': 'SDO/Impact',
-        'incident': 'SDO/Incident',
-        'event': 'SDO/Event',
-        'observed-data': 'SDO/Observed_Data',
-        'sequence': 'SDO/Sequence',
-        'task': 'SDO/Task',
-        
-        # SCO types (currently implemented)
-        'anecdote': 'SCO/Anecdote',
-        'email-addr': 'SCO/Email_Addr',
-        'user-account': 'SCO/User_Account',
-        'url': 'SCO/URL',
-        'email-message': 'SCO/Email_Message',
-        
-        # SRO types (currently implemented)
-        'relationship': 'SRO/Relationship',
-        'sighting': 'SRO/Sighting',
-        
-        # Standard STIX 2.1 SDO types (templates exist)
-        'attack-pattern': 'SDO/Attack_Pattern',
-        'campaign': 'SDO/Campaign',
-        'course-of-action': 'SDO/Course_of_Action',
-        'grouping': 'SDO/Grouping',
-        'infrastructure': 'SDO/Infrastructure',
-        'intrusion-set': 'SDO/Instrusion_Set',
-        'location': 'SDO/Location',
-        'malware-analysis': 'SDO/Malware_Analysis',
-        'note': 'SDO/Note',
-        'opinion': 'SDO/Opinion',
-        'report': 'SDO/Report',
-        'threat-actor': 'SDO/Threat_Actor',
-        'vulnerability': 'SDO/Vulnerability',
-        
-        # Standard STIX 2.1 SCO types (templates exist)
-        'artifact': 'SCO/Artifact',
-        'autonomous-system': 'SCO/Autonomous_System',
-        'directory': 'SCO/Directory',
-        'domain-name': 'SCO/Domain_Name',
-        'file': 'SCO/File',
-        'ipv4-addr': 'SCO/IPv4_Addr',
-        'ipv6-addr': 'SCO/IPv6_Addr',
-        'mac-addr': 'SCO/MAC_Address',
-        'mutex': 'SCO/Mutex',
-        'software': 'SCO/Software',
-        'x509-certificate': 'SCO/X509_Cert'
-    }
+    Uses determine_content_object_from_list_by_tests() which handles conditional
+    objects (e.g., identity_class='organization' → organisation form).
     
-    return inventory
+    Args:
+        stix_obj: STIX object dictionary
+        
+    Returns:
+        ParseContent object with metadata, or None if not found in registry
+    """
+    parse_content = determine_content_object_from_list_by_tests(stix_obj, "class")
+    if parse_content is None:
+        stix_type = stix_obj.get('type', 'unknown')
+        stix_id = stix_obj.get('id', 'unknown')
+        print(f"WARNING: Object type '{stix_type}' not found in icon_registry.csv. Object ID: {stix_id}")
+    return parse_content
+
+
+def get_template_for_object(stixorm_path: Path, parse_content: ParseContent) -> Dict[str, Any]:
+    """
+    Load the template JSON for a STIX object using ParseContent metadata.
+    
+    Constructs path directly from ParseContent.group and ParseContent.python_class,
+    then loads {python_class}_template.json from that directory.
+    
+    Args:
+        stixorm_path: Path to StixORM directory (e.g., Block_Families/StixORM)
+        parse_content: ParseContent metadata for object
+        
+    Returns:
+        Template dictionary loaded from {python_class}_template.json
+        
+    Raises:
+        FileNotFoundError: If template file doesn't exist
+    """
+    # Convert group to uppercase to match directory structure (SCO, SDO, SRO)
+    group_dir = parse_content.group.upper()
+    template_dir = stixorm_path / group_dir / parse_content.python_class
+    template_file = template_dir / f"{parse_content.python_class}_template.json"
+    
+    if not template_file.exists():
+        raise FileNotFoundError(
+            f"Template not found: {template_file}\n"
+            f"Expected directory: {template_dir}\n"
+            f"For object type: {parse_content.stix_type}"
+        )
+    
+    with open(template_file, 'r', encoding='utf-8') as f:
+        return json.load(f)
 
 
 def discover_class_templates(stixorm_path: Path) -> Dict[str, Any]:
-    """Discover all class templates in the StixORM directory structure"""
+    """
+    Discover all class templates in the StixORM directory structure.
+    
+    DEPRECATED: This function is no longer used by create_data_forms_from_stix_objects().
+    The new approach uses get_parse_content_for_object() and get_template_for_object()
+    for dynamic template discovery via icon_registry.csv.
+    
+    Keeping this function for backward compatibility with existing code that imports it.
+    """
     templates = {}
     
     # Search SDO, SCO, and SRO directories
@@ -112,28 +134,6 @@ def discover_class_templates(stixorm_path: Path) -> Dict[str, Any]:
                     continue
     
     return templates
-
-
-def get_typeql_name(stix_type: str) -> str:
-    """Convert STIX type to typeql form name using established mapping"""
-    typeql_mapping = {
-        'identity': 'identity_form',
-        'indicator': 'indicator_form', 
-        'incident': 'incident_form',
-        'observed-data': 'observed_data_form',
-        'email-addr': 'email_addr_form',
-        'user-account': 'user_account_form',
-        'url': 'url_form',
-        'email-message': 'email_message_form',
-        'impact': 'impact_form',
-        'event': 'event_form',
-        'sequence': 'sequence_form',
-        'task': 'task_form',
-        'anecdote': 'anecdote_form',
-        'relationship': 'relationship_form',
-        'sighting': 'sighting_form'
-    }
-    return typeql_mapping.get(stix_type, f"{stix_type.replace('-', '_')}_form")
 
 
 def get_template_default(template_def: Any, field_name: str = "", section: str = "") -> Any:
@@ -222,7 +222,11 @@ def extract_references_from_object(obj: Dict[str, Any], path: str = "") -> Dict[
     return extracted_refs, obj_copy
 
 
-def convert_stix_to_data_form(stix_obj: Dict[str, Any], class_template: Dict[str, Any]) -> Dict[str, Any]:
+def convert_stix_to_data_form(
+    stix_obj: Dict[str, Any], 
+    class_template: Dict[str, Any],
+    parse_content: ParseContent
+) -> Dict[str, Any]:
     """
     Convert a STIX object to a data form using the class template as reference.
     
@@ -235,6 +239,7 @@ def convert_stix_to_data_form(stix_obj: Dict[str, Any], class_template: Dict[str
     Args:
         stix_obj: The STIX JSON object to convert
         class_template: The corresponding class template
+        parse_content: ParseContent metadata (used for form name derivation)
         
     Returns:
         Dict containing the data form and extracted references
@@ -245,12 +250,15 @@ def convert_stix_to_data_form(stix_obj: Dict[str, Any], class_template: Dict[str
     template_key = f"{class_name}_template"
     template_data = class_template[template_key]
     
-    # Get the form name using established mapping
-    stix_type = stix_obj.get('type')
-    form_name = get_typeql_name(stix_type)
+    # Get the form name from ParseContent, converting underscores to dashes
+    # e.g., 'single_step' → 'single-step_form', 'identity' → 'identity_form'
+    form_name = f"{parse_content.typeql.replace('_', '-')}_form"
     
     # Extract all references first
     extracted_refs, cleaned_obj = extract_references_from_object(stix_obj)
+    
+    # Get stix_type for defaults
+    stix_type = stix_obj.get('type')
     
     # Create the data form structure following template
     data_form = {
@@ -408,7 +416,10 @@ def create_data_forms_from_stix_objects(
     test_directory: Optional[str] = None
 ) -> Dict:
     """
-    Create data forms from a list of STIX data objects using class templates.
+    Create data forms from a list of STIX data objects using dynamic ParseContent identification.
+    
+    Now uses icon_registry.csv for object identification instead of static mappings.
+    Handles conditional objects and all registered STIX types.
     
     This function supports two modes of operation:
     
@@ -444,10 +455,6 @@ def create_data_forms_from_stix_objects(
         base_path = base_path.parent
     
     stixorm_path = base_path / "Block_Families" / "StixORM"
-    stix_type_mapping = get_stix_type_mapping()
-    
-    # Discover available templates
-    available_templates = discover_class_templates(stixorm_path)
     
     # Initialize results
     results = {
@@ -481,9 +488,10 @@ def create_data_forms_from_stix_objects(
             results['report']['processed'] += 1
             results['report']['by_type'][obj_type] += 1
             
-            # Check if we have a template for this type
-            if obj_type not in available_templates:
-                error_msg = f"No template available for type: {obj_type}"
+            # Get ParseContent metadata for this object (dynamic identification)
+            parse_content = get_parse_content_for_object(stix_obj)
+            if parse_content is None:
+                error_msg = f"Object type '{obj_type}' not found in icon_registry.csv"
                 results['report']['errors'].append({
                     'object_id': obj_id,
                     'error': error_msg
@@ -491,17 +499,25 @@ def create_data_forms_from_stix_objects(
                 results['report']['failed'] += 1
                 continue
             
-            # Get template
-            template_info = available_templates[obj_type]
-            template = template_info['template_data']
+            # Load template using ParseContent metadata
+            try:
+                template = get_template_for_object(stixorm_path, parse_content)
+            except FileNotFoundError as e:
+                error_msg = str(e)
+                results['report']['errors'].append({
+                    'object_id': obj_id,
+                    'error': error_msg
+                })
+                results['report']['failed'] += 1
+                continue
             
             # Extract references FIRST to get cleaned object for stable filename generation
             # This ensures the filename hash is based on object content WITHOUT embedded references
             # so the same hash can be computed during reconstitution (when references have new UUIDs)
             extracted_refs_for_filename, cleaned_obj_for_filename = extract_references_from_object(stix_obj)
             
-            # Convert to data form
-            conversion_result = convert_stix_to_data_form(stix_obj, template)
+            # Convert to data form (now passing parse_content)
+            conversion_result = convert_stix_to_data_form(stix_obj, template, parse_content)
             
             # Determine form name and data
             form_name = list(conversion_result.keys())[0]  # First key is the form name
@@ -527,10 +543,13 @@ def create_data_forms_from_stix_objects(
             else:
                 seen_ids[obj_id] = 1
             
-            # Determine save path
+            # Determine save path using ParseContent
             if test_directory is None:
-                # Mode 1: Save to StixORM directory
-                save_path = template_info['directory'] / filename
+                # Mode 1: Save to StixORM directory (construct path from ParseContent)
+                # Convert group to uppercase to match directory structure (SCO, SDO, SRO)
+                group_dir = parse_content.group.upper()
+                template_dir = stixorm_path / group_dir / parse_content.python_class
+                save_path = template_dir / filename
             else:
                 # Mode 2: Save to test directory
                 save_path = Path(test_directory) / filename
