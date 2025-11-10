@@ -50,6 +50,33 @@ To install the blocks, clone the repo and run:
 poetry install
 ```
 
+## Testing
+
+A comprehensive testing system validates all StixORM blocks through round-trip conversion tests.
+
+### Quick Test Run
+
+**Windows (PowerShell):**
+```powershell
+.\tests\run_tests.ps1
+```
+
+**Linux/Mac:**
+```bash
+./tests/run_tests.sh
+```
+
+**Using Poetry directly:**
+```bash
+poetry run pytest tests/
+```
+
+### Documentation
+
+- **[TESTING.md](TESTING.md)** - Quick reference guide
+- **[tests/README.md](tests/README.md)** - Complete testing documentation  
+- **[architecture/stixorm-testing-system-design.md](architecture/stixorm-testing-system-design.md)** - System design details
+
 ## Usage
 Note that personal data in the **Orchestration/generated/context_mem** and **Orchestration/Results** directories should not be pushed to github, and the gitignore is updated to reflect this.
 
