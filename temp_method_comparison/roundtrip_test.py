@@ -22,7 +22,7 @@ def test_data_form_with_brett_blocks(data_form_path: str, output_path: str, test
             from Block_Families.StixORM.SDO.Identity.make_identity import main as make_identity
             make_identity(data_form_path, output_path)
         elif test_type == 'email_addr':
-            from Block_Families.StixORM.SCO.Email_Addr.make_email_addr import main as make_email_addr
+            from Block_Families.StixORM.SCO.EmailAddress.make_email_addr import main as make_email_addr
             make_email_addr(data_form_path, output_path)
         else:
             return {'success': False, 'error': f'Unknown test type: {test_type}'}

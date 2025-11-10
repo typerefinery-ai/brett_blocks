@@ -205,7 +205,7 @@ def run_direct_comparison():
         test_cases.append({
             'name': 'EmailAddress',
             'stix_object': email_obj,
-            'template_path': 'Block_Families/StixORM/SCO/Email_Addr/EmailAddress_template.json'
+            'template_path': 'Block_Families/StixORM/SCO/EmailAddress/EmailAddress_template.json'
         })
     
     results = []

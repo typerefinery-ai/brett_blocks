@@ -114,19 +114,19 @@ def create_data_forms_for_skipped_objects():
             'python_file': 'Block_Families/StixORM/SDO/Incident/make_incident.py'
         },
         'observed_data': {
-            'template_path': 'Block_Families/StixORM/SDO/Observed_Data/ObservedData_template.json',
+            'template_path': 'Block_Families/StixORM/SDO/ObservedData/ObservedData_template.json',
             'python_class': 'ObservedData',
-            'python_file': 'Block_Families/StixORM/SDO/Observed_Data/make_observed_data.py'
+            'python_file': 'Block_Families/StixORM/SDO/ObservedData/make_observed_data.py'
         },
         'user_account': {
-            'template_path': 'Block_Families/StixORM/SCO/User_Account/UserAccount_template.json',
+            'template_path': 'Block_Families/StixORM/SCO/UserAccount/UserAccount_template.json',
             'python_class': 'UserAccount', 
-            'python_file': 'Block_Families/StixORM/SCO/User_Account/make_user_account.py'
+            'python_file': 'Block_Families/StixORM/SCO/UserAccount/make_user_account.py'
         },
         'email_message': {
-            'template_path': 'Block_Families/StixORM/SCO/Email_Message/EmailMessage_template.json',
+            'template_path': 'Block_Families/StixORM/SCO/EmailMessage/EmailMessage_template.json',
             'python_class': 'EmailMessage',
-            'python_file': 'Block_Families/StixORM/SCO/Email_Message/make_email_msg.py'
+            'python_file': 'Block_Families/StixORM/SCO/EmailMessage/make_email_message.py'
         }
     }
     

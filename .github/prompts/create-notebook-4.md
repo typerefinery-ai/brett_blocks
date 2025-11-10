@@ -75,15 +75,15 @@ Reviewing these three types of objects all Compare how this pattern works
 	},
 	{
 		"stix_type": "email-addr",
-		"python": "Block_Families/StixORM/SCO/Email_Addr/make_email_addr.py",
-		"template": "Block_Families/StixORM/SCO/Email_Addr/EmailAddress_template.json",
-		"data_example": "Block_Families/StixORM/SCO/Email_Addr/email_addr_IT_user1.json"
+		"python": "Block_Families/StixORM/SCO/EmailAddress/make_email_addr.py",
+		"template": "Block_Families/StixORM/SCO/EmailAddress/EmailAddress_template.json",
+		"data_example": "Block_Families/StixORM/SCO/EmailAddress/email_addr_IT_user1.json"
 	},
 	{
 		"stix_type": "user-account",
-		"python": "Block_Families/StixORM/SCO/User_Account/make_user_account.py",
-		"template": "Block_Families/StixORM/SCO/User_Account/UserAccount_template.json",
-		"data_example": "Block_Families/StixORM/SCO/User_Account/usr_account_IT_user1.json"
+		"python": "Block_Families/StixORM/SCO/UserAccount/make_user_account.py",
+		"template": "Block_Families/StixORM/SCO/UserAccount/UserAccount_template.json",
+		"data_example": "Block_Families/StixORM/SCO/UserAccount/usr_account_IT_user1.json"
 	},
 	{
 		"stix_type": "url",

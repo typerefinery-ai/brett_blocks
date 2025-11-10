@@ -59,30 +59,30 @@ def get_template_mapping():
             'make_function': 'Block_Families.StixORM.SDO.Incident.make_incident'
         },
         'observed-data': {
-            'template_path': 'Block_Families/StixORM/SDO/Observed_Data/ObservedData_template.json',
+            'template_path': 'Block_Families/StixORM/SDO/ObservedData/ObservedData_template.json',
             'python_class': 'ObservedData',
             'category': 'SDO',
-            'make_function': 'Block_Families.StixORM.SDO.Observed_Data.make_observed_data'
+            'make_function': 'Block_Families.StixORM.SDO.ObservedData.make_observed_data'
         },
         
         # SCO Objects
         'email-addr': {
-            'template_path': 'Block_Families/StixORM/SCO/Email_Addr/EmailAddress_template.json',
+            'template_path': 'Block_Families/StixORM/SCO/EmailAddress/EmailAddress_template.json',
             'python_class': 'EmailAddress',
             'category': 'SCO',
-            'make_function': 'Block_Families.StixORM.SCO.Email_Addr.make_email_addr'
+            'make_function': 'Block_Families.StixORM.SCO.EmailAddress.make_email_addr'
         },
         'email-message': {
-            'template_path': 'Block_Families/StixORM/SCO/Email_Message/EmailMessage_template.json',
+            'template_path': 'Block_Families/StixORM/SCO/EmailMessage/EmailMessage_template.json',
             'python_class': 'EmailMessage',
             'category': 'SCO',
-            'make_function': 'Block_Families.StixORM.SCO.Email_Message.make_email_msg'
+            'make_function': 'Block_Families.StixORM.SCO.EmailMessage.make_email_message'
         },
         'user-account': {
-            'template_path': 'Block_Families/StixORM/SCO/User_Account/UserAccount_template.json',
+            'template_path': 'Block_Families/StixORM/SCO/UserAccount/UserAccount_template.json',
             'python_class': 'UserAccount',
             'category': 'SCO',
-            'make_function': 'Block_Families.StixORM.SCO.User_Account.make_user_account'
+            'make_function': 'Block_Families.StixORM.SCO.UserAccount.make_user_account'
         },
         'url': {
             'template_path': 'Block_Families/StixORM/SCO/URL/URL_template.json',

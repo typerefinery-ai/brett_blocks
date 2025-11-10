@@ -21,8 +21,8 @@ Create a new team member object set following the existing pattern in the projec
 
 Requirements:
 1. Create identity object in Block_Families/StixORM/SDO/Identity/ following the pattern of identity_team1.json and identity_team2.json
-2. Create email-addr object in Block_Families/StixORM/SCO/Email_Addr/ following email_addr_team1.json pattern
-3. Create user-account object in Block_Families/StixORM/SCO/User_Account/ following usr_account_team1.json pattern
+2. Create email-addr object in Block_Families/StixORM/SCO/EmailAddress/ following email_addr_team1.json pattern
+3. Create user-account object in Block_Families/StixORM/SCO/UserAccount/ following usr_account_team1.json pattern
 
 For team member: [NAME] with role [ROLE]
 

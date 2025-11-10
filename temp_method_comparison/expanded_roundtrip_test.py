@@ -27,16 +27,16 @@ def test_data_form_with_brett_blocks(data_form_path: str, output_path: str, obj_
             from Block_Families.StixORM.SDO.Incident.make_incident import main as make_incident
             make_incident(data_form_path, output_path)
         elif obj_type == 'observed-data':
-            from Block_Families.StixORM.SDO.Observed_Data.make_observed_data import main as make_observed_data
+            from Block_Families.StixORM.SDO.ObservedData.make_observed_data import main as make_observed_data
             make_observed_data(data_form_path, output_path)
         elif obj_type == 'email-addr':
-            from Block_Families.StixORM.SCO.Email_Addr.make_email_addr import main as make_email_addr
+            from Block_Families.StixORM.SCO.EmailAddress.make_email_addr import main as make_email_addr
             make_email_addr(data_form_path, output_path)
         elif obj_type == 'email-message':
-            from Block_Families.StixORM.SCO.Email_Message.make_email_msg import main as make_email_msg
+            from Block_Families.StixORM.SCO.EmailMessage.make_email_message import main as make_email_msg
             make_email_msg(data_form_path, output_path)
         elif obj_type == 'user-account':
-            from Block_Families.StixORM.SCO.User_Account.make_user_account import main as make_user_account
+            from Block_Families.StixORM.SCO.UserAccount.make_user_account import main as make_user_account
             make_user_account(data_form_path, output_path)
         elif obj_type == 'url':
             from Block_Families.StixORM.SCO.URL.make_url import main as make_url

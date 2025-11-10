@@ -77,7 +77,7 @@ def setup_test_environment():
             'source_file': email_path,
             'stix_object': email_obj,
             'python_class': 'EmailAddress',
-            'template_path': 'Block_Families/StixORM/SCO/Email_Addr/EmailAddress_template.json'
+            'template_path': 'Block_Families/StixORM/SCO/EmailAddress/EmailAddress_template.json'
         })
     
     # Save test objects to input directory

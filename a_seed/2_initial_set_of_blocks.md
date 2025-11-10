@@ -89,16 +89,16 @@ In order to build your insight on this, compare how this pattern works
 	{
 		"python_class": "EmailAddress",
 		"stix_type": "email-addr",
-		"python": "Block_Families/StixORM/SCO/Email_Addr/make_email_addr.py",
-		"template": "Block_Families/StixORM/SCO/Email_Addr/EmailAddress_template.json",
-		"data_example": "Block_Families/StixORM/SCO/Email_Addr/email_addr_IT_user1.json"
+		"python": "Block_Families/StixORM/SCO/EmailAddress/make_email_addr.py",
+		"template": "Block_Families/StixORM/SCO/EmailAddress/EmailAddress_template.json",
+		"data_example": "Block_Families/StixORM/SCO/EmailAddress/email_addr_IT_user1.json"
 	},
 	{
 		"python_class": "UserAccount",
 		"stix_type": "user-account",
-		"python": "Block_Families/StixORM/SCO/User_Account/make_user_account.py",
-		"template": "Block_Families/StixORM/SCO/User_Account/UserAccount_template.json",
-		"data_example": "Block_Families/StixORM/SCO/User_Account/usr_account_IT_user1.json"
+		"python": "Block_Families/StixORM/SCO/UserAccount/make_user_account.py",
+		"template": "Block_Families/StixORM/SCO/UserAccount/UserAccount_template.json",
+		"data_example": "Block_Families/StixORM/SCO/UserAccount/usr_account_IT_user1.json"
 	},
 	{
 		"python_class": "URL",
@@ -144,8 +144,8 @@ In order to build your insight on this, compare how this pattern works
   "python_class": "AttackPattern",
   "stix_type": "attack-pattern",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/Attack_Pattern/AttackPattern_template.json",
-  "data_example": "Block_Families/StixORM/SDO/Attack_Pattern/Test_attack_pattern.json"
+  "template": "Block_Families/StixORM/SDO/AttackPattern/AttackPattern_template.json",
+  "data_example": "Block_Families/StixORM/SDO/AttackPattern/Test_attack_pattern.json"
 },
 {
   "python_class": "Campaign",
@@ -158,7 +158,7 @@ In order to build your insight on this, compare how this pattern works
   "python_class": "CourseOfAction",
   "stix_type": "course-of-action",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/Course_of_Action/CourseOfAction_template.json",
+  "template": "Block_Families/StixORM/SDO/CourseOfAction/CourseOfAction_template.json",
   "data_example": ""
 },
 {
@@ -179,7 +179,7 @@ In order to build your insight on this, compare how this pattern works
   "python_class": "IntrusionSet",
   "stix_type": "intrusion-set",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/Instrusion_Set/IntrusionSet_template.json",
+  "template": "Block_Families/StixORM/SDO/IntrusionSet/IntrusionSet_template.json",
   "data_example": ""
 },
 {
@@ -193,7 +193,7 @@ In order to build your insight on this, compare how this pattern works
   "python_class": "MalwareAnalysis",
   "stix_type": "malware-analysis",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/Malware_Analysis/MalwareAnalysis_template.json",
+  "template": "Block_Families/StixORM/SDO/MalwareAnalysis/MalwareAnalysis_template.json",
   "data_example": ""
 },
 {
@@ -221,7 +221,7 @@ In order to build your insight on this, compare how this pattern works
   "python_class": "ThreatActor",
   "stix_type": "threat-actor",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/Threat_Actor/ThreatActor_template.json",
+  "template": "Block_Families/StixORM/SDO/ThreatActor/ThreatActor_template.json",
   "data_example": ""
 },
 {
@@ -247,7 +247,7 @@ In order to build your insight on this, compare how this pattern works
   "python_class": "AutonomousSystem",
   "stix_type": "autonomous-system",
   "python": "",
-  "template": "Block_Families/StixORM/SCO/Autonomous_System/AutonomousSystem_template.json",
+  "template": "Block_Families/StixORM/SCO/AutonomousSystem/AutonomousSystem_template.json",
   "data_example": ""
 },
 {
@@ -261,7 +261,7 @@ In order to build your insight on this, compare how this pattern works
   "python_class": "DomainName",
   "stix_type": "domain-name",
   "python": "",
-  "template": "Block_Families/StixORM/SCO/Domain_Name/DomainName_template.json",
+  "template": "Block_Families/StixORM/SCO/DomainName/DomainName_template.json",
   "data_example": ""
 },
 {
@@ -275,22 +275,22 @@ In order to build your insight on this, compare how this pattern works
   "python_class": "IPv4Address",
   "stix_type": "ipv4-addr",
   "python": "",
-  "template": "Block_Families/StixORM/SCO/IPv4_Addr/IPv4Address_template.json",
-  "data_example": "Block_Families/StixORM/SCO/IPv4_Addr/Test_ipv4_addr.json"
+  "template": "Block_Families/StixORM/SCO/IPv4Address/IPv4Address_template.json",
+  "data_example": "Block_Families/StixORM/SCO/IPv4Address/Test_ipv4_addr.json"
 },
 {
   "python_class": "IPv6Address",
   "stix_type": "ipv6-addr",
   "python": "",
-  "template": "Block_Families/StixORM/SCO/IPv6_Addr/IPv6Address_template.json",
-  "data_example": "Block_Families/StixORM/SCO/IPv6_Addr/Test_ipv6_addr.json"
+  "template": "Block_Families/StixORM/SCO/IPv6Address/IPv6Address_template.json",
+  "data_example": "Block_Families/StixORM/SCO/IPv6Address/Test_ipv6_addr.json"
 },
 {
   "python_class": "MACAddress",
   "stix_type": "mac-addr",
   "python": "",
-  "template": "Block_Families/StixORM/SCO/MAC_Address/MACAddress_template.json",
-  "data_example": "Block_Families/StixORM/SCO/MAC_Address/Test_mac_addr.json"
+  "template": "Block_Families/StixORM/SCO/MACAddress/MACAddress_template.json",
+  "data_example": "Block_Families/StixORM/SCO/MACAddress/Test_mac_addr.json"
 },
 {
   "python_class": "Mutex",
@@ -310,8 +310,8 @@ In order to build your insight on this, compare how this pattern works
   "python_class": "X509Cert",
   "stix_type": "x509-certificate",
   "python": "",
-  "template": "Block_Families/StixORM/SCO/X509_Cert/X509Cert_template.json",
-  "data_example": "Block_Families/StixORM/SCO/X509_Cert/Test_x509_cert.json"
+  "template": "Block_Families/StixORM/SCO/X509Certificate/X509Cert_template.json",
+  "data_example": "Block_Families/StixORM/SCO/X509Certificate/Test_x509_cert.json"
 }
 ```
 **]**
@@ -324,43 +324,43 @@ In order to build your insight on this, compare how this pattern works
   "python_class": "AttackAsset",
   "stix_type": "x-mitre-asset",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/Attack_Asset/AttackAsset_template.json"
+  "template": "Block_Families/StixORM/SDO/AttackAsset/AttackAsset_template.json"
 },
 {
   "python_class": "AttackCampaign",
   "stix_type": "x-mitre-campaign",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/Attack_Campaign/AttackCampaign_template.json"
+  "template": "Block_Families/StixORM/SDO/AttackCampaign/AttackCampaign_template.json"
 },
 {
   "python_class": "AttackDataComponent",
   "stix_type": "x-mitre-data-component",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/Attack_DataComponent/AttackDataComponent_template.json"
+  "template": "Block_Families/StixORM/SDO/DataComponent/AttackDataComponent_template.json"
 },
 {
   "python_class": "AttackDataSource",
   "stix_type": "x-mitre-data-source",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/Attack_DataSource/AttackDataSource_template.json"
+  "template": "Block_Families/StixORM/SDO/DataSource/AttackDataSource_template.json"
 },
 {
   "python_class": "AttackGroup",
   "stix_type": "intrusion-set",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/Attack_Group/AttackGroup_template.json"
+  "template": "Block_Families/StixORM/SDO/Group/AttackGroup_template.json"
 },
 {
   "python_class": "AttackMalware",
   "stix_type": "malware",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/Attack_Malware/AttackMalware_template.json"
+  "template": "Block_Families/StixORM/SDO/SoftwareMalware/AttackMalware_template.json"
 },
 {
   "python_class": "AttackTool",
   "stix_type": "tool",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/Attack_Tool/AttackTool_template.json"
+  "template": "Block_Families/StixORM/SDO/SoftwareTool/AttackTool_template.json"
 },
 {
   "python_class": "AttackFlow",
@@ -390,31 +390,31 @@ In order to build your insight on this, compare how this pattern works
   "python_class": "ExtensionDefinition",
   "stix_type": "extension-definition",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/Extension_Definition/ExtensionDefinition_template.json"
+  "template": "Block_Families/StixORM/SDO/ExtensionDefinition/ExtensionDefinition_template.json"
 },
 {
   "python_class": "FlowAction",
   "stix_type": "x-attackflow-action",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/Flow_Action/FlowAction_template.json"
+  "template": "Block_Families/StixORM/SDO/FlowAction/FlowAction_template.json"
 },
 {
   "python_class": "FlowAsset",
   "stix_type": "x-attackflow-asset",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/Flow_Asset/FlowAsset_template.json"
+  "template": "Block_Families/StixORM/SDO/FlowAsset/FlowAsset_template.json"
 },
 {
   "python_class": "FlowCondition",
   "stix_type": "x-attackflow-condition",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/Flow_Condition/FlowCondition_template.json"
+  "template": "Block_Families/StixORM/SDO/FlowCondition/FlowCondition_template.json"
 },
 {
   "python_class": "FlowOperator",
   "stix_type": "x-attackflow-operator",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/Flow_Operator/FlowOperator_template.json"
+  "template": "Block_Families/StixORM/SDO/FlowOperator/FlowOperator_template.json"
 },
 {
   "python_class": "Malware",
@@ -427,19 +427,19 @@ In order to build your insight on this, compare how this pattern works
   "python_class": "MalwareBehavior",
   "stix_type": "x-mitre-malware-behavior",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/Malware_Behavior/MalwareBehavior_template.json"
+  "template": "Block_Families/StixORM/SDO/MalwareBehavior/MalwareBehavior_template.json"
 },
 {
   "python_class": "MalwareMethod",
   "stix_type": "x-mitre-malware-method",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/Malware_Method/MalwareMethod_template.json"
+  "template": "Block_Families/StixORM/SDO/MalwareMethod/MalwareMethod_template.json"
 },
 {
   "python_class": "MalwareObjective",
   "stix_type": "x-mitre-malware-objective",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/Malware_Objective/MalwareObjective_template.json"
+  "template": "Block_Families/StixORM/SDO/MalwareObjective/MalwareObjective_template.json"
 },
 {
   "python_class": "Matrix",
@@ -463,7 +463,7 @@ In order to build your insight on this, compare how this pattern works
   "python_class": "SubTechnique",
   "stix_type": "attack-pattern",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/Sub_Technique/SubTechnique_template.json"
+  "template": "Block_Families/StixORM/SDO/SubTechnique/SubTechnique_template.json"
 },
 {
   "python_class": "Tactic",
@@ -493,32 +493,32 @@ In order to build your insight on this, compare how this pattern works
   "python_class": "NetworkTraffic",
   "stix_type": "network-traffic",
   "python": "",
-  "template": "Block_Families/StixORM/SCO/Network_Traffic/NetworkTraffic_template.json",
-  "data_example": "Block_Families/StixORM/SCO/Network_Traffic/Test_network_traffic.json"
+  "template": "Block_Families/StixORM/SCO/NetworkTraffic/NetworkTraffic_template.json",
+  "data_example": "Block_Families/StixORM/SCO/NetworkTraffic/Test_network_traffic.json"
 },
 {
   "python_class": "OCAAsset",
   "stix_type": "x-oca-asset",
   "python": "",
-  "template": "Block_Families/StixORM/SCO/OCA_Asset/OCAAsset_template.json"
+  "template": "Block_Families/StixORM/SCO/OCAAsset/OCAAsset_template.json"
 },
 {
   "python_class": "OCAFile",
   "stix_type": "x-oca-file",
   "python": "",
-  "template": "Block_Families/StixORM/SCO/OCA_Custom_File/OCAFile_template.json"
+  "template": "Block_Families/StixORM/SCO/OCAFile/OCAFile_template.json"
 },
 {
   "python_class": "OCANetworkTraffic",
   "stix_type": "x-oca-network-traffic",
   "python": "",
-  "template": "Block_Families/StixORM/SCO/OCA_Custom_Network_Traffic/OCANetworkTraffic_template.json"
+  "template": "Block_Families/StixORM/SCO/OCANetworkTraffic/OCANetworkTraffic_template.json"
 },
 {
   "python_class": "OCAProcess",
   "stix_type": "x-oca-process",
   "python": "",
-  "template": "Block_Families/StixORM/SCO/OCA_Custom_Process/OCAProcess_template.json"
+  "template": "Block_Families/StixORM/SCO/OCAProcess/OCAProcess_template.json"
 },
 {
   "python_class": "Process",
@@ -531,44 +531,44 @@ In order to build your insight on this, compare how this pattern works
   "python_class": "OCASoftware",
   "stix_type": "x-oca-software",
   "python": "",
-  "template": "Block_Families/StixORM/SCO/OCA_Custom_Software/OCASoftware_template.json"
+  "template": "Block_Families/StixORM/SCO/OCASoftware/OCASoftware_template.json"
 },
 {
   "python_class": "OCAUserAccount",
   "stix_type": "x-oca-user-account",
   "python": "",
-  "template": "Block_Families/StixORM/SCO/OCA_Custom_User_Account/OCAUserAccount_template.json"
+  "template": "Block_Families/StixORM/SCO/OCAUserAccount/OCAUserAccount_template.json"
 },
 {
   "python_class": "OCAEvent",
   "stix_type": "x-oca-event",
   "python": "",
-  "template": "Block_Families/StixORM/SCO/OCA_Event/OCAEvent_template.json"
+  "template": "Block_Families/StixORM/SCO/OCAEvent/OCAEvent_template.json"
 },
 {
   "python_class": "OCAFinding",
   "stix_type": "x-oca-finding",
   "python": "",
-  "template": "Block_Families/StixORM/SCO/OCA_Finding/OCAFinding_template.json"
+  "template": "Block_Families/StixORM/SCO/OCAFinding/OCAFinding_template.json"
 },
 {
   "python_class": "OCAGeo",
   "stix_type": "x-oca-geo",
   "python": "",
-  "template": "Block_Families/StixORM/SCO/OCA_Geo/OCAGeo_template.json"
+  "template": "Block_Families/StixORM/SCO/OCAGeo/OCAGeo_template.json"
 },
 {
   "python_class": "OCATTPTag",
   "stix_type": "x-oca-ttp-tag",
   "python": "",
-  "template": "Block_Families/StixORM/SCO/OCA_TTP_Tag/OCATTPTag_template.json"
+  "template": "Block_Families/StixORM/SCO/OCATagging/OCATTPTag_template.json"
 },
 {
   "python_class": "WindowsRegistryKey",
   "stix_type": "windows-registry-key",
   "python": "",
-  "template": "Block_Families/StixORM/SCO/Windows_Registry_Key/WindowsRegistryKey_template.json",
-  "data_example": "Block_Families/StixORM/SCO/Windows_Registry_Key/Test_windows_registry.json"
+  "template": "Block_Families/StixORM/SCO/WindowsRegistryKey/WindowsRegistryKey_template.json",
+  "data_example": "Block_Families/StixORM/SCO/WindowsRegistryKey/Test_windows_registry.json"
 }
 ```
 **]**
