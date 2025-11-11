@@ -1,0 +1,12 @@
+{
+  "type": "location",
+  "spec_version": "2.1",
+  "id": "location--75452526-523f-4673-9e2e-711e25a43391",
+  "created": "2025-11-10T04:07:38.774Z",
+  "modified": "2025-11-10T04:07:38.774Z",
+  "created_by_ref": "identity--e6f4f150-b6e8-42ef-9440-5f4007fe4883",
+  "region": "south-eastern-asia",
+  "country": "th",
+  "administrative_area": "Tak",
+  "postal_code": "63170"
+}

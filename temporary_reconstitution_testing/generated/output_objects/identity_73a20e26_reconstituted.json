@@ -1,0 +1,45 @@
+{
+  "type": "identity",
+  "spec_version": "2.1",
+  "id": "identity--73a20e26-dad4-4a4c-a180-d894b1f786d0",
+  "created": "2025-11-10T04:07:38.229Z",
+  "modified": "2025-11-10T04:07:38.229Z",
+  "name": "Trusty Jones",
+  "description": "A Trusty Individual",
+  "roles": [
+    "soc",
+    "support"
+  ],
+  "identity_class": "individual",
+  "sectors": [
+    "technology"
+  ],
+  "extensions": {
+    "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+      "extension_type": "property-extension",
+      "contact_numbers": [
+        {
+          "contact_number_type": "work-phone",
+          "contact_number": "0418-208-368"
+        }
+      ],
+      "email_addresses": [
+        {
+          "digital_contact_type": "work",
+          "email_address_ref": "email-addr--473883d7-1cf2-46d0-8c8a-e388e07acb1a"
+        }
+      ],
+      "first_name": "Me",
+      "last_name": "Jones",
+      "middle_name": "Percival",
+      "prefix": "Dr",
+      "social_media_accounts": [
+        {
+          "digital_contact_type": "work",
+          "user_account_ref": "user-account--2f926886-6564-4b72-95e1-1926c8cb3d06"
+        }
+      ],
+      "team": "os-threat"
+    }
+  }
+}

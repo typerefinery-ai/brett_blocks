@@ -1,0 +1,13 @@
+{
+  "type": "email-message",
+  "spec_version": "2.1",
+  "id": "email-message--68eb37de-b044-452d-9572-e80afb61b6d0",
+  "is_multipart": false,
+  "date": "2020-10-19T01:01:01.000Z",
+  "from_ref": "email-addr--18bf6ce3-11fd-4ada-a87a-302cb02bd6d6",
+  "to_refs": [
+    "email-addr--3967694e-ef1a-42ca-911d-add9fff8fda2"
+  ],
+  "subject": "we are coming for you",
+  "body": "some bad stuff written here"
+}

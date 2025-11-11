@@ -10,7 +10,7 @@ import sys
 project_root = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(project_root))
 
-from Block_Families.General._library.parse import get_parse_content_for_object
+from Block_Families.General._library.parse import determine_content_object_from_list_by_tests
 
 
 class ObjectDiscovery:
@@ -74,8 +74,8 @@ class ObjectDiscovery:
             (is_testable, metadata, object_path)
         """
         try:
-            # Get metadata
-            metadata = get_parse_content_for_object(stix_obj)
+            # Get metadata using determine_content_object_from_list_by_tests
+            metadata = determine_content_object_from_list_by_tests(stix_obj, "class")
             if metadata is None:
                 return False, None, None
             

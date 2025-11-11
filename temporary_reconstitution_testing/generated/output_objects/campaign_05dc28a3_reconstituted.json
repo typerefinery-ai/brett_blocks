@@ -1,0 +1,10 @@
+{
+  "type": "campaign",
+  "spec_version": "2.1",
+  "id": "campaign--05dc28a3-9cbe-453f-b680-f8df77eec689",
+  "created": "2025-11-10T04:07:37.982Z",
+  "modified": "2025-11-10T04:07:37.982Z",
+  "lang": "en",
+  "name": "Bank Attack",
+  "description": "More information about bank attack"
+}

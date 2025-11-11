@@ -1,0 +1,17 @@
+{
+  "type": "grouping",
+  "spec_version": "2.1",
+  "id": "grouping--9a4be46d-1afd-450d-a113-2d1fed00b32e",
+  "created": "2025-11-10T04:07:38.961Z",
+  "modified": "2025-11-10T04:07:38.961Z",
+  "created_by_ref": "identity--e6f4f150-b6e8-42ef-9440-5f4007fe4883",
+  "name": "The Black Vine Cyberespionage Group",
+  "description": "A simple collection of Black Vine Cyberespionage Group attributed intel",
+  "context": "suspicious-activity",
+  "object_refs": [
+    "indicator--dd8587b1-1427-4776-a8b6-fc637d494eb6",
+    "identity--e6f4f150-b6e8-42ef-9440-5f4007fe4883",
+    "relationship--9cb1080d-90aa-4156-88fd-7ea7b3c0979e",
+    "file--abb759b3-2506-42ab-ab4b-ca3d6eb113e0"
+  ]
+}

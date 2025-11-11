@@ -1,0 +1,27 @@
+{
+  "type": "threat-actor",
+  "spec_version": "2.1",
+  "id": "threat-actor--d740e4e1-587f-483d-9fc2-1905e07036da",
+  "created": "2025-11-10T04:07:38.586Z",
+  "modified": "2025-11-10T04:07:38.586Z",
+  "created_by_ref": "identity--43879eb1-1d16-4112-8bd1-03107baa0aee",
+  "name": "Evil Org",
+  "description": "The Evil Org threat actor group",
+  "threat_actor_types": [
+    "crime-syndicate"
+  ],
+  "aliases": [
+    "Syndicate 1",
+    "Evil Syndicate 99"
+  ],
+  "roles": [
+    "director"
+  ],
+  "goals": [
+    "Steal bank money",
+    "Steal credit cards"
+  ],
+  "sophistication": "advanced",
+  "resource_level": "team",
+  "primary_motivation": "organizational-gain"
+}

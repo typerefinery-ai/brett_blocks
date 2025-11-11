@@ -1,0 +1,18 @@
+{
+  "type": "sighting",
+  "spec_version": "2.1",
+  "id": "sighting--c8c39ab6-6d63-4bf9-9ae2-a7533206bd25",
+  "created": "2025-11-10T04:07:38.923Z",
+  "modified": "2025-11-10T04:07:38.923Z",
+  "created_by_ref": "identity--43879eb1-1d16-4112-8bd1-03107baa0aee",
+  "first_seen": "2015-12-21T19:00:00Z",
+  "last_seen": "2015-12-21T19:00:00Z",
+  "count": 50,
+  "sighting_of_ref": "indicator--dd8587b1-1427-4776-a8b6-fc637d494eb6",
+  "observed_data_refs": [
+    "observed-data--e3735647-3c1f-44a2-9284-e6e682a3b427"
+  ],
+  "where_sighted_refs": [
+    "identity--960a675a-ed25-4efa-8dd9-0a468b19fb63"
+  ]
+}

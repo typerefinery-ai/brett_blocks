@@ -1,0 +1,13 @@
+{
+  "type": "opinion",
+  "spec_version": "2.1",
+  "id": "opinion--20c17755-6470-4307-9a4f-8636554567d6",
+  "created": "2025-11-10T04:07:38.845Z",
+  "modified": "2025-11-10T04:07:38.845Z",
+  "created_by_ref": "identity--43879eb1-1d16-4112-8bd1-03107baa0aee",
+  "explanation": "This doesn't seem like it is feasible. We've seen how PandaCat has attacked Spanish infrastructure over the last 3 years, so this change in targeting seems too great to be viable. The methods used are more commonly associated with the FlameDragonCrew.",
+  "opinion": "strongly-disagree",
+  "object_refs": [
+    "relationship--1c959672-3851-4cbd-b99e-9fc4d0904929"
+  ]
+}

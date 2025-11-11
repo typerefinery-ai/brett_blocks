@@ -1,0 +1,10 @@
+{
+  "type": "relationship",
+  "spec_version": "2.1",
+  "id": "relationship--420ba6b3-ff14-482d-87b7-d624eb664e76",
+  "created": "2025-11-10T04:07:38.543Z",
+  "modified": "2025-11-10T04:07:38.543Z",
+  "relationship_type": "controls",
+  "source_ref": "infrastructure--2a16eb23-ffbe-403c-a199-582af4406e53",
+  "target_ref": "malware--1850a129-45b7-4fba-8079-acfab5958b81"
+}

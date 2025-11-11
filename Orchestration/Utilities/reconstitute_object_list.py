@@ -18,8 +18,12 @@ from pathlib import Path
 from typing import Dict, List, Any, Tuple, Optional
 import sys
 
-# Import from the same directory
-from .convert_object_list_to_data_forms import create_data_forms_from_stix_objects
+# Import from the same directory - handle both direct execution and module import
+try:
+    from .convert_object_list_to_data_forms import create_data_forms_from_stix_objects
+except ImportError:
+    # Direct execution or import from different context
+    from convert_object_list_to_data_forms import create_data_forms_from_stix_objects
 
 
 class STIXReconstitutionEngine:

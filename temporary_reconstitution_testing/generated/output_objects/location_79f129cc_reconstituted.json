@@ -1,0 +1,10 @@
+{
+  "type": "location",
+  "spec_version": "2.1",
+  "id": "location--79f129cc-f161-4375-81d5-069969d4c2c6",
+  "created": "2025-11-10T04:07:38.768Z",
+  "modified": "2025-11-10T04:07:38.768Z",
+  "created_by_ref": "identity--e6f4f150-b6e8-42ef-9440-5f4007fe4883",
+  "latitude": "48.8566",
+  "longitude": "2.3522"
+}

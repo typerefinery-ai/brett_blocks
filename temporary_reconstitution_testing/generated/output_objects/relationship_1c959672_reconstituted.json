@@ -1,0 +1,10 @@
+{
+  "type": "relationship",
+  "spec_version": "2.1",
+  "id": "relationship--1c959672-3851-4cbd-b99e-9fc4d0904929",
+  "created": "2025-11-10T04:07:38.527Z",
+  "modified": "2025-11-10T04:07:38.527Z",
+  "relationship_type": "uses",
+  "source_ref": "intrusion-set--b377ecb9-4ff9-4ca7-9b06-e69c7cb955f9",
+  "target_ref": "attack-pattern--d4bf8ead-8975-4433-8245-107408958c33"
+}

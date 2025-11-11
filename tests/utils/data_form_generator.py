@@ -50,11 +50,34 @@ class DataFormGenerator:
         try:
             result = create_data_forms_from_stix_objects(
                 stix_objects,
-                self.stixorm_path,
-                self.output_dir
+                str(self.output_dir)
             )
             
-            data_forms, reconstitution_data, creation_sequence = result
+            # The function writes files to disk but doesn't return them in a dict
+            # Load the generated data forms from disk
+            data_forms = {}
+            for json_file in self.output_dir.glob("*_data_form.json"):
+                try:
+                    with open(json_file, 'r', encoding='utf-8') as f:
+                        form_data = json.load(f)
+                        data_forms[json_file.stem] = form_data
+                except Exception as e:
+                    print(f"Warning: Failed to load {json_file.name}: {e}")
+            
+            # Load reconstitution data
+            recon_file = self.output_dir / 'reconstitution_data.json'
+            reconstitution_data = {}
+            if recon_file.exists():
+                with open(recon_file, 'r', encoding='utf-8') as f:
+                    reconstitution_data = json.load(f)
+            
+            # Load creation sequence
+            seq_file = self.output_dir / 'creation_sequence.json'
+            creation_sequence = []
+            if seq_file.exists():
+                with open(seq_file, 'r', encoding='utf-8') as f:
+                    creation_sequence = json.load(f)
+            
             print(f"Successfully generated {len(data_forms)} data forms")
             
             return data_forms, reconstitution_data, creation_sequence

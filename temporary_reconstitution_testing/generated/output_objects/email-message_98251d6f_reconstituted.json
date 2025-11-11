@@ -1,0 +1,41 @@
+{
+  "type": "email-message",
+  "spec_version": "2.1",
+  "id": "email-message--98251d6f-6131-41eb-b58b-49b835ef76aa",
+  "is_multipart": true,
+  "date": "2016-06-19T14:20:40.000Z",
+  "content_type": "multipart/mixed",
+  "from_ref": "email-addr--1ac11061-5c0c-4874-9c98-b044a9a38d45",
+  "to_refs": [
+    "email-addr--ce229147-a467-4922-8db0-8d9e1cf2f7a2"
+  ],
+  "cc_refs": [
+    "email-addr--5d59b085-ee16-4379-bd57-a6cef9b96246"
+  ],
+  "subject": "Check out this picture of a cat!",
+  "received_lines": [
+    "from mail.example.com ([198.51.100.3]) by smtp.gmail.com with ESMTPSA id q23sm23309939wme.17.2016.07.19.07.20.32 (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128); Tue, 19 Jul 2016 07:20:40 -0700 (PDT)"
+  ],
+  "additional_header_fields": {
+    "Content-Disposition": "inline",
+    "X-Mailer": "Mutt/1.5.23",
+    "X-Originating-IP": "198.51.100.3"
+  },
+  "body_multipart": [
+    {
+      "content_type": "text/plain; charset=utf-8",
+      "content_disposition": "inline",
+      "body": "Cats are funny!"
+    },
+    {
+      "content_type": "image/png",
+      "content_disposition": "attachment; filename=\"tabby.png\"",
+      "body_raw_ref": "artifact--4cce66f8-6eaa-53cb-85d5-3a85fca3a6c5"
+    },
+    {
+      "content_type": "application/zip",
+      "content_disposition": "attachment; filename=\"tabby_pics.zip\"",
+      "body_raw_ref": "file--6ce09d9c-0ad3-5ebf-900c-e3cb288955b5"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "type": "identity",
+  "spec_version": "2.1",
+  "id": "identity--118f7825-e977-4c3a-a353-8a522773062d",
+  "created": "2025-11-10T04:07:38.713Z",
+  "modified": "2025-11-10T04:07:38.713Z",
+  "name": "Naive Smith",
+  "description": "A Naive Individual",
+  "roles": [
+    "user",
+    "sales"
+  ],
+  "identity_class": "individual",
+  "sectors": [
+    "technology"
+  ],
+  "extensions": {
+    "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+      "extension_type": "property-extension",
+      "contact_numbers": [
+        {
+          "contact_number_type": "work-phone",
+          "contact_number": "0499-999-109"
+        }
+      ],
+      "email_addresses": [
+        {
+          "digital_contact_type": "work",
+          "email_address_ref": "email-addr--3967694e-ef1a-42ca-911d-add9fff8fda2"
+        }
+      ],
+      "first_name": "Naive",
+      "last_name": "Smith",
+      "middle_name": "Weakling",
+      "prefix": "Mr",
+      "social_media_accounts": [
+        {
+          "digital_contact_type": "work",
+          "user_account_ref": "user-account--4c78064e-4293-4446-adb6-ab1282130cb4"
+        }
+      ],
+      "team": "Sales"
+    }
+  }
+}

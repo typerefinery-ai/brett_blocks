@@ -1,0 +1,52 @@
+{
+  "type": "incident",
+  "spec_version": "2.1",
+  "id": "incident--0c5f0018-7693-43d6-9422-e460254c793a",
+  "created": "2025-11-10T04:07:38.994Z",
+  "modified": "2025-11-10T04:07:38.994Z",
+  "name": "potential phishing",
+  "extensions": {
+    "extension-definition--ef765651-680c-498d-9894-99799f2fa126": {
+      "extension_type": "property-extension",
+      "investigation_status": "new",
+      "incident_types": [
+        "dissemination-phishing-emails"
+      ],
+      "other_object_refs": [
+        "email-addr--18bf6ce3-11fd-4ada-a87a-302cb02bd6d6",
+        "email-addr--3967694e-ef1a-42ca-911d-add9fff8fda2",
+        "user-account--4c78064e-4293-4446-adb6-ab1282130cb4",
+        "identity--118f7825-e977-4c3a-a353-8a522773062d",
+        "identity--73a20e26-dad4-4a4c-a180-d894b1f786d0",
+        "url--ddd90e9d-cc82-4075-b707-8280d8d535e4",
+        "email-message--68eb37de-b044-452d-9572-e80afb61b6d0",
+        "observed-data--1f40c09c-ac33-4fcd-b6cc-dcda280e51d9",
+        "indicator--af667909-6334-4220-bbe9-b611dbacfda2",
+        "sighting--17c10333-e90d-4ab7-9248-f75357930cee",
+        "identity--68849972-4752-400c-a874-7939042f07a8",
+        "anecdote--6d96fe7c-f067-4003-ab5a-2797a9fbda54",
+        "observed-data--07ff039c-3e24-4972-935e-770d7024a560",
+        "sighting--8d945b43-3d33-47d7-bed6-9b65c5c71ca4"
+      ],
+      "event_refs": [
+        "event--c6eaa6c2-4ab1-457a-a557-498b128bb326"
+      ],
+      "sequence_refs": [
+        "sequence--532409af-6b5b-496d-bee0-78c1558a7f07",
+        "sequence--6d91f08b-bb0e-4f82-8c86-4048e54254e2",
+        "sequence--a9780169-c161-4bfd-9863-3ac50ccfde65"
+      ],
+      "sequence_start_refs": [
+        "sequence--b356cdde-a2b4-440e-b1ce-5337f75bb29e",
+        "sequence--5c69f795-1f5b-4c92-b069-850ae1ec04b1"
+      ],
+      "task_refs": [
+        "task--46db21a0-394d-411b-a261-ac4be4fd600b",
+        "task--0f0a1b03-bc67-476f-9ec1-46f8071bfa1f"
+      ],
+      "impact_refs": [
+        "impact--02d0e17f-b0b4-45c3-a5f4-727e6d7c5bed"
+      ]
+    }
+  }
+}

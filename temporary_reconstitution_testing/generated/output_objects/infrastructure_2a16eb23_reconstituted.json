@@ -1,0 +1,11 @@
+{
+  "type": "infrastructure",
+  "spec_version": "2.1",
+  "id": "infrastructure--2a16eb23-ffbe-403c-a199-582af4406e53",
+  "created": "2025-11-10T04:07:38.257Z",
+  "modified": "2025-11-10T04:07:38.257Z",
+  "name": "Poison Ivy C2",
+  "infrastructure_types": [
+    "command-and-control"
+  ]
+}

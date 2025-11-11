@@ -1,0 +1,16 @@
+{
+  "type": "network-traffic",
+  "spec_version": "2.1",
+  "id": "network-traffic--41c10676-a485-4175-a508-7c7b21dc29d5",
+  "src_ref": "ipv4-addr--aeea4cc8-7e99-47e1-a123-b83257973b1f",
+  "dst_ref": "ipv4-addr--a95b3919-4e07-4960-a546-a17dfb3414be",
+  "protocols": [
+    "icmp"
+  ],
+  "extensions": {
+    "icmp-ext": {
+      "icmp_type_hex": "08",
+      "icmp_code_hex": "00"
+    }
+  }
+}

@@ -1,10 +1,9 @@
 [tool.poetry]
 name = "brett-blocks"
 version = "0.2.0"
-description = ""
-authors = ["brett@innovolve.ai"]
+description = "StixORM data flow blocks for Type Refinery"
+authors = ["Brett <brett@innovolve.ai>"]
 readme = "README.md"
-packages = [{include = "brett_blocks"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"

@@ -1,0 +1,13 @@
+{
+  "type": "observed-data",
+  "spec_version": "2.1",
+  "id": "observed-data--07ff039c-3e24-4972-935e-770d7024a560",
+  "created": "2025-11-10T04:07:38.976Z",
+  "modified": "2025-11-10T04:07:38.976Z",
+  "first_observed": "2020-10-19T01:01:01Z",
+  "last_observed": "2020-10-19T01:01:01Z",
+  "number_observed": 1,
+  "object_refs": [
+    "anecdote--6d96fe7c-f067-4003-ab5a-2797a9fbda54"
+  ]
+}

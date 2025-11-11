@@ -1,0 +1,9 @@
+{
+  "type": "sighting",
+  "spec_version": "2.1",
+  "id": "sighting--f787ef19-4d88-46a2-b74d-6bc2132e7683",
+  "created": "2025-11-10T04:07:38.944Z",
+  "modified": "2025-11-10T04:07:38.944Z",
+  "created_by_ref": "identity--43879eb1-1d16-4112-8bd1-03107baa0aee",
+  "sighting_of_ref": "indicator--dd8587b1-1427-4776-a8b6-fc637d494eb6"
+}

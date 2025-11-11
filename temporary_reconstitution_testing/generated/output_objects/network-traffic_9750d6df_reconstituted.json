@@ -1,0 +1,17 @@
+{
+  "type": "network-traffic",
+  "spec_version": "2.1",
+  "id": "network-traffic--9750d6df-772b-43a9-9b3e-0c1150a736a7",
+  "src_ref": "ipv4-addr--16cddcc3-53a1-44b0-bd3b-2fce4c3c1862",
+  "dst_ref": "ipv4-addr--105772a2-481e-4013-93ed-470f7d88bee3",
+  "src_port": 3372,
+  "dst_port": 80,
+  "protocols": [
+    "tcp"
+  ],
+  "extensions": {
+    "tcp-ext": {
+      "src_flags_hex": "00000002"
+    }
+  }
+}

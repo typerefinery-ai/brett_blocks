@@ -1,0 +1,15 @@
+{
+  "type": "observed-data",
+  "spec_version": "2.1",
+  "id": "observed-data--e3735647-3c1f-44a2-9284-e6e682a3b427",
+  "created": "2025-11-10T04:07:38.825Z",
+  "modified": "2025-11-10T04:07:38.825Z",
+  "created_by_ref": "identity--e6f4f150-b6e8-42ef-9440-5f4007fe4883",
+  "first_observed": "2015-12-21T19:00:00Z",
+  "last_observed": "2015-12-21T19:00:00Z",
+  "number_observed": 50,
+  "object_refs": [
+    "ipv4-addr--6de9021f-70de-4289-aa8b-63eee61e1a4a",
+    "domain-name--8fd25397-eae5-4d92-8ef8-5332643d6ec5"
+  ]
+}

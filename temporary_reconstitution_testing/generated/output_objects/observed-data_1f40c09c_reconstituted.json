@@ -1,0 +1,17 @@
+{
+  "type": "observed-data",
+  "spec_version": "2.1",
+  "id": "observed-data--1f40c09c-ac33-4fcd-b6cc-dcda280e51d9",
+  "created": "2025-11-10T04:07:38.871Z",
+  "modified": "2025-11-10T04:07:38.871Z",
+  "first_observed": "2020-10-19T01:01:01.000Z",
+  "last_observed": "2020-10-19T01:01:01.000Z",
+  "number_observed": 1,
+  "object_refs": [
+    "email-addr--18bf6ce3-11fd-4ada-a87a-302cb02bd6d6",
+    "user-account--4c78064e-4293-4446-adb6-ab1282130cb4",
+    "email-addr--3967694e-ef1a-42ca-911d-add9fff8fda2",
+    "url--ddd90e9d-cc82-4075-b707-8280d8d535e4",
+    "email-message--68eb37de-b044-452d-9572-e80afb61b6d0"
+  ]
+}

@@ -1,9 +1,0 @@
-{
-  "type": "domain-name",
-  "spec_version": "2.1",
-  "id": "domain-name--1a3d991f-6bd1-4b24-8f8e-fab2af97c3eb",
-  "value": "site.of.interest.zaz",
-  "resolves_to_refs": [
-    "ipv4-addr--e896178a-b7bc-4cc2-afad-ba11041046ce"
-  ]
-}

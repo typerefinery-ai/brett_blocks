@@ -3,48 +3,6 @@ Phase 4: Verification Tests
 """
 import pytest
 
-from tests.utils.comparator import ObjectComparator
-
-
-@pytest.fixture(scope='session')
-def comparison_results(discovery_results, execution_results, test_reporter):
-    """Compare all objects once per test session"""
-    comparator = ObjectComparator()
-    results = {}
-    
-    for obj, metadata, _ in discovery_results:
-        obj_id = obj['id']
-        
-        # Skip if execution failed or was skipped
-        if obj_id not in execution_results or execution_results[obj_id]['status'] != 'SUCCESS':
-            test_reporter.add_result(
-                obj_id, 
-                obj['type'], 
-                'SKIPPED',
-                error_message='Execution failed or skipped'
-            )
-            continue
-        
-        reconstituted = execution_results[obj_id]['object']
-        is_identical, differences = comparator.compare_objects(obj, reconstituted)
-        
-        status = 'PASS' if is_identical else 'FAIL'
-        test_reporter.add_result(
-            obj_id,
-            obj['type'],
-            status,
-            differences=differences,
-            execution_time_ms=execution_results[obj_id].get('execution_time_ms', 0)
-        )
-        
-        results[obj_id] = {
-            'status': status,
-            'identical': is_identical,
-            'differences': differences
-        }
-    
-    return results
-
 
 @pytest.mark.verification
 def test_overall_pass_rate(comparison_results):

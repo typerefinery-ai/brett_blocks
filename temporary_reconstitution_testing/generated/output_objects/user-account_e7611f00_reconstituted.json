@@ -1,0 +1,9 @@
+{
+  "type": "user-account",
+  "spec_version": "2.1",
+  "id": "user-account--e7611f00-1b3b-4243-b763-a6dca2d0be8b",
+  "user_id": "thegrugq_ebooks",
+  "account_login": "thegrugq_ebooks",
+  "account_type": "twitter",
+  "display_name": "the grugq"
+}

@@ -1,0 +1,19 @@
+{
+  "type": "event",
+  "spec_version": "2.1",
+  "id": "event--c6eaa6c2-4ab1-457a-a557-498b128bb326",
+  "created": "2025-11-10T04:07:38.097Z",
+  "modified": "2025-11-10T04:07:38.097Z",
+  "name": "Potential Phishing Email",
+  "description": "Suspicious email reported by user",
+  "end_time": "2025-07-27T06:01:15.914Z",
+  "event_types": [
+    "dissemination-phishing-emails"
+  ],
+  "start_time": "2025-07-27T06:01:15.914Z",
+  "extensions": {
+    "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+      "extension_type": "new-sdo"
+    }
+  }
+}

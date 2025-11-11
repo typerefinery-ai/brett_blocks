@@ -333,34 +333,34 @@ In order to build your insight on this, compare how this pattern works
   "template": "Block_Families/StixORM/SDO/AttackCampaign/AttackCampaign_template.json"
 },
 {
-  "python_class": "AttackDataComponent",
+  "python_class": "DataComponent",
   "stix_type": "x-mitre-data-component",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/DataComponent/AttackDataComponent_template.json"
+  "template": "Block_Families/StixORM/SDO/DataComponent/DataComponent_template.json"
 },
 {
-  "python_class": "AttackDataSource",
+  "python_class": "DataSource",
   "stix_type": "x-mitre-data-source",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/DataSource/AttackDataSource_template.json"
+  "template": "Block_Families/StixORM/SDO/DataSource/DataSource_template.json"
 },
 {
-  "python_class": "AttackGroup",
+  "python_class": "Group",
   "stix_type": "intrusion-set",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/Group/AttackGroup_template.json"
+  "template": "Block_Families/StixORM/SDO/Group/Group_template.json"
 },
 {
-  "python_class": "AttackMalware",
+  "python_class": "SoftwareMalware",
   "stix_type": "malware",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/SoftwareMalware/AttackMalware_template.json"
+  "template": "Block_Families/StixORM/SDO/SoftwareMalware/SoftwareMalware_template.json"
 },
 {
-  "python_class": "AttackTool",
+  "python_class": "SoftwareTool",
   "stix_type": "tool",
   "python": "",
-  "template": "Block_Families/StixORM/SDO/SoftwareTool/AttackTool_template.json"
+  "template": "Block_Families/StixORM/SDO/SoftwareTool/SoftwareTool_template.json"
 },
 {
   "python_class": "AttackFlow",

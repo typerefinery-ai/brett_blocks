@@ -1,0 +1,16 @@
+{
+  "type": "task",
+  "spec_version": "2.1",
+  "id": "task--0f0a1b03-bc67-476f-9ec1-46f8071bfa1f",
+  "created": "2025-11-10T04:07:38.583Z",
+  "modified": "2025-11-10T04:07:38.583Z",
+  "name": "Query Exchange Server",
+  "description": "Find out who else got the email",
+  "end_time": "2025-07-27T06:01:28.264Z",
+  "start_time": "2025-07-27T06:01:28.264Z",
+  "extensions": {
+    "extension-definition--2074a052-8be4-4932-849e-f5e7798e0030": {
+      "extension_type": "new-sdo"
+    }
+  }
+}

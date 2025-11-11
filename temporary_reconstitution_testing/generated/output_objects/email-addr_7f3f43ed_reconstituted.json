@@ -1,8 +1,0 @@
-{
-  "type": "email-addr",
-  "spec_version": "2.1",
-  "id": "email-addr--7f3f43ed-0ca4-48c1-a45f-55f499e7b984",
-  "value": "naive@example.com",
-  "display_name": "Naive Smith",
-  "belongs_to_ref": "user-account--673d1070-c7cd-4143-9634-5e5f55305a37"
-}

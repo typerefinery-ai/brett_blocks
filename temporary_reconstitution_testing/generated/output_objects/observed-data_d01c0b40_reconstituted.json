@@ -1,0 +1,14 @@
+{
+  "type": "observed-data",
+  "spec_version": "2.1",
+  "id": "observed-data--d01c0b40-383b-4f00-93ee-381be9a72b99",
+  "created": "2025-11-10T04:07:38.505Z",
+  "modified": "2025-11-10T04:07:38.505Z",
+  "created_by_ref": "identity--43879eb1-1d16-4112-8bd1-03107baa0aee",
+  "first_observed": "2015-12-21T19:00:00Z",
+  "last_observed": "2016-04-06T19:58:16Z",
+  "number_observed": 50,
+  "object_refs": [
+    "file--b45692d1-b072-4acf-acf2-b95094131e56"
+  ]
+}

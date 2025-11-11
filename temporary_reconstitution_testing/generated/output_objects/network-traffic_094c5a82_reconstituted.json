@@ -1,0 +1,18 @@
+{
+  "type": "network-traffic",
+  "spec_version": "2.1",
+  "id": "network-traffic--094c5a82-c0c2-45b7-ade4-e759ea2252bb",
+  "src_ref": "ipv6-addr--622c2dc0-006a-4221-a839-ccbb0c4165d7",
+  "src_port": 223,
+  "protocols": [
+    "ip",
+    "tcp"
+  ],
+  "extensions": {
+    "socket-ext": {
+      "is_listening": true,
+      "address_family": "AF_INET",
+      "socket_type": "SOCK_STREAM"
+    }
+  }
+}

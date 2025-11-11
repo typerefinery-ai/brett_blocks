@@ -26,7 +26,7 @@
     Run only Phase 1 (discovery)
 
 .EXAMPLE
-    .\run_tests.ps1 -Marker discovery -Verbose
+    .\run_tests.ps1 -Marker discovery -VerboseOutput
     Run discovery tests with verbose output
 #>
 
@@ -40,7 +40,7 @@ param(
     [string]$Marker,
 
     [Parameter(Mandatory=$false)]
-    [switch]$Verbose
+    [switch]$VerboseOutput
 )
 
 # Ensure we're in the project root
@@ -76,8 +76,14 @@ Write-Host ""
 $pytestArgs = @("pytest", "tests/")
 
 if ($Phase) {
-    $pytestArgs = @("pytest", "tests/test_${Phase}_*.py")
-    Write-Host "Running Phase $Phase tests..." -ForegroundColor Cyan
+    $testFile = Get-ChildItem "tests/test_${Phase}_*.py" -ErrorAction SilentlyContinue
+    if ($testFile) {
+        $pytestArgs = @("pytest", $testFile.FullName)
+        Write-Host "Running Phase $Phase tests..." -ForegroundColor Cyan
+    } else {
+        Write-Host "✗ No test file found for Phase $Phase" -ForegroundColor Red
+        exit 1
+    }
 } elseif ($Marker) {
     $pytestArgs += @("-m", $Marker)
     Write-Host "Running tests with marker: $Marker..." -ForegroundColor Cyan
@@ -85,7 +91,7 @@ if ($Phase) {
     Write-Host "Running all tests..." -ForegroundColor Cyan
 }
 
-if ($Verbose) {
+if ($VerboseOutput) {
     $pytestArgs += "-v"
 }
 

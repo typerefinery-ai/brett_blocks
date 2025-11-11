@@ -320,8 +320,8 @@
     },
     "relationship--57b56a43-b8b0-4cba-9deb-34e3e1faed9e": {
       "depends_on": [
-        "attack-pattern--7e33a43e-e34b-40ec-89da-36c9bb2cacd5",
-        "intrusion-set--0c7e22ad-b099-4dc3-b0df-2ea3f49ae2e6"
+        "intrusion-set--0c7e22ad-b099-4dc3-b0df-2ea3f49ae2e6",
+        "attack-pattern--7e33a43e-e34b-40ec-89da-36c9bb2cacd5"
       ],
       "filename": "relationship_2072403e_data_form.json",
       "form_name": "relationship_form",
@@ -359,9 +359,9 @@
     },
     "relationship--44298a74-ba52-4f0c-87a3-1824e67d7fad": {
       "depends_on": [
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
         "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
-        "malware--31b940d4-6f7f-459a-80ea-9c1f17b5891b",
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
+        "malware--31b940d4-6f7f-459a-80ea-9c1f17b5891b"
       ],
       "filename": "relationship_9712544f_data_form.json",
       "form_name": "relationship_form",
@@ -491,8 +491,8 @@
     },
     "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017": {
       "depends_on": [
-        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
-        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
+        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
       ],
       "filename": "identity_Naive_Smith_5dcc2148_data_form.json",
       "form_name": "identity_form",
@@ -524,10 +524,10 @@
     },
     "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad": {
       "depends_on": [
-        "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
-        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
         "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
         "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+        "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
         "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
       ],
       "filename": "observed-data_647b2235_data_form.json",
@@ -542,9 +542,9 @@
     },
     "sighting--06faabfe-490a-4516-a66e-1340aad78870": {
       "depends_on": [
+        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
         "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544",
-        "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
-        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017"
+        "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad"
       ],
       "filename": "sighting_a34c747d_data_form.json",
       "form_name": "parallel-step_form",
@@ -584,29 +584,29 @@
     },
     "incident--145eb841-90db-4526-8407-b25fd2d705c1": {
       "depends_on": [
-        "sighting--06faabfe-490a-4516-a66e-1340aad78870",
-        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
-        "identity--3789a438-8d49-4f2a-bb1a-06d3575d2f33",
-        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
-        "sighting--4fb5cd06-3c90-42d7-be38-abea7f752fba",
-        "event--e8f641e7-89ca-4776-a828-6838d8eccdca",
-        "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
-        "sequence--fb97db29-be35-4f8d-b483-c2899750838d",
-        "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b",
-        "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
-        "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f",
-        "sequence--4c9100f2-06a1-4570-ba51-7dabde2371b8",
-        "sequence--5ced78bf-aab8-4650-9c9e-a6914d68b46e",
-        "task--01537439-3b2d-4afe-81a3-45b2dd35c655",
-        "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef",
-        "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e",
-        "task--3f23faa4-e21e-4880-bd8a-c8d89aa453aa",
-        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
         "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
-        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
-        "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544",
+        "task--01537439-3b2d-4afe-81a3-45b2dd35c655",
+        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+        "impact--1b87fa10-78fd-4b3e-970e-dea91e9a7457",
+        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+        "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
+        "identity--3789a438-8d49-4f2a-bb1a-06d3575d2f33",
         "sequence--10fe3d71-a3d1-4f83-ad54-9c290d7136e9",
-        "impact--1b87fa10-78fd-4b3e-970e-dea91e9a7457"
+        "sequence--5ced78bf-aab8-4650-9c9e-a6914d68b46e",
+        "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544",
+        "sighting--4fb5cd06-3c90-42d7-be38-abea7f752fba",
+        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+        "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f",
+        "sequence--fb97db29-be35-4f8d-b483-c2899750838d",
+        "sighting--06faabfe-490a-4516-a66e-1340aad78870",
+        "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+        "task--3f23faa4-e21e-4880-bd8a-c8d89aa453aa",
+        "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b",
+        "sequence--4c9100f2-06a1-4570-ba51-7dabde2371b8",
+        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
+        "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef",
+        "event--e8f641e7-89ca-4776-a828-6838d8eccdca",
+        "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e"
       ],
       "filename": "incident_potential_phishing_6cd0514f_data_form.json",
       "form_name": "incident_form",
@@ -630,8 +630,8 @@
     },
     "relationship--183159a8-3919-4c9a-ad77-054c1fa9ac5a": {
       "depends_on": [
-        "course-of-action--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
         "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
+        "course-of-action--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
         "malware--0c7b5b88-8ff7-4a4d-aa9d-feb398cd0061"
       ],
       "filename": "relationship_cbf4e6e2_data_form.json",
@@ -766,8 +766,8 @@
     },
     "file--9a1f834d-2506-5367-baec-7aa63996ac43": {
       "depends_on": [
-        "file--d07ff290-d7e0-545b-a2ff-04602a9e0b73",
         "file--019fde1c-94ca-5967-8b3c-a906a51d87ac",
+        "file--d07ff290-d7e0-545b-a2ff-04602a9e0b73",
         "file--94fc2163-dec3-5715-b824-6e689c4de865"
       ],
       "filename": "file_foo.zip_69003771_data_form.json",
@@ -826,10 +826,10 @@
     },
     "grouping--84e4d88f-44ea-4bcd-bbf3-b2c1c320bcb3": {
       "depends_on": [
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
-        "file--fb0419a8-f09c-57f8-be64-71a80417591c",
         "relationship--44298a74-ba52-4f0c-87a3-1824e67d7fad",
-        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
+        "file--fb0419a8-f09c-57f8-be64-71a80417591c",
+        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
       ],
       "filename": "grouping_The_Black_Vine_Cyberespionage_Gr_1c741f9d_data_form.json",
       "form_name": "grouping_form",
@@ -1091,8 +1091,8 @@
     },
     "network-traffic--09ca55c3-97e5-5966-bad0-1d41d557ae13": {
       "depends_on": [
-        "ipv4-addr--89830c10-2e94-57fa-8ca6-e0537d2719d1",
-        "ipv4-addr--45f4c6fb-2d7d-576a-a571-edc78d899a72"
+        "ipv4-addr--45f4c6fb-2d7d-576a-a571-edc78d899a72",
+        "ipv4-addr--89830c10-2e94-57fa-8ca6-e0537d2719d1"
       ],
       "filename": "network-traffic_62205fa8_data_form.json",
       "form_name": "network-traffic_form",
@@ -1112,8 +1112,8 @@
     },
     "network-traffic--630d7bb1-0bbc-53a6-a6d4-f3c2d35c2734": {
       "depends_on": [
-        "ipv4-addr--03b708d9-7761-2355-ab75-5ea096294a68",
-        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7"
+        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7",
+        "ipv4-addr--03b708d9-7761-2355-ab75-5ea096294a68"
       ],
       "filename": "network-traffic_6f98752b_data_form.json",
       "form_name": "network-traffic_form",
@@ -1143,9 +1143,9 @@
     },
     "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf": {
       "depends_on": [
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
+        "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8",
         "domain-name--ecb120bf-2694-4902-a737-62b74539a41b",
-        "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8"
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
       ],
       "filename": "observed-data_54bd39a6_data_form.json",
       "form_name": "observed-data_form",
@@ -1153,8 +1153,8 @@
     },
     "opinion--b01efc25-77b4-4003-b18b-f6e24b5cd9f7": {
       "depends_on": [
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
-        "relationship--57b56a43-b8b0-4cba-9deb-34e3e1faed9e"
+        "relationship--57b56a43-b8b0-4cba-9deb-34e3e1faed9e",
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff"
       ],
       "filename": "opinion_0e4d9347_data_form.json",
       "form_name": "observed-data_form",
@@ -1274,10 +1274,10 @@
     },
     "report--84e4d88f-44ea-4bcd-bbf3-b2c1c320bcb3": {
       "depends_on": [
-        "relationship--f82356ae-fe6c-437c-9c24-6b64314ae68a",
-        "indicator--26ffb872-1dd9-446e-b6f5-d58527e5b5d2",
         "campaign--83422c77-904c-4dc1-aff5-5c38f3a2c55c",
-        "identity--a463ffb3-1bd9-4d94-b02d-74e4f1658283"
+        "relationship--f82356ae-fe6c-437c-9c24-6b64314ae68a",
+        "identity--a463ffb3-1bd9-4d94-b02d-74e4f1658283",
+        "indicator--26ffb872-1dd9-446e-b6f5-d58527e5b5d2"
       ],
       "filename": "report_The_Black_Vine_Cyberespionage_Gr_f0130b16_data_form.json",
       "form_name": "report_form",
@@ -1285,10 +1285,10 @@
     },
     "sighting--ee20065d-2555-424f-ad9e-0f8428623c75": {
       "depends_on": [
-        "identity--b67d30ff-02ac-498a-92f9-32f845f448ff",
         "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
+        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
         "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf",
-        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
+        "identity--b67d30ff-02ac-498a-92f9-32f845f448ff"
       ],
       "filename": "sighting_c7402765_data_form.json",
       "form_name": "sighting_form",
@@ -1314,10 +1314,10 @@
     },
     "sighting--2b02cd96-a136-4914-8881-4b882babce45": {
       "depends_on": [
-        "identity--b67d30ff-02ac-498a-92f9-32f845f448ff",
         "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
+        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
         "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf",
-        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
+        "identity--b67d30ff-02ac-498a-92f9-32f845f448ff"
       ],
       "filename": "sighting_c7402765_data_form.json",
       "form_name": "sighting_form",
@@ -1325,8 +1325,8 @@
     },
     "observed-data--59bf6dfb-544a-44ae-bc53-007cba6c0ef4": {
       "depends_on": [
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
-        "file--30038539-3eb6-44bc-a59e-d0d3fe84695a"
+        "file--30038539-3eb6-44bc-a59e-d0d3fe84695a",
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff"
       ],
       "filename": "observed-data_66e05e73_data_form.json",
       "form_name": "observed-data_form",
@@ -1347,8 +1347,8 @@
     "network-traffic--ac267abc-1a41-536d-8e8d-98458d9bf491": {
       "depends_on": [
         "network-traffic--53e0bf48-2eee-5c03-8bde-ed7049d2c0a3",
-        "ipv4-addr--4d22aae0-2bf9-5427-8819-e4f6abf20a53",
-        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7"
+        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7",
+        "ipv4-addr--4d22aae0-2bf9-5427-8819-e4f6abf20a53"
       ],
       "filename": "network-traffic_4e7703fa_data_form.json",
       "form_name": "network-traffic_form",
@@ -1378,8 +1378,8 @@
     },
     "network-traffic--b4a8c150-e214-57a3-9017-e85dfa345f46": {
       "depends_on": [
-        "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89",
         "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7",
+        "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89",
         "network-traffic--65a6016d-a91c-5781-baad-178cd55f01d4"
       ],
       "filename": "network-traffic_6fc7bbe9_data_form.json",
@@ -1389,8 +1389,8 @@
     "network-traffic--65a6016d-a91c-5781-baad-178cd55f01d4": {
       "depends_on": [
         "network-traffic--b4a8c150-e214-57a3-9017-e85dfa345f46",
-        "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89",
-        "ipv4-addr--bb884ffe-f2e4-56bb-a0c3-21f6711cb649"
+        "ipv4-addr--bb884ffe-f2e4-56bb-a0c3-21f6711cb649",
+        "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89"
       ],
       "filename": "network-traffic_8bfd500e_data_form.json",
       "form_name": "network-traffic_form",
@@ -1703,8 +1703,8 @@
       "form_name": "file_form",
       "object_type": "file",
       "dependencies": [
-        "file--d07ff290-d7e0-545b-a2ff-04602a9e0b73",
         "file--019fde1c-94ca-5967-8b3c-a906a51d87ac",
+        "file--d07ff290-d7e0-545b-a2ff-04602a9e0b73",
         "file--94fc2163-dec3-5715-b824-6e689c4de865"
       ]
     },
@@ -2050,8 +2050,8 @@
       "form_name": "network-traffic_form",
       "object_type": "network-traffic",
       "dependencies": [
-        "ipv4-addr--89830c10-2e94-57fa-8ca6-e0537d2719d1",
-        "ipv4-addr--45f4c6fb-2d7d-576a-a571-edc78d899a72"
+        "ipv4-addr--45f4c6fb-2d7d-576a-a571-edc78d899a72",
+        "ipv4-addr--89830c10-2e94-57fa-8ca6-e0537d2719d1"
       ]
     },
     {
@@ -2072,8 +2072,8 @@
       "form_name": "network-traffic_form",
       "object_type": "network-traffic",
       "dependencies": [
-        "ipv4-addr--03b708d9-7761-2355-ab75-5ea096294a68",
-        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7"
+        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7",
+        "ipv4-addr--03b708d9-7761-2355-ab75-5ea096294a68"
       ]
     },
     {
@@ -2124,8 +2124,8 @@
       "form_name": "observed-data_form",
       "object_type": "observed-data",
       "dependencies": [
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
-        "file--30038539-3eb6-44bc-a59e-d0d3fe84695a"
+        "file--30038539-3eb6-44bc-a59e-d0d3fe84695a",
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff"
       ]
     },
     {
@@ -2174,8 +2174,8 @@
       "form_name": "relationship_form",
       "object_type": "relationship",
       "dependencies": [
-        "attack-pattern--7e33a43e-e34b-40ec-89da-36c9bb2cacd5",
-        "intrusion-set--0c7e22ad-b099-4dc3-b0df-2ea3f49ae2e6"
+        "intrusion-set--0c7e22ad-b099-4dc3-b0df-2ea3f49ae2e6",
+        "attack-pattern--7e33a43e-e34b-40ec-89da-36c9bb2cacd5"
       ]
     },
     {
@@ -2218,10 +2218,10 @@
       "form_name": "report_form",
       "object_type": "report",
       "dependencies": [
-        "relationship--f82356ae-fe6c-437c-9c24-6b64314ae68a",
-        "indicator--26ffb872-1dd9-446e-b6f5-d58527e5b5d2",
         "campaign--83422c77-904c-4dc1-aff5-5c38f3a2c55c",
-        "identity--a463ffb3-1bd9-4d94-b02d-74e4f1658283"
+        "relationship--f82356ae-fe6c-437c-9c24-6b64314ae68a",
+        "identity--a463ffb3-1bd9-4d94-b02d-74e4f1658283",
+        "indicator--26ffb872-1dd9-446e-b6f5-d58527e5b5d2"
       ]
     },
     {
@@ -2434,8 +2434,8 @@
       "form_name": "identity_form",
       "object_type": "identity",
       "dependencies": [
-        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
-        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
+        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
       ]
     },
     {
@@ -2525,9 +2525,9 @@
       "form_name": "observed-data_form",
       "object_type": "observed-data",
       "dependencies": [
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
+        "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8",
         "domain-name--ecb120bf-2694-4902-a737-62b74539a41b",
-        "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8"
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
       ]
     },
     {
@@ -2537,8 +2537,8 @@
       "form_name": "observed-data_form",
       "object_type": "opinion",
       "dependencies": [
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
-        "relationship--57b56a43-b8b0-4cba-9deb-34e3e1faed9e"
+        "relationship--57b56a43-b8b0-4cba-9deb-34e3e1faed9e",
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff"
       ]
     },
     {
@@ -2588,10 +2588,10 @@
       "form_name": "observed-data_form",
       "object_type": "observed-data",
       "dependencies": [
-        "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
-        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
         "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
         "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+        "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
         "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
       ]
     },
@@ -2613,8 +2613,8 @@
       "form_name": "relationship_form",
       "object_type": "relationship",
       "dependencies": [
-        "course-of-action--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
         "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
+        "course-of-action--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
         "malware--0c7b5b88-8ff7-4a4d-aa9d-feb398cd0061"
       ]
     },
@@ -2625,9 +2625,9 @@
       "form_name": "relationship_form",
       "object_type": "relationship",
       "dependencies": [
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
         "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
-        "malware--31b940d4-6f7f-459a-80ea-9c1f17b5891b",
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
+        "malware--31b940d4-6f7f-459a-80ea-9c1f17b5891b"
       ]
     },
     {
@@ -2637,10 +2637,10 @@
       "form_name": "sighting_form",
       "object_type": "sighting",
       "dependencies": [
-        "identity--b67d30ff-02ac-498a-92f9-32f845f448ff",
         "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
+        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
         "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf",
-        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
+        "identity--b67d30ff-02ac-498a-92f9-32f845f448ff"
       ]
     },
     {
@@ -2650,10 +2650,10 @@
       "form_name": "sighting_form",
       "object_type": "sighting",
       "dependencies": [
-        "identity--b67d30ff-02ac-498a-92f9-32f845f448ff",
         "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
+        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
         "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf",
-        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
+        "identity--b67d30ff-02ac-498a-92f9-32f845f448ff"
       ]
     },
     {
@@ -2674,10 +2674,10 @@
       "form_name": "grouping_form",
       "object_type": "grouping",
       "dependencies": [
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
-        "file--fb0419a8-f09c-57f8-be64-71a80417591c",
         "relationship--44298a74-ba52-4f0c-87a3-1824e67d7fad",
-        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
+        "file--fb0419a8-f09c-57f8-be64-71a80417591c",
+        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
       ]
     },
     {
@@ -2697,9 +2697,9 @@
       "form_name": "parallel-step_form",
       "object_type": "sighting",
       "dependencies": [
+        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
         "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544",
-        "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
-        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017"
+        "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad"
       ]
     },
     {
@@ -2721,29 +2721,29 @@
       "form_name": "incident_form",
       "object_type": "incident",
       "dependencies": [
-        "sighting--06faabfe-490a-4516-a66e-1340aad78870",
-        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
-        "identity--3789a438-8d49-4f2a-bb1a-06d3575d2f33",
-        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
-        "sighting--4fb5cd06-3c90-42d7-be38-abea7f752fba",
-        "event--e8f641e7-89ca-4776-a828-6838d8eccdca",
-        "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
-        "sequence--fb97db29-be35-4f8d-b483-c2899750838d",
-        "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b",
-        "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
-        "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f",
-        "sequence--4c9100f2-06a1-4570-ba51-7dabde2371b8",
-        "sequence--5ced78bf-aab8-4650-9c9e-a6914d68b46e",
-        "task--01537439-3b2d-4afe-81a3-45b2dd35c655",
-        "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef",
-        "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e",
-        "task--3f23faa4-e21e-4880-bd8a-c8d89aa453aa",
-        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
         "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
-        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
-        "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544",
+        "task--01537439-3b2d-4afe-81a3-45b2dd35c655",
+        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+        "impact--1b87fa10-78fd-4b3e-970e-dea91e9a7457",
+        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+        "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
+        "identity--3789a438-8d49-4f2a-bb1a-06d3575d2f33",
         "sequence--10fe3d71-a3d1-4f83-ad54-9c290d7136e9",
-        "impact--1b87fa10-78fd-4b3e-970e-dea91e9a7457"
+        "sequence--5ced78bf-aab8-4650-9c9e-a6914d68b46e",
+        "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544",
+        "sighting--4fb5cd06-3c90-42d7-be38-abea7f752fba",
+        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+        "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f",
+        "sequence--fb97db29-be35-4f8d-b483-c2899750838d",
+        "sighting--06faabfe-490a-4516-a66e-1340aad78870",
+        "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+        "task--3f23faa4-e21e-4880-bd8a-c8d89aa453aa",
+        "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b",
+        "sequence--4c9100f2-06a1-4570-ba51-7dabde2371b8",
+        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
+        "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef",
+        "event--e8f641e7-89ca-4776-a828-6838d8eccdca",
+        "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e"
       ]
     },
     {
@@ -2766,8 +2766,8 @@
       "object_type": "network-traffic",
       "dependencies": [
         "network-traffic--b4a8c150-e214-57a3-9017-e85dfa345f46",
-        "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89",
-        "ipv4-addr--bb884ffe-f2e4-56bb-a0c3-21f6711cb649"
+        "ipv4-addr--bb884ffe-f2e4-56bb-a0c3-21f6711cb649",
+        "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89"
       ]
     },
     {
@@ -2778,8 +2778,8 @@
       "object_type": "network-traffic",
       "dependencies": [
         "network-traffic--53e0bf48-2eee-5c03-8bde-ed7049d2c0a3",
-        "ipv4-addr--4d22aae0-2bf9-5427-8819-e4f6abf20a53",
-        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7"
+        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7",
+        "ipv4-addr--4d22aae0-2bf9-5427-8819-e4f6abf20a53"
       ]
     },
     {
@@ -2789,8 +2789,8 @@
       "form_name": "network-traffic_form",
       "object_type": "network-traffic",
       "dependencies": [
-        "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89",
         "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7",
+        "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89",
         "network-traffic--65a6016d-a91c-5781-baad-178cd55f01d4"
       ]
     }
@@ -2862,9 +2862,9 @@
         }
       },
       "referenced_object_ids": [
-        "attack-pattern--7e33a43e-e34b-40ec-89da-36c9bb2cacd5",
         "intrusion-set--0c7e22ad-b099-4dc3-b0df-2ea3f49ae2e6",
-        "relationship--57b56a43-b8b0-4cba-9deb-34e3e1faed9e"
+        "relationship--57b56a43-b8b0-4cba-9deb-34e3e1faed9e",
+        "attack-pattern--7e33a43e-e34b-40ec-89da-36c9bb2cacd5"
       ],
       "reference_count": 3
     },
@@ -2909,8 +2909,8 @@
         }
       },
       "referenced_object_ids": [
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff"
       ],
       "reference_count": 2
     },
@@ -2997,10 +2997,10 @@
         }
       },
       "referenced_object_ids": [
-        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
         "relationship--44298a74-ba52-4f0c-87a3-1824e67d7fad",
-        "malware--31b940d4-6f7f-459a-80ea-9c1f17b5891b",
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
+        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
+        "malware--31b940d4-6f7f-459a-80ea-9c1f17b5891b"
       ],
       "reference_count": 4
     },
@@ -3105,8 +3105,8 @@
         }
       },
       "referenced_object_ids": [
-        "sequence--4c9100f2-06a1-4570-ba51-7dabde2371b8",
-        "sequence--5ced78bf-aab8-4650-9c9e-a6914d68b46e"
+        "sequence--5ced78bf-aab8-4650-9c9e-a6914d68b46e",
+        "sequence--4c9100f2-06a1-4570-ba51-7dabde2371b8"
       ],
       "reference_count": 2
     },
@@ -3157,8 +3157,8 @@
         }
       },
       "referenced_object_ids": [
-        "event--e8f641e7-89ca-4776-a828-6838d8eccdca",
-        "sequence--4c9100f2-06a1-4570-ba51-7dabde2371b8"
+        "sequence--4c9100f2-06a1-4570-ba51-7dabde2371b8",
+        "event--e8f641e7-89ca-4776-a828-6838d8eccdca"
       ],
       "reference_count": 2
     },
@@ -3183,8 +3183,8 @@
         }
       },
       "referenced_object_ids": [
-        "task--3f23faa4-e21e-4880-bd8a-c8d89aa453aa",
-        "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef"
+        "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef",
+        "task--3f23faa4-e21e-4880-bd8a-c8d89aa453aa"
       ],
       "reference_count": 2
     },
@@ -3238,8 +3238,8 @@
         }
       },
       "referenced_object_ids": [
-        "identity--3789a438-8d49-4f2a-bb1a-06d3575d2f33",
-        "impact--1b87fa10-78fd-4b3e-970e-dea91e9a7457"
+        "impact--1b87fa10-78fd-4b3e-970e-dea91e9a7457",
+        "identity--3789a438-8d49-4f2a-bb1a-06d3575d2f33"
       ],
       "reference_count": 2
     },
@@ -3364,8 +3364,8 @@
         }
       },
       "referenced_object_ids": [
-        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
-        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
+        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
       ],
       "reference_count": 2
     },
@@ -3435,9 +3435,9 @@
         }
       },
       "referenced_object_ids": [
-        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
         "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
-        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017"
+        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
+        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b"
       ],
       "reference_count": 3
     },
@@ -3523,8 +3523,8 @@
       },
       "referenced_object_ids": [
         "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
-        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
-        "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212"
+        "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d"
       ],
       "reference_count": 3
     },
@@ -3556,11 +3556,11 @@
         }
       },
       "referenced_object_ids": [
-        "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
-        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
         "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
-        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
         "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
+        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+        "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
         "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
       ],
       "reference_count": 2
@@ -3622,10 +3622,10 @@
         }
       },
       "referenced_object_ids": [
-        "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544",
-        "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
         "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
-        "sighting--06faabfe-490a-4516-a66e-1340aad78870"
+        "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544",
+        "sighting--06faabfe-490a-4516-a66e-1340aad78870",
+        "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad"
       ],
       "reference_count": 4
     },
@@ -3829,30 +3829,30 @@
         }
       },
       "referenced_object_ids": [
-        "sighting--06faabfe-490a-4516-a66e-1340aad78870",
-        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
-        "identity--3789a438-8d49-4f2a-bb1a-06d3575d2f33",
-        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
-        "sighting--4fb5cd06-3c90-42d7-be38-abea7f752fba",
-        "event--e8f641e7-89ca-4776-a828-6838d8eccdca",
-        "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
-        "sequence--fb97db29-be35-4f8d-b483-c2899750838d",
-        "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b",
-        "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
-        "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f",
-        "sequence--4c9100f2-06a1-4570-ba51-7dabde2371b8",
-        "sequence--5ced78bf-aab8-4650-9c9e-a6914d68b46e",
-        "task--01537439-3b2d-4afe-81a3-45b2dd35c655",
-        "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef",
-        "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e",
-        "task--3f23faa4-e21e-4880-bd8a-c8d89aa453aa",
-        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
         "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
-        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
-        "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544",
-        "sequence--10fe3d71-a3d1-4f83-ad54-9c290d7136e9",
+        "task--01537439-3b2d-4afe-81a3-45b2dd35c655",
+        "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
         "impact--1b87fa10-78fd-4b3e-970e-dea91e9a7457",
-        "incident--145eb841-90db-4526-8407-b25fd2d705c1"
+        "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+        "observed-data--5aa35ce5-7d95-4cbb-8ab4-f29b44de80ad",
+        "identity--3789a438-8d49-4f2a-bb1a-06d3575d2f33",
+        "sequence--10fe3d71-a3d1-4f83-ad54-9c290d7136e9",
+        "sequence--5ced78bf-aab8-4650-9c9e-a6914d68b46e",
+        "indicator--dd52359a-1dd5-43c3-8970-2cc8aa0e1544",
+        "sighting--4fb5cd06-3c90-42d7-be38-abea7f752fba",
+        "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+        "anecdote--e1298bc0-818e-5cdb-9154-eac37c8e260f",
+        "sequence--fb97db29-be35-4f8d-b483-c2899750838d",
+        "sighting--06faabfe-490a-4516-a66e-1340aad78870",
+        "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+        "task--3f23faa4-e21e-4880-bd8a-c8d89aa453aa",
+        "identity--31f2aeea-dfe1-4fc9-98c9-38e590e3b55b",
+        "sequence--4c9100f2-06a1-4570-ba51-7dabde2371b8",
+        "incident--145eb841-90db-4526-8407-b25fd2d705c1",
+        "identity--ce31dd38-f69b-45ba-9bcd-2a208bbf8017",
+        "sequence--4089e2b7-816d-4ad4-9d11-2604739b16ef",
+        "event--e8f641e7-89ca-4776-a828-6838d8eccdca",
+        "observed-data--98f47f54-715a-4bdf-ac74-4d65f22bea8e"
       ],
       "reference_count": 7
     },
@@ -3939,10 +3939,10 @@
         }
       },
       "referenced_object_ids": [
-        "course-of-action--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
         "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
-        "malware--0c7b5b88-8ff7-4a4d-aa9d-feb398cd0061",
-        "relationship--183159a8-3919-4c9a-ad77-054c1fa9ac5a"
+        "course-of-action--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
+        "relationship--183159a8-3919-4c9a-ad77-054c1fa9ac5a",
+        "malware--0c7b5b88-8ff7-4a4d-aa9d-feb398cd0061"
       ],
       "reference_count": 4
     },
@@ -4323,9 +4323,9 @@
         }
       },
       "referenced_object_ids": [
-        "email-message--72b7698f-10c2-565a-a2a6-b4996a2f2265",
         "email-addr--e4ee5301-b52d-59cd-a8fa-7630838c7194",
-        "email-addr--98f25ea8-d6ef-51e9-8fce-6a29236436ed"
+        "email-addr--98f25ea8-d6ef-51e9-8fce-6a29236436ed",
+        "email-message--72b7698f-10c2-565a-a2a6-b4996a2f2265"
       ],
       "reference_count": 3
     },
@@ -4415,10 +4415,10 @@
         }
       },
       "referenced_object_ids": [
-        "file--d07ff290-d7e0-545b-a2ff-04602a9e0b73",
         "file--019fde1c-94ca-5967-8b3c-a906a51d87ac",
-        "file--94fc2163-dec3-5715-b824-6e689c4de865",
-        "file--9a1f834d-2506-5367-baec-7aa63996ac43"
+        "file--9a1f834d-2506-5367-baec-7aa63996ac43",
+        "file--d07ff290-d7e0-545b-a2ff-04602a9e0b73",
+        "file--94fc2163-dec3-5715-b824-6e689c4de865"
       ],
       "reference_count": 2
     },
@@ -4503,8 +4503,8 @@
         }
       },
       "referenced_object_ids": [
-        "file--5a27d487-c542-5f97-a131-a8866b477b46",
-        "directory--93c0a9b0-520d-545d-9094-1a08ddf46b05"
+        "directory--93c0a9b0-520d-545d-9094-1a08ddf46b05",
+        "file--5a27d487-c542-5f97-a131-a8866b477b46"
       ],
       "reference_count": 2
     },
@@ -4620,11 +4620,11 @@
         }
       },
       "referenced_object_ids": [
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
-        "file--fb0419a8-f09c-57f8-be64-71a80417591c",
         "relationship--44298a74-ba52-4f0c-87a3-1824e67d7fad",
+        "file--fb0419a8-f09c-57f8-be64-71a80417591c",
         "grouping--84e4d88f-44ea-4bcd-bbf3-b2c1c320bcb3",
-        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
+        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
       ],
       "reference_count": 3
     },
@@ -4792,9 +4792,9 @@
         }
       },
       "referenced_object_ids": [
+        "relationship--b82b2819-3b86-4bd5-afb3-fa36cfbc3f18",
         "ipv4-addr--84445275-e371-444b-baea-ac7d07a180fd",
-        "infrastructure--38c47d93-d984-4fd9-b87b-d69d0841628d",
-        "relationship--b82b2819-3b86-4bd5-afb3-fa36cfbc3f18"
+        "infrastructure--38c47d93-d984-4fd9-b87b-d69d0841628d"
       ],
       "reference_count": 3
     },
@@ -4824,8 +4824,8 @@
         }
       },
       "referenced_object_ids": [
-        "relationship--7aebe2f0-28d6-48a2-9c3e-b0aaa60266ed",
         "malware--16f4f3f9-1b68-4abb-bb66-7639d49f1e30",
+        "relationship--7aebe2f0-28d6-48a2-9c3e-b0aaa60266ed",
         "infrastructure--38c47d93-d984-4fd9-b87b-d69d0841628d"
       ],
       "reference_count": 3
@@ -4851,8 +4851,8 @@
         }
       },
       "referenced_object_ids": [
-        "intrusion-set--4e78f46f-a023-4e5f-bc24-71b3ca22ec29",
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
+        "intrusion-set--4e78f46f-a023-4e5f-bc24-71b3ca22ec29"
       ],
       "reference_count": 2
     },
@@ -4957,8 +4957,8 @@
         }
       },
       "referenced_object_ids": [
-        "location--a48985a2-5c0a-40e3-ae33-446a5553fcec",
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
+        "location--a48985a2-5c0a-40e3-ae33-446a5553fcec"
       ],
       "reference_count": 2
     },
@@ -4983,8 +4983,8 @@
         }
       },
       "referenced_object_ids": [
-        "location--328aa5fd-b278-4a7b-8243-987c53862ec1",
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
+        "location--328aa5fd-b278-4a7b-8243-987c53862ec1"
       ],
       "reference_count": 2
     },
@@ -5009,8 +5009,8 @@
         }
       },
       "referenced_object_ids": [
-        "location--a6e9345f-5a15-4c29-8bb3-7dcc5d168d64",
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
+        "location--a6e9345f-5a15-4c29-8bb3-7dcc5d168d64"
       ],
       "reference_count": 2
     },
@@ -5075,8 +5075,8 @@
         }
       },
       "referenced_object_ids": [
-        "file--1190f2c9-166f-55f1-9706-eea3971d8082",
-        "directory--255cb0e4-8bdb-5d63-bb32-9c6f0b733ab2"
+        "directory--255cb0e4-8bdb-5d63-bb32-9c6f0b733ab2",
+        "file--1190f2c9-166f-55f1-9706-eea3971d8082"
       ],
       "reference_count": 2
     },
@@ -5155,9 +5155,9 @@
         }
       },
       "referenced_object_ids": [
+        "relationship--014841f8-eb38-4673-9904-70f67c92dd8b",
         "malware-analysis--d25167b7-fed0-4068-9ccd-a73dd2c5b07c",
-        "malware--8bcf14e9-2ba2-44ef-9e32-fbbc9d2608b2",
-        "relationship--014841f8-eb38-4673-9904-70f67c92dd8b"
+        "malware--8bcf14e9-2ba2-44ef-9e32-fbbc9d2608b2"
       ],
       "reference_count": 3
     },
@@ -5222,8 +5222,8 @@
         }
       },
       "referenced_object_ids": [
-        "domain-name--3c10e93f-798e-5a26-a0c1-08156efab7f5",
-        "network-traffic--c95e972a-20a4-5307-b00d-b8393faf02c5"
+        "network-traffic--c95e972a-20a4-5307-b00d-b8393faf02c5",
+        "domain-name--3c10e93f-798e-5a26-a0c1-08156efab7f5"
       ],
       "reference_count": 2
     },
@@ -5293,9 +5293,9 @@
         }
       },
       "referenced_object_ids": [
+        "network-traffic--2568d22a-8998-58eb-99ec-3c8ca74f527d",
         "ipv4-addr--ff26c055-6336-b55c-b98d-13d6226742dd",
-        "ipv4-addr--4d22aae0-9fb2-5427-8819-e4f6abf20a53",
-        "network-traffic--2568d22a-8998-58eb-99ec-3c8ca74f527d"
+        "ipv4-addr--4d22aae0-9fb2-5427-8819-e4f6abf20a53"
       ],
       "reference_count": 3
     },
@@ -5340,8 +5340,8 @@
         }
       },
       "referenced_object_ids": [
-        "ipv4-addr--6da8dad3-4de3-5f8e-ab23-45d0b8f12f16",
-        "network-traffic--f8ae967a-3dc3-5cdf-8f94-8505abff00c2"
+        "network-traffic--f8ae967a-3dc3-5cdf-8f94-8505abff00c2",
+        "ipv4-addr--6da8dad3-4de3-5f8e-ab23-45d0b8f12f16"
       ],
       "reference_count": 2
     },
@@ -5411,9 +5411,9 @@
         }
       },
       "referenced_object_ids": [
-        "network-traffic--e7a939ca-78c6-5f27-8ae0-4ad112454626",
         "ipv4-addr--d7177770-fc12-586b-9244-426596a7008e",
-        "ipv4-addr--03b708d9-7761-5523-ab75-5ea096294a68"
+        "ipv4-addr--03b708d9-7761-5523-ab75-5ea096294a68",
+        "network-traffic--e7a939ca-78c6-5f27-8ae0-4ad112454626"
       ],
       "reference_count": 3
     },
@@ -5509,9 +5509,9 @@
         }
       },
       "referenced_object_ids": [
-        "ipv4-addr--89830c10-2e94-57fa-8ca6-e0537d2719d1",
+        "network-traffic--09ca55c3-97e5-5966-bad0-1d41d557ae13",
         "ipv4-addr--45f4c6fb-2d7d-576a-a571-edc78d899a72",
-        "network-traffic--09ca55c3-97e5-5966-bad0-1d41d557ae13"
+        "ipv4-addr--89830c10-2e94-57fa-8ca6-e0537d2719d1"
       ],
       "reference_count": 3
     },
@@ -5581,9 +5581,9 @@
         }
       },
       "referenced_object_ids": [
-        "ipv4-addr--03b708d9-7761-2355-ab75-5ea096294a68",
         "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7",
-        "network-traffic--630d7bb1-0bbc-53a6-a6d4-f3c2d35c2734"
+        "network-traffic--630d7bb1-0bbc-53a6-a6d4-f3c2d35c2734",
+        "ipv4-addr--03b708d9-7761-2355-ab75-5ea096294a68"
       ],
       "reference_count": 3
     },
@@ -5660,8 +5660,8 @@
         }
       },
       "referenced_object_ids": [
-        "domain-name--ecb120bf-2694-4902-a737-62b74539a41b",
-        "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8"
+        "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8",
+        "domain-name--ecb120bf-2694-4902-a737-62b74539a41b"
       ],
       "reference_count": 2
     },
@@ -5695,10 +5695,10 @@
         }
       },
       "referenced_object_ids": [
-        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65",
-        "domain-name--ecb120bf-2694-4902-a737-62b74539a41b",
         "ipv4-addr--efcd5e80-570d-4131-b213-62cb18eaa6a8",
-        "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf"
+        "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf",
+        "domain-name--ecb120bf-2694-4902-a737-62b74539a41b",
+        "identity--e5f1b90a-d9b6-40ab-81a9-8a29df4b6b65"
       ],
       "reference_count": 3
     },
@@ -5731,9 +5731,9 @@
         }
       },
       "referenced_object_ids": [
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
         "relationship--57b56a43-b8b0-4cba-9deb-34e3e1faed9e",
-        "opinion--b01efc25-77b4-4003-b18b-f6e24b5cd9f7"
+        "opinion--b01efc25-77b4-4003-b18b-f6e24b5cd9f7",
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff"
       ],
       "reference_count": 3
     },
@@ -5778,8 +5778,8 @@
         }
       },
       "referenced_object_ids": [
-        "file--c7d1e135-8b34-549a-bb47-302f5cf998ed",
-        "process--d2ec5aab-808d-4492-890a-3c1a1e3cb06e"
+        "process--d2ec5aab-808d-4492-890a-3c1a1e3cb06e",
+        "file--c7d1e135-8b34-549a-bb47-302f5cf998ed"
       ],
       "reference_count": 2
     },
@@ -5890,8 +5890,8 @@
         }
       },
       "referenced_object_ids": [
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
-        "threat-actor--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
+        "threat-actor--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff"
       ],
       "reference_count": 2
     },
@@ -5916,8 +5916,8 @@
         }
       },
       "referenced_object_ids": [
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
-        "tool--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
+        "tool--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff"
       ],
       "reference_count": 2
     },
@@ -6022,8 +6022,8 @@
         }
       },
       "referenced_object_ids": [
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
-        "vulnerability--0c7b5b88-8ff7-4a4d-aa9d-feb398cd0061"
+        "vulnerability--0c7b5b88-8ff7-4a4d-aa9d-feb398cd0061",
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff"
       ],
       "reference_count": 2
     },
@@ -6138,11 +6138,11 @@
         }
       },
       "referenced_object_ids": [
-        "relationship--f82356ae-fe6c-437c-9c24-6b64314ae68a",
-        "indicator--26ffb872-1dd9-446e-b6f5-d58527e5b5d2",
         "campaign--83422c77-904c-4dc1-aff5-5c38f3a2c55c",
         "report--84e4d88f-44ea-4bcd-bbf3-b2c1c320bcb3",
-        "identity--a463ffb3-1bd9-4d94-b02d-74e4f1658283"
+        "relationship--f82356ae-fe6c-437c-9c24-6b64314ae68a",
+        "identity--a463ffb3-1bd9-4d94-b02d-74e4f1658283",
+        "indicator--26ffb872-1dd9-446e-b6f5-d58527e5b5d2"
       ],
       "reference_count": 3
     },
@@ -6188,11 +6188,11 @@
         }
       },
       "referenced_object_ids": [
-        "identity--b67d30ff-02ac-498a-92f9-32f845f448ff",
-        "sighting--ee20065d-2555-424f-ad9e-0f8428623c75",
         "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
+        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
+        "sighting--ee20065d-2555-424f-ad9e-0f8428623c75",
         "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf",
-        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
+        "identity--b67d30ff-02ac-498a-92f9-32f845f448ff"
       ],
       "reference_count": 5
     },
@@ -6258,8 +6258,8 @@
       },
       "referenced_object_ids": [
         "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
-        "sighting--f9b0225b-fe10-4bf6-a24b-680d9b88b3a6"
+        "sighting--f9b0225b-fe10-4bf6-a24b-680d9b88b3a6",
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff"
       ],
       "reference_count": 3
     },
@@ -6305,11 +6305,11 @@
         }
       },
       "referenced_object_ids": [
-        "sighting--2b02cd96-a136-4914-8881-4b882babce45",
-        "identity--b67d30ff-02ac-498a-92f9-32f845f448ff",
         "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
+        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
+        "sighting--2b02cd96-a136-4914-8881-4b882babce45",
         "observed-data--b67d30ff-02ac-498a-92f9-32f845f448cf",
-        "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f"
+        "identity--b67d30ff-02ac-498a-92f9-32f845f448ff"
       ],
       "reference_count": 5
     },
@@ -6342,9 +6342,9 @@
         }
       },
       "referenced_object_ids": [
+        "file--30038539-3eb6-44bc-a59e-d0d3fe84695a",
         "observed-data--59bf6dfb-544a-44ae-bc53-007cba6c0ef4",
-        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
-        "file--30038539-3eb6-44bc-a59e-d0d3fe84695a"
+        "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff"
       ],
       "reference_count": 3
     },
@@ -6423,9 +6423,9 @@
       },
       "referenced_object_ids": [
         "network-traffic--53e0bf48-2eee-5c03-8bde-ed7049d2c0a3",
+        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7",
         "network-traffic--ac267abc-1a41-536d-8e8d-98458d9bf491",
-        "ipv4-addr--4d22aae0-2bf9-5427-8819-e4f6abf20a53",
-        "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7"
+        "ipv4-addr--4d22aae0-2bf9-5427-8819-e4f6abf20a53"
       ],
       "reference_count": 4
     },
@@ -6460,9 +6460,9 @@
         }
       },
       "referenced_object_ids": [
-        "network-traffic--53e0bf48-2eee-5c03-8bde-ed7049d2c0a3",
         "network-traffic--ac267abc-1a41-536d-8e8d-98458d9bf491",
         "ipv4-addr--ffe65ce3-bf2a-577c-bb7e-947d39198637",
+        "network-traffic--53e0bf48-2eee-5c03-8bde-ed7049d2c0a3",
         "ipv4-addr--4d22aae0-2bf9-5427-8819-e4f6abf20a53"
       ],
       "reference_count": 4
@@ -6541,9 +6541,9 @@
         }
       },
       "referenced_object_ids": [
-        "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89",
         "network-traffic--b4a8c150-e214-57a3-9017-e85dfa345f46",
         "ipv4-addr--e42c19c8-f9fe-5ae9-9fc8-22c398f78fb7",
+        "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89",
         "network-traffic--65a6016d-a91c-5781-baad-178cd55f01d4"
       ],
       "reference_count": 4
@@ -6579,10 +6579,10 @@
         }
       },
       "referenced_object_ids": [
-        "network-traffic--65a6016d-a91c-5781-baad-178cd55f01d4",
         "network-traffic--b4a8c150-e214-57a3-9017-e85dfa345f46",
-        "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89",
-        "ipv4-addr--bb884ffe-f2e4-56bb-a0c3-21f6711cb649"
+        "ipv4-addr--bb884ffe-f2e4-56bb-a0c3-21f6711cb649",
+        "network-traffic--65a6016d-a91c-5781-baad-178cd55f01d4",
+        "ipv4-addr--f2d3c796-6c1a-5c4f-8516-d4db54727f89"
       ],
       "reference_count": 4
     },

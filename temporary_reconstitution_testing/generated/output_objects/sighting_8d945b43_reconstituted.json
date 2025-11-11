@@ -1,0 +1,25 @@
+{
+  "type": "sighting",
+  "spec_version": "2.1",
+  "id": "sighting--8d945b43-3d33-47d7-bed6-9b65c5c71ca4",
+  "created": "2025-11-10T04:07:38.979Z",
+  "modified": "2025-11-10T04:07:38.979Z",
+  "count": 1,
+  "sighting_of_ref": "identity--118f7825-e977-4c3a-a353-8a522773062d",
+  "observed_data_refs": [
+    "observed-data--07ff039c-3e24-4972-935e-770d7024a560"
+  ],
+  "where_sighted_refs": [
+    "identity--73a20e26-dad4-4a4c-a180-d894b1f786d0"
+  ],
+  "extensions": {
+    "sighting-anecdote": {
+      "person_name": "user-report",
+      "person_context": "employee",
+      "report_submission": "interview"
+    },
+    "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {
+      "extension_type": "property-extension"
+    }
+  }
+}

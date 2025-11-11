@@ -6,24 +6,84 @@ This directory contains comprehensive architecture documentation for the Brett B
 
 **Key Update**: All documents have been updated with the corrected understanding of the **template-driven architecture** where class templates define both STIX object structure and Python function interfaces through automatic foreign key parameter generation.
 
-## 📚 Document Structure
+## � How the System Pieces Interact
 
-### Core Architecture
-- **[system-overview.md](system-overview.md)** - High-level system architecture with template-driven design principles
-- **[template-driven-architecture.md](template-driven-architecture.md)** - **NEW** - Detailed explanation of template-driven foreign key parameter generation
-- **[block-architecture.md](block-architecture.md)** - Python block design patterns with automatic function signature generation
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                    BRETT BLOCKS SYSTEM ARCHITECTURE                      │
+└─────────────────────────────────────────────────────────────────────────┘
+
+1. TEMPLATE-DRIVEN FOUNDATION
+   Class Templates (*_template.json)
+          ↓
+   Define Structure & Generate Function Signatures
+          ↓
+   Python Blocks (make_*.py) + Data Templates (*.json)
+          ↓
+   [See: template-driven-architecture.md]
+
+2. BLOCK EXECUTION & DATA FORMS
+   Python Blocks execute with template-driven parameters
+          ↓
+   Generate STIX Objects (JSON)
+          ↓
+   Convert to Data Forms via Utilities
+          ↓
+   [See: block-architecture.md, reconstitution-and-notebook-generation.md]
+
+3. RECONSTITUTION ENGINE
+   Data Forms + Reconstitution Metadata
+          ↓
+   Restore References in Dependency Order
+          ↓
+   Reconstituted STIX Objects (99.3% accuracy)
+          ↓
+   [See: reconstitution-and-notebook-generation.md]
+
+4. TESTING & VALIDATION
+   Discovery: Find testable objects (53 objects across 15 types)
+          ↓
+   Generation: Create data forms (100% success)
+          ↓
+   Execution: STIXReconstitutionEngine (100% success)
+          ↓
+   Verification: DeepDiff comparison (100% pass rate)
+          ↓
+   Reporting: JSON & Markdown reports
+          ↓
+   [See: stixorm-testing-system-design.md]
+
+5. CONTEXT MEMORY & ORCHESTRATION
+   STIX Objects stored in context memory
+          ↓
+   Automatic object routing by STIX type
+          ↓
+   Workflow composition via Jupyter notebooks
+          ↓
+   [See: context-memory-architecture.md, orchestration-architecture.md]
+```
+
+## �📚 Document Structure
+
+### Core Architecture (Start Here)
+- **[system-overview.md](system-overview.md)** - High-level system architecture with template-driven design principles and dual-environment setup
+- **[template-driven-architecture.md](template-driven-architecture.md)** - **CRITICAL** - How class templates generate Python function signatures and drive the entire system
+- **[block-architecture.md](block-architecture.md)** - Python block design patterns with automatic function signature generation from templates
+
+### Data Flow & Transformation
+- **[reconstitution-and-notebook-generation.md](reconstitution-and-notebook-generation.md)** - **CRITICAL** - Complete data flow: STIX → Data Forms → Reconstitution → Notebooks (99.3% accuracy)
 - **[stix-object-architecture.md](stix-object-architecture.md)** - STIX 2.1 object management with class template specifications
 
-### STIX Object Pattern Analysis (NEW)
-- **[stix-object-generation-patterns.md](stix-object-generation-patterns.md)** - **NEW** - Comprehensive analysis of ALL 15 STIX objects with complexity distribution and automation feasibility
-- **[complete-stix-pattern-matrix.md](complete-stix-pattern-matrix.md)** - **NEW** - Complete function signature matrix and pattern analysis across all implemented STIX objects
+### Testing & Validation (NEW - Nov 2025)
+- **[stixorm-testing-system-design.md](../architecture/stixorm-testing-system-design.md)** - **NEW** - Complete testing system achieving 100% pass rate, validates entire template → block → reconstitution pipeline
 
-### Data Forms & Reconstitution (NEW - Nov 2025)
-- **[reconstitution-and-notebook-generation.md](reconstitution-and-notebook-generation.md)** - **NEW** - Dual-mode system for STIX object reconstitution and automated notebook generation with 99.3%+ accuracy
+### STIX Object Pattern Analysis
+- **[stix-object-generation-patterns.md](stix-object-generation-patterns.md)** - Comprehensive analysis of ALL 15 STIX objects with complexity distribution and automation feasibility
+- **[complete-stix-pattern-matrix.md](complete-stix-pattern-matrix.md)** - Complete function signature matrix and pattern analysis across all implemented STIX objects
 
 ### Component Architecture
-- **[context-memory-architecture.md](context-memory-architecture.md)** - Persistent storage and state management **[UPDATED with Three-Tier Edge Relationship System]**
-- **[orchestration-architecture.md](orchestration-architecture.md)** - Workflow composition and execution
+- **[context-memory-architecture.md](context-memory-architecture.md)** - Persistent storage and state management with automatic STIX object routing
+- **[orchestration-architecture.md](orchestration-architecture.md)** - Workflow composition and execution with mathematical equivalence validation
 - **[api-integration-architecture.md](api-integration-architecture.md)** - External system interfaces and deployment
 
 ### Reference Documents
@@ -68,14 +128,18 @@ def make_incident(incident_form, event_refs=None, ...):
 
 | Document | Status | Last Updated | Key Updates |
 |----------|--------|--------------|-------------|
-| [template-driven-architecture.md](./template-driven-architecture.md) | ✅ New | 2025-10-27 | **NEW** - Comprehensive template-driven architecture documentation |
-| [system-overview.md](./system-overview.md) | ✅ Updated | 2025-10-27 | Added template-driven architecture section with foreign key generation |
-| [block-architecture.md](./block-architecture.md) | ✅ Updated | 2025-10-27 | Added foreign key parameter generation patterns and property type specifications |
-| [stix-object-architecture.md](./stix-object-architecture.md) | ✅ Updated | 2025-10-27 | Added template structure specifications and property type documentation |
-| [context-memory-architecture.md](./context-memory-architecture.md) | ✅ **MAJOR UPDATE** | 2025-10-30 | **CRITICAL DISCOVERIES**: Automatic STIX Object Routing, File Path Patterns, Context Evolution |
-| [orchestration-architecture.md](./orchestration-architecture.md) | ✅ **MAJOR UPDATE** | 2025-10-30 | **VALIDATION COMPLETE**: NEW vs OLD Notebook Mathematical Equivalence Proof |
+| [system-overview.md](./system-overview.md) | ✅ Updated | 2025-11-10 | Complete system architecture with testing integration |
+| [template-driven-architecture.md](./template-driven-architecture.md) | ✅ Complete | 2025-10-27 | Template-driven architecture with automatic parameter generation |
+| [reconstitution-and-notebook-generation.md](./reconstitution-and-notebook-generation.md) | ✅ Updated | 2025-11-10 | Data forms, reconstitution engine (99.3%), testing validation (100%) |
+| [stixorm-testing-system-design.md](../architecture/stixorm-testing-system-design.md) | ✅ **NEW** | 2025-11-10 | **Production testing system achieving 100% pass rate** |
+| [block-architecture.md](./block-architecture.md) | ✅ Updated | 2025-10-27 | Foreign key parameter generation patterns and property types |
+| [stix-object-architecture.md](./stix-object-architecture.md) | ✅ Updated | 2025-10-27 | Template structure specifications and property type documentation |
+| [context-memory-architecture.md](./context-memory-architecture.md) | ✅ Updated | 2025-10-30 | Automatic STIX routing, file path patterns, context evolution |
+| [orchestration-architecture.md](./orchestration-architecture.md) | ✅ Updated | 2025-10-30 | Notebook mathematical equivalence validation |
 | [api-integration-architecture.md](./api-integration-architecture.md) | ✅ Complete | 2024-10-25 | External system interfaces and deployment strategies |
-| [new-knowledge-summary.md](./new-knowledge-summary.md) | ✅ **MAJOR UPDATE** | 2025-10-30 | **BREAKTHROUGH DISCOVERIES**: Automatic STIX Routing, Mathematical Equivalence Proof, Template Optimization |
+| [stix-object-generation-patterns.md](./stix-object-generation-patterns.md) | ✅ Complete | 2025-10-27 | Comprehensive analysis of 15 STIX object types |
+| [complete-stix-pattern-matrix.md](./complete-stix-pattern-matrix.md) | ✅ Complete | 2025-10-27 | Complete function signature matrix across all objects |
+| [new-knowledge-summary.md](./new-knowledge-summary.md) | ✅ Updated | 2025-10-30 | Architectural discoveries and breakthrough patterns |
 
 ## 🎯 Target Audience
 

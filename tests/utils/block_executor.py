@@ -11,7 +11,7 @@ import sys
 project_root = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(project_root))
 
-from Orchestration.Utilities.reconstitute_object_list import restore_references_to_data_form
+from Orchestration.Utilities.reconstitute_object_list import STIXReconstitutionEngine
 
 
 class BlockExecutor:
@@ -28,13 +28,17 @@ class BlockExecutor:
         
         Args:
             stixorm_path: Path to Block_Families/StixORM/
-            data_forms_dir: Path to tests/generated/data_forms/
+            data_forms_dir: Path to tests/generated/ (contains data forms)
             output_dir: Path to tests/generated/output_objects/
         """
         self.stixorm_path = Path(stixorm_path)
         self.data_forms_dir = Path(data_forms_dir)
         self.output_dir = Path(output_dir)
         self.reconstituted_objects = {}  # Cache for dependency resolution
+        
+        # Initialize the reconstitution engine
+        generated_dir = self.data_forms_dir  # Already pointing to generated dir
+        self.recon_engine = STIXReconstitutionEngine(generated_dir)
         
         # Ensure output directory exists
         self.output_dir.mkdir(parents=True, exist_ok=True)
@@ -68,15 +72,15 @@ class BlockExecutor:
         obj_id = stix_obj['id']
         
         # 1. Find and load data form
-        data_form = self._load_data_form(obj_id, metadata)
+        data_form = self._load_data_form(obj_id, metadata, stix_obj)
         if data_form is None:
             raise ValueError(f"Data form not found for {obj_id}")
         
         # 2. Get reference restoration info
         ref_info = self._get_ref_info(obj_id, reconstitution_data)
         
-        # 3. Restore references
-        restored_form = restore_references_to_data_form(
+        # 3. Restore references using the reconstitution engine
+        restored_form = self.recon_engine.restore_references_to_data_form(
             data_form, 
             ref_info, 
             {}  # id_mapping for new UUIDs
@@ -187,17 +191,40 @@ class BlockExecutor:
         
         return embedded
     
-    def _load_data_form(self, object_id: str, metadata: Any) -> Dict:
+    def _load_data_form(self, object_id: str, metadata: Any, stix_obj: Dict = None) -> Dict:
         """
-        Load data form for object ID
+        Load data form for object using the same filename computation as generation
         
         Args:
             object_id: STIX object ID
             metadata: ParseContent metadata
+            stix_obj: Original STIX object (needed for filename computation)
             
         Returns:
             Data form dictionary
         """
+        if stix_obj is not None:
+            # Import filename computation function
+            import sys
+            sys.path.insert(0, str(self.data_forms_dir.parent.parent / 'Orchestration' / 'Utilities'))
+            from convert_object_list_to_data_forms import compute_stable_filename_from_content
+            
+            # Compute the correct filename
+            obj_type = stix_obj.get('type', 'unknown')
+            expected_filename = compute_stable_filename_from_content(stix_obj, obj_type)
+            form_file = self.data_forms_dir / expected_filename
+            
+            if form_file.exists():
+                with open(form_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    # Data form files have structure: {"{type}_form": {"base_required": ...}}
+                    # Extract the inner form structure
+                    for key in data.keys():
+                        if key.endswith('_form'):
+                            return data[key]
+                    return data
+        
+        # Fallback to old method if stix_obj not provided or file not found
         # Try to find data form file
         # Forms are typically named with the object type
         form_file = self.data_forms_dir / f"{object_id}.json"
