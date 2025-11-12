@@ -1,1 +1,98 @@
-"[]"
+{
+    "sdo_make_files": [
+        {
+            "stix_type": "identity",
+            "python": "Block_Families/StixORM/SDO/Identity/make_identity.py",
+            "template": "Block_Families/StixORM/SDO/Identity/Identity_template.json",
+            "data_example": "Block_Families/StixORM/SDO/Identity/identity_IT_user1.json"
+        },
+        {
+            "stix_type": "indicator",
+            "python": "Block_Families/StixORM/SDO/Indicator/make_indicator.py",
+            "template": "Block_Families/StixORM/SDO/Indicator/Indicator_template.json",
+            "data_example": "Block_Families/StixORM/SDO/Indicator/indicator_alert.json"
+        },
+        {
+            "stix_type": "impact",
+            "python": "Block_Families/StixORM/SDO/Impact/make_impact.py",
+            "template": "Block_Families/StixORM/SDO/Impact/Impact_template.json",
+            "data_example": "Block_Families/StixORM/SDO/Impact/anecdote_impact.json"
+        },
+        {
+            "stix_type": "incident",
+            "python": "Block_Families/StixORM/SDO/Incident/make_incident.py",
+            "template": "Block_Families/StixORM/SDO/Incident/Incident_template.json",
+            "data_example": "Block_Families/StixORM/SDO/Incident/phishing_incident.json"
+        },
+        {
+            "stix_type": "event",
+            "python": "Block_Families/StixORM/SDO/Event/make_event.py",
+            "template": "Block_Families/StixORM/SDO/Event/Event_template.json",
+            "data_example": "Block_Families/StixORM/SDO/Event/event_alert.json"
+        },
+        {
+            "stix_type": "observed-data",
+            "python": "Block_Families/StixORM/SDO/Observed_Data/make_observed_data.py",
+            "template": "Block_Families/StixORM/SDO/Observed_Data/ObservedData_template.json",
+            "data_example": "Block_Families/StixORM/SDO/Observed_Data/observation-alert.json"
+        },
+        {
+            "stix_type": "sequence",
+            "python": "Block_Families/StixORM/SDO/Sequence/make_sequence.py",
+            "template": "Block_Families/StixORM/SDO/Sequence/Sequence_template.json",
+            "data_example": "Block_Families/StixORM/SDO/Sequence/sequence_alert.json"
+        },
+        {
+            "stix_type": "task",
+            "python": "Block_Families/StixORM/SDO/Task/make_task.py",
+            "template": "Block_Families/StixORM/SDO/Task/Task_template.json",
+            "data_example": "Block_Families/StixORM/SDO/Task/task_alert.json"
+        }
+    ],
+    "sco_make_files": [
+        {
+            "stix_type": "anecdote",
+            "python": "Block_Families/StixORM/SCO/Anecdote/make_anecdote.py",
+            "template": "Block_Families/StixORM/SCO/Anecdote/Anecdote_template.json",
+            "data_example": "Block_Families/StixORM/SCO/Anecdote/anecdote_on_impact.json"
+        },
+        {
+            "stix_type": "email-addr",
+            "python": "Block_Families/StixORM/SCO/EmailAddress/make_email_addr.py",
+            "template": "Block_Families/StixORM/SCO/EmailAddress/EmailAddress_template.json",
+            "data_example": "Block_Families/StixORM/SCO/EmailAddress/email_addr_IT_user1.json"
+        },
+        {
+            "stix_type": "user-account",
+            "python": "Block_Families/StixORM/SCO/UserAccount/make_user_account.py",
+            "template": "Block_Families/StixORM/SCO/UserAccount/UserAccount_template.json",
+            "data_example": "Block_Families/StixORM/SCO/UserAccount/usr_account_IT_user1.json"
+        },
+        {
+            "stix_type": "url",
+            "python": "Block_Families/StixORM/SCO/URL/make_url.py",
+            "template": "Block_Families/StixORM/SCO/URL/URL_template.json",
+            "data_example": "Block_Families/StixORM/SCO/URL/suspicious_url.json"
+        },
+        {
+            "stix_type": "email-message",
+            "python": "Block_Families/StixORM/SCO/Email_Message/make_email_msg.py",
+            "template": "Block_Families/StixORM/SCO/Email_Message/EmailMessage_template.json",
+            "data_example": "Block_Families/StixORM/SCO/Email_Message/suspicious_email_msg.json"
+        }
+    ],
+    "sro_make_files": [
+        {
+            "stix_type": "relationship",
+            "python": "Block_Families/StixORM/SRO/Relationship/make_sro.py",
+            "template": "Block_Families/StixORM/SRO/Relationship/Relationship_template.json",
+            "data_example": "Block_Families/StixORM/SRO/Relationship/sro_employed_by.json"
+        },
+        {
+            "stix_type": "sighting",
+            "python": "Block_Families/StixORM/SRO/Sighting/make_sighting.py",
+            "template": "Block_Families/StixORM/SRO/Sighting/Sighting_template.json",
+            "data_example": "Block_Families/StixORM/SRO/Sighting/sighting_context.json"
+        }
+    ]
+}
