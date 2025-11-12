@@ -3,6 +3,15 @@
   "Identity_template":
     {
       "_type": "identity",
+      "_meta": {        
+        "icon": "fa fa-id-badge",
+        "title": "Identity",
+        "description": "An Identity SDO represents information about an individual, organization, or group.",
+        "create": true,
+        "update": true,
+        "read"  : true,
+        "delete": true
+      },
       "base_required": {
         "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
         "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
@@ -11,7 +20,9 @@
         "modified": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}}
       },
       "base_optional": {
-        "created_by_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["identity"], "spec_version":  "2.1"}},
+        "created_by_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["identity"], "spec_version":  "2.1"},
+        "_meta": {"icon":"fa fa-id-badge"}
+      },
         "revoked": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
         "labels": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
         "confidence": {"property":  "IntegerProperty", "parameters": {}},

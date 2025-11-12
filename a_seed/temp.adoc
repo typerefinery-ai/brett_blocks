@@ -1,0 +1,15 @@
+These extensions allow tracking [stixtype]#{incident_url}[incidents]# across their life cycle, and enable better evidentiary judgment processes where each type of  [stixtype]#{sighting_url}[sighting]#, has [stixtype]#<<evidence,evidence>># extensions to capture the provenance, and enable evidentiary value to be assessed. This enables semi-automated judgements and forensic evaluation of decision veracity.
+
+Many sighting types create [stixtype]#<<event,events>>#, which  are flagged for investigation resulting in [stixtype]#{incident_url}[incidents]# with [stixtype]#<<task,tasks>># being worked to resolve these. [stixtype]#<<event, Events>># and [stixtype]#<<task,tasks>>#, can be organised into serial and parallel workflows using  [stixtype]#<<sequence,sequence>># objects, or they can be considered as atomic and discrete if [stixtype]#<<sequence,sequences>># are not present.
+
+Incidents have [stixtype]#<<impact,impacts>># that change over time.
+[stixtype]#<<event,Events>># can cause or influence these [stixtype]#<<impact,impacts>># which are in turn mitigated and potentially resolved by [stixtype]#<<task,tasks>># performed as part of the incident response process.
+Both [stixtype]#<<event,events>># and [stixtype]#<<task,tasks>># can exist independent of [stixtype]#{incident_url}[incidents]# and in some workflows may occur prior to an incident being declared as malicious.
+
+
+== 1. Incidents in STIX
+
+Incident objects represent cases composed of [stixtype]#<<event,events>># and [stixtype]#<<task,tasks>># as well as actual or potential [stixtype]#<<impact,impacts>>#. [stixtype]#<<event,Events>># and [stixtype]#<<task,tasks>># can be sequenced by [stixtype]#<<sequence,sequence>># objects, which
+An Incident SDO can be created prior to a formal determination that the incident has an impact as a way to logically track case work in an attempt to investigate events or lower level alerts.
+
+The Incident object should have sufficient properties to represent the current state of the incident or investigation while serving as an anchor point to record both related activities and the impact to an organization.

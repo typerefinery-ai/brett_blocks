@@ -1,3 +1,26 @@
+# Plan Notebooks as Storyboards for a Stix Incident Reporting System
+
+## Aim
+
+The aim is to refine and perfect 3 prompts to:
+- update current notebooks to storyboards - .github\prompts\update-current-notebooks-to-storyboards.md
+- create new notebooks for the phishing incident story - .github\prompts\create-new-notobooks-for-phishing-incident.md
+- create new notebooks as storyboards - .github\prompts\create-new-notebooks-as-storyboards.md
+
+The first prompt is to convert the 4 existing notebooks so as to focus on the story of what is happening in each notebook, rather than just the code itself. Every time a particular object is made, and then saved to context memory, we should describe what is happening in the story. setup each cell to describe what is happening in the story, and why. There are 3 separate stories to tell here:
+
+1. The story to describe the creation of the user and team objects, and saving them to context memory
+2. The story to deascribe the creation of a fictional company, its IT systems and assets, and saving them to context memory
+3. The story to describe the creation of a phishing incident, its observed data, indicators, tasks, impacts, events and sequences, and saving them to context memory
+
+By focusing on the story, we can make it clearer what is happening in each notebook, and why. This will help users understand the purpose of each notebook, and how they fit together to create a complete Stix Incident Reporting System.
+
+Then we can:
+A. Use the second prompt to extend the Phishing Incidents with additional Observed Data, Tasks, Events, Impacts and Sequences around further Sightings (see detail on building out incidents in a_seed/content.md)
+B. Use the third prompt to create further notebooks for other types of incidents, e.g., Malware Incident, Data Breach Incident, Ransomware Incident etc.
+
+The key for the design of each notebook, beyond the import section, is to focus each cell on the story of making that specific object and saving it to context memory, all part of a sequence which tells the overall story of the incident reporting system.
+
 
 At the moment, the number of Stix objects available to us are limited by the number of directories with "make_object.py" format.
 
