@@ -7,7 +7,7 @@ Stix has two graph networks within it:
 - Embedded References - where an object's field contains a stix id, or list of stix id's, pointing to other objects. This creates a hierarchy in two ways, the number of reference fields in an object, and the types of objects they can reference (i.e. their place in the hieraqrchy)
 - Object Relationships - where an SRO relationship object connects two other objects via their id's. Different values of the "relationship_type" field are constrained to have different source and target object type combinations, specific to that relationship type.
 
-Stix Incidents contain both types of graph networks, but all objects in the incident must be registered as an embedded reference in the US DoD extension definition for the incident. This means that the full set of objects in an incident can be found by traversing the embedded references in the incident object extension itself.
+Stix Incidents contain both types of graph networks, but all objects in the incident, including SRO's must be registered as an embedded reference in the US DoD extension definition for the incident. This means that the full set of objects in an incident can be found by traversing the embedded references in the incident object extension itself.
 
 Stix objects can be arranged hierarchically based on dependency, so that the object with no dependencies, and no embedded references at the bottom, and the object with the largest number of embedded reference fields, and thus many dependnacies is at the top. However, there is another, more subtle hierarchy based on what type of object the field takes as its value. 
 
@@ -15,7 +15,9 @@ These dependencies can be assessed by reviewing StixORM object class templates (
 
 ### 1.1 The US DoD Incident Extension Definition Pattern
 
-The basic Stix incident is a stub, with no signifcant properties, beyond name and description, and no SRO `relationship_type` values connected to it. The US DoD Extension (`extension-definition—​ef765651-680c-498d-9894-99799f2fa126` | class ``IncidentCoreExt`), adds a series of descriptive fields, and most importantly, the series of lists of orthogonal references that sit inside the Incident:
+The basic Stix incident is a stub, with no signifcant properties, beyond name and description, and no SRO `relationship_type` values connected to it. 
+
+The US DoD Extension (`extension-definition—​ef765651-680c-498d-9894-99799f2fa126` | class ``IncidentCoreExt`), adds a series of descriptive fields, and most importantly, the series of lists of orthogonal references that sit inside the [incident](Block_Families\StixORM\SDO\Incident\Incident_template.json):
 = `event_refs`: A list of references to all the events in the incident
 - `impact_refs` : A list of references to all the impacts in the incident
 - `sequence_refs`: Every event and task object, has references to its own sequence object that references it through the `sequenced_object_ref` property, where the `sequence_type` = (task | event)
@@ -24,7 +26,7 @@ The basic Stix incident is a stub, with no signifcant properties, beyond name an
 - `other_object_refs`: Finally, references to all other objects in the Icnident are store here
 
 
-These extensions allow tracking [incidents](Block_Families\StixORM\SDO\Incident\Incident_template.json) across their life cycle, and enable better evidentiary judgment processes where each type of [sighting](Block_Families\StixORM\SRO\Sighting\Sighting_template.json) has extensions to capture the provenance, and enable evidentiary value to be assessed. This enables semi-automated judgements and forensic evaluation of decision veracity.
+This concept and other extensions allow tracking of incidents across their life cycle, and enable better evidentiary judgment processes where each type of [sighting](Block_Families\StixORM\SRO\Sighting\Sighting_template.json) has extensions to capture the provenance, and enable evidentiary value to be assessed. This enables semi-automated judgements and forensic evaluation of decision veracity.
 
 [observed-data](Block_Families\StixORM\SDO\ObservedData\ObservedData_template.json) objects contain SCO observations, and must be reported within a [sighting](Block_Families\StixORM\SRO\Sighting\Sighting_template.json) object alongside the SDO's that describe "what" and "where". This sighting subgraph is connected to the Incident through the `other_object_refs` field of an incident.
 
@@ -71,12 +73,12 @@ The SRO Reltationship objects and their respective `relationship_type` fields ar
 
 ### 1.2 The User Account, Email Address and Identity Sub Pattern
 
-Apart from the identity that creates them, user accounts are independent of other object dependnencies, and made first. Email address contain the value but also the `belongs_to_ref` field that contains the user account connected with the email address, so it is made second. Conventional Identity objects have no embedded references, apart from `created_by_ref`, but the Identity Contact Identity Extension by US DoD (IdentityContact | 'extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498') adds additional contact properties and 3 list's of sub-objects:
+Apart from the identity that creates them, user accounts are independent of other object dependnencies, and made first. Email address contain the value but also the `belongs_to_ref` field that contains the user account connected with the email address, so it is made second. Conventional Identity objects have no embedded references, apart from `created_by_ref`, but the [Identity Contact](Block_Families\StixORM\SDO\Identity\Identity_template.json) Identity Extension by US DoD (IdentityContact | 'extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498') adds additional contact properties and 3 list's of sub-objects:
  - ContactNumber | 'contact-number', class `ContactNumber`, no references only text fields
  - EmailContact | 'email-contact', class `EmailContact`, includes text fields and an `email_address_ref` field pointing to an [email-addr SCO](Block_Families\StixORM\SCO\EmailAddress\EmailAddress_template.json)
  - SocialMediaContact | 'social-media-contact', class `SocialMediaContact`, includes text fields and a `user_account_ref` field pointing to a [user-account SCO](Block_Families\StixORM\SCO\UserAccount\UserAccount_template.json)
 
-In Incident Management, one normally has details of themselves and their team, plus any users in the company they work for, held in this sub-graph format, so it is easy to refrence. However, adverseraries or thers may not be as well defined and only be a simple Identity without Eaxtension. Further, the Identity object is often used for definition of internal resources.
+In Incident Management, one normally has details of themselves and their team, plus any users in the company they work for, held in this sub-graph format, so it is easy to refrence. However, adverseraries or thers may not be as well defined and only be a simple Identity without Eaxtension. Further, the Identity object is often used for definition of internal resources. In summary, user-account connects to identity through the  `user_account_ref` field in the SocialMediaConteact sub object, whereas the email address object connects through the `email_address_ref` field in the EmailContact sub object.
 
 All of this data is contained in the Incident object's `other_object_refs` field.
 
@@ -98,12 +100,12 @@ As a third step, [as shown in the class template the OS Threat Sighting Extensio
 
 
 
-All of this data is contained in the Incident object's `other_object_refs` field.
+All of this data is contained as stix id's in the Incident object's `other_object_refs` field.
 
 
 ### 1.4 The Event is Derived from one or more Sightings
 
-The Event is made based on one or more sightings, in the `sighting_refs` field, plus the standard embedded references to SDO's such as `created_by_ref`.
+The [Event object](Block_Families\StixORM\SDO\Event\Event_template.json) is made based on one or more sightings, in the `sighting_refs` field, plus the standard embedded references to SDO's such as `created_by_ref`.
 
 The Event is mostly connected in a subgraph through different SRO `relationship_type` values
 
@@ -121,7 +123,25 @@ The Event objects are referenced in the `event_refs` field. the other objects as
 
 ### 1.5 the Task is integrated with many other objects through its SRO Relationships
 
-The Task object is mostly connected in a subgraph through different SRO `relationship_type` values, apart from its `created_by_ref`
+The Task object properties are
+
+| **Property Name** | **Type** | **Description** |
+|-------------------|----------|-----------------|
+| **outcome** (required) | `task-outcome-enum` | The outcome of the task. |
+| **type** (required) | `string` | The value of this property **MUST** be set to `task`. |
+| **changed_objects** (optional) | `list` of type `state-change` | A list of changes that this task has caused. This is typically used to indicate how a task has affected impacts. |
+| **task_types** (optional) | `list` of type `open-vocabulary` | A list of high level types for the task in order to enable aggregation and summaries. This should be drawn from `task-type-ov`. |
+| **description** (optional) | `string` | A description of task that occurred. |
+| **end_time** (optional) | `timestamp` | The date and time the task was last recorded. If this is not present it is assumed to be unknown. |
+| **end_time_fidelity** (optional) | `timestamp-fidelity-enum` | The level of fidelity that the end_time is recorded in. This value **MUST** come from `timestamp-fidelity-enum`. If no value is provided the timestamp should be considered to be accurate up to the number of decimals it includes. |
+| **error** (optional) | `string` | Details about any failures or deviations that occurred in the task. |
+| **impacted_entity_counts** (optional) | `entity-count` | An optional listing of the entity types that were impacted and how many of each were affected. This is primarily used when recording victim notifications. |
+| **name** (optional) | `string` | An optional name used to identify the task. |
+| **priority** (optional) | `integer` | The priority or importance of the task. This value **MUST** be between 0 to 100. This can be translated into qualitative values as described in Appendix B. |
+| **start_time** (optional) | `timestamp` | The date and time the task was first recorded. If this is not present it is assumed to be unknown. This property **SHOULD** be populated. |
+| **start_time_fidelity** (optional) | `timestamp-fidelity-enum` | The level of fidelity that the start_time is recorded in. This value **MUST** come from `timestamp-fidelity-enum`. If no value is provided the timestamp should be considered to be accurate up to the number of decimals it includes. |
+
+The [Task object](Block_Families\StixORM\SDO\Task\Task_template.json) is mostly connected in a subgraph through different SRO `relationship_type` values, apart from its `created_by_ref`
 
 | \`source_ref\` | \`relationship_type\` | \`target_ref\`        |
 | -------------- | --------------------- | --------------------- |
@@ -144,7 +164,7 @@ The Task objects are referenced in the `task_refs` field. the other objects asso
 
 ### 1.6 The Impact object has  7 different types of extension
 
-The Impact Object connects to impacted entities throught its `impacted_refs` field, which can relate directly to Infrastructure, SCOs, and other SDOs. There are 7 different US DoD Impact Extensions that can be used to capture different types of impact data:
+The [Impact Object](Block_Families\StixORM\SDO\Impact\Impact_template.json) connects through its `impacted_refs` field, which can relate directly to Infrastructure, SCOs, and other SDOs. There are 7 different US DoD Impact Extensions that can be used to capture different types of impact data:
 
 1. **Availability Extension:** (`availability` | class `Availability`)
 2. **Confidentiality Extension:** (`confidentiality` | class `Confidentiality`)
@@ -156,9 +176,29 @@ The Impact Object connects to impacted entities throught its `impacted_refs` fie
 
 The Impact objects are referenced in the `impact_refs` field. the other objects associated with the Event, are usually contained in the Incident object's `other_object_refs`, or other `_refs` fields.
 
-### 1.7 Summary of the Graph Nature of Stix Incidents
+### 1.7 The Email Message Contents, its Email Addresses, URL's  and Relations
+
+The [Email Message](Block_Families\StixORM\SCO\EmailMessage\EmailMessage_template.json) object contains embedded references to [email-addr SCO's](Block_Families\StixORM\SCO\EmailAddress\EmailAddress_template.json) in the `from_ref`, `to_refs`, `cc_refs`, and `bcc_refs` fields. The [url SCO](Block_Families\StixORM\SCO\Url\Url_template.json) cannot connect to the email message through embedded rfeferences, but instead connects through SRO relationship objects with the `relationship_type` value of `contained-in`, where the `source_ref` is the [url SCO](Block_Families\StixORM\SCO\Url\Url_template.json) id, and the `target_ref` is the [email message SCO](Block_Families\StixORM\SCO\EmailMessage\EmailMessage_template.json) id.
+
+
+### 1.8 The Sequencing of Tasks and Events through the Sequence object
+The [Sequence object](Block_Families\StixORM\SRO\Sequence\Sequence_template.json) enables the sequencing of [event SDO's](Block_Families\StixORM\SDO\Event\Event_template.json) and [task SDO's](Block_Families\StixORM\SDO\Task\Task_template.json) into ordered workflows, based on the value of `step_type` **MUST** be one of `(start_step, end_step, single_step, parallel_step)`. There must always be a starting sequence object with `step_type` = "start_step" to begin the workflow.  The sequence object connects to other sequence objects through the `on_completion_ref`, `on_success_ref`, `on_failure_ref`, and `next_step_refs` fields. Sequence objects for both values of the `sequence_type` field must be created in a chain starting from the start sequence, where each sequence object connects to the next sequence object in the workflow.
+
+The sequence object connects to the event or task SDO through the `sequenced_object_ref` field, and the value of the field `sequence_type`  **MUST** be of type `event` or `task`.
+
+| **Property Name** | **Type** | **Description** |
+|-------------------|----------|-----------------|
+| **type** (required) | `string` | The value of this property **MUST** be set to `sequence`. |
+| **step_type** (required) | `step-type-enum` | The type of step, **MUST** be one of `(start_step, end_step, single_step, parallel_step)` |
+| **sequence_type** (required) | `string` | The type of sequence, **MUST** be `(event or task)` |
+| **sequenced_object_ref** (optional) | `identifier` | The SDO that is part of the sequence, **MUST** be of type `event` or `task`. |
+| **on_completion_ref** (optional) | `identifier` | The `sequence` object to follow, **MUST** be of type `sequence` |
+| **on_success_ref** (optional) | `identifier` | The `sequence` object to follow, **MUST** be of type `sequence` |
+| **on_failure_ref** (optional) | `identifier` | The `sequence` object to follow, **MUST** be of type `sequence` |
+| **next_step_refs** (optional) | `list` of type `identifier` | The `sequence` objects to follow, **MUST** be of type `sequence` |
+
+## 1.8 Summary of the Graph Nature of Stix Incidents
 
 Thus we can see that there is a hierarchy of object types based on what types of objects they can reference, and the various types of subgraph patterns, as shown above. Thus, an object that takes in any sco, like the observed-data object, will be lower in the hierarchy than an object that takes in any sdo in addition to he observations, like the sighting object.
 
 The aim is to form rich interconnection patterns between data in the Stix Incident, via both embedded references and relationship objects, to form a complete picture of the incident being described.
-

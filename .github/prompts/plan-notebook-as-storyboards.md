@@ -19,25 +19,55 @@ The first prompt is to convert the 4 existing notebooks so as to focus on the st
 By focusing on the story, we can make it clearer what is happening in each notebook, and why. This will help users understand the purpose of each notebook, and how they fit together to create a complete Stix Incident Reporting System.
 
 Then we can:
-A. Use the second prompt to extend the Phishing Incidents with additional Observed Data, Tasks, Events, Impacts and Sequences around further Sightings (see detail on building out incidents in a_seed/content.md)
-B. Use the third prompt to create further notebooks for other types of incidents, e.g., Malware Incident, Data Breach Incident, Ransomware Incident etc.
+
+- Use the second prompt to extend the Phishing Incidents with additional Observed Data, Tasks, Events, Impacts and Sequences around further Sightings (see detail on building out incidents in a_seed/content.md)
+- Use the third prompt to create further notebooks for other types of incidents, e.g., Malware Incident, Data Breach Incident, Ransomware Incident etc.
 
 Developing this data is critical to developing a useful demonstration context memory we can use for developing and demonstrating the OS-Triage Stix Incident Management System.
 
+## Rules for Storyboards
+
+We want the storyboard of each notebook to clearly describe the story of what is happening in each notebook, and why. Some of the notebooks are self-contained, e.g., the user setup and company setup notebooks. Others are part of a larger story, e.g., the incident setup and multiple incident development notebooks. 
+
+Our initial setup has 4 notebooks so far, that establish the story of:
+- setting up a user and team
+- setting up a company
+- setting up a phishing incident with an alert, based on an email message receieved by email-addr in the company, containing an url, with SRO relationship with `relationship_type` = `contains` between the email-message and the url. The SCO's, including the url, must be contained within an observed-data object  `object_ref` field, with a SRO sighting object linking the email-message to the url through the observed-data object. The incident is continued by adding an indicator object based on the observed-data, with a SRO relationship of `indicates` between the indicator and the incident. The incident is further continued by adding a task object to investigate the indicator, with a SRO relationship of `investigates` between the task and the indicator. The incident is further continued by adding an event object to record the investigation, with a SRO relationship of `related-to` between the event and the task. The incident is further continued by adding an impact object to record the impact of the incident, with a SRO relationship of `impacts` between the impact and the incident. The incident is finally continued by adding a sequence object to record the sequence of events in the incident, with a SRO relationship of `has-sequence` between the sequence and the incident.
+- continuing the incident by adding a user report in an anecdote SCO object, a report from a user about the email message, with similar ideas for further notebooks to extend the phishing incident, and to create new incidents.
+
+A story for the fourth step, a sketch of the 3rd stage in the Incident story is ready, but a notebook has not yet been designed for the story:
+
+- The story for the notebook is a sighting of context data, from the Microsoft Exchange, retrieved based on whoever received the phishing email. Other users from the company receiving the email messsage, "sbilly@example.com, wwhilly@example.com, strange@mycompany.com, dumbo@mycompany.com" had received the same email. Warning, Identity, email Address and User Account details for these users must be addded to the second notebook, the initial user setup notebook, but with appropriate names, email addresses and user account details in order to support this story. Each of these users should have sightings of the same email message, and observed data containing the email message and url. The incident should be updated to include these sightings, and the indicator, task, event, impact and sequence objects should be updated to include references to these new sightings.
+
+Ideally, we have sufficient notebooks to tell the story of two different complete incident's, with multiple sightings, events, impacts, tasks and sequences, for two different companies. Each company, its assets and users details should be setup in a single notebook. Each notebook within an Incident should build on the previous one, and add new objects to the context memory. Each notebook should be self-contained, and should not require any external data although some key objects can be retrieved from contenxt memory using get context memory python blocks.
+
 ## Rules for Notebooks
 
-Notebooks are each about a specific part of a larger story:
+Notebooks are each about a specific part of a larger story. The story of a user, who documents himself and his team, the multiple companies they work for, and the incidents they manage. Each incident is made up of multiple sightings, each sighting made up of multiple events, impacts, tasks and sequences. Notebooks can only include objects when the object's directory has make_object.py file in the StixORM structure.
 
-1. The story of the user and cybersecurity team
-2. The story of the company they are working for. They can work for multiple companies
-3. The story of each Sighting Extension step in the incident, including all of the Events, Impacts, Tasks and Sequences involved in that sighting
+Notebook cells do not import Python block modules and functions directly, instead they use helper functions in the Orchestration\Utilities\local_make_sdo.py and Orchestration\Utilities\local_make_sco.py files to make the objects. This ensures that all of the data formatting and embedded reference handling is done in a consistent way.
 
-Notebooks are in sections with:
-- an initial set of cells for establishing the imports and data file setups
-- a cell containing the context memory creation, or the recovery of objects from context memory
-- a series of cells, where each cell makes a single object, and saves it to incident context memory, and the sequences of cells add up to the graph pattern storyboard for that notebook
+Thus, each notebook tells part of the overall story of either:
 
-Each cell should have a good title and description that outlines its part in the story. At the end there should be a summary of all of the objects involved, and a mermaid diagram of the connections
+1. The user initialises the app, and creates the data for themselves and their cybersecurity team
+2. The user creates the details for a specific Company (an "Identity" object with the role "organization") they are working for, one or more
+3. The story of each step in an incident, including all of the Sightings, Events, Impacts, Tasks and Sequences involved. Objects are createvd and saved to context memory as the story progresses.
+4. The first notebook for setting up an incident, or for setting up a company must use the create_incident_context.py utility to create the initial context memory for that incident or create_company_context.py for a company. The following notebooks retrieve tjhose details from context memory.
+
+Notebooks are in sections, based on rows containing a markdown cell wich contains the story and a code cell, which tells the story in a minimilist method of creating and saving the stix objects. The Notebooks invoke the blocks code through helpers in the existing utilities (e.g. Orchestration\Utilities\local_make_sdo.py), always with an input data form, sometimes with multiple inputs of additional objects for embedded references. The utility will consolidate the data into the correct block input format and pass it to the Python make_object.py file, which will make the data object and hand it back. The first objective of the row is complete, the object is made, no it needs to be saved to context memory.
+
+Overall, the entire notebook describes a story of building up the context memory for a particular sighting, event, task or impact of the overall incident story. A task used to step forward, a sighting made of an obervations or piece of evidence, in a the process of incident management.
+
+
+
+Notebook's must contain:
+
+- an initial set of rows for establishing the imports and data file setups
+- one or more rows containing the context memory creation, or the recovery of objects from context memory
+- a series of rows, where each row makes a single object, and saves it to incident context memory, and the sequences of cells add up to the graph pattern storyboard for that notebook
+- a summary row
+
+Each cell should have a good title and description that outlines its part in the story. At the end there should be a summary of all of the objects involved, and a mermaid diagram of the connections. The code cell below should be as simple as possible, with no extraneous code.
 
 Notebooks should be made in the root of the ORchestration directory, and Start with an approriate Step number. There are 4 notebooks currently, but they do not have story board format and need refining into storyboards:
 
@@ -51,34 +81,33 @@ Notebooks should be made in the root of the ORchestration directory, and Start w
 
 **Your instructions**
 
-### Task 1
+### Task 1 - Map Possible connections Between the Objects
 
-Read the a_seed\5_graph_pattern_nature_of_stix.md to understand the graph nature of Stix Incidents Then, step by step using #sequential-thinking mcp server, go through each class template in the `current_objects`, and  record for each the types of objects it can connect to other objects through its various `ReferenceProperty` or `OSThreatReference` properties. Record all of the graph details for each object in in the \architecture directory, in the `stix-graph-patterns.md` file.
+Read the a_seed\5_graph_pattern_nature_of_stix.md to understand the graph nature of Stix Incidents. Your aim is to step by step using #sequential-thinking mcp server go through a series of sub-tasks:
 
-Build a complete graph linkage map of all the current StixORM objects, showing how they can connect to each other through embedded reference fields by looking through each template in `current_objects`, updating the markdown as you go. Add to this map, all of the different connections made through SRO Relationship objects, with various `relationship_types` based on the examples given in the a_seed\5_graph_pattern_nature_of_stix.md file. Build this map exhaustively over all of the objects in `current_objects`, in the most succinct diagram form, but with as much specific detail as possible, so each object class, field name with types of objects, and SRO relationship type's with its types of objects, is clearly defined. You need to be able to reconstitute every possible hierarchy by simply reading this document. Establish it in the \architecture directory and call it the `stix-graph-patterns.md` file in the \architecture directory.
+1. Summarise Seed: First, can you create a complete summary of the seed document in the file `.github\architecture\stix-graph-patterns.md`, so that every piece of data is retained and it is as accurate as the seed document, but it is more succinctly documented and easier for you to retain. Is there any way you can report on the diffrences between the original seed document and your improved document.
 
-### Task 2
-
-Once it is created, read the `stix-graph-patterns.md` file and then review each of the notebooks using the #sequential-thinking mcop server, and for each notebook, identify the specific parts of the graph pattern that are being created in each notebook:
-- Orchestration\Step_0_User_Setup.ipynb
-- Orchestration\Step_1_Company_Setup.ipynb
-- Orchestration\Step_2_Create_Incident_with_an_Alert.ipynb
-- Orchestration\Step_3_Get the Anecdote.ipynb
+2. Find Additional Graph Patterns for Seed from Templates: Go through every template file in the the `current_objects` collection, to determine if there are patterns of embedded relations and SRO `relationship_type` connections in the data that are not described in the seed document. Record for each template the types of other objects it can connect to through embedded references, the`ReferenceProperty` or `OSThreatReference` properties. Record these additionmal sub-graph patterns in the same format as the exsiting patterns.  Can you extend your summary document in the file `.github\architecture\stix-graph-patterns.md`, to include these additional connections, and highlight which ones are new compared to the seed document.
 
 
-For example, in the User Setup notebook, identify the parts of the graph pattern that relate to creating user identities, email addresses, and user accounts. In the Company Setup notebook, identify the parts of the graph pattern that relate to creating company identities, systems, and assets. In the Incident Setup notebook, identify the parts of the graph pattern that relate to creating incidents, observed data, indicators, tasks, impacts, events, and sequences. 
+### Task 2 - Map Existing Notebooks to Graph Patterns and Record the Stories 
 
-From these sequences,work out the story that lies behind each notebook, and document this story in a new file called `notebook-storyboards.md` in the architecture directory. For each notebook, describe the story that is being told, and how it relates to the graph pattern established in the `stix-graph-patterns.md` file.
+Once Task 1 is complete, read the `stix-graph-patterns.md` file and then review each of the notebooks using the #sequential-thinking mcop server, and for each notebook, identify the specific parts of the graph pattern that are being created in each notebook, and the storyboard that is being told in each notebook. Record the results in the markdown file identified in each item. We want to be able to review all of your sotry boards before giving you the go-ahead from reviewing the notebooks. The notebooks to review and the documents to write the story in are:
 
-Then, with  this understanding, work out a story absed on the current objects that can be used to extend the current phishing incident, and to develop an entirely new incident. Document these story boards in the file `incident-extension-storyboard.md` and `new-incident-storyboard.md` in the architecture directory.
+- User Initialisation: Orchestration\Step_0_User_Setup.ipynb -> Record the story in .github\architecture\new_user.md
+- Company Setup: Orchestration\Step_1_Company_Setup.ipynb -> Record the story in.github\architecture\new_company.md
+- Incident Setup: Orchestration\Step_2_Create_Incident_with_an_Alert.ipynb -> Record the story in .github\architecture\phising-incident.md
+- Anecdote Retrieval: Orchestration\Step_3_Get the Anecdote.ipynb -> Record the story in .github\architecture\phising-incident.md
 
-### Task 3
+When each of these 4 notebooks is analysed, work out a series of instructions to yourself when building a particular notebook in `.github\architecture\notebook-storyboards.md` in the .architecture directory. Assume the AI gets your new Stix graph summary from 1, so it understands Stix graphs. What other details from this document should be included.
 
-Review the file `notebook-storyboards.md` and then use it to create detailed instructions for updating the existing notebooks to focus on the story being told, rather than just the code itself. For each notebook, provide specific instructions on how to update the cells to describe what is happening in the story, and why. Ensure that each cell clearly explains the purpose of the code, and how it fits into the overall story being told in the notebook. Develop this as a prompt in the file .github\prompts\update-current-notebooks-to-storyboards.md
+### Task 3 - Plan in Detail, Make complete Examples Before Creating the Ntotebooks
 
-Review the file `incident-extension-storyboard.md` and then use it to create detailed instructions for creating new notebooks that extend the current phishing incident with additional observed data, tasks, events, impacts, and sequences. For each new notebook, provide specific instructions on how to create the cells to describe what is happening in the story, and why. Ensure that each cell clearly explains the purpose of the code, and how it fits into the overall story being told in the notebook. Develop this as a prompt in the file .github\prompts\create-new-notebooks-for-phishing-incident.md
+Delete any contents in the file `notebook-storyboards.md` and then use it to create detailed instructions for updating the existing notebooks to focus on the story being told, rather than just the code itself. For each notebook, provide specific instructions on how to update the cells to describe what is happening in the story, and why. Ensure that each cell clearly explains the purpose of the code, and how it fits into the overall story being told in the notebook. Develop this as a prompt in the file .github\prompts\update-current-notebooks-to-storyboards.md
 
-Review the file `new-incident-storyboard.md` and then use it to create detailed instructions for creating new notebooks that tell the story of a new type of incident, such as a malware incident, data breach incident, or ransomware incident. For each new notebook, provide specific instructions on how to create the cells to describe what is happening in the story, and why. Ensure that each cell clearly explains the purpose of the code, and how it fits into the overall story being told in the notebook. Develop this as a prompt in the file .github\prompts\create-new-notebooks-as-storyboards.md
+Delete any contents in the file `incident-extension-storyboard.md` and then use it to create detailed instructions for creating new notebooks that extend the current phishing incident with additional observed data, tasks, events, impacts, and sequences. For each new notebook, provide specific instructions on how to create the cells to describe what is happening in the story, and why. Ensure that each cell clearly explains the purpose of the code, and how it fits into the overall story being told in the notebook. Develop this as a prompt in the file .github\prompts\create-new-notebooks-for-phishing-incident.md
+
+Delete any contents in the file `new-incident-storyboard.md` and then use it to create detailed instructions for creating new notebooks that tell the story of a new type of incident, such as a malware incident, data breach incident, or ransomware incident. For each new notebook, provide specific instructions on how to create the cells to describe what is happening in the story, and why. Ensure that each cell clearly explains the purpose of the code, and how it fits into the overall story being told in the notebook. Develop this as a prompt in the file .github\prompts\create-new-notebooks-as-storyboards.md
 
 ## Limited Scope of Current, Next and Future StixORM Objects
 
