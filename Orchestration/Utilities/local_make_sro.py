@@ -17,7 +17,7 @@ results_base = "../Orchestration/Results/"
 
 
 from Block_Families.StixORM.SCO.URL.make_url import main as make_url
-from Block_Families.StixORM.SCO.Email_Addr.make_email_addr import main as make_email_addr
+from Block_Families.StixORM.SCO.EmailAddress.make_email_addr import main as make_email_addr
 from Block_Families.StixORM.SRO.Sighting.make_sighting import main as make_sighting
 from Block_Families.StixORM.SRO.Relationship.make_sro import main as make_sro
 from .util import emulate_ports, unwind_ports, conv

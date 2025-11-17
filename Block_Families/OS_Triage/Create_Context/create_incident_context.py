@@ -45,19 +45,25 @@ import json
 import sys
 import importlib.util
 import logging
+import shutil
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 import_type = import_type_factory.get_all_imports()
 
-# Common File Stuff
-TR_Common_Files = "./generated/os-triage/common_files"
+# Common File Stuff - Use ABSOLUTE paths to avoid working directory issues
+# Find the Orchestration directory by going up from this file's location
+_current_file_dir = os.path.dirname(os.path.abspath(__file__))
+_orchestration_dir = os.path.join(_current_file_dir, "..", "..", "..", "Orchestration")
+_orchestration_dir = os.path.abspath(_orchestration_dir)
+
+TR_Common_Files = os.path.join(_orchestration_dir, "generated", "os-triage", "common_files")
 common = [
     {"module": "convert_n_and_e", "file": "convert_n_and_e.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/main/Block_Families/General/_library/convert_n_and_e.py"}
 ]
 
 # OS_Triage Memory Stuff
-TR_Context_Memory_Dir = "./generated/os-triage/context_mem"
+TR_Context_Memory_Dir = os.path.join(_orchestration_dir, "generated", "os-triage", "context_mem")
 TR_User_Dir = "/usr"
 context_map = "context_map.json"
 user_data = {
@@ -165,10 +171,38 @@ def create_incident_context(stix_object):
     stix_type = stix_object["type"]
     TR_Incident_Dir = TR_Context_Memory_Dir + "/" + stix_id
 
-    # 2. Check if the key directories exist, if not make them, and download common files
+    # 2. Check if the key directories exist, if not make them
+    # Create common_files directory if it doesn't exist
     if not os.path.exists(TR_Common_Files):
         os.makedirs(TR_Common_Files)
-        download_common(common)
+    
+    # Check if the required file exists, if not copy it locally (NEVER download from network)
+    required_file = os.path.join(TR_Common_Files, "convert_n_and_e.py")
+    if not os.path.exists(required_file):
+        # Calculate path to source file relative to this file's location
+        source_file = os.path.join(_current_file_dir, "..", "..", "General", "_library", "convert_n_and_e.py")
+        source_file = os.path.abspath(source_file)
+        if os.path.exists(source_file):
+            shutil.copy2(source_file, required_file)
+            print(f"✅ Copied {source_file} to {required_file}")
+            
+            # CRITICAL FIX: Patch the copied file to make import_type lazy (prevents notebook hang)
+            with open(required_file, 'r') as f:
+                content = f.read()
+            
+            # Replace the problematic module-level import_type initialization
+            # This line causes hanging in notebook context
+            content = content.replace(
+                'import_type = import_type_factory.get_all_imports()',
+                'import_type = None  # Lazy init to prevent notebook hang'
+            )
+            
+            with open(required_file, 'w') as f:
+                f.write(content)
+            print(f"✅ Patched convert_n_and_e.py to prevent notebook hang")
+        else:
+            raise FileNotFoundError(f"Source file not found: {source_file}")
+    
     if not os.path.exists(TR_Context_Memory_Dir):
         os.makedirs(TR_Context_Memory_Dir)
         create_context_map(context_map)
@@ -179,15 +213,25 @@ def create_incident_context(stix_object):
     if not os.path.exists(TR_Incident_Dir):
         os.makedirs(TR_Incident_Dir)
 
-    # 3. Now we are sure the common files exist, we need to import them
-    # Specify the path to the Nodes and Edges module
-    module_path = TR_Common_Files + '/' + common[0]["file"]
-    # Load the module spec using importlib.util.spec_from_file_location
-    spec = importlib.util.spec_from_file_location('n_and_e', module_path)
-    # Create the module from the specification
-    n_and_e = importlib.util.module_from_spec(spec)
-    # Load the module
-    spec.loader.exec_module(n_and_e)
+    # 3. Import the convert_n_and_e module - use sys.path instead of importlib for better compatibility
+    print(f"🔍 DEBUG: Attempting to import module from: {TR_Common_Files}")
+    print(f"🔍 DEBUG: Adding to sys.path: {TR_Common_Files}")
+    
+    if TR_Common_Files not in sys.path:
+        sys.path.insert(0, TR_Common_Files)
+    
+    # Now import directly
+    try:
+        import convert_n_and_e as n_and_e
+        print(f"🔍 DEBUG: Module imported successfully using direct import!")
+        
+        # Initialize import_type if it was set to None (patched version)
+        if n_and_e.import_type is None:
+            n_and_e.import_type = n_and_e.import_type_factory.get_all_imports()
+            print(f"🔍 DEBUG: Initialized import_type after import")
+    except Exception as e:
+        print(f"❌ ERROR importing module: {e}")
+        raise
     # 4. Get the Nodes and Edges, and save them to the lists
     nodes, edges = n_and_e.convert_node(stix_object)
     # 5. Get the Current Incident Directory in the map, update it and then save it

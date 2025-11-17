@@ -1,1 +1,0 @@
-{"get_query": {"type": "identity", "property": {"path": ["name"], "source_value": "Trusty Jones", "comparator": "EQ"}}, "context_type": {"context_type": "me"}, "source_value": "Trusty Jones", "source_id": null}

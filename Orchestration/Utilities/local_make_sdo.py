@@ -16,7 +16,7 @@ path_base = "../Block_Families/StixORM/"
 results_base = "../Orchestration/Results/"
 
 from Block_Families.StixORM.SDO.Identity.make_identity import main as make_identity
-from Block_Families.StixORM.SDO.Observed_Data.make_observed_data import main as make_observed_data
+from Block_Families.StixORM.SDO.ObservedData.make_observed_data import main as make_observed_data
 from Block_Families.StixORM.SDO.Indicator.make_indicator import main as make_indicator
 from Block_Families.StixORM.SDO.Event.make_event import main as make_event
 from Block_Families.StixORM.SDO.Sequence.make_sequence import main as make_sequence

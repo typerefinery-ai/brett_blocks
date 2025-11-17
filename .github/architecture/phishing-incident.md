@@ -109,22 +109,68 @@ Two events, same incident, different evidence sources.
 Pattern 3.10 (Impact Supersession Chain) in action: new evidence lowers criticality.
 
 ### Pattern 3.5: Task Integration (Step_2)
-Five investigation tasks created:
-1. **Analyze Email Headers** (created_by_ref → analyst identity)
-2. **Check URL Reputation** (owned_by_ref → security team)
-3. **Scan User Mailbox** (depends_on_refs → [task-1])
-4. **Block Sender Domain** (depends_on_refs → [task-2])
-5. **Notify Affected Users** (depends_on_refs → [task-3, task-4])
+Investigation tasks created with SRO relationship links:
+1. **Validate SIEM Alert** - Confirms sighting accuracy
+2. **Analyze Email Headers** - Investigates technical indicators
+3. **Check URL Reputation** - Assesses threat level
+4. **Determine False Positive** - Makes final determination
 
-Dependencies create execution order. Pattern 3.11 (Task Ownership vs Creation) shown.
+**Task Relationships** (SRO objects linking tasks to other objects):
+```
+| source_ref      | relationship_type | target_ref       | Meaning                          |
+|-----------------|-------------------|------------------|----------------------------------|
+| task (validate) | detects           | event (alert)    | Task confirms the detection      |
+| task (validate) | creates           | indicator        | Task produces threat intelligence|
+| task (analyze)  | followed-by       | task (check-url) | Sequential execution order       |
+| task (check-url)| followed-by       | task (determine) | Workflow progression             |
+| identity (analyst)| performed       | task (validate)  | Task assignment/ownership        |
+| identity (analyst)| assigned        | task (analyze)   | Task delegation                  |
+```
+
+These relationships are SRO objects saved to the incident using `invoke_save_incident_context_block` with `context_type="relations"`.
 
 ### Pattern 3.7: Sequence Workflow Orchestration (Step_2)
-Three sequences created:
-1. **Initial Triage**: [task-1, task-2]
-2. **Remediation**: [task-3, task-4]
-3. **Communication**: [task-5]
+Sequences chain tasks and events into ordered workflows using **automatic chaining**:
 
-Sequences group tasks into logical phases. Conditional logic (Pattern 3.13) can gate sequence execution.
+**Three-Step Sequence Creation Pattern**:
+```python
+# Step 1: Create the sequence object
+seq_validate = invoke_make_sequence_block(
+    "SDO/Sequence/sequence_validate.json",
+    "step2/sequence_validate",
+    step_type="single_step",
+    sequence_type="task",
+    sequenced_object=task_validate.id
+)
+
+# Step 2: Chain to previous sequences (creates start_step automatically if first)
+invoke_chain_sequence_block(
+    "step2/sequence_validate",  # Current sequence path
+    "step2/chain_result"         # Results path
+)
+
+# Step 3: Save the sequence to incident
+invoke_save_incident_context_block(
+    "step2/sequence_validate",
+    "step2/context/sequence_validate_context.json",
+    {"context_type": "sequence"}
+)
+```
+
+**Sequence Chaining Logic**:
+- First sequence in workflow: `step_type="start_step"` created automatically
+- Subsequent sequences: Previous sequence's `next_step_refs` updated to point to current
+- Conditional branching: Use `on_success_ref`, `on_failure_ref`, `on_completion_ref`
+- Parallel steps: Use `step_type="parallel_step"`
+
+**Workflow Created**:
+```
+[start_step] → [seq_validate] → [seq_analyze] → [seq_check_url] → [seq_determine]
+    ↓               ↓                ↓                 ↓                  ↓
+ (no task)    task_validate    task_analyze     task_check_url    task_determine
+```
+
+The `sequence_type` field indicates whether the sequence contains a `task` or `event` in its `sequenced_object_ref`.
 
 ### Pattern 3.1: Incident Container (Both Steps)
 **Step_2**: Initial incident creation
@@ -235,10 +281,103 @@ event = invoke_make_event_block(
 )
 ```
 
-**Act 5: Impact & Response** (Cells 25-40)
+**Act 5: Tasks, Sequences, & Response** (Cells 25-40)
+
 25-27. Create initial impact assessment
-28-33. Create 5 investigation tasks with dependencies
-34-40. Create 3 sequence workflows grouping tasks
+
+28-31. Create investigation tasks
+```python
+# Task 1: Validate SIEM alert
+task_validate = invoke_make_task_block(
+    "SDO/Task/task_validate.json",
+    "step2/task_validate"
+)
+invoke_save_incident_context_block(
+    "step2/task_validate",
+    "step2/context/task_validate_context.json",
+    {"context_type": "task"}
+)
+
+# Task 2: Analyze email headers  
+task_analyze = invoke_make_task_block(
+    "SDO/Task/task_analyze.json",
+    "step2/task_analyze"
+)
+invoke_save_incident_context_block(
+    "step2/task_analyze",
+    "step2/context/task_analyze_context.json",
+    {"context_type": "task"}
+)
+
+# Additional tasks: task_check_url, task_determine...
+```
+
+32-34. Create task-to-event relationships
+```python
+# Link task to the event it detects
+rel_task_detects_event = invoke_create_relationship_block(
+    "SRO/Relationship/relationship_detects.json",
+    "step2/rel_task_detects",
+    source_ref=task_validate.id,
+    target_ref=event.id,
+    relationship_type="detects"
+)
+invoke_save_incident_context_block(
+    "step2/rel_task_detects",
+    "step2/context/rel_detects_context.json",
+    {"context_type": "relations"}
+)
+
+# Link task to created indicator
+rel_task_creates_indicator = invoke_create_relationship_block(
+    "SRO/Relationship/relationship_creates.json",
+    "step2/rel_task_creates",
+    source_ref=task_validate.id,
+    target_ref=indicator.id,
+    relationship_type="creates"
+)
+invoke_save_incident_context_block(
+    "step2/rel_task_creates",
+    "step2/context/rel_creates_context.json",
+    {"context_type": "relations"}
+)
+```
+
+35-40. Create sequence workflows using automatic chaining
+```python
+# Sequence 1: Validate alert (creates start_step automatically)
+seq_validate = invoke_make_sequence_block(
+    "SDO/Sequence/sequence_validate.json",
+    "step2/sequence_validate",
+    step_type="single_step",
+    sequence_type="task",
+    sequenced_object=task_validate.id
+)
+invoke_chain_sequence_block("step2/sequence_validate", "step2/chain_result_1")
+invoke_save_incident_context_block(
+    "step2/sequence_validate",
+    "step2/context/sequence_validate_context.json",
+    {"context_type": "sequence"}
+)
+
+# Sequence 2: Analyze headers (chains to previous)
+seq_analyze = invoke_make_sequence_block(
+    "SDO/Sequence/sequence_analyze.json",
+    "step2/sequence_analyze",
+    step_type="single_step",
+    sequence_type="task",
+    sequenced_object=task_analyze.id
+)
+invoke_chain_sequence_block("step2/sequence_analyze", "step2/chain_result_2")
+invoke_save_incident_context_block(
+    "step2/sequence_analyze",
+    "step2/context/sequence_analyze_context.json",
+    {"context_type": "sequence"}
+)
+
+# Additional sequences: seq_check_url, seq_determine...
+# Each one: 1) create, 2) chain, 3) save
+```
 
 **Act 6: Incident Creation** (Cells 41-47)
 41-42. Create incident object with IncidentCoreExt
@@ -325,16 +464,122 @@ event_report = invoke_make_event_block(
 )
 ```
 
-**Act 6: Incident Update** (Cells 20-24)
-20-23. Update incident with new evidence
+**Act 6: Task & Sequence Extension** (Cells 18-23)
+
+18-19. Create task for handling user report
 ```python
-incident.extensions["IncidentCoreExt"]["impact_refs"].append(impact_updated.id)
-incident.extensions["IncidentCoreExt"]["event_refs"].append(event_report.id)
-incident.extensions["IncidentCoreExt"]["sighting_refs"].append(sighting_anecdote.id)
-incident.extensions["IncidentCoreExt"]["other_object_refs"].append(observed_data_anecdote.id)
+task_handle_report = invoke_make_task_block(
+    "SDO/Task/task_handle_report.json",
+    "step3/task_handle_report"
+)
+invoke_save_incident_context_block(
+    "step3/task_handle_report",
+    "step3/context/task_handle_report_context.json",
+    {"context_type": "task"}
+)
 ```
 
-24. Summary markdown
+20-21. Create sequence for report handling task (chains to Step_2 workflow)
+```python
+# This sequence chains to the existing workflow from Step_2
+seq_handle_report = invoke_make_sequence_block(
+    "SDO/Sequence/sequence_handle_report.json",
+    "step3/sequence_handle_report",
+    step_type="single_step",
+    sequence_type="task",
+    sequenced_object=task_handle_report.id
+)
+
+# Chain to previous sequences (automatically links to Step_2's last sequence)
+invoke_chain_sequence_block("step3/sequence_handle_report", "step3/chain_result")
+
+# Save to incident
+invoke_save_incident_context_block(
+    "step3/sequence_handle_report",
+    "step3/context/sequence_handle_report_context.json",
+    {"context_type": "sequence"}
+)
+```
+
+22-23. Create relationship linking task to event it creates
+```python
+rel_task_creates_event = invoke_create_relationship_block(
+    "SRO/Relationship/relationship_creates.json",
+    "step3/rel_task_creates_event",
+    source_ref=task_handle_report.id,
+    target_ref=event_report.id,
+    relationship_type="creates"
+)
+invoke_save_incident_context_block(
+    "step3/rel_task_creates_event",
+    "step3/context/rel_creates_event_context.json",
+    {"context_type": "relations"}
+)
+```
+
+**Act 7: Incident Verification** (Cell 24)
+
+24. Summary markdown showing incident growth
+
+## Critical Implementation Patterns
+
+### Three-Step Object Creation
+**EVERY object created must follow this pattern**:
+```python
+# Step 1: Create the object using appropriate utility function
+obj = invoke_make_<type>_block(template_path, results_path, ...)
+
+# Step 2: (For sequences only) Chain to previous sequences  
+invoke_chain_sequence_block(results_path, chain_results_path)
+
+# Step 3: Save to incident context with correct context_type
+invoke_save_incident_context_block(
+    results_obj_path,
+    results_context_path,
+    {"context_type": "<type>"}  # task, event, sequence, impact, relations, etc.
+)
+```
+
+### Context Types for Saving
+| Object Type | context_type Value | Storage File |
+|-------------|-------------------|--------------|
+| task SDO | "task" | task_refs.json |
+| event SDO | "event" | event_refs.json |
+| sequence SRO | "sequence" | sequence_refs.json |
+| impact SDO | "impact" | impact_refs.json |
+| relationship SRO | "relations" | incident_relations.json |
+| sighting SDO | "unattached" then register | other_object_refs.json |
+| observed-data SDO | "unattached" then register | other_object_refs.json |
+| indicator SDO | "unattached" then register | other_object_refs.json |
+
+**NEVER manually update incident references** - the save functions handle this automatically.
+
+### Sequence Chaining Requirements
+- First sequence of each type (task/event): Automatically gets a `start_step` sequence created
+- Subsequent sequences: Previous sequence's `next_step_refs` updated to point to current
+- `step_type` values: `start_step`, `single_step`, `parallel_step`, `end_step`
+- Must call `invoke_chain_sequence_block` after creating each sequence
+
+### Task-to-Sequence Relationship Pattern
+Tasks should be linked to their sequences AND to the objects they act upon:
+```python
+# Create task
+task = invoke_make_task_block(...)
+invoke_save_incident_context_block(..., {"context_type": "task"})
+
+# Create sequence for task  
+seq = invoke_make_sequence_block(sequenced_object=task.id, ...)
+invoke_chain_sequence_block(...)
+invoke_save_incident_context_block(..., {"context_type": "sequence"})
+
+# Link task to what it detects/creates/impacts
+rel = invoke_create_relationship_block(
+    source_ref=task.id,
+    target_ref=event.id,  # or indicator, impact, etc.
+    relationship_type="detects"  # or creates, impacts, etc.
+)
+invoke_save_incident_context_block(..., {"context_type": "relations"})
+```
 
 ## Context Memory Created
 

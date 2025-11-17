@@ -22,6 +22,7 @@ from Block_Families.OS_Triage.Save_Context.save_company_context import main as s
 from Block_Families.OS_Triage.Save_Context.save_user_context import main as save_user_context
 from Block_Families.OS_Triage.Save_Context.save_unattached_context import main as save_unattached_context
 from Block_Families.OS_Triage.Save_Context.save_team_context import main as save_team_context
+from Block_Families.OS_Triage.Save_Context.chain_sequence import main as chain_sequence
 ##############################################################################################
 #       Get From OS_Triage -> Incident, Company, User
 from Block_Families.OS_Triage.Get_Context.get_from_incident import main as get_from_incident
@@ -604,56 +605,6 @@ def invoke_save_unattached_context_block(stix_object_path, results_path):
             export_data = json.load(script_input)
             return export_data
 
-def invoke_make_object_from_data_form_block(data_form_path, results_path):
-    """
-    Create a STIX object from a data form file.
-    This function loads a data form JSON and converts it to a STIX object,
-    then saves it to the results path.
-    
-    Args:
-        data_form_path: Path to the data form JSON file (relative to path_base)
-        results_path: Path where the created object should be saved (relative to results_base)
-    
-    Returns:
-        The created STIX object dictionary
-    """
-    from stixorm.module.authorise import import_type_factory
-    from stixorm.module.typedb_lib.factories.import_type_factory import ImportTypeFactory
-    import_type = import_type_factory.get_all_imports()
-    
-    # Load the data form
-    full_data_form_path = path_base + data_form_path
-    if not os.path.exists(full_data_form_path):
-        raise FileNotFoundError(f"Data form not found: {full_data_form_path}")
-    
-    with open(full_data_form_path, "r") as f:
-        data_form = json.load(f)
-    
-    # Create STIX object from data form
-    # The data form should contain the object type as a key
-    stix_object = None
-    
-    # Try to find the form type in the data
-    for key in data_form.keys():
-        if key.endswith('_form') or key.endswith('_Form'):
-            form_data = data_form[key]
-            # The form data is the STIX object structure
-            stix_object = form_data
-            break
-    
-    if stix_object is None:
-        # If no _form key, the whole data_form might be the object
-        stix_object = data_form
-    
-    # Save the object to results path
-    full_results_path = results_base + results_path
-    # Ensure directory exists
-    os.makedirs(os.path.dirname(full_results_path), exist_ok=True)
-    
-    with open(full_results_path, 'w') as f:
-        json.dump(stix_object, f, indent=2)
-    
-    return stix_object
 
 def invoke_get_from_company_block(get_query, context_type, source_value=None, source_id=None):
     #
@@ -788,7 +739,7 @@ def invoke_get_from_user_block(get_query, context_type, source_value=None, sourc
             return export_data
 
 
-def invoke_save_incident_context_block(stix_object_path, context_results_path, context_type):
+def invoke_save_incident_context_block(stix_object_path, context_results_path, context_type=None):
     """
     Save a STIX object to incident context memory
     
@@ -808,8 +759,7 @@ def invoke_save_incident_context_block(stix_object_path, context_results_path, c
     
     # Create input for save_incident_context
     save_input = {
-        "stix_object": stix_object,
-        "context_type": context_type
+        "stix_object": stix_object
     }
     
     # Create temporary input file
@@ -830,3 +780,26 @@ def invoke_save_incident_context_block(stix_object_path, context_results_path, c
             return json.load(result_file)
     
     return {"context_result": "Save completed"}
+
+
+
+def invoke_chain_sequence_block(sequence_object_path, results_path):
+    #
+    # 1.Run the chain sequence block
+    #
+    #
+    # NOTE: This code is only To fake input ports
+    # Add the User Account object and the  EmailAddress
+    # NOTE: This code is only To fake input ports
+    ##
+    chain_sequence(sequence_object_path,results_path)
+    #
+    # Remove the context type record
+    #
+    #
+    if os.path.exists(results_path):
+        with open(results_path, "r") as script_input:
+            export_data = json.load(script_input)
+            return export_data
+    
+    return {"chained sequence": "Chaining completed"}
