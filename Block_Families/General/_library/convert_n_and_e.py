@@ -931,10 +931,12 @@ def sdo_icon(stix_object, node):
                                 description += '<br>' + adescription
                             if avail:
                                 description += "<br>" + "Variety -> " + str(avail)
-                            for k, v in impacted_entity_counts.items():
-                                description += k + " -> " + str(v)
-                                if len(impacted_entity_counts.items()) > 1:
-                                    description = description + ", "
+                            if impacted_entity_counts:
+                                description += "<br>Impacted Entities -> "
+                                for k, v in impacted_entity_counts.items():
+                                    description += k + " -> " + str(v)
+                                    if len(impacted_entity_counts.items()) > 1:
+                                        description = description + ", "
                             name = "Availability Impact"
                             heading = name
                         elif key == "integrity":
@@ -958,10 +960,12 @@ def sdo_icon(stix_object, node):
                             description += altrd + "<br>" + "Number of Records -> " + str(r_c)
                             description +=  "  Size of Records -> " + str(r_s)
                             description += "<br>Impacted Entities -> "
-                            for k, v in impacted_entity_counts.items():
-                                description += k + " -> " + str(v)
-                                if len(impacted_entity_counts.items()) > 1:
-                                    description = description + ", "
+                            if impacted_entity_counts:
+                                description += "<br>Impacted Entities -> "
+                                for k, v in impacted_entity_counts.items():
+                                    description += k + " -> " + str(v)
+                                    if len(impacted_entity_counts.items()) > 1:
+                                        description = description + ", "
                             name = "Integrity Impact"
                             heading = name
                         elif key == "confidentiality":
@@ -974,11 +978,12 @@ def sdo_icon(stix_object, node):
                             description = '<br>' + adescription + "<br>" + "Info Type -> " + info + "Loss Type -> "
                             description += loss_type + "<br>" + "Number of Records -> " + str(r_c)
                             description +=  "  Size of Records -> " + str(r_s)
-                            description += "<br>Impacted Entities -> "
-                            for k, v in impacted_entity_counts.items():
-                                description += k + " -> " + str(v)
-                                if len(impacted_entity_counts.items()) > 1:
-                                    description = description + ", "
+                            if impacted_entity_counts:
+                                description += "<br>Impacted Entities -> "
+                                for k, v in impacted_entity_counts.items():
+                                    description += k + " -> " + str(v)
+                                    if len(impacted_entity_counts.items()) > 1:
+                                        description = description + ", "
                             name = "Integrity Impact"
                             heading = name
                         elif key == "physical":
@@ -988,11 +993,12 @@ def sdo_icon(stix_object, node):
                             asset_type = value.get("asset_type", "")
                             description = '<br>' + adescription + "<br> Asset Type -> " +  asset_type
                             description += ", Physical Impact -> " + impact_type
-                            description += "<br>Impacted Entities -> "
-                            for k, v in impacted_entity_counts.items():
-                                description += k + " -> " + str(v)
-                                if len(impacted_entity_counts.items()) > 1:
-                                    description = description + ", "
+                            if impacted_entity_counts:
+                                description += "<br>Impacted Entities -> "
+                                for k, v in impacted_entity_counts.items():
+                                    description += k + " -> " + str(v)
+                                    if len(impacted_entity_counts.items()) > 1:
+                                        description = description + ", "
                             name = "Physical Impact"
                             heading = name
                         elif key == "external":
@@ -1000,11 +1006,12 @@ def sdo_icon(stix_object, node):
                             impacted_entity_counts = stix_object.get("impacted_entity_counts", [])
                             loss = value.get("impact_type", "")
                             description = '<br>' + adescription + "<br>" + "Actual Loss -> " + loss
-                            description += "<br>Impacted Entities -> "
-                            for k, v in impacted_entity_counts.items():
-                                description += k + " -> " + str(v)
-                                if len(impacted_entity_counts.items()) > 1:
-                                    description = description + ", "
+                            if impacted_entity_counts:
+                                description += "<br>Impacted Entities -> "
+                                for k, v in impacted_entity_counts.items():
+                                    description += k + " -> " + str(v)
+                                    if len(impacted_entity_counts.items()) > 1:
+                                        description = description + ", "
                             name = "External Impact"
                             heading = name
                         elif key == "traceability":
@@ -1012,11 +1019,12 @@ def sdo_icon(stix_object, node):
                             impacted_entity_counts = stix_object.get("impacted_entity_counts", [])
                             tracking = value.get("traceability_impact", "")
                             description = '<br>' + adescription + "<br>" + "Ability to Trace -> " + tracking
-                            description += "<br>Impacted Entities -> "
-                            for k, v in impacted_entity_counts.items():
-                                description += k + " -> " + str(v)
-                                if len(impacted_entity_counts.items()) > 1:
-                                    description = description + ", "
+                            if impacted_entity_counts:
+                                description += "<br>Impacted Entities -> "
+                                for k, v in impacted_entity_counts.items():
+                                    description += k + " -> " + str(v)
+                                    if len(impacted_entity_counts.items()) > 1:
+                                        description = description + ", "
                             name = "Traceability Impact"
                             heading = name
             else:
