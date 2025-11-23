@@ -739,7 +739,7 @@ def invoke_get_from_user_block(get_query, context_type, source_value=None, sourc
             return export_data
 
 
-def invoke_save_incident_context_block(stix_object_path, context_results_path, context_type=None):
+def invoke_save_incident_context_block(stix_object_path, context_results_path):
     """
     Save a STIX object to incident context memory
     
@@ -789,13 +789,38 @@ def invoke_chain_sequence_block(sequence_object_path, results_path):
     #
     #
     # NOTE: This code is only To fake input ports
-    # Add the User Account object and the  EmailAddress
-    # NOTE: This code is only To fake input ports
+    # Read the sequence object and wrap it in the format chain_sequence expects
+    # chain_sequence.py expects: {"sequence_object": <sequence_object>}
     ##
-    chain_sequence(sequence_object_path,results_path)
+    import tempfile
+    
+    # Read the raw sequence object from file
+    if os.path.exists(sequence_object_path):
+        with open(sequence_object_path, "r") as seq_file:
+            sequence_object = json.load(seq_file)
+        
+        # Wrap the sequence object in the expected format
+        # The code checks for "sequence" key, then accesses "sequence_object"
+        wrapped_input = {"sequence": True, "sequence_object": sequence_object}
+        
+        # Create a temporary file with the wrapped input
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as temp_file:
+            json.dump(wrapped_input, temp_file)
+            temp_file_path = temp_file.name
+        
+        try:
+            # Call chain_sequence with the wrapped input file
+            chain_sequence(temp_file_path, results_path)
+        finally:
+            # Clean up the temporary file
+            if os.path.exists(temp_file_path):
+                os.remove(temp_file_path)
+    else:
+        # File doesn't exist, call chain_sequence anyway (will handle error)
+        chain_sequence(sequence_object_path, results_path)
+    
     #
-    # Remove the context type record
-    #
+    # Return the results
     #
     if os.path.exists(results_path):
         with open(results_path, "r") as script_input:

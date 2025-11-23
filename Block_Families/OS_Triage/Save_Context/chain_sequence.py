@@ -204,11 +204,19 @@ def add_edge(edge, context_dir, context_type):
 
 def create_start_sequence(sequence_object, TR_Incident_Context_Dir):
     # Create a start sequence object
+    # Extract sequence_type from wrapped or unwrapped object
+    if "original" in sequence_object:
+        sequence_type = sequence_object["original"]["sequence_type"]
+        sequence_id = sequence_object["id"]
+    else:
+        sequence_type = sequence_object["sequence_type"]
+        sequence_id = sequence_object["id"]
+    
     start_sequence_object = {}
     start_sequence_object = Sequence(
-        sequence_type=sequence_object["sequence_type"],
+        sequence_type=sequence_type,
         step_type="start_step",
-        next_step_refs=[sequence_object["id"]]
+        next_steps=[sequence_id]
     )
     stix_dict = json.loads(start_sequence_object.serialize())
     time_list = ["created", "modified"]
@@ -225,6 +233,7 @@ def create_start_sequence(sequence_object, TR_Incident_Context_Dir):
     n_and_e = importlib.util.module_from_spec(spec)
     # Load the module
     spec.loader.exec_module(n_and_e)
+    wrapped = False  # Initialize before conditional check
     if "original" in stix_dict:
         wrapped = True
 
@@ -242,11 +251,11 @@ def create_start_sequence(sequence_object, TR_Incident_Context_Dir):
 
 def chain_sequence_objects(last_sequence_object, sequence_object, TR_Incident_Context_Dir):
     wrapped = False
-    # Link from last sequence to new sequence in the next_step_refs field
+    # Link from last sequence to new sequence in the next_steps field
     original_last_sequence_object = last_sequence_object.get("original", {})
-    next_step_list = original_last_sequence_object.get("next_step_refs", [])
+    next_step_list = original_last_sequence_object.get("next_steps", [])
     next_step_list.append(sequence_object["id"])
-    original_last_sequence_object["next_step_refs"] = next_step_list    
+    original_last_sequence_object["next_steps"] = next_step_list    
     
     
     # Specify the path to the Nodes and Edges module
@@ -269,23 +278,34 @@ def chain_sequence_objects(last_sequence_object, sequence_object, TR_Incident_Co
 
 
 def chain_sequence(sequence_object):
+    
     # 0 Check for "original"
     return_message = ""
     wrapped = False
-    sequence_type = sequence_object.get("type", "")
     if "original" in sequence_object:
         wrapped = True
+        sequence_type = sequence_object["original"]["sequence_type"]
+    else:
+        sequence_type = sequence_object.get("sequence_type", "")
+    
+    
     # 1.B Find Current Incident directory
     local_map = {}
+    
     with open(TR_Context_Memory_Dir + "/" + context_map, "r") as current_context:
         local_map = json.load(current_context)
+        
         # 1. Setup the incident context directory
         current_incident_dir = local_map["current_incident"]
         TR_Incident_Context_Dir = TR_Context_Memory_Dir + "/" + current_incident_dir
-        # 2. Get any start seqeunces and any existing sequences
+        
+        print(f"FUNC: current_incident = {current_incident_dir}", flush=True)
+        print(f"FUNC: TR_Incident_Context_Dir = {TR_Incident_Context_Dir}", flush=True)
+        
+        # 2. Get any start sequences and any existing sequences
         start_exists = False
         sequence_start_list = []
-        sequences_list = []
+        sequence_list = []
         sequence_start_object = {}
         last_sequence_object = {}
         last_id = ""
@@ -295,41 +315,61 @@ def chain_sequence(sequence_object):
         if os.path.exists(TR_Incident_Context_Dir + incident_data["sequence"]):
             with open(TR_Incident_Context_Dir + incident_data["sequence"], "r") as mem_input:
                 sequence_list = json.load(mem_input)
-        # 3. Isolate Existing Records of Starting Sequence Type
-        for seq in sequence_start_list:
-            if seq["original"]["sequence_type"] == sequence_type:
-                sequence_start_object = seq
-                original = seq.get("original", {})
-                last_id_list = original.get("next_step_refs", [])
-                last_id = last_id_list[0] if last_id_list else ""
-                start_exists = True
-        # 4. Isolate Existing Records of Sequence Type
-        sequence_type_object_list = [x for x in sequence_list if x["original"]["sequence_type"] == sequence_type]
-        for seq in sequence_type_object_list:
-            if seq["original"]["id"] == last_id:
-                last_sequence_object = seq
-                original = seq.get("original", {})
-                next_step_list = original.get("next_step_refs", [])
-                if next_step_list != []:
-                    last_id = next_step_list[0]
-        # 5. Either create start, or link to end of chain
-        if last_id == "":  # No Starting Sequence Exists - Create it
-            return_message = create_start_sequence(sequence_object, TR_Incident_Context_Dir)        
-        else:  # Link from last sequence to new sequence in the next_step_refs field
+        # 3. Isolate Existing Records of the same Sequence Type
+        seq_type_start_list = [x for x in sequence_start_list if x["original"]["sequence_type"] == sequence_type]
+        seq_type_sequence_list = [x for x in sequence_list if x["original"]["sequence_type"] == sequence_type]
+        # 4. Splite the paths, either no start exists and you need to create it, or you need to find the end in the sequence list
+        if len(seq_type_start_list) == 0:
+            # No Start Exists
+            start_exists = False
+            last_id = ""
+            return_message = create_start_sequence(sequence_object, TR_Incident_Context_Dir)
+        else:
+            # Start Exists - Find the last sequence in the chain
+            start_exists = True
+            seq_type_no_next_steps_list = [x for x in seq_type_sequence_list if len(x["original"].get("next_steps", [])) == 0]
+            last_sequence_object = seq_type_no_next_steps_list[0] if len(seq_type_no_next_steps_list) > 0 else {}
             return_message = chain_sequence_objects(last_sequence_object, sequence_object, TR_Incident_Context_Dir)
+
     return return_message
 
 
 def main(inputfile, outputfile):
+    import sys
+    print("=" * 80, flush=True)
+    print("MAIN: chain_sequence.main() function STARTED", flush=True)
+    print(f"MAIN: inputfile = {inputfile}", flush=True)
+    print(f"MAIN: outputfile = {outputfile}", flush=True)
+    print("=" * 80, flush=True)
+    sys.stdout.flush()
+    
     context_type_string = ""
     stix_object = None
+    
     if os.path.exists(inputfile):
+        print(f"MAIN: Input file EXISTS, opening...", flush=True)
+        
         with open(inputfile, "r") as script_input:
+            print(f"MAIN: File opened, loading JSON...", flush=True)
+            
             input_data = json.load(script_input)
-            print(f"input data->{input_data}")
+            print(f"MAIN: JSON loaded successfully", flush=True)
+            print(f"MAIN: input_data keys = {list(input_data.keys())}", flush=True)
+            
+            print(f"MAIN: Checking if 'sequence' in input_data...", flush=True)
+            
             if "sequence" in input_data:
+                print(f"MAIN: 'sequence' key FOUND in input_data", flush=True)
+                print(f"MAIN: Extracting sequence_object...", flush=True)
+                
                 sequence_object = input_data["sequence_object"]
+                print(f"MAIN: sequence_object extracted, type = {type(sequence_object)}", flush=True)
+                print(f"MAIN: About to call chain_sequence() function...", flush=True)
+                
                 result_string = chain_sequence(sequence_object)
+                
+                print(f"MAIN: chain_sequence() returned!", flush=True)
+                print(f"MAIN: result_string = {result_string}", flush=True)
             elif "api" in input_data:
                 api_input_data = input_data["api"]
                 stix_object = api_input_data["sequence_object"]

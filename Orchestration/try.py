@@ -69,54 +69,32 @@ from Utilities.util import emulate_ports, unwind_ports, conv
 
 # Paths
 path_base = "../Block_Families/StixORM/"
-results_base = "../Orchestration/Results/"
+results_base = "../Orchestration/Results/step3/context/"
 context_base = "../Orchestration/generated/os-triage/context_mem/"
 
 # Phishing scenario
-phishing_scenario = {
-    "incident_name": "Phishing Email Investigation",
-    "attacker_email": "attacker@evil.com",
-    "target_email": "ceo@victim-company.com",
-    "malicious_url": "https://evil.com/phish",
-    "subject": "Urgent: Verify your account"
-}
 
-print("✅ Incident utilities loaded")
-print(f"✅ Phishing scenario configured:")
-print(f"   - Attacker: {phishing_scenario['attacker_email']}")
-print(f"   - Target: {phishing_scenario['target_email']}")
-print(f"   - Malicious URL: {phishing_scenario['malicious_url']}")
-print("✅ Act 1 complete - Ready to create incident!")
+sequence_name = "chain_test.json"
 
+sequence_obj = {
+            "type": "sequence",
+            "spec_version": "2.1",
+            "id": "sequence--9fdc38e0-9e57-4c0b-9650-18aeaff39bf8a",
+            "created": "2025-11-21T06:32:08.411Z",
+            "modified": "2025-11-21T06:32:08.411Z",
+            "sequenced_object": "event--d38f9502-a2d2-4d46-bc29-d7d7bdf61f8a",
+            "sequence_type": "event",
+            "step_type": "single_step",
+            "extensions": {
+                "extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {
+                    "extension_type": "new-sdo"
+                }
+            }
+        }
 
-# Initialize object reference lists for incident
-sequence_start_refs = []
-sequence_refs = []
-task_refs = []
-event_refs = []
-impact_refs = []
-other_object_refs = []
+# save the sequence to a file
+with open(results_base + sequence_name, 'w') as f:
+    f.write(json.dumps(sequence_obj))
 
-# Create incident object
-incident_obj = invoke_make_incident_block(
-    "SDO/Incident/phishing_incident.json",
-    "step1/phishing_incident",
-    sequence_start_refs,
-    sequence_refs,
-    task_refs,
-    event_refs,
-    impact_refs,
-    other_object_refs
-)
-
-# Create incident context directory
-incident_obj_path = results_base + "step1/phishing_incident"
-incident_context_path = results_base + "step1/incident_context.json"
-result = invoke_create_incident_context(incident_obj_path, incident_context_path)
-
-print(f"✅ Incident created: {incident_obj['type']} - {incident_obj['id'][:40]}...")
-print(f"✅ Incident context: /incident--{incident_obj['id'][10:46]}/")
-print(f"✅ Result: {result}")
-print("")
-print("� Incident container ready - now let's add evidence!")
-print("✅ Act 1 complete - Moving to Act 2")
+test_return = invoke_chain_sequence_block(results_base + sequence_name, results_base + "step3/chain_test_result.json")
+print(f"Chain sequence block returned: {test_return}")

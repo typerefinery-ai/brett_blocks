@@ -153,16 +153,16 @@ def make_sequence(sequence_form, step_type=None, sequence_type=None, sequenced_o
         empties_removed["sequence_type"] = sequence_type
 
     if sequenced_object:
-        empties_removed["sequenced_object"] = sequenced_object
+        empties_removed["sequenced_object"] = sequenced_object["id"]
 
     if on_completion:
-        empties_removed["on_completion"] = on_completion
+        empties_removed["on_completion"] = on_completion["id"]
 
     if on_success:
-        empties_removed["on_success"] = on_success
+        empties_removed["on_success"] = on_success["id"]
 
     if on_failure:
-        empties_removed["on_failure"] = on_failure
+        empties_removed["on_failure"] = on_failure["id"]
 
     if next_steps:
         empties_removed["next_steps"] = next_steps

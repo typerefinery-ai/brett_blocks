@@ -236,9 +236,15 @@ def save_context(stix_object, context_type):
         else:
             # its a node-type of object
             if stix_object["type"] == "sequence":
-                if stix_object["step_type"] == "start_step":
+                # Extract step_type from wrapped or unwrapped object
+                if wrapped:
+                    step_type = stix_object["original"]["step_type"]
+                else:
+                    step_type = stix_object["step_type"]
+                    
+                if step_type == "start_step":
                     if wrapped:
-                        add_node(stix_object, "start")
+                        add_node(stix_object, TR_Incident_Context_Dir, "start")
                         register_id(stix_object["id"], "start", TR_Incident_Context_Dir)
                     else:
                         nodes, edges = n_and_e.convert_node(stix_object)
@@ -248,7 +254,7 @@ def save_context(stix_object, context_type):
                             add_edge(edge, TR_Incident_Context_Dir, "edges")
                 else:
                     if wrapped:
-                        add_node(stix_object, "sequence")
+                        add_node(stix_object, TR_Incident_Context_Dir, "sequence")
                         register_id(stix_object["id"], "sequence", TR_Incident_Context_Dir)
                     else:
                         nodes, edges = n_and_e.convert_node(stix_object)
