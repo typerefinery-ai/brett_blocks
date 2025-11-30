@@ -17,8 +17,11 @@
             "granular_markings": []
         },
         "object": {
-            "name": "Potential Phishing Email",
-            "description": "Suspicious email reported by user"
+            "name": "Validate SIEM Detection",
+            "description": "Verify the SIEM alert by analyzing email headers, content, and raw message data",
+            "task_types": ["validation"],
+            "priority": 75,
+            "outcome": "successful"
         },
         "extensions": {
             "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {

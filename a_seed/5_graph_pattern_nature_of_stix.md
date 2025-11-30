@@ -89,15 +89,83 @@ An Incident needs a way to organise and make decision on evidence, observations 
 
 As a third step, [as shown in the class template the OS Threat Sighting Extensions](Block_Families/StixORM/SRO/Sighting/Sighting_template.json), enable one to store additional meta data in the sighting on top of the subgraph, to store the provenance of 8 different sources of evidence as a separate Sighting Extension:
 
-1. Alert Evidence Extensions: `sighting-alert`, class `SightingAlert`. An Alert can be issued by a system or a user. Generally, when an Alert is issued, it is not known whether it is actually nefarious  Event. Analytics are often used to initialise an incident. Conceivably, once an Alert is qualified as a true positive, it could be joined to another Alert from another Incident
-2. Anecdote Evidence Extensions: `sighting-anecdote`, class `SightingAnecdote`. An Anecdote can be issued only by a person. Generally, when an Anecdote is issued, it is not known whether it is actually nefarious. Anecdotes can be used to initiailise an incident. Conceivably, an Anecdote may also be issued that defines an Impact, rather than an Event. Anecdotes are expected to have low confidence and result in the need to do tasks to increase the confidence
-3. Context Evidence Extensions: `sighting-context`, class `SightingContext`. Context data is based on querying of internal systems and has 100% confidence. It can be of two types: Non-SCO: Historical or narrative data that would be contained in a Note, and is not an Event. The Note can attach to different objects, depending on the Inicdent type. SCO: For example a list of other user accounts that received the same email, queried from Exchange server, and is an Event. Different Context sources (e.g. SAP, SalesForce etc.) will have different provenance formats
-4. Exclusion Evidence Extensions: `sighting-exclusion`, class `SightingExclusion`. An Exclusion List is a source that provides a list of entities that have been shown by their processes (?) to be nefarious. Generally Exclusion lists are focused on specific approaches, such as phshing etc. There is often multiple sources covering the same approach, and it is to be expected that if an entity is found in multiple sources, then it has more confidence than if it is found in one out of many sources. A search on an Exclusion List can result in a sighting, but not an event, as in the example
-5. Enrichments Evidence: `sighting-enrichment`, class `SightingEnrichment`. An Enrichment is an expansion in the evidence, by leveraging existing data and querying paid or free intel sources to return observables. Splunk lists common observables as BITCOIN ADDRESSES, CIDR BLOCK, CVE, EMAIL ADDRESS, IP, MALWARE, MD5, REGISTRY KEY, SHA1 and SHA256, SOFTWARE, URL and DOMAIN, many of which can be describe din stix objects. The results of an Enrichment will generally be an SCO, although SDO’s can also be returned.  
-6. Hunt Evidence Extensions: `sighting-hunt`, class `SightingHunt`. A Hunt is a targeted search using a hunting platform, such as Kestrel, or similar, started as a Task. A Hunt can result in: 1. Confirmation that an Alert has resulted in a negative Impact (e.g. user clicked on link, Outlook, which downloaded software and started a process) -> SCO’s & Impact, 2. Scope of Impact, which machines were impacted -> Impact, 3. An Alert, since an unknown threat has been discovered -> SCO. A Hunt will result in an Event when an SCO is found, but can also result only in an Impact
-7. Framework Evidence Extensions: `sighting-framework`, class `SightingFramework`. Since SCO’s are ephemeral, the desire is to move up the Pyramid of Pain to more abstract characterisations, which are harder for attackers to evade. Frameworks, such as Mitre ATT&CK and DISARM are commonly used, as an example: A suspicious email is found, and associated SCO’s and SRO’s are collected in Observed-Data object, and once phishing is confirmed, a Sighting is established with ATT&CK Technique T1566. Assignment of a Framework Component requires a judgement, or a correlation from a knowledge base, and thereby has subjectivity.
-8. External Evidence Extensions: `sighting-external`, class `SightingExternal`. Threat Reports are posted by researchers on free and paid services, such as MISP. This is one method of confirming that an unknown Indicator is actually malicious. As an example: A suspicious email is found, and the associated SCO’s and SRO’s are collected in an Observed-Data object. A Sighting is established where the Indicator has a type of "malicious-activity”, and connected to an Event. However, reliability of a threat report is a concern, and confidence needs to be established for each individual provider in a channel such as MISP
+#### Sighting Evidence Extension Types
 
+##### Alert Extension
+
+Automated system detection
+
+name* (string): Alert name in system
+log (string): Alert content
+system_id (string): Unique origin ID
+source (string): Origin system (e.g., "McAfee SIEM v12.0")
+product (string): Detection product type (AV, EDR, IPS, SIEM)
+format (string): Data format (syslog, json, text, LEEF, CEEF)
+
+
+##### Anecdote Extension
+
+Human-reported evidence
+
+person_name* (string): Reporter's name
+person_context (string): Reporter type (employee, 3rd party, injured, police, anonymous)
+report_submission (string): Submission method (mail, interview, transcript, telephone)
+
+
+##### Context Extension
+
+System-sourced contextual data
+
+name* (string): Source system (Outlook, SAP, etc.)
+description (string): Context description
+value (string): Value from origin system
+
+##### Exclusion List Extension
+
+Threat feed exclusions
+
+source* (string): Feed source name
+channel (string): Source channel
+
+##### Enrichment Extension
+
+Threat intelligence enrichment
+
+name* (string): Enrichment site
+url (string): Site URL
+paid (boolean): Paid service (true/false)
+value (string): Value from origin
+
+##### Hunt Extension
+
+Threat hunting results
+
+name* (string): Hunt system name
+playbook_id (string): Playbook identifier
+rule (string): Rule definition
+
+##### Framework Extension
+
+Mapping to frameworks (e.g., MITRE ATT&CK)
+
+framework* (string): Framework name
+version (string): Framework version
+domain (string): Framework domain
+comparison (string): Match determination method
+comparison_approach (string): Comparison details
+
+##### External Extension
+
+External pattern matching
+
+source* (string): Pattern source
+version (string): Report version
+last_update (timestamp): Last version update
+pattern (string): Pattern content
+pattern_type (string): Pattern format (stix, PCRE, sigma, snort, suricata, yara, attckflow)
+payload (string): Payload type (simple/external_reference)
+valid_from (timestamp): Validity start
+valid_until (timestamp): Validity end
 
 
 All of this data is contained as stix id's in the Incident object's `other_object_refs` field.
@@ -166,13 +234,54 @@ The Task objects are referenced in the `task_refs` field. the other objects asso
 
 The [Impact Object](Block_Families\StixORM\SDO\Impact\Impact_template.json) connects through its `impacted_refs` field, which can relate directly to Infrastructure, SCOs, and other SDOs. There are 7 different US DoD Impact Extensions that can be used to capture different types of impact data:
 
-1. **Availability Extension:** (`availability` | class `Availability`)
-2. **Confidentiality Extension:** (`confidentiality` | class `Confidentiality`)
-3. **External Extension:** (`external` | class `External`)
-4. **Integrity Extension:** (`integrity` | class `Integrity`)
-5. **Monetary Extension:** (`monetary` | class `Monetary`)
-6. **Physical Extension:** (`physical` | class `Physical`)
-7. **Traceability Extension:** (`traceability` | class `Traceability`)
+Impact Extension Types
+All Impact objects require an extension matching the impact_category value.
+
+#### 1.6.1. Impact Core Extension (ImpactCoreExt)
+
+- extension_type* (string): Must be new-sdo
+- Extension ID: extension-definition--7cc33dd6-f6a1-489b-98ea-522d351d71b9
+
+#### 1.6.2. Availability (Availability)
+
+- availability_impact* (integer): Impact score 0-100 on system/service availability
+
+#### 1.6.3. Confidentiality (Confidentiality)
+
+- loss_type* (enum): Type of confidentiality loss
+- information_type (open-vocab): Type of compromised information
+- record_count (integer): Number of compromised records
+- record_size (integer): Bytes of compromised data
+
+#### 1.6.4. External (External)
+
+- impact_type* (open-vocab): Impact type outside direct organization
+
+#### 1.6.5. Integrity (Integrity)
+
+- alteration* (enum): Type of alteration (modification/deletion/etc)
+- information_type (open-vocab): Type of compromised information
+- record_count (integer): Number of affected records
+- record_size (integer): Bytes of affected data
+
+#### 1.6.6. Monetary (Monetary)
+
+- variety* (open-vocab): Type of monetary impact
+- currency (string): ISO 4217 code for reported amounts
+- currency_actual (string): Original currency of impact
+- min_amount (number): Minimum damage estimate
+- max_amount (number): Maximum damage estimate
+- conversion_rate (number): Exchange rate between currencies
+- conversion_time (timestamp): When rate was queried
+
+#### 1.6.7. Physical (Physical)
+
+- impact_type* (enum): Type of physical damage
+- asset_type (open-vocab): Affected property/system type
+
+#### 1.6.8. Traceability (Traceability)
+
+- traceability_impact* (enum): Impact on audit/non-repudiation capability
 
 The Impact objects are referenced in the `impact_refs` field. the other objects associated with the Event, are usually contained in the Incident object's `other_object_refs`, or other `_refs` fields.
 
@@ -182,11 +291,11 @@ The [Email Message](Block_Families\StixORM\SCO\EmailMessage\EmailMessage_templat
 
 
 ### 1.8 The Sequencing of Tasks and Events through the Sequence object
-The [Sequence object](Block_Families\StixORM\SRO\Sequence\Sequence_template.json) enables the sequencing of [event SDO's](Block_Families\StixORM\SDO\Event\Event_template.json) and [task SDO's](Block_Families\StixORM\SDO\Task\Task_template.json) into ordered workflows, based on the value of `step_type` **MUST** be one of `(start_step, end_step, single_step, parallel_step)`. There must always be a starting sequence object with `step_type` = "start_step" to begin the workflow.  The sequence object connects to other sequence objects which choices, the `on_completion_ref`, `on_success_ref`, and `on_failure_ref`. 
+The [Sequence object](Block_Families\StixORM\SRO\Sequence\Sequence_template.json) enables the sequencing of [event SDO's](Block_Families\StixORM\SDO\Event\Event_template.json) and [task SDO's](Block_Families\StixORM\SDO\Task\Task_template.json) into ordered workflows, by connecting to them through the `sequenced_object_ref` field. The value of the field `sequence_type`  **MUST** be of type `event` or `task`., and, based on the value of `step_type` **MUST** be one of `(single_step, parallel_step)`. The sequence object connects to other sequence objects to set the conditions to sequence to the next task/event id,  `on_completion_ref`, `on_success_ref`, and `on_failure_ref`. 
 
 Sequence objects for both values of the `sequence_type` field must be created in a chain starting from the start sequence, where each sequence object connects to the next sequence object in the workflow.  Sequences are chained together using the [chain_sequence block](Block_Families\OS_Triage\Save_Context\chain_sequence.py), which automatically create a start sequence for the first sequence (`step_type` = "start_step"), and then sets the `next_step_refs` field in the previous sequence object to match the current.
 
-The sequence object connects to the event or task SDO through the `sequenced_object_ref` field, and the value of the field `sequence_type`  **MUST** be of type `event` or `task`.
+
 
 | **Property Name** | **Type** | **Description** |
 |-------------------|----------|-----------------|

@@ -17,8 +17,11 @@
             "granular_markings": []
         },
         "object": {
-            "name": "Potential Phishing Email",
-            "description": "Suspicious email reported by user"
+            "name": "Analyze Email IOCs",
+            "description": "Deep analysis of email components to identify indicators of compromise including sender domain, URLs, and malicious patterns",
+            "task_types": ["analysis"],
+            "priority": 70,
+            "outcome": "successful"
         },
         "extensions": {
             "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {

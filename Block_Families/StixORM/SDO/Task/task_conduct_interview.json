@@ -17,8 +17,11 @@
             "granular_markings": []
         },
         "object": {
-            "name": "Potential Phishing Email",
-            "description": "Suspicious email reported by user"
+            "name": "Conduct Employee Interview",
+            "description": "Structured interview with affected employee to gather firsthand testimony about phishing email interaction and observed indicators",
+            "task_types": ["interview", "evidence-gathering"],
+            "priority": 85,
+            "outcome": "successful"
         },
         "extensions": {
             "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {

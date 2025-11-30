@@ -56,7 +56,6 @@ TR_Common_Files = "./generated/os-triage/common_files"
 common = [
     {"module": "convert_n_and_e", "file": "convert_n_and_e.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/main/Block_Families/General/_library/convert_n_and_e.py"}
 ]
-
 # OS_Triage Memory Stuff
 TR_Context_Memory_Dir = "./generated/os-triage/context_mem"
 TR_User_Dir = "/usr"
@@ -65,20 +64,14 @@ user_data = {
     "global": "/global_variables_dict.json",
     "me": "/cache_me.json",
     "team": "/cache_team.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "relations" : "/relations.json"
 }
 comp_data = {
     "users": "/users.json",
     "company" : "/company.json",
     "assets" : "/assets.json",
     "systems" : "/systems.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "relations" : "/relations.json"
 }
 incident_data = {
     "incident" : "/incident.json",
@@ -87,14 +80,9 @@ incident_data = {
     "impact" : "/impact_refs.json",
     "event" : "/event_refs.json",
     "task" : "/task_refs.json",
-    "behavior" : "/behavior_refs.json",
     "other" : "/other_object_refs.json",
     "unattached" : "/unattached_objs.json",
-    "unattached_relations" : "/unattached_relation.json",
-    "relations" : "/incident_relations.json",
-    "edges" : "/incident_edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "unattached_relations" : "/unattached_relation.json"
 }
 field_names = {
     "start" : "sequence_start_refs",

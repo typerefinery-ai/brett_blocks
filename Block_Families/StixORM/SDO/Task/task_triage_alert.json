@@ -17,8 +17,11 @@
             "granular_markings": []
         },
         "object": {
-            "name": "Potential Phishing Email",
-            "description": "Suspicious email reported by user"
+            "name": "Triage Phishing Alert",
+            "description": "Initial assessment of SIEM alert for phishing email to determine severity and scope",
+            "task_types": ["investigation"],
+            "priority": 80,
+            "outcome": "successful"
         },
         "extensions": {
             "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {

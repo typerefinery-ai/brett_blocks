@@ -1,0 +1,42 @@
+{
+    "sighting_form": {
+        "base_required": {
+            "type": "sighting",
+            "spec_version": "2.1",
+            "id": "",
+            "created": "",
+            "modified": ""
+        },
+        "base_optional": {
+            "created_by_ref": "",
+            "revoked": null,
+            "labels": [],
+            "lang": "",
+            "external_references": [],
+            "object_marking_refs": [],
+            "granular_markings": [],
+            "defanged": null
+        },
+        "object": {
+            "description": "SIEM alert for phishing email with suspicious sender domain and embedded malicious URL",
+            "first_seen": "2024-01-15T03:47:00.000Z",
+            "last_seen": "2024-01-15T03:47:05.000Z",
+            "count": 1,
+            "sighting_of_ref": "",
+            "observed_data_refs": [],
+            "where_sighted_refs": []
+        },
+        "extensions": {
+            "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {
+                "extension_type": "property-extension"
+            },
+            "sighting-alert": {
+                "name": "SIEM Phishing Alert",
+                "log": "Suspicious phishing email detected with typosquatted domain and credential harvesting URL",
+                "system_id": "SIEM-ALERT-2024-0115-0347",
+                "source": "automated detection"
+            }
+        },
+        "sub": {}
+    }
+}

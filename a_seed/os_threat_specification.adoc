@@ -2749,10 +2749,6 @@ Hours and minutes should be understood to establish the timezone for the activit
 |===
 
 == 6. Relationship Summary Table
-
-include::tables/incident_relationship_summary.adoc[]
-
-<<<
 [[appendix-a]]
 == Appendix A. Incident Availability Impact Mapping
 

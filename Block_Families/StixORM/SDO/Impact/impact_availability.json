@@ -1,7 +1,7 @@
 {
-    "task_form": {
+    "impact_form": {
         "base_required": {
-            "type": "task",
+            "type": "impact",
             "spec_version": "2.1",
             "id": "",
             "created": "",
@@ -14,15 +14,18 @@
             "lang": "",
             "external_references": [],
             "object_marking_refs": [],
-            "granular_markings": []
+            "granular_markings": [],
+            "defanged": null
         },
         "object": {
-            "name": "Potential Phishing Email",
-            "description": "Suspicious email reported by user"
+            "impact_category": "availability",
+            "criticality": 60,
+            "description": "Potential service disruption if phishing campaign succeeds in compromising credentials and accessing systems",
+            "recoverability": "regular"
         },
         "extensions": {
-            "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
-                "extension_type": "new-sdo"
+            "availability": {
+                "availability_impact": 60
             }
         },
         "sub": {}

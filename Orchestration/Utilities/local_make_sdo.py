@@ -197,6 +197,40 @@ def invoke_make_task_block(task_path, results_path, changed_objects=None):
 def invoke_make_identity_block(ident_path, results_path, email_results=None, acct_results=None):
     # Set the Relative Input and Output Paths for the block
     ident_data_rel_path = path_base + ident_path
+    ident_results_rel_path = results_base + results_path
+    #
+    # NOTE: This code is only To fake input ports
+    #
+    ##
+    if os.path.exists(ident_data_rel_path):
+        with open(ident_data_rel_path, "r") as sdo_form:
+            results_data = json.load(sdo_form)
+            if email_results:
+                results_data["email-addr"] = email_results
+            if acct_results:
+                results_data["user-account"] = acct_results
+        with open(ident_data_rel_path, 'w') as f:
+            f.write(json.dumps(results_data))
+    # Make the Observed Data object
+    make_identity(ident_data_rel_path,ident_results_rel_path)
+    #
+    # Remove Port Emulation if used - Fix the data file so it only has form data
+    #
+    unwind_ports(ident_data_rel_path)
+    # Retrieve the saved file
+    if os.path.exists(ident_results_rel_path):
+        with open(ident_results_rel_path, "r") as script_input:
+            stix_object = json.load(script_input)
+            # convert it into a Stix Object and append to the bundle
+            ident = Identity(**stix_object)
+            print(ident.serialize(pretty=True))
+            return conv(ident)
+
+
+
+def invoke_bulk_make_identity_block(ident_path, results_path, email_results=None, acct_results=None):
+    # Set the Relative Input and Output Paths for the block
+    ident_data_rel_path = path_base + ident_path
     ident_results_rel_path = results_base + results_path + "__ident.json"
     #
     # NOTE: This code is only To fake input ports
@@ -225,6 +259,7 @@ def invoke_make_identity_block(ident_path, results_path, email_results=None, acc
             ident = Identity(**stix_object)
             print(ident.serialize(pretty=True))
             return conv(ident)
+
 
 
 

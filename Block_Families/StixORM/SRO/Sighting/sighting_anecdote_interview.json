@@ -1,0 +1,41 @@
+{
+    "sighting_form": {
+        "base_required": {
+            "type": "sighting",
+            "spec_version": "2.1",
+            "id": "",
+            "created": "",
+            "modified": ""
+        },
+        "base_optional": {
+            "created_by_ref": "",
+            "revoked": null,
+            "labels": [],
+            "lang": "",
+            "external_references": [],
+            "object_marking_refs": [],
+            "granular_markings": [],
+            "defanged": null
+        },
+        "object": {
+            "description": "User testimony collected through structured interview providing firsthand account of phishing email interaction",
+            "first_seen": "2024-01-15T09:30:00.000Z",
+            "last_seen": "2024-01-15T10:00:00.000Z",
+            "count": 1,
+            "sighting_of_ref": "",
+            "observed_data_refs": [],
+            "where_sighted_refs": []
+        },
+        "extensions": {
+            "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {
+                "extension_type": "property-extension"
+            },
+            "sighting-anecdote": {
+                "person_name": "Corporate Employee",
+                "person_context": "end-user",
+                "report_submission": "interview"
+            }
+        },
+        "sub": {}
+    }
+}

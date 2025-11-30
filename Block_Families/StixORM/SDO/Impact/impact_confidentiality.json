@@ -1,7 +1,7 @@
 {
-    "task_form": {
+    "impact_form": {
         "base_required": {
-            "type": "task",
+            "type": "impact",
             "spec_version": "2.1",
             "id": "",
             "created": "",
@@ -14,15 +14,18 @@
             "lang": "",
             "external_references": [],
             "object_marking_refs": [],
-            "granular_markings": []
+            "granular_markings": [],
+            "defanged": null
         },
         "object": {
-            "name": "Potential Phishing Email",
-            "description": "Suspicious email reported by user"
+            "impact_category": "confidentiality",
+            "criticality": 75,
+            "description": "Risk of credential theft and unauthorized access to sensitive corporate data if users fall victim to phishing attack",
+            "recoverability": "regular"
         },
         "extensions": {
-            "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
-                "extension_type": "new-sdo"
+            "confidentiality": {
+                "loss_of_confidentiality": 75
             }
         },
         "sub": {}

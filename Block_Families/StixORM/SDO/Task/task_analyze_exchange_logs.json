@@ -17,8 +17,11 @@
             "granular_markings": []
         },
         "object": {
-            "name": "Potential Phishing Email",
-            "description": "Suspicious email reported by user"
+            "name": "Analyze Exchange Server Logs",
+            "description": "Review email server logs to identify all recipients of the phishing email and assess organizational exposure",
+            "task_types": ["analysis", "investigation"],
+            "priority": 80,
+            "outcome": "pending"
         },
         "extensions": {
             "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {

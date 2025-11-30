@@ -17,8 +17,11 @@
             "granular_markings": []
         },
         "object": {
-            "name": "Potential Phishing Email",
-            "description": "Suspicious email reported by user"
+            "name": "Assess False Positive",
+            "description": "Determine whether the phishing alert represents a genuine threat or a false positive by correlating with threat intelligence and historical patterns",
+            "task_types": ["assessment"],
+            "priority": 65,
+            "outcome": "successful"
         },
         "extensions": {
             "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {

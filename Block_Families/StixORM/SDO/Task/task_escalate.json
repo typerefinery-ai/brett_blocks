@@ -17,8 +17,11 @@
             "granular_markings": []
         },
         "object": {
-            "name": "Potential Phishing Email",
-            "description": "Suspicious email reported by user"
+            "name": "Escalate to IR Team",
+            "description": "Escalate confirmed phishing threat to incident response team with comprehensive analysis package for immediate action",
+            "task_types": ["escalation"],
+            "priority": 90,
+            "outcome": "successful"
         },
         "extensions": {
             "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {

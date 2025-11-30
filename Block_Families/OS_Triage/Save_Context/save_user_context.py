@@ -64,20 +64,14 @@ user_data = {
     "global": "/global_variables_dict.json",
     "me": "/cache_me.json",
     "team": "/cache_team.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "relations" : "/relations.json"
 }
 comp_data = {
     "users": "/users.json",
     "company" : "/company.json",
     "assets" : "/assets.json",
     "systems" : "/systems.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "relations" : "/relations.json"
 }
 incident_data = {
     "incident" : "/incident.json",
@@ -86,13 +80,9 @@ incident_data = {
     "impact" : "/impact_refs.json",
     "event" : "/event_refs.json",
     "task" : "/task_refs.json",
-    "behavior" : "/behavior_refs.json",
     "other" : "/other_object_refs.json",
     "unattached" : "/unattached_objs.json",
-    "relations" : "/incident_relations.json",
-    "edges" : "/incident_edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "unattached_relations" : "/unattached_relation.json"
 }
 field_names = {
     "start" : "sequence_start_refs",
@@ -167,14 +157,14 @@ def save_user_context(stix_object):
     # Specify the path to the Nodes and Edges module
     module_path = TR_Common_Files + '/' + common[0]["file"]
     # Load the module spec using importlib.util.spec_from_file_location
-    spec = importlib.util.spec_from_file_location('n_and_e', module_path)
+    spec = importlib.util.spec_from_file_location('parse', module_path)
     # Create the module from the specification
-    n_and_e = importlib.util.module_from_spec(spec)
+    parse = importlib.util.module_from_spec(spec)
     # Load the module
-    spec.loader.exec_module(n_and_e)
+    spec.loader.exec_module(parse)
     # 4.  if file exists, replce existing object if it exists, else add it, else create the list and add it
     if stix_object["type"] == "relationship":
-        nodes, edges, relation_edges, relation_replacement_edges = n_and_e.convert_relns(stix_object)
+        wrapped = parse.wrap_stix_dict(stix_object)
         add_node(nodes[0], TR_User_Context_Dir, "relations")
         for edge in edges:
             add_edge(edge, TR_User_Context_Dir, "edges")

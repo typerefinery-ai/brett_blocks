@@ -1,7 +1,7 @@
 {
-    "task_form": {
+    "event_form": {
         "base_required": {
-            "type": "task",
+            "type": "event",
             "spec_version": "2.1",
             "id": "",
             "created": "",
@@ -11,14 +11,19 @@
             "created_by_ref": "",
             "revoked": null,
             "labels": [],
+            "confidence": null,
             "lang": "",
             "external_references": [],
             "object_marking_refs": [],
             "granular_markings": []
         },
         "object": {
-            "name": "Potential Phishing Email",
-            "description": "Suspicious email reported by user"
+            "name": "Investigation Commenced",
+            "description": "SOC analyst began systematic investigation of the phishing alert to determine threat validity and scope",
+            "event_types": ["investigation-started"],
+            "start_time": "2024-01-15T04:15:00.000Z",
+            "end_time": "2024-01-15T04:15:30.000Z",
+            "status": "occurred"
         },
         "extensions": {
             "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
