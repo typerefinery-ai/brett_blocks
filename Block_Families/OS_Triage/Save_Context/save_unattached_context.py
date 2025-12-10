@@ -53,9 +53,8 @@ import_type = import_type_factory.get_all_imports()
 # Common File Stuff
 TR_Common_Files = "./generated/os-triage/common_files"
 common = [
-    {"module": "convert_n_and_e", "file": "convert_n_and_e.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/main/Block_Families/General/_library/convert_n_and_e.py"}
+    {"module": "parse", "file": "parse.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/refs/heads/main/Block_Families/General/_library/parse.py"}
 ]
-
 # OS_Triage Memory Stuff
 TR_Context_Memory_Dir = "./generated/os-triage/context_mem"
 TR_User_Dir = "/usr"
@@ -63,15 +62,13 @@ context_map = "context_map.json"
 user_data = {
     "global": "/global_variables_dict.json",
     "me": "/cache_me.json",
-    "team": "/cache_team.json",
-    "relations" : "/relations.json"
+    "team": "/cache_team.json"
 }
 comp_data = {
     "users": "/users.json",
     "company" : "/company.json",
-    "assets" : "/assets.json",
-    "systems" : "/systems.json",
-    "relations" : "/relations.json"
+    "platforms" : "/platforms.json",
+    "systems" : "/systems.json"
 }
 incident_data = {
     "incident" : "/incident.json",
@@ -81,8 +78,7 @@ incident_data = {
     "event" : "/event_refs.json",
     "task" : "/task_refs.json",
     "other" : "/other_object_refs.json",
-    "unattached" : "/unattached_objs.json",
-    "unattached_relations" : "/unattached_relation.json"
+    "unattached" : "/unattached_objs.json"
 }
 field_names = {
     "start" : "sequence_start_refs",
@@ -121,39 +117,12 @@ def add_node(node, context_dir, context_type):
         f.write(json.dumps(stix_nodes_list))
 
 
-def add_edge(edge, context_dir, context_type):
-    exists = False
-    stix_edge_list = []
-    if os.path.exists(context_dir + incident_data[context_type]):
-        with open(context_dir + incident_data[context_type], "r") as mem_input:
-            stix_edge_list = json.load(mem_input)
-            for i in range(len(stix_edge_list)):
-                if stix_edge_list[i]["source"] == edge["source"] and stix_edge_list[i]["target"] == edge["target"]:
-                    stix_edge_list[i] = edge
-                    exists = True
-            if not exists:
-                stix_edge_list.append(edge)
-    else:
-        stix_edge_list = [edge]
-    with open(context_dir + incident_data[context_type], 'w') as f:
-        f.write(json.dumps(stix_edge_list))
 
-
-def process_node(stix_object, context_key, context_dir, n_and_e):
-    if "original" in stix_object:
-        add_node(stix_object, context_key)
-    else:
-        nodes, edges = n_and_e.convert_node(stix_object)
-        add_node(nodes[0], context_dir, context_key)
-        for edge in edges:
-            add_edge(edge, context_dir, "edges")
-
-
-def save_context(stix_object, context_type="unattached"):
+def save_context(stix_object):
+    context_type="unattached"
     # 0 Check for "original"
-    wrapped = False
     if "original" in stix_object:
-        wrapped = True
+        stix_object = stix_object["original"]
     exists = False
     # 1.B Find Current Incident directory
     local_map = {}
@@ -163,9 +132,9 @@ def save_context(stix_object, context_type="unattached"):
         current_incident_dir = local_map["current_incident"]
         TR_Incident_Context_Dir = TR_Context_Memory_Dir + "/" + current_incident_dir
         # 2. Check if the key directories exist, if not make them, and download common files
-        if not os.path.exists(TR_Common_Files):
-            os.makedirs(TR_Common_Files)
-            download_common(common)
+        # if not os.path.exists(TR_Common_Files):
+        #     os.makedirs(TR_Common_Files)
+        #     download_common(common)
         if not os.path.exists(TR_Context_Memory_Dir):
             os.makedirs(TR_Context_Memory_Dir)
         if not os.path.exists(TR_Context_Memory_Dir + "/usr"):
@@ -177,39 +146,16 @@ def save_context(stix_object, context_type="unattached"):
         # Specify the path to the Nodes and Edges module
         module_path = TR_Common_Files + '/' + common[0]["file"]
         # Load the module spec using importlib.util.spec_from_file_location
-        spec = importlib.util.spec_from_file_location('n_and_e', module_path)
+        spec = importlib.util.spec_from_file_location('parse', module_path)
         # Create the module from the specification
-        n_and_e = importlib.util.module_from_spec(spec)
+        parse = importlib.util.module_from_spec(spec)
         # Load the module
-        spec.loader.exec_module(n_and_e)
+        spec.loader.exec_module(parse)
         # 4. Depending on Object Tupe, Get the Nodes and Edges, and save them to the lists
         stix_nodes_list = []
         incident = {}
-        if stix_object["type"] == "relationship":
-            if wrapped:
-                add_node(stix_object, TR_Incident_Context_Dir, "unattached_relations")
-            else:
-                nodes, edges, relation_edges, relation_replacement_edges = n_and_e.convert_relns(stix_object)
-                add_node(nodes[0],TR_Incident_Context_Dir, "unattached_relations")
-                for edge in edges:
-                    add_edge(edge, TR_Incident_Context_Dir, "edges")
-                for edge in relation_edges:
-                    add_edge(edge, TR_Incident_Context_Dir, "relation_edges")
-                for edge in relation_replacement_edges:
-                    add_edge(edge, TR_Incident_Context_Dir, "relation_replacement_edges")
-
-        elif stix_object["type"] == "sighting":
-            if wrapped:
-                add_node(stix_object, "unattached")
-            else:
-                nodes, edges = n_and_e.convert_sighting(stix_object)
-                add_node(nodes[0], TR_Incident_Context_Dir, "unattached")
-                for edge in edges:
-                    add_edge(edge, TR_Incident_Context_Dir, "edges")
-        else:
-            # its a node-type of object
-            process_node(stix_object, "unattached", TR_Incident_Context_Dir, n_and_e)
-
+        wrapped = parse.wrap_stix_dict(stix_object)
+        add_node(wrapped, TR_Incident_Context_Dir, "unattached")
 
     return "object saved to unattached context - \nstix_id -> " + str(stix_object["id"])
 
@@ -223,14 +169,14 @@ def main(inputfile, outputfile):
             print(f"input data->{input_data}")
             if "stix_object" in input_data:
                 stix_object = input_data["stix_object"]
-                result_string = save_context(stix_object, context_type_string)
+                result_string = save_context(stix_object)
             elif "api" in input_data:
                 api_input_data = input_data["api"]
                 stix_object = api_input_data["stix_object"]
                 if "context_type" in api_input_data:
                     context_type_string = api_input_data["context_type"]["context_type"]
                 print(f"api \nstix_object->{stix_object}\ncontext type->{context_type_string}")
-                result_string = save_context(stix_object, context_type_string)
+                result_string = save_context(stix_object)
 
             # setup logger for execution
 

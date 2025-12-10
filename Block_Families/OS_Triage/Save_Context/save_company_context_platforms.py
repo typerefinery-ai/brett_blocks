@@ -19,20 +19,21 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Save Object to User Context
+# Title: Save OS_Triage
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: brett@osthreat.com
 # Date: 07/08/2023
 #
-# Description: This script is designed to take in a Stix Object
-#       and save it into a list inside the User Context, depending on context_type
+# Description: This script is designed to take in a Stix Object ID
+#       save it in context memory and return a success tring
 #
-# Two Mandatory Inputs:
+# One Mandatory Input:
 # 1. Stix Object
 # 2. Context Type
-# Ouput
-# 1. Return string in Dict
+#  Outputs
+# 1.Return string in dict
+#
 #
 # This code is licensed under the terms of the Apache 2.
 ##############################################################################
@@ -96,26 +97,12 @@ def download_common(module_list):
         result = urlretrieve(module["url"], TR_Common_Files + "/" + module["file"])
         print(f'common file result ->', result)
 
-def create_context_map(c_map_file):
-    local_map = {}
-    local_map["current_incident"] = ""
-    local_map["current_company"] = ""
-    local_map["company_list"] = []
-    local_map["incident_list"] = []
-    local_map["update_company_list"] = []
-    local_map["update_incident_list"] = []
-    local_map["update_user"] = False
-    local_map["update_team"] = False
-    with open(TR_Context_Memory_Dir + "/" + c_map_file, 'w') as f:
-        f.write(json.dumps(local_map))
-
-
 
 def add_node(node, context_dir, context_type):
     exists = False
     stix_nodes_list = []
-    if os.path.exists(context_dir + user_data[context_type]):
-        with open(context_dir + user_data[context_type], "r") as mem_input:
+    if os.path.exists(context_dir + comp_data[context_type]):
+        with open(context_dir + comp_data[context_type], "r") as mem_input:
             stix_nodes_list = json.load(mem_input)
             for i in range(len(stix_nodes_list)):
                 if stix_nodes_list[i]["id"] == node["id"]:
@@ -125,57 +112,64 @@ def add_node(node, context_dir, context_type):
                 stix_nodes_list.append(node)
     else:
         stix_nodes_list = [node]
-    with open(context_dir + user_data[context_type], 'w') as f:
+    with open(context_dir + comp_data[context_type], 'w') as f:
         f.write(json.dumps(stix_nodes_list))
 
 
 
-def save_user_context(stix_object):
+def save_context(stix_object):
+    context_type = "platforms"
     if "original" in stix_object:
         stix_object = stix_object["original"]
-    # setup user directory
-    context_type = "me"
-    TR_User_Context_Dir = TR_Context_Memory_Dir + TR_User_Dir
-    TR_Context_Filename = TR_User_Context_Dir + user_data[context_type]
-    # 2. Check if the key directories exist, if not make them, and download common files
-    # if not os.path.exists(TR_Common_Files):
-    #     os.makedirs(TR_Common_Files)
-    #     download_common(common)
-    if not os.path.exists(TR_Context_Memory_Dir + "/" + context_map):
-        create_context_map(context_map)
-    if not os.path.exists(TR_Context_Memory_Dir):
-        os.makedirs(TR_Context_Memory_Dir)
-    if not os.path.exists(TR_Context_Memory_Dir + "/usr"):
-        os.makedirs(TR_Context_Memory_Dir + "/usr")
-    # if not os.path.exists(TR_Context_Memory_Dir + "/incident_1"):
-    #     os.makedirs(TR_Context_Memory_Dir + "/incident_1")
-
-    # 3. Now we are sure the common files exist, we need to import them
-    # Specify the path to the Nodes and Edges module
-    module_path = TR_Common_Files + '/' + common[0]["file"]
-    # Load the module spec using importlib.util.spec_from_file_location
-    spec = importlib.util.spec_from_file_location('parse', module_path)
-    # Create the module from the specification
-    parse = importlib.util.module_from_spec(spec)
-    # Load the module
-    spec.loader.exec_module(parse)
-    # 4.  if file exists, replce existing object if it exists, else add it, else create the list and add it
-    wrapped = parse.wrap_stix_dict(stix_object)
-    add_node(wrapped, TR_User_Context_Dir, "me")
-    # Update the contet map to sjhow the team update has been made    
+    # 1.B Find Current Incident directory
     local_map = {}
-    with open(TR_Context_Memory_Dir + "/" + context_map, "r") as context_update:
-        local_map = json.load(context_update)
-        local_map["update_user"] = True
+    with open(TR_Context_Memory_Dir + "/" + context_map, "r") as current_context:
+        local_map = json.load(current_context)
+        current_company_dir = local_map["current_company"]
+        TR_Company_Context_Dir = TR_Context_Memory_Dir + "/" + current_company_dir
+        # 1. Extract the components of the object
+
+        if context_type:
+            TR_Context_Filename = TR_Company_Context_Dir + comp_data[context_type]
+        else:
+            return "context_type unknown " + str(context_type)
+
+        # 2. Check if the key directories exist, if not make them, and download common files
+        # if not os.path.exists(TR_Common_Files):
+        #     os.makedirs(TR_Common_Files)
+        #     download_common(common)
+        if not os.path.exists(TR_Context_Memory_Dir):
+            os.makedirs(TR_Context_Memory_Dir)
+        if not os.path.exists(TR_Context_Memory_Dir + "/usr"):
+            os.makedirs(TR_Context_Memory_Dir + "/usr")
+        # if not os.path.exists(TR_Context_Memory_Dir + "/incident_1"):
+        #     os.makedirs(TR_Context_Memory_Dir + "/incident_1")
+
+        # 3. Now we are sure the common files exist, we need to import them
+        # Specify the path to the Nodes and Edges module
+        module_path = TR_Common_Files + '/' + common[0]["file"]
+        # Load the module spec using importlib.util.spec_from_file_location
+        spec = importlib.util.spec_from_file_location('parse', module_path)
+        # Create the module from the specification
+        parse = importlib.util.module_from_spec(spec)
+        # Load the module
+        spec.loader.exec_module(parse)
+        # 4.  if file exists, replce existing object if it exists, else add it, else create the list and add it
+        wrapped = parse.wrap_stix_dict(stix_object)
+        add_node(wrapped, TR_Company_Context_Dir, context_type)
+        # 5. Add the id to the Update Company List, if it is not already in there
+        if stix_object["id"] not in local_map.get("update_company_list", []):
+            local_map["update_company_list"] = local_map.get("update_company_list", []) + [stix_object["id"]]
     with open(TR_Context_Memory_Dir + "/" + context_map, 'w') as f:
         f.write(json.dumps(local_map))
 
-    return "User Directory "+ str(TR_User_Context_Dir) + "\nOptions context saved -> " + str(context_type) + "\nstix_id -> " + str(stix_object["id"])
+    return "Company "+ str(current_company_dir) + "\nOptions context saved -> " + str(context_type) + "\nstix_id -> " + str(stix_object["id"])
+
 
 
 def main(inputfile, outputfile):
     context_type = None
-    context_type_string = ""
+    context_type_string = "platforms"
     stix_object = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
@@ -183,12 +177,13 @@ def main(inputfile, outputfile):
             print(f"input data->{input_data}")
             if "stix_object" in input_data:
                 stix_object = input_data["stix_object"]
-                result_string = save_user_context(stix_object)
+                print(f"from ports \nstix_object->{stix_object}\ncontext type->{context_type_string}")
+                result_string = save_context(stix_object)
             elif "api" in input_data:
                 api_input_data = input_data["api"]
                 stix_object = api_input_data["stix_object"]
-                result_string = save_user_context(stix_object)
-
+                print(f"api \nstix_object->{stix_object}\ncontext type->{context_type_string}")
+                result_string = save_context(stix_object)
             # setup logger for execution
 
             context_result = {}

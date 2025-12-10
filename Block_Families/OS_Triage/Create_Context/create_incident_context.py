@@ -58,32 +58,26 @@ _orchestration_dir = os.path.join(_current_file_dir, "..", "..", "..", "Orchestr
 _orchestration_dir = os.path.abspath(_orchestration_dir)
 
 TR_Common_Files = os.path.join(_orchestration_dir, "generated", "os-triage", "common_files")
-common = [
-    {"module": "convert_n_and_e", "file": "convert_n_and_e.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/main/Block_Families/General/_library/convert_n_and_e.py"}
-]
 
+# Common File Stuff
+TR_Common_Files = "./generated/os-triage/common_files"
+common = [
+    {"module": "parse", "file": "parse.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/refs/heads/main/Block_Families/General/_library/parse.py"}
+]
 # OS_Triage Memory Stuff
-TR_Context_Memory_Dir = os.path.join(_orchestration_dir, "generated", "os-triage", "context_mem")
+TR_Context_Memory_Dir = "./generated/os-triage/context_mem"
 TR_User_Dir = "/usr"
 context_map = "context_map.json"
 user_data = {
     "global": "/global_variables_dict.json",
     "me": "/cache_me.json",
-    "team": "/cache_team.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "team": "/cache_team.json"
 }
 comp_data = {
     "users": "/users.json",
     "company" : "/company.json",
-    "assets" : "/assets.json",
-    "systems" : "/systems.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "platforms" : "/platforms.json",
+    "systems" : "/systems.json"
 }
 incident_data = {
     "incident" : "/incident.json",
@@ -93,11 +87,7 @@ incident_data = {
     "event" : "/event_refs.json",
     "task" : "/task_refs.json",
     "other" : "/other_object_refs.json",
-    "unattached" : "/unattached_objs.json",
-    "relations" : "/incident_relations.json",
-    "edges" : "/incident_edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "unattached" : "/unattached_objs.json"
 }
 field_names = {
     "start" : "sequence_start_refs",
@@ -108,6 +98,7 @@ field_names = {
     "other" : "other_object_refs"
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
+
 
 def download_common(module_list):
     for module in module_list:
@@ -122,6 +113,10 @@ def create_context_map(c_map_file):
     local_map["current_company"] = ""
     local_map["company_list"] = []
     local_map["incident_list"] = []
+    local_map["update_company_list"] = []
+    local_map["update_incident_list"] = []
+    local_map["update_user"] = False
+    local_map["update_team"] = False
     with open(TR_Context_Memory_Dir + "/" + c_map_file, 'w') as f:
         f.write(json.dumps(local_map))
 
@@ -144,23 +139,6 @@ def add_node(node, context_dir):
             f.write(json.dumps(stix_nodes_list))
 
 
-def add_edge(edge, context_dir):
-    exists = False
-    stix_edge_list = []
-    if os.path.exists(context_dir + incident_data["edges"]):
-        with open(context_dir + incident_data["edges"], "r") as mem_input:
-            stix_edge_list = json.load(mem_input)
-            for i in range(len(stix_edge_list)):
-                if stix_edge_list[i]["source"] == edge["source"] and stix_edge_list[i]["target"] == edge["target"]:
-                    stix_edge_list[i] = edge
-                    exists = True
-            if not exists:
-                stix_edge_list.append(edge)
-    else:
-        stix_edge_list = [edge]
-
-    with open(context_dir + incident_data["edges"], 'w') as f:
-            f.write(json.dumps(stix_edge_list))
 
 
 def create_incident_context(stix_object):
@@ -171,41 +149,7 @@ def create_incident_context(stix_object):
     stix_type = stix_object["type"]
     TR_Incident_Dir = TR_Context_Memory_Dir + "/" + stix_id
 
-    # 2. Check if the key directories exist, if not make them
-    # Create common_files directory if it doesn't exist
-    if not os.path.exists(TR_Common_Files):
-        os.makedirs(TR_Common_Files)
-    
-    # Check if the required file exists, if not copy it locally (NEVER download from network)
-    required_file = os.path.join(TR_Common_Files, "convert_n_and_e.py")
-    if not os.path.exists(required_file):
-        # Calculate path to source file relative to this file's location
-        source_file = os.path.join(_current_file_dir, "..", "..", "General", "_library", "convert_n_and_e.py")
-        source_file = os.path.abspath(source_file)
-        if os.path.exists(source_file):
-            shutil.copy2(source_file, required_file)
-            print(f"✅ Copied {source_file} to {required_file}")
-            
-            # CRITICAL FIX: Patch the copied file to make import_type lazy (prevents notebook hang)
-            with open(required_file, 'r') as f:
-                content = f.read()
-            
-            # Replace the problematic module-level import_type initialization
-            # This line causes hanging in notebook context
-            content = content.replace(
-                'import_type = import_type_factory.get_all_imports()',
-                'import_type = None  # Lazy init to prevent notebook hang'
-            )
-            
-            with open(required_file, 'w') as f:
-                f.write(content)
-            print(f"✅ Patched convert_n_and_e.py to prevent notebook hang")
-        else:
-            raise FileNotFoundError(f"Source file not found: {source_file}")
-    
-    if not os.path.exists(TR_Context_Memory_Dir):
-        os.makedirs(TR_Context_Memory_Dir)
-        create_context_map(context_map)
+    # Make the directory to ensure the context memory is created properly
     if not os.path.exists(TR_Context_Memory_Dir + "/" + context_map):
         create_context_map(context_map)
     if not os.path.exists(TR_Context_Memory_Dir + "/usr"):
@@ -213,39 +157,28 @@ def create_incident_context(stix_object):
     if not os.path.exists(TR_Incident_Dir):
         os.makedirs(TR_Incident_Dir)
 
-    # 3. Import the convert_n_and_e module - use sys.path instead of importlib for better compatibility
-    print(f"🔍 DEBUG: Attempting to import module from: {TR_Common_Files}")
-    print(f"🔍 DEBUG: Adding to sys.path: {TR_Common_Files}")
-    
-    if TR_Common_Files not in sys.path:
-        sys.path.insert(0, TR_Common_Files)
-    
-    # Now import directly
-    try:
-        import convert_n_and_e as n_and_e
-        print(f"🔍 DEBUG: Module imported successfully using direct import!")
-        
-        # Initialize import_type if it was set to None (patched version)
-        if n_and_e.import_type is None:
-            n_and_e.import_type = n_and_e.import_type_factory.get_all_imports()
-            print(f"🔍 DEBUG: Initialized import_type after import")
-    except Exception as e:
-        print(f"❌ ERROR importing module: {e}")
-        raise
+    # 3. Now we are sure the common files exist, we need to import them
+    # Specify the path to the Nodes and Edges module
+    module_path = TR_Common_Files + '/' + common[0]["file"]
+    # Load the module spec using importlib.util.spec_from_file_location
+    spec = importlib.util.spec_from_file_location('parse', module_path)
+    # Create the module from the specification
+    parse = importlib.util.module_from_spec(spec)
+    # Load the module
+    spec.loader.exec_module(parse)
     # 4. Get the Nodes and Edges, and save them to the lists
-    nodes, edges = n_and_e.convert_node(stix_object)
+    wrapped = parse.wrap_stix_dict(stix_object)
     # 5. Get the Current Incident Directory in the map, update it and then save it
     local_map = {}
     with open(TR_Context_Memory_Dir + "/" + context_map, "r") as context_update:
         local_map = json.load(context_update)
         local_map["current_incident"] = stix_id
-        local_map["incident_list"] = local_map["incident_list"] + [stix_id]
+        local_map["incident_list"] = local_map.get("incident_list", []) + [stix_id]
+        local_map["update_incident_list"] = local_map.get("update_incident_list", []) + [stix_id]
     with open(TR_Context_Memory_Dir + "/" + context_map, 'w') as f:
         f.write(json.dumps(local_map))
     # 6. Add the node and edges
-    add_node(nodes[0], TR_Incident_Dir)
-    for edge in edges:
-        add_edge(edge, TR_Incident_Dir)
+    add_node(wrapped, TR_Incident_Dir)
 
     return " incident context created -> " + str(stix_id) + "\nstix_id -> " + str(stix_object["id"])
 

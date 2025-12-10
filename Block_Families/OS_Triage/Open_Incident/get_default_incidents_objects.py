@@ -51,13 +51,12 @@ import os
 
 import_type = import_type_factory.get_all_imports()
 
+
 # Common File Stuff
 TR_Common_Files = "./generated/os-triage/common_files"
 common = [
-    {"module": "convert_n_and_e", "file": "convert_n_and_e.py",
-     "url": "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/main/Block_Families/General/_library/convert_n_and_e.py"}
+    {"module": "parse", "file": "parse.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/refs/heads/main/Block_Families/General/_library/parse.py"}
 ]
-
 # OS_Triage Memory Stuff
 TR_Context_Memory_Dir = "./generated/os-triage/context_mem"
 TR_User_Dir = "/usr"
@@ -65,46 +64,34 @@ context_map = "context_map.json"
 user_data = {
     "global": "/global_variables_dict.json",
     "me": "/cache_me.json",
-    "team": "/cache_team.json",
-    "relations": "/relations.json",
-    "edges": "/edges.json",
-    "relation_edges": "/relation_edges.json",
-    "relation_replacement_edges": "/relation_replacement_edges.json"
+    "team": "/cache_team.json"
 }
 comp_data = {
     "users": "/users.json",
-    "company": "/company.json",
-    "assets": "/assets.json",
-    "systems": "/systems.json",
-    "relations": "/relations.json",
-    "edges": "/edges.json",
-    "relation_edges": "/relation_edges.json",
-    "relation_replacement_edges": "/relation_replacement_edges.json"
+    "company" : "/company.json",
+    "platforms" : "/platforms.json",
+    "systems" : "/systems.json"
 }
 incident_data = {
-    "incident": "/incident.json",
-    "start": "/sequence_start_refs.json",
-    "sequence": "/sequence_refs.json",
-    "impact": "/impact_refs.json",
-    "event": "/event_refs.json",
-    "task": "/task_refs.json",
-    "other": "/other_object_refs.json",
-    "unattached": "/unattached_objs.json",
-    "unattached_relations": "/unattached_relation.json",
-    "relations": "/incident_relations.json",
-    "edges": "/incident_edges.json",
-    "relation_edges": "/relation_edges.json",
-    "relation_replacement_edges": "/relation_replacement_edges.json"
+    "incident" : "/incident.json",
+    "start" : "/sequence_start_refs.json",
+    "sequence" : "/sequence_refs.json",
+    "impact" : "/impact_refs.json",
+    "event" : "/event_refs.json",
+    "task" : "/task_refs.json",
+    "other" : "/other_object_refs.json",
+    "unattached" : "/unattached_objs.json"
 }
 field_names = {
-    "start": "sequence_start_refs",
-    "sequence": "sequence_refs",
-    "impact": "impact_refs",
-    "event": "event_refs",
-    "task": "task_refs",
-    "other": "other_object_refs"
+    "start" : "sequence_start_refs",
+    "sequence" : "sequence_refs",
+    "impact" : "impact_refs",
+    "event" : "event_refs",
+    "task" : "task_refs",
+    "other" : "other_object_refs"
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
+
 
 
 

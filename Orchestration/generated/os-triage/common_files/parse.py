@@ -10,14 +10,14 @@ This module reads the CSV registry containing STIX object metadata including:
 """
 
 from pydantic import  BaseModel, field_validator, Field
-from typing import List, Dict, Union, Optional
+from typing import List, Dict, Union, Optional, Any
 import logging
 import copy
 import csv
 import os
 import re
 import uuid
-from embedded_references import EmbeddedReferences, find_embedded_references
+import json
 
 
 logger = logging.getLogger(__name__)
@@ -352,6 +352,166 @@ def get_group_from_type(stix_type) -> Union[str, None]:
     return content_list[0].group
 
 
+    
+###################################################################################################
+#
+# Find the Embedded References
+#
+####################################################################################################
+
+# find_embedded_references
+
+
+class EmbeddedReferences(BaseModel):
+    """Collection of embedded STIX references grouped by property name."""
+    
+    references: Dict[str, List[str]] = Field(
+        default_factory=dict,
+        description="Property names mapped to lists of STIX IDs"
+    )
+    
+    @field_validator('references')
+    @classmethod
+    def validate_stix_ids(cls, v: Dict[str, List[str]]) -> Dict[str, List[str]]:
+        """Validate all STIX IDs in the references dictionary."""
+        # STIX ID pattern: object-type--UUID (lowercase type, RFC 4122 UUID)
+        stix_id_pattern = re.compile(
+            r'^[a-z][a-z0-9-]*--[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+        )
+        
+        for prop_name, id_list in v.items():
+            if not isinstance(id_list, list):
+                raise ValueError(f'Property "{prop_name}" must map to a list of STIX IDs')
+            
+            for stix_id in id_list:
+                if not isinstance(stix_id, str):
+                    raise ValueError(f'STIX ID must be string, got {type(stix_id).__name__}: {stix_id}')
+                
+                if not stix_id_pattern.match(stix_id):
+                    raise ValueError(
+                        f'Invalid STIX ID in "{prop_name}": {stix_id}. '
+                        'Must be object-type--UUID (lowercase, RFC 4122)'
+                    )
+                
+                # Validate UUID portion
+                try:
+                    uuid_part = stix_id.split('--')[1]
+                    uuid.UUID(uuid_part, version=4)
+                except (IndexError, ValueError):
+                    raise ValueError(f'Invalid UUID in STIX ID: {stix_id}')
+        
+        return v
+    
+    def to_json_dict(self) -> Dict[str, List[str]]:
+        """
+        Convert the EmbeddedReferences to a JSON-serializable dictionary.
+        
+        Returns:
+            Dict[str, List[str]]: The references dictionary ready for json.dumps()
+        """
+        return self.references
+
+
+def is_valid_stix_id(value: str) -> bool:
+    """
+    Check if a string is a valid STIX ID.
+    
+    Args:
+        value: String to validate
+        
+    Returns:
+        True if the value matches STIX ID format, False otherwise
+    """
+    if not isinstance(value, str):
+        return False
+    
+    pattern = re.compile(
+        r'^[a-z][a-z0-9-]*--[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+    )
+    
+    if not pattern.match(value):
+        return False
+    
+    # Validate UUID portion
+    try:
+        uuid_part = value.split('--')[1]
+        uuid.UUID(uuid_part, version=4)
+        return True
+    except (IndexError, ValueError):
+        return False
+
+
+def find_embedded_references(stix_object: Dict[str, Any]) -> EmbeddedReferences:
+    """
+    Parse a STIX object and extract all embedded references.
+    
+    This function recursively searches through all properties of a STIX object
+    to find embedded references (STIX IDs). It identifies them by validating
+    the format (object-type--UUID) rather than by property name, as reference
+    properties can have various names (_ref, _refs, or custom names).
+    
+    Args:
+        stix_object: Dictionary representing a STIX object
+        
+    Returns:
+        EmbeddedReferences instance containing all found references grouped by property name
+        
+    Example:
+        >>> obj = {
+        ...     "id": "incident--123...",
+        ...     "type": "incident",
+        ...     "created_by_ref": "identity--456...",
+        ...     "object_refs": ["indicator--789...", "malware--abc..."]
+        ... }
+        >>> refs = find_embedded_references(obj)
+        >>> print(refs.references)
+        {'created_by_ref': ['identity--456...'], 'object_refs': ['indicator--789...', 'malware--abc...']}
+    """
+    found_refs: Dict[str, List[str]] = {}
+    
+    def extract_refs_from_value(value: Any, property_path: str) -> None:
+        """
+        Recursively extract STIX IDs from a value.
+        
+        Args:
+            value: The value to examine (could be str, list, dict, etc.)
+            property_path: Dot-notation path to this property for tracking nested properties
+        """
+        # Extract only the final property name (after last dot)
+        final_property_name = property_path.split('.')[-1] if property_path else property_path
+        
+        # Check if it's a single STIX ID string
+        if isinstance(value, str):
+            if is_valid_stix_id(value):
+                if final_property_name not in found_refs:
+                    found_refs[final_property_name] = []
+                found_refs[final_property_name].append(value)
+        
+        # Check if it's a list of STIX IDs
+        elif isinstance(value, list):
+            for item in value:
+                if isinstance(item, str) and is_valid_stix_id(item):
+                    if final_property_name not in found_refs:
+                        found_refs[final_property_name] = []
+                    found_refs[final_property_name].append(item)
+                # Recursively check nested objects/lists
+                elif isinstance(item, (dict, list)):
+                    extract_refs_from_value(item, property_path)
+        
+        # Check if it's a nested dictionary
+        elif isinstance(value, dict):
+            for nested_key, nested_value in value.items():
+                nested_path = f"{property_path}.{nested_key}" if property_path else nested_key
+                extract_refs_from_value(nested_value, nested_path)
+    
+    # Start extraction from root level (skip 'id' property as it's the object's own ID)
+    for prop_name, prop_value in stix_object.items():
+        if prop_name == 'id':
+            continue
+        extract_refs_from_value(prop_value, prop_name)
+    
+    # Create and return validated EmbeddedReferences instance
+    return EmbeddedReferences(references=found_refs)
 
     
 ###################################################################################################
@@ -360,7 +520,7 @@ def get_group_from_type(stix_type) -> Union[str, None]:
 #
 ####################################################################################################
 
-# find_embedded_references
+# wrap the object
 
 class Wrapper(BaseModel):
     """
@@ -378,7 +538,7 @@ class Wrapper(BaseModel):
     original: Dict[str, Union[str, List, Dict]] = Field(default_factory=dict)
     references: EmbeddedReferences
 
-def make_description(content: ParseContent) -> str:
+def make_description(stix_dict: Dict[str, Union[str, Dict, List]], content: ParseContent) -> str:
     """
     Make the description string for the Wrapper.
 
@@ -395,12 +555,12 @@ def make_description(content: ParseContent) -> str:
         if prior_string and post_field:
             # Add HTML break before second and subsequent lines
             prefix = "<br>" if i > 0 else ""
-            description_parts.append(f"{prefix}{prior_string}{post_field}")
+            description_parts.append(f"{prefix}{prior_string}{stix_dict.get(post_field, {})}")
     description = "".join(description_parts).strip()
     return description
 
 
-def wrap_stix_dict(stix_dict: Dict[str, str]) -> Wrapper:
+def wrap_stix_dict(stix_dict: Dict[str, Union[str, Dict, List]]) -> Dict[str, Union[str, Dict, List]]:
     """
     Generate the Wrapper for a given STIX dictionary object.
 
@@ -408,7 +568,7 @@ def wrap_stix_dict(stix_dict: Dict[str, str]) -> Wrapper:
         stix_dict (Dict[str, str]): The STIX dictionary object.
     
     Returns:
-        Wrapper: The generated Wrapper object.
+        Wrapper: The generated Wrapper object, as a dict.
     """
     content = determine_content_object_from_list_by_tests(stix_dict, "class")
     if not content:
@@ -418,23 +578,36 @@ def wrap_stix_dict(stix_dict: Dict[str, str]) -> Wrapper:
     description = make_description(stix_dict, content)
     
     # Find embedded references
-    embedded_refs = find_embedded_references(stix_dict)
+    embedded_refs: EmbeddedReferences = find_embedded_references(stix_dict)
     
-    wrapped = Wrapper(
-        id=stix_dict.get("id"),
-        type=stix_dict.get("type"),
-        icon=content.icon,
-        name=stix_dict.get("name", ""),
-        heading=content.head,
-        description=description,
-        object_form=content.form,
-        object_group=content.group,
-        object_family=content.protocol,
-        original=stix_dict,
-        references=embedded_refs
-    )
-    
-    return wrapped
+    # wrapped = Wrapper(
+    #     id=stix_dict.get("id"),
+    #     type=stix_dict.get("type"),
+    #     icon=content.icon,
+    #     name=stix_dict.get("name", ""),
+    #     heading=content.head,
+    #     description=description,
+    #     object_form=content.form,
+    #     object_group=content.group,
+    #     object_family=content.protocol,
+    #     original=stix_dict,
+    #     references=embedded_refs
+    # )
+
+    wrap = {}
+    wrap["id"] = stix_dict.get("id")
+    wrap["type"] = stix_dict.get("type")
+    wrap["icon"] = content.icon
+    wrap["name"] = stix_dict.get("name", "")
+    wrap["heading"] = content.head
+    wrap["description"] = description
+    wrap["object_form"] = content.form
+    wrap["object_group"] = content.group
+    wrap["object_family"] = content.protocol
+    wrap["original"] = stix_dict
+    wrap["references"] = embedded_refs.to_json_dict()
+
+    return wrap
 
 
 

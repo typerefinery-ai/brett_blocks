@@ -87,12 +87,12 @@ ident_ext_id = 'extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498'
 inc_ext_id = "extension-definition--ef765651-680c-498d-9894-99799f2fa126"
 from datetime import datetime
 
+
 # Common File Stuff
 TR_Common_Files = "./generated/os-triage/common_files"
 common = [
-    {"module": "convert_n_and_e", "file": "convert_n_and_e.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/main/Block_Families/General/_library/convert_n_and_e.py"}
+    {"module": "parse", "file": "parse.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/refs/heads/main/Block_Families/General/_library/parse.py"}
 ]
-
 # OS_Triage Memory Stuff
 TR_Context_Memory_Dir = "./generated/os-triage/context_mem"
 TR_User_Dir = "/usr"
@@ -100,21 +100,13 @@ context_map = "context_map.json"
 user_data = {
     "global": "/global_variables_dict.json",
     "me": "/cache_me.json",
-    "team": "/cache_team.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "team": "/cache_team.json"
 }
 comp_data = {
     "users": "/users.json",
     "company" : "/company.json",
-    "assets" : "/assets.json",
-    "systems" : "/systems.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "platforms" : "/platforms.json",
+    "systems" : "/systems.json"
 }
 incident_data = {
     "incident" : "/incident.json",
@@ -123,14 +115,8 @@ incident_data = {
     "impact" : "/impact_refs.json",
     "event" : "/event_refs.json",
     "task" : "/task_refs.json",
-    "behavior" : "/behavior_refs.json",
     "other" : "/other_object_refs.json",
-    "unattached" : "/unattached_objs.json",
-    "unattached_relations" : "/unattached_relation.json",
-    "relations" : "/incident_relations.json",
-    "edges" : "/incident_edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "unattached" : "/unattached_objs.json"
 }
 field_names = {
     "start" : "sequence_start_refs",
@@ -141,6 +127,7 @@ field_names = {
     "other" : "other_object_refs"
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
+
 
 def convert_dt(dt_stamp_string):
     if dt_stamp_string.find(".") >0:
@@ -225,25 +212,22 @@ def create_start_sequence(sequence_object, TR_Incident_Context_Dir):
             temp_string = convert_dt(stix_dict[tim])
             stix_dict[tim] = temp_string
     
+
+    # 3. Now we are sure the common files exist, we need to import them
     # Specify the path to the Nodes and Edges module
     module_path = TR_Common_Files + '/' + common[0]["file"]
     # Load the module spec using importlib.util.spec_from_file_location
-    spec = importlib.util.spec_from_file_location('n_and_e', module_path)
+    spec = importlib.util.spec_from_file_location('parse', module_path)
     # Create the module from the specification
-    n_and_e = importlib.util.module_from_spec(spec)
+    parse = importlib.util.module_from_spec(spec)
     # Load the module
-    spec.loader.exec_module(n_and_e)
-    wrapped = False  # Initialize before conditional check
-    if "original" in stix_dict:
-        wrapped = True
-
-    if wrapped:
-        add_node(stix_dict, "start")
-    else:
-        nodes, edges = n_and_e.convert_node(stix_dict)
-        add_node(nodes[0], TR_Incident_Context_Dir, "start")
-        for edge in edges:
-            add_edge(edge, TR_Incident_Context_Dir, "edges")
+    spec.loader.exec_module(parse)
+    # 4. Depending on Object Type, Get the Nodes and Edges, and save them to the lists
+    stix_nodes_list = []
+    incident = {}
+    # its a node-type of object
+    wrapped = parse.wrap_stix_dict(stix_dict)
+    add_node(wrapped, TR_Incident_Context_Dir, "start")
 
     # Make the return message
     return_message = " start sequence created and registered - \nstix_id -> " + str(stix_dict["id"])
@@ -257,19 +241,7 @@ def chain_sequence_objects(last_sequence_object, sequence_object, TR_Incident_Co
     next_step_list.append(sequence_object["id"])
     original_last_sequence_object["next_steps"] = next_step_list    
     
-    
-    # Specify the path to the Nodes and Edges module
-    module_path = TR_Common_Files + '/' + common[0]["file"]
-    # Load the module spec using importlib.util.spec_from_file_location
-    spec = importlib.util.spec_from_file_location('n_and_e', module_path)
-    # Create the module from the specification
-    n_and_e = importlib.util.module_from_spec(spec)
-    # Load the module
-    spec.loader.exec_module(n_and_e)
-    nodes, edges = n_and_e.convert_node(original_last_sequence_object)
-    add_node(nodes[0], TR_Incident_Context_Dir, "sequence")
-    for edge in edges:
-        add_edge(edge, TR_Incident_Context_Dir, "edges")
+    add_node(last_sequence_object, TR_Incident_Context_Dir, "sequence")
 
     # Make the return message
     return_message = " sequence chained and registered - \nstix_id -> " + str(last_sequence_object["id"])

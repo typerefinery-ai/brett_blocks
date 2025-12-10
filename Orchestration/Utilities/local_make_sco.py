@@ -171,8 +171,6 @@ def invoke_make_url_block(url_path, results_path, hyperlink=None):
     # Remove Port Emulation - Fix the data file so it only has form data
     #
     #unwind_ports(url_data_rel_path)
-    # 2. Make the Email Address object
-    make_url(url_data_rel_path,url_results_rel_path)
     # 3. Retrieve the saved file
     if hyperlink:
         if os.path.exists(url_results_rel_path):

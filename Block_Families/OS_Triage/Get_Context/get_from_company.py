@@ -61,12 +61,12 @@ logger.setLevel(logging.INFO)
 
 import_type = import_type_factory.get_all_imports()
 
+
 # Common File Stuff
 TR_Common_Files = "./generated/os-triage/common_files"
 common = [
-    {"module": "convert_n_and_e", "file": "convert_n_and_e.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/main/Block_Families/General/_library/convert_n_and_e.py"}
+    {"module": "parse", "file": "parse.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/refs/heads/main/Block_Families/General/_library/parse.py"}
 ]
-
 # OS_Triage Memory Stuff
 TR_Context_Memory_Dir = "./generated/os-triage/context_mem"
 TR_User_Dir = "/usr"
@@ -74,21 +74,13 @@ context_map = "context_map.json"
 user_data = {
     "global": "/global_variables_dict.json",
     "me": "/cache_me.json",
-    "team": "/cache_team.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "team": "/cache_team.json"
 }
 comp_data = {
     "users": "/users.json",
     "company" : "/company.json",
-    "assets" : "/assets.json",
-    "systems" : "/systems.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "platforms" : "/platforms.json",
+    "systems" : "/systems.json"
 }
 incident_data = {
     "incident" : "/incident.json",
@@ -98,11 +90,7 @@ incident_data = {
     "event" : "/event_refs.json",
     "task" : "/task_refs.json",
     "other" : "/other_object_refs.json",
-    "unattached" : "/unattached_objs.json",
-    "relations" : "/incident_relations.json",
-    "edges" : "/incident_edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "unattached" : "/unattached_objs.json"
 }
 field_names = {
     "start" : "sequence_start_refs",
@@ -113,6 +101,7 @@ field_names = {
     "other" : "other_object_refs"
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
+
 
 
 def check_properties(cont, prop, source_value):
@@ -137,7 +126,9 @@ def check_properties(cont, prop, source_value):
     length = len(object_path_list)
     interim_object = cont
     for i, object_path in enumerate(object_path_list):
-        if i == (length - 1):
+        if object_path == [0]:
+            interim_object = interim_object[0]
+        elif i == (length - 1):
             object_val = interim_object[object_path]
         elif object_path in interim_object:
             interim_object = interim_object[object_path]
@@ -212,12 +203,12 @@ def get_context_object(get_query, context_type, source_value=None, source_id=Non
         if context_data_list:
             for cont in context_data_list:
                 if cont["type"] == get_query["type"]:
-                    if "properties" in get_query or "embedded" in get_query:
-                        if "properties" in get_query and "embedded" in get_query:
+                    if "property" in get_query or "embedded" in get_query:
+                        if "property" in get_query and "embedded" in get_query:
                             if check_properties(cont["original"], get_query["property"], source_value) and check_embedded(cont["original"], get_query["embedded"], source_id):
                                 context_object = cont["original"]
                                 return context_object
-                        elif "properties" in get_query and "embedded" not in get_query:
+                        elif "property" in get_query and "embedded" not in get_query:
                             if check_properties(cont["original"], get_query["property"], source_value):
                                 context_object = cont["original"]
                         else:

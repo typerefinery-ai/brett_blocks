@@ -19,6 +19,9 @@ from Block_Families.OS_Triage.Mouse.rmb_tree_edit_DAG import main as rmb_tree_ed
 #       Save to OS_Triage -> Incident, Company, User
 from Block_Families.OS_Triage.Save_Context.save_incident_context import main as save_incident_context
 from Block_Families.OS_Triage.Save_Context.save_company_context import main as save_company_context
+from Block_Families.OS_Triage.Save_Context.save_company_context_platforms import main as save_company_context_platforms
+from Block_Families.OS_Triage.Save_Context.save_company_context_systems import main as save_company_context_systems
+from Block_Families.OS_Triage.Save_Context.save_company_context_users import main as save_company_context_users
 from Block_Families.OS_Triage.Save_Context.save_user_context import main as save_user_context
 from Block_Families.OS_Triage.Save_Context.save_unattached_context import main as save_unattached_context
 from Block_Families.OS_Triage.Save_Context.save_team_context import main as save_team_context
@@ -399,7 +402,8 @@ def invoke_move_unattached_to_other_block(stix_object_path, results_path, object
 
 
 
-def invoke_save_company_context_block(stix_object_path, results_path, context_type):
+
+def invoke_save_company_systems_block(stix_object_path, results_path):
     #
     # 1. Set the Relative Input and Output Paths for the block
     #
@@ -412,7 +416,135 @@ def invoke_save_company_context_block(stix_object_path, results_path, context_ty
     full_filename = slices[-1]
     filename = full_filename[:-5]
     results_data = {}
-    context_path = "../Orchestration/Results/step1/context/"+ filename + "_options_context.json"
+    context_path = "../Orchestration/Results/step1/context/"+ filename + "_company_systems_context.json"
+    if os.path.exists(stix_object_path):
+        with open(stix_object_path, "r") as sdo_form:
+            temp_data = json.load(sdo_form)
+            results_data["stix_object"] = temp_data
+        with open(context_path, 'w') as f:
+            f.write(json.dumps(results_data))
+    # Make the Observed Data object
+    save_company_context_systems(context_path,results_path)
+    #
+    # Remove the context type record
+    #
+    rewrite_data = {}
+    for key, value in results_data.items():
+        if key == "stix_object":
+            rewrite_data = value
+        else:
+            continue
+    #  Rewrite the original object
+    with open(stix_object_path, 'w') as f:
+        f.write(json.dumps(rewrite_data))
+    #
+    #
+    if os.path.exists(results_path):
+        with open(results_path, "r") as script_input:
+            export_data = json.load(script_input)
+            return export_data
+
+
+
+def invoke_save_company_platforms_block(stix_object_path, results_path):
+    #
+    # 1. Set the Relative Input and Output Paths for the block
+    #
+    #
+    # NOTE: This code is only To fake input ports
+    # Add the User Account object and the  EmailAddress
+    # NOTE: This code is only To fake input ports
+    ##
+    slices = stix_object_path.split('/')
+    full_filename = slices[-1]
+    filename = full_filename[:-5]
+    results_data = {}
+    context_path = "../Orchestration/Results/step1/context/"+ filename + "_company_context.json"
+    if os.path.exists(stix_object_path):
+        with open(stix_object_path, "r") as sdo_form:
+            temp_data = json.load(sdo_form)
+            results_data["stix_object"] = temp_data
+        with open(context_path, 'w') as f:
+            f.write(json.dumps(results_data))
+    # Make the Observed Data object
+    save_company_context_platforms(context_path,results_path)
+    #
+    # Remove the context type record
+    #
+    rewrite_data = {}
+    for key, value in results_data.items():
+        if key == "stix_object":
+            rewrite_data = value
+        else:
+            continue
+    #  Rewrite the original object
+    with open(stix_object_path, 'w') as f:
+        f.write(json.dumps(rewrite_data))
+    #
+    #
+    if os.path.exists(results_path):
+        with open(results_path, "r") as script_input:
+            export_data = json.load(script_input)
+            return export_data
+
+
+
+def invoke_save_company_user_block(stix_object_path, results_path):
+    #
+    # 1. Set the Relative Input and Output Paths for the block
+    #
+    #
+    # NOTE: This code is only To fake input ports
+    # Add the User Account object and the  EmailAddress
+    # NOTE: This code is only To fake input ports
+    ##
+    slices = stix_object_path.split('/')
+    full_filename = slices[-1]
+    filename = full_filename[:-5]
+    results_data = {}
+    context_path = "../Orchestration/Results/step1/context/"+ filename + "_company_context.json"
+    if os.path.exists(stix_object_path):
+        with open(stix_object_path, "r") as sdo_form:
+            temp_data = json.load(sdo_form)
+            results_data["stix_object"] = temp_data
+        with open(context_path, 'w') as f:
+            f.write(json.dumps(results_data))
+    # Make the Observed Data object
+    save_company_context_users(context_path,results_path)
+    #
+    # Remove the context type record
+    #
+    rewrite_data = {}
+    for key, value in results_data.items():
+        if key == "stix_object":
+            rewrite_data = value
+        else:
+            continue
+    #  Rewrite the original object
+    with open(stix_object_path, 'w') as f:
+        f.write(json.dumps(rewrite_data))
+    #
+    #
+    if os.path.exists(results_path):
+        with open(results_path, "r") as script_input:
+            export_data = json.load(script_input)
+            return export_data
+
+
+def invoke_save_company_context_block(stix_object_path, results_path):
+    #
+    # 1. Set the Relative Input and Output Paths for the block
+    #
+    #
+    # NOTE: This code is only To fake input ports
+    # Add the User Account object and the  EmailAddress
+    # NOTE: This code is only To fake input ports
+    ##
+    slices = stix_object_path.split('/')
+    full_filename = slices[-1]
+    filename = full_filename[:-5]
+    results_data = {}
+    context_path = "../Orchestration/Results/step1/context/"+ filename + "_company_context.json"
     if os.path.exists(stix_object_path):
         with open(stix_object_path, "r") as sdo_form:
             temp_data = json.load(sdo_form)
@@ -443,7 +575,7 @@ def invoke_save_company_context_block(stix_object_path, results_path, context_ty
             return export_data
 
 
-def invoke_save_incident_context_block(stix_object_path, results_path, context_type):
+def invoke_save_incident_context_block(stix_object_path, results_path):
     #
     # 1. Set the Relative Input and Output Paths for the block
     #
@@ -461,8 +593,6 @@ def invoke_save_incident_context_block(stix_object_path, results_path, context_t
         with open(stix_object_path, "r") as sdo_form:
             temp_data = json.load(sdo_form)
             results_data["stix_object"] = temp_data
-            if context_type:
-                results_data["context_type"] = context_type
         with open(context_path, 'w') as f:
             f.write(json.dumps(results_data))
     # Make the Observed Data object
@@ -828,3 +958,14 @@ def invoke_chain_sequence_block(sequence_object_path, results_path):
             return export_data
     
     return {"chained sequence": "Chaining completed"}
+
+def save_object_to_file(stix_object, file_path):
+    """
+    Save a STIX object to a specified JSON file.
+    
+    Args:
+        stix_object: The STIX object to save (as a dictionary).
+        file_path: The path to the file where the object will be saved.
+    """
+    with open(file_path, 'w') as f:
+        json.dump(stix_object, f, indent=4)
