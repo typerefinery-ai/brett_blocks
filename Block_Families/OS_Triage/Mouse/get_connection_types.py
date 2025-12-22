@@ -95,6 +95,10 @@ field_names = {
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
 
+# StixORM Dialect Data Stuff
+TR_dialect_data = "./generated/os-triage/dialect_data/summary"
+connection_types = "/connections.json"
+
 
 def clean_string_convert_to_list(string):
 	"""Convert a string to a list of strings."""	

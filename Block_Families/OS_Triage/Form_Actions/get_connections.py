@@ -94,6 +94,9 @@ field_names = {
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
+# StixORM Dialect Data Stuff
+TR_dialect_data = "./generated/os-triage/dialect_data/summary"
+connection_types = "/connections.json"
 
 
 
@@ -125,9 +128,11 @@ def clean_string_convert_to_list(string):
 
 
 
-def check_object(unattached_obj, constraint_list):
+def check_object(unattached_obj, constraint_list, parse):
     """Check if the unattached object passes the constraints."""
     # For each string constraint in the constraint list, run the clean string convert to list
+    unattached_type = unattached_obj.get("type", "")
+    unattached_group = parse.get_group_from_type(unattached_type)
     for constraint_layer in constraint_list:
         string_constraint = constraint_layer.get("target_type", "")
         # 1. clean the string and convert to a list
@@ -141,10 +146,10 @@ def check_object(unattached_obj, constraint_list):
                 if unattached_obj.get("x_mitre_version", False):
                     return True
             elif constraint == "_sdo":
-                if unattached_obj["type"] in import_type["types"]["sdo"]:
+                if unattached_group == "sdo":
                     return True
             elif constraint == "_sco":
-                if unattached_obj["type"] in import_type["types"]["sco"]:
+                if unattached_group == "sco":
                     return True
             elif constraint == unattached_obj["type"]:
                 return True
@@ -152,6 +157,15 @@ def check_object(unattached_obj, constraint_list):
     return False
 
 def get_objects_from_unattached(constraint_list):
+    # Specify the path to the Nodes and Edges module
+    module_path = TR_Common_Files + '/' + common[0]["file"]
+    # Load the module spec using importlib.util.spec_from_file_location
+    spec = importlib.util.spec_from_file_location('parse', module_path)
+    # Create the module from the specification
+    parse = importlib.util.module_from_spec(spec)
+    # Load the module
+    spec.loader.exec_module(parse)
+    # 4. Depending on Object Type, Get the Nodes and Edges, and save them to the lists
     valid_connections = []
     with open(TR_Context_Memory_Dir + "/" + context_map, "r") as current_context:
         local_map = json.load(current_context)
@@ -163,7 +177,7 @@ def get_objects_from_unattached(constraint_list):
                 unattached_nodes = json.load(mem_input)
                 for unattached_obj in unattached_nodes:
                     object_passes = False
-                    object_passes = check_object(unattached_obj, constraint_list)
+                    object_passes = check_object(unattached_obj, constraint_list, parse)
                     if object_passes:
                         valid_connections.append(unattached_obj)
 

@@ -167,7 +167,7 @@ def process_exists_condition(stix_dict, field_list):
     Process the EXISTS condition for the given field list.
 
     Args:
-        stix_dict (Dict[str, str]): The STIX dictionary object.
+        stix_dict (Dict[str, Any]): The STIX dictionary object.
         field_list (List[str]): The list of fields to check for existence.
 
     Returns:
@@ -196,7 +196,7 @@ def process_starts_with_condition(stix_dict, value):
     Process the STARTS_WITH condition for the given field list.
 
     Args:
-        stix_dict (Dict[str, str]): The STIX dictionary to check against.
+        stix_dict (Dict[str, Any]): The STIX dictionary to check against.
         field_list (List[str]): The list of fields to check for existence.
         value (str): The value to check for.
 
@@ -218,7 +218,7 @@ def process_equals_condition(stix_dict, field_list, value):
     Process the EQUALS condition for the given field and value.
 
     Args:
-        stix_dict (Dict[str, str]): The STIX dictionary to check against.
+        stix_dict (Dict[str, Any]): The STIX dictionary to check against.
         field (str): The field to check for equality.
         value (str): The value to check against.
 
@@ -239,46 +239,46 @@ def process_equals_condition(stix_dict, field_list, value):
                 local_dict = local_dict[field]
     return correct
 
-def test_object_by_condition(item: ParseContent, stix_dict: Dict[str, str]) -> bool:
+def test_object_by_condition(item: ParseContent, stix_dict: Dict[str, Any]) -> bool:
     """
     Test the ParseContent condition against the STIX dictionary .
 
     Args:
         item (ParseContent): The ParseContent condition to test.
-        stix_dict (Dict[str, str]): The STIX dictionary to match against.
+        stix_dict (Dict[str, Any]): The STIX dictionary to match against.
 
     Returns:
         bool: True if the dict matches the conditions, False otherwise.
     """
     correct = False
     # Check each condition in the STIX dictionary
-    if item.condition1 == "EXISTS":
+    if item.condition1 == "EXISTS" and item.field1:
         field_list = item.field1.split(".")
         correct = process_exists_condition(stix_dict, field_list)
-    elif item.condition1 == "STARTS_WITH":
+    elif item.condition1 == "STARTS_WITH" and item.value1:
         correct = process_starts_with_condition(stix_dict, item.value1)
-    elif item.condition1 == "EQUALS":
+    elif item.condition1 == "EQUALS" and item.field1 and item.value1:
         field_list = item.field1.split(".")
         correct = process_equals_condition(stix_dict, field_list, item.value1)
     # Check the second condition if it exists
     if item.condition2 and correct:
-        if item.condition2 == "EQUALS":
+        if item.condition2 == "EQUALS" and item.field2 and item.value2:
             field_list = item.field2.split(".")
             correct = process_equals_condition(stix_dict, field_list, item.value2)
-    return correct
+    return bool(correct)
 
-def determine_content_object_from_list_by_tests(stix_dict: Dict[str, str], content_type:str) -> ParseContent:
+def determine_content_object_from_list_by_tests(stix_dict: Dict[str, Any], content_type:str) -> Optional[ParseContent]:
     """
     Determine the content object from the list by matching the STIX dictionary.
 
     Args:
-        stix_dict (Dict[str, str]): The STIX dictionary to match against.
+        stix_dict (Dict[str, Any]): The STIX dictionary to match against.
         content_type (str): The type of content to match against "class" or "icon".
 
     Returns:
         ParseContent: The matching ParseContent object, or None if not found.
     """
-    content_list: List[ParseContent] = get_content_list_for_type(stix_dict.get("type"), content_type)
+    content_list: List[ParseContent] = get_content_list_for_type(stix_dict.get("type", ""), content_type)
     if not content_list:
         return None
     elif len(content_list) == 1:
@@ -538,24 +538,144 @@ class Wrapper(BaseModel):
     original: Dict[str, Union[str, List, Dict]] = Field(default_factory=dict)
     references: EmbeddedReferences
 
+def parse_path_part(part: str) -> Optional[tuple[Optional[str], Optional[int]]]:
+    """
+    Parse a path segment to extract either a field name or a list index.
+    
+    ONLY supports Format 2 notation:
+    - Plain field names: "field_name" → ("field_name", None)
+    - Separate index notation: "[0]" → (None, 0)
+    
+    Invalid formats (returns None and logs error):
+    - Attached index: "field[0]", "[0]field"
+    - Empty brackets: "[]"
+    - Non-numeric index: "[abc]"
+    
+    Args:
+        part: A single path segment after splitting by "."
+        
+    Returns:
+        Tuple of (field_name, index) or None if invalid format
+        - (field_name, None) for plain field
+        - (None, index) for list index
+        - None for invalid format
+    """
+    # Check for standalone bracket notation: [N]
+    standalone_index_pattern = re.compile(r'^\[(\d+)\]$')
+    match = standalone_index_pattern.match(part)
+    
+    if match:
+        # Valid standalone index like [0], [1], etc.
+        index = int(match.group(1))
+        return (None, index)
+    
+    # Check for invalid patterns with brackets
+    if '[' in part or ']' in part:
+        # Invalid: field[0], [0]field, [], [abc], etc.
+        logger.warning(f"Invalid path notation '{part}'. Only standalone bracket notation like '[0]' is supported. "
+                      f"Use format: 'field.[0].subfield' not 'field[0].subfield'")
+        return None
+    
+    # Plain field name (no brackets)
+    return (part, None)
+
+def get_nested_value(stix_dict: Dict[str, Any], field_path: str) -> Any:
+    """
+    Extract a value from a nested dictionary using dot notation with optional list indexing.
+    
+    Supports Format 2 notation only:
+    - Dictionary access: "extensions.availability.availability_impact"
+    - List indexing (separate): "external_references.[0].external_id"
+    - Nested lists: "extensions.ext.[0].field.[1].value"
+    
+    Invalid formats (returns None):
+    - Attached indices: "field[0]" or "tags[2]"
+    - Index before field: "[0]field"
+    - Empty brackets: "[]"
+    - Non-numeric indices: "[abc]"
+    
+    Args:
+        stix_dict: The STIX dictionary to extract from
+        field_path: Dot-separated path (e.g., "external_references.[0].external_id")
+    
+    Returns:
+        The value at the specified path, or None if path doesn't exist or is invalid
+    
+    Examples:
+        >>> get_nested_value({"name": "test"}, "name")
+        "test"
+        >>> get_nested_value({"extensions": {"availability": {"availability_impact": 99}}}, 
+        ...                  "extensions.availability.availability_impact")
+        99
+        >>> get_nested_value({"external_references": [{"external_id": "CVE-2021-1234"}]}, 
+        ...                  "external_references.[0].external_id")
+        "CVE-2021-1234"
+        >>> get_nested_value({"tags": ["malware", "trojan"]}, "tags.[1]")
+        "trojan"
+    """
+    if not field_path:
+        return None
+    
+    # Split the path into parts
+    field_parts = field_path.split(".")
+    current_value = stix_dict
+    
+    # Traverse the nested structure
+    for part in field_parts:
+        # Parse the part to get field name and/or index
+        parsed = parse_path_part(part)
+        
+        if parsed is None:
+            # Invalid format detected
+            return None
+        
+        field_name, index = parsed
+        
+        # Handle field access (dictionary key)
+        if field_name is not None:
+            if isinstance(current_value, dict) and field_name in current_value:
+                current_value = current_value[field_name]
+            else:
+                return None
+        
+        # Handle list index access
+        if index is not None:
+            if isinstance(current_value, list) and 0 <= index < len(current_value):
+                current_value = current_value[index]
+            else:
+                return None
+    
+    return current_value
+
 def make_description(stix_dict: Dict[str, Union[str, Dict, List]], content: ParseContent) -> str:
     """
     Make the description string for the Wrapper.
 
     Args:
+        stix_dict: The STIX dictionary object
         content (ParseContent): The ParseContent object.
 
     Returns:
         str: The generated description string with HTML breaks between lines.
     """
     description_parts = []
+    j = 0
     for i in range(7):
         prior_string = getattr(content, f"prior_string{i}")
         post_field = getattr(content, f"post_field{i}")
-        if prior_string and post_field:
+        
+        # Handle both simple keys and dot-notation paths
+        if "." in post_field:
+            post_value = get_nested_value(stix_dict, post_field)
+        else:
+            post_value = stix_dict.get(post_field)
+        
+        # Only add to description if both prior_string and post_value exist and are not empty
+        if prior_string and post_value not in (None, "", {}):
             # Add HTML break before second and subsequent lines
-            prefix = "<br>" if i > 0 else ""
-            description_parts.append(f"{prefix}{prior_string}{stix_dict.get(post_field, {})}")
+            prefix = "<br>" if j > 0 else ""
+            description_parts.append(f"{prefix}{prior_string}{post_value}")
+            j += 1
     description = "".join(description_parts).strip()
     return description
 
@@ -572,7 +692,7 @@ def wrap_stix_dict(stix_dict: Dict[str, Union[str, Dict, List]]) -> Dict[str, Un
     """
     content = determine_content_object_from_list_by_tests(stix_dict, "class")
     if not content:
-        raise ValueError(f"No content found for STIX type: {stix_dict.get('type')}")
+        raise ValueError(f"No content found for STIX type: {stix_dict.get('type', '')}")
 
 
     description = make_description(stix_dict, content)
@@ -598,7 +718,7 @@ def wrap_stix_dict(stix_dict: Dict[str, Union[str, Dict, List]]) -> Dict[str, Un
     wrap["id"] = stix_dict.get("id")
     wrap["type"] = stix_dict.get("type")
     wrap["icon"] = content.icon
-    wrap["name"] = stix_dict.get("name", "")
+    wrap["name"] = stix_dict.get(content.post_field0, "")
     wrap["heading"] = content.head
     wrap["description"] = description
     wrap["object_form"] = content.form

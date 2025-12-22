@@ -94,6 +94,10 @@ field_names = {
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
 
+# StixORM Dialect Data Stuff
+TR_dialect_data = "./generated/os-triage/dialect_data/summary"
+sro_types = "/constraints.json"
+
 def  process_category(stix_object, constraint):
     # 1. StixORM stuff
     auth_factory = get_auth_factory_instance()

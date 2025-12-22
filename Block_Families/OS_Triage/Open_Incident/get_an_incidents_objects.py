@@ -49,6 +49,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 import os
 import_type = import_type_factory.get_all_imports()
+from typing import List, Dict, Union, Optional, Any
 
 
 # Common File Stuff
@@ -93,9 +94,36 @@ key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
 
 
+def create_edge(edge_label, source_id, target_id, edge_type)-> Dict[str, str]:
+    edge = {}
+    edge["source"] = source_id
+    edge["target"] = target_id
+    edge["name"] = edge_label.replace("_", "-")
+    edge["type"] = edge_type
+    return edge
+
+def generate_nodes_and_edges(nodes):
+    edges = []
+    
+    node_ids = [x['id'] for x in nodes]
+    print(f"node ids->{node_ids}")
+    for node in nodes:
+        node_id = node["id"]
+        references = node["references"]
+        for edge_label, edge_list in references.items():
+            for edge_id in edge_list:
+                if edge_id in node_ids:
+                    if node["type"] == "relationship" and (edge_label == "source_ref" or edge_label == "target_ref"):
+                        edges.append(create_edge(node["original"]["relationship_type"], node_id, edge_id, "relationship"))
+                    else:
+                        edges.append(create_edge(edge_label, node_id, edge_id, "edge"))
+
+    return nodes, edges
+
 
 def get_an_incidents_objects(incident_id):
     # 0 Check for "original"
+    nodes_and_edges = {}
     incident_list = []
     changed = False
     if incident_id is None: # open the default incident
@@ -158,8 +186,11 @@ def get_an_incidents_objects(incident_id):
     # 6. Finally, add the incident to the list
     incident_list.append(wrapped_incident)
 
-    return incident_list
+    nodes, edges = generate_nodes_and_edges(incident_list)
+    nodes_and_edges["nodes"] = nodes
+    nodes_and_edges["edges"] = edges
 
+    return nodes_and_edges
 
 def main(inputfile, outputfile):
     incident_id = None
@@ -173,10 +204,10 @@ def main(inputfile, outputfile):
                 incident_data = input_data["api"]
                 incident_id = incident_data["incident_id"]
             # No input data, just a trigger
-            stix_list = get_an_incidents_objects(incident_id)
+            nodes_and_edges = get_an_incidents_objects(incident_id)
 
     with open(outputfile, "w") as outfile:
-        json.dump(stix_list, outfile)
+        json.dump(nodes_and_edges, outfile)
 
 
 ################################################################################

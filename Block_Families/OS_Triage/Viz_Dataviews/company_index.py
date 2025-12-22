@@ -47,12 +47,12 @@ logger.setLevel(logging.INFO)
 from stixorm.module.typedb_lib.factories.auth_factory import get_auth_factory_instance
 import_type = import_type_factory.get_all_imports()
 
+
 # Common File Stuff
 TR_Common_Files = "./generated/os-triage/common_files"
 common = [
-    {"module": "convert_n_and_e", "file": "convert_n_and_e.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/main/Block_Families/General/_library/convert_n_and_e.py"}
+    {"module": "parse", "file": "parse.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/refs/heads/main/Block_Families/General/_library/parse.py"}
 ]
-
 # OS_Triage Memory Stuff
 TR_Context_Memory_Dir = "./generated/os-triage/context_mem"
 TR_User_Dir = "/usr"
@@ -60,21 +60,13 @@ context_map = "context_map.json"
 user_data = {
     "global": "/global_variables_dict.json",
     "me": "/cache_me.json",
-    "team": "/cache_team.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "team": "/cache_team.json"
 }
 comp_data = {
     "users": "/users.json",
     "company" : "/company.json",
-    "assets" : "/assets.json",
-    "systems" : "/systems.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "platforms" : "/platforms.json",
+    "systems" : "/systems.json"
 }
 incident_data = {
     "incident" : "/incident.json",
@@ -84,11 +76,7 @@ incident_data = {
     "event" : "/event_refs.json",
     "task" : "/task_refs.json",
     "other" : "/other_object_refs.json",
-    "unattached" : "/unattached_objs.json",
-    "relations" : "/incident_relations.json",
-    "edges" : "/incident_edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "unattached" : "/unattached_objs.json"
 }
 field_names = {
     "start" : "sequence_start_refs",
@@ -98,8 +86,9 @@ field_names = {
     "task" : "task_refs",
     "other" : "other_object_refs"
 }
+key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
-comp_list = ["assets", "systems", "users"]
+comp_list = ["platforms", "systems", "users"]
 
 
 
@@ -137,23 +126,23 @@ def get_company_index():
             company_index["children"] = []
             children0 = company_index["children"]
             # 4. Add the assets
-            if comp_obj["assets"] != []:
+            if comp_obj["platforms"] != []:
                 # 4A. First setup the sighting object
                 level2 = {}
-                level2["name"] = "Company Assets"
+                level2["name"] = "Company Platforms"
                 level2["icon"] = "identity-asset"
                 level2["type"] = "company"
-                level2["heading"] = "Company Assets"
-                level2["description"] = "Assets owned by the company"
+                level2["heading"] = "Company Platforms"
+                level2["description"] = "Platforms owned by the company"
                 level2["id"] = ""
-                level2["edge"] = "assets"
+                level2["edge"] = "platforms"
                 level2["original"] = ""
                 level2["children"] = []
                 children2 = level2["children"]
-                for obj in comp_obj["assets"]:
+                for obj in comp_obj["platforms"]:
                     identity_obj = {}
                     identity_obj = obj
-                    identity_obj["edge"] = "asset-of"
+                    identity_obj["edge"] = "platform-of"
                     children2.append(identity_obj)
                 children0.append(level2)
             if comp_obj["systems"] != []:

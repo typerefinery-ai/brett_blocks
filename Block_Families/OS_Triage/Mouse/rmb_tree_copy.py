@@ -118,41 +118,11 @@ def add_node(node, context_dir, context_type="unattached"):
         f.write(json.dumps(stix_nodes_list))
 
 
-def add_edge(edge, context_dir, context_type):
-    exists = False
-    stix_edge_list = []
-    if os.path.exists(context_dir + incident_data[context_type]):
-        with open(context_dir + incident_data[context_type], "r") as mem_input:
-            stix_edge_list = json.load(mem_input)
-            for i in range(len(stix_edge_list)):
-                if stix_edge_list[i]["source"] == edge["source"] and stix_edge_list[i]["target"] == edge["target"]:
-                    stix_edge_list[i] = edge
-                    exists = True
-            if not exists:
-                stix_edge_list.append(edge)
-    else:
-        stix_edge_list = [edge]
-    with open(context_dir + incident_data[context_type], 'w') as f:
-        f.write(json.dumps(stix_edge_list))
-
-
-def process_node(stix_object, context_key, context_dir, n_and_e):
-    if "original" in stix_object:
-        add_node(stix_object, context_key)
-    else:
-        nodes, edges = n_and_e.convert_node(stix_object)
-        add_node(nodes[0], context_dir, context_key)
-        for edge in edges:
-            add_edge(edge, context_dir, "edges")
-
-
-def save_context(tree_object):
+def copy_tree_object_to_unattached(tree_object):
     # 0 Check for "original"
+    unwrapped = {}
     if "original" in tree_object:
-        wrapped = True
-    else:
-        wrapped = False
-    exists = False
+        unwrapped = tree_object["original"]
     # if "original" in stix_object:
     #     wrapped = True
     # 1.B Find Current Incident directory
@@ -173,46 +143,23 @@ def save_context(tree_object):
         # if not os.path.exists(TR_Context_Memory_Dir + "/incident_1"):
         #     os.makedirs(TR_Context_Memory_Dir + "/incident_1")
 
-        # 3. Now we are sure the common files exist, we need to import them
+        
         # Specify the path to the Nodes and Edges module
         module_path = TR_Common_Files + '/' + common[0]["file"]
         # Load the module spec using importlib.util.spec_from_file_location
-        spec = importlib.util.spec_from_file_location('n_and_e', module_path)
+        spec = importlib.util.spec_from_file_location('parse', module_path)
         # Create the module from the specification
-        n_and_e = importlib.util.module_from_spec(spec)
+        parse = importlib.util.module_from_spec(spec)
         # Load the module
-        spec.loader.exec_module(n_and_e)
+        spec.loader.exec_module(parse)
         # 4. Depending on Object Tupe, Get the Nodes and Edges, and save them to the lists
         stix_nodes_list = []
         incident = {}
-        stix_object = {k: v for k, v in tree_object.items() if k != "children"}
-        if stix_object["type"] == "relationship":
-            if wrapped:
-                add_node(stix_object, TR_Incident_Context_Dir, "unattached")
-            else:
-                nodes, edges, relation_edges, relation_replacement_edges = n_and_e.convert_relns(stix_object)
-                add_node(nodes[0],TR_Incident_Context_Dir, "unattached_relations")
-                for edge in edges:
-                    add_edge(edge, TR_Incident_Context_Dir, "edges")
-                for edge in relation_edges:
-                    add_edge(edge, TR_Incident_Context_Dir, "relation_edges")
-                for edge in relation_replacement_edges:
-                    add_edge(edge, TR_Incident_Context_Dir, "relation_replacement_edges")
-
-        elif stix_object["type"] == "sighting":
-            if wrapped:
-                add_node(stix_object, TR_Incident_Context_Dir, "unattached")
-            else:
-                nodes, edges = n_and_e.convert_sighting(stix_object)
-                add_node(nodes[0], TR_Incident_Context_Dir, "unattached")
-                for edge in edges:
-                    add_edge(edge, TR_Incident_Context_Dir, "edges")
-        else:
-            # its a node-type of object
-            process_node(stix_object, "unattached", TR_Incident_Context_Dir, n_and_e)
+        wrapped = parse.wrap_stix_dict(unwrapped)
+        add_node(wrapped, TR_Incident_Context_Dir, "unattached")
 
 
-    return "tree object saved to unattached context - \nstix_id -> " + str(stix_object["id"])
+    return "object saved to unattached context - \nstix_id -> " + str(wrapped["id"])
 
 
 def main(inputfile, outputfile):
@@ -225,11 +172,11 @@ def main(inputfile, outputfile):
             print(f"input data->{input_data}")
             if "tree_object" in input_data:
                 tree_object = input_data["tree_object"]
-                result_string = save_context(tree_object)
+                result_string = copy_tree_object_to_unattached(tree_object)
             elif "api" in input_data:
                 api_input_data = input_data["api"]
                 tree_object = api_input_data["tree_object"]
-                result_string = save_context(tree_object)
+                result_string = copy_tree_object_to_unattached(tree_object)
 
             # setup logger for execution
 

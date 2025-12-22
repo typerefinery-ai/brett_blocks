@@ -158,8 +158,8 @@ def save_context(stix_object):
         wrapped = parse.wrap_stix_dict(stix_object)
         add_node(wrapped, TR_Company_Context_Dir, context_type)
         # 5. Add the id to the Update Company List, if it is not already in there
-        if stix_object["id"] not in local_map.get("update_company_list", []):
-            local_map["update_company_list"] = local_map.get("update_company_list", []) + [stix_object["id"]]
+        if current_company_dir not in local_map.get("update_company_list", []):
+            local_map["update_company_list"] = local_map.get("update_company_list", []) + [current_company_dir]
     with open(TR_Context_Memory_Dir + "/" + context_map, 'w') as f:
         f.write(json.dumps(local_map))
 
