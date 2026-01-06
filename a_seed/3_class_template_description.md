@@ -44,7 +44,7 @@ Recall that there are 3 types of names for any object in this repo:
 | "HTTPRequestExt" | "http-request-ext" | "http-request-ext" |
 | "WindowsPEBinaryExt" | "windows-pe-binary-ext" | "windows-pebinary-ext" |
 
-9. **Converting between the three name types**: To convert between the three name types, Copilot must reference the object conversion list files for all Stix dialects. These files provide mappings between Class Names, TypeQL Names, and Stix Types.
+9. **Converting between the three name types**: To convert between the three name types, Copilot can reference the object conversion list files for all Stix dialects. These files provide mappings between Class Names, TypeQL Names, and Stix Types.
 
 To convert between them, copilot must join each of the object conversion list files in the StixORM dialects, and search for the correct class based on any of the extension object's key
 
@@ -66,9 +66,14 @@ When creating a Python block that uses subobjects or extensions, copilot must en
 
 By using the above object conversion lists, copilot can convert the name from the class template to the correct Class Names for each extension to be used in the block, and add the appropriate import statements.
 
-The Python Classes for the sub objects is given in both the EmbeddedObjectProperty `property` field in the class template, and the `sub` key in the class template definition, and the copilot can use those names directly in the import statements.
+The Python Classes for the sub objects is given in both the `EmbeddedObjectProperty` `property` field in the class template, and the `sub` key in the class template definition, and the copilot can use those names directly in the import statements.
 
-## 11. Example Class Template - Identity
+## 11. The Python Block Needs to Also Provide `ReferenceProperty` and `OSThreatReference` Types of Properties as Inputs
+
+Any Property types in the class template that are of  type `ReferenceProperty` and `OSThreatReference` must be provided as optional inputs to the main function in the Python block, as these properties represent references to other STIX objects, and these objects need to be passed in when creating the object. Usuaully this is when the field  name ends with `_ref` or `_refs`, except that there are some embedded reference properties that do not obey that rule.
+
+
+## 12. Example Class Template - Identity
 
 The Identity class is taken as a good example of a STIX object with both extensions and sub-objects. It includes a variety of properties that demonstrate the structure and requirements for STIX data forms.
 

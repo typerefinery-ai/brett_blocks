@@ -17,14 +17,50 @@ results_base = "../Orchestration/Results/"
 
 
 from Block_Families.StixORM.SCO.URL.make_url import main as make_url
-from Block_Families.StixORM.SCO.Email_Addr.make_email_addr import main as make_email_addr
+from Block_Families.StixORM.SCO.EmailAddress.make_email_addr import main as make_email_addr
 from Block_Families.StixORM.SCO.EmailMessage.make_email_message import main as make_email_msg
-from Block_Families.StixORM.SCO.User_Account.make_user_account import main as make_user_account
+from Block_Families.StixORM.SCO.UserAccount.make_user_account import main as make_user_account
 from Block_Families.StixORM.SCO.Anecdote.make_anecdote import main as make_anecdote
 from .util import emulate_ports, unwind_ports, conv
 
 
 def invoke_make_email_addr_block(email_path, results_path, acct_results=None):
+    #
+    # 1. Set the Relative Input and Output Paths for the block
+    #
+    email_data_rel_path = path_base + email_path
+    email_results_rel_path = results_base + results_path 
+    #
+    # NOTE: This code is only To fake input ports
+    # Add the User Account object and the  EmailAddress
+    #  Form data file
+    #
+    if os.path.exists(email_data_rel_path):
+        with open(email_data_rel_path, "r") as sro_form:
+            results_data = json.load(sro_form)
+            if acct_results:
+                results_data["user-account"] = acct_results
+        with open(email_data_rel_path, 'w') as f:
+            f.write(json.dumps(results_data))
+    #
+    # Make the Email Address object
+    #
+    make_email_addr(email_data_rel_path,email_results_rel_path)
+    #
+    # Remove Port Emulation - Fix the data file so it only has form data
+    #
+    unwind_ports(email_data_rel_path)
+
+    # Retrieve the saved file
+    if os.path.exists(email_results_rel_path):
+        with open(email_results_rel_path, "r") as script_input:
+            stix_object = json.load(script_input)
+            # convert it into a Stix Object and append to the bundle
+            email_addr = EmailAddress(**stix_object)
+            print(email_addr.serialize(pretty=True))
+            return conv(email_addr)
+
+def invoke_bulk_make_email_addr_block(email_path, results_path, acct_results=None):
     #
     # 1. Set the Relative Input and Output Paths for the block
     #
@@ -61,11 +97,38 @@ def invoke_make_email_addr_block(email_path, results_path, acct_results=None):
             return conv(email_addr)
 
 
+
 def invoke_make_user_account_block(user_path, results_path):
     #
     # 1. Set the Relative Input and Output Paths for the block
     #
     # Set the Relative Input and Output Paths for the block
+    if results_path.endswith('.json'):
+        results_path = results_path[:-5]
+    acct_data_rel_path = path_base + user_path
+    acct_results_rel_path = results_base + results_path + "__usr_acct.json"
+    # Run the Make User Account block
+    make_user_account(acct_data_rel_path, acct_results_rel_path)
+    #
+    # Remove Port Emulation - Fix the data file so it only has form data
+    #
+    # Retrieve the saved file
+    if os.path.exists(acct_results_rel_path):
+        with open(acct_results_rel_path, "r") as script_input:
+            stix_object = json.load(script_input)
+            # convert it into a Stix Object and append to the bundle
+            usr_acct = UserAccount(**stix_object)
+            print(usr_acct.serialize(pretty=True))
+            return conv(usr_acct)
+
+
+def invoke_bulk_make_user_account_block(user_path, results_path):
+    #
+    # 1. Set the Relative Input and Output Paths for the block
+    #
+    # Set the Relative Input and Output Paths for the block
+    if results_path.endswith('.json'):
+        results_path = results_path[:-5]
     acct_data_rel_path = path_base + user_path
     acct_results_rel_path = results_base + results_path + "__usr_acct.json"
     # Run the Make User Account block
@@ -108,8 +171,6 @@ def invoke_make_url_block(url_path, results_path, hyperlink=None):
     # Remove Port Emulation - Fix the data file so it only has form data
     #
     #unwind_ports(url_data_rel_path)
-    # 2. Make the Email Address object
-    make_url(url_data_rel_path,url_results_rel_path)
     # 3. Retrieve the saved file
     if hyperlink:
         if os.path.exists(url_results_rel_path):

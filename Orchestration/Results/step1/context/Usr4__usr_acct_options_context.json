@@ -1,1 +1,0 @@
-{"stix_object": {"type": "user-account", "spec_version": "2.1", "id": "user-account--2b87df75-b95c-5808-bcc7-f6d23471b9b4", "user_id": "79563902", "account_login": "sguy", "account_type": "sales,", "display_name": "strange guy"}, "context_type": {"context_type": "users"}}

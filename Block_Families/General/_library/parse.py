@@ -1,5 +1,6 @@
 """
-Parse STIX object metadata from icon_registry.csv.
+1. Parse STIX object metadata from icon_registry.csv. 
+2. Analyses objects for Visualisation and generate the wrapper using the parser
 
 This module reads the CSV registry containing STIX object metadata including:
 - Object identification (stix_type, protocol, group)
@@ -8,12 +9,15 @@ This module reads the CSV registry containing STIX object metadata including:
 - Display formatting fields (icon, form, head, prior_string/post_field pairs)
 """
 
-from pydantic import BaseModel
+from pydantic import  BaseModel, field_validator, Field
 from typing import List, Dict, Union, Optional
 import logging
 import copy
 import csv
 import os
+import re
+import uuid
+from embedded_references import EmbeddedReferences, find_embedded_references
 
 
 logger = logging.getLogger(__name__)
@@ -346,3 +350,91 @@ def get_group_from_type(stix_type) -> Union[str, None]:
             if item.condition1 == "":
                 return item.group
     return content_list[0].group
+
+
+
+    
+###################################################################################################
+#
+# Get the Stix Object Wrapper
+#
+####################################################################################################
+
+# find_embedded_references
+
+class Wrapper(BaseModel):
+    """
+    Wrapper model to hold the Generated Details and EmbeddedReferences for a STIX object.
+    """
+    id: str
+    type: str
+    icon: str
+    name: str
+    heading: str
+    description: str
+    object_form: str
+    object_group: str
+    object_family: str
+    original: Dict[str, Union[str, List, Dict]] = Field(default_factory=dict)
+    references: EmbeddedReferences
+
+def make_description(content: ParseContent) -> str:
+    """
+    Make the description string for the Wrapper.
+
+    Args:
+        content (ParseContent): The ParseContent object.
+
+    Returns:
+        str: The generated description string with HTML breaks between lines.
+    """
+    description_parts = []
+    for i in range(7):
+        prior_string = getattr(content, f"prior_string{i}")
+        post_field = getattr(content, f"post_field{i}")
+        if prior_string and post_field:
+            # Add HTML break before second and subsequent lines
+            prefix = "<br>" if i > 0 else ""
+            description_parts.append(f"{prefix}{prior_string}{post_field}")
+    description = "".join(description_parts).strip()
+    return description
+
+
+def wrap_stix_dict(stix_dict: Dict[str, str]) -> Wrapper:
+    """
+    Generate the Wrapper for a given STIX dictionary object.
+
+    Args:
+        stix_dict (Dict[str, str]): The STIX dictionary object.
+    
+    Returns:
+        Wrapper: The generated Wrapper object.
+    """
+    content = determine_content_object_from_list_by_tests(stix_dict, "class")
+    if not content:
+        raise ValueError(f"No content found for STIX type: {stix_dict.get('type')}")
+
+
+    description = make_description(stix_dict, content)
+    
+    # Find embedded references
+    embedded_refs = find_embedded_references(stix_dict)
+    
+    wrapped = Wrapper(
+        id=stix_dict.get("id"),
+        type=stix_dict.get("type"),
+        icon=content.icon,
+        name=stix_dict.get("name", ""),
+        heading=content.head,
+        description=description,
+        object_form=content.form,
+        object_group=content.group,
+        object_family=content.protocol,
+        original=stix_dict,
+        references=embedded_refs
+    )
+    
+    return wrapped
+
+
+

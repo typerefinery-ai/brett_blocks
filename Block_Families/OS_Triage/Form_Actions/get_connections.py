@@ -53,15 +53,12 @@ logger.setLevel(logging.INFO)
 
 import_type = import_type_factory.get_all_imports()
 
+
 # Common File Stuff
 TR_Common_Files = "./generated/os-triage/common_files"
 common = [
-    {"module": "convert_n_and_e", "file": "convert_n_and_e.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/main/Block_Families/General/_library/convert_n_and_e.py"}
+    {"module": "parse", "file": "parse.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/refs/heads/main/Block_Families/General/_library/parse.py"}
 ]
-
-# StixORM Dialect Data Stuff
-TR_dialect_data = "./generated/os-triage/dialect_data/summary"
-connection_types = "/connections.json"
 # OS_Triage Memory Stuff
 TR_Context_Memory_Dir = "./generated/os-triage/context_mem"
 TR_User_Dir = "/usr"
@@ -69,21 +66,13 @@ context_map = "context_map.json"
 user_data = {
     "global": "/global_variables_dict.json",
     "me": "/cache_me.json",
-    "team": "/cache_team.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "team": "/cache_team.json"
 }
 comp_data = {
     "users": "/users.json",
     "company" : "/company.json",
-    "assets" : "/assets.json",
-    "systems" : "/systems.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "platforms" : "/platforms.json",
+    "systems" : "/systems.json"
 }
 incident_data = {
     "incident" : "/incident.json",
@@ -93,11 +82,7 @@ incident_data = {
     "event" : "/event_refs.json",
     "task" : "/task_refs.json",
     "other" : "/other_object_refs.json",
-    "unattached" : "/unattached_objs.json",
-    "relations" : "/incident_relations.json",
-    "edges" : "/incident_edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "unattached" : "/unattached_objs.json"
 }
 field_names = {
     "start" : "sequence_start_refs",
@@ -108,6 +93,10 @@ field_names = {
     "other" : "other_object_refs"
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
+
+# StixORM Dialect Data Stuff
+TR_dialect_data = "./generated/os-triage/dialect_data/summary"
+connection_types = "/connections.json"
 
 
 
@@ -139,9 +128,11 @@ def clean_string_convert_to_list(string):
 
 
 
-def check_object(unattached_obj, constraint_list):
+def check_object(unattached_obj, constraint_list, parse):
     """Check if the unattached object passes the constraints."""
     # For each string constraint in the constraint list, run the clean string convert to list
+    unattached_type = unattached_obj.get("type", "")
+    unattached_group = parse.get_group_from_type(unattached_type)
     for constraint_layer in constraint_list:
         string_constraint = constraint_layer.get("target_type", "")
         # 1. clean the string and convert to a list
@@ -155,10 +146,10 @@ def check_object(unattached_obj, constraint_list):
                 if unattached_obj.get("x_mitre_version", False):
                     return True
             elif constraint == "_sdo":
-                if unattached_obj["type"] in import_type["types"]["sdo"]:
+                if unattached_group == "sdo":
                     return True
             elif constraint == "_sco":
-                if unattached_obj["type"] in import_type["types"]["sco"]:
+                if unattached_group == "sco":
                     return True
             elif constraint == unattached_obj["type"]:
                 return True
@@ -166,6 +157,15 @@ def check_object(unattached_obj, constraint_list):
     return False
 
 def get_objects_from_unattached(constraint_list):
+    # Specify the path to the Nodes and Edges module
+    module_path = TR_Common_Files + '/' + common[0]["file"]
+    # Load the module spec using importlib.util.spec_from_file_location
+    spec = importlib.util.spec_from_file_location('parse', module_path)
+    # Create the module from the specification
+    parse = importlib.util.module_from_spec(spec)
+    # Load the module
+    spec.loader.exec_module(parse)
+    # 4. Depending on Object Type, Get the Nodes and Edges, and save them to the lists
     valid_connections = []
     with open(TR_Context_Memory_Dir + "/" + context_map, "r") as current_context:
         local_map = json.load(current_context)
@@ -177,7 +177,7 @@ def get_objects_from_unattached(constraint_list):
                 unattached_nodes = json.load(mem_input)
                 for unattached_obj in unattached_nodes:
                     object_passes = False
-                    object_passes = check_object(unattached_obj, constraint_list)
+                    object_passes = check_object(unattached_obj, constraint_list, parse)
                     if object_passes:
                         valid_connections.append(unattached_obj)
 

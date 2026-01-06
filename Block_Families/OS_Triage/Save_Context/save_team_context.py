@@ -53,9 +53,8 @@ import_type = import_type_factory.get_all_imports()
 # Common File Stuff
 TR_Common_Files = "./generated/os-triage/common_files"
 common = [
-    {"module": "convert_n_and_e", "file": "convert_n_and_e.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/refs/heads/main/Block_Families/General/_library/convert_n_and_e.py"}
+    {"module": "parse", "file": "parse.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/refs/heads/main/Block_Families/General/_library/parse.py"}
 ]
-
 # OS_Triage Memory Stuff
 TR_Context_Memory_Dir = "./generated/os-triage/context_mem"
 TR_User_Dir = "/usr"
@@ -63,21 +62,13 @@ context_map = "context_map.json"
 user_data = {
     "global": "/global_variables_dict.json",
     "me": "/cache_me.json",
-    "team": "/cache_team.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "team": "/cache_team.json"
 }
 comp_data = {
     "users": "/users.json",
     "company" : "/company.json",
-    "assets" : "/assets.json",
-    "systems" : "/systems.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "platforms" : "/platforms.json",
+    "systems" : "/systems.json"
 }
 incident_data = {
     "incident" : "/incident.json",
@@ -86,13 +77,8 @@ incident_data = {
     "impact" : "/impact_refs.json",
     "event" : "/event_refs.json",
     "task" : "/task_refs.json",
-    "behavior" : "/behavior_refs.json",
     "other" : "/other_object_refs.json",
-    "unattached" : "/unattached_objs.json",
-    "relations" : "/incident_relations.json",
-    "edges" : "/incident_edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "unattached" : "/unattached_objs.json"
 }
 field_names = {
     "start" : "sequence_start_refs",
@@ -109,6 +95,20 @@ def download_common(module_list):
         # Step 1: download the module
         result = urlretrieve(module["url"], TR_Common_Files + "/" + module["file"])
         print(f'common file result ->', result)
+
+
+def create_context_map(c_map_file):
+    local_map = {}
+    local_map["current_incident"] = ""
+    local_map["current_company"] = ""
+    local_map["company_list"] = []
+    local_map["incident_list"] = []
+    local_map["update_company_list"] = []
+    local_map["update_incident_list"] = []
+    local_map["update_user"] = False
+    local_map["update_team"] = False
+    with open(TR_Context_Memory_Dir + "/" + c_map_file, 'w') as f:
+        f.write(json.dumps(local_map))
 
 
 def add_node(node, context_dir, context_type):
@@ -129,33 +129,20 @@ def add_node(node, context_dir, context_type):
         f.write(json.dumps(stix_nodes_list))
 
 
-def add_edge(edge, context_dir, context_type):
-    exists = False
-    stix_edge_list = []
-    if os.path.exists(context_dir + user_data[context_type]):
-        with open(context_dir + user_data[context_type], "r") as mem_input:
-            stix_edge_list = json.load(mem_input)
-            for i in range(len(stix_edge_list)):
-                if stix_edge_list[i]["source"] == edge["source"] and stix_edge_list[i]["target"] == edge["target"]:
-                    stix_edge_list[i] = edge
-                    exists = True
-            if not exists:
-                stix_edge_list.append(edge)
-    else:
-        stix_edge_list = [edge]
-    with open(context_dir + user_data[context_type], 'w') as f:
-        f.write(json.dumps(stix_edge_list))
-
 
 def save_team_context(stix_object):
+    if "original" in stix_object:
+        stix_object = stix_object["original"]
     # setup user directory
     context_type = "team"
     TR_User_Context_Dir = TR_Context_Memory_Dir + TR_User_Dir
     TR_Context_Filename = TR_User_Context_Dir + user_data[context_type]
     # 2. Check if the key directories exist, if not make them, and download common files
-    if not os.path.exists(TR_Common_Files):
-        os.makedirs(TR_Common_Files)
-        download_common(common)
+    # if not os.path.exists(TR_Common_Files):
+    #     os.makedirs(TR_Common_Files)
+    #     download_common(common)
+    if not os.path.exists(TR_Context_Memory_Dir + "/" + context_map):
+        create_context_map(context_map)
     if not os.path.exists(TR_Context_Memory_Dir):
         os.makedirs(TR_Context_Memory_Dir)
     if not os.path.exists(TR_Context_Memory_Dir + "/usr"):
@@ -167,26 +154,21 @@ def save_team_context(stix_object):
     # Specify the path to the Nodes and Edges module
     module_path = TR_Common_Files + '/' + common[0]["file"]
     # Load the module spec using importlib.util.spec_from_file_location
-    spec = importlib.util.spec_from_file_location('n_and_e', module_path)
+    spec = importlib.util.spec_from_file_location('parse', module_path)
     # Create the module from the specification
-    n_and_e = importlib.util.module_from_spec(spec)
+    parse = importlib.util.module_from_spec(spec)
     # Load the module
-    spec.loader.exec_module(n_and_e)
+    spec.loader.exec_module(parse)
     # 4.  if file exists, replce existing object if it exists, else add it, else create the list and add it
-    if stix_object["type"] == "relationship":
-        nodes, edges, relation_edges, relation_replacement_edges = n_and_e.convert_relns(stix_object)
-        add_node(nodes[0], TR_User_Context_Dir, "relations")
-        for edge in edges:
-            add_edge(edge, TR_User_Context_Dir, "edges")
-        for edge in relation_edges:
-            add_edge(edge, TR_User_Context_Dir, "relation_edges")
-        for edge in relation_replacement_edges:
-            add_edge(edge, TR_User_Context_Dir, "relation_replacement_edges")
-    else:
-        nodes, edges = n_and_e.convert_node(stix_object)
-        add_node(nodes[0], TR_User_Context_Dir, context_type)
-        for edge in edges:
-            add_edge(edge, TR_User_Context_Dir, "edges")
+    wrapped = parse.wrap_stix_dict(stix_object)
+    add_node(wrapped, TR_User_Context_Dir, "team")
+    # Update the contet map to sjhow the team update has been made    
+    local_map = {}
+    with open(TR_Context_Memory_Dir + "/" + context_map, "r") as context_update:
+        local_map = json.load(context_update)
+        local_map["update_team"] = True
+    with open(TR_Context_Memory_Dir + "/" + context_map, 'w') as f:
+        f.write(json.dumps(local_map))
 
     return "Team Directory "+ str(TR_User_Context_Dir) + "\nOptions context saved -> " + str(context_type) + "\nstix_id -> " + str(stix_object["id"])
 

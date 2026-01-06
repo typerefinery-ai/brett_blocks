@@ -17,7 +17,7 @@ results_base = "../Orchestration/Results/"
 
 
 from Block_Families.StixORM.SCO.URL.make_url import main as make_url
-from Block_Families.StixORM.SCO.Email_Addr.make_email_addr import main as make_email_addr
+from Block_Families.StixORM.SCO.EmailAddress.make_email_addr import main as make_email_addr
 from Block_Families.StixORM.SRO.Sighting.make_sighting import main as make_sighting
 from Block_Families.StixORM.SRO.Relationship.make_sro import main as make_sro
 from .util import emulate_ports, unwind_ports, conv
@@ -25,7 +25,7 @@ from .util import emulate_ports, unwind_ports, conv
 def invoke_sro_block(sro_data_path, results_path, source=None, target=None, relationship_type=None):
     # Set the Relative Input and Output Paths for the block
     sro_data_rel_path = path_base + sro_data_path
-    sro_results_rel_path = results_base + results_path + "__rel.json"
+    sro_results_rel_path = results_base + results_path
     #
     # NOTE: This code is only To fake input ports
     # Add the source and target identities and the reltaionship type

@@ -53,9 +53,8 @@ import_type = import_type_factory.get_all_imports()
 # Common File Stuff
 TR_Common_Files = "./generated/os-triage/common_files"
 common = [
-    {"module": "convert_n_and_e", "file": "convert_n_and_e.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/main/Block_Families/General/_library/convert_n_and_e.py"}
+    {"module": "parse", "file": "parse.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/refs/heads/main/Block_Families/General/_library/parse.py"}
 ]
-
 # OS_Triage Memory Stuff
 TR_Context_Memory_Dir = "./generated/os-triage/context_mem"
 TR_User_Dir = "/usr"
@@ -63,21 +62,13 @@ context_map = "context_map.json"
 user_data = {
     "global": "/global_variables_dict.json",
     "me": "/cache_me.json",
-    "team": "/cache_team.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "team": "/cache_team.json"
 }
 comp_data = {
     "users": "/users.json",
     "company" : "/company.json",
-    "assets" : "/assets.json",
-    "systems" : "/systems.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "platforms" : "/platforms.json",
+    "systems" : "/systems.json"
 }
 incident_data = {
     "incident" : "/incident.json",
@@ -87,11 +78,7 @@ incident_data = {
     "event" : "/event_refs.json",
     "task" : "/task_refs.json",
     "other" : "/other_object_refs.json",
-    "unattached" : "/unattached_objs.json",
-    "relations" : "/incident_relations.json",
-    "edges" : "/incident_edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "unattached" : "/unattached_objs.json"
 }
 field_names = {
     "start" : "sequence_start_refs",
@@ -102,6 +89,7 @@ field_names = {
     "other" : "other_object_refs"
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
+
 
 def download_common(module_list):
     for module in module_list:
@@ -116,6 +104,10 @@ def create_context_map(c_map_file):
     local_map["current_company"] = ""
     local_map["company_list"] = []
     local_map["incident_list"] = []
+    local_map["update_company_list"] = []
+    local_map["update_incident_list"] = []
+    local_map["update_user"] = False
+    local_map["update_team"] = False
     with open(TR_Context_Memory_Dir + "/" + c_map_file, 'w') as f:
         f.write(json.dumps(local_map))
 
@@ -138,25 +130,6 @@ def add_node(node, context_dir):
             f.write(json.dumps(stix_nodes_list))
 
 
-def add_edge(edge, context_dir):
-    exists = False
-    stix_edge_list = []
-    if os.path.exists(context_dir + comp_data["edges"]):
-        with open(context_dir + comp_data["edges"], "r") as mem_input:
-            stix_edge_list = json.load(mem_input)
-            for i in range(len(stix_edge_list)):
-                if stix_edge_list[i]["source"] == edge["source"] and stix_edge_list[i]["target"] == edge["target"]:
-                    stix_edge_list[i] = edge
-                    exists = True
-            if not exists:
-                stix_edge_list.append(edge)
-    else:
-        stix_edge_list = [edge]
-
-    with open(context_dir + comp_data["edges"], 'w') as f:
-            f.write(json.dumps(stix_edge_list))
-
-
 def create_company_context(stix_object):
     if stix_object["type"] != "identity" or stix_object["identity_class"] != "organization":
         return "error, not an company object, cannot make company"
@@ -165,13 +138,7 @@ def create_company_context(stix_object):
     stix_type = stix_object["type"]
     TR_Company_Dir = TR_Context_Memory_Dir + "/" + stix_id
 
-    # 2. Check if the key directories exist, if not make them, and download common files
-    if not os.path.exists(TR_Common_Files):
-        os.makedirs(TR_Common_Files)
-        download_common(common)
-    if not os.path.exists(TR_Context_Memory_Dir):
-        os.makedirs(TR_Context_Memory_Dir)
-        create_context_map(context_map)
+    # Make the directory to ensure the context memory is created properly
     if not os.path.exists(TR_Context_Memory_Dir + "/" + context_map):
         create_context_map(context_map)
     if not os.path.exists(TR_Context_Memory_Dir + "/usr"):
@@ -183,25 +150,24 @@ def create_company_context(stix_object):
     # Specify the path to the Nodes and Edges module
     module_path = TR_Common_Files + '/' + common[0]["file"]
     # Load the module spec using importlib.util.spec_from_file_location
-    spec = importlib.util.spec_from_file_location('n_and_e', module_path)
+    spec = importlib.util.spec_from_file_location('parse', module_path)
     # Create the module from the specification
-    n_and_e = importlib.util.module_from_spec(spec)
+    parse = importlib.util.module_from_spec(spec)
     # Load the module
-    spec.loader.exec_module(n_and_e)
+    spec.loader.exec_module(parse)
     # 4. Get the Nodes and Edges, and save them to the lists
-    nodes, edges = n_and_e.convert_node(stix_object)
+    wrapped = parse.wrap_stix_dict(stix_object)
     # 5. Get the Current Incident Directory in the map, update it and then save it
     local_map = {}
     with open(TR_Context_Memory_Dir + "/" + context_map, "r") as context_update:
         local_map = json.load(context_update)
         local_map["current_company"] = stix_id
-        local_map["company_list"] = local_map["company_list"] + [stix_id]
+        local_map["company_list"] = local_map.get("company_list", []) + [stix_id]
+        local_map["update_company_list"] = local_map.get("update_company_list", []) + [stix_id]
     with open(TR_Context_Memory_Dir + "/" + context_map, 'w') as f:
         f.write(json.dumps(local_map))
     # 6. Add the node and edges
-    add_node(nodes[0], TR_Company_Dir)
-    for edge in edges:
-        add_edge(edge, TR_Company_Dir)
+    add_node(wrapped, TR_Company_Dir)
 
 
     return " company context created -> " + str(stix_id) + "\nstix_id -> " + str(stix_object["id"])

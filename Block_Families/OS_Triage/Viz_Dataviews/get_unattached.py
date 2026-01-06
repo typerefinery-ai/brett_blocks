@@ -38,6 +38,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 
 from stixorm.module.authorise import import_type_factory
 import json
+from typing import Dict, Union, List
 
 import logging
 logger = logging.getLogger(__name__)
@@ -45,12 +46,12 @@ logger.setLevel(logging.INFO)
 
 import_type = import_type_factory.get_all_imports()
 
+
 # Common File Stuff
 TR_Common_Files = "./generated/os-triage/common_files"
 common = [
-    {"module": "convert_n_and_e", "file": "convert_n_and_e.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/main/Block_Families/General/_library/convert_n_and_e.py"}
+    {"module": "parse", "file": "parse.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/refs/heads/main/Block_Families/General/_library/parse.py"}
 ]
-
 # OS_Triage Memory Stuff
 TR_Context_Memory_Dir = "./generated/os-triage/context_mem"
 TR_User_Dir = "/usr"
@@ -58,21 +59,13 @@ context_map = "context_map.json"
 user_data = {
     "global": "/global_variables_dict.json",
     "me": "/cache_me.json",
-    "team": "/cache_team.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "team": "/cache_team.json"
 }
 comp_data = {
     "users": "/users.json",
     "company" : "/company.json",
-    "assets" : "/assets.json",
-    "systems" : "/systems.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "platforms" : "/platforms.json",
+    "systems" : "/systems.json"
 }
 incident_data = {
     "incident" : "/incident.json",
@@ -82,12 +75,7 @@ incident_data = {
     "event" : "/event_refs.json",
     "task" : "/task_refs.json",
     "other" : "/other_object_refs.json",
-    "unattached" : "/unattached_objs.json",
-    "unattached_relations" : "/unattached_relation.json",
-    "relations" : "/incident_relations.json",
-    "edges" : "/incident_edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "unattached" : "/unattached_objs.json"
 }
 field_names = {
     "start" : "sequence_start_refs",
@@ -99,19 +87,40 @@ field_names = {
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
+def create_edge(edge_label, source_id, target_id, edge_type)-> Dict[str, str]:
+    edge = {}
+    edge["source"] = source_id
+    edge["target"] = target_id
+    edge["name"] = edge_label.replace("_", "-")
+    edge["type"] = edge_type
+    return edge
+
+def generate_nodes_and_edges(nodes):
+    edges = []
+    
+    node_ids = [x['id'] for x in nodes]
+    print(f"node ids->{node_ids}")
+    for node in nodes:
+        node_id = node["id"]
+        references = node["references"]
+        for edge_label, edge_list in references.items():
+            for edge_id in edge_list:
+                if edge_id in node_ids:
+                    if node["type"] == "relationship" and (edge_label == "source_ref" or edge_label == "target_ref"):
+                        edges.append(create_edge(node["original"]["relationship_type"], node_id, edge_id, "relationship"))
+                    else:
+                        edges.append(create_edge(edge_label, node_id, edge_id, "edge"))
+
+    return nodes, edges
+
 
 def get_unattached():
     show_sro = True
-    task_index = {}
+    unattached = {}
     # 1. Setup variables
     nodes = []
     edges = []
-    inc_edges = []
-    inc_nodes = []
-    relations = []
-    relation_edges = []
-    relation_replacement_edges = []
-    unattached = {}
+
     # 1.B Find Current Incident directory
     local_map = {}
     with open(TR_Context_Memory_Dir + "/" + context_map, "r") as current_context:
@@ -121,47 +130,11 @@ def get_unattached():
         # 2. open files and fill lists
         if os.path.exists(TR_Incident_Context_Dir + incident_data["unattached"]):
             with open(TR_Incident_Context_Dir + incident_data["unattached"], "r") as mem_input:
-                inc_nodes = json.load(mem_input)
-        if os.path.exists(TR_Incident_Context_Dir + incident_data["edges"]):
-            with open(TR_Incident_Context_Dir + incident_data["edges"], "r") as mem_input:
-                inc_edges = json.load(mem_input)
-        if os.path.exists(TR_Incident_Context_Dir + incident_data["relations"]):
-            with open(TR_Incident_Context_Dir + incident_data["relations"], "r") as mem_input:
-                relations = json.load(mem_input)
-        if os.path.exists(TR_Incident_Context_Dir + incident_data["unattached_relations"]):
-            with open(TR_Incident_Context_Dir + incident_data["unattached_relations"], "r") as mem_input:
-                unattached_relations = json.load(mem_input)
-                relations = relations + unattached_relations
-        if os.path.exists(TR_Incident_Context_Dir + incident_data["relation_edges"]):
-            with open(TR_Incident_Context_Dir + incident_data["relation_edges"], "r") as mem_input:
-                relation_edges = json.load(mem_input)
-        if os.path.exists(TR_Incident_Context_Dir + incident_data["relation_replacement_edges"]):
-            with open(TR_Incident_Context_Dir + incident_data["relation_replacement_edges"], "r") as mem_input:
-                relation_replacement_edges = json.load(mem_input)
-        # 3. sort sightings by time
-        nodes = inc_nodes
-        node_ids = [x['id'] for x in nodes]
-        print(f"node ids->{node_ids}")
-        for rel in relations:
-            if rel["original"]["source_ref"] in node_ids and rel["original"]["target_ref"] in node_ids:
-                if show_sro:
-                    nodes.append(rel)
-                    for edge in relation_edges:
-                        if edge["source"] == rel["id"]:
-                            print(f"relation_edges->{edge}")
-                            edges.append(edge)
-                else:
-                    for edge in relation_replacement_edges:
-                        if edge["source"] == rel["original"]["source_ref"] and edge["target"] == rel["original"]["target_ref"]:
-                            print(f"relation_replacement_edges->{edge}")
-                            edges.append(edge)
+                nodes = json.load(mem_input)        # load unattached nodes list
+                nodes, edges = generate_nodes_and_edges(nodes)
 
-        for edge in inc_edges:
-            if edge["source"] in node_ids and edge["target"] in node_ids:
-                print(f"edges->{edge}")
-                edges.append(edge)
-        unattached['nodes'] = nodes
-        unattached['edges'] = edges
+    unattached['nodes'] = nodes
+    unattached['edges'] = edges
     return unattached
 
 

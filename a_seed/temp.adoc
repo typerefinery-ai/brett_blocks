@@ -1,0 +1,237 @@
+
+The Impact SDO is currently an extension, but as there are many specific types of impacts with their own unique properties it emulates the File SCO through the use of STIX Extensions to provide the granular details of specific categories of impacts.
+As such every Impact *MUST* have an extension that has the same value of the *impact_category*.
+This allows consumers to quickly validate their ability to process this category of impact and then load all of its specific details.
+
+Producers *SHOULD* use both the Extension Definition and one of these extensions.
+
+
+===== 2.3.2.1 Impact Extension Definition
+The Python class name is [stixliteral]#ImpactCoreExt#.
+
+The definition extension  *MUST* use [stixliteral]#extension-definition--7cc33dd6-f6a1-489b-98ea-522d351d71b9# as its extension ID.
+
+[width="100%",cols="37%,23%,40%",options="header",]
+|===
+^|[stixtr]*Property Name*
+^|[stixtr]*Type*
+^|[stixtr]*Description*
+
+|*extension_type* (required)
+|[stixtype]#{string_url}[string]#
+|The value of this property *MUST* be [stixliteral]#new-sdo#
+
+|===
+
+===== 2.3.2.2. Availability Impact Extension
+The Python class name is [stixliteral]#Availability#.
+
+[width="100%",cols="37%,23%,40%",options="header",]
+|===
+^|[stixtr]*Property Name*
+^|[stixtr]*Type* 
+^|[stixtr]*Description*
+
+|*availability_impact* (required)
+|[stixtype]#{int_url}[integer]#
+|The availability / functional impact of the incident on the objects referenced in *impacted_refs*. 
+If no objects are referenced it should be treated as the overall availability impact for the [stixtype]#{incident_url}[incident]# that references it.
+
+This value *MUST* be between 0 to 100. This can be translated into qualitative values as described in <<appendix-a,Appendix A>>.
+
+|===
+
+<<<
+
+===== 2.3.2.3. Confidentiality Impact Extension
+The Python class name is [stixliteral]#Confidentiality#.
+
+[width="100%",cols="37%,23%,40%",options="header",]
+|===
+^|[stixtr]*Property Name*
+^|[stixtr]*Type* 
+^|[stixtr]*Description*
+
+|*information_type* (optional)
+|[stixtype]#{open_vocab_url}[open-vocab]#
+|The type of information that had its confidentiality compromised. This can include control systems and other processes that can result in virtual or physical impacts.
+
+This *SHOULD* be drawn from [stixtype]#<<information-type-ov,information-type-ov>>#.
+
+This value *MUST* be included if the loss_type is not none. Including an entry with loss_type of none and no information_type indicates that no information had its confidentiality impacted by this incident.
+
+|*loss_type* (required)
+|[stixtype]#<<incident-confidentiality-loss-enum,incident-confidentiality-loss-enum>>#
+|The type of loss that occurred to the relevant information
+
+|*record_count* (optional)
+|[stixtype]#{int_url}[integer]#
+|The number of records of this type that were compromised. The value of this property *MUST NOT* be negative.
+
+|*record_size* (optional)
+|[stixtype]#{int_url}[integer]#
+|The amount of data that was compromised in bytes. The value of this property *MUST NOT* be negative.
+|===
+
+===== 2.3.2.4. External Impact Extension
+The Python class name is [stixliteral]#External#.
+
+[width="100%",cols="37%,23%,40%",options="header",]
+|===
+^|[stixtr]*Property Name*
+^|[stixtr]*Type* 
+^|[stixtr]*Description*
+
+|*impact_type* (required)
+|[stixtype]#{open_vocab_url}[open-vocab]# 
+|The type of impact outside of the direct organization that should be drawn from [stixtype]#<<external-impact-ov,external-impact-ov>>#.
+|===
+
+<<<
+
+===== 2.3.2.5. Integrity Impact Extension
+The Python class name is [stixliteral]#Integrity#.
+
+*Type Name:* [stixtype]#integrity-impact#
+
+[width="100%",cols="37%,23%,40%",options="header",]
+|===
+^|[stixtr]*Property Name*
+^|[stixtr]*Type* 
+^|[stixtr]*Description*
+
+|*alteration* (required)
+|[stixtype]#<<integrity-alteration-enum,integrity-alteration-enum>>#
+|The type of alteration performed against the information_type.
+
+The values of this property *MUST* come from the [stixtype]#<<integrity-alteration-enum,integrity-alteration-enum>># enumeration.
+
+|*information_type* (optional)
+|[stixtype]#{open_vocab_url}[open-vocab]#
+|The type of information that had its integrity compromised.
+This can include control systems and other processes that can result in virtual or physical impacts.
+
+This *SHOULD* be drawn from [stixtype]#<<information-type-ov,information-type-ov>>#.
+
+This value *MUST* be included if the alternation is not none.
+Including an entry that with an alteration of none and no information_type indicates that no information had its integrity impacted by this incident.
+
+|*record_count* (optional)
+|[stixtype]#{int_url}[integer]#
+|The number of records of this type that were compromised. The value of this property *MUST NOT* be negative.
+
+|*record_size* (optional)
+|[stixtype]#{int_url}[integer]#
+|The amount of data that was compromised in bytes. The value of this property *MUST NOT* be negative.
+
+|===
+
+<<<
+
+===== 2.3.2.6. Monetary Impact Extension
+The Python class name is [stixliteral]#Monetary#.
+
+[width="100%",cols="37%,23%,40%",options="header",]
+|===
+^|[stixtr]*Property Name*
+^|[stixtr]*Type* 
+^|[stixtr]*Description*
+
+|*variety* (required)
+|[stixtype]#{open_vocab_url}[open-vocab]#
+|The variety of this monetary impact.
+
+The values of this property *SHOULD* come from the [stixtype]#<<monetary-impact-type-ov,monetary-impact-type-ov>>#.
+
+|*conversion_rate* (optional)
+|[stixtype]#{number_url}[number]#
+|The conversion rate between *currency* and *currency_actual*.
+This *MUST NOT* be included if currency_actual is not included.
+This *MUST* be included if currency_actual is included.
+This value *MUST* be greater than zero.
+
+This value *MUST* be included if the *min_amount* is included.
+
+|*conversion_time* (optional)
+|[stixtype]#{timestamp_url}[timestamp]#
+|The timestamp when the *conversion_rate* was queried.
+This *MUST* be included if a *conversion_rate* is included.
+
+|*currency* (optional)
+|[stixtype]#{string_url}[string]#|
+The currency that the max_amount and min_amount fields use.
+This *SHOULD* be an ISO 4217 alpha currency code or the official currency code for the relevant cryptocurrency.
+This *SHOULD* match an organizations own primary currency, or for government reporting the currency requested by that government for these reports.
+
+This value *MUST* be included if the *min_amount* is included.
+
+|*currency_actual* (optional)
+|[stixtype]#{string_url}[string]#|
+The currency that the impact actually used.
+For ransom demands this should be the currency of the demand.
+If this is not included it should be assumed to be the same value as *currency*.
+
+If this is included then *currency* *MUST* be included.
+This *SHOULD* be an ISO 4217 alpha currency code or the official currency code for the relevant cryptocurrency.
+
+|*max_amount* (optional)
+|[stixtype]#{number_url}[number]#
+|The maximum damage estimate of this type in the provided currency.
+This value *MUST* be greater than zero.
+
+This value *MUST* be included if the *min_amount* is included.
+
+|*min_amount* (optional)
+|[stixtype]#{number_url}[number]#
+|The minimum damage estimate of this type in the provided currency.
+This value *MUST* be greater than zero.
+
+This value *MUST* be included if the *max_amount* is included.
+
+|===
+
+<<<
+
+===== 2.3.2.7. Physical Impact Extension
+The Python class name is [stixliteral]#Physical#.
+
+[width="100%",cols="37%,23%,40%",options="header",]
+|===
+^|[stixtr]*Property Name*
+^|[stixtr]*Type* 
+^|[stixtr]*Description*
+
+|*impact_type* (required)
+|[stixtype]#<<physical-impact-enum,physical-impact-enum>>#
+|The type of physical impact that has occurred.
+
+The values of this property *MUST* come from the [stixtype]#<<physical-impact-enum,physical-impact-enum>>#
+enumeration.
+
+|*asset_type* (optional)
+|[stixtype]#{open_vocab_url}[open-vocab]#
+|The type or property or system that was affected by this impact.
+
+This *SHOULD* be drawn from [stixtype]#<<asset-type-ov,asset-type-ov>>#.
+
+This value *MUST* be included if the *impact_type* is not none.
+Including an entry with an *impact_type* of none and no asset_type indicates that no physical damage was caused by this incident.
+
+|===
+
+===== 2.3.2.7. Traceability Impact Extension
+The Python class name is [stixliteral]#Traceability#.
+
+[width="100%",cols="37%,23%,40%",options="header",]
+|===
+^|[stixtr]*Property Name*
+^|[stixtr]*Type* 
+^|[stixtr]*Description*
+
+|*traceability_impact* (required)
+|[stixtype]#<<traceability-enum,traceability-enum>>#
+|The impact of this incident on a system or organization's ability to perform audits or provide non-repudiation.
+
+The values of this property *MUST* come from the [stixtype]#<<traceability-enum,traceability-enum>># enumeration
+
+|===

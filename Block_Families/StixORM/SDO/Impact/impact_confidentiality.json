@@ -1,0 +1,33 @@
+{
+    "impact_form": {
+        "base_required": {
+            "type": "impact",
+            "spec_version": "2.1",
+            "id": "",
+            "created": "",
+            "modified": ""
+        },
+        "base_optional": {
+            "created_by_ref": "",
+            "revoked": null,
+            "labels": [],
+            "lang": "",
+            "external_references": [],
+            "object_marking_refs": [],
+            "granular_markings": [],
+            "defanged": null
+        },
+        "object": {
+            "impact_category": "confidentiality",
+            "criticality": 75,
+            "description": "Risk of credential theft and unauthorized access to sensitive corporate data if users fall victim to phishing attack",
+            "recoverability": "regular"
+        },
+        "extensions": {
+            "confidentiality": {
+                "loss_of_confidentiality": 75
+            }
+        },
+        "sub": {}
+    }
+}

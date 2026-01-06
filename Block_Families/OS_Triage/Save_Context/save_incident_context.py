@@ -54,9 +54,8 @@ import_type = import_type_factory.get_all_imports()
 # Common File Stuff
 TR_Common_Files = "./generated/os-triage/common_files"
 common = [
-    {"module": "convert_n_and_e", "file": "convert_n_and_e.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/main/Block_Families/General/_library/convert_n_and_e.py"}
+    {"module": "parse", "file": "parse.py", "url" : "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/refs/heads/main/Block_Families/General/_library/parse.py"}
 ]
-
 # OS_Triage Memory Stuff
 TR_Context_Memory_Dir = "./generated/os-triage/context_mem"
 TR_User_Dir = "/usr"
@@ -64,21 +63,13 @@ context_map = "context_map.json"
 user_data = {
     "global": "/global_variables_dict.json",
     "me": "/cache_me.json",
-    "team": "/cache_team.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "team": "/cache_team.json"
 }
 comp_data = {
     "users": "/users.json",
     "company" : "/company.json",
-    "assets" : "/assets.json",
-    "systems" : "/systems.json",
-    "relations" : "/relations.json",
-    "edges" : "/edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "platforms" : "/platforms.json",
+    "systems" : "/systems.json"
 }
 incident_data = {
     "incident" : "/incident.json",
@@ -87,14 +78,8 @@ incident_data = {
     "impact" : "/impact_refs.json",
     "event" : "/event_refs.json",
     "task" : "/task_refs.json",
-    "behavior" : "/behavior_refs.json",
     "other" : "/other_object_refs.json",
-    "unattached" : "/unattached_objs.json",
-    "unattached_relations" : "/unattached_relation.json",
-    "relations" : "/incident_relations.json",
-    "edges" : "/incident_edges.json",
-    "relation_edges" : "/relation_edges.json",
-    "relation_replacement_edges" : "/relation_replacement_edges.json"
+    "unattached" : "/unattached_objs.json"
 }
 field_names = {
     "start" : "sequence_start_refs",
@@ -133,22 +118,6 @@ def add_node(node, context_dir, context_type):
         f.write(json.dumps(stix_nodes_list))
 
 
-def add_edge(edge, context_dir, context_type):
-    exists = False
-    stix_edge_list = []
-    if os.path.exists(context_dir + incident_data[context_type]):
-        with open(context_dir + incident_data[context_type], "r") as mem_input:
-            stix_edge_list = json.load(mem_input)
-            for i in range(len(stix_edge_list)):
-                if stix_edge_list[i]["source"] == edge["source"] and stix_edge_list[i]["target"] == edge["target"]:
-                    stix_edge_list[i] = edge
-                    exists = True
-            if not exists:
-                stix_edge_list.append(edge)
-    else:
-        stix_edge_list = [edge]
-    with open(context_dir + incident_data[context_type], 'w') as f:
-        f.write(json.dumps(stix_edge_list))
 
 def register_id(id, field, TR_Incident_Context_Dir):
     incident_list = []
@@ -156,7 +125,9 @@ def register_id(id, field, TR_Incident_Context_Dir):
         incident_list = json.load(incident_object)
         wrapped_incident = incident_list[0]
         incident = wrapped_incident["original"]
+        incident_references = wrapped_incident["references"]
         incident_ext = incident["extensions"]["extension-definition--ef765651-680c-498d-9894-99799f2fa126"]
+        # register first in the object
         # check whether field exists first
         if field_names[field] in incident_ext:
             id_list = incident_ext[field_names[field]]
@@ -166,12 +137,25 @@ def register_id(id, field, TR_Incident_Context_Dir):
             id_list = []
             id_list.append(id)
             incident_ext[field_names[field]] = id_list
+        # register second in the references
+        # check whether field exists first
+        if field_names[field] in incident_references:
+            id_list = incident_references[field_names[field]]
+            if id not in id_list:
+                id_list.append(id)
+        else:
+            id_list = []
+            id_list.append(id)
+            incident_references[field_names[field]] = id_list
+
 
     with open(TR_Incident_Context_Dir + incident_data["incident"], 'w') as f:
         f.write(json.dumps(incident_list))
 
 
-def save_context(stix_object, context_type):
+def save_context(stix_object):
+    if "original" in stix_object:
+        stix_object = stix_object["original"]
     # 0 Check for "original"
     wrapped = False
     exists = False
@@ -186,9 +170,9 @@ def save_context(stix_object, context_type):
         TR_Incident_Context_Dir = TR_Context_Memory_Dir + "/" + current_incident_dir
 
         # 2. Check if the key directories exist, if not make them, and download common files
-        if not os.path.exists(TR_Common_Files):
-            os.makedirs(TR_Common_Files)
-            download_common(common)
+        # if not os.path.exists(TR_Common_Files):
+        #     os.makedirs(TR_Common_Files)
+        #     download_common(common)
         if not os.path.exists(TR_Context_Memory_Dir):
             os.makedirs(TR_Context_Memory_Dir)
         if not os.path.exists(TR_Context_Memory_Dir + "/usr"):
@@ -200,132 +184,51 @@ def save_context(stix_object, context_type):
         # Specify the path to the Nodes and Edges module
         module_path = TR_Common_Files + '/' + common[0]["file"]
         # Load the module spec using importlib.util.spec_from_file_location
-        spec = importlib.util.spec_from_file_location('n_and_e', module_path)
+        spec = importlib.util.spec_from_file_location('parse', module_path)
         # Create the module from the specification
-        n_and_e = importlib.util.module_from_spec(spec)
+        parse = importlib.util.module_from_spec(spec)
         # Load the module
-        spec.loader.exec_module(n_and_e)
+        spec.loader.exec_module(parse)
         # 4. Depending on Object Type, Get the Nodes and Edges, and save them to the lists
         stix_nodes_list = []
         incident = {}
-        if stix_object["type"] == "relationship":
-            if wrapped:
-                add_node(stix_object, TR_Incident_Context_Dir, "relations")
-                register_id(stix_object["id"], "other", TR_Incident_Context_Dir)
-            else:
-                nodes, edges, relation_edges, relation_replacement_edges = n_and_e.convert_relns(stix_object)
-                add_node(nodes[0],TR_Incident_Context_Dir, "relations")
-                register_id(stix_object["id"], "other", TR_Incident_Context_Dir)
-                for edge in edges:
-                    add_edge(edge, TR_Incident_Context_Dir, "edges")
-                for edge in relation_edges:
-                    add_edge(edge, TR_Incident_Context_Dir, "relation_edges")
-                for edge in relation_replacement_edges:
-                    add_edge(edge, TR_Incident_Context_Dir, "relation_replacement_edges")
-
-        elif stix_object["type"] == "sighting":
-            if wrapped:
-                add_node(stix_object, "other")
-                register_id(stix_object["id"], "other", TR_Incident_Context_Dir)
-            else:
-                nodes, edges = n_and_e.convert_sighting(stix_object)
-                add_node(nodes[0], TR_Incident_Context_Dir, "other")
-                register_id(stix_object["id"], "other", TR_Incident_Context_Dir)
-                for edge in edges:
-                    add_edge(edge, TR_Incident_Context_Dir, "edges")
+        # its a node-type of object
+        wrapped = parse.wrap_stix_dict(stix_object)
+        if stix_object["type"] == "sequence":
+            add_node(wrapped, TR_Incident_Context_Dir, "sequence")
+            register_id(stix_object["id"], "sequence", TR_Incident_Context_Dir)
+        elif stix_object["type"] == "task":
+            add_node(wrapped, TR_Incident_Context_Dir, "task")
+            register_id(stix_object["id"], "task", TR_Incident_Context_Dir)
+        elif stix_object["type"] == "event":
+            add_node(wrapped, TR_Incident_Context_Dir, "event")
+            register_id(stix_object["id"], "event", TR_Incident_Context_Dir)
+        elif stix_object["type"] == "impact":
+            add_node(wrapped, TR_Incident_Context_Dir, "impact")
+            register_id(stix_object["id"], "impact", TR_Incident_Context_Dir)
+        elif stix_object["type"] != "incident":
+            add_node(wrapped, TR_Incident_Context_Dir, "other")
+            register_id(stix_object["id"], "other", TR_Incident_Context_Dir)
         else:
-            # its a node-type of object
-            if stix_object["type"] == "sequence":
-                if stix_object["step_type"] == "start_step":
-                    if wrapped:
-                        add_node(stix_object, "start")
-                        register_id(stix_object["id"], "start", TR_Incident_Context_Dir)
-                    else:
-                        nodes, edges = n_and_e.convert_node(stix_object)
-                        add_node(nodes[0], TR_Incident_Context_Dir, "start")
-                        register_id(stix_object["id"], "start", TR_Incident_Context_Dir)
-                        for edge in edges:
-                            add_edge(edge, TR_Incident_Context_Dir, "edges")
+            # It is an Incident, so first, update all of the id lists on the incident object
+            for key in key_list:
+                if os.path.exists(TR_Incident_Context_Dir + incident_data[key]):
+                    with open(TR_Incident_Context_Dir + incident_data[key], "r") as list_input:
+                        stix_list = json.load(list_input)
+                        stix_id_list = [x["id"] for x in stix_list]
+                        # does the stix_object already appear in the list?
+                        wrapped["original"][field_names[key]] = stix_id_list
                 else:
-                    if wrapped:
-                        add_node(stix_object, "sequence")
-                        register_id(stix_object["id"], "sequence", TR_Incident_Context_Dir)
-                    else:
-                        nodes, edges = n_and_e.convert_node(stix_object)
-                        add_node(nodes[0], TR_Incident_Context_Dir, "sequence")
-                        register_id(stix_object["id"], "sequence", TR_Incident_Context_Dir)
-                        for edge in edges:
-                            add_edge(edge, TR_Incident_Context_Dir, "edges")
-            elif stix_object["type"] == "task":
-                if wrapped:
-                    add_node(stix_object, "task")
-                    register_id(stix_object["id"], "task", TR_Incident_Context_Dir)
+                    # list is empty
+                    wrapped["original"][field_names[key]] = []
 
-                else:
-                    nodes, edges = n_and_e.convert_node(stix_object)
-                    add_node(nodes[0], TR_Incident_Context_Dir, "task")
-                    register_id(stix_object["id"], "task", TR_Incident_Context_Dir)
-                    for edge in edges:
-                        add_edge(edge, TR_Incident_Context_Dir, "edges")
-            elif stix_object["type"] == "event":
-                if wrapped:
-                    add_node(stix_object, "event")
-                    register_id(stix_object["id"], "event", TR_Incident_Context_Dir)
-
-                else:
-                    nodes, edges = n_and_e.convert_node(stix_object)
-                    add_node(nodes[0], TR_Incident_Context_Dir, "event")
-                    register_id(stix_object["id"], "event", TR_Incident_Context_Dir)
-                    for edge in edges:
-                        add_edge(edge, TR_Incident_Context_Dir, "edges")
-            elif stix_object["type"] == "impact":
-                if wrapped:
-                    add_node(stix_object, "impact")
-                    register_id(stix_object["id"], "impact", TR_Incident_Context_Dir)
-
-                else:
-                    nodes, edges = n_and_e.convert_node(stix_object)
-                    add_node(nodes[0], TR_Incident_Context_Dir, "impact")
-                    register_id(stix_object["id"], "impact", TR_Incident_Context_Dir)
-                    for edge in edges:
-                        add_edge(edge, TR_Incident_Context_Dir, "edges")
-            elif stix_object["type"] != "incident":
-                if wrapped:
-                    add_node(stix_object, "other")
-                    register_id(stix_object["id"], "other", TR_Incident_Context_Dir)
-                else:
-                    nodes, edges = n_and_e.convert_node(stix_object)
-                    add_node(nodes[0], TR_Incident_Context_Dir, "other")
-                    register_id(stix_object["id"], "other", TR_Incident_Context_Dir)
-                    for edge in edges:
-                        add_edge(edge, TR_Incident_Context_Dir, "edges")
-            else:
-                # It is an Incident, so first, update all of the id lists on the incident object
-                for key in key_list:
-                    if os.path.exists(TR_Incident_Context_Dir + incident_data[key]):
-                        with open(TR_Incident_Context_Dir + incident_data[key], "r") as list_input:
-                            stix_list = json.load(list_input)
-                            if key == "other":
-                                # if we are filling the "other" list then add in the relations
-                                if os.path.exists(TR_Incident_Context_Dir + incident_data["relations"]):
-                                    with open(TR_Incident_Context_Dir + incident_data[key], "r") as list2_input:
-                                        stix_list2 = json.load(list2_input)
-                                        stix_list = stix_list + stix_list2
-                            stix_id_list = [x["id"] for x in stix_list]
-                            # does the stix_object already appear in the list?
-                            stix_object[field_names[key]] = stix_id_list
-                    else:
-                        # list is empty
-                        stix_object[field_names[key]] = []
-
-                # create the nodes and edges
-                if wrapped:
-                    add_node(stix_object, "incident")
-                else:
-                    nodes, edges = n_and_e.convert_node(stix_object)
-                    add_node(nodes[0], "incident")
-                    for edge in edges:
-                        add_edge(edge, "edges")
+            add_node(wrapped, TR_Incident_Context_Dir, "incident")
+        # 5. 
+        # 5. Add the id to the Update Incident List, if it is not already in there
+        if current_incident_dir not in local_map.get("update_incident_list", []):
+            local_map["update_incident_list"] = local_map.get("update_incident_list", []) + [current_incident_dir]
+    with open(TR_Context_Memory_Dir + "/" + context_map, 'w') as f:
+        f.write(json.dumps(local_map))
 
     return " incident context saved - \nstix_id -> " + str(stix_object["id"])
 
@@ -342,14 +245,14 @@ def main(inputfile, outputfile):
                 if "context_type" in input_data:
                     context_type_string = input_data["context_type"]["context_type"]
                 print(f"from ports \nstix_object->{stix_object}\ncontext type->{context_type_string}")
-                result_string = save_context(stix_object, context_type_string)
+                result_string = save_context(stix_object)
             elif "api" in input_data:
                 api_input_data = input_data["api"]
                 stix_object = api_input_data["stix_object"]
                 if "context_type" in api_input_data:
                     context_type_string = api_input_data["context_type"]["context_type"]
                 print(f"api \nstix_object->{stix_object}\ncontext type->{context_type_string}")
-                result_string = save_context(stix_object, context_type_string)
+                result_string = save_context(stix_object)
 
             # setup logger for execution
 

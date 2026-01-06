@@ -1,0 +1,23 @@
+{
+    "anecdote_form": {
+        "base_required": {
+            "type": "anecdote",
+            "spec_version": "2.1",
+            "id": "",
+            "created": "",
+            "modified": ""
+        },
+        "base_optional": {
+            "external_references": [],
+            "object_marking_refs": [],
+            "granular_markings": [],
+            "defanged": null
+        },
+        "object": {
+            "value": "I received an email claiming to be from Microsoft Support about suspicious account activity. The sender address looked odd with zeros instead of O's. The email had urgent language and a link to verify my account. I recognized it as phishing from security training and did not click the link. I reported it immediately to IT.",
+            "provided_by_ref": ""
+        },
+        "extensions": {},
+        "sub": {}
+    }
+}

@@ -144,6 +144,7 @@ def make_observation(observed_data_form, observations=None):
 def main(inputfile, outputfile):
     observation_form = None
     observations = None
+    input_data = {}  # Initialize to prevent UnboundLocalError
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
             input_data = json.load(script_input)
