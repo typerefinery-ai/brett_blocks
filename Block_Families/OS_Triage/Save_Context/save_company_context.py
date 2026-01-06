@@ -142,8 +142,8 @@ def save_context(stix_object):
             os.makedirs(TR_Context_Memory_Dir)
         if not os.path.exists(TR_Context_Memory_Dir + "/usr"):
             os.makedirs(TR_Context_Memory_Dir + "/usr")
-        # if not os.path.exists(TR_Context_Memory_Dir + "/incident_1"):
-        #     os.makedirs(TR_Context_Memory_Dir + "/incident_1")
+        if not os.path.exists(TR_Context_Memory_Dir + "/settings"):
+            os.makedirs(TR_Context_Memory_Dir + "/settings")
 
         # 3. Now we are sure the common files exist, we need to import them
         # Specify the path to the Nodes and Edges module

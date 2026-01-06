@@ -47,6 +47,9 @@ class ParseContent(BaseModel):
 	icon: Optional[str] = ""
 	form: Optional[str] = ""
 	head: Optional[str] = ""
+	form_group: Optional[str] = ""
+	form_family: Optional[str] = ""
+    
 	
 	# Display formatting fields (prior_string/post_field pairs)
 	prior_string0: Optional[str] = ""
@@ -722,8 +725,8 @@ def wrap_stix_dict(stix_dict: Dict[str, Union[str, Dict, List]]) -> Dict[str, Un
     wrap["heading"] = content.head
     wrap["description"] = description
     wrap["object_form"] = content.form
-    wrap["object_group"] = content.group
-    wrap["object_family"] = content.protocol
+    wrap["object_group"] = content.form_group
+    wrap["object_family"] = content.form_family
     wrap["original"] = stix_dict
     wrap["references"] = embedded_refs.to_json_dict()
 

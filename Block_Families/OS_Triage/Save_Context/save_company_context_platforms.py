@@ -156,7 +156,7 @@ def save_context(stix_object):
         spec.loader.exec_module(parse)
         # 4.  if file exists, replce existing object if it exists, else add it, else create the list and add it
         wrapped = parse.wrap_stix_dict(stix_object)
-        add_node(wrapped, TR_Company_Context_Dir, context_type)
+        add_node(wrapped, TR_Company_Context_Dir, "platforms")
         # 5. Add the id to the Update Company List, if it is not already in there
         if current_company_dir not in local_map.get("update_company_list", []):
             local_map["update_company_list"] = local_map.get("update_company_list", []) + [current_company_dir]

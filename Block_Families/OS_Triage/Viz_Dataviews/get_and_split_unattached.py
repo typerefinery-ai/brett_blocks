@@ -93,7 +93,6 @@ from collections import deque
 
 # If Incident Management, then check for these promotoables
 prom_types = [
-	'incident',
 	'task',
 	'impact',
 	'event',
@@ -102,16 +101,6 @@ prom_types = [
 	'x-oca-behavior'
 ]
 
-# Priority order for promotable types (higher priority = lower index)
-prom_priority = {
-	'incident': 0,
-	'event': 1,
-	'sighting': 2,
-	'task': 3,
-	'impact': 4,
-	'attack-flow': 5,
-	'x-oca-behavior': 6
-}
 
 # setup layout types for each object
 
@@ -148,6 +137,8 @@ level2_layouts = {
 		{"label": "Superseded By", "field": "superseded_by_ref", "datatype": "value"},
 		{"label": "Recorded By", "field": "created_by_ref", "datatype": "value"},
 	],
+	'x-oca-behavior': [],
+	'attack-flow': []
 }
 
 
@@ -269,6 +260,8 @@ def split_subgraphs_by_promotables(data):
 	
 	# Identify all promotable nodes
 	promotables = [node for node in nodes if node.get('type') in prom_types]
+	num_promotables = len(promotables)
+	logger.info(f"Found {num_promotables} promotable nodes.")
 	
 	# Track visited nodes
 	visited = set()
@@ -276,10 +269,17 @@ def split_subgraphs_by_promotables(data):
 	all_promo_edges = []
 	
 	# Process each promotable node
+	i = 0
 	for prom_node in promotables:
+		# setup prom node details
 		prom_id = prom_node['id']
+		prom_type = prom_node['type']
+		prom_layout = level2_layouts.get(prom_type, [])
+		actual_layout = [l for l in prom_layout if l['field'] in prom_node.get('original', {})]
+		len_actual_layout = len(actual_layout)
+
 		
-		if prom_id in visited:
+		if prom_id in visited or len_actual_layout == 0:
 			continue
 		
 		# Find all connected nodes (the component)
