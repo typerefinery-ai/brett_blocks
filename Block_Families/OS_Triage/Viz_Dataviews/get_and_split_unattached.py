@@ -4,6 +4,7 @@
 ################################################################################
 # allow importing og service local packages
 import os.path
+from urllib.request import urlretrieve
 
 where_am_i = os.path.dirname(os.path.abspath(__file__))
 # sys.path.insert(0, os.environ["APP_SERVICE_PACKAGES_PATH"])
@@ -86,6 +87,17 @@ field_names = {
     "other" : "other_object_refs"
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
+
+TR_Settings_Dir = "./generated/os-triage/context_memory/settings"
+TR_Settings_File = "/options.json"
+TR_Settings_URL = "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/refs/heads/main/Block_Families/OS_Triage/User_Options/options.json"
+
+def download_settings():
+    if not os.path.exists(TR_Settings_Dir):
+        os.makedirs(TR_Settings_Dir)
+    result = urlretrieve(TR_Settings_URL, TR_Settings_Dir + "/options.json")
+    print(f'settings file result ->', result)
+
 
 #============================================================================
 
@@ -228,6 +240,141 @@ class AdjacencyGraph:
 		
 		return subgraph_edges
 
+def get_actual_layout_and_ids(prom_layout, prom_node):
+	"""
+	Get actual layout fields and corresponding 2nd level IDs from promotable node.
+	
+	Args:
+		prom_layout: Layout configuration for the promotable type
+		prom_node: The promotable node dict
+	"""
+	all_second_level_ids = []
+	second_level_ids_by_field = []
+	actual_layout = []
+	for layout in prom_layout:
+		level = {}
+		if layout.get('field') in prom_node["original"]:
+			actual_layout.append(layout)
+			if layout['datatype'] == 'list':
+				ids = prom_node["original"][layout['field']]
+				all_second_level_ids.extend(ids)
+				level[layout['field']] = ids
+				second_level_ids_by_field.append({layout['field']: ids})
+			else:
+				id = prom_node["original"][layout['field']]
+				all_second_level_ids.append(id)
+				level[layout['field']] = [id]
+				second_level_ids_by_field.append({layout['field']: [id]})
+
+	return actual_layout, all_second_level_ids, second_level_ids_by_field
+
+def annotate_2nd_level_node(node, i, centreX, secondY, distanceX, len_actual_layout, dummy_width) -> Dict:
+	"""
+	Annotate a single node with positionX and positionY.
+	
+	Args:
+		node: Node dictionary
+		i: Layout index
+		centreX: X centre coordinate
+		secondY: Y coordinate
+		distanceX: Horizontal distance between nodes
+		len_actual_layout: Number of fields in the actual layout
+		dummy_width: Width of the area for layout
+		
+	Returns:
+		Node dictionary with updated positionX and positionY
+	"""
+	# position based on field and index
+	if len_actual_layout == 1:
+		node['positionY'] = secondY
+		node['positionX'] = centreX
+	elif len_actual_layout == 2:
+		node['positionY'] = secondY
+		if i == 0:
+			node['positionX'] = centreX - distanceX
+		elif i == 1:
+			node['positionX'] = centreX + distanceX
+		else:
+			pass
+	elif len_actual_layout == 3:
+		node['positionY'] = secondY
+		if i == 0:
+			node['positionX'] = centreX - distanceX
+		elif i == 1:
+			node['positionX'] = centreX 
+		elif i == 2:
+			node['positionX'] = centreX + distanceX
+		else:
+			pass
+	elif len_actual_layout == 4:
+		node['positionY'] = secondY
+		if i == 0:
+			node['positionX'] = centreX - dummy_width / 2 
+		elif i == 1:
+			node['positionX'] = centreX - dummy_width / 2 + distanceX
+		elif i == 2:
+			node['positionX'] = centreX - dummy_width / 2 + 2 * distanceX
+		elif i == 3:
+			node['positionX'] = centreX - dummy_width / 2 + 3 * distanceX
+		else:
+			pass
+	else:
+		pass
+		
+	return node
+
+def annotate_nodes_with_positions(component_nodes, layout_options, prom_layout, prom_node, index) -> List[Dict]:
+	"""
+	Annotate nodes with positionX and positionY based on layout.
+
+	Args:
+		component_nodes: List of node dicts in the component
+		layout_options: Layout configuration options
+		prom_layout: Layout configuration for the promotable type
+		prom_node: The promotable node dict
+		index: Index of the promotable node (for horizontal offset)
+	Returns:
+		List of nodes with updated positionX and positionY
+	"""
+	# extract layout options
+	top = layout_options.get("top", 50)
+	dummy_width = layout_options.get("dummy_width", 400)
+	distanceX = layout_options.get("distanceX", 200)
+	distanceY = layout_options.get("distanceY", 100)
+	left = layout_options.get("left", 50)
+	# setup prom node positions
+	centreX = left +dummy_width/2 + index * dummy_width
+	topY = top	
+
+	# get list of 2nd level id's from layout and prom node
+	all_second_level_ids = []
+	second_level_ids_by_field = []
+	actual_layout = []
+	actual_layout, all_second_level_ids, second_level_ids_by_field = get_actual_layout_and_ids(prom_layout, prom_node)
+
+	# setup horizontal positioning
+	len_actual_layout = len(actual_layout)
+	horizontal_spacing = dummy_width / (len_actual_layout + 1)
+	# setup node positions
+	for node in component_nodes:
+		if node['id'] == prom_node['id']: # promotable node at top center
+			node['positionX'] = centreX
+			node['positionY'] = topY
+		elif node['id'] in all_second_level_ids: # 2nd level nodes
+			for i, level in enumerate(second_level_ids_by_field):
+				for field, ids in level.items():
+					if node['id'] in ids:
+						# position based on field and index
+						secondY = topY + distanceY
+						node = annotate_2nd_level_node(node, i, centreX, secondY, distanceX, len_actual_layout, dummy_width)
+		elif node["type"] == 'relationship': # relationship nodes are 4th level
+			node['positionX'] = 0
+			node['positionY'] = topY + 3 * distanceY  # fixed offset below 3rd level nodes
+		else: # 3rd level  positioned below 2nd level
+			node['positionX'] = 0
+			node['positionY'] = topY + 2 * distanceY  # fixed offset at 3rd level below 2nd level node
+
+	return component_nodes
 
 def split_subgraphs_by_promotables(data):
 	"""
@@ -255,62 +402,70 @@ def split_subgraphs_by_promotables(data):
 	if not nodes:
 		return {'promo': {'nodes': [], 'edges': []}, 'scratch': {'nodes': [], 'edges': []}}
 	
-	# Create adjacency graph
-	graph = AdjacencyGraph(nodes, edges)
-	
-	# Identify all promotable nodes
-	promotables = [node for node in nodes if node.get('type') in prom_types]
-	num_promotables = len(promotables)
-	logger.info(f"Found {num_promotables} promotable nodes.")
-	
-	# Track visited nodes
-	visited = set()
-	all_promo_nodes = []
-	all_promo_edges = []
-	
-	# Process each promotable node
-	i = 0
-	for prom_node in promotables:
-		# setup prom node details
-		prom_id = prom_node['id']
-		prom_type = prom_node['type']
-		prom_layout = level2_layouts.get(prom_type, [])
-		actual_layout = [l for l in prom_layout if l['field'] in prom_node.get('original', {})]
-		len_actual_layout = len(actual_layout)
+	# 1. get the settings
+	if not os.path.exists(TR_Settings_Dir):
+		download_settings()	
+	with open(TR_Settings_Dir + "/options.json", "r") as mem_input:
+		options = json.load(mem_input)        # load options json
+		layout_options = options.get("layout", {})
 
+		# 2. Create adjacency graph
+		graph = AdjacencyGraph(nodes, edges)
 		
-		if prom_id in visited or len_actual_layout == 0:
-			continue
+		# 3. Identify all promotable nodes
+		promotables = [node for node in nodes if node.get('type') in prom_types]
+		num_promotables = len(promotables)
+		logger.info(f"Found {num_promotables} promotable nodes.")
 		
-		# Find all connected nodes (the component)
-		component_ids = graph.get_connected_component(prom_id)
+		# 4. Track visited nodes
+		visited = set()
+		all_promo_nodes = []
+		all_promo_edges = []
 		
-		# Mark all as visited
-		visited.update(component_ids)
+		# 5. Process each promotable node
+		i = 0
+		for prom_node in promotables:
+			# 5.1 setup prom node details
+			prom_id = prom_node['id']
+			prom_type = prom_node['type']
+			prom_layout = level2_layouts.get(prom_type, [])
+			
+			if prom_id in visited or prom_layout == []:
+				continue
+			
+			# 5.2 Find all connected nodes (the component)
+			component_ids = graph.get_connected_component(prom_id)
+			
+			# 5.3 Mark all as visited
+			visited.update(component_ids)
+			
+			# 5.4 Get nodes and edges for this component
+			component_nodes = [graph.nodes_by_id[nid] for nid in component_ids]
+			component_edges = graph.get_subgraph_edges(component_ids)
+
+			# 5.5 Setup positions for 2nd level nodes
+			component_nodes = annotate_nodes_with_positions(component_nodes, layout_options, prom_layout, prom_node, i)
+			i += 1
+			
+			# 5.7 Add to promo collections
+			all_promo_nodes.extend(component_nodes)
+			all_promo_edges.extend(component_edges)
 		
-		# Get nodes and edges for this component
-		component_nodes = [graph.nodes_by_id[nid] for nid in component_ids]
-		component_edges = graph.get_subgraph_edges(component_ids)
+		# 6. Find scratch nodes (not visited)
+		scratch_node_ids = set(graph.nodes_by_id.keys()) - visited
+		scratch_nodes = [graph.nodes_by_id[nid] for nid in scratch_node_ids]
+		scratch_edges = graph.get_subgraph_edges(scratch_node_ids)
 		
-		# Add to promo collections
-		all_promo_nodes.extend(component_nodes)
-		all_promo_edges.extend(component_edges)
-	
-	# Find scratch nodes (not visited)
-	scratch_node_ids = set(graph.nodes_by_id.keys()) - visited
-	scratch_nodes = [graph.nodes_by_id[nid] for nid in scratch_node_ids]
-	scratch_edges = graph.get_subgraph_edges(scratch_node_ids)
-	
-	return {
-		'promo': {
-			'nodes': all_promo_nodes,
-			'edges': all_promo_edges
-		},
-		'scratch': {
-			'nodes': scratch_nodes,
-			'edges': scratch_edges
+		return {
+			'promo': {
+				'nodes': all_promo_nodes,
+				'edges': all_promo_edges
+			},
+			'scratch': {
+				'nodes': scratch_nodes,
+				'edges': scratch_edges
+			}
 		}
-	}
 
 #============================================================================
 

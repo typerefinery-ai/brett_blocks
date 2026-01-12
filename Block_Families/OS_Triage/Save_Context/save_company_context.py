@@ -91,6 +91,18 @@ field_names = {
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
+TR_Settings_Dir = "./generated/os-triage/context_memory/settings"
+TR_Settings_URL = "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/refs/heads/main/Block_Families/OS_Triage/User_Options/options.json"
+
+def download_settings():
+    if not os.path.exists(TR_Settings_Dir):
+        os.makedirs(TR_Settings_Dir)
+    result = urlretrieve(TR_Settings_URL, TR_Settings_Dir + "/options.json")
+    print(f'settings file result ->', result)
+
+
+
+
 def download_common(module_list):
     for module in module_list:
         # Step 1: download the module
@@ -144,6 +156,8 @@ def save_context(stix_object):
             os.makedirs(TR_Context_Memory_Dir + "/usr")
         if not os.path.exists(TR_Context_Memory_Dir + "/settings"):
             os.makedirs(TR_Context_Memory_Dir + "/settings")
+        if not os.path.exists(TR_Settings_Dir):
+            download_settings()
 
         # 3. Now we are sure the common files exist, we need to import them
         # Specify the path to the Nodes and Edges module
