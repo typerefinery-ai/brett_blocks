@@ -45,6 +45,10 @@ from Block_Families.OS_Triage.Open_Incident.get_default_incidents_objects import
 from Block_Families.OS_Triage.Update_Context.update_company_relations import main as update_company_relations
 from Block_Families.OS_Triage.Update_Context.move_unattached_to_other import main as move_unattached_to_other
 from Block_Families.OS_Triage.Update_Context.promote_objects import main as promote_objects
+#################################################################################################
+#      Get Options JSON for Composer and Overview
+from Block_Families.OS_Triage.User_Options.get_composer_options import main as  get_composer_options
+from Block_Families.OS_Triage.User_Options.get_overview_options import main as  get_overview_options
 
 TR_Context_Memory_Dir = "./Context_Mem"
 local = {
@@ -969,3 +973,53 @@ def save_object_to_file(stix_object, file_path):
     """
     with open(file_path, 'w') as f:
         json.dump(stix_object, f, indent=4)
+
+
+
+
+
+def invoke_get_composer_options_block(stix_object_path, results_path):
+    #
+    # 1. Set the Relative Input and Output Paths for the block
+    #
+    #
+    # NOTE: This code is only To fake input ports
+    # Add the User Account object and the  EmailAddress
+    # NOTE: This code is only To fake input ports
+    ##
+    # Make the Observed Data object
+    get_composer_options(stix_object_path,results_path)
+    #
+    # Remove the context type record
+    #
+    #
+    if os.path.exists(results_path):
+        with open(results_path, "r") as script_input:
+            export_data = json.load(script_input)
+            return export_data
+
+
+
+
+
+def invoke_get_overview_options_block(stix_object_path, results_path):
+    #
+    # 1. Set the Relative Input and Output Paths for the block
+    #
+    #
+    # NOTE: This code is only To fake input ports
+    # Add the User Account object and the  EmailAddress
+    # NOTE: This code is only To fake input ports
+    ##
+    # Make the Observed Data object
+    get_overview_options(stix_object_path,results_path)
+    #
+    # Remove the context type record
+    #
+    #
+    if os.path.exists(results_path):
+        with open(results_path, "r") as script_input:
+            export_data = json.load(script_input)
+            return export_data
+
+

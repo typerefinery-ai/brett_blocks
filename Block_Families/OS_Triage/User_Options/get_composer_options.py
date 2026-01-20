@@ -19,19 +19,18 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Save Object to Unattached Context Memory, Inside an Incident
+# Title: Get Composer Options JSON
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: brett@osthreat.com
 # Date: 07/08/2023
 #
-# Description: This script is designed to take in a Stix Object
-#       and save it in the unattached list for the currently selected incident
+# Description: This script is designed to get the Options JSON for the Composer widget
 #
-# One Mandatory Input:
-# 1. Stix Object
+# No Input, Just Trigger:
+#
 # One Output
-# 1. Context Return
+# 1. Options JSON
 #
 #
 # This code is licensed under the terms of the Apache 2.
@@ -49,6 +48,8 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 import os
 import_type = import_type_factory.get_all_imports()
+from typing import List, Dict, Union, Optional, Any
+
 
 # Common File Stuff
 TR_Common_Files = "./generated/os-triage/common_files"
@@ -91,6 +92,7 @@ field_names = {
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
 TR_Settings_Dir = "./generated/os-triage/context_mem/settings"
+TR_Settings_File = "/options.json"
 TR_Settings_URL = "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/refs/heads/main/Block_Families/OS_Triage/User_Options/options.json"
 
 def download_settings():
@@ -100,104 +102,36 @@ def download_settings():
     print(f'settings file result ->', result)
 
 
+#============================================================================
 
 
-def download_common(module_list):
-    for module in module_list:
-        # Step 1: download the module
-        result = urlretrieve(module["url"], TR_Common_Files + "/" + module["file"])
-        print(f'common file result ->', result)
-        # Step 2: install the module
-
-def add_node(node, context_dir, context_type):
-    exists = False
-    stix_nodes_list = []
-    if  os.path.exists(context_dir + incident_data[context_type]):
-        with open(context_dir + incident_data[context_type], "r") as mem_input:
-            stix_nodes_list = json.load(mem_input)
-            for i in range(len(stix_nodes_list)):
-                if stix_nodes_list[i]["id"] == node["id"]:
-                    stix_nodes_list[i] = node
-                    exists = True
-            if not exists:
-                stix_nodes_list.append(node)
-    else:
-        stix_nodes_list = [node]
-    with open(context_dir + incident_data[context_type], 'w') as f:
-        f.write(json.dumps(stix_nodes_list))
-
-
-
-def save_context(stix_object):
-    context_type="unattached"
+def get_composer_options():
     # 0 Check for "original"
-    if "original" in stix_object:
-        stix_object = stix_object["original"]
-    exists = False
-    # 1.B Find Current Incident directory
-    local_map = {}
-    with open(TR_Context_Memory_Dir + "/" + context_map, "r") as current_context:
-        local_map = json.load(current_context)
-        # 1. Setup the directory
-        current_incident_dir = local_map["current_incident"]
-        TR_Incident_Context_Dir = TR_Context_Memory_Dir + "/" + current_incident_dir
-        # 2. Check if the key directories exist, if not make them, and download common files
-        # if not os.path.exists(TR_Common_Files):
-        #     os.makedirs(TR_Common_Files)
-        #     download_common(common)
-        if not os.path.exists(TR_Context_Memory_Dir):
-            os.makedirs(TR_Context_Memory_Dir)
-        if not os.path.exists(TR_Context_Memory_Dir + "/usr"):
-            os.makedirs(TR_Context_Memory_Dir + "/usr")
-        if not os.path.exists(TR_Settings_Dir):
-            download_settings()
-        # if not os.path.exists(TR_Context_Memory_Dir + "/incident_1"):
-        #     os.makedirs(TR_Context_Memory_Dir + "/incident_1")
+    composer_options = {}
+    # 1. get the settings
+    if not os.path.exists(TR_Settings_Dir):
+        download_settings()
+    with open(TR_Settings_Dir + "/options.json", "r") as mem_input:
+        options = json.load(mem_input)        # load options json
+        common_options = options.get("common", {})
+        core_overview_options = options.get("composer_options", {})
+        colour_options = options.get("colours", {})
+        composer_options = core_overview_options | common_options
+        if common_options["current_theme"] == "light":
+            composer_options["theme"] = colour_options["light_theme"]
+        else:
+            composer_options["theme"] = colour_options["dark_theme"]
 
-        # 3. Now we are sure the common files exist, we need to import them
-        # Specify the path to the Nodes and Edges module
-        module_path = TR_Common_Files + '/' + common[0]["file"]
-        # Load the module spec using importlib.util.spec_from_file_location
-        spec = importlib.util.spec_from_file_location('parse', module_path)
-        # Create the module from the specification
-        parse = importlib.util.module_from_spec(spec)
-        # Load the module
-        spec.loader.exec_module(parse)
-        # 4. Depending on Object Tupe, Get the Nodes and Edges, and save them to the lists
-        stix_nodes_list = []
-        incident = {}
-        wrapped = parse.wrap_stix_dict(stix_object)
-        add_node(wrapped, TR_Incident_Context_Dir, "unattached")
-
-    return "object saved to unattached context - \nstix_id -> " + str(stix_object["id"])
+    return composer_options
 
 
 def main(inputfile, outputfile):
-    context_type_string = ""
-    stix_object = None
-    if os.path.exists(inputfile):
-        with open(inputfile, "r") as script_input:
-            input_data = json.load(script_input)
-            print(f"input data->{input_data}")
-            if "stix_object" in input_data:
-                stix_object = input_data["stix_object"]
-                result_string = save_context(stix_object)
-            elif "api" in input_data:
-                api_input_data = input_data["api"]
-                stix_object = api_input_data["stix_object"]
-                if "context_type" in api_input_data:
-                    context_type_string = api_input_data["context_type"]["context_type"]
-                print(f"api \nstix_object->{stix_object}\ncontext type->{context_type_string}")
-                result_string = save_context(stix_object)
 
-            # setup logger for execution
 
-            context_result = {}
-            context_result["context_result"] = result_string
+    composer_options = get_composer_options()
 
-            with open(outputfile, "w") as outfile:
-                json.dump(context_result, outfile)
-
+    with open(outputfile, "w") as outfile:
+        json.dump(composer_options, outfile)
 
 ################################################################################
 ## body end                                                                   ##

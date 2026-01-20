@@ -99,7 +99,7 @@ field_names = {
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
-TR_Settings_Dir = "./generated/os-triage/context_memory/settings"
+TR_Settings_Dir = "./generated/os-triage/context_mem/settings"
 TR_Settings_URL = "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/refs/heads/main/Block_Families/OS_Triage/User_Options/options.json"
 
 def download_settings():

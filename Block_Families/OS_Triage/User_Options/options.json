@@ -1,4 +1,15 @@
 {
+    "overview_options" : {
+        "width": 1200,
+        "height": 1000,
+        "api": {
+            "endpoints": {
+                "graph": "/viz-data/overview-default-incident"
+            },
+            "timeout": 10000, 
+            "retryAttempts": 3
+        }
+    },
 	"composer_options" : {
         "tree_data": {
             "sighting": "sighting",
@@ -14,35 +25,16 @@
         "duration": 350,
         "radius": 6,
         "barHeight": 40,
-        "margin": {
-            "top": 30,
-            "left": 30,
-            "bottom": 50,
-            "right": 30
-        },
         "width": "100%",
         "height": "100%",
         "svg_spacing": 500,
         "svg_height": "100%",
-        "prefix": "https://raw.githubusercontent.com/os-threat/images/main/img/",
-        "shape": "rect-",
-        "icon_size": 35,
         "textPadding": 8,
         "corner": 5,
         "minHeight": 20,
         "lineSpacing": 50,
         "indentSpacing": 40,
-        "tooltipContent": "json",
         "itemFont": "18px",
-        "edgeFontSize": 12,
-        "edgeFontFamily": "Arial, sans-serif",
-        "layout": {
-            "dummy_width": 400,
-            "left": 20,
-            "top": 20,
-            "distanceX": 200,
-            "distanceY": 150
-        },
         "boxSize": 10,
         "tree_edge_thickness": 0.75,
         "graph_edge_thickness": 1,
@@ -51,7 +43,6 @@
         "centreStrength": 80,
         "promoSim": true,
         "scratchSim": true,
-        "theme": "light",
         "api": {
             "endpoints": {
                 "tree": "/viz-data/tree-",
@@ -59,7 +50,29 @@
             },
             "timeout": 10000,
             "retryAttempts": 3
+        }
+    },
+    "common" : {
+        "prefix": "https://raw.githubusercontent.com/os-threat/images/main/img/",
+        "shape": "rect-",
+        "tooltipContent": "json",       
+        "current_theme": "light",
+        "icon_size": 35,
+        "layout": {
+            "dummy_width": 400,
+            "left": 20,
+            "top": 20,
+            "distanceX": 200,
+            "distanceY": 150
         },
+        "margin": {
+            "top": 30,
+            "left": 30,
+            "bottom": 50,
+            "right": 30
+        },
+        "edgeFontFamily": "Arial, sans-serif",
+        "edgeFontSize": 12,
         "notifications": {
             "enabled": true,
             "duration": 5000,
@@ -71,7 +84,9 @@
             "showErrorMessages": true,
             "showWarningMessages": true,
             "showInfoMessages": true
-        },
+        }
+    },
+    "colours" : { 
         "light_theme": {
             "treeFill": "white",
             "scratchFill": "blanchedalmond",

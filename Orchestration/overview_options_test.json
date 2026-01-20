@@ -1,0 +1,65 @@
+{
+    "width": 1200,
+    "height": 1000,
+    "api": {
+        "endpoints": {
+            "graph": "/viz-data/overview-default-incident"
+        },
+        "timeout": 10000,
+        "retryAttempts": 3
+    },
+    "prefix": "https://raw.githubusercontent.com/os-threat/images/main/img/",
+    "shape": "rect-",
+    "tooltipContent": "json",
+    "current_theme": "light",
+    "icon_size": 35,
+    "layout": {
+        "dummy_width": 400,
+        "left": 20,
+        "top": 20,
+        "distanceX": 200,
+        "distanceY": 150
+    },
+    "margin": {
+        "top": 30,
+        "left": 30,
+        "bottom": 50,
+        "right": 30
+    },
+    "edgeFontFamily": "Arial, sans-serif",
+    "edgeFontSize": 12,
+    "notifications": {
+        "enabled": true,
+        "duration": 5000,
+        "gravity": "top",
+        "position": "right",
+        "maxQueueSize": 10,
+        "showLoadingStates": true,
+        "showSuccessMessages": true,
+        "showErrorMessages": true,
+        "showWarningMessages": true,
+        "showInfoMessages": true
+    },
+    "theme": {
+        "treeFill": "white",
+        "scratchFill": "blanchedalmond",
+        "promoFill": "ivory",
+        "svgName": "black",
+        "svgBorder": "black",
+        "checkColour": "gray",
+        "checkText": "white",
+        "select": "yellow",
+        "edges": "black",
+        "tooltip": {
+            "fill": "white",
+            "stroke": "1px",
+            "scolour": "black",
+            "corner": 5,
+            "tcolour": "black",
+            "tsize": "11px",
+            "padding": "5px",
+            "maxwidth": "900px",
+            "overflow": "auto"
+        }
+    }
+}

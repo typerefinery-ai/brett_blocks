@@ -88,7 +88,7 @@ field_names = {
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
-TR_Settings_Dir = "./generated/os-triage/context_memory/settings"
+TR_Settings_Dir = "./generated/os-triage/context_mem/settings"
 TR_Settings_File = "/options.json"
 TR_Settings_URL = "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/refs/heads/main/Block_Families/OS_Triage/User_Options/options.json"
 
@@ -407,7 +407,8 @@ def split_subgraphs_by_promotables(data):
 		download_settings()	
 	with open(TR_Settings_Dir + "/options.json", "r") as mem_input:
 		options = json.load(mem_input)        # load options json
-		layout_options = options.get("layout", {})
+		common_options = options.get("common", {})
+		layout_options = common_options.get("layout", {})
 
 		# 2. Create adjacency graph
 		graph = AdjacencyGraph(nodes, edges)
