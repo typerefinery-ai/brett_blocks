@@ -19,7 +19,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Get All Incidents
+# Title: Get An Incident and its Objects in a List
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: brett@osthreat.com
@@ -49,7 +49,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 import os
 import_type = import_type_factory.get_all_imports()
-from typing import List, Dict, Union, Optional, Any
+from typing import List, Dict, Tuple, Union, Optional, Any
 
 
 # Common File Stuff
@@ -62,7 +62,6 @@ TR_Context_Memory_Dir = "./generated/os-triage/context_mem"
 TR_User_Dir = "/usr"
 context_map = "context_map.json"
 user_data = {
-    "global": "/global_variables_dict.json",
     "me": "/cache_me.json",
     "team": "/cache_team.json"
 }
@@ -312,7 +311,7 @@ class AdjacencyGraph:
 
 
 
-def create_edge(edge_label, source_id, target_id, edge_type)-> Dict[str, str]:
+def create_edge(edge_label, source_id, target_id, edge_type) -> Dict[str, str]:
     edge = {}
     edge["source"] = source_id
     edge["target"] = target_id
@@ -321,23 +320,139 @@ def create_edge(edge_label, source_id, target_id, edge_type)-> Dict[str, str]:
     # edge["id"] = f"{source_id}--{edge_label}--{target_id}"
     return edge
 
-def generate_nodes_and_edges(nodes):
-    edges = []
+def search_context_memory_for_object(obj_id: str, incident_id: str = None) -> Optional[Dict]:
+    """
+    Search context memory for a specific object by ID.
     
-    node_ids = [x['id'] for x in nodes]
-    print(f"node ids->{node_ids}")
-    for node in nodes:
-        node_id = node["id"]
-        references = node["references"]
-        for edge_label, edge_list in references.items():
-            for edge_id in edge_list:
-                if edge_id in node_ids:
-                    if node["type"] == "relationship" and (edge_label == "source_ref" or edge_label == "target_ref"):
-                        edges.append(create_edge(node["original"]["relationship_type"], node_id, edge_id, "relationship"))
-                    else:
-                        edges.append(create_edge(edge_label, node_id, edge_id, "edge"))
+    Search locations:
+    1. Current incident's unattached_objs.json
+    2. usr/cache_me.json and usr/cache_team.json
+    3. All <`identity--uuid4`> directories' JSON files (users.json, platforms.json, systems.json, company.json)
+    
+    Args:
+        obj_id: The STIX object ID to search for
+        incident_id: Optional incident ID to search in
+        
+    Returns:
+        The found object dict or None
+    """
+    def find_object_in_data(data: Any, target_id: str) -> Optional[Dict]:
+        """Recursively search for an object with the given ID."""
+        if isinstance(data, dict):
+            if data.get('id') == target_id:
+                return data
+            for value in data.values():
+                result = find_object_in_data(value, target_id)
+                if result:
+                    return result
+        elif isinstance(data, list):
+            for item in data:
+                if isinstance(item, dict) and item.get('id') == target_id:
+                    return item
+                result = find_object_in_data(item, target_id)
+                if result:
+                    return result
+        return None
+    
+    search_paths = []
+    
+    # 1. Search in incident's unattached objects if incident_id provided
+    if incident_id:
+        incident_dir = os.path.join(TR_Context_Memory_Dir, incident_id)
+        if os.path.exists(incident_dir):
+            search_paths.append(os.path.join(incident_dir, "unattached_objs.json"))
+            search_paths.append(os.path.join(incident_dir, "other_object_refs.json"))
+    
+    # 2. Search in user data files
+    usr_dir = os.path.join(TR_Context_Memory_Dir, "usr")
+    if os.path.exists(usr_dir):
+        for filename in ["cache_me.json", "cache_team.json"]:
+            search_paths.append(os.path.join(usr_dir, filename))
+    
+    # 3. Search in all identity directories
+    if os.path.exists(TR_Context_Memory_Dir):
+        for item in os.listdir(TR_Context_Memory_Dir):
+            item_path = os.path.join(TR_Context_Memory_Dir, item)
+            if os.path.isdir(item_path) and item.startswith("identity--"):
+                # Search all JSON files in identity directory
+                if os.path.exists(item_path):
+                    for json_file in os.listdir(item_path):
+                        if json_file.endswith(".json"):
+                            search_paths.append(os.path.join(item_path, json_file))
+    
+    # Search through all paths
+    for file_path in search_paths:
+        if os.path.exists(file_path):
+            try:
+                with open(file_path, 'r') as f:
+                    data = json.load(f)
+                    found_obj = find_object_in_data(data, obj_id)
+                    if found_obj:
+                        logger.info(f"Found {obj_id} in {file_path}")
+                        return found_obj
+            except Exception as e:
+                logger.warning(f"Error reading {file_path}: {e}")
+                continue
+    
+    return None
 
-    return nodes, edges
+def generate_nodes_and_edges(nodes: List[Dict], incident_id: str = None) -> tuple[List[Dict], List[Dict]]:
+	"""Generate  List of Edges for a fixed Set of Nodes,
+				- ensure there are no duplicate nodes by ID,
+				- ensure edges only exist for nodes in the list	
+
+	Args:
+		nodes (List[Dict]): List of wrapped Stix dictionaries
+		incident_id (str): Optional incident ID for context memory search
+
+	Returns:
+		nodes (List[Dict]): List of wrapped Stix dictionaries
+		edges (List[Dict]): List of edge dictionaries, using the Stix IDs
+	"""
+	edges = []
+	
+	# Step 1: Build initial set of node IDs and collect all referenced IDs
+	node_ids = {node['id'] for node in nodes}
+	node_dict = {node['id']: node for node in nodes}
+	all_referenced_ids = set()
+	
+	logger.info(f"Starting with {len(node_ids)} nodes")
+	
+	# Collect all referenced IDs from all nodes
+	for node in nodes:
+		references = node.get("references", {})
+		for ref_list in references.values():
+			if isinstance(ref_list, list):
+				for ref_id in ref_list:
+					all_referenced_ids.add(ref_id)	
+	
+	# Rebuild nodes list from node_dict to ensure no duplicates
+	nodes = list(node_dict.values())
+	node_ids = set(node_dict.keys())
+	
+	logger.info(f"Final node count: {len(nodes)} (added {len(nodes) - len(node_ids)} objects from context memory)")
+	
+	# Step 5: Create edges only for nodes that exist in the final list
+	for node in nodes:
+		node_id = node["id"]
+		references = node.get("references", {})
+		
+		for edge_label, edge_list in references.items():
+			if isinstance(edge_list, list):
+				for edge_id in edge_list:
+					# Only create edge if target node exists
+					if edge_id in node_ids:
+						if node.get("type") == "relationship" and (edge_label == "source_ref" or edge_label == "target_ref"):
+							edges.append(create_edge(node["original"]["relationship_type"], node_id, edge_id, "relationship"))
+						else:
+							edges.append(create_edge(edge_label, node_id, edge_id, "edge"))
+					else:
+						logger.debug(f"Skipping edge from {node_id} to {edge_id} (target not found)")
+	
+	logger.info(f"Created {len(edges)} edges")
+	
+	# Step 6: Return nodes and edges (already deduplicated)
+	return nodes, edges
 
 
 
@@ -424,7 +539,7 @@ def annotate_2nd_level_node(node, i, centreX, secondY, distanceX, len_actual_lay
 		
 	return node
 
-def annotate_nodes_with_positions(component_nodes, layout_options, prom_layout, prom_node, index) -> List[Dict]:
+def annotate_promo_nodes_with_positions(component_nodes, layout_options, prom_layout, prom_node, index) -> List[Dict]:
 	"""
 	Annotate nodes with positionX and positionY based on layout.
 
@@ -505,7 +620,15 @@ def split_subgraphs_by_promotables(nodes, layout_options):
 		return {'promo': {'nodes': [], 'edges': []}, 'scratch': {'nodes': [], 'edges': []}}
 
 	# 1. Set up the edges for this particular set of nodes
-	nodes, edges = generate_nodes_and_edges(nodes)
+	# Extract incident_id from nodes if available
+	incident_id = None
+	nodes_id_list = []
+	for node in nodes:
+		nodes_id_list.append(node.get('id'))
+		if node.get('type') == 'incident':
+			incident_id = node.get('id')
+			break
+	nodes, edges = generate_nodes_and_edges(nodes, incident_id)
 	# 2. Create adjacency graph for this set of nodes/edges
 	graph = AdjacencyGraph(nodes, edges)
 
@@ -552,7 +675,7 @@ def split_subgraphs_by_promotables(nodes, layout_options):
 		component_edges = graph.get_subgraph_edges(component_ids)
 
 		# 5.5 Setup positions for 2nd level nodes
-		component_nodes = annotate_nodes_with_positions(component_nodes, layout_options, prom_layout, prom_node, i)
+		component_nodes = annotate_promo_nodes_with_positions(component_nodes, layout_options, prom_layout, prom_node, i)
 		
 		# 5.7 Add to promo collections
 		all_promo_nodes.extend(component_nodes)
@@ -586,7 +709,7 @@ def annotate_incident_nodes_with_positions(incident_nodes) -> List[Dict]:
 		incident_ids_list = [incident_node['id']]
 		# 4. Get the list of all nodes except the incident node
 		other_nodes = [node for node in incident_nodes if node['type'] != "incident"]
-		other_nodes = split_subgraphs_by_promotables(other_nodes, layout_options)
+		all_promo_nodes = split_subgraphs_by_promotables(other_nodes, layout_options)
 		# 5. Annotate incident node positions
 		incident_node['positionX'] = layout_options.get("left", 50)
 		incident_node['positionY'] = layout_options.get("top", 50)
@@ -662,7 +785,7 @@ def get_an_incidents_objects(incident_id):
     # 6. Finally, add the incident to the list
     incident_list.append(wrapped_incident)
     # 7. Generate nodes and edges
-    nodes, edges = generate_nodes_and_edges(incident_list)
+    nodes, edges = generate_nodes_and_edges(incident_list, incident_id)
     # 8. Annotate nodes with positions
     nodes = annotate_incident_nodes_with_positions(nodes)
     # 9. Return nodes and edges

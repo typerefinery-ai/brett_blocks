@@ -20,7 +20,7 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: When any tab is selected, get all of the unattached
+# Title: When an incident is selected, get all of the unattached objects
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: brett@osthreat.com
