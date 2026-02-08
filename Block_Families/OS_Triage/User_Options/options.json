@@ -2,7 +2,7 @@
     "overview_options" : {
         "width": 1200,
         "height": 1000,
-        "showLayout": true,
+        "showLayout": false,
         "api": {
             "endpoints": {
                 "graph": "/viz-data/overview-default-incident"
