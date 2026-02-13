@@ -1,0 +1,689 @@
+[
+    {
+        "id": "sighting--7a7017af-73c9-4062-a2e7-7b1561611610",
+        "type": "sighting",
+        "icon": "sighting-context",
+        "name": "",
+        "heading": "Sighting-Context",
+        "description": "Name -> Microsoft Exchange Query<br>Description ->query from: evil@northkorea.com, subject:we are coming for you",
+        "object_form": "sighting",
+        "object_group": "sro-forms",
+        "object_family": "stix-forms",
+        "original": {
+            "type": "sighting",
+            "spec_version": "2.1",
+            "id": "sighting--7a7017af-73c9-4062-a2e7-7b1561611610",
+            "created": "2026-02-08T01:12:28.330Z",
+            "modified": "2026-02-08T01:12:28.330Z",
+            "description": "query from: evil@northkorea.com, subject:we are coming for you",
+            "count": 1,
+            "sighting_of_ref": "indicator--7832a42f-c28e-484e-b9f2-bdcc40f59ade",
+            "observed_data_refs": [
+                "observed-data--748d6832-25d2-40dc-8f57-f82479a9a923"
+            ],
+            "where_sighted_refs": [
+                "identity--8c426b76-4e47-4855-bc03-9b9e43d07d97"
+            ],
+            "extensions": {
+                "sighting-context": {
+                    "name": "Microsoft Exchange Query",
+                    "description": "query from: evil@northkorea.com, subject:we are coming for you",
+                    "value": "sbilly@example.com, wwhilly@example.com, strange@mycompany.com, dumbo@mycompany.com"
+                },
+                "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {
+                    "extension_type": "property-extension"
+                }
+            }
+        },
+        "references": {
+            "sighting_of_ref": [
+                "indicator--7832a42f-c28e-484e-b9f2-bdcc40f59ade"
+            ],
+            "observed_data_refs": [
+                "observed-data--748d6832-25d2-40dc-8f57-f82479a9a923"
+            ],
+            "where_sighted_refs": [
+                "identity--8c426b76-4e47-4855-bc03-9b9e43d07d97"
+            ]
+        }
+    },
+    {
+        "id": "indicator--7832a42f-c28e-484e-b9f2-bdcc40f59ade",
+        "type": "indicator",
+        "icon": "indicator",
+        "name": "Potential Phishing Email",
+        "heading": "Indicator",
+        "description": "Name -> Potential Phishing Email<br>Description ->Suspicious email reported by user",
+        "object_form": "indicator",
+        "object_group": "sdo-forms",
+        "object_family": "stix-forms",
+        "original": {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--7832a42f-c28e-484e-b9f2-bdcc40f59ade",
+            "created": "2026-02-08T01:11:58.298Z",
+            "modified": "2026-02-08T01:11:58.298Z",
+            "name": "Potential Phishing Email",
+            "description": "Suspicious email reported by user",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[email-addr:value = 'evil@northkorea.nk' AND email:subject = 'we are coming for you']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2026-02-08T01:11:58.298Z"
+        },
+        "references": {}
+    },
+    {
+        "id": "observed-data--748d6832-25d2-40dc-8f57-f82479a9a923",
+        "type": "observed-data",
+        "icon": "observed-data",
+        "name": "2020-10-19T01:01:01.000Z",
+        "heading": "Observed-Data",
+        "description": "First Seen -> 2020-10-19T01:01:01.000Z<br>Last Seen -> 2020-10-19T01:01:01.000Z",
+        "object_form": "observed-data",
+        "object_group": "sdo-forms",
+        "object_family": "stix-forms",
+        "original": {
+            "type": "observed-data",
+            "spec_version": "2.1",
+            "id": "observed-data--748d6832-25d2-40dc-8f57-f82479a9a923",
+            "created": "2026-02-08T01:12:28.227Z",
+            "modified": "2026-02-08T01:12:28.227Z",
+            "first_observed": "2020-10-19T01:01:01.000Z",
+            "last_observed": "2020-10-19T01:01:01.000Z",
+            "number_observed": 1,
+            "object_refs": [
+                "user-account--5c0dcb9b-5784-5aaf-b393-d990a4d68dd3",
+                "email-addr--b0708db8-71e9-50f9-950c-610fccd2c30b",
+                "identity--f78e5f06-0580-4b8a-a4b6-7e89a99cf66e",
+                "email-addr--72fa6570-cce5-5be5-916d-452de0e1adb5",
+                "user-account--113460bd-67f7-5611-bbbb-158d5c45255e",
+                "identity--7f694ce1-222b-4f7f-8a81-9bb008fc62c3",
+                "email-addr--b8048a91-def8-5ef7-8cd3-a7b3db9278e5",
+                "user-account--2b87df75-b95c-5808-bcc7-f6d23471b9b4",
+                "identity--6e8edae1-f0b2-4f47-ac8c-92c5a773c127",
+                "email-addr--30d9a416-203b-55c8-b796-8eb65ab5275e",
+                "user-account--9a5926a5-b2e9-56c0-82fd-3c858bf14832",
+                "identity--796e20a9-4214-4324-901e-2cec7981eb34",
+                "relationship--cabf828b-0525-4ca3-a450-76246dee8845",
+                "relationship--4754efc9-d905-4f25-86c9-158d28513e14",
+                "relationship--0f282e48-f2eb-4e6b-9f62-ac3ac9034f3d",
+                "relationship--3591b532-591a-47f0-acd9-d68912343a55"
+            ]
+        },
+        "references": {
+            "object_refs": [
+                "user-account--5c0dcb9b-5784-5aaf-b393-d990a4d68dd3",
+                "email-addr--b0708db8-71e9-50f9-950c-610fccd2c30b",
+                "identity--f78e5f06-0580-4b8a-a4b6-7e89a99cf66e",
+                "email-addr--72fa6570-cce5-5be5-916d-452de0e1adb5",
+                "user-account--113460bd-67f7-5611-bbbb-158d5c45255e",
+                "identity--7f694ce1-222b-4f7f-8a81-9bb008fc62c3",
+                "email-addr--b8048a91-def8-5ef7-8cd3-a7b3db9278e5",
+                "user-account--2b87df75-b95c-5808-bcc7-f6d23471b9b4",
+                "identity--6e8edae1-f0b2-4f47-ac8c-92c5a773c127",
+                "email-addr--30d9a416-203b-55c8-b796-8eb65ab5275e",
+                "user-account--9a5926a5-b2e9-56c0-82fd-3c858bf14832",
+                "identity--796e20a9-4214-4324-901e-2cec7981eb34",
+                "relationship--cabf828b-0525-4ca3-a450-76246dee8845",
+                "relationship--4754efc9-d905-4f25-86c9-158d28513e14",
+                "relationship--0f282e48-f2eb-4e6b-9f62-ac3ac9034f3d",
+                "relationship--3591b532-591a-47f0-acd9-d68912343a55"
+            ]
+        }
+    },
+    {
+        "id": "email-addr--b0708db8-71e9-50f9-950c-610fccd2c30b",
+        "type": "email-addr",
+        "icon": "email-addr",
+        "name": "sbilly@example.com",
+        "heading": "Email-Addr",
+        "description": "Value -> sbilly@example.com<br>Display Name -> Strange Billy<br>Belongs to -> user-account--5c0dcb9b-5784-5aaf-b393-d990a4d68dd3",
+        "object_form": "email-addr",
+        "object_group": "sco-forms",
+        "object_family": "stix-forms",
+        "original": {
+            "type": "email-addr",
+            "spec_version": "2.1",
+            "id": "email-addr--b0708db8-71e9-50f9-950c-610fccd2c30b",
+            "value": "sbilly@example.com",
+            "display_name": "Strange Billy",
+            "belongs_to_ref": "user-account--5c0dcb9b-5784-5aaf-b393-d990a4d68dd3"
+        },
+        "references": {
+            "belongs_to_ref": [
+                "user-account--5c0dcb9b-5784-5aaf-b393-d990a4d68dd3"
+            ]
+        }
+    },
+    {
+        "id": "email-addr--72fa6570-cce5-5be5-916d-452de0e1adb5",
+        "type": "email-addr",
+        "icon": "email-addr",
+        "name": "wwhilly@example.com",
+        "heading": "Email-Addr",
+        "description": "Value -> wwhilly@example.com<br>Display Name -> Whooping Willy<br>Belongs to -> user-account--113460bd-67f7-5611-bbbb-158d5c45255e",
+        "object_form": "email-addr",
+        "object_group": "sco-forms",
+        "object_family": "stix-forms",
+        "original": {
+            "type": "email-addr",
+            "spec_version": "2.1",
+            "id": "email-addr--72fa6570-cce5-5be5-916d-452de0e1adb5",
+            "value": "wwhilly@example.com",
+            "display_name": "Whooping Willy",
+            "belongs_to_ref": "user-account--113460bd-67f7-5611-bbbb-158d5c45255e"
+        },
+        "references": {
+            "belongs_to_ref": [
+                "user-account--113460bd-67f7-5611-bbbb-158d5c45255e"
+            ]
+        }
+    },
+    {
+        "id": "email-addr--b8048a91-def8-5ef7-8cd3-a7b3db9278e5",
+        "type": "email-addr",
+        "icon": "email-addr",
+        "name": "strange@mycompany.com",
+        "heading": "Email-Addr",
+        "description": "Value -> strange@mycompany.com<br>Display Name -> Strange Guy<br>Belongs to -> user-account--2b87df75-b95c-5808-bcc7-f6d23471b9b4",
+        "object_form": "email-addr",
+        "object_group": "sco-forms",
+        "object_family": "stix-forms",
+        "original": {
+            "type": "email-addr",
+            "spec_version": "2.1",
+            "id": "email-addr--b8048a91-def8-5ef7-8cd3-a7b3db9278e5",
+            "value": "strange@mycompany.com",
+            "display_name": "Strange Guy",
+            "belongs_to_ref": "user-account--2b87df75-b95c-5808-bcc7-f6d23471b9b4"
+        },
+        "references": {
+            "belongs_to_ref": [
+                "user-account--2b87df75-b95c-5808-bcc7-f6d23471b9b4"
+            ]
+        }
+    },
+    {
+        "id": "email-addr--30d9a416-203b-55c8-b796-8eb65ab5275e",
+        "type": "email-addr",
+        "icon": "email-addr",
+        "name": "dumbo@mycompany.com",
+        "heading": "Email-Addr",
+        "description": "Value -> dumbo@mycompany.com<br>Display Name -> Strange Guy<br>Belongs to -> user-account--9a5926a5-b2e9-56c0-82fd-3c858bf14832",
+        "object_form": "email-addr",
+        "object_group": "sco-forms",
+        "object_family": "stix-forms",
+        "original": {
+            "type": "email-addr",
+            "spec_version": "2.1",
+            "id": "email-addr--30d9a416-203b-55c8-b796-8eb65ab5275e",
+            "value": "dumbo@mycompany.com",
+            "display_name": "Strange Guy",
+            "belongs_to_ref": "user-account--9a5926a5-b2e9-56c0-82fd-3c858bf14832"
+        },
+        "references": {
+            "belongs_to_ref": [
+                "user-account--9a5926a5-b2e9-56c0-82fd-3c858bf14832"
+            ]
+        }
+    },
+    {
+        "id": "identity--f78e5f06-0580-4b8a-a4b6-7e89a99cf66e",
+        "type": "identity",
+        "icon": "identity-ext",
+        "name": "",
+        "heading": "Extended-Identity",
+        "description": "Name -> Strange<br>Description ->A Strange Individual",
+        "object_form": "identity",
+        "object_group": "sdo-forms",
+        "object_family": "stix-forms",
+        "original": {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--f78e5f06-0580-4b8a-a4b6-7e89a99cf66e",
+            "created": "2026-02-08T00:50:10.87Z",
+            "modified": "2026-02-08T00:50:10.87Z",
+            "name": "Strange",
+            "description": "A Strange Individual",
+            "roles": [
+                "user",
+                "sales"
+            ],
+            "identity_class": "individual",
+            "sectors": [
+                "technology"
+            ],
+            "extensions": {
+                "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+                    "extension_type": "property-extension",
+                    "contact_numbers": [
+                        {
+                            "contact_number_type": "work-phone",
+                            "contact_number": "0422-222-122"
+                        }
+                    ],
+                    "email_addresses": [
+                        {
+                            "digital_contact_type": "work",
+                            "email_address_ref": "email-addr--b0708db8-71e9-50f9-950c-610fccd2c30b"
+                        }
+                    ],
+                    "first_name": "Strange",
+                    "last_name": "Billy",
+                    "middle_name": "One",
+                    "prefix": "Mr",
+                    "social_media_accounts": [
+                        {
+                            "digital_contact_type": "work",
+                            "user_account_ref": "user-account--5c0dcb9b-5784-5aaf-b393-d990a4d68dd3"
+                        }
+                    ],
+                    "team": "Sales"
+                }
+            }
+        },
+        "references": {
+            "email_address_ref": [
+                "email-addr--b0708db8-71e9-50f9-950c-610fccd2c30b"
+            ],
+            "user_account_ref": [
+                "user-account--5c0dcb9b-5784-5aaf-b393-d990a4d68dd3"
+            ]
+        }
+    },
+    {
+        "id": "user-account--5c0dcb9b-5784-5aaf-b393-d990a4d68dd3",
+        "type": "user-account",
+        "icon": "user-account",
+        "name": "79563143",
+        "heading": "User-Account",
+        "description": "ID -> 79563143<br>Display Name -> Strange Billy<br>Type -> sales,",
+        "object_form": "user-account",
+        "object_group": "sco-forms",
+        "object_family": "stix-forms",
+        "original": {
+            "type": "user-account",
+            "spec_version": "2.1",
+            "id": "user-account--5c0dcb9b-5784-5aaf-b393-d990a4d68dd3",
+            "user_id": "79563143",
+            "account_login": "sbilly",
+            "account_type": "sales,",
+            "display_name": "Strange Billy"
+        },
+        "references": {}
+    },
+    {
+        "id": "identity--7f694ce1-222b-4f7f-8a81-9bb008fc62c3",
+        "type": "identity",
+        "icon": "identity-ext",
+        "name": "",
+        "heading": "Extended-Identity",
+        "description": "Name -> Whooping<br>Description ->A Whooping Individual",
+        "object_form": "identity",
+        "object_group": "sdo-forms",
+        "object_family": "stix-forms",
+        "original": {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--7f694ce1-222b-4f7f-8a81-9bb008fc62c3",
+            "created": "2026-02-08T00:50:10.386Z",
+            "modified": "2026-02-08T00:50:10.386Z",
+            "name": "Whooping",
+            "description": "A Whooping Individual",
+            "roles": [
+                "user",
+                "sales"
+            ],
+            "identity_class": "individual",
+            "sectors": [
+                "technology"
+            ],
+            "extensions": {
+                "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+                    "extension_type": "property-extension",
+                    "contact_numbers": [
+                        {
+                            "contact_number_type": "work-phone",
+                            "contact_number": "0455-555-155"
+                        }
+                    ],
+                    "email_addresses": [
+                        {
+                            "digital_contact_type": "work",
+                            "email_address_ref": "email-addr--72fa6570-cce5-5be5-916d-452de0e1adb5"
+                        }
+                    ],
+                    "first_name": "Whooping",
+                    "last_name": "Whilly",
+                    "middle_name": "Wee",
+                    "prefix": "Mr",
+                    "social_media_accounts": [
+                        {
+                            "digital_contact_type": "work",
+                            "user_account_ref": "user-account--113460bd-67f7-5611-bbbb-158d5c45255e"
+                        }
+                    ],
+                    "team": "Sales"
+                }
+            }
+        },
+        "references": {
+            "email_address_ref": [
+                "email-addr--72fa6570-cce5-5be5-916d-452de0e1adb5"
+            ],
+            "user_account_ref": [
+                "user-account--113460bd-67f7-5611-bbbb-158d5c45255e"
+            ]
+        }
+    },
+    {
+        "id": "user-account--113460bd-67f7-5611-bbbb-158d5c45255e",
+        "type": "user-account",
+        "icon": "user-account",
+        "name": "79563902",
+        "heading": "User-Account",
+        "description": "ID -> 79563902<br>Display Name -> Whooping Whilly<br>Type -> sales,",
+        "object_form": "user-account",
+        "object_group": "sco-forms",
+        "object_family": "stix-forms",
+        "original": {
+            "type": "user-account",
+            "spec_version": "2.1",
+            "id": "user-account--113460bd-67f7-5611-bbbb-158d5c45255e",
+            "user_id": "79563902",
+            "account_login": "wwhilly",
+            "account_type": "sales,",
+            "display_name": "Whooping Whilly"
+        },
+        "references": {}
+    },
+    {
+        "id": "identity--6e8edae1-f0b2-4f47-ac8c-92c5a773c127",
+        "type": "identity",
+        "icon": "identity-ext",
+        "name": "",
+        "heading": "Extended-Identity",
+        "description": "Name -> Strange<br>Description ->A Strange Individual",
+        "object_form": "identity",
+        "object_group": "sdo-forms",
+        "object_family": "stix-forms",
+        "original": {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--6e8edae1-f0b2-4f47-ac8c-92c5a773c127",
+            "created": "2026-02-08T00:50:10.775Z",
+            "modified": "2026-02-08T00:50:10.775Z",
+            "name": "Strange",
+            "description": "A Strange Individual",
+            "roles": [
+                "user",
+                "sales"
+            ],
+            "identity_class": "individual",
+            "sectors": [
+                "technology"
+            ],
+            "extensions": {
+                "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+                    "extension_type": "property-extension",
+                    "contact_numbers": [
+                        {
+                            "contact_number_type": "work-phone",
+                            "contact_number": "0455-555-155"
+                        }
+                    ],
+                    "email_addresses": [
+                        {
+                            "digital_contact_type": "work",
+                            "email_address_ref": "email-addr--b8048a91-def8-5ef7-8cd3-a7b3db9278e5"
+                        }
+                    ],
+                    "first_name": "Strange",
+                    "last_name": "Guy",
+                    "middle_name": "Wee",
+                    "prefix": "Mr",
+                    "social_media_accounts": [
+                        {
+                            "digital_contact_type": "work",
+                            "user_account_ref": "user-account--2b87df75-b95c-5808-bcc7-f6d23471b9b4"
+                        }
+                    ],
+                    "team": "Sales"
+                }
+            }
+        },
+        "references": {
+            "email_address_ref": [
+                "email-addr--b8048a91-def8-5ef7-8cd3-a7b3db9278e5"
+            ],
+            "user_account_ref": [
+                "user-account--2b87df75-b95c-5808-bcc7-f6d23471b9b4"
+            ]
+        }
+    },
+    {
+        "id": "user-account--2b87df75-b95c-5808-bcc7-f6d23471b9b4",
+        "type": "user-account",
+        "icon": "user-account",
+        "name": "79563902",
+        "heading": "User-Account",
+        "description": "ID -> 79563902<br>Display Name -> strange guy<br>Type -> sales,",
+        "object_form": "user-account",
+        "object_group": "sco-forms",
+        "object_family": "stix-forms",
+        "original": {
+            "type": "user-account",
+            "spec_version": "2.1",
+            "id": "user-account--2b87df75-b95c-5808-bcc7-f6d23471b9b4",
+            "user_id": "79563902",
+            "account_login": "sguy",
+            "account_type": "sales,",
+            "display_name": "strange guy"
+        },
+        "references": {}
+    },
+    {
+        "id": "identity--796e20a9-4214-4324-901e-2cec7981eb34",
+        "type": "identity",
+        "icon": "identity-ext",
+        "name": "",
+        "heading": "Extended-Identity",
+        "description": "Name -> Dumbo<br>Description ->A Dumb Individual",
+        "object_form": "identity",
+        "object_group": "sdo-forms",
+        "object_family": "stix-forms",
+        "original": {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--796e20a9-4214-4324-901e-2cec7981eb34",
+            "created": "2026-02-08T00:50:11.40Z",
+            "modified": "2026-02-08T00:50:11.40Z",
+            "name": "Dumbo",
+            "description": "A Dumb Individual",
+            "roles": [
+                "user",
+                "sales"
+            ],
+            "identity_class": "individual",
+            "sectors": [
+                "technology"
+            ],
+            "extensions": {
+                "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+                    "extension_type": "property-extension",
+                    "contact_numbers": [
+                        {
+                            "contact_number_type": "work-phone",
+                            "contact_number": "0455-555-155"
+                        }
+                    ],
+                    "email_addresses": [
+                        {
+                            "digital_contact_type": "work",
+                            "email_address_ref": "email-addr--30d9a416-203b-55c8-b796-8eb65ab5275e"
+                        }
+                    ],
+                    "first_name": "Dumbo",
+                    "last_name": "Guy",
+                    "middle_name": "Waxed",
+                    "prefix": "Mr",
+                    "social_media_accounts": [
+                        {
+                            "digital_contact_type": "work",
+                            "user_account_ref": "user-account--9a5926a5-b2e9-56c0-82fd-3c858bf14832"
+                        }
+                    ],
+                    "team": "Sales"
+                }
+            }
+        },
+        "references": {
+            "email_address_ref": [
+                "email-addr--30d9a416-203b-55c8-b796-8eb65ab5275e"
+            ],
+            "user_account_ref": [
+                "user-account--9a5926a5-b2e9-56c0-82fd-3c858bf14832"
+            ]
+        }
+    },
+    {
+        "id": "user-account--9a5926a5-b2e9-56c0-82fd-3c858bf14832",
+        "type": "user-account",
+        "icon": "user-account",
+        "name": "79563902",
+        "heading": "User-Account",
+        "description": "ID -> 79563902<br>Display Name -> dumbo guy<br>Type -> sales,",
+        "object_form": "user-account",
+        "object_group": "sco-forms",
+        "object_family": "stix-forms",
+        "original": {
+            "type": "user-account",
+            "spec_version": "2.1",
+            "id": "user-account--9a5926a5-b2e9-56c0-82fd-3c858bf14832",
+            "user_id": "79563902",
+            "account_login": "dguy",
+            "account_type": "sales,",
+            "display_name": "dumbo guy"
+        },
+        "references": {}
+    },
+    {
+        "id": "relationship--cabf828b-0525-4ca3-a450-76246dee8845",
+        "type": "relationship",
+        "icon": "relationship",
+        "name": "related-to",
+        "heading": "Relationship",
+        "description": "Type -> related-to<br>Source -> email-addr--b0708db8-71e9-50f9-950c-610fccd2c30b<br>Target -> email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+        "object_form": "relationship",
+        "object_group": "sro-forms",
+        "object_family": "stix-forms",
+        "original": {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--cabf828b-0525-4ca3-a450-76246dee8845",
+            "created": "2026-02-08T01:12:27.390Z",
+            "modified": "2026-02-08T01:12:27.390Z",
+            "relationship_type": "related-to",
+            "source_ref": "email-addr--b0708db8-71e9-50f9-950c-610fccd2c30b",
+            "target_ref": "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
+        },
+        "references": {
+            "source_ref": [
+                "email-addr--b0708db8-71e9-50f9-950c-610fccd2c30b"
+            ],
+            "target_ref": [
+                "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
+            ]
+        }
+    },
+    {
+        "id": "relationship--4754efc9-d905-4f25-86c9-158d28513e14",
+        "type": "relationship",
+        "icon": "relationship",
+        "name": "related-to",
+        "heading": "Relationship",
+        "description": "Type -> related-to<br>Source -> email-addr--72fa6570-cce5-5be5-916d-452de0e1adb5<br>Target -> email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+        "object_form": "relationship",
+        "object_group": "sro-forms",
+        "object_family": "stix-forms",
+        "original": {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4754efc9-d905-4f25-86c9-158d28513e14",
+            "created": "2026-02-08T01:12:27.456Z",
+            "modified": "2026-02-08T01:12:27.456Z",
+            "relationship_type": "related-to",
+            "source_ref": "email-addr--72fa6570-cce5-5be5-916d-452de0e1adb5",
+            "target_ref": "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
+        },
+        "references": {
+            "source_ref": [
+                "email-addr--72fa6570-cce5-5be5-916d-452de0e1adb5"
+            ],
+            "target_ref": [
+                "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
+            ]
+        }
+    },
+    {
+        "id": "relationship--0f282e48-f2eb-4e6b-9f62-ac3ac9034f3d",
+        "type": "relationship",
+        "icon": "relationship",
+        "name": "related-to",
+        "heading": "Relationship",
+        "description": "Type -> related-to<br>Source -> email-addr--b8048a91-def8-5ef7-8cd3-a7b3db9278e5<br>Target -> email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+        "object_form": "relationship",
+        "object_group": "sro-forms",
+        "object_family": "stix-forms",
+        "original": {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0f282e48-f2eb-4e6b-9f62-ac3ac9034f3d",
+            "created": "2026-02-08T01:12:27.530Z",
+            "modified": "2026-02-08T01:12:27.530Z",
+            "relationship_type": "related-to",
+            "source_ref": "email-addr--b8048a91-def8-5ef7-8cd3-a7b3db9278e5",
+            "target_ref": "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
+        },
+        "references": {
+            "source_ref": [
+                "email-addr--b8048a91-def8-5ef7-8cd3-a7b3db9278e5"
+            ],
+            "target_ref": [
+                "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
+            ]
+        }
+    },
+    {
+        "id": "relationship--3591b532-591a-47f0-acd9-d68912343a55",
+        "type": "relationship",
+        "icon": "relationship",
+        "name": "related-to",
+        "heading": "Relationship",
+        "description": "Type -> related-to<br>Source -> email-addr--30d9a416-203b-55c8-b796-8eb65ab5275e<br>Target -> email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+        "object_form": "relationship",
+        "object_group": "sro-forms",
+        "object_family": "stix-forms",
+        "original": {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3591b532-591a-47f0-acd9-d68912343a55",
+            "created": "2026-02-08T01:12:28.114Z",
+            "modified": "2026-02-08T01:12:28.114Z",
+            "relationship_type": "related-to",
+            "source_ref": "email-addr--30d9a416-203b-55c8-b796-8eb65ab5275e",
+            "target_ref": "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
+        },
+        "references": {
+            "source_ref": [
+                "email-addr--30d9a416-203b-55c8-b796-8eb65ab5275e"
+            ],
+            "target_ref": [
+                "email-addr--4722424c-7012-56b0-84d5-01d076fc547b"
+            ]
+        }
+    }
+]

@@ -97,8 +97,8 @@ key_list = ["start", "sequence", "impact", "event", "task", "other"]
 # StixORM Dialect Data Stuff
 TR_dialect_data = "./generated/os-triage/dialect_data/summary"
 connection_types = "/connections.json"
-
-
+prefix = "https://raw.githubusercontent.com/os-threat/images/main/img/"
+shape = "rect-"
 
 def clean_string_convert_to_list(string):
 	"""Convert a string to a list of strings."""	
@@ -200,6 +200,7 @@ def get_connections(object_type: str, object_field: str):
     # 3. Setup key variables needed
     valid_connections = []
     constraint_list = []
+    cms_select_data = []
     if os.path.exists(Connection_Types_File):
         with open(Connection_Types_File, "r") as mem_input:
             constraint_list = json.load(mem_input)
@@ -209,14 +210,21 @@ def get_connections(object_type: str, object_field: str):
     final_constraint_list = [constraint for constraint in object_Constraint_list if constraint.get("field") == object_field]
     # 6. For each constraint in the list, find which ones fit the source-target
     valid_connections = get_objects_from_unattached(final_constraint_list)
+    for connection in valid_connections:
+         cms_select_row = {}
+         cms_select_row["icon_url"] = prefix + shape + connection["icon"] + ".svg"
+         cms_select_row["heading"] = connection["heading"]
+         cms_select_row["description"] = connection["description"]
+         cms_select_row["tooltip"] = connection["original"]
+         cms_select_data.append(cms_select_row)
 
-    return valid_connections
+    return cms_select_data
 
 
 def main(inputfile, outputfile):
     object_type = None
     object_field = None
-    connections_type_list = []
+    cms_select_data = []
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
             input = json.load(script_input)
@@ -228,10 +236,10 @@ def main(inputfile, outputfile):
                 object_field = input["object_field"]
             #
             # setup logger for execution
-            connections_type_list = get_connections(object_type, object_field)
+            cms_select_data = get_connections(object_type, object_field)
 
     with open(outputfile, "w") as outfile:
-        json.dump(connections_type_list, outfile)
+        json.dump(cms_select_data, outfile)
 
 
 ################################################################################
