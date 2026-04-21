@@ -49,7 +49,10 @@ from Block_Families.OS_Triage.Update_Context.promote_objects import main as prom
 #      Get Options JSON for Composer and Overview
 from Block_Families.OS_Triage.User_Options.get_composer_options import main as  get_composer_options
 from Block_Families.OS_Triage.User_Options.get_overview_options import main as  get_overview_options
-
+##################################################################################################
+# Exchange Objects with External Sources
+from Block_Families.OS_Triage.Exchange_Objects.save_object_from_attack import main as save_object_from_attack_navigator
+##################################################################################################
 TR_Context_Memory_Dir = "./Context_Mem"
 local = {
     "me" : "/cache_me.json",
@@ -69,6 +72,31 @@ refs = {
     "other" : "/incident_1/other_object_refs",
     "unattached" : "/incident_1/unattached_objs"
 }
+
+def invoke_save_object_from_attack_navigator_block(stix_id, source_target_path, results_path):
+    #
+    # 1. Set the Relative Input and Output Paths for the block
+    #
+    #
+    # NOTE: This code is only To fake input ports
+    # Add the User Account object and the  EmailAddress
+    # NOTE: This code is only To fake input ports
+    ##
+    local_inputs = {}
+    local_inputs["stix_id"] = stix_id
+    with open(source_target_path, 'w') as f:
+        f.write(json.dumps(local_inputs))
+    save_object_from_attack_navigator(source_target_path, results_path)
+    #
+    # Remove the context type record
+    #
+    #
+    if os.path.exists(results_path):
+        with open(results_path, "r") as script_input:
+            export_data = json.load(script_input)
+            return export_data
+
+
 
 def invoke_create_company_context(stix_object_path, results_path):
     #

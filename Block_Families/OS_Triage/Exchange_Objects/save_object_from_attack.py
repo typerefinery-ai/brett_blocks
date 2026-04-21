@@ -19,20 +19,20 @@ where_am_i = os.path.dirname(os.path.abspath(__file__))
 ################################################################################
 
 ##############################################################################
-# Title: Save Object to Unattached Context Memory, Inside an Incident
+# Title: Save Object from Attack Navigator into OS_Triage Context
 # Author: OS-Threat
 # Organisation Repo: https://github.com/typerefinery-ai/brett_blocks
 # Contact Email: brett@osthreat.com
 # Date: 07/08/2023
 #
-# Description: This script is designed to take in a Stix Object
-#       and save it in the unattached list for the currently selected incident
+# Description: This script is designed to take in a `stix_id` from an Attack Navigator,
+#       and save it into the OS_Triage Context
 #
-# One Mandatory Input:
-# 1. Stix Object
+# Two Mandatory Inputs:
+# 1. Stix ID
+# 2. Context Type
 # One Output
-# 1. Context Return
-#
+# 1. Context Saved Return
 #
 # This code is licensed under the terms of the Apache 2.
 ##############################################################################
@@ -47,8 +47,19 @@ import importlib.util
 import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-import os
+
 import_type = import_type_factory.get_all_imports()
+
+# Attack Navigator Stuff
+import requests
+from stix2 import MemoryStore, CompositeDataSource
+
+def get_data_from_branch(domain):
+    """get the ATT&CK STIX data from GitHub. Domain should be 'enterprise-attack', 'mobile-attack' or 'ics-attack'. Branch should typically be master."""
+    stix_json = requests.get(f"https://raw.githubusercontent.com/mitre-attack/attack-stix-data/master/{domain}/{domain}.json").json()
+    return MemoryStore(stix_data=stix_json["objects"])
+
+
 
 # Common File Stuff
 TR_Common_Files = "./generated/os-triage/common_files"
@@ -100,8 +111,6 @@ def download_settings():
     print(f'settings file result ->', result)
 
 
-
-
 def download_common(module_list):
     for module in module_list:
         # Step 1: download the module
@@ -109,11 +118,11 @@ def download_common(module_list):
         print(f'common file result ->', result)
         # Step 2: install the module
 
-def add_node(node, context_dir, context_type):
+def add_node(node, context_dir):
     exists = False
     stix_nodes_list = []
-    if  os.path.exists(context_dir + incident_data[context_type]):
-        with open(context_dir + incident_data[context_type], "r") as mem_input:
+    if  os.path.exists(context_dir + comp_data["company"]):
+        with open(context_dir + comp_data["company"], "r") as mem_input:
             stix_nodes_list = json.load(mem_input)
             for i in range(len(stix_nodes_list)):
                 if stix_nodes_list[i]["id"] == node["id"]:
@@ -123,17 +132,34 @@ def add_node(node, context_dir, context_type):
                 stix_nodes_list.append(node)
     else:
         stix_nodes_list = [node]
-    with open(context_dir + incident_data[context_type], 'w') as f:
-        f.write(json.dumps(stix_nodes_list))
+
+    with open(context_dir + comp_data["company"], 'w') as f:
+            f.write(json.dumps(stix_nodes_list))
 
 
+def retrieve_attack_object_and_save_in_unattached(stix_id):
+    # 1. Retrieve the object from the Attack Navigator
+    # A. Setup memory stores for each of the ATT&CK domains
+    src_enterprise = get_data_from_branch("enterprise-attack")
+    enterprise_object = src_enterprise.get(stix_id)
+    # B. See which object exists
+    attack_dict = {}
+    if enterprise_object:
+        attack_dict = enterprise_object.serialize()
+    else:        
+        src_mobile = get_data_from_branch("mobile-attack")
+        mobile_object = src_mobile.get(stix_id)
+        src_ics = get_data_from_branch("ics-attack")
+        ics_object = src_ics.get(stix_id)
+        if mobile_object:
+            attack_dict = mobile_object.serialize()
+        elif ics_object:
+            attack_dict = ics_object.serialize()
+        else:
+            print(f"ATT&CK Object not found: {stix_id}")
+            return "ATT&CK Object not found: " + str(stix_id)
 
-def save_context(stix_object):
-    context_type="unattached"
-    # 0 Check for "original"
-    if "original" in stix_object:
-        stix_object = stix_object["original"]
-    exists = False
+
     # 1.B Find Current Incident directory
     local_map = {}
     with open(TR_Context_Memory_Dir + "/" + context_map, "r") as current_context:
@@ -163,35 +189,29 @@ def save_context(stix_object):
         parse = importlib.util.module_from_spec(spec)
         # Load the module
         spec.loader.exec_module(parse)
-        # 4. Depending on Object Tupe, Get the Nodes and Edges, and save them to the lists
-        wrapped = parse.wrap_stix_dict(stix_object)
+        # 4. Wrap the object
+        wrapped = parse.wrap_stix_dict(attack_dict)
+        # 5. Add the object to the unattached context
         add_node(wrapped, TR_Incident_Context_Dir, "unattached")
 
-    return "object saved to unattached context - \nstix_id -> " + str(stix_object["id"])
+    return "object saved to unattached context - \nstix_id -> " + str(wrapped["id"])
+
 
 
 def main(inputfile, outputfile):
-    stix_object = None
+    stix_id = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
-            input_data = json.load(script_input)
-            print(f"input data->{input_data}")
-            if "stix_object" in input_data:
-                stix_object = input_data["stix_object"]
-                result_string = save_context(stix_object)
-            elif "api" in input_data:
-                api_input_data = input_data["api"]
-                stix_object = api_input_data["stix_object"]
-                print(f"api \nstix_object->{stix_object}")
-                result_string = save_context(stix_object)
+            input = json.load(script_input)
+            print(f"%%%% \ninput->{input}")
+            stix_id = input["stix_id"]
 
-            # setup logger for execution
-
-            context_result = {}
-            context_result["context_result"] = result_string
-
-            with open(outputfile, "w") as outfile:
-                json.dump(context_result, outfile)
+    # setup logger for execution
+    result_string = retrieve_attack_object_and_save_in_unattached(stix_id)
+    context_result = {}
+    context_result["context_result"] = result_string
+    with open(outputfile, "w") as outfile:
+        json.dump(context_result, outfile)
 
 
 ################################################################################

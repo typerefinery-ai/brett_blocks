@@ -1,0 +1,28 @@
+{
+    "base_required": {
+        "type": "sequence",
+        "spec_version": "2.1",
+        "id": "",
+        "created": "",
+        "modified": ""
+    },
+    "base_optional": {
+        "created_by_ref": "",
+        "revoked": null,
+        "labels": [],
+        "lang": "",
+        "external_references": [],
+        "object_marking_refs": [],
+        "granular_markings": []
+    },
+    "object": {
+        "sequenced_object": "event--5372c209-87d2-4ee2-b470-da76a8e69133",
+        "sequence_type": "event",
+        "step_type": "single_step"
+    },
+    "extensions": {
+        "extension-definition--be0c7c79-1961-43db-afde-637066a87a64": {
+            "extension_type": "new-sdo"
+        }
+    }
+}

@@ -9,18 +9,131 @@ This module reads the CSV registry containing STIX object metadata including:
 - Display formatting fields (icon, form, head, prior_string/post_field pairs)
 """
 
-from pydantic import  BaseModel, field_validator, Field
-from typing import List, Dict, Union, Optional
+from __future__ import annotations
+from pydantic import  BaseModel, field_validator, Field, ConfigDict, model_validator
+from typing import List, Dict, Union, Optional, Any, Annotated
 import logging
 import copy
 import csv
 import os
 import re
 import uuid
-from embedded_references import EmbeddedReferences, find_embedded_references
+import json
 
 
 logger = logging.getLogger(__name__)
+
+###########################################################################
+# StixORM Template Stuff
+###############################################################################
+
+# UI / form hints (icons, button names, layout). Open-ended until you version it.
+StixMeta = Dict[str, Any]
+
+
+class StixFieldDescriptor(BaseModel):
+    """
+    One property/collection definition under base_* / object / nested properties.
+
+    Level-3 _meta: optional JSON object on this leaf (per-field form widgets, labels, etc.).
+    """
+
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    collection: str | None = None
+    property: str | None = Field(  # noqa: A003 — JSON key is literally "property"
+        default=None,
+        description="ORM property class, e.g. StringProperty, ReferenceProperty",
+    )
+    parameters: Dict[str, Any] = Field(default_factory=dict)
+
+    meta: StixMeta | None = Field(
+        default=None,
+        alias="_meta",
+        description="Per-property form / UI metadata (icons, button text, etc.).",
+    )
+
+
+class StixNestedBlock(BaseModel):
+    """
+    One value under ``extensions[extension_id]`` or ``sub[embedded_type]``.
+
+    Level-2 _meta: optional JSON object applying to the whole extension or sub-object.
+    Remaining keys are field descriptors (same leaf shape as elsewhere).
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    meta: StixMeta | None = Field(
+        default=None,
+        alias="_meta",
+        description="Block-level form / UI metadata for this extension or sub-type.",
+    )
+    properties: dict[str, StixFieldDescriptor] = Field(default_factory=dict)
+
+    @model_validator(mode="before")
+    @classmethod
+    def split_head_meta(cls, data: Any) -> Any:
+        if not isinstance(data, dict):
+            return data
+        props: dict[str, Any] = {}
+        head_meta = data.get("_meta")
+        for key, val in data.items():
+            if key == "_meta":
+                continue
+            props[key] = val
+        return {"meta": head_meta, "properties": props}
+
+
+class StixTemplateBody(BaseModel):
+    """
+    The object stored under ``<ClassName>_template``.
+
+    Level-1 _meta: optional JSON object applying to the whole template / STIX object.
+    """
+
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    type: str = Field(alias="_type")
+    meta: StixMeta | None = Field(
+        default=None,
+        alias="_meta",
+        description="Template-wide form / UI metadata.",
+    )
+
+    base_required: dict[str, StixFieldDescriptor] = Field(default_factory=dict)
+    base_optional: dict[str, StixFieldDescriptor] = Field(default_factory=dict)
+    object: dict[str, StixFieldDescriptor] = Field(default_factory=dict)
+
+    extensions: dict[str, StixNestedBlock] = Field(default_factory=dict)
+    sub: dict[str, StixNestedBlock] = Field(default_factory=dict)
+
+
+class StixTemplateFile(BaseModel):
+    """
+    Entire JSON file: ``class_name`` + one ``*_template`` + optional siblings
+    (e.g. ``observations`` on ObservedData, or future file-level keys).
+    """
+
+    model_config = ConfigDict(extra="allow")
+
+    class_name: str
+
+    def body(self) -> StixTemplateBody:
+        key = f"{self.class_name}_template"
+        raw = self.model_extra.get(key) if self.model_extra else None
+        if raw is None:
+            # also allow attribute set when validating known keys — fallback:
+            raw = getattr(self, key, None)
+        if raw is None:
+            raise KeyError(f"missing {key!r} for class_name={self.class_name!r}")
+        if isinstance(raw, StixTemplateBody):
+            return raw
+        return StixTemplateBody.model_validate(raw)
+
+###########################################################################
+# Parse Content Stuff
+###############################################################################
 
 
 class ParseContent(BaseModel):
@@ -47,6 +160,9 @@ class ParseContent(BaseModel):
 	icon: Optional[str] = ""
 	form: Optional[str] = ""
 	head: Optional[str] = ""
+	form_group: Optional[str] = ""
+	form_family: Optional[str] = ""
+    
 	
 	# Display formatting fields (prior_string/post_field pairs)
 	prior_string0: Optional[str] = ""
@@ -117,6 +233,34 @@ def read_icon_registry() -> List[Dict]:
 
 
 
+def return_template(stix_class: str, group: str) -> Union[StixTemplateFile, Dict]:
+    """
+    Read the template file for the given stix_class and group.
+
+    Args:
+        stix_class (str): The STIX class to get the template for.
+        group (str): The group to get the template for.
+    
+    Returns:
+        StixTemplateFile: StixTemplateFile object with the template data, or {} if file not found.
+    """
+    try:
+        # Get the directory of the current file
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        # Construct the path to the template files
+        file_path = os.path.join(current_dir, "templates", group, f"{stix_class}_template.json")
+        
+        if not os.path.exists(file_path):
+            logger.error(f"template file not found at {file_path}")
+            return {}
+        
+        with open(file_path, 'r', encoding='utf-8') as f:
+            return StixTemplateFile.model_validate(json.load(f))
+    except Exception as e:
+            logger.error(f"Error reading template file: {e}")
+            return {}
+
+
 
 ###################################################################################
 #
@@ -167,7 +311,7 @@ def process_exists_condition(stix_dict, field_list):
     Process the EXISTS condition for the given field list.
 
     Args:
-        stix_dict (Dict[str, str]): The STIX dictionary object.
+        stix_dict (Dict[str, Any]): The STIX dictionary object.
         field_list (List[str]): The list of fields to check for existence.
 
     Returns:
@@ -196,7 +340,7 @@ def process_starts_with_condition(stix_dict, value):
     Process the STARTS_WITH condition for the given field list.
 
     Args:
-        stix_dict (Dict[str, str]): The STIX dictionary to check against.
+        stix_dict (Dict[str, Any]): The STIX dictionary to check against.
         field_list (List[str]): The list of fields to check for existence.
         value (str): The value to check for.
 
@@ -218,7 +362,7 @@ def process_equals_condition(stix_dict, field_list, value):
     Process the EQUALS condition for the given field and value.
 
     Args:
-        stix_dict (Dict[str, str]): The STIX dictionary to check against.
+        stix_dict (Dict[str, Any]): The STIX dictionary to check against.
         field (str): The field to check for equality.
         value (str): The value to check against.
 
@@ -239,46 +383,46 @@ def process_equals_condition(stix_dict, field_list, value):
                 local_dict = local_dict[field]
     return correct
 
-def test_object_by_condition(item: ParseContent, stix_dict: Dict[str, str]) -> bool:
+def test_object_by_condition(item: ParseContent, stix_dict: Dict[str, Any]) -> bool:
     """
     Test the ParseContent condition against the STIX dictionary .
 
     Args:
         item (ParseContent): The ParseContent condition to test.
-        stix_dict (Dict[str, str]): The STIX dictionary to match against.
+        stix_dict (Dict[str, Any]): The STIX dictionary to match against.
 
     Returns:
         bool: True if the dict matches the conditions, False otherwise.
     """
     correct = False
     # Check each condition in the STIX dictionary
-    if item.condition1 == "EXISTS":
+    if item.condition1 == "EXISTS" and item.field1:
         field_list = item.field1.split(".")
         correct = process_exists_condition(stix_dict, field_list)
-    elif item.condition1 == "STARTS_WITH":
+    elif item.condition1 == "STARTS_WITH" and item.value1:
         correct = process_starts_with_condition(stix_dict, item.value1)
-    elif item.condition1 == "EQUALS":
+    elif item.condition1 == "EQUALS" and item.field1 and item.value1:
         field_list = item.field1.split(".")
         correct = process_equals_condition(stix_dict, field_list, item.value1)
     # Check the second condition if it exists
     if item.condition2 and correct:
-        if item.condition2 == "EQUALS":
+        if item.condition2 == "EQUALS" and item.field2 and item.value2:
             field_list = item.field2.split(".")
             correct = process_equals_condition(stix_dict, field_list, item.value2)
-    return correct
+    return bool(correct)
 
-def determine_content_object_from_list_by_tests(stix_dict: Dict[str, str], content_type:str) -> ParseContent:
+def determine_content_object_from_list_by_tests(stix_dict: Dict[str, Any], content_type:str) -> Optional[ParseContent]:
     """
     Determine the content object from the list by matching the STIX dictionary.
 
     Args:
-        stix_dict (Dict[str, str]): The STIX dictionary to match against.
+        stix_dict (Dict[str, Any]): The STIX dictionary to match against.
         content_type (str): The type of content to match against "class" or "icon".
 
     Returns:
         ParseContent: The matching ParseContent object, or None if not found.
     """
-    content_list: List[ParseContent] = get_content_list_for_type(stix_dict.get("type"), content_type)
+    content_list: List[ParseContent] = get_content_list_for_type(stix_dict.get("type", ""), content_type)
     if not content_list:
         return None
     elif len(content_list) == 1:
@@ -352,6 +496,166 @@ def get_group_from_type(stix_type) -> Union[str, None]:
     return content_list[0].group
 
 
+    
+###################################################################################################
+#
+# Find the Embedded References
+#
+####################################################################################################
+
+# find_embedded_references
+
+
+class EmbeddedReferences(BaseModel):
+    """Collection of embedded STIX references grouped by property name."""
+    
+    references: Dict[str, List[str]] = Field(
+        default_factory=dict,
+        description="Property names mapped to lists of STIX IDs"
+    )
+    
+    @field_validator('references')
+    @classmethod
+    def validate_stix_ids(cls, v: Dict[str, List[str]]) -> Dict[str, List[str]]:
+        """Validate all STIX IDs in the references dictionary."""
+        # STIX ID pattern: object-type--UUID (lowercase type, RFC 4122 UUID)
+        stix_id_pattern = re.compile(
+            r'^[a-z][a-z0-9-]*--[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+        )
+        
+        for prop_name, id_list in v.items():
+            if not isinstance(id_list, list):
+                raise ValueError(f'Property "{prop_name}" must map to a list of STIX IDs')
+            
+            for stix_id in id_list:
+                if not isinstance(stix_id, str):
+                    raise ValueError(f'STIX ID must be string, got {type(stix_id).__name__}: {stix_id}')
+                
+                if not stix_id_pattern.match(stix_id):
+                    raise ValueError(
+                        f'Invalid STIX ID in "{prop_name}": {stix_id}. '
+                        'Must be object-type--UUID (lowercase, RFC 4122)'
+                    )
+                
+                # Validate UUID portion
+                try:
+                    uuid_part = stix_id.split('--')[1]
+                    uuid.UUID(uuid_part, version=4)
+                except (IndexError, ValueError):
+                    raise ValueError(f'Invalid UUID in STIX ID: {stix_id}')
+        
+        return v
+    
+    def to_json_dict(self) -> Dict[str, List[str]]:
+        """
+        Convert the EmbeddedReferences to a JSON-serializable dictionary.
+        
+        Returns:
+            Dict[str, List[str]]: The references dictionary ready for json.dumps()
+        """
+        return self.references
+
+
+def is_valid_stix_id(value: str) -> bool:
+    """
+    Check if a string is a valid STIX ID.
+    
+    Args:
+        value: String to validate
+        
+    Returns:
+        True if the value matches STIX ID format, False otherwise
+    """
+    if not isinstance(value, str):
+        return False
+    
+    pattern = re.compile(
+        r'^[a-z][a-z0-9-]*--[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+    )
+    
+    if not pattern.match(value):
+        return False
+    
+    # Validate UUID portion
+    try:
+        uuid_part = value.split('--')[1]
+        uuid.UUID(uuid_part, version=4)
+        return True
+    except (IndexError, ValueError):
+        return False
+
+
+def find_embedded_references(stix_object: Dict[str, Any]) -> EmbeddedReferences:
+    """
+    Parse a STIX object and extract all embedded references.
+    
+    This function recursively searches through all properties of a STIX object
+    to find embedded references (STIX IDs). It identifies them by validating
+    the format (object-type--UUID) rather than by property name, as reference
+    properties can have various names (_ref, _refs, or custom names).
+    
+    Args:
+        stix_object: Dictionary representing a STIX object
+        
+    Returns:
+        EmbeddedReferences instance containing all found references grouped by property name
+        
+    Example:
+        >>> obj = {
+        ...     "id": "incident--123...",
+        ...     "type": "incident",
+        ...     "created_by_ref": "identity--456...",
+        ...     "object_refs": ["indicator--789...", "malware--abc..."]
+        ... }
+        >>> refs = find_embedded_references(obj)
+        >>> print(refs.references)
+        {'created_by_ref': ['identity--456...'], 'object_refs': ['indicator--789...', 'malware--abc...']}
+    """
+    found_refs: Dict[str, List[str]] = {}
+    
+    def extract_refs_from_value(value: Any, property_path: str) -> None:
+        """
+        Recursively extract STIX IDs from a value.
+        
+        Args:
+            value: The value to examine (could be str, list, dict, etc.)
+            property_path: Dot-notation path to this property for tracking nested properties
+        """
+        # Extract only the final property name (after last dot)
+        final_property_name = property_path.split('.')[-1] if property_path else property_path
+        
+        # Check if it's a single STIX ID string
+        if isinstance(value, str):
+            if is_valid_stix_id(value):
+                if final_property_name not in found_refs:
+                    found_refs[final_property_name] = []
+                found_refs[final_property_name].append(value)
+        
+        # Check if it's a list of STIX IDs
+        elif isinstance(value, list):
+            for item in value:
+                if isinstance(item, str) and is_valid_stix_id(item):
+                    if final_property_name not in found_refs:
+                        found_refs[final_property_name] = []
+                    found_refs[final_property_name].append(item)
+                # Recursively check nested objects/lists
+                elif isinstance(item, (dict, list)):
+                    extract_refs_from_value(item, property_path)
+        
+        # Check if it's a nested dictionary
+        elif isinstance(value, dict):
+            for nested_key, nested_value in value.items():
+                nested_path = f"{property_path}.{nested_key}" if property_path else nested_key
+                extract_refs_from_value(nested_value, nested_path)
+    
+    # Start extraction from root level (skip 'id' property as it's the object's own ID)
+    for prop_name, prop_value in stix_object.items():
+        if prop_name == 'id':
+            continue
+        extract_refs_from_value(prop_value, prop_name)
+    
+    # Create and return validated EmbeddedReferences instance
+    return EmbeddedReferences(references=found_refs)
 
     
 ###################################################################################################
@@ -360,7 +664,7 @@ def get_group_from_type(stix_type) -> Union[str, None]:
 #
 ####################################################################################################
 
-# find_embedded_references
+# wrap the object
 
 class Wrapper(BaseModel):
     """
@@ -378,29 +682,149 @@ class Wrapper(BaseModel):
     original: Dict[str, Union[str, List, Dict]] = Field(default_factory=dict)
     references: EmbeddedReferences
 
-def make_description(content: ParseContent) -> str:
+def parse_path_part(part: str) -> Optional[tuple[Optional[str], Optional[int]]]:
+    """
+    Parse a path segment to extract either a field name or a list index.
+    
+    ONLY supports Format 2 notation:
+    - Plain field names: "field_name" → ("field_name", None)
+    - Separate index notation: "[0]" → (None, 0)
+    
+    Invalid formats (returns None and logs error):
+    - Attached index: "field[0]", "[0]field"
+    - Empty brackets: "[]"
+    - Non-numeric index: "[abc]"
+    
+    Args:
+        part: A single path segment after splitting by "."
+        
+    Returns:
+        Tuple of (field_name, index) or None if invalid format
+        - (field_name, None) for plain field
+        - (None, index) for list index
+        - None for invalid format
+    """
+    # Check for standalone bracket notation: [N]
+    standalone_index_pattern = re.compile(r'^\[(\d+)\]$')
+    match = standalone_index_pattern.match(part)
+    
+    if match:
+        # Valid standalone index like [0], [1], etc.
+        index = int(match.group(1))
+        return (None, index)
+    
+    # Check for invalid patterns with brackets
+    if '[' in part or ']' in part:
+        # Invalid: field[0], [0]field, [], [abc], etc.
+        logger.warning(f"Invalid path notation '{part}'. Only standalone bracket notation like '[0]' is supported. "
+                      f"Use format: 'field.[0].subfield' not 'field[0].subfield'")
+        return None
+    
+    # Plain field name (no brackets)
+    return (part, None)
+
+def get_nested_value(stix_dict: Dict[str, Any], field_path: str) -> Any:
+    """
+    Extract a value from a nested dictionary using dot notation with optional list indexing.
+    
+    Supports Format 2 notation only:
+    - Dictionary access: "extensions.availability.availability_impact"
+    - List indexing (separate): "external_references.[0].external_id"
+    - Nested lists: "extensions.ext.[0].field.[1].value"
+    
+    Invalid formats (returns None):
+    - Attached indices: "field[0]" or "tags[2]"
+    - Index before field: "[0]field"
+    - Empty brackets: "[]"
+    - Non-numeric indices: "[abc]"
+    
+    Args:
+        stix_dict: The STIX dictionary to extract from
+        field_path: Dot-separated path (e.g., "external_references.[0].external_id")
+    
+    Returns:
+        The value at the specified path, or None if path doesn't exist or is invalid
+    
+    Examples:
+        >>> get_nested_value({"name": "test"}, "name")
+        "test"
+        >>> get_nested_value({"extensions": {"availability": {"availability_impact": 99}}}, 
+        ...                  "extensions.availability.availability_impact")
+        99
+        >>> get_nested_value({"external_references": [{"external_id": "CVE-2021-1234"}]}, 
+        ...                  "external_references.[0].external_id")
+        "CVE-2021-1234"
+        >>> get_nested_value({"tags": ["malware", "trojan"]}, "tags.[1]")
+        "trojan"
+    """
+    if not field_path:
+        return None
+    
+    # Split the path into parts
+    field_parts = field_path.split(".")
+    current_value = stix_dict
+    
+    # Traverse the nested structure
+    for part in field_parts:
+        # Parse the part to get field name and/or index
+        parsed = parse_path_part(part)
+        
+        if parsed is None:
+            # Invalid format detected
+            return None
+        
+        field_name, index = parsed
+        
+        # Handle field access (dictionary key)
+        if field_name is not None:
+            if isinstance(current_value, dict) and field_name in current_value:
+                current_value = current_value[field_name]
+            else:
+                return None
+        
+        # Handle list index access
+        if index is not None:
+            if isinstance(current_value, list) and 0 <= index < len(current_value):
+                current_value = current_value[index]
+            else:
+                return None
+    
+    return current_value
+
+def make_description(stix_dict: Dict[str, Union[str, Dict, List]], content: ParseContent) -> str:
     """
     Make the description string for the Wrapper.
 
     Args:
+        stix_dict: The STIX dictionary object
         content (ParseContent): The ParseContent object.
 
     Returns:
         str: The generated description string with HTML breaks between lines.
     """
     description_parts = []
+    j = 0
     for i in range(7):
         prior_string = getattr(content, f"prior_string{i}")
         post_field = getattr(content, f"post_field{i}")
-        if prior_string and post_field:
+        
+        # Handle both simple keys and dot-notation paths
+        if "." in post_field:
+            post_value = get_nested_value(stix_dict, post_field)
+        else:
+            post_value = stix_dict.get(post_field)
+        
+        # Only add to description if both prior_string and post_value exist and are not empty
+        if prior_string and post_value not in (None, "", {}):
             # Add HTML break before second and subsequent lines
-            prefix = "<br>" if i > 0 else ""
-            description_parts.append(f"{prefix}{prior_string}{post_field}")
+            prefix = "<br>" if j > 0 else ""
+            description_parts.append(f"{prefix}{prior_string}{post_value}")
+            j += 1
     description = "".join(description_parts).strip()
     return description
 
 
-def wrap_stix_dict(stix_dict: Dict[str, str]) -> Wrapper:
+def wrap_stix_dict(stix_dict: Dict[str, Union[str, Dict, List]]) -> Dict[str, Union[str, Dict, List]]:
     """
     Generate the Wrapper for a given STIX dictionary object.
 
@@ -408,33 +832,62 @@ def wrap_stix_dict(stix_dict: Dict[str, str]) -> Wrapper:
         stix_dict (Dict[str, str]): The STIX dictionary object.
     
     Returns:
-        Wrapper: The generated Wrapper object.
+        Wrapper: The generated Wrapper object, as a dict.
     """
     content = determine_content_object_from_list_by_tests(stix_dict, "class")
     if not content:
-        raise ValueError(f"No content found for STIX type: {stix_dict.get('type')}")
+        raise ValueError(f"No content found for STIX type: {stix_dict.get('type', '')}")
 
 
     description = make_description(stix_dict, content)
     
     # Find embedded references
-    embedded_refs = find_embedded_references(stix_dict)
+    embedded_refs: EmbeddedReferences = find_embedded_references(stix_dict)
     
-    wrapped = Wrapper(
-        id=stix_dict.get("id"),
-        type=stix_dict.get("type"),
-        icon=content.icon,
-        name=stix_dict.get("name", ""),
-        heading=content.head,
-        description=description,
-        object_form=content.form,
-        object_group=content.group,
-        object_family=content.protocol,
-        original=stix_dict,
-        references=embedded_refs
-    )
-    
-    return wrapped
+    # wrapped = Wrapper(
+    #     id=stix_dict.get("id"),
+    #     type=stix_dict.get("type"),
+    #     icon=content.icon,
+    #     name=stix_dict.get("name", ""),
+    #     heading=content.head,
+    #     description=description,
+    #     object_form=content.form,
+    #     object_group=content.group,
+    #     object_family=content.protocol,
+    #     original=stix_dict,
+    #     references=embedded_refs
+    # )
+
+    wrap = {}
+    wrap["id"] = stix_dict.get("id")
+    wrap["type"] = stix_dict.get("type")
+    wrap["icon"] = content.icon
+    wrap["name"] = stix_dict.get(content.post_field0, "")
+    wrap["heading"] = content.head
+    wrap["description"] = description
+    wrap["object_form"] = content.form
+    wrap["object_group"] = content.form_group
+    wrap["object_family"] = content.form_family
+    wrap["original"] = stix_dict
+    wrap["references"] = embedded_refs.to_json_dict()
+
+    return wrap
 
 
 
+
+
+###################################################################################################
+#
+# Specific - Get Stix Template from Object based on Tests
+#
+####################################################################################################
+
+def get_stix_template_from_object(stix_dict: Dict[str, Union[str, Dict, List]]) -> Optional[StixTemplateFile]:
+    """
+    Get the Stix Template from the object based on the tests.
+    """
+    content = determine_content_object_from_list_by_tests(stix_dict, "class")
+    if not content:
+        raise ValueError(f"No content found for STIX type: {stix_dict.get('type', '')}")
+    return return_template(content.python_class, content.group)

@@ -119,31 +119,34 @@ def remove_object(stix_dict):
             # Work out success or failure
             if initial_length - subsequent_length == 1:
                 result["outcome"] = "success"
-                result["msg"] == f"Object with id {id_remove} is removed from unattached contextmemory"
+                result["msg"] = f"Object with id {id_remove} is removed from unattached context memory"
             else:
                 result["outcome"] = "failure"
-                result["msg"] == f"Object with id {id_remove} was not found in unattached contextmemory"
+                result["msg"] = f"Object with id {id_remove} was not found in unattached context memory"
 
     return result
 
 
 def main(inputfile, outputfile):
-    source = None
-    target = None
-    reln_type_list = []
+    result = {}
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
-            input = json.load(script_input)
-            if "api" in input:
-                stix_dict = input["api"]
-            else:
-                stix_dict = input
-            #
+            input_data = json.load(script_input)
+            if "stix_object" in input_data:
+                stix_dict = input_data["stix_object"]
+                result = remove_object(stix_dict)
+            elif "api" in input_data:
+                stix_dict = input_data["api"]
+                print(f"api \nstix_object->{stix_dict}")
+                result = remove_object(stix_dict)
+
             # setup logger for execution
-            remove_response = remove_object(stix_dict)
+
+            context_result = {}
+            context_result["context_result"] = result
 
     with open(outputfile, "w") as outfile:
-        json.dump(remove_response, outfile)
+        json.dump(context_result, outfile)
 
 
 ################################################################################

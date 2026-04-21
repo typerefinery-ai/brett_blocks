@@ -9,8 +9,9 @@ This module reads the CSV registry containing STIX object metadata including:
 - Display formatting fields (icon, form, head, prior_string/post_field pairs)
 """
 
-from pydantic import  BaseModel, field_validator, Field
-from typing import List, Dict, Union, Optional, Any
+from __future__ import annotations
+from pydantic import  BaseModel, field_validator, Field, ConfigDict, model_validator
+from typing import List, Dict, Union, Optional, Any, Annotated
 import logging
 import copy
 import csv
@@ -21,6 +22,121 @@ import json
 
 
 logger = logging.getLogger(__name__)
+
+###########################################################################
+# StixORM Template Stuff
+###############################################################################
+
+# UI / form hints (icons, button names, layout). Open-ended until you version it.
+StixMeta = Dict[str, Any]
+
+
+class StixFieldDescriptor(BaseModel):
+    """
+    One property/collection definition under base_* / object / nested properties.
+
+    Level-3 _meta: optional JSON object on this leaf (per-field form widgets, labels, etc.).
+    """
+
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    collection: str | None = None
+    property: str | None = Field(  # noqa: A003 — JSON key is literally "property"
+        default=None,
+        description="ORM property class, e.g. StringProperty, ReferenceProperty",
+    )
+    parameters: Dict[str, Any] = Field(default_factory=dict)
+
+    meta: StixMeta | None = Field(
+        default=None,
+        alias="_meta",
+        description="Per-property form / UI metadata (icons, button text, etc.).",
+    )
+
+
+class StixNestedBlock(BaseModel):
+    """
+    One value under ``extensions[extension_id]`` or ``sub[embedded_type]``.
+
+    Level-2 _meta: optional JSON object applying to the whole extension or sub-object.
+    Remaining keys are field descriptors (same leaf shape as elsewhere).
+    """
+
+    model_config = ConfigDict(extra="forbid", populate_by_name=True)
+
+    meta: StixMeta | None = Field(
+        default=None,
+        alias="_meta",
+        description="Block-level form / UI metadata for this extension or sub-type.",
+    )
+    properties: dict[str, Union[StixFieldDescriptor, Any]] = Field(default_factory=dict)
+
+    @model_validator(mode="before")
+    @classmethod
+    def split_head_meta(cls, data: Any) -> Any:
+        if not isinstance(data, dict):
+            return data
+        # Already normalized shape.
+        if "properties" in data:
+            return data
+        props: dict[str, Any] = {}
+        head_meta = data.get("_meta")
+        for key, val in data.items():
+            if key == "_meta":
+                continue
+            props[key] = val
+        return {"_meta": head_meta, "properties": props}
+
+
+class StixTemplateBody(BaseModel):
+    """
+    The object stored under ``<ClassName>_template``.
+
+    Level-1 _meta: optional JSON object applying to the whole template / STIX object.
+    """
+
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    type: str = Field(alias="_type")
+    meta: StixMeta | None = Field(
+        default=None,
+        alias="_meta",
+        description="Template-wide form / UI metadata.",
+    )
+
+    base_required: dict[str, StixFieldDescriptor] = Field(default_factory=dict)
+    base_optional: dict[str, StixFieldDescriptor] = Field(default_factory=dict)
+    object: dict[str, StixFieldDescriptor] = Field(default_factory=dict)
+
+    extensions: dict[str, StixNestedBlock] = Field(default_factory=dict)
+    sub: dict[str, StixNestedBlock] = Field(default_factory=dict)
+
+
+class StixTemplateFile(BaseModel):
+    """
+    Entire JSON file: ``class_name`` + one ``*_template`` + optional siblings
+    (e.g. ``observations`` on ObservedData, or future file-level keys).
+    """
+
+    model_config = ConfigDict(extra="allow")
+
+    class_name: str
+
+    def body(self) -> StixTemplateBody:
+        key = f"{self.class_name}_template"
+        raw = self.model_extra.get(key) if self.model_extra else None
+        if raw is None:
+            # also allow attribute set when validating known keys — fallback:
+            raw = getattr(self, key, None)
+        if raw is None:
+            raise KeyError(f"missing {key!r} for class_name={self.class_name!r}")
+        if isinstance(raw, StixTemplateBody):
+            return raw
+        return StixTemplateBody.model_validate(raw)
+
+###########################################################################
+# Parse Content Stuff
+###############################################################################
 
 
 class ParseContent(BaseModel):
@@ -118,6 +234,34 @@ def read_icon_registry() -> List[Dict]:
         logger.error(f"Error reading icon_registry.csv file: {e}")
         return []
 
+
+
+def return_template(stix_class: str, group: str) -> Union[StixTemplateFile, Dict]:
+    """
+    Read the template file for the given stix_class and group.
+
+    Args:
+        stix_class (str): The STIX class to get the template for.
+        group (str): The group to get the template for.
+    
+    Returns:
+        StixTemplateFile: StixTemplateFile object with the template data, or {} if file not found.
+    """
+    try:
+        # Get the directory of the current file
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        # Construct the path to the template files
+        file_path = os.path.join(current_dir, "templates", group, f"{stix_class}_template.json")
+        
+        if not os.path.exists(file_path):
+            logger.error(f"template file not found at {file_path}")
+            return {}
+        
+        with open(file_path, 'r', encoding='utf-8') as f:
+            return StixTemplateFile.model_validate(json.load(f))
+    except Exception as e:
+            logger.error(f"Error reading template file: {e}")
+            return {}
 
 
 
@@ -734,3 +878,19 @@ def wrap_stix_dict(stix_dict: Dict[str, Union[str, Dict, List]]) -> Dict[str, Un
 
 
 
+
+
+###################################################################################################
+#
+# Specific - Get Stix Template from Object based on Tests
+#
+####################################################################################################
+
+def get_stix_template_from_object(stix_dict: Dict[str, Union[str, Dict, List]]) -> Optional[StixTemplateFile]:
+    """
+    Get the Stix Template from the object based on the tests.
+    """
+    content = determine_content_object_from_list_by_tests(stix_dict, "class")
+    if not content:
+        raise ValueError(f"No content found for STIX type: {stix_dict.get('type', '')}")
+    return return_template(content.python_class, content.group)

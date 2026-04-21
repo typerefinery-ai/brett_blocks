@@ -20,7 +20,9 @@
         "modified": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}}
       },
       "base_optional": {
-        "created_by_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["identity"], "spec_version":  "2.1"}, "_meta": {"icon":"fa fa-id-badge"}},
+        "created_by_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["identity"], "spec_version":  "2.1"},
+        "_meta": {"icon":"fa fa-id-badge"}
+      },
         "revoked": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
         "labels": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
         "confidence": {"property":  "IntegerProperty", "parameters": {}},
