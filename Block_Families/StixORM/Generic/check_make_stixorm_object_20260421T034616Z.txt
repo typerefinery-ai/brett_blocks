@@ -1,0 +1,679 @@
+####################################################################################################
+CHECK MAKE STIXORM OBJECT REPORT
+####################################################################################################
+
+Run Timestamp (UTC): 2026-04-21T03:46:16.018739+00:00
+Forms Directory    : C:\projects\brett_blocks\Block_Families\StixORM\Generic\example_forms
+Total Forms        : 11
+
+====================================================================================================
+CASE 01: email_addr_IT_user2.json
+====================================================================================================
+
+Status       : mismatch
+Timestamp    : 2026-04-21T03:46:16.018739+00:00
+Form Path    : C:\projects\brett_blocks\Block_Families\StixORM\Generic\example_forms\email_addr_IT_user2.json
+
+----------------------------------------------------------------------------------------------------
+OVERALL DICT
+----------------------------------------------------------------------------------------------------
+{
+  "display_name": "Strange Billy",
+  "spec_version": "2.1",
+  "type": "email-addr",
+  "value": "sbilly@example.com"
+}
+
+----------------------------------------------------------------------------------------------------
+RETURNED DICT
+----------------------------------------------------------------------------------------------------
+{
+  "display_name": "Strange Billy",
+  "id": "email-addr--b0708db8-71e9-50f9-950c-610fccd2c30b",
+  "spec_version": "2.1",
+  "type": "email-addr",
+  "value": "sbilly@example.com"
+}
+
+----------------------------------------------------------------------------------------------------
+DEEPDIFF
+----------------------------------------------------------------------------------------------------
+{
+  "dictionary_item_added": [
+    "root['id']"
+  ]
+}
+
+====================================================================================================
+CASE 02: event_interview_completed.json
+====================================================================================================
+
+Status       : mismatch
+Timestamp    : 2026-04-21T03:46:16.048680+00:00
+Form Path    : C:\projects\brett_blocks\Block_Families\StixORM\Generic\example_forms\event_interview_completed.json
+
+----------------------------------------------------------------------------------------------------
+OVERALL DICT
+----------------------------------------------------------------------------------------------------
+{
+  "description": "Structured interview concluded, user testimony documented as anecdote evidence",
+  "end_time": "2024-01-15T10:00:45.000Z",
+  "event_types": [
+    "evidence-collected"
+  ],
+  "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+    "extension_type": "new-sdo"
+  },
+  "name": "Employee Interview Completed",
+  "spec_version": "2.1",
+  "start_time": "2024-01-15T10:00:00.000Z",
+  "status": "occurred",
+  "type": "event"
+}
+
+----------------------------------------------------------------------------------------------------
+RETURNED DICT
+----------------------------------------------------------------------------------------------------
+{
+  "created": "2026-04-21T03:46:16.069443Z",
+  "description": "Structured interview concluded, user testimony documented as anecdote evidence",
+  "end_time": "2024-01-15T10:00:45.000Z",
+  "event_types": [
+    "evidence-collected"
+  ],
+  "extensions": {
+    "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+      "extension_type": "new-sdo"
+    }
+  },
+  "id": "event--bd7bf3dc-9198-4ce8-bc31-fd5125396291",
+  "modified": "2026-04-21T03:46:16.069443Z",
+  "name": "Employee Interview Completed",
+  "spec_version": "2.1",
+  "start_time": "2024-01-15T10:00:00.000Z",
+  "status": "occurred",
+  "type": "event"
+}
+
+----------------------------------------------------------------------------------------------------
+DEEPDIFF
+----------------------------------------------------------------------------------------------------
+{
+  "dictionary_item_added": [
+    "root['id']",
+    "root['created']",
+    "root['modified']",
+    "root['extensions']"
+  ],
+  "dictionary_item_removed": [
+    "root['extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e']"
+  ]
+}
+
+====================================================================================================
+CASE 03: identity_Laptop1.json
+====================================================================================================
+
+Status       : mismatch
+Timestamp    : 2026-04-21T03:46:16.074443+00:00
+Form Path    : C:\projects\brett_blocks\Block_Families\StixORM\Generic\example_forms\identity_Laptop1.json
+
+----------------------------------------------------------------------------------------------------
+OVERALL DICT
+----------------------------------------------------------------------------------------------------
+{
+  "description": "Usr 1's Laptop",
+  "external_references": [
+    {
+      "description": "16GB RAM, 1TB SD, Microsoft Windows 11 Professional",
+      "external_id": "Asset--629456a",
+      "source_name": "HP Ultima 10",
+      "url": "https://mail.echange.microsoft.com"
+    }
+  ],
+  "identity_class": "asset",
+  "name": "HP Laptop 1",
+  "roles": [
+    "laptop"
+  ],
+  "sectors": [
+    "technology"
+  ],
+  "spec_version": "2.1",
+  "type": "identity"
+}
+
+----------------------------------------------------------------------------------------------------
+RETURNED DICT
+----------------------------------------------------------------------------------------------------
+{
+  "created": "2026-04-21T03:46:16.093271Z",
+  "description": "Usr 1's Laptop",
+  "external_references": [
+    {
+      "description": "16GB RAM, 1TB SD, Microsoft Windows 11 Professional",
+      "external_id": "Asset--629456a",
+      "source_name": "HP Ultima 10",
+      "url": "https://mail.echange.microsoft.com"
+    }
+  ],
+  "id": "identity--d33c912a-e2ae-4eb9-9aed-ee61e4965fa6",
+  "identity_class": "asset",
+  "modified": "2026-04-21T03:46:16.093271Z",
+  "name": "HP Laptop 1",
+  "roles": [
+    "laptop"
+  ],
+  "sectors": [
+    "technology"
+  ],
+  "spec_version": "2.1",
+  "type": "identity"
+}
+
+----------------------------------------------------------------------------------------------------
+DEEPDIFF
+----------------------------------------------------------------------------------------------------
+{
+  "dictionary_item_added": [
+    "root['id']",
+    "root['created']",
+    "root['modified']"
+  ]
+}
+
+====================================================================================================
+CASE 04: identity_TR_user.json
+====================================================================================================
+
+Status       : mismatch
+Timestamp    : 2026-04-21T03:46:16.094510+00:00
+Form Path    : C:\projects\brett_blocks\Block_Families\StixORM\Generic\example_forms\identity_TR_user.json
+
+----------------------------------------------------------------------------------------------------
+OVERALL DICT
+----------------------------------------------------------------------------------------------------
+{
+  "description": "A Trusty Individual",
+  "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+    "contact_numbers": [
+      {
+        "contact_number": "0418-208-368",
+        "contact_number_type": "work-phone"
+      }
+    ],
+    "email_addresses": [
+      {
+        "digital_contact_type": "work"
+      }
+    ],
+    "extension_type": "property-extension",
+    "first_name": "Me",
+    "last_name": "Jones",
+    "middle_name": "Percival",
+    "prefix": "Dr",
+    "social_media_accounts": [
+      {
+        "digital_contact_type": "work"
+      }
+    ],
+    "team": "os-threat"
+  },
+  "identity_class": "individual",
+  "name": "Trusty Jones",
+  "roles": [
+    "soc",
+    "support"
+  ],
+  "sectors": [
+    "technology"
+  ],
+  "spec_version": "2.1",
+  "type": "identity"
+}
+
+----------------------------------------------------------------------------------------------------
+RETURNED DICT
+----------------------------------------------------------------------------------------------------
+{
+  "created": "2026-04-21T03:46:16.120286Z",
+  "description": "A Trusty Individual",
+  "id": "identity--fe05f6ea-ea24-4718-ae01-dd42bd875674",
+  "identity_class": "individual",
+  "modified": "2026-04-21T03:46:16.120286Z",
+  "name": "Trusty Jones",
+  "roles": [
+    "soc",
+    "support"
+  ],
+  "sectors": [
+    "technology"
+  ],
+  "spec_version": "2.1",
+  "type": "identity"
+}
+
+----------------------------------------------------------------------------------------------------
+DEEPDIFF
+----------------------------------------------------------------------------------------------------
+{
+  "dictionary_item_added": [
+    "root['id']",
+    "root['created']",
+    "root['modified']"
+  ],
+  "dictionary_item_removed": [
+    "root['extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498']"
+  ]
+}
+
+====================================================================================================
+CASE 05: impact_confidentiality.json
+====================================================================================================
+
+Status       : mismatch
+Timestamp    : 2026-04-21T03:46:16.121284+00:00
+Form Path    : C:\projects\brett_blocks\Block_Families\StixORM\Generic\example_forms\impact_confidentiality.json
+
+----------------------------------------------------------------------------------------------------
+OVERALL DICT
+----------------------------------------------------------------------------------------------------
+{
+  "confidentiality": {
+    "loss_of_confidentiality": 75
+  },
+  "criticality": 75,
+  "description": "Risk of credential theft and unauthorized access to sensitive corporate data if users fall victim to phishing attack",
+  "impact_category": "confidentiality",
+  "recoverability": "regular",
+  "spec_version": "2.1",
+  "type": "impact"
+}
+
+----------------------------------------------------------------------------------------------------
+RETURNED DICT
+----------------------------------------------------------------------------------------------------
+{
+  "created": "2026-04-21T03:46:16.148651Z",
+  "criticality": 75,
+  "description": "Risk of credential theft and unauthorized access to sensitive corporate data if users fall victim to phishing attack",
+  "end_time": "2026-04-21T03:46:16.148651Z",
+  "id": "impact--eaffd174-1c61-4c94-95f6-9678c50ea1b8",
+  "impact_category": "confidentiality",
+  "modified": "2026-04-21T03:46:16.148651Z",
+  "recoverability": "regular",
+  "spec_version": "2.1",
+  "start_time": "2026-04-21T03:46:16.148651Z",
+  "type": "impact"
+}
+
+----------------------------------------------------------------------------------------------------
+DEEPDIFF
+----------------------------------------------------------------------------------------------------
+{
+  "dictionary_item_added": [
+    "root['id']",
+    "root['created']",
+    "root['modified']",
+    "root['end_time']",
+    "root['start_time']"
+  ],
+  "dictionary_item_removed": [
+    "root['confidentiality']"
+  ]
+}
+
+====================================================================================================
+CASE 06: indicator_email_domain.json
+====================================================================================================
+
+Status       : mismatch
+Timestamp    : 2026-04-21T03:46:16.149736+00:00
+Form Path    : C:\projects\brett_blocks\Block_Families\StixORM\Generic\example_forms\indicator_email_domain.json
+
+----------------------------------------------------------------------------------------------------
+OVERALL DICT
+----------------------------------------------------------------------------------------------------
+{
+  "description": "Email sender domain identified as potentially malicious based on typosquatting pattern and lack of legitimate business records",
+  "indicator_types": [
+    "malicious-activity"
+  ],
+  "name": "Suspicious Email Domain Pattern",
+  "pattern": "[email-addr:value MATCHES '.+@micr0s0ft-support\\\\.com$']",
+  "pattern_type": "stix",
+  "spec_version": "2.1",
+  "type": "indicator",
+  "valid_from": "2024-01-15T03:47:00.000Z"
+}
+
+----------------------------------------------------------------------------------------------------
+RETURNED DICT
+----------------------------------------------------------------------------------------------------
+{
+  "created": "2026-04-21T03:46:16.185798Z",
+  "description": "Email sender domain identified as potentially malicious based on typosquatting pattern and lack of legitimate business records",
+  "id": "indicator--9ef2f508-da0d-40c8-8b70-c05844021c33",
+  "indicator_types": [
+    "malicious-activity"
+  ],
+  "modified": "2026-04-21T03:46:16.185798Z",
+  "name": "Suspicious Email Domain Pattern",
+  "pattern": "[email-addr:value MATCHES '.+@micr0s0ft-support\\\\.com$']",
+  "pattern_type": "stix",
+  "pattern_version": "2.1",
+  "spec_version": "2.1",
+  "type": "indicator",
+  "valid_from": "2024-01-15T03:47:00Z"
+}
+
+----------------------------------------------------------------------------------------------------
+DEEPDIFF
+----------------------------------------------------------------------------------------------------
+{
+  "dictionary_item_added": [
+    "root['id']",
+    "root['created']",
+    "root['modified']",
+    "root['pattern_version']"
+  ],
+  "values_changed": {
+    "root['valid_from']": {
+      "new_value": "2024-01-15T03:47:00Z",
+      "old_value": "2024-01-15T03:47:00.000Z"
+    }
+  }
+}
+
+====================================================================================================
+CASE 07: observation-alert.json
+====================================================================================================
+
+Status       : mismatch
+Timestamp    : 2026-04-21T03:46:16.205355+00:00
+Form Path    : C:\projects\brett_blocks\Block_Families\StixORM\Generic\example_forms\observation-alert.json
+
+----------------------------------------------------------------------------------------------------
+OVERALL DICT
+----------------------------------------------------------------------------------------------------
+{
+  "first_observed": "2020-10-19T01:01:01.000Z",
+  "last_observed": "2020-10-19T01:01:01.000Z",
+  "number_observed": 1,
+  "object_refs": [
+    "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+    "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+    "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+    "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+    "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+    "relationship--a0fea125-c676-460d-bf7a-4099fdf6a976"
+  ],
+  "spec_version": "2.1",
+  "type": "observed-data"
+}
+
+----------------------------------------------------------------------------------------------------
+RETURNED DICT
+----------------------------------------------------------------------------------------------------
+{
+  "created": "2026-04-21T03:46:16.272649Z",
+  "first_observed": "2020-10-19T01:01:01Z",
+  "id": "observed-data--01bcd77b-2c1a-4ef0-8cf4-ffff2dd584a6",
+  "last_observed": "2020-10-19T01:01:01Z",
+  "modified": "2026-04-21T03:46:16.272649Z",
+  "number_observed": 1,
+  "object_refs": [
+    "email-addr--eb38d07e-6ba8-56c1-b107-d4db4aacf212",
+    "user-account--597ad4d4-35ba-585d-8f6d-134a75032f9b",
+    "email-addr--4722424c-7012-56b0-84d5-01d076fc547b",
+    "url--3279c7de-8f91-5c1a-99d9-d6546c6c41f7",
+    "email-message--6090e3d4-1fa8-5b36-9d2d-4a66d824995d",
+    "relationship--a0fea125-c676-460d-bf7a-4099fdf6a976"
+  ],
+  "spec_version": "2.1",
+  "type": "observed-data"
+}
+
+----------------------------------------------------------------------------------------------------
+DEEPDIFF
+----------------------------------------------------------------------------------------------------
+{
+  "dictionary_item_added": [
+    "root['id']",
+    "root['created']",
+    "root['modified']"
+  ],
+  "values_changed": {
+    "root['first_observed']": {
+      "new_value": "2020-10-19T01:01:01Z",
+      "old_value": "2020-10-19T01:01:01.000Z"
+    },
+    "root['last_observed']": {
+      "new_value": "2020-10-19T01:01:01Z",
+      "old_value": "2020-10-19T01:01:01.000Z"
+    }
+  }
+}
+
+====================================================================================================
+CASE 08: phishing_incident.json
+====================================================================================================
+
+Status       : mismatch
+Timestamp    : 2026-04-21T03:46:16.274650+00:00
+Form Path    : C:\projects\brett_blocks\Block_Families\StixORM\Generic\example_forms\phishing_incident.json
+
+----------------------------------------------------------------------------------------------------
+OVERALL DICT
+----------------------------------------------------------------------------------------------------
+{
+  "extension-definition--ef765651-680c-498d-9894-99799f2fa126": {
+    "extension_type": "property-extension",
+    "incident_types": [
+      "dissemination-phishing-emails"
+    ],
+    "investigation_status": "new"
+  },
+  "name": "potential phishing",
+  "spec_version": "2.1",
+  "type": "incident"
+}
+
+----------------------------------------------------------------------------------------------------
+RETURNED DICT
+----------------------------------------------------------------------------------------------------
+{
+  "created": "2026-04-21T03:46:16.297638Z",
+  "extensions": {
+    "extension-definition--ef765651-680c-498d-9894-99799f2fa126": {
+      "extension_type": "property-extension",
+      "incident_types": [
+        "dissemination-phishing-emails"
+      ],
+      "investigation_status": "new"
+    }
+  },
+  "id": "incident--9d44e31e-c6e6-429a-98ac-9b0567558628",
+  "modified": "2026-04-21T03:46:16.297638Z",
+  "name": "potential phishing",
+  "spec_version": "2.1",
+  "type": "incident"
+}
+
+----------------------------------------------------------------------------------------------------
+DEEPDIFF
+----------------------------------------------------------------------------------------------------
+{
+  "dictionary_item_added": [
+    "root['id']",
+    "root['created']",
+    "root['modified']",
+    "root['extensions']"
+  ],
+  "dictionary_item_removed": [
+    "root['extension-definition--ef765651-680c-498d-9894-99799f2fa126']"
+  ]
+}
+
+====================================================================================================
+CASE 09: sequence_anecdote.json
+====================================================================================================
+
+Status       : error
+Timestamp    : 2026-04-21T03:46:16.301627+00:00
+Form Path    : C:\projects\brett_blocks\Block_Families\StixORM\Generic\example_forms\sequence_anecdote.json
+Error        : MissingPropertiesError('No values for required properties for Identity: (name).')
+
+----------------------------------------------------------------------------------------------------
+OVERALL DICT
+----------------------------------------------------------------------------------------------------
+null
+
+----------------------------------------------------------------------------------------------------
+RETURNED DICT
+----------------------------------------------------------------------------------------------------
+null
+
+----------------------------------------------------------------------------------------------------
+DEEPDIFF
+----------------------------------------------------------------------------------------------------
+null
+
+====================================================================================================
+CASE 10: sighting_anecdote_interview.json
+====================================================================================================
+
+Status       : mismatch
+Timestamp    : 2026-04-21T03:46:16.319268+00:00
+Form Path    : C:\projects\brett_blocks\Block_Families\StixORM\Generic\example_forms\sighting_anecdote_interview.json
+
+----------------------------------------------------------------------------------------------------
+OVERALL DICT
+----------------------------------------------------------------------------------------------------
+{
+  "count": 1,
+  "description": "User testimony collected through structured interview providing firsthand account of phishing email interaction",
+  "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {
+    "extension_type": "property-extension"
+  },
+  "observed_data_refs": [
+    "observed-data--5d8931d0-ae63-4a05-b640-435cf8157b92"
+  ],
+  "sighting-anecdote": {
+    "person_context": "end-user",
+    "person_name": "Corporate Employee",
+    "report_submission": "interview"
+  },
+  "sighting_of_ref": "indicator--455666c3-aab7-407c-b512-de917aa4ab76",
+  "spec_version": "2.1",
+  "type": "sighting",
+  "where_sighted_refs": [
+    "identity--d3e83629-c2ba-4490-a40b-2ea361d327ec"
+  ]
+}
+
+----------------------------------------------------------------------------------------------------
+RETURNED DICT
+----------------------------------------------------------------------------------------------------
+{
+  "count": 1,
+  "created": "2026-04-21T03:46:16.342062Z",
+  "description": "User testimony collected through structured interview providing firsthand account of phishing email interaction",
+  "extensions": {
+    "extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43": {
+      "extension_type": "property-extension"
+    },
+    "sighting-anecdote": {
+      "person_context": "end-user",
+      "person_name": "Corporate Employee",
+      "report_submission": "interview"
+    }
+  },
+  "id": "sighting--28810d10-887b-4cfc-a0b8-b19d082d11ba",
+  "modified": "2026-04-21T03:46:16.342062Z",
+  "observed_data_refs": [
+    "observed-data--5d8931d0-ae63-4a05-b640-435cf8157b92"
+  ],
+  "sighting_of_ref": "indicator--455666c3-aab7-407c-b512-de917aa4ab76",
+  "spec_version": "2.1",
+  "type": "sighting",
+  "where_sighted_refs": [
+    "identity--d3e83629-c2ba-4490-a40b-2ea361d327ec"
+  ]
+}
+
+----------------------------------------------------------------------------------------------------
+DEEPDIFF
+----------------------------------------------------------------------------------------------------
+{
+  "dictionary_item_added": [
+    "root['id']",
+    "root['created']",
+    "root['modified']",
+    "root['extensions']"
+  ],
+  "dictionary_item_removed": [
+    "root['extension-definition--0d76d6d9-16ca-43fd-bd41-4f800ba8fc43']",
+    "root['sighting-anecdote']"
+  ]
+}
+
+====================================================================================================
+CASE 11: task_alert.json
+====================================================================================================
+
+Status       : mismatch
+Timestamp    : 2026-04-21T03:46:16.348338+00:00
+Form Path    : C:\projects\brett_blocks\Block_Families\StixORM\Generic\example_forms\task_alert.json
+
+----------------------------------------------------------------------------------------------------
+OVERALL DICT
+----------------------------------------------------------------------------------------------------
+{
+  "description": "Suspicious email reported by user",
+  "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+    "extension_type": "new-sdo"
+  },
+  "name": "Potential Phishing Email",
+  "spec_version": "2.1",
+  "type": "task"
+}
+
+----------------------------------------------------------------------------------------------------
+RETURNED DICT
+----------------------------------------------------------------------------------------------------
+{
+  "created": "2026-04-21T03:46:16.368387Z",
+  "description": "Suspicious email reported by user",
+  "end_time": "2026-04-21T03:46:16.368387Z",
+  "id": "task--74d979fb-4c08-45a8-8d4b-d1479e1b102b",
+  "modified": "2026-04-21T03:46:16.368387Z",
+  "name": "Potential Phishing Email",
+  "spec_version": "2.1",
+  "start_time": "2026-04-21T03:46:16.368387Z",
+  "type": "task"
+}
+
+----------------------------------------------------------------------------------------------------
+DEEPDIFF
+----------------------------------------------------------------------------------------------------
+{
+  "dictionary_item_added": [
+    "root['id']",
+    "root['created']",
+    "root['modified']",
+    "root['end_time']",
+    "root['start_time']"
+  ],
+  "dictionary_item_removed": [
+    "root['extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e']"
+  ]
+}
+
+####################################################################################################
+SUMMARY
+####################################################################################################
+Forms checked : 11
+Matches       : 0
+Mismatches    : 10
+Errors        : 1

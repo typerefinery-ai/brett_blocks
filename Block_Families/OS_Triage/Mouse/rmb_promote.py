@@ -88,19 +88,31 @@ field_names = {
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
+TR_Settings_Dir = "./generated/os-triage/context_mem/settings"
+TR_Settings_URL = "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/refs/heads/main/Block_Families/OS_Triage/User_Options/options.json"
+
+def download_settings():
+    if not os.path.exists(TR_Settings_Dir):
+        os.makedirs(TR_Settings_Dir)
+    result = urlretrieve(TR_Settings_URL, TR_Settings_Dir + "/options.json")
+    print(f'settings file result ->', result)
+
+
+
 
 def download_common(module_list):
-    """Download common utility modules if they don't exist"""
     for module in module_list:
         # Step 1: download the module
         result = urlretrieve(module["url"], TR_Common_Files + "/" + module["file"])
         print(f'common file result ->', result)
+        # Step 2: install the module
+
+
 
 def add_node(node, context_dir, context_type):
-    """Add a node to the specified context file"""
     exists = False
     stix_nodes_list = []
-    if os.path.exists(context_dir + incident_data[context_type]):
+    if  os.path.exists(context_dir + incident_data[context_type]):
         with open(context_dir + incident_data[context_type], "r") as mem_input:
             stix_nodes_list = json.load(mem_input)
             for i in range(len(stix_nodes_list)):
@@ -114,32 +126,17 @@ def add_node(node, context_dir, context_type):
     with open(context_dir + incident_data[context_type], 'w') as f:
         f.write(json.dumps(stix_nodes_list))
 
-def add_edge(edge, context_dir, context_type):
-    """Add an edge to the specified context file"""
-    exists = False
-    stix_edge_list = []
-    if os.path.exists(context_dir + incident_data[context_type]):
-        with open(context_dir + incident_data[context_type], "r") as mem_input:
-            stix_edge_list = json.load(mem_input)
-            for i in range(len(stix_edge_list)):
-                if stix_edge_list[i]["source"] == edge["source"] and stix_edge_list[i]["target"] == edge["target"]:
-                    stix_edge_list[i] = edge
-                    exists = True
-            if not exists:
-                stix_edge_list.append(edge)
-    else:
-        stix_edge_list = [edge]
-    with open(context_dir + incident_data[context_type], 'w') as f:
-        f.write(json.dumps(stix_edge_list))
+
 
 def register_id(id, field, TR_Incident_Context_Dir):
-    """Register an ID in the incident object's reference lists"""
     incident_list = []
     with open(TR_Incident_Context_Dir + incident_data["incident"], "r") as incident_object:
         incident_list = json.load(incident_object)
         wrapped_incident = incident_list[0]
         incident = wrapped_incident["original"]
+        incident_references = wrapped_incident["references"]
         incident_ext = incident["extensions"]["extension-definition--ef765651-680c-498d-9894-99799f2fa126"]
+        # register first in the object
         # check whether field exists first
         if field_names[field] in incident_ext:
             id_list = incident_ext[field_names[field]]
@@ -149,9 +146,21 @@ def register_id(id, field, TR_Incident_Context_Dir):
             id_list = []
             id_list.append(id)
             incident_ext[field_names[field]] = id_list
+        # register second in the references
+        # check whether field exists first
+        if field_names[field] in incident_references:
+            id_list = incident_references[field_names[field]]
+            if id not in id_list:
+                id_list.append(id)
+        else:
+            id_list = []
+            id_list.append(id)
+            incident_references[field_names[field]] = id_list
+
 
     with open(TR_Incident_Context_Dir + incident_data["incident"], 'w') as f:
         f.write(json.dumps(incident_list))
+        
 
 def save_object_to_incident_context(stix_object, TR_Incident_Context_Dir, n_and_e):
     """Save a single STIX object to incident context using the exact method from save_incident_context.py"""

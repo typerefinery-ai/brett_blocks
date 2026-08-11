@@ -1,0 +1,31 @@
+{
+    "class_name": "ObservedData",
+    "ObservedData_template": {
+        "_type": "observed-data",
+        "base_required": {
+          "type": {"property":  "TypeProperty", "parameters": {"value":  "_type", "spec_version":  "2.1"}},
+          "spec_version": {"property":  "StringProperty", "parameters": {"fixed":  "2.1"}},
+          "id": {"property":  "IDProperty", "parameters": {"value":  "_type", "Spec_version":  "2.1"}},
+          "created": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}},
+          "modified": {"property":  "TimestampProperty", "parameters": {"default":  "lambda: NOW", "precision":  "millisecond", "precision_constraint": "min"}}
+        },
+        "base_optional": {
+          "created_by_ref": {"property":  "ReferenceProperty", "parameters": {"valid_types":  ["identity"], "spec_version":  "2.1"}, "_meta": {"icon":"fa fa-id-badge"}},
+          "revoked": {"property":  "BooleanProperty", "parameters": {"default":  "lambda: False"}},
+          "labels": {"collection": "ListProperty", "property":  "StringProperty", "parameters": {}},
+          "confidence": {"property":  "IntegerProperty", "parameters": {}},
+          "lang": {"property":  "StringProperty", "parameters": {}},
+          "external_references": {"collection": "ListProperty", "property":  "ExternalReference", "parameters": {}},
+          "object_marking_refs": {"collection": "ListProperty", "property":  "ReferenceProperty", "parameters": {"valid_types":  ["marking-definition"], "spec_version":  "2.1"}},
+          "granular_markings": {"collection": "ListProperty", "property":  "GranularMarking", "parameters": {}}
+        },
+        "object": {
+            "first_observed": {"property": "TimestampProperty", "parameters": {"required": true}},
+            "last_observed": {"property": "TimestampProperty", "parameters": {"required": true}},
+            "number_observed": {"property": "IntegerProperty", "parameters": {"min": 0}},
+            "object_refs": {"collection": "ListProperty", "property": "ReferenceProperty", "parameters": {"valid_types": ["_any"]}}
+        },
+        "extensions": {},
+        "sub": {}
+    }
+}

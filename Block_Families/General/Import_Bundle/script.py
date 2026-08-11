@@ -99,7 +99,7 @@ def main(inputfile, outputfile):
 import argparse
 import os
 
-@Logger.catch
+# @Logger.catch
 def getArgs():
 
   parser = argparse.ArgumentParser(description="Script params",

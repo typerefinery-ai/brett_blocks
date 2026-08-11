@@ -1,0 +1,34 @@
+{
+    "base_required": {
+        "type": "event",
+        "spec_version": "2.1",
+        "id": "",
+        "created": "",
+        "modified": ""
+    },
+    "base_optional": {
+        "created_by_ref": "",
+        "revoked": null,
+        "labels": [],
+        "confidence": null,
+        "lang": "",
+        "external_references": [],
+        "object_marking_refs": [],
+        "granular_markings": []
+    },
+    "object": {
+        "name": "Employee Interview Completed",
+        "description": "Structured interview concluded, user testimony documented as anecdote evidence",
+        "event_types": [
+            "evidence-collected"
+        ],
+        "start_time": "2024-01-15T10:00:00.000Z",
+        "end_time": "2024-01-15T10:00:45.000Z",
+        "status": "occurred"
+    },
+    "extensions": {
+        "extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e": {
+            "extension_type": "new-sdo"
+        }
+    }
+}

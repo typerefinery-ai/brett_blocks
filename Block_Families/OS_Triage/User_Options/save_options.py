@@ -94,6 +94,19 @@ field_names = {
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
+TR_Settings_Dir = "./generated/os-triage/context_memory/settings"
+TR_Settings_File = "/options.json"
+TR_Settings_URL = "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/refs/heads/main/Block_Families/OS_Triage/User_Options/options.json"
+
+def download_settings():
+    if not os.path.exists(TR_Settings_Dir):
+        os.makedirs(TR_Settings_Dir)
+    result = urlretrieve(TR_Settings_URL, TR_Settings_Dir + "/options.json")
+    print(f'settings file result ->', result)
+
+
+#============================================================================
+
 
 
 def create_edge(edge_label, source_id, target_id, edge_type)-> Dict[str, str]:

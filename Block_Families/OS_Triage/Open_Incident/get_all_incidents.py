@@ -90,6 +90,19 @@ field_names = {
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
+TR_Settings_Dir = "./generated/os-triage/context_mem/settings"
+TR_Settings_File = "/options.json"
+TR_Settings_URL = "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/refs/heads/main/Block_Families/OS_Triage/User_Options/options.json"
+
+def download_settings():
+    if not os.path.exists(TR_Settings_Dir):
+        os.makedirs(TR_Settings_Dir)
+    result = urlretrieve(TR_Settings_URL, TR_Settings_Dir + "/options.json")
+    print(f'settings file result ->', result)
+
+
+#============================================================================
+
 
 def download_common(module_list):
     for module in module_list:
@@ -121,13 +134,37 @@ def get_all_incidents():
 
     return incident_list
 
+def get_all_incidents_table():
+    incident_list = get_all_incidents()
+    incident_row = {}
+    incident_table = {}
+    data_list = []
+    columns = [
+        { "field": "name", "title": "Name" },
+        { "field": "id", "title": "Stix-ID" },
+        { "field": "heading", "title": "Heading" },
+        { "field": "description", "title": "Description" }
+    ]
+    for incident in incident_list:
+        incident_row["id"] = incident["id"]
+        incident_row["name"] = incident["name"]
+        incident_row["description"] = incident["description"]
+        incident_row["heading"] = incident["heading"]
+        data_list.append(incident_row)
+    incident_table["data"] = data_list
+    incident_table["columns"] = columns
+    incident_table["search"] = False
+    incident_table["pagination"] = False
+    incident_table["resizable"] = True
+    return incident_table
 
 def main(inputfile, outputfile):
     # No input data, just a trigger
-    stix_list = get_all_incidents()
+    incident_table = []
+    incident_table = get_all_incidents_table()
 
     with open(outputfile, "w") as outfile:
-        json.dump(stix_list, outfile)
+        json.dump(incident_table, outfile)
 
 
 ################################################################################

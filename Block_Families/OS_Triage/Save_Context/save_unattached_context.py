@@ -90,14 +90,24 @@ field_names = {
 }
 key_list = ["start", "sequence", "impact", "event", "task", "other"]
 
+TR_Settings_Dir = "./generated/os-triage/context_mem/settings"
+TR_Settings_URL = "https://raw.githubusercontent.com/typerefinery-ai/brett_blocks/refs/heads/main/Block_Families/OS_Triage/User_Options/options.json"
+
+def download_settings():
+    if not os.path.exists(TR_Settings_Dir):
+        os.makedirs(TR_Settings_Dir)
+    result = urlretrieve(TR_Settings_URL, TR_Settings_Dir + "/options.json")
+    print(f'settings file result ->', result)
+
+
+
+
 def download_common(module_list):
     for module in module_list:
         # Step 1: download the module
         result = urlretrieve(module["url"], TR_Common_Files + "/" + module["file"])
         print(f'common file result ->', result)
         # Step 2: install the module
-
-
 
 def add_node(node, context_dir, context_type):
     exists = False
@@ -139,6 +149,8 @@ def save_context(stix_object):
             os.makedirs(TR_Context_Memory_Dir)
         if not os.path.exists(TR_Context_Memory_Dir + "/usr"):
             os.makedirs(TR_Context_Memory_Dir + "/usr")
+        if not os.path.exists(TR_Settings_Dir):
+            download_settings()
         # if not os.path.exists(TR_Context_Memory_Dir + "/incident_1"):
         #     os.makedirs(TR_Context_Memory_Dir + "/incident_1")
 
@@ -152,8 +164,6 @@ def save_context(stix_object):
         # Load the module
         spec.loader.exec_module(parse)
         # 4. Depending on Object Tupe, Get the Nodes and Edges, and save them to the lists
-        stix_nodes_list = []
-        incident = {}
         wrapped = parse.wrap_stix_dict(stix_object)
         add_node(wrapped, TR_Incident_Context_Dir, "unattached")
 
@@ -161,7 +171,6 @@ def save_context(stix_object):
 
 
 def main(inputfile, outputfile):
-    context_type_string = ""
     stix_object = None
     if os.path.exists(inputfile):
         with open(inputfile, "r") as script_input:
@@ -173,9 +182,7 @@ def main(inputfile, outputfile):
             elif "api" in input_data:
                 api_input_data = input_data["api"]
                 stix_object = api_input_data["stix_object"]
-                if "context_type" in api_input_data:
-                    context_type_string = api_input_data["context_type"]["context_type"]
-                print(f"api \nstix_object->{stix_object}\ncontext type->{context_type_string}")
+                print(f"api \nstix_object->{stix_object}")
                 result_string = save_context(stix_object)
 
             # setup logger for execution
