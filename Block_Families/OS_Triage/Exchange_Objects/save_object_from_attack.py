@@ -52,7 +52,8 @@ import_type = import_type_factory.get_all_imports()
 
 # Attack Navigator Stuff
 import requests
-from stix2 import MemoryStore, CompositeDataSource
+# stix2's MemoryStore is no longer used: the bundles are searched as plain dicts so the object can be
+# handed to parse.wrap_stix_dict() unchanged (see get_data_from_branch).
 
 class AttackSourceError(Exception):
     """The ATT&CK source could not be read.
@@ -67,11 +68,43 @@ class AttackSourceError(Exception):
         self.detail = detail
 
 
+# The source is PINNED to a release tag rather than tracking master (R4.2b). Bumping this is a
+# deliberate act: the demo must not change behaviour because MITRE published something. This is not
+# hypothetical - alpha-launch docs/issues/0176 is the Navigator failing for exactly that reason.
+ATTACK_DATA_REF = "v19.2"
+ATTACK_DATA_BASE = "https://raw.githubusercontent.com/mitre-attack/attack-stix-data"
+ATTACK_DOMAINS = ["enterprise-attack", "mobile-attack", "ics-attack"]
+
+# Bundles are large - enterprise-attack alone is ~54 MB at v19.2 - so each is cached on disk after
+# the first fetch (R4.2a). An uncached download per right-click is visible on stage.
+TR_Attack_Cache_Dir = "./generated/os-triage/context_mem/attack_cache"
+
+
+def attack_cache_path(domain):
+    return f"{TR_Attack_Cache_Dir}/{domain}-{ATTACK_DATA_REF}.json"
+
+
 def get_data_from_branch(domain):
-    """get the ATT&CK STIX data from GitHub. Domain should be 'enterprise-attack', 'mobile-attack' or 'ics-attack'. Branch should typically be master."""
-    url = f"https://raw.githubusercontent.com/mitre-attack/attack-stix-data/master/{domain}/{domain}.json"
+    """Return one ATT&CK domain's STIX objects, from the on-disk cache when present.
+
+    Domain is 'enterprise-attack', 'mobile-attack' or 'ics-attack'. Returns a list of plain dicts:
+    the caller needs a dict for parse.wrap_stix_dict(), and scanning the list is far cheaper than
+    building a stix2 MemoryStore over ~26,000 objects just to fetch one by id.
+    """
+    cache_file = attack_cache_path(domain)
+    if os.path.exists(cache_file):
+        print(f"ATT&CK cache hit: {domain} at {cache_file}")
+        try:
+            with open(cache_file, "r") as cached:
+                return json.load(cached)
+        except (ValueError, OSError) as cache_err:
+            # A truncated cache must not masquerade as "object not found".
+            print(f"ATT&CK cache unreadable for {domain} ({cache_err}), refetching")
+
+    url = f"{ATTACK_DATA_BASE}/{ATTACK_DATA_REF}/{domain}/{domain}.json"
+    print(f"ATT&CK cache miss: {domain}, fetching {url}")
     # A network failure used to surface as an unhandled exception, and a 404/429 used to surface as a
-    # JSON decode error — both indistinguishable from "object not found" by the time they reached the
+    # JSON decode error -- both indistinguishable from "object not found" by the time they reached the
     # caller (docs/decisions/0017).
     try:
         response = requests.get(url, timeout=120)
@@ -88,8 +121,25 @@ def get_data_from_branch(domain):
         stix_json = response.json()
     except ValueError as err:
         raise AttackSourceError("source_unreachable", f"{domain}: response was not JSON ({err})")
-    print(f"ATT&CK domain loaded: {domain} ({len(stix_json.get('objects', []))} objects)")
-    return MemoryStore(stix_data=stix_json["objects"])
+
+    objects = stix_json.get("objects", [])
+    print(f"ATT&CK domain loaded: {domain} ({len(objects)} objects at {ATTACK_DATA_REF})")
+
+    # Write through a temp file and rename, so a killed process cannot leave a half-written bundle
+    # that later reads as an empty domain.
+    try:
+        if not os.path.exists(TR_Attack_Cache_Dir):
+            os.makedirs(TR_Attack_Cache_Dir)
+        temp_file = cache_file + ".tmp"
+        with open(temp_file, "w") as out:
+            json.dump(objects, out)
+        os.replace(temp_file, cache_file)
+        print(f"ATT&CK domain cached: {domain} at {cache_file}")
+    except OSError as cache_write_err:
+        # Caching is an optimisation; failing to cache must not fail the request.
+        print(f"ATT&CK cache write failed for {domain}: {cache_write_err}")
+
+    return objects
 
 
 
@@ -136,14 +186,14 @@ key_list = ["start", "sequence", "impact", "event", "task", "other"]
 # NOTE: the settings download that used to live here has been REMOVED (alpha-launch docs/issues/0068).
 #
 # It fetched User_Options/options.json from `refs/heads/main` and guarded on the *directory* rather
-# than the file, so on a clean machine — where the directory does not yet exist — it installed the
+# than the file, so on a clean machine -- where the directory does not yet exist -- it installed the
 # stale `main` copy, which defines only `composer_options`. The sections the options algorithms read
 # (`common`, `colours`) live on `os_triage`, and installing the wrong file is what made both #82
 # options APIs answer {"error":"true"} with KeyError: 'current_theme' (docs/issues/0041).
 #
-# This block never read a settings value — TR_Settings_Dir existed only to guard its own download —
+# This block never read a settings value -- TR_Settings_Dir existed only to guard its own download --
 # so the download is deleted rather than repaired. Settings belong to the options algorithms that
-# own them. ⚠️ The same pattern still exists in ~20 sibling blocks here; fixing those is a separate
+# own them. ! The same pattern still exists in ~20 sibling blocks here; fixing those is a separate
 # change (0068 Option 3), not something to do file-by-file.
 
 
@@ -154,11 +204,15 @@ def download_common(module_list):
         print(f'common file result ->', result)
         # Step 2: install the module
 
-def add_node(node, context_dir):
+def add_node(node, context_dir, context_type):
+    # This block's copy took TWO parameters and hardcoded comp_data["company"], while its only caller
+    # passed THREE and meant "unattached" - so every call raised TypeError, and had it not, it would
+    # have written the company file instead of the scratch pad. The 3-parameter form below is the one
+    # all 13 sibling blocks use (see Save_Context/save_unattached_context.py).
     exists = False
     stix_nodes_list = []
-    if  os.path.exists(context_dir + comp_data["company"]):
-        with open(context_dir + comp_data["company"], "r") as mem_input:
+    if  os.path.exists(context_dir + incident_data[context_type]):
+        with open(context_dir + incident_data[context_type], "r") as mem_input:
             stix_nodes_list = json.load(mem_input)
             for i in range(len(stix_nodes_list)):
                 if stix_nodes_list[i]["id"] == node["id"]:
@@ -169,8 +223,8 @@ def add_node(node, context_dir):
     else:
         stix_nodes_list = [node]
 
-    with open(context_dir + comp_data["company"], 'w') as f:
-            f.write(json.dumps(stix_nodes_list))
+    with open(context_dir + incident_data[context_type], 'w') as f:
+        f.write(json.dumps(stix_nodes_list))
 
 
 def retrieve_attack_object_and_save_in_unattached(stix_id):
@@ -189,35 +243,32 @@ def retrieve_attack_object_and_save_in_unattached(stix_id):
     attack_dict = {}
     found_in = None
     try:
-        src_enterprise = get_data_from_branch("enterprise-attack")
-        enterprise_object = src_enterprise.get(stix_id)
-        # B. See which object exists
-        if enterprise_object:
-            attack_dict = enterprise_object.serialize()
-            found_in = "enterprise-attack"
-        else:
-            src_mobile = get_data_from_branch("mobile-attack")
-            mobile_object = src_mobile.get(stix_id)
-            src_ics = get_data_from_branch("ics-attack")
-            ics_object = src_ics.get(stix_id)
-            if mobile_object:
-                attack_dict = mobile_object.serialize()
-                found_in = "mobile-attack"
-            elif ics_object:
-                attack_dict = ics_object.serialize()
-                found_in = "ics-attack"
-            else:
-                print(f"ATT&CK Object not found: {stix_id}")
-                return {"ok": False, "reason": "not_found", "detail": str(stix_id)}
+        # Each domain is searched in turn and the search STOPS at the first hit. The previous version
+        # fetched mobile AND ics before testing either, so a mobile technique still paid for the ics
+        # bundle. Note wrap_stix_dict() takes a DICT: passing stix2's serialize() output (a JSON
+        # STRING, as this block used to) raises AttributeError on .get() before anything is saved.
+        for domain in ATTACK_DOMAINS:
+            objects = get_data_from_branch(domain)
+            for candidate in objects:
+                if candidate.get("id") == stix_id:
+                    attack_dict = candidate
+                    found_in = domain
+                    break
+            if found_in:
+                print(f"ATT&CK object {stix_id} found in {found_in}")
+                break
+        if not found_in:
+            print(f"ATT&CK Object not found: {stix_id}")
+            return {"ok": False, "reason": "not_found", "detail": str(stix_id)}
     except AttackSourceError as err:
-        # ⚠️ Distinguish "we could not ask" from "it is not there". Reporting an unreachable source as
+        # ! Distinguish "we could not ask" from "it is not there". Reporting an unreachable source as
         # not_found would send an analyst looking for a typo in a correct id.
         return {"ok": False, "reason": err.reason, "detail": err.detail}
 
 
     # 1.B Find Current Incident directory
     #
-    # ⚠️ There may be no current incident — the map file can be absent, or carry no `current_incident`.
+    # ! There may be no current incident -- the map file can be absent, or carry no `current_incident`.
     # That used to raise (an unhandled IOError or KeyError) and surface as a 500 with a stack trace;
     # 0017 makes it a reportable outcome, because "nowhere to put it" is a normal state the analyst
     # can fix, not a crash.
