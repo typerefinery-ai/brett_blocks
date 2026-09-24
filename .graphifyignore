@@ -1,0 +1,39 @@
+# graphify excludes for brett_blocks (Python blocks / Poetry project)
+
+# Dependencies and build output
+.venv/
+venv/
+**/__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+dist/
+**/dist/
+build/
+
+# Lockfiles and generated metadata (huge, no graph value)
+poetry.lock
+
+# Test artifacts and scratch output
+test_output/
+temp_method_comparison/
+temporary_reconstitution_testing/
+.ipynb_checkpoints/
+*.log
+typedb_log.txt
+
+# Generated diff/report dumps (data, not design)
+DeepDiff_*.json
+test_artifacts.json
+test_output_split_subgraphs.json
+
+# Local tool state
+.typedb-studio/
+
+# IDE / editor config
+.idea/
+.vscode/
+.cursor/
+
+# graphify's own output
+graphify-out/
